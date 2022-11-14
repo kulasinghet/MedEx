@@ -78,10 +78,6 @@ window.onload = () => {
   window.addEventListener("mousemove", (e) => {
     x = e.pageX;
     y = e.pageY;
-
-    // For Debugging purposes
-    document.getElementById("text").innerHTML =
-      "<p>X: " + x + " Y: " + y + "</p>";
   });
 
   // menu open-close mechanism
@@ -152,35 +148,34 @@ window.onload = () => {
 
     // generating the new curve
     let newCurve =
-      "M60," +
-      height +
-      "H0V0h60v" +
-      (curveY - anchorDistance) +
-      "c0," +
-      curliness +
-      "," +
-      curveX +
-      "," +
-      curliness +
-      "," +
-      curveX +
-      "," +
-      anchorDistance +
-      "S60," +
-      curveY +
-      ",60," +
-      (curveY + anchorDistance * 2) +
-      "V" +
-      height +
-      "z";
+        "M60," +
+        height +
+        "H0V0h60v" +
+        (curveY - anchorDistance) +
+        "c0," +
+        curliness +
+        "," +
+        curveX +
+        "," +
+        curliness +
+        "," +
+        curveX +
+        "," +
+        anchorDistance +
+        "S60," +
+        curveY +
+        ",60," +
+        (curveY + anchorDistance * 2) +
+        "V" +
+        height +
+        "z";
 
     // Changing the width of the blob object
     blob.style.width = curveX + 60;
     // Changing the blob-path(SVG) data to the new curve
     blobPath.setAttribute("d", newCurve);
     // Changing the position of the toggle button
-    toggle.style.transform =
-      "translate(" + curveX + "px, " + curveY + "px)";
+    toggle.style.transform = "translate(" + curveX + "px, " + curveY + "px)";
     // Changing the position of the toggle cover
     toggleCover.style.transform = 'translateY(' + (curveY - 60) + 'px)';
 
