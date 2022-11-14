@@ -1,4 +1,3 @@
-
 <html>
     <body>
         <div class="navBar">
@@ -10,7 +9,8 @@
                     <li><a href="/public/index.php">Home</a></li>
                     <li><a href="/public/index.php?page=about">About</a></li>
                     <li><a href="/public/index.php?page=contact">Contact</a></li>
-                    <li><a href="/public/index.php?page=login">Login</a></li>
+                    <li><button id="login">Login</button></li>
+                    <li><button id="register">Register</button></li>
                 </ul>
             </div>
         </div>
