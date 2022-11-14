@@ -2,8 +2,8 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="carousel.css">
-<script src="carousel.js"></script>
+<link rel="stylesheet" href="css/carousel.css">
+<script src="js/carousel.js"></script>
 </head>
 <body onload="showSlides(slideIndex);">
 
