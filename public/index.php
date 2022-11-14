@@ -1,10 +1,15 @@
 <html lang="en">
 <head>
     <title>MedEx</title>
+    <style>
+        p{
+            font-size: 20px;
+            /*font-weight: bold;*/
+        }
+    </style>
 </head>
 <body>
     <h1>MedEx</h1>
-    <p>MedEx is a web application that allows you to streamline your medical supply chain.</p>
-    <p>This page is currently under development.</p>
+    <p>MedEx is a medical practice management system.</p>
 </body>
 </html>
