@@ -1,0 +1,41 @@
+* {box-sizing: border-box}
+body {font-family: Verdana, sans-serif; margin:0}
+.mySlides {display: none}
+img {vertical-align: middle;}
+
+/* image container */
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+  background: rgba(109, 109, 109, 1);
+
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 0px;
+  height: 668px;
+  width: 20px;
+  padding-top: 334px;
+  padding-left: 10px;
+  padding-right: 20px;
+  margin-top: 0px;
+  color:rgba(240, 240, 240, 0.4);
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+}
+
+/* On hover */
+.prev:hover, .next:hover {
+  background-color: rgba(52, 58, 64, 0.3);
+}
