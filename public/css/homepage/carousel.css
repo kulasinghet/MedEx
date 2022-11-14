@@ -7,7 +7,7 @@ img {vertical-align: middle;}
 .slideshow-container {
   max-width: 1000px;
   position: relative;
-  margin: auto;
+  margin: auto auto;
   background: rgba(109, 109, 109, 1);
 
 }

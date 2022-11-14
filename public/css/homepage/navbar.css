@@ -1,6 +1,6 @@
 .navBar {
-    background-color: #ffffff;
-    height: 50px;
+    background-color: #F7F8FA;
+    height: auto;
     width: 100%;
     position: fixed;
     top: 0;
@@ -9,14 +9,42 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 20px;
+    padding: 10px;
     box-sizing: border-box;
-    margin-bottom: 50px;
+    /*margin-bottom: 50px;*/
 }
 
 .navBar ul {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
     list-style: none;
     margin: 0;
     padding: 0;
+}
+
+.navBar ul li {
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+.navBar a {
+    text-decoration: none;
+    color: #666666;
+}
+
+.navBar button {
+    background-color: #02A0FC;
+    border: none;
+    border-radius: 30px;
+    padding: 14px 38px;
+    outline: none;
+    cursor: pointer;
+
+    font-size: 1em;
+    color: #f8f9fa;
+}
+
+#register {
+    background-color: #FFB200;
 }
