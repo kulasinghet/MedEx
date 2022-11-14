@@ -12,12 +12,14 @@ window.onload = () => {
   const sidebar = document.getElementById("sidebar");
   // for debugging
   console.log(window.getComputedStyle(sidebar).backgroundColor);
-  const blob = createSVG();
+  const blob = createSVGBlob();
   const blobPath = blob.children[0];
-  const menuToggle = sidebar.querySelector(".sidebar-toggle");
+  const toggle = sidebar.querySelector("#sidebar-toggle");
+  const toggleCover = createSVGCover();
 
   // Initialize the menu with the blob
   sidebar.appendChild(blob);
+  sidebar.appendChild(toggleCover);
 
   window.addEventListener("mousemove", (e) => {
     x = e.pageX;
@@ -43,13 +45,13 @@ window.onload = () => {
       const target = e.currentTarget;
       // using this condition to prevent repeating
       if (menuExpanded) {
-        //target.parentNode.classList.remove("expanded");
+        target.parentNode.classList.remove("expanded");
         menuExpanded = false;
       }
     });
   });
 
-  document.querySelector(".sidebar-toggle").addEventListener("mouseenter", (e) => {
+  toggle.addEventListener("mouseenter", (e) => {
     const target = e.currentTarget;
     // using this condition to prevent repeating
     if (!menuExpanded) {
@@ -58,7 +60,7 @@ window.onload = () => {
     }
   });
 
-  function createSVG() {
+  function createSVGBlob() {
     // Creating SVG element
     const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     svg.setAttribute("class", ".sidebar-blob");
@@ -71,9 +73,30 @@ window.onload = () => {
 
     // Creating path element
     const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-    path.setAttribute("class", ".sidebar-blob-path");
+    // path.setAttribute("class", ".sidebar-blob-path");
     path.setAttribute("d", "M60,500H0V0h60c0,0,20,172,20,250S60,900,60,500z");
     path.style.height = "100%";
+    path.style.fill = window.getComputedStyle(sidebar).backgroundColor;
+
+    // appending path element to svg
+    svg.appendChild(path);
+    return svg;
+  }
+
+  function createSVGCover() {
+    // Creating SVG element
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute("viewBox", "0 0 60 120");
+    svg.style.position = "absolute";
+    svg.style.width = "60px";
+    svg.style.height = "120px";
+    svg.style.top = "0";
+    svg.style.right = "0";
+    svg.style.zIndex = "1";
+
+    // Creating path element
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path.setAttribute("d", "M60,0V120c0-12.09-13.43-21.89-30-21.89S0,88.3,0,76.21V43.79c0-12.09,13.43-21.9,30-21.9S60,12.09,60,0Z");
     path.style.fill = window.getComputedStyle(sidebar).backgroundColor;
 
     // appending path element to svg
@@ -147,8 +170,10 @@ window.onload = () => {
     // Changing the blob-path(SVG) data to the new curve
     blobPath.setAttribute("d", newCurve);
     // Changing the position of the toggle button
-    menuToggle.style.transform =
+    toggle.style.transform =
       "translate(" + curveX + "px, " + curveY + "px)";
+    // Changing the position of the toggle cover
+    toggleCover.style.transform = 'translateY(' + (curveY - 60) + 'px)';
 
     window.requestAnimationFrame(svgRender);
   }
