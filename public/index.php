@@ -3,6 +3,8 @@
     <title>MedEx</title>
     <link href="css/footer.css"  type="text/css" rel="stylesheet"/>
     <link href="css/carousel.css"  type="text/css" rel="stylesheet"/>
+
+    <script src="js/carousel.js"></script>
 </head>
 <body>
 
