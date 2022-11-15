@@ -1,6 +1,6 @@
 // SideMenu Blob 1.0 javascript library
 // By Naveen Dharmathunga 2022
-// https://github.com/D-Naveenz/side-menu-blob
+// https://github.com/D-Naveenz/sidemenu-blob
 
 // Helper function for generate the blob curve
 function easeOutExpo(currentIteration, startValue, changeInValue, totalIterations) {
