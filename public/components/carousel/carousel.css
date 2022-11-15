@@ -1,20 +1,6 @@
-body {
-  margin: 0;
-}
-
 /* Fading animation */
 .fade {
-  animation-name: fade;
-  animation-duration: 2s;
-}
-
-@keyframes fade {
-  from {
-    opacity: 0.4;
-  }
-  to {
-    opacity: 1;
-  }
+  opacity: 0.4;
 }
 
 .container {
@@ -25,8 +11,7 @@ body {
   justify-content: center;
 }
 
-.carousel {
-  box-sizing: border-box;
+#carousel {
   width: 1280px;
   height: 400px;
   max-width: 1340px;
@@ -36,13 +21,13 @@ body {
 }
 
 .carousel-image {
-  width: 100%;
-  vertical-align: middle;
+  vertical-align: top;
 }
 
 .carousel-btn {
   position: absolute;
   top: 0;
+  z-index: 1;
 
   height: 100%;
   width: 3.5rem;
@@ -68,18 +53,24 @@ body {
   color: rgba(248, 249, 250, 0.6);;
 }
 
-.carousel-slide {
-  display: none;
-}
-
-.active-slide {
-  display: block;
-}
-
 .carousel-next {
   right: 0;
 }
 
 .carousel-prev {
   left: 0;
+}
+
+#carousel-gallery {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.carousel-animation {
+  transition: 800ms cubic-bezier( 0.46, 0.33, 0.62, 1 );
 }
