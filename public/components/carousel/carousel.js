@@ -1,42 +1,57 @@
-var slideIndex = 0;
-showSlides();
-var slides;
+window.onload = () => {
+  let slideIndex = 0;
+  const slides = document.getElementsByClassName("carousel-slide");
+  const carouselNext = document.querySelectorAll(".carousel-next");
+  const carouselPrev = document.querySelectorAll(".carousel-prev");
+  const slidesCount = slides.length;
 
-function showSlides() {
-  var i;
-  slides = document.getElementsByClassName("mySlides");
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";
-  }
-  slideIndex++;
-  if (slideIndex > slides.length) {
-    slideIndex = 1;
-  }
-  slides[slideIndex - 1].style.display = "block";
-  setTimeout(showSlides, 5000); // Change image every 8 seconds
-}
+  // Initializing the carousel
+  slides[slideIndex].classList.add("active-slide");
+  fixSlideControllers();
 
-function plusSlides(position) {
-  slideIndex += position;
-  if (slideIndex > slides.length) {
-    slideIndex = 1;
-  } else if (slideIndex < 1) {
-    slideIndex = slides.length;
-  }
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";
-  }
-  slides[slideIndex - 1].style.display = "block";
-}
+  carouselNext.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      // for debugging purposes
+      console.log("sildes changed:" + slideIndex + "/" + slidesCount);
+      slides[slideIndex].classList.remove("active-slide");
+      slides[++slideIndex].classList.add("active-slide");
 
-function currentSlide(index) {
-  if (index > slides.length) {
-    index = 1;
-  } else if (index < 1) {
-    index = slides.length;
+      fixSlideControllers();
+    });
+  });
+
+  carouselPrev.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      // for debugging purposes
+      console.log("sildes changed:" + slideIndex + "/" + slidesCount);
+      slides[slideIndex].classList.remove("active-slide");
+      slides[--slideIndex].classList.add("active-slide");
+
+      fixSlideControllers();
+    });
+  });
+
+  function showSlideController(btnClass, appear) {
+    btnClass.forEach((btn) => {
+      if (appear) {
+        btn.style.display = "flex";
+      } else {
+        btn.style.display = "none";
+      }
+    });
   }
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";
+
+  function fixSlideControllers() {
+    if (slideIndex <= 0) {
+      showSlideController(carouselPrev, false);
+    } else {
+      showSlideController(carouselPrev, true);
+    }
+
+    if (slideIndex >= slidesCount - 1) {
+      showSlideController(carouselNext, false);
+    } else {
+      showSlideController(carouselNext, true);
+    }
   }
-  slides[index - 1].style.display = "block";
-}
+};
