@@ -1,8 +1,134 @@
-footer{
-    position:fixed;
-    bottom:0;
-    width:100%;
-    height:20px;
-    text-align:center;
-    background:#4263EB;
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,500,300,700);
+
+* {
+    font-family: Open Sans;
 }
+.footer-distributed{
+    background: #1e6da7;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+    box-sizing: border-box;
+    width: 100%;
+    text-align: left;
+    font: bold 16px serif;
+    padding: 55px 50px;
+}
+
+.footer-distributed .footer-left,
+.footer-distributed .footer-center,
+.footer-distributed .footer-right{
+    display: inline-block;
+    vertical-align: top;
+}
+
+/* Footer left */
+.footer-distributed .footer-left{
+    width: 40%;
+}
+
+.footer-distributed h3{
+    color:  #2b2f81;
+    font: normal 36px 'serif', cursive;
+    margin: 0;
+    font-weight: bolder;
+    font-style: italic;
+}
+.footer-distributed h3 span{
+    color:#00ffff;
+    font-weight: bold;
+    font-style: italic;
+}
+
+
+.footer-distributed .footer-links{
+    color:  #ffffff;
+    margin: 20px 0 12px;
+    padding: 0;
+}
+
+.footer-distributed .footer-links a{
+    display:inline-block;
+    line-height: 1.8;
+    font-weight:400;
+    text-decoration: none;
+    color:  inherit;
+}
+
+.footer-distributed .footer-site-right{
+    color:  #ffffff;
+    font-size: 14px;
+    font-weight: normal;
+    margin: 0;
+    font-style: italic;
+    font-weight: bold;
+}
+
+
+
+.footer-distributed .footer-center{
+    width: 35%;
+}
+
+.footer-distributed .footer-links a:before {
+    content: "|";
+    font-weight:300;
+    font-size: 20px;
+    left: 0;
+    color: #fff;
+    display: inline-block;
+    padding-right: 5px;
+}
+
+.footer-distributed .footer-links .link-1:before {
+    content: none;
+}
+
+
+
+.footer-distributed .footer-right {
+    width: 20%;
+
+}
+.footer-distributed .footer-right p{
+    color: #ffffff;
+}
+.footer-distributed .footer-site-tm{
+    line-height: 20px;
+    color:  #ffffff;
+    font-size: 13px;
+    font-weight: normal;
+    margin: 0;
+}
+
+.footer-distributed .footer-site-tm span{
+    display: inline-block;
+    color:  #ffffff;
+    font-size: 18px;
+    font-weight: bolder;
+
+    margin-bottom: 20px;
+}
+.footer-center .tm-color{
+    color: #B5C3DE;
+}
+
+
+
+@media (max-width: 880px) {
+
+    .footer-distributed{
+        font: bold 14px sans-serif;
+    }
+
+    .footer-distributed .footer-left,
+    .footer-distributed .footer-center,
+    .footer-distributed .footer-right{
+        display: block;
+        width: 100%;
+        margin-bottom: 40px;
+        text-align: center;
+    }
+}
+
+
+
