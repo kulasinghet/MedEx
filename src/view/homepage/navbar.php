@@ -2,7 +2,7 @@
     <body>
         <div class="navBar">
             <div class="navBar__logo">
-                <a href="index.php"><img src="img/logo.png" alt="logo"></a>
+                <a href="index.php"><img src="res/logo/Logo-text.png" alt="logo" height="40px" width="autp"></a>
             </div>
             <div class="navBar__menu">
                 <ul>
