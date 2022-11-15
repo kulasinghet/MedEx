@@ -1,89 +1,57 @@
 window.onload = () => {
-  let slideIndex = 0;
   const carousel = document.getElementById("carousel");
   const carouselGallery = document.getElementById("carousel-gallery");
-  const slides = carousel.querySelectorAll(".carousel-slide");
-  const sildeImgs = carousel.querySelectorAll(".carousel-image");
-  const carouselNext = carousel.querySelectorAll(".carousel-next");
-  const carouselPrev = carousel.querySelectorAll(".carousel-prev");
+  const slides = carousel.querySelectorAll(".carousel-image");
   const slidesCount = slides.length;
+  const maxleft = (slidesCount - 1) * 100 * -1;
+  let slideIndex = 0;
+  let galleryPosition = 0;
 
   // Initializing the carousel
-  slides[slideIndex].classList.add("active-slide");
-  carouselGallery.classList.add("carousel-animation");
-  fixSlideControllers();
   fixImageSizes();
 
   window.addEventListener("resize", () => {
     fixImageSizes();
-    carouselGallery.classList.remove("carousel-animation");
-    // for debugging purposes
-    console.log("check: " + window.getComputedStyle(carouselGallery).transition);
-    carouselSlideChange();
-    carouselGallery.classList.add("carousel-animation");
   });
 
-  carouselNext.forEach((btn) => {
+  carousel.querySelectorAll(".carousel-next").forEach((btn) => {
     btn.addEventListener("click", () => {
-      carouselSlideChange(1);
-      fixSlideControllers();
+      carouselSlideChange();
     });
   });
 
-  carouselPrev.forEach((btn) => {
+  carousel.querySelectorAll(".carousel-prev").forEach((btn) => {
     btn.addEventListener("click", () => {
-      carouselSlideChange(-1);
-      fixSlideControllers();
+      carouselSlideChange(false);
     });
   });
-
-  function showSlideController(btnClass, appear) {
-    btnClass.forEach((btn) => {
-      if (appear) {
-        btn.style.display = "flex";
-      } else {
-        btn.style.display = "none";
-      }
-    });
-  }
-
-  function fixSlideControllers() {
-    if (slideIndex <= 0) {
-      showSlideController(carouselPrev, false);
-    } else {
-      showSlideController(carouselPrev, true);
-    }
-
-    if (slideIndex >= slidesCount - 1) {
-      showSlideController(carouselNext, false);
-    } else {
-      showSlideController(carouselNext, true);
-    }
-  }
 
   function fixImageSizes() {
-    sildeImgs.forEach((img) => {
+    slides.forEach((img) => {
       img.style.width = window.getComputedStyle(carousel).width;
       // for debugging purposes
       console.log("New img size: " + window.getComputedStyle(img).width);
     });
   }
 
-  function carouselSlideChange(step = 0) {
-    // getting current size of the carousel
-    let size = parseFloat(
-      window.getComputedStyle(carousel).width.replace("px", "")
-    );
-
+  function carouselSlideChange(next = true) {
     // set current slide faded
     slides[slideIndex].classList.add("fade");
-    // changing the slide
-    slideIndex = slideIndex + step;
+
+    if (next) {
+      galleryPosition +=
+        galleryPosition > maxleft ? -100 : galleryPosition * -1;
+    } else {
+      galleryPosition += galleryPosition < 0 ? 100 : maxleft;
+    }
+
     // applying the new position for the carousel gallery
-    carouselGallery.style.left = (0 - (size * slideIndex)) + "px";
+    carouselGallery.style.left = galleryPosition + "%";
+    // changing the slide
+    slideIndex = (galleryPosition * -1) / 100;
     // remove the fadeness from the new slide
     slides[slideIndex].classList.remove("fade");
-    
+
     // for debugging purposes
     console.log("sildes changed:" + slideIndex + "/" + slidesCount);
     console.log("New left: " + window.getComputedStyle(carouselGallery).left);

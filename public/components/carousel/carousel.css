@@ -22,6 +22,7 @@
 
 .carousel-image {
   vertical-align: top;
+  transition: opacity 800ms cubic-bezier( 0.46, 0.33, 0.62, 1 );
 }
 
 .carousel-btn {
@@ -69,8 +70,6 @@
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
-}
 
-.carousel-animation {
   transition: 800ms cubic-bezier( 0.46, 0.33, 0.62, 1 );
 }
