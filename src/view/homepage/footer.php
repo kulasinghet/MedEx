@@ -12,6 +12,7 @@
         <p class="footer-links">
             <a href="#" class="link-1">Home</a>
             <a href="#">About</a>
+
             <a href="#">Contact</a>
         </p>
 
