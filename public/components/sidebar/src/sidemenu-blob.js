@@ -1,6 +1,6 @@
 // SideMenu Blob 1.0 javascript library
 // By Naveen Dharmathunga 2022
-// https://github.com/D-Naveenz/side-menu-blob
+// https://github.com/D-Naveenz/sidemenu-blob
 
 // Helper function for generate the blob curve
 function easeOutExpo(currentIteration, startValue, changeInValue, totalIterations) {
@@ -33,9 +33,9 @@ function createSVGBlob() {
 function createSVGCover() {
   // Creating SVG element
   const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-  svg.setAttribute("viewBox", "0 0 60 120");
+  svg.setAttribute("viewBox", "0 0 52 120");
   svg.style.position = "absolute";
-  svg.style.width = "60px";
+  svg.style.width = "52px";
   svg.style.height = "120px";
   svg.style.top = "0";
   svg.style.right = "0";
@@ -43,7 +43,7 @@ function createSVGCover() {
 
   // Creating path element
   const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-  path.setAttribute("d", "M60,0V120c0-12.09-13.43-21.89-30-21.89S0,88.3,0,76.21V43.79c0-12.09,13.43-21.9,30-21.9S60,12.09,60,0Z");
+  path.setAttribute("d", "M52,0V120c0-12.09-11.64-21.89-26-21.89S0,88.3,0,76.21V43.79c0-12.09,11.64-21.9,26-21.9S52,12.09,52,0Z");
   path.style.fill = window.getComputedStyle(sidebar).backgroundColor;
 
   // appending path element to svg
