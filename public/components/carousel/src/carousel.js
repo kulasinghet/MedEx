@@ -38,6 +38,7 @@ window.onload = () => {
 
   function fixImageSizes() {
     slides.forEach((img) => {
+      // changing image size based on the carousel size changes
       img.style.width = window.getComputedStyle(carousel).width;
       // for debugging purposes
       console.log("New img size: " + window.getComputedStyle(img).width);
@@ -48,6 +49,7 @@ window.onload = () => {
     // set current slide faded
     slides[slideIndex].classList.add("fade");
   
+    // repositioning based on next parameter
     if (next) {
       galleryPosition += galleryPosition > maxleft ? -100 : galleryPosition * -1;
     } else {

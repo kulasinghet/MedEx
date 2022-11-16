@@ -3,14 +3,6 @@
   opacity: 0.4;
 }
 
-.container {
-  box-sizing: border-box;
-  margin-top: 6rem;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-
 #carousel {
   width: 1280px;
   height: 400px;
@@ -20,16 +12,37 @@
   background: rgba(109, 109, 109, 1);
 }
 
+#carousel-gallery {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  transition: 800ms cubic-bezier( 0.46, 0.33, 0.62, 1 );
+}
+
 .carousel-image {
   vertical-align: top;
   transition: opacity 800ms cubic-bezier( 0.46, 0.33, 0.62, 1 );
 }
 
-.carousel-btn {
+.carousel-controls {
   position: absolute;
   top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
   z-index: 1;
 
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.carousel-control {
   height: 100%;
   width: 3.5rem;
   display: flex;
@@ -43,33 +56,13 @@
   user-select: none;
 }
 
-.carousel-btn:hover {
+.carousel-control:hover {
   background: rgba(240, 240, 240, 0.4);
   color: rgba(52, 58, 64, 0.4);;
   transition: 0.3s ease-out;
 }
 
-.carousel-btn:active {
+.carousel-control:active {
   background: rgba(52, 58, 64, 0.3);
   color: rgba(248, 249, 250, 0.6);;
-}
-
-.carousel-next {
-  right: 0;
-}
-
-.carousel-prev {
-  left: 0;
-}
-
-#carousel-gallery {
-  position: absolute;
-  top: 0;
-  left: 0;
-
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-
-  transition: 800ms cubic-bezier( 0.46, 0.33, 0.62, 1 );
 }
