@@ -42,8 +42,6 @@ window.onload = () => {
     slides.forEach((img) => {
       // changing image size based on the carousel size changes
       img.style.width = window.getComputedStyle(carousel).width;
-      // for debugging purposes
-      console.log("New img size: " + window.getComputedStyle(img).width);
     });
   }
   
@@ -64,9 +62,5 @@ window.onload = () => {
     slideIndex = (galleryPosition * -1) / 100;
     // remove the fadeness from the new slide
     slides[slideIndex].classList.remove("fade");
-  
-    // for debugging purposes
-    console.log("sildes changed:" + (slideIndex + 1) + "/" + slidesCount);
-    console.log("New left: " + window.getComputedStyle(imgGallery).left);
   }
 };
