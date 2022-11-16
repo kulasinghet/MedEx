@@ -1,40 +1,42 @@
+const delay = 5000;
+
 window.onload = () => {
   const carousel = document.getElementById("carousel");
-  const carouselGallery = document.getElementById("carousel-gallery");
-  const slides = carousel.querySelectorAll(".carousel-image");
+  const imgGallery = carousel.querySelectorAll(".carousel-gallery")[0];
+  const slides = imgGallery.querySelectorAll(".carousel-image");
   const slidesCount = slides.length;
   const maxleft = (slidesCount - 1) * 100 * -1;
-  const delay = 5000;
   let slideIndex = 0;
   let galleryPosition = 0;
 
   // Initializing the carousel
   fixImageSizes();
+  // slides autochange function
+  let autochange = setInterval(changeSlides, delay);
+  const restart = () => {
+    clearInterval(autochange);
+    autochange = setInterval(changeSlides, delay);
+  };
 
+  // Event Listeners
   window.addEventListener("resize", () => {
     fixImageSizes();
   });
 
   carousel.querySelectorAll(".carousel-next").forEach((btn) => {
     btn.addEventListener("click", () => {
-      carouselSlideChange();
+      changeSlides();
       restart();
     });
   });
 
   carousel.querySelectorAll(".carousel-prev").forEach((btn) => {
     btn.addEventListener("click", () => {
-      carouselSlideChange(false);
+      changeSlides(false);
       restart();
     });
   });
-
-  // slides autochange function
-  let autochange = setInterval(carouselSlideChange, delay);
-  const restart = () => {
-    clearInterval(autochange);
-    autochange = setInterval(carouselSlideChange, delay);
-  };
+  // Event Listeners
 
   function fixImageSizes() {
     slides.forEach((img) => {
@@ -45,7 +47,7 @@ window.onload = () => {
     });
   }
   
-  function carouselSlideChange(next = true) {
+  function changeSlides(next = true) {
     // set current slide faded
     slides[slideIndex].classList.add("fade");
   
@@ -57,14 +59,14 @@ window.onload = () => {
     }
   
     // applying the new position for the carousel gallery
-    carouselGallery.style.left = galleryPosition + "%";
+    imgGallery.style.left = galleryPosition + "%";
     // changing the slide
     slideIndex = (galleryPosition * -1) / 100;
     // remove the fadeness from the new slide
     slides[slideIndex].classList.remove("fade");
   
     // for debugging purposes
-    console.log("sildes changed:" + slideIndex + "/" + slidesCount);
-    console.log("New left: " + window.getComputedStyle(carouselGallery).left);
+    console.log("sildes changed:" + (slideIndex + 1) + "/" + slidesCount);
+    console.log("New left: " + window.getComputedStyle(imgGallery).left);
   }
 };
