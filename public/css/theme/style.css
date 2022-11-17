@@ -1,0 +1,142 @@
+:root {
+  --color-light: #f8f9fa;
+  --color-dark: #343a40;
+  --color-primary: #4339f2;
+  --color-info: #02a0fc;
+  --color-success: #34b53a;
+  --color-warning: #ffb200;
+  --color-danger: #ff3a29;
+
+  --effects-default: 1px 4px 4px rgba(0, 0, 0, 0.25);
+  --effects-clicked: inset 1px 4px 4px rgba(0, 0, 0, 0.25);
+  --effects-primary: 1px 4px 4px rgba(57, 98, 242, 0.38);
+  --effects-info: 1px 4px 4px rgba(97, 193, 249, 0.38);
+  --effects-success: 1px 4px 4px rgba(16, 192, 24, 0.38);
+  --effects-warning: 1px 4px 4px rgba(255, 199, 0, 0.38);
+  --effects-danger: 1px 4px 4px rgba(255, 92, 41, 0.38);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  box-sizing: border-box;
+  margin: 3rem 10%;
+}
+
+.btn-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1.2rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0.7rem 2rem;
+  gap: 10px;
+
+  cursor: pointer;
+  user-select: none;
+
+  background: var(--color-light);
+  color: var(--color-dark);
+  box-shadow: var(--effects-default);
+  border-radius: 30px;
+}
+
+.btn:active {
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    var(--color-light);
+  box-shadow: var(--effects-clicked);
+  border-radius: 30px;
+}
+
+.btn-dark {
+  background: var(--color-dark);
+  color: var(--color-light);
+  box-shadow: var(--effects-default);
+  border-radius: 30px;
+}
+
+.btn-dark:active {
+  background: var(--color-dark);
+  box-shadow: var(--effects-clicked);
+  border-radius: 30px;
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  color: var(--color-light);
+  box-shadow: var(--effects-primary);
+  border-radius: 30px;
+}
+
+.btn-primary:active {
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    var(--color-primary);
+  box-shadow: var(--effects-clicked);
+  border-radius: 30px;
+}
+
+.btn-info {
+  background: var(--color-info);
+  color: var(--color-light);
+  box-shadow: var(--effects-info);
+  border-radius: 30px;
+}
+
+.btn-info:active {
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    var(--color-info);
+  box-shadow: var(--effects-clicked);
+  border-radius: 30px;
+}
+
+.btn-success {
+  background: var(--color-success);
+  color: var(--color-light);
+  box-shadow: var(--effects-success);
+  border-radius: 30px;
+}
+
+.btn-success:active {
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    var(--color-success);
+  box-shadow: var(--effects-clicked);
+  border-radius: 30px;
+}
+
+.btn-warning {
+  background: var(--color-warning);
+  color: var(--color-dark);
+  box-shadow: var(--effects-warning);
+  border-radius: 30px;
+}
+
+.btn-warning:active {
+  background: var(--color-warning);
+  box-shadow: var(--effects-clicked);
+  border-radius: 30px;
+}
+
+.btn-danger {
+  background: var(--color-danger);
+  color: var(--color-light);
+  box-shadow: var(--effects-danger);
+  border-radius: 30px;
+}
+
+.btn-danger:active {
+  background: var(--color-danger);
+  box-shadow: var(--effects-clicked);
+  border-radius: 30px;
+}
