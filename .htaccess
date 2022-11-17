@@ -1,0 +1,4 @@
+#Redirect a domain to a specific URL
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^3.83.240.41/src/view/loginPage/loginPage.php
+RewriteRule ^(.*) http://3.83.240.41/login [P]
