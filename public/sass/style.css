@@ -46,47 +46,54 @@ h2 {
   box-shadow: inset 1px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 30px;
 }
-.btn .btn-block {
+
+.btn-block {
   display: inline-block;
   flex: none;
   text-align: center;
   vertical-align: middle;
 }
-.btn .btn-dark {
+
+.btn-dark {
   background: #343a40;
   color: #f8f9fa;
   box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.25);
 }
-.btn .btn-primary {
+
+.btn-primary {
   background: #4339f2;
   color: #f8f9fa;
   box-shadow: 1px 4px 4px rgba(57, 98, 242, 0.38);
 }
-.btn .btn-primary:active {
+.btn-primary:active {
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), #4339f2;
 }
-.btn .btn-info {
+
+.btn-info {
   background: #02a0fc;
   color: #f8f9fa;
   box-shadow: 1px 4px 4px rgba(97, 193, 249, 0.38);
 }
-.btn .btn-info:active {
+.btn-info:active {
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), #02a0fc;
 }
-.btn .btn-success {
+
+.btn-success {
   background: #34b53a;
   color: #f8f9fa;
   box-shadow: 1px 4px 4px rgba(16, 192, 24, 0.38);
 }
-.btn .btn-success:active {
+.btn-success:active {
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), #34b53a;
 }
-.btn .btn-warning {
+
+.btn-warning {
   background: #ffb200;
   color: #343a40;
   box-shadow: 1px 4px 4px rgba(255, 199, 0, 0.38);
 }
-.btn .btn-danger {
+
+.btn-danger {
   background: #ff3a29;
   color: #f8f9fa;
   box-shadow: 1px 4px 4px rgba(255, 92, 41, 0.38);
