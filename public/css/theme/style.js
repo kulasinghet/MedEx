@@ -3,7 +3,6 @@ window.onload = () => {
   document.querySelectorAll(".dropdown").forEach(dropdown => {
     const btn = dropdown.querySelector(".btn");
     const dropdownList = dropdown.querySelector(".dropdown-list");
-    let dropdownExpanded = false;
     
     // Initializing caret icon
     const caret = document.createElement("i");
