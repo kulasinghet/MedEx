@@ -1,30 +1,9 @@
-* {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
-}
-
-div {
   box-sizing: border-box;
-}
-
-section {
-  margin-bottom: 40px;
-}
-
-h2 {
-  margin-bottom: 1rem;
-}
-
-.container {
-  box-sizing: border-box;
-  margin: 3rem 10%;
-}
-.container .btn-container {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 1.2rem;
 }
 
 .btn {
@@ -171,6 +150,85 @@ h2 {
   margin: 0.2rem 0;
   overflow: hidden;
   border-top: 1px solid #c3cad9;
+}
+
+.card {
+  margin: 1rem;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  /* See https://github.com/twbs/bootstrap/pull/22740#issuecomment-305868106 */
+  min-width: 0;
+  word-wrap: break-word;
+  background: linear-gradient(180deg, #ffffff 0%, #f2f2f2 100%);
+  background-clip: border-box;
+  color: #343a40;
+  border: 1px solid #dedede;
+  box-shadow: 2px 6px 8px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 1.5rem;
+}
+
+.card-dark {
+  background: linear-gradient(180deg, #343a40 0%, #202223 100%);
+  color: #f8f9fa;
+  border: 1px solid #282828;
+}
+
+.card-img {
+  width: 100%;
+  background: #d9d9d9;
+}
+
+.card-body {
+  padding: 1.2rem;
+}
+
+.card-link:link,
+.card-link:visited {
+  text-decoration: none;
+  color: #007bff;
+}
+
+.card-link:hover {
+  color: #7d8fb3;
+}
+
+.card-link:active {
+  color: #343a40;
+}
+
+.card-title {
+  margin-bottom: 0.6rem;
+}
+
+.card-text {
+  margin-bottom: 0.6rem;
+}
+
+div {
+  box-sizing: border-box;
+}
+
+section {
+  margin-bottom: 40px;
+}
+
+h2 {
+  margin-bottom: 1rem;
+}
+
+.container {
+  box-sizing: border-box;
+  margin: 3rem 10%;
+}
+
+.btn-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1.2rem;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -1,10 +1,10 @@
-*
-  // global reset
-  margin: 0
-  padding: 0
+// global reset
+@use "reset"
 
-// variables
-@import "mixins/config"
+// components
+@use "button"
+@use "dropdown"
+@use "card"
 
 div
   box-sizing: border-box
@@ -19,12 +19,9 @@ h2
   box-sizing: border-box
   margin: 3rem 10%
 
-  .btn-container
-    display: flex
-    flex-wrap: wrap
-    align-items: center
-    justify-content: flex-start
-    gap: 1.2rem
-
-@import "button"
-@import "dropdown"
+.btn-container
+  display: flex
+  flex-wrap: wrap
+  align-items: center
+  justify-content: flex-start
+  gap: 1.2rem
