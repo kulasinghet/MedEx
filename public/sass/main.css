@@ -206,10 +206,6 @@
   margin-bottom: 0.6rem;
 }
 
-div {
-  box-sizing: border-box;
-}
-
 section {
   margin-bottom: 40px;
 }
@@ -231,4 +227,4 @@ h2 {
   gap: 1.2rem;
 }
 
-/*# sourceMappingURL=style.css.map */
+/*# sourceMappingURL=main.css.map */
