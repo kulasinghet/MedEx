@@ -19,7 +19,6 @@
   &:active
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), $color-light
     box-shadow: $effects-clicked
-    border-radius: 30px
 
 .btn-block
   display: inline-block
@@ -31,6 +30,9 @@
   background: $color-dark
   color: $color-light
   box-shadow: $effects-default
+
+  &:active
+    background: $color-dark
 
 .btn-primary
   background: $color-primary
@@ -61,7 +63,13 @@
   color: $color-dark
   box-shadow: $effects-warning
 
+  &:active
+    background: $color-warning
+
 .btn-danger
   background: $color-danger
   color: $color-light
   box-shadow: $effects-danger
+
+  &:active
+    background: $color-danger

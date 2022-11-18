@@ -6,6 +6,12 @@
   box-sizing: border-box;
 }
 
+body,
+html {
+  width: 100%;
+  height: 100%;
+}
+
 .btn {
   display: flex;
   flex-direction: row;
@@ -23,7 +29,6 @@
 .btn:active {
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), #f8f9fa;
   box-shadow: inset 1px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 30px;
 }
 
 .btn-block {
@@ -37,6 +42,9 @@
   background: #343a40;
   color: #f8f9fa;
   box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.btn-dark:active {
+  background: #343a40;
 }
 
 .btn-primary {
@@ -71,11 +79,17 @@
   color: #343a40;
   box-shadow: 1px 4px 4px rgba(255, 199, 0, 0.38);
 }
+.btn-warning:active {
+  background: #ffb200;
+}
 
 .btn-danger {
   background: #ff3a29;
   color: #f8f9fa;
   box-shadow: 1px 4px 4px rgba(255, 92, 41, 0.38);
+}
+.btn-danger:active {
+  background: #ff3a29;
 }
 
 .dropdown {
@@ -206,6 +220,168 @@
   margin-bottom: 0.6rem;
 }
 
+/* Fading animation */
+.fade {
+  opacity: 0.4;
+}
+
+#carousel {
+  width: 1280px;
+  height: 400px;
+  max-width: 1340px;
+  overflow: hidden;
+  position: relative;
+  background: rgb(109, 109, 109);
+}
+
+.carousel-gallery {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  transition: 800ms cubic-bezier(0.46, 0.33, 0.62, 1);
+}
+
+.carousel-image {
+  vertical-align: top;
+  transition: opacity 800ms cubic-bezier(0.46, 0.33, 0.62, 1);
+}
+
+.carousel-controls {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.carousel-control {
+  height: 100%;
+  width: 3.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: rgba(240, 240, 240, 0.2);
+  font-size: 3rem;
+  transition: 0.6s ease;
+  user-select: none;
+}
+.carousel-control:hover {
+  background: rgba(240, 240, 240, 0.4);
+  color: rgba(52, 58, 64, 0.4);
+  transition: 0.3s ease-out;
+}
+.carousel-control:active {
+  background: rgba(52, 58, 64, 0.3);
+  color: rgba(248, 249, 250, 0.6);
+}
+
+/* SideMenu Blob 1.0 CSS file */
+/* By Naveen Dharmathunga 2022 */
+/* https://github.com/D-Naveenz/sidemenu-blob */
+#sidebar {
+  position: fixed;
+  height: 100%;
+  background-color: #2536b8;
+  width: 300px;
+  transition: 1000ms all cubic-bezier(0.19, 1, 0.22, 1);
+  transform: translateX(-100%);
+  left: 52px;
+}
+
+#sidebar.expanded {
+  transform: translateX(0%);
+  left: 0;
+}
+
+.sidebar-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background: linear-gradient(180deg, #D8EEF8 0%, #B5C3DE 100%);
+}
+
+.sidebar-context {
+  width: 248px;
+  height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.sidebar-context::after {
+  content: "";
+  height: 100%;
+  border: 1px solid rgba(133, 146, 200, 0.2509803922);
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.sidebar-logo {
+  padding: 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.sidebar-list {
+  width: 100%;
+  padding: 20px 14px;
+}
+
+.sidebar-list-itm {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 13px 18px;
+  gap: 10px;
+  margin-bottom: 10px;
+  transition: all 300ms ease-out;
+}
+.sidebar-list-itm:link, .sidebar-list-itm:visited {
+  text-decoration: none;
+  color: #343A40;
+}
+.sidebar-list-itm:hover {
+  padding-left: 30px;
+  background: rgba(2, 160, 252, 0.5);
+  box-shadow: 1px 4px 4px rgba(97, 193, 249, 0.28);
+  border-radius: 10px;
+}
+.sidebar-list-itm:active {
+  padding-left: 30px;
+  background: rgba(52, 58, 64, 0.5);
+  box-shadow: inset 1px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  color: #F8F9FA;
+}
+
+.sidebar-toggle {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  right: 16px;
+  z-index: 2;
+  margin-top: -10px;
+  font-size: 20px;
+  text-align: center;
+  color: #fff;
+}
+
+body, html {
+  background-color: #26394E;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+}
+
 section {
   margin-bottom: 40px;
 }
@@ -225,6 +401,13 @@ h2 {
   align-items: center;
   justify-content: flex-start;
   gap: 1.2rem;
+}
+
+.carousel-container {
+  margin-top: 6rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 /*# sourceMappingURL=main.css.map */
