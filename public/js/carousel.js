@@ -1,20 +1,66 @@
-let slideIndex = 1;
-showSlides(slideIndex);
-function plusSlides(n) {
-  showSlides(slideIndex += n);
-}
+const delay = 5000;
 
-function currentSlide(n) {
-  showSlides(slideIndex = n);
-}
+window.onload = () => {
+  const carousel = document.getElementById("carousel");
+  const imgGallery = carousel.querySelector(".carousel-gallery");
+  const slides = imgGallery.querySelectorAll(".carousel-image");
+  const slidesCount = slides.length;
+  const maxleft = (slidesCount - 1) * 100 * -1;
+  let slideIndex = 0;
+  let galleryPosition = 0;
 
-function showSlides(n) {
-  let i;
-  let slides = document.getElementsByClassName("mySlides");
-  if (n > slides.length) {slideIndex = 1}    
-  if (n < 1) {slideIndex = slides.length}
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";  
+  // Initializing the carousel
+  fixImageSizes();
+  // slides autochange function
+  let autochange = setInterval(changeSlides, delay);
+  const restart = () => {
+    clearInterval(autochange);
+    autochange = setInterval(changeSlides, delay);
+  };
+
+  // Event Listeners
+  window.addEventListener("resize", () => {
+    fixImageSizes();
+  });
+
+  carousel.querySelectorAll(".carousel-next").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      changeSlides();
+      restart();
+    });
+  });
+
+  carousel.querySelectorAll(".carousel-prev").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      changeSlides(false);
+      restart();
+    });
+  });
+  // Event Listeners
+
+  function fixImageSizes() {
+    slides.forEach((img) => {
+      // changing image size based on the carousel size changes
+      img.style.width = window.getComputedStyle(carousel).width;
+    });
   }
-  slides[slideIndex-1].style.display = "block";
-}
+  
+  function changeSlides(next = true) {
+    // set current slide faded
+    slides[slideIndex].classList.add("fade");
+  
+    // repositioning based on next parameter
+    if (next) {
+      galleryPosition += galleryPosition > maxleft ? -100 : galleryPosition * -1;
+    } else {
+      galleryPosition += galleryPosition < 0 ? 100 : maxleft;
+    }
+  
+    // applying the new position for the carousel gallery
+    imgGallery.style.left = galleryPosition + "%";
+    // changing the slide
+    slideIndex = (galleryPosition * -1) / 100;
+    // remove the fadeness from the new slide
+    slides[slideIndex].classList.remove("fade");
+  }
+};
