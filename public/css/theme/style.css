@@ -7,14 +7,16 @@
   --color-warning: #ffb200;
   --color-danger: #ff3a29;
 
-  --color-link: #007BFF;
+  --color-link: #007bff;
 
-  --color-grayblue-50: #4D5E80;
-  --color-grayblue-60: #4D5E80;
-  --color-grayblue-70: #4D5E80;
-  --color-grayblue-80: #4D5E80;
-  --color-grayblue-85: #C3CAD9;
+  --color-grayblue-50: #4d5e80;
+  --color-grayblue-60: #6b7a99;
+  --color-grayblue-70: #7d8fb3;
+  --color-grayblue-80: #adb8cc;
+  --color-grayblue-85: #c3cad9;
 
+  --gradient-light: linear-gradient(180deg, #ffffff 0%, #f2f2f2 100%);
+  --gradient-dark: linear-gradient(180deg, #343a40 0%, #202223 100%);
 
   --effects-default: 1px 4px 4px rgba(0, 0, 0, 0.25);
   --effects-clicked: inset 1px 4px 4px rgba(0, 0, 0, 0.25);
@@ -25,17 +27,22 @@
   --effects-danger: 1px 4px 4px rgba(255, 92, 41, 0.38);
 }
 
-body {
+* {
+  /* golbal reset */
   margin: 0;
   padding: 0;
 }
 
-a:link {
-  text-decoration: none;
+section {
+  margin-bottom: 40px;
 }
 
 div {
   box-sizing: border-box;
+}
+
+h2 {
+  margin-bottom: 1rem;
 }
 
 .container {
@@ -49,8 +56,6 @@ div {
   align-items: center;
   justify-content: flex-start;
   gap: 1.2rem;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
 }
 
 .btn {
@@ -70,7 +75,13 @@ div {
   border-radius: 30px;
 }
 
-.btn:focus,
+.btn-block {
+  display: inline-block;
+  flex: none;
+  text-align: center;
+  vertical-align: middle;
+}
+
 .btn:active {
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
     var(--color-light);
@@ -178,7 +189,7 @@ div {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  
+
   /* colors / theme / light-gradient */
   background: linear-gradient(180deg, #ffffff 0%, #f2f2f2 100%);
   border: 1px solid rgba(181, 181, 181, 0.8);
@@ -195,13 +206,13 @@ div {
 
 @keyframes growDown {
   0% {
-      transform: scaleY(0);
+    transform: scaleY(0);
   }
   80% {
-      transform: scaleY(1.1);
+    transform: scaleY(1.1);
   }
   100% {
-      transform: scaleY(1);
+    transform: scaleY(1);
   }
 }
 
@@ -237,4 +248,59 @@ div {
   margin: 0.2rem 0;
   overflow: hidden;
   border-top: 1px solid var(--color-grayblue-85);
+}
+
+.card {
+  margin: 1rem;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  /* See https://github.com/twbs/bootstrap/pull/22740#issuecomment-305868106 */
+  min-width: 0;
+  word-wrap: break-word;
+  background-clip: border-box;
+
+  background: var(--gradient-light);
+  color: var(--color-dark);
+  border: 1px solid #dedede;
+  box-shadow: 2px 6px 8px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 1.5rem;
+}
+
+.card-dark {
+  background: var(--gradient-dark);
+  color: var(--color-light);
+  border: 1px solid #282828;
+}
+
+.card-img {
+  width: 100%;
+  background: #d9d9d9;
+}
+
+.card-body {
+  padding: 1.2rem;
+}
+
+.card-link:link,
+.card-link:visited {
+  text-decoration: none;
+  color: var(--color-link);
+}
+
+.card-link:hover {
+  color: var(--color-grayblue-70);
+}
+
+.card-link:active {
+  color: var(--color-dark);
+}
+
+.card-title {
+  margin-bottom: 0.6rem;
+}
+
+.card-text {
+  margin-bottom: 0.6rem;
 }
