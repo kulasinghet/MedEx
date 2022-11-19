@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="deliregisterpage.css">
 </head>
 
+
 <body>
 <h1>Create Account - Delivery Partner</h1>
 <!--<form action="../../controller/RegisterPage/registerController.php" method="post">-->

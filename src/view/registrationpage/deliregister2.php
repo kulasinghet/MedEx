@@ -32,6 +32,7 @@
     <input type="file" name="uploaddrivinglicense" id="uploaddrivinglicense" accept="image/png,image/jpeg" />
 
 
+
     <input type="submit" value="Register" id="regbutton" />
 </form>
 </body>
