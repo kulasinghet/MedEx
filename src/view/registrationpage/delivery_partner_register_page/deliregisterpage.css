@@ -39,8 +39,7 @@ form input {
     font-size: 16px;
 }
 
-
-regbutton {
+#loginButton {
     border: 0;
     border-radius: 5px;
     height: 44px;

@@ -33,7 +33,7 @@
 
 
 
-    <input type="submit" value="Register" id="regbutton" />
+    <input type="submit" value="Register" id="loginButton" />
 </form>
 </body>
 </html>

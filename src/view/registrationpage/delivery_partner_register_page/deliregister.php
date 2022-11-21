@@ -22,7 +22,7 @@
     <label for="retypepassword">Re-type password</label>
     <input type="text" name="retypepassword" id="retypepassword" />
 
-    <input type="submit" value="Next" id="regbutton" />
+    <input type="submit" value="Next" id="loginButton" />
 </form>
 </body>
 </html>
