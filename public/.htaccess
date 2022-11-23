@@ -1,0 +1,13 @@
+<IfModule mod_rewrite.c>
+
+Header set Access-Control-Allow-Origin "*"
+RewriteEngine on
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-l
+
+RewriteRule ^([0-9a-zA-Z].+)$     index.php?main_route=$1   [NC,QSA,L]
+
+
+</IfModule>

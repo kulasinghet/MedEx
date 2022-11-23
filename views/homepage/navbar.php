@@ -39,9 +39,9 @@
             </div>
             <div class="navBar__menu">
                 <ul>
-                    <li><a href="/index.php">Home</a></li>
-                    <li><a href="/index.php?page=about">About</a></li>
-                    <li><a href="/index.php?page=contact">Contact</a></li>
+                    <li><a href="/MedEx/index.phpex.php">Home</a></li>
+                    <li><a href="/MedEx/index.phpex.php?page=about">About</a></li>
+                    <li><a href="/MedEx/index.phpex.php?page=contact">Contact</a></li>
                     <li><button id="login" class="login-trigger">Login</button></li>
                     <li><button id="register" class="register-trigger">Register</button></li>
                 </ul>

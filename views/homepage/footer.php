@@ -1,7 +1,7 @@
-<head><link rel="stylesheet" type="text/css" href="/public/css/homepage/footer.css"></head>
+<head><link rel="stylesheet" type="text/css" href="/MedEx/publicpublic/css/homepage/footer.css"></head>
 
 <html>
-<head><link rel="stylesheet" type="text/css" href="/public/css/homepage/footer.css"></head>
+<head><link rel="stylesheet" type="text/css" href="/MedEx/publicpublic/css/homepage/footer.css"></head>
 
 <footer class="footer-distributed">
 
