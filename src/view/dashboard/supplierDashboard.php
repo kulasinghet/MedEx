@@ -104,7 +104,9 @@
     </div>
  </div>
 
- <script src="../../../public/components/graphs/graph.js"></script>
+<!-- show details-->
+<div class = "flexbox" style="width: 265px; height: 300px; left: 200px; top: 192px;">
+</div>
 
 <!--footer-->
 <div style="padding-top: 40%; padding-left: 50px;">
