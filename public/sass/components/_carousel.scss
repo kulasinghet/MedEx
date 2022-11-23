@@ -1,0 +1,69 @@
+/* Fading animation */
+.fade {
+  opacity: 0.4;
+}
+
+#carousel {
+  width: 1280px;
+  height: 400px;
+  max-width: 1340px;
+  overflow: hidden;
+  position: relative;
+  background: rgba(109, 109, 109, 1);
+
+  .carousel-gallery {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    transition: 800ms cubic-bezier( 0.46, 0.33, 0.62, 1 );
+
+    .carousel-image {
+      vertical-align: top;
+      transition: opacity 800ms cubic-bezier( 0.46, 0.33, 0.62, 1 );
+    }
+  }
+
+  .carousel-controls {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .carousel-control {
+      height: 100%;
+      width: 3.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      color: rgba(240, 240, 240, 0.2);
+      font-size: 3rem;
+      transition: 0.6s ease;
+      user-select: none;
+
+      &:hover {
+        background: rgba(240, 240, 240, 0.4);
+        color: rgba(52, 58, 64, 0.4);
+        transition: 0.3s ease-out;
+      }
+
+
+      &:active {
+        background: rgba(52, 58, 64, 0.3);
+        color: rgba(248, 249, 250, 0.6);
+      }
+    }
+  }
+}

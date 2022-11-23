@@ -1,0 +1,92 @@
+@use "../abstracts/variables" as *;
+
+
+.btn{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0.7rem 2rem;
+  gap: 10px;
+
+  cursor: pointer;
+  user-select: none;
+
+  background: $color-light;
+  color: $color-dark;
+  box-shadow: $effects-default;
+  border-radius: 30px;
+
+  &:active {
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), $color-light;
+    box-shadow: $effects-clicked;
+  }
+}
+
+.btn-block {
+  display: inline-block;
+  flex: none;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.btn-dark {
+  background: $color-dark;
+  color: $color-light;
+  box-shadow: $effects-default;
+
+  &:active {
+    background: $color-dark;
+  }
+}
+
+.btn-primary {
+  background: $color-primary;
+  color: $color-light;
+  box-shadow: $effects-primary;
+
+  &:active {
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), $color-primary;
+  }
+}
+
+.btn-info {
+  background: $color-info;
+  color: $color-light;
+  box-shadow: $effects-info;
+
+  &:active {
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), $color-info;
+  }
+}
+
+.btn-success {
+  background: $color-success;
+  color: $color-light;
+  box-shadow: $effects-success;
+
+  &:active {
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), $color-success;
+  }
+}
+
+.btn-warning {
+  background: $color-warning;
+  color: $color-dark;
+  box-shadow: $effects-warning;
+
+  &:active {
+    background: $color-warning;
+  }
+}
+
+.btn-danger {
+  background: $color-danger;
+  color: $color-light;
+  box-shadow: $effects-danger;
+
+  &:active {
+    background: $color-danger;
+  }
+}
+
