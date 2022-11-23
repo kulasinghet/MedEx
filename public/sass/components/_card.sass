@@ -1,0 +1,47 @@
+@use "../abstracts/variables" as *
+
+.card
+  margin: 1rem
+  overflow: hidden
+  position: relative
+  display: flex
+  flex-direction: column
+  /* See https://github.com/twbs/bootstrap/pull/22740#issuecomment-305868106 */
+  min-width: 0
+  word-wrap: break-word
+
+  background: $gradient-light
+  background-clip: border-box
+  color: $color-dark
+  border: 1px solid #dedede
+  box-shadow: 2px 6px 8px 2px rgba(0, 0, 0, 0.25)
+  border-radius: 1.5rem
+
+.card-dark
+  background: $gradient-dark
+  color: $color-light
+  border: 1px solid #282828
+
+.card-img
+  width: 100%
+  background: #d9d9d9
+
+.card-body
+  padding: 1.2rem
+
+.card-link:link,
+.card-link:visited
+  text-decoration: none
+  color: $color-link
+
+.card-link:hover
+  color: $color-grayblue-70
+
+.card-link:active
+  color: $color-dark
+
+.card-title
+  margin-bottom: 0.6rem
+
+.card-text
+  margin-bottom: 0.6rem

@@ -2,7 +2,7 @@ const delay = 5000;
 
 window.onload = () => {
   const carousel = document.getElementById("carousel");
-  const imgGallery = carousel.querySelectorAll(".carousel-gallery")[0];
+  const imgGallery = carousel.querySelector(".carousel-gallery");
   const slides = imgGallery.querySelectorAll(".carousel-image");
   const slidesCount = slides.length;
   const maxleft = (slidesCount - 1) * 100 * -1;
