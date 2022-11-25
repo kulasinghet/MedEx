@@ -6,7 +6,7 @@
 
 <body>
 <h1>Create Account - Delivery Partner</h1>
-<!--<form action="../../controller/RegisterPage/registerController.php" method="post">-->
+<form action="/delivery/register" method="post">
 
     <label for="address">Address</label>
     <input type="text" name="address" id="address" />

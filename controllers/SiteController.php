@@ -9,10 +9,7 @@ class SiteController extends Controller
 {
     public function home()
     {
-        $params = [
-            'name' => 'John'
-        ];
-        return $this->render('loginPage/loginPage.phphomepage/home.php', $params);
+        return $this->render('loginPage/loginPage.phphomepage/home.php');
     }
 
     public function login()
