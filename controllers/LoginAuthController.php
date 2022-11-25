@@ -14,6 +14,7 @@ class LoginAuthController extends Controller
             $login = new LoginModel();
             $login->loadData($request->getBody());
 
+
             if ($login->validate() && $login->loginEmployee()) {
                 return header('Location: /employee/dashboard');
             }

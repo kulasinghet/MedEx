@@ -3,7 +3,7 @@
         'name' => 'thevi/med-ex-mvc',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '8c439c9e936566c7bbc8f9fd79a00c05fee173fa',
+        'reference' => 'c82c20c8d88b839723e3001327ca8ef0383a5a0d',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -22,7 +22,7 @@
         'thevi/med-ex-mvc' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '8c439c9e936566c7bbc8f9fd79a00c05fee173fa',
+            'reference' => 'c82c20c8d88b839723e3001327ca8ef0383a5a0d',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

@@ -12,43 +12,42 @@ class LoginModel extends Model
 
     public function loginEmployee()
     {
-//        try {
+        try {
             $db = new Database();
-//            $this->password = password_hash($this -> password, PASSWORD_DEFAULT);
             $sql = "SELECT * FROM employee WHERE username = '$this->username';";
             $stmt = $db->prepare($sql);
             $stmt->execute();
             $result = $stmt->get_result();
-            $row = $result->fetch_assoc();
+            $hash = $result -> fetch_row()[2];
 
-            echo $row['password'];
-            echo $this->password;
+            $isPasswordValid = password_verify($this->password, $hash);
 
-            if ($row) {
-                if (password_verify($this->password, $row['password'])) {
-//                    session_start();
-//                    $_SESSION['username'] = $row['username'];
-//                    $_SESSION['id'] = $row['id'];
-//                    $_SESSION['fname'] = $row['fname'];
-//                    $_SESSION['lname'] = $row['lname'];
-//                    $_SESSION['nic'] = $row['nic'];
-//                    $_SESSION['age'] = $row['age'];
-//                    $_SESSION['managerid'] = $row['managerid'];
-//                    $_SESSION['regDate'] = $row['regDate'];
-                    return true;
-                }
+            if ($isPasswordValid) {
+
+                $row = $result->fetch_assoc();
+                session_start();
+                $_SESSION['username'] = $row['username'];
+                $_SESSION['fname'] = $row['fname'];
+                $_SESSION['lname'] = $row['lname'];
+                $_SESSION['nic'] = $row['nic'];
+                $_SESSION['age'] = $row['age'];
+                $_SESSION['managerid'] = $row['managerid'];
+                $_SESSION['id'] = $row['id'];
+                $_SESSION['regDate'] = $row['regDate'];
+                $_SESSION['isEmployee'] = true;
+
+                $stmt->close();
+                return true;
             } else {
+
+                $stmt->close();
                 return false;
             }
 
+        } catch (\Exception $e) {
+            echo $e->getMessage();
+        }
 
-//        } catch (\Exception $e) {
-//            echo $e->getMessage();
-//        }
+        }
 
-        return false;
     }
-
-
-
-}

@@ -17,8 +17,10 @@ class Model
     public function validate()
     {
         foreach ($this as $key => $value) {
-            if (empty($value)) {
-                return false;
+            if ($key !== "managerid") {
+                if (empty($value)) {
+                    return false;
+                }
             }
         }
         return true;

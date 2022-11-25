@@ -6,13 +6,13 @@ use mysqli;
 
 class Database
 {
-    public mysqli $db;
+//    public mysqli $db;
     private $servername = "localhost";
     private $username = "root";
-//    private $password = "";
-    private $password = "Medex@2022";
+    private $password = "";
+//    private $password = "Medex@2022";
     private $dbname = "medex";
-//    private mysqli $db;
+    private mysqli $db;
 
     public function __construct()
     {
@@ -22,6 +22,7 @@ class Database
             die("Connection failed: " . $conn->connect_error);
         } else {
             $this -> db = $conn;
+//            echo "Connected successfully";
         }
     }
 
