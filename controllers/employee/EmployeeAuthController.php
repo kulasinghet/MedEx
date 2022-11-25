@@ -16,19 +16,13 @@ class EmployeeAuthController extends Controller
             $employee->loadData($request->getBody());
 
             if ($employee->validate() && $employee->registerEmployee()) {
+                echo "New record created successfully";
                 return header('Location: /employee/login');
             }
 
-            return $this->render('registrationpage/employee_register/employ_register.php');
+            return $this->render('registrationPage/employee_register/employ_register.php');
         }
-        return $this->render('registrationpage/employee_register/employ_register.php');
-    }
-
-    public function employeeLogin(Request $request)
-    {
-        if ($request->isPost()) {
-            return 'Handling auth data';
-        }
-        return $this->render('loginPage/loginPage.php');
+        return $this->render('registrationPage/employee_register/employ_register.php');
     }
 }
+
