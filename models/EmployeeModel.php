@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-use app\base\Database;
+use app\core\Database;
 use DateTime;
 use DateTimeZone;
 

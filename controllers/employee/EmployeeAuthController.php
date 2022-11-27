@@ -2,8 +2,8 @@
 
 namespace app\controllers\employee;
 
-use app\base\Controller;
-use app\base\Request;
+use app\core\Controller;
+use app\core\Request;
 use app\models\EmployeeModel;
 
 class EmployeeAuthController extends Controller

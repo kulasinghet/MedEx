@@ -2,8 +2,8 @@
 
 namespace app\controllers\Lab;
 
-use app\base\Controller;
-use app\base\Request;
+use app\core\Controller;
+use app\core\Request;
 use app\models\LabModel;
 
 class LabAuthController extends Controller

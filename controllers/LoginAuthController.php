@@ -2,8 +2,8 @@
 
 namespace app\controllers;
 
-use app\base\Controller;
-use app\base\Request;
+use app\core\Controller;
+use app\core\Request;
 use app\models\LoginModel;
 
 class LoginAuthController extends Controller
@@ -14,7 +14,6 @@ class LoginAuthController extends Controller
             $login = new LoginModel();
             $login->loadData($request->getBody());
 
-
             if ($login->validate() && $login->loginEmployee()) {
                 return header('Location: /employee/dashboard');
             }
@@ -22,5 +21,21 @@ class LoginAuthController extends Controller
             return $this->render('loginPage/employee/employeeLogin.php');
         }
         return $this->render('loginPage/employee/employeeLogin.php');
+    }
+
+    public function deliveryLogin(Request $request) {
+
+    }
+
+    public function labLogin(Request $request) {
+
+    }
+
+    public function supplierLogin(Request $request) {
+
+    }
+
+    public function pharmacyLogin(Request $request) {
+
     }
 }
