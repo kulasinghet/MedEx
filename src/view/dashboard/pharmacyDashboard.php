@@ -35,6 +35,8 @@
                     <img src="../../../public/res/logo/Logo-text.png" alt="MedEx Logo with name" width="100%" />
                 </a>
             </div>
+
+
             <div class="sidebar-list">
                 <a class="sidebar-list-itm" href="#">Sell Medicine</a>
                 <a class="sidebar-list-itm" href="#">Order Medicine</a>

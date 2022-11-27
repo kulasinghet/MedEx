@@ -44,6 +44,7 @@
     </div>
 </div>
 
+
 <!-- Nav Bar-->
 <div class="navBar">
     <div class="navBar__logo">

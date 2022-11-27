@@ -63,6 +63,7 @@
                     <button>Laboratory</button>
                     <button>Staff</button>
                 </div>
+
             </div>
         </div>
         <div class="login-modal">
