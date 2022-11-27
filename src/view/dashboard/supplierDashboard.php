@@ -36,10 +36,10 @@
             </a>
           </div>
           <div class="sidebar-list">
-            <a class="sidebar-list-itm" href="#">Menu Item</a>
-            <a class="sidebar-list-itm" href="#">Menu Item</a>
-            <a class="sidebar-list-itm" href="#">Menu Item</a>
-            <a class="sidebar-list-itm" href="#">Menu Item</a>
+            <a class="sidebar-list-itm" href="#">Sell Medicine</a>
+            <a class="sidebar-list-itm" href="#">History</a>
+            <a class="sidebar-list-itm" href="#">Medicine</a>
+            <a class="sidebar-list-itm" href="#">Contact Us</a>
           </div>
         </div>
       </div>
