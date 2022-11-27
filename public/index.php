@@ -14,7 +14,8 @@ use app\controllers\SiteController;
 $app = new Application();
 
 // Global Routes
-$app -> router->get('/', [SiteController::class, 'home']);
+$app -> router -> get('', [SiteController::class, 'home']);
+$app -> router -> get('/', [SiteController::class, 'home']);
 $app -> router -> get('/404', [SiteController::class, '_404']);
 
 
