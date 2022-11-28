@@ -1,0 +1,38 @@
+$color-light: #f8f9fa;
+$color-dark: #343a40;
+$color-primary: #4339f2;
+$color-info: #02a0fc;
+$color-success: #34b53a;
+$color-warning: #ffb200;
+$color-danger: #ff3a29;
+
+$color-link: #007bff;
+
+$color-grayblue-50: #4d5e80;
+$color-grayblue-60: #6b7a99;
+$color-grayblue-70: #7d8fb3;
+$color-grayblue-80: #adb8cc;
+$color-grayblue-85: #c3cad9;
+
+$gradient-light: linear-gradient(180deg, #ffffff 0%, #f2f2f2 100%);
+$gradient-dark: linear-gradient(180deg, #343a40 0%, #202223 100%);
+
+$effects-default: 1px 4px 4px rgba(0, 0, 0, 0.25);
+$effects-clicked: inset 1px 4px 4px rgba(0, 0, 0, 0.25);
+$effects-primary: 1px 4px 4px rgba(57, 98, 242, 0.38);
+$effects-info: 1px 4px 4px rgba(97, 193, 249, 0.38);
+$effects-success: 1px 4px 4px rgba(16, 192, 24, 0.38);
+$effects-warning: 1px 4px 4px rgba(255, 199, 0, 0.38);
+$effects-danger: 1px 4px 4px rgba(255, 92, 41, 0.38);
+
+// Form input
+$input-height: 2.3rem;
+$input-background-color: #f7f7f7;
+$input-text-color: #495057;
+$input-placeholder-color: #92a7be;
+$input-border-color: rgba(106, 148, 210, 0.53);
+$input-border-color-active: #80bdff;
+// Form input - checkbox
+$checkbox-size: 1.25rem;
+$checkbox-border-radius: .2rem;
+$checkbox-color-active: #0095ff;
