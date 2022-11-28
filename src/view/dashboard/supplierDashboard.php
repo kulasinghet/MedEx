@@ -13,6 +13,8 @@
     <link href="../../../public/css/homepage/loginPopup.css" type="text/css" rel="stylesheet"/>
     <link href="../../../public/css/search.css" type="text/css" rel="stylesheet"/>
     <link href="../../../public/css/felxbox.css" type="text/css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../../../public/sass/main.css" />
+    
     <meta charset="UTF-8" />
     <meta
       name="viewport"
@@ -20,30 +22,33 @@
     />
     <!-- Font awesome kit -->
     <script src="https://kit.fontawesome.com/9b33f63a16.js" crossorigin="anonymous"></script>
+    <!--chart JS--->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"> </script>
   </head>
   <body>
-<!-- Side Pannel -->
-
-    <div id="sidebar">
-      <div class="sidebar-toggle">
-        <i class="fa-solid fa-bars"></i>
+sorigin="anonymous"
+  ></script>
+ <!-- Side Pannel -->
+ <div id="sidebar">
+  <div class="sidebar-toggle">
+    <i class="fa-solid fa-bars"></i>
+  </div>
+  <div class="sidebar-inner">
+    <div class="sidebar-context">
+      <div class="sidebar-logo">
+        <a href="#">
+          <img src="../../../public/res/logo/Logo-text.png" alt="MedEx Logo with name" width="100%" />
+        </a>
       </div>
-      <div class="sidebar-inner">
-        <div class="sidebar-context">
-          <div class="sidebar-logo">
-            <a href="#">
-              <img src="../../../public/res/logo/Logo-text.png" alt="MedEx Logo with name" width="100%" />
-            </a>
-          </div>
-          <div class="sidebar-list">
-            <a class="sidebar-list-itm" href="#">Menu Item</a>
-            <a class="sidebar-list-itm" href="#">Menu Item</a>
-            <a class="sidebar-list-itm" href="#">Menu Item</a>
-            <a class="sidebar-list-itm" href="#">Menu Item</a>
-          </div>
-        </div>
+      <div class="sidebar-list">
+        <a class="sidebar-list-itm" href="#">Menu Item</a>
+        <a class="sidebar-list-itm" href="#">Menu Item</a>
+        <a class="sidebar-list-itm" href="#">Menu Item</a>
+        <a class="sidebar-list-itm" href="#">Menu Item</a>
       </div>
     </div>
+  </div>
+</div>
 
 <!-- Nav Bar-->
     <div class="navBar">
@@ -88,13 +93,7 @@
             </ul>
         </div>
     </div>
-
-<!--Graph and other dummy content-->
-<div class = "flexbox" style="width: 265px; height: 300px; left: 200px; top: 192px;">
-</div>
-    <div class="flexbox" style="width: 600px;height: 300px; left: 600px;top: 192px;">
-        </div>
-<!--search-->
+    <!--search-->
 <div class="wrap">
     <div class="search">
        <input type="text" class="searchTerm" placeholder="Start typing anything to search">
@@ -103,13 +102,56 @@
       </button>
     </div>
  </div>
+<!--Graph-->
+<div class="card" style="width: 600px; height: 300px; left: 200px; top: 192px;">
+  <div class="card-body">
+    <h3 class="card-title" style="text-align:center;">Sales This Month </h3>
+    <p class="card-text">
+      <canvas id="myChart" style="width: 450px; height: 200px; padding: auto;"></canvas>
+    </p>
+    <script>
+      var xValues = [50,60,70,80,90,100,110,120,130,140,150];
+var yValues = [7,8,8,9,9,9,10,11,14,14,15];
 
-<!-- show details-->
-<div class = "flexbox" style="width: 265px; height: 300px; left: 200px; top: 192px;">
+new Chart("myChart", {
+  type: "line",
+  data: {
+    labels: xValues,
+    datasets: [{
+    label: 'Sales',
+      fill: false,
+      lineTension: 0,
+      backgroundColor: "rgb(6, 79, 147)",
+      borderColor: "rgb(6, 79, 147)",
+      data: yValues
+    }]
+  },
+  options: {
+    legend: {display:false},
+    scales: {
+      yAxes: [{ticks: {min: 6, max:16}}],
+    }
+  }
+});
+    </script>
+
+  </div>
 </div>
+<!--Table-->
+<div class="card" style="width: 800px; height: 50%; left: 300px; top: 40%;">
+  <div class="card-body">
+    <h3 class="card-title" style="text-align:center;">Inventory </h3>
+    <p class="card-text">
 
+    </br>
+      <?php
+    include("dbconnection.php");
+    ?>
+    </p>
+  </div>
+</div>
 <!--footer-->
-<div style="padding-top: 40%; padding-left: 50px;">
+<div style="padding-top: 30%; padding-left: 50px; width: auto;">
     <footer class="footer-distributed">
 
         <div class="footer-left">
@@ -145,5 +187,6 @@
     
     </footer>
     </div>
+
   </body>
 </html>
