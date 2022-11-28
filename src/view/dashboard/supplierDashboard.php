@@ -137,9 +137,21 @@ new Chart("myChart", {
 
   </div>
 </div>
+<!--Table-->
+<div class="card" style="width: 800px; height: 50%; left: 300px; top: 40%;">
+  <div class="card-body">
+    <h3 class="card-title" style="text-align:center;">Inventory </h3>
+    <p class="card-text">
 
+    </br>
+      <?php
+    include("dbconnection.php");
+    ?>
+    </p>
+  </div>
+</div>
 <!--footer-->
-<div style="padding-top: 60%; padding-left: 50px; width: auto;">
+<div style="padding-top: 30%; padding-left: 50px; width: auto;">
     <footer class="footer-distributed">
 
         <div class="footer-left">
@@ -175,6 +187,6 @@ new Chart("myChart", {
     
     </footer>
     </div>
- 
+
   </body>
 </html>
