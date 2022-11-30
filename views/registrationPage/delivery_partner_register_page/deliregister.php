@@ -18,6 +18,7 @@
     <label for="email">Email</label>
     <input type="text" name="email" id="email" />
     <label for="password">Password</label>
+
     <input type="text" name="password" id="password" />
     <label for="retypepassword">Re-type password</label>
     <input type="text" name="retypepassword" id="retypepassword" />

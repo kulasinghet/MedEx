@@ -23,6 +23,7 @@
 <label for="address">Address</label>
 <input type="text" name="address" id="address" />
 <label for="city">City</label>
+
 <input type="text" name="city" id="city" />
 <label for="contactnumber">Contact Number</label>
 <input type="text" name="contactnumber" id="contactnumber" />

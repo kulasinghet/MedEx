@@ -22,6 +22,7 @@
 <input type="text" name="address" id="address" />
 <label for="contactnumber">Contact Number</label>
 <input type="text" name="contactnumber" id="contactnumber" />
+
 <label for="business_reg_id">Business Registration Id</label>
 <input type="text" name="business_reg_id" id="business_reg_id" />
 <label for="business_reg_name">Business Registered Name</label>

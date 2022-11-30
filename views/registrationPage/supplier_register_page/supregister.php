@@ -23,6 +23,7 @@
 <label for="supplier_register_no">Supplier Registration No</label>
 <input type="text" name="supplier_register_no" id="supplier_register_no" />
 <label for="address">Address</label>
+
 <input type="text" name="address" id="address" />
 <label for="contactnumber">Contact Number</label>
 <input type="text" name="contactnumber" id="contactnumber" />
