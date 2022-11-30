@@ -3,16 +3,17 @@
 /* https://github.com/D-Naveenz/sidemenu-blob */
 
 @use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
 
 
 #sidebar {
   position: fixed;
   height: 100%;
   background-color: #2536b8;
-  width: 300px;
+  width: $sidebar-width;
   transition: 1000ms all cubic-bezier(0.19, 1, 0.22, 1);
   transform: translateX(-100%);
-  left: 52px;
+  left: $sidebar-width-collapsed;
   z-index: $z-sidebar;
 
   &.expanded {
@@ -62,10 +63,11 @@
       }
 
       .sidebar-logo {
-        padding: 10px;
         position: absolute;
         top: 0;
         left: 0;
+
+        @include logo-text;
       }
 
       .sidebar-list {
