@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Sidebar Demo</title>
+
+    <link rel="stylesheet" href="../scss/main.css" />
+    <script src="../js/sidemenu-blob.js"></script>
+    <!-- Font awesome kit -->
+    <script src="https://kit.fontawesome.com/9b33f63a16.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+  <header>
+    <div id="sidebar">
+      <div class="sidebar-toggle">
+        <i class="fa-solid fa-bars"></i>
+      </div>
+      <div class="sidebar-inner">
+        <div class="sidebar-context">
+          <div class="sidebar-logo">
+            <a href="#">
+              <img src="../res/logo/Logo-text.png" alt="MedEx Logo with name" width="100%" />
+            </a>
+          </div>
+          <div class="sidebar-list">
+            <a class="sidebar-list-itm" href="#">Menu Item</a>
+            <a class="sidebar-list-itm" href="#">Menu Item</a>
+            <a class="sidebar-list-itm" href="#">Menu Item</a>
+            <a class="sidebar-list-itm" href="#">Menu Item</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <nav>
+      <div class="navbar-logo">
+        <a href="#">
+          <img src="../res/logo/Logo-text.png" alt="MedEx Logo with name" width="100%" />
+        </a>
+      </div>
+      <div class="navbar-inner">
+        <ul class="navbar-routes">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Account</a></li>
+          <li><a href="#">Dashboard</a></li>
+          <li><a href="#">About Us</a></li>
+        </ul>
+        <div class="navbar-separator"></div>
+        <div class="navbar-account">
+          <!-- User state: anonymous -->
+          <a class="btn btn-info">Login</a>
+          <a class="btn btn-warning">Register</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <article class="container canvas">
+    <p>Hello world!</p>
+  </article>
+  </body>
+</html>
