@@ -17,9 +17,14 @@ html {
   margin-right: auto;
   margin-left: auto;
 }
-.container.canvas {
+
+.canvas {
+  width: 100%;
   overflow: hidden;
   padding-top: 5rem;
+}
+.canvas article {
+  margin: 1rem 5rem;
 }
 
 body {
