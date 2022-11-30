@@ -1,5 +1,19 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
 .container {
   width: 100%;
   margin-right: auto;
   margin-left: auto;
 }
+
+.canvas {
+  width: 100%;
+  @include cutoff("top", $navbar-height);
+
+  article {
+    margin: $article-margin;
+  }
+}
+
+
