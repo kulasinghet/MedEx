@@ -19,6 +19,7 @@
 <label for="retypepassword">Re-type password</label>
 <input type="text" name="retypepassword" id="retypepassword" />
 <label for="address">Address</label>
+
 <input type="text" name="address" id="address" />
 <label for="contactnumber">Contact Number</label>
 <input type="text" name="contactnumber" id="contactnumber" />

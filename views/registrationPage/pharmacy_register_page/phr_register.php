@@ -27,6 +27,8 @@
 <input type="text" name="city" id="city" />
 <label for="contactnumber">Contact Number</label>
 <input type="text" name="contactnumber" id="contactnumber" />
+
+
 <label for="pharmacy_register_no">Pharmacy Registration No.</label>
 <input type="text" name="pharmacy_register_no" id="pharmacy_register_no" />
 <label for="business_reg_id">Business Registration Id</label>
