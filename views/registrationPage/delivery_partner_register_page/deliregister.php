@@ -1,20 +1,20 @@
 <html lang="en">
 <head>
     <title>Login - MedEx</title>
-    <link rel="stylesheet" href="deliregisterpage.css">
+    <link rel="stylesheet" href="/css/registerPage/delivery/deliregisterpage.css">
 </head>
 
 
 <body>
 <h1>Create Account - Delivery Partner</h1>
-<form action="../../controller/RegisterPage/registerController.php" method="post">
+<form action="/delivery/register" method="post">
 
+    <label for="id">User ID</label>
+    <input type="text" name="id" id="id" />
     <label for="username">Username</label>
     <input type="text" name="username" id="username" />
-    <label for="firstname">FirstName</label>
-    <input type="text" name="firstname" id="firstname" />
-    <label for="lastname">Last Name</label>
-    <input type="text" name="lastname" id="lastname" />
+    <label for="name">Name</label>
+    <input type="text" name="name" id="name" />
     <label for="email">Email</label>
     <input type="text" name="email" id="email" />
     <label for="password">Password</label>

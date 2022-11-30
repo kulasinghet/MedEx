@@ -2,6 +2,7 @@
 
 require_once '../vendor/autoload.php';
 
+use app\controllers\DashboardController;
 use app\controllers\Lab\LabAuthController;
 use app\core\Application;
 use app\controllers\AuthController;
@@ -13,9 +14,12 @@ use app\controllers\SiteController;
 
 $app = new Application();
 
+session_start();
+
 // Global Routes
 $app -> router -> get('', [SiteController::class, 'home']);
 $app -> router -> get('/', [SiteController::class, 'home']);
+$app -> router -> get('/dashboard', [DashboardController::class, 'redirectDashboard']);
 $app -> router -> get('/404', [SiteController::class, '_404']);
 
 
@@ -24,6 +28,8 @@ $app -> router -> get('/delivery/login', [LoginAuthController::class, 'deliveryL
 $app -> router -> post('/delivery/login', [LoginAuthController::class, 'deliveryLogin']);
 $app -> router -> get('/delivery/register', [DeliveryAuthController::class, 'deliveryRegister']);
 $app -> router -> post('/delivery/register', [DeliveryAuthController::class, 'deliveryRegister']);
+$app -> router -> get('/delivery/register2', [DeliveryAuthController::class, 'deliveryRegisterSecond']);
+$app -> router -> post('/delivery/register2', [DeliveryAuthController::class, 'deliveryRegisterSecond']);
 
 // Lab Routes
 $app -> router -> get('/lab/login', [LoginAuthController::class, 'labLogin']);
