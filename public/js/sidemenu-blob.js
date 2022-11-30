@@ -2,6 +2,8 @@
 // By Naveen Dharmathunga 2022
 // https://github.com/D-Naveenz/sidemenu-blob
 
+const sidebarWidthCollapsed = "52px";
+
 // Helper function for generate the blob curve
 function easeOutExpo(currentIteration, startValue, changeInValue, totalIterations) {
   return (changeInValue * (-Math.pow(2, (-10 * currentIteration) / totalIterations) + 1) + startValue);
@@ -15,7 +17,7 @@ function createSVGBlob() {
   svg.style.height = "100%";
   svg.style.top = "0";
   svg.style.right = "60px";
-  svg.style.zIndex = "-1";
+  svg.style.zIndex = "99"; // $max-z-index - 1
   svg.style.transform = "translateX(100%)";
 
   // Creating path element
@@ -38,8 +40,8 @@ function createSVGCover() {
   svg.style.width = "52px";
   svg.style.height = "120px";
   svg.style.top = "0";
-  svg.style.right = "0";
-  svg.style.zIndex = "1";
+  svg.style.right = "-0.4px";  // to fix the gap between svg and sidebar
+  svg.style.zIndex = "101"; // $max-z-index + 1
 
   // Creating path element
   const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
@@ -74,6 +76,9 @@ window.onload = () => {
   // Initializing the menu with the blob and cover
   sidebar.appendChild(blob);
   sidebar.appendChild(toggleCover);
+  // Adding a padding to the elements to make space
+  document.querySelectorAll("nav").forEach(nav => nav.style.paddingLeft = sidebarWidthCollapsed);
+  document.querySelectorAll(".canvas").forEach(nav => nav.style.paddingLeft = sidebarWidthCollapsed);
 
   window.addEventListener("mousemove", (e) => {
     x = e.pageX;
