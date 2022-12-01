@@ -1,0 +1,8 @@
+@use "../abstracts/variables" as *;
+
+html,
+body {
+  background-color: #b8c7dc;
+  font-weight: 400;
+  color: $color-dark;
+}

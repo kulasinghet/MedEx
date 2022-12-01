@@ -13,7 +13,7 @@
   <script src="https://kit.fontawesome.com/9b33f63a16.js" crossorigin="anonymous"></script>
 </head>
 <body>
-<header>
+<section>
   <nav>
     <div class="navbar-logo">
       <a href="#">
@@ -35,26 +35,31 @@
       </div>
     </div>
   </nav>
-</header>
+</section>
 <div class="canvas">
+  <header>
+    <article>
+      <!-- Carousel Component -->
+      <div id="carousel">
+        <div class="carousel-gallery">
+          <img class="carousel-image" src="https://images.unsplash.com/photo-1607077715832-faeb06118d9b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="Carousel 1"/>
+          <img class="carousel-image" src="https://images.unsplash.com/photo-1573883430060-1678c9cd4221?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="Carousel 2"/>
+          <img class="carousel-image" src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2069&q=80" alt="Carousel 3"/>
+        </div>
+
+        <div class="carousel-controls">
+          <a class="carousel-control carousel-prev"><i class="fa-solid fa-chevron-left"></i></a>
+          <a class="carousel-control carousel-next"><i class="fa-solid fa-chevron-right"></i></a>
+        </div>
+      </div>
+      <!-- Carousel Component -->
+
+      <h4 class="topic-status">Through a highly motivated and empowered team of professionals who pursue excellence, we work to market a
+        variety of pharmaceutical, healthcare, and biotech products with complete dedication to our customers.</h4>
+    </article>
+  </header>
+
   <article>
-    <!-- Carousel Component -->
-    <div id="carousel">
-      <div class="carousel-gallery">
-        <img class="carousel-image" src="https://images.unsplash.com/photo-1607077715832-faeb06118d9b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="Carousel 1"/>
-        <img class="carousel-image" src="https://images.unsplash.com/photo-1573883430060-1678c9cd4221?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="Carousel 2"/>
-        <img class="carousel-image" src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2069&q=80" alt="Carousel 3"/>
-      </div>
-
-      <div class="carousel-controls">
-        <a class="carousel-control carousel-prev"><i class="fa-solid fa-chevron-left"></i></a>
-        <a class="carousel-control carousel-next"><i class="fa-solid fa-chevron-right"></i></a>
-      </div>
-    </div>
-    <!-- Carousel Component -->
-
-    <h4>Through a highly motivated and empowered team of professionals who pursue excellence, we work to market a
-      variety of pharmaceutical, healthcare, and biotech products with complete dedication to our customers.</h4>
 
     <h3>Our Vision</h3>
     <p>To establish strategic alliances with the world's top pharmaceutical, healthcare, and biotechnology firms

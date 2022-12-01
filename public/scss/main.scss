@@ -1,9 +1,15 @@
 // global reset
 @use "base/reset";
 
-// components
-@use "layout/container";
+// base
+@use "base/body";
 @use "base/typography";
+
+// layout
+@use "layout/container";
+@use "layout/footer";
+
+// components
 @use "components/card";
 @use "components/carousel";
 @use "components/sidebar";
@@ -12,9 +18,3 @@
 @use "components/dropdown";
 @use "components/form/form-input";
 @use "components/form/form-check";
-@use "layout/footer";
-
-body, html {
-  background-color: #b8c7dc;
-  font-weight: 400;
-}
