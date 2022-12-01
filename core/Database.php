@@ -1,6 +1,6 @@
 <?php
 
-namespace app\base;
+namespace app\core;
 
 use mysqli;
 
@@ -8,9 +8,9 @@ class Database
 {
 //    public mysqli $db;
     private $servername = "localhost";
-    private $username = "root";
-    private $password = "";
-//    private $password = "Medex@2022";
+    private $username = "medex";
+//    private $password = "";
+    private $password = "Medex@2022";
     private $dbname = "medex";
     private mysqli $db;
 
@@ -29,6 +29,12 @@ class Database
     public function prepare(string $sql)
     {
         return $this->db->prepare($sql);
+    }
+
+    public function execute()
+    {
+
+        return $this->db->execute();
     }
 
 }
