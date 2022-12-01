@@ -17,20 +17,11 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Validate composer.json and composer.lock
-      run: composer validate
-
-    - name: Cache Composer packages
-      id: composer-cache
-      uses: actions/cache@v3
-      with:
-        path: vendor
-        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-php-
-
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress
+      
+    - name: Start Server
+      run: cd /public && php -S localhost:8080
 
     # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
     # Docs: https://getcomposer.org/doc/articles/scripts.md
