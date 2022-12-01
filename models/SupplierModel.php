@@ -3,41 +3,40 @@
 namespace app\models;
 
 use app\core\Database;
-use app\core\ErrorLog;
 use DateTime;
 use DateTimeZone;
 
-class EmployeeModel extends Model
+class SupplierModel extends Model
 {
     public string $id;
     public string $username;
     public string $password;
-    public string $fname;
-    public string $lname;
-    public string $nic;
-    public int $age;
-    public string $managerid;
-//    public string $regDate = new DateTime("now",'Y-m-d');
+    public string $name;
+    public string $supplierRegNo;
+    public string $BusinessRegId;
+    public string $supplierCertId;
+    public string $BusinessRegCertName;
+    public string $supplierCertName;
+    public string $verified;
+    public string $regDate;
 
-
-    public function registerEmployee()
-    {
+    public function registerSupplier() {
 
         $db = new Database();
 
         $regDate = new DateTime("now");
         $regDate->setTimezone(new DateTimeZone('Asia/Colombo'));
         $regDate = $regDate->format('Y/m/d');
-//        $regDate = $regDate -> date('Y-m-d');
 
         try {
-//            echo "string";
             $this -> password = password_hash($this -> password, PASSWORD_DEFAULT);
-            $sql = "INSERT INTO employee (id, username, password, fName, lName, nic, age, managerId, regDate) VALUES ('$this->id','$this->username', '$this->password', '$this->fname', '$this->lname', '$this->nic', '$this->age', null, '$regDate')";
+            $sql = "INSERT INTO supplier (id, username, password, name, supplierRegNo, BusinessRegId, supplierCertId, BusinessRegCertName, supplierCertName, verified, regDate) VALUES ('$this->id','$this->username', '$this->password', '$this->name', '$this->supplierRegNo', '$this->BusinessRegId', '$this->supplierCertId', '$this->BusinessRegCertName', '$this->supplierCertName', '0', '$regDate')";
+
             $stmt = $db->prepare($sql);
             $stmt->execute();
 
             if ($stmt->affected_rows == 1) {
+                $stmt->close();
                 return true;
             }
 
@@ -49,9 +48,6 @@ class EmployeeModel extends Model
             echo $e->getMessage();
             return false;
         }
-
     }
-
-
 
 }

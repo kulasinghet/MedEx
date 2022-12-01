@@ -50,8 +50,8 @@
             </div>
 
             <div>
-                <label for="deliverablecities">Deliverable Cities</label>
-                <input type="text" name="deliverablecities" id="deliverablecities" />
+                <label for="deliveryLocations">Deliverable Cities</label>
+                <input type="text" name="deliveryLocations" id="deliveryLocations" />
             </div>
 
             <div>
@@ -60,28 +60,33 @@
             </div>
 
             <div>
-                <label for="drivinglicenseid">Driving License Id</label>
-                <input type="text" name="drivinglicenseid" id="drivinglicenseid" />
+                <label for="licenseId">Driving License Id</label>
+                <input type="text" name="licenseId" id="licenseId" />
             </div>
 
             <div>
-                <label for="vehicletype">Vehicle Type</label>
-                <input type="text" name="vehicletype" id="vehicletype" />
+                <label for="drivingLicenseName">Driving License Name</label>
+                <input type="text" name="drivingLicenseName" id="drivingLicenseName" />
             </div>
 
             <div>
-                <label for="vehicleregno">Vehicle Registration Number</label>
-                <input type="text" name="vehicleregno" id="vehicleregno" />
+                <label for="vehicleType">Vehicle Type</label>
+                <input type="text" name="vehicleType" id="vehicleType" />
             </div>
 
             <div>
-                <label for="maxload">Max Load</label>
-                <input type="text" name="maxload" id="maxload" />
+                <label for="vehicleNo">Vehicle Registration Number</label>
+                <input type="text" name="vehicleNo" id="vehicleNo" />
             </div>
 
             <div>
-                <label for="refrigerators">Refrigerators</label>
-                <input type="checkbox" name="refrigerators" id="refrigerators" />
+                <label for="maxLoad">Max Load</label>
+                <input type="text" name="maxLoad" id="maxLoad" />
+            </div>
+
+            <div>
+                <label for="refrigeration">Refrigerators</label>
+                <input type="checkbox" name="refrigeration" id="refrigeration" />
             </div>
 
             <div>

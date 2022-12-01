@@ -3,6 +3,7 @@
 namespace app\models;
 
 use app\core\Database;
+use app\core\ErrorLog;
 use app\core\Request;
 use DateTime;
 use DateTimeZone;
@@ -35,7 +36,7 @@ class DeliveryModel extends Model
 
             try {
                 $this -> password = password_hash($this -> password, PASSWORD_DEFAULT);
-                $sql = "INSERT INTO deliverypartner (id, username, password, name) VALUES ('$this->id','$this->username', '$this->password', '$this->name')";
+                $sql = "INSERT INTO deliverypartner (id, username, password, name, license_id, driverLicenseName, vehicle_no, vehicle_type, delivery_location, max_load, reg_date, refrigerators) VALUES ('$this->id', '$this->username', '$this->password', '$this->name', '$this->licenseId', '$this->drivingLicenseName', '$this->vehicleNo', '$this->vehicleType', '$this->deliveryLocations', '$this->maxLoad', '$regDate', '$this->refrigeration')";
                 $stmt = $db->prepare($sql);
                 $stmt->execute();
 
@@ -47,39 +48,11 @@ class DeliveryModel extends Model
                     return false;
                 }
 
-
-
             } catch (\Exception $e) {
-                echo $e->getMessage();
+                ErrorLog::logError($e->getMessage());
                 return false;
             }
 
-    }
-
-    public function registerDeliveryPartnerSecond(String $id) {
-        $db = new Database();
-
-        $regDate = new DateTime("now");
-        $regDate->setTimezone(new DateTimeZone('Asia/Colombo'));
-        $regDate = $regDate->format('Y/m/d');
-
-        try {
-            $sql = "UPDATE 'deliverypartner' SET licenseId = '$this->licenseId', drivingLicenseName = '$this->drivingLicenseName', vehicleNo = '$this->vehicleNo', vehicleType = '$this->vehicleType', deliveryLocations = '$this->deliveryLocations', maxLoad = '$this->maxLoad', regDate = '$regDate', refrigeration = '$this->refrigeration' WHERE id = '$id'";
-            $stmt = $db->prepare($sql);
-            $stmt->execute();
-
-            if ($stmt->affected_rows == 1) {
-                $stmt->close();
-                return true;
-            } else {
-                $stmt->close();
-                return false;
-            }
-
-        } catch (\Exception $e) {
-            echo $e->getMessage();
-            return false;
-        }
     }
 
     public function toString()

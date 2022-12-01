@@ -42,7 +42,7 @@ class LoginAuthController extends Controller
             $login = new LoginModel();
             $login->loadData($request->getBody());
 
-            if ($login->validate() && $login->loginLab()) {
+            if ($login->validate() && $login->labLogin()) {
                 return header('Location: /dashboard');
             }
 
@@ -52,6 +52,7 @@ class LoginAuthController extends Controller
     }
 
     public function supplierLogin(Request $request) {
+
         if ($request->isPost()) {
             $login = new LoginModel();
             $login->loadData($request->getBody());
