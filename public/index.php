@@ -28,9 +28,6 @@ $app -> router -> get('/delivery/login', [LoginAuthController::class, 'deliveryL
 $app -> router -> post('/delivery/login', [LoginAuthController::class, 'deliveryLogin']);
 $app -> router -> get('/delivery/register', [DeliveryAuthController::class, 'deliveryRegister']);
 $app -> router -> post('/delivery/register', [DeliveryAuthController::class, 'deliveryRegister']);
-$app -> router -> get('/delivery/register2', [DeliveryAuthController::class, 'deliveryRegisterSecond']);
-$app -> router -> post('/delivery/register2', [DeliveryAuthController::class, 'deliveryRegisterSecond']);
-
 // Lab Routes
 $app -> router -> get('/lab/login', [LoginAuthController::class, 'labLogin']);
 $app -> router -> post('/lab/login', [LoginAuthController::class, 'labLogin']);
