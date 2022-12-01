@@ -4,7 +4,7 @@
     <link href="../../../public/components/sidebar/src/sidemenu-blob.css" type="text/css" rel="stylesheet"/>
     
     <script src="../../../public/components/sidebar/src/sidemenu-blob.js"></script>
-    <title>Supplier Dashboard</title>
+    <title>Pharmacy Dashboard</title>
     <link href="../../../public/css/homepage/footer.css" type="text/css" rel="stylesheet"/>
     <link href="../../../public/css/homepage/carousel.css" type="text/css" rel="stylesheet"/>
     <link href="../../../public/css/homepage/navbar.css" type="text/css" rel="stylesheet"/>

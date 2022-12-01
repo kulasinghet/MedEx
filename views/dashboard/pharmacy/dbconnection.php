@@ -11,19 +11,19 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT medName, weight,quantity, unitPrice FROM supplier_medicine, medicine WHERE supplier_medicine.supId='S0001' && medicine.id=supplier_medicine.medId;";
+$sql = "SELECT medicine.medName, medicine.weight, stock.remQty, stock.sellingPrice FROM medicine,stock WHERE medicine.id=stock.medId && stock.pharmacyId='P0001';";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     echo "<table style='border: solid 1px black; text-align:center; width:100%'><tr>
     <th>Medicine Name</th>
     <th>Weight</th>	
-    <th>Cost</th>	
-    <th>Quantity</th>		
+    <th>Remaining</th>	
+    <th>Selling Price</th>		
     </tr>";
     // output data of each row
     while($row = $result->fetch_assoc()) {
-        echo "<tr><td>". $row["medName"]. "</td><td>" .$row["weight"] ."mg</td><td>Rs." .$row["unitPrice"]."</td><td>" .$row["quantity"]."</td><td>". "</td></tr>";
+        echo "<tr><td>". $row["medName"]. "</td><td>" .$row["weight"] ."mg</td><td>" .$row["remQty"]."</td><td>Rs." .$row["sellingPrice"]."</td><td>". "</td></tr>";
     }
     echo "</table>";
 } else {

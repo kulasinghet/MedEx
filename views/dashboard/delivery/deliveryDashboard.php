@@ -4,7 +4,7 @@
     <link href="../../../public/components/sidebar/src/sidemenu-blob.css" type="text/css" rel="stylesheet"/>
     
     <script src="../../../public/components/sidebar/src/sidemenu-blob.js"></script>
-    <title>Supplier Dashboard</title>
+    <title>Delivery Dashboard</title>
     <link href="../../../public/css/homepage/footer.css" type="text/css" rel="stylesheet"/>
     <link href="../../../public/css/homepage/carousel.css" type="text/css" rel="stylesheet"/>
     <link href="../../../public/css/homepage/navbar.css" type="text/css" rel="stylesheet"/>
@@ -71,54 +71,19 @@ sorigin="anonymous"
             </ul>
         </div>
     </div>
-    <!--search-->
-<div class="wrap">
-    <div class="search">
-       <input type="text" class="searchTerm" placeholder="Start typing anything to search">
-       <button type="submit" class="searchButton">
-         <i class="fa fa-search"></i>
-      </button>
-    </div>
- </div>
 <!--Graph-->
 <div class="card" style="width: 600px; height: 300px; left: 200px; top: 192px;">
   <div class="card-body">
-    <h3 class="card-title" style="text-align:center;">Sales This Month </h3>
+    <h3 class="card-title" style="text-align:center;">Past Deliveries </h3>
     <p class="card-text">
-      <canvas id="myChart" style="width: 450px; height: 200px; padding: auto;"></canvas>
-    </p>
-    <script>
-      var xValues = [50,60,70,80,90,100,110,120,130,140,150];
-var yValues = [7,8,8,9,9,9,10,11,14,14,15];
-
-new Chart("myChart", {
-  type: "line",
-  data: {
-    labels: xValues,
-    datasets: [{
-    label: 'Sales',
-      fill: false,
-      lineTension: 0,
-      backgroundColor: "rgb(6, 79, 147)",
-      borderColor: "rgb(6, 79, 147)",
-      data: yValues
-    }]
-  },
-  options: {
-    legend: {display:false},
-    scales: {
-      yAxes: [{ticks: {min: 6, max:16}}],
-    }
-  }
-});
-    </script>
-
+   <li> Evolve Health on 2022-11-01 15:22:22
+    </p> 
   </div>
 </div>
 <!--Table-->
 <div class="card" style="width: 800px; height: 50%; left: 300px; top: 40%;">
   <div class="card-body">
-    <h3 class="card-title" style="text-align:center;">Inventory </h3>
+    <h3 class="card-title" style="text-align:center;">Delivery Requests </h3>
     <p class="card-text">
 
     </br>
