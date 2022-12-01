@@ -21,7 +21,7 @@ jobs:
       run: composer install --prefer-dist --no-progress
       
     - name: Start Server
-      run: cd /public && php -S localhost:8080
+      run: cd /public/ && php -S localhost:8080
 
     # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
     # Docs: https://getcomposer.org/doc/articles/scripts.md
