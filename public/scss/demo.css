@@ -659,11 +659,6 @@ textarea.form-input {
   transform: scale(0.5);
 }
 
-body, html {
-  background-color: #b8c7dc;
-  font-weight: 400;
-}
-
 section {
   margin-bottom: 40px;
 }
