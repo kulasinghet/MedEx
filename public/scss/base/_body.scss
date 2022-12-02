@@ -8,7 +8,7 @@ body {
   font-size: $font-size-base;
 }
 
-a {
+a:not(.btn) {
   color: $dark;
   text-decoration: $link-decoration;
   cursor: pointer;

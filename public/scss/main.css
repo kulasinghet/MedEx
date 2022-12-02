@@ -20,20 +20,20 @@ body {
   font-size: 1rem;
 }
 
-a {
+a:not(.btn) {
   color: #343a40;
   text-decoration: none;
   cursor: pointer;
 }
-a:link, a:visited {
+a:not(.btn):link, a:not(.btn):visited {
   color: #0474ed;
   text-decoration: none;
 }
-a:hover:not(.disabled) {
+a:not(.btn):hover:not(.disabled) {
   color: #5ba8fc;
   text-decoration: underline;
 }
-a:active:not(.disabled) {
+a:not(.btn):active:not(.disabled) {
   color: #024389;
   text-decoration: underline;
 }
@@ -386,7 +386,7 @@ nav .navbar-inner ul li {
 nav .navbar-inner ul li a {
   color: #343a40;
   text-decoration: none;
-  cursor: not-allowed;
+  cursor: default;
 }
 nav .navbar-inner ul li a:link, nav .navbar-inner ul li a:visited {
   color: #6b7a99;
@@ -427,6 +427,7 @@ nav .navbar-inner .navbar-account {
   color: #343a40;
   box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 30px;
+  text-decoration: none;
 }
 .btn:active {
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), #f8f9fa;
