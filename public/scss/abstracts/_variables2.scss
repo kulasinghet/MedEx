@@ -58,7 +58,7 @@ $body-color:                $gray-9 !default;
 
 // links
 $link-color:              $primary !default;
-$link-decoration:         null !default;
+$link-decoration:         none !default;
 $link-shade-percentage:   20% !default;
 $link-hover-color:        lighten($link-color, $link-shade-percentage) !default;
 $link-hover-decoration:   underline !default;

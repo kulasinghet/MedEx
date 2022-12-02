@@ -8,8 +8,8 @@ body {
   font-size: $font-size-base;
 }
 
-a:link {
-  &:link {
+a {
+  &:link, &:visited {
     color: $link-color;
     text-decoration: $link-decoration;
   }

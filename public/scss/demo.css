@@ -12,29 +12,25 @@ html {
   height: 100%;
 }
 
-.container {
-  width: 100%;
-  margin-right: auto;
-  margin-left: auto;
+html,
+body {
+  background-color: #f8f9fa;
+  color: #343a40;
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
 }
 
-.canvas {
-  width: 100%;
-  overflow: hidden;
-  padding-top: 5rem;
+a:link, a:visited {
+  color: #0474ed;
+  text-decoration: none;
 }
-.canvas header {
-  height: 100vh;
-  background-image: linear-gradient(to right bottom, rgba(76, 216, 255, 0.8), rgba(30, 108, 217, 0.8)), url("https://images.pexels.com/photos/213399/pexels-photo-213399.jpeg");
-  color: #f8f9fa;
-  background-size: cover;
-  background-position: top;
-  position: relative;
-  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
-  margin-bottom: 2rem;
+a:hover {
+  color: #5ba8fc;
+  text-decoration: underline;
 }
-.canvas article {
-  margin: 0 5rem;
+a:active {
+  color: #024389;
+  text-decoration: underline;
 }
 
 h1 {
@@ -99,6 +95,35 @@ h6 {
 
 p {
   margin-bottom: 2rem;
+}
+
+.container {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.canvas {
+  width: 100%;
+  overflow: hidden;
+  padding-top: 5rem;
+}
+.canvas header {
+  height: 100vh;
+  background-image: linear-gradient(to right bottom, rgba(76, 216, 255, 0.8), rgba(30, 108, 217, 0.8)), url("https://images.pexels.com/photos/213399/pexels-photo-213399.jpeg");
+  color: #f8f9fa;
+  background-size: cover;
+  background-position: top;
+  position: relative;
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+  margin-bottom: 2rem;
+}
+.canvas article {
+  margin: 0 5rem;
+}
+
+footer {
+  margin-top: 1rem;
 }
 
 .card {

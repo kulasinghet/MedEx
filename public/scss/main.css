@@ -20,14 +20,14 @@ body {
   font-size: 1rem;
 }
 
-a:link:link {
+a:link, a:visited {
   color: #0474ed;
 }
-a:link:hover {
+a:hover {
   color: #5ba8fc;
   text-decoration: underline;
 }
-a:link:active {
+a:active {
   color: #024389;
   text-decoration: underline;
 }
