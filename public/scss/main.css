@@ -14,14 +14,22 @@ html {
 
 html,
 body {
-  background-color: #b8c7dc;
-  font-weight: 400;
+  background-color: #f8f9fa;
   color: #343a40;
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
 }
 
-body {
-  font-family: "Roboto", sans-serif;
-  font-size: 14px;
+a:link:link {
+  color: #0474ed;
+}
+a:link:hover {
+  color: #5ba8fc;
+  text-decoration: underline;
+}
+a:link:active {
+  color: #024389;
+  text-decoration: underline;
 }
 
 h1 {

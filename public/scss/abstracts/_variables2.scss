@@ -1,0 +1,92 @@
+// Variables should follow the `$component-state-property-size` formula for consistent naming.
+
+// gray colors
+$white: #fff !default;
+$gray-1: #f8f9fa !default;
+$gray-2: #e0e2e3 !default;
+$gray-3: #c7cacc !default;
+$gray-4: #afb2b5 !default;
+$gray-5: #969a9d !default;
+$gray-6: #7e8286 !default;
+$gray-7: #656a6f !default;
+$gray-8: #4d5258 !default;
+$gray-9: #343a40 !default;
+$black: #000 !default;
+
+// gray colors map
+$grays: (
+  1: $gray-1,
+  2: $gray-2,
+  3: $gray-3,
+  4: $gray-4,
+  5: $gray-5,
+  6: $gray-6,
+  7: $gray-7,
+  8: $gray-8,
+  9: $gray-9
+) !default;
+
+// theme colors
+$primary:       #0474ed !default;
+$secondary:     #326164 !default;
+$success:       #a2b458 !default;
+$info:          #08a29e !default;
+$warning:       #ffb200 !default;
+$danger:        #ff3a29 !default;
+$light:         $gray-1 !default;
+$dark:          $gray-9 !default;
+$extra-1:       #91f0fa !default;
+$extra-2:       #a6cabd !default;
+
+// theme colors map
+$theme-colors: (
+  "primary":    $primary,
+  "secondary":  $secondary,
+  "success":    $success,
+  "info":       $info,
+  "warning":    $warning,
+  "danger":     $danger,
+  "light":      $light,
+  "dark":       $dark,
+  "extra-1":    $extra-1,
+  "extra-2":    $extra-2
+) !default;
+
+// `<body>` element.
+$body-bg:                   $gray-1 !default;
+$body-color:                $gray-9 !default;
+
+// links
+$link-color:              $primary !default;
+$link-decoration:         null !default;
+$link-shade-percentage:   20% !default;
+$link-hover-color:        lighten($link-color, $link-shade-percentage) !default;
+$link-hover-decoration:   underline !default;
+$link-active-color:       darken($link-color, $link-shade-percentage) !default;
+$link-active-decoration:  underline !default;
+
+// paragraphs
+$paragraph-margin-bottom: 1rem !default;
+
+// fonts
+$font-family-sans-serif: 'Roboto', sans-serif !default;
+$font-size-base: 1rem !default; // typically `16px`
+
+$h1-font-size: $font-size-base * 2.5 !default;
+$h2-font-size: $font-size-base * 2 !default;
+$h3-font-size: $font-size-base * 1.75 !default;
+$h4-font-size: $font-size-base * 1.5 !default;
+$h5-font-size: $font-size-base * 1.25 !default;
+$h6-font-size: $font-size-base !default;
+
+// font sizes map
+$font-sizes: (
+        1: $h1-font-size,
+        2: $h2-font-size,
+        3: $h3-font-size,
+        4: $h4-font-size,
+        5: $h5-font-size,
+        6: $h6-font-size
+) !default;
+
+

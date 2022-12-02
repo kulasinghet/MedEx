@@ -1,8 +1,24 @@
-@use "../abstracts/variables" as *;
+@use "../abstracts/variables2" as *;
 
 html,
 body {
-  background-color: #b8c7dc;
-  font-weight: 400;
-  color: $color-dark;
+  background-color: $body-bg;
+  color: $body-color;
+  font-family: $font-family-sans-serif;
+  font-size: $font-size-base;
+}
+
+a:link {
+  &:link {
+    color: $link-color;
+    text-decoration: $link-decoration;
+  }
+  &:hover {
+    color: $link-hover-color;
+    text-decoration: $link-hover-decoration;
+  }
+  &:active {
+    color: $link-active-color;
+    text-decoration: $link-active-decoration;
+  }
 }
