@@ -12,6 +12,73 @@ html {
   height: 100%;
 }
 
+html,
+body {
+  background-color: #f8f9fa;
+  color: #343a40;
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+}
+
+a:link, a:visited {
+  color: #0474ed;
+  text-decoration: none;
+}
+a:hover {
+  color: #5ba8fc;
+  text-decoration: underline;
+}
+a:active {
+  color: #024389;
+  text-decoration: underline;
+}
+
+p {
+  margin-bottom: 2rem;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 500;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+}
+
+h3 {
+  font-size: 1.75rem;
+  font-weight: 500;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+}
+
+h4 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+}
+
+h5 {
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+}
+
+h6 {
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+}
+
 .container {
   width: 100%;
   margin-right: auto;
@@ -37,73 +104,8 @@ html {
   margin: 0 5rem;
 }
 
-body {
-  font-family: "Roboto", sans-serif;
-  font-size: 14px;
-}
-
-h1 {
-  font-weight: 500;
-  line-height: 1.2;
-  margin-bottom: 0.5rem;
-}
-
-h2 {
-  font-weight: 500;
-  line-height: 1.2;
-  margin-bottom: 0.5rem;
-}
-
-h3 {
-  font-weight: 500;
-  line-height: 1.2;
-  margin-bottom: 0.5rem;
-}
-
-h4 {
-  font-weight: 500;
-  line-height: 1.2;
-  margin-bottom: 0.5rem;
-}
-
-h5 {
-  font-weight: 500;
-  line-height: 1.2;
-  margin-bottom: 0.5rem;
-}
-
-h6 {
-  font-weight: 500;
-  line-height: 1.2;
-  margin-bottom: 0.5rem;
-}
-
-h1 {
-  font-size: 2.5rem;
-}
-
-h2 {
-  font-size: 2rem;
-}
-
-h3 {
-  font-size: 1.75rem;
-}
-
-h4 {
-  font-size: 1.5rem;
-}
-
-h5 {
-  font-size: 1.25rem;
-}
-
-h6 {
-  font-size: 1rem;
-}
-
-p {
-  margin-bottom: 2rem;
+footer {
+  margin-top: 1rem;
 }
 
 .card {
