@@ -9,7 +9,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    /*height: 100vh;*/
 }
 
 form {
@@ -39,8 +39,7 @@ form input {
     font-size: 16px;
 }
 
-
-regbutton {
+#loginButton {
     border: 0;
     border-radius: 5px;
     height: 44px;
@@ -50,4 +49,5 @@ regbutton {
     font-weight: bold;
     font-size: 16px;
     transition: background 0.2s;
+    cursor:pointer;
 }

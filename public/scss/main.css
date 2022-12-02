@@ -12,19 +12,11 @@ html {
   height: 100%;
 }
 
-.container {
-  width: 100%;
-  margin-right: auto;
-  margin-left: auto;
-}
-
-.canvas {
-  width: 100%;
-  overflow: hidden;
-  padding-top: 5rem;
-}
-.canvas article {
-  margin: 1rem 5rem;
+html,
+body {
+  background-color: #b8c7dc;
+  font-weight: 400;
+  color: #343a40;
 }
 
 body {
@@ -92,6 +84,39 @@ h6 {
   font-size: 1rem;
 }
 
+p {
+  margin-bottom: 2rem;
+}
+
+.container {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.canvas {
+  width: 100%;
+  overflow: hidden;
+  padding-top: 5rem;
+}
+.canvas header {
+  height: 100vh;
+  background-image: linear-gradient(to right bottom, rgba(76, 216, 255, 0.8), rgba(30, 108, 217, 0.8)), url("https://images.pexels.com/photos/213399/pexels-photo-213399.jpeg");
+  color: #f8f9fa;
+  background-size: cover;
+  background-position: top;
+  position: relative;
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+  margin-bottom: 2rem;
+}
+.canvas article {
+  margin: 0 5rem;
+}
+
+footer {
+  margin-top: 1rem;
+}
+
 .card {
   margin: 1rem;
   overflow: hidden;
@@ -152,12 +177,14 @@ h6 {
 }
 
 #carousel {
-  width: 1280px;
+  width: 100%;
   height: 400px;
   max-width: 1340px;
+  min-width: 720px;
   overflow: hidden;
   position: relative;
   background: rgb(109, 109, 109);
+  margin-bottom: 1rem;
 }
 #carousel .carousel-gallery {
   position: absolute;
@@ -635,38 +662,6 @@ textarea.form-input {
 }
 .form-check .form-input[type=radio]:checked:after {
   transform: scale(0.5);
-}
-
-body, html {
-  background-color: #b8c7dc;
-  font-weight: 400;
-}
-
-section {
-  margin-bottom: 40px;
-}
-
-form {
-  width: 500px;
-}
-
-.demo-container {
-  margin: 3rem 10%;
-}
-
-.btn-container {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 1.2rem;
-}
-
-.carousel-container {
-  margin-top: 6rem;
-  width: 100%;
-  display: flex;
-  justify-content: center;
 }
 
 /*# sourceMappingURL=main.css.map */

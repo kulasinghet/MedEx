@@ -15,10 +15,6 @@ class EmployeeAuthController extends Controller
             $employee = new EmployeeModel();
             $employee->loadData($request->getBody());
 
-            echo '<pre>';
-            var_dump($employee->validate());
-            echo '</pre>';
-//
             if ($employee->validate() && $employee->registerEmployee()) {
                 echo "New record created successfully";
                 return header('Location: /employee/login');

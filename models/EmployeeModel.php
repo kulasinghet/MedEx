@@ -3,6 +3,7 @@
 namespace app\models;
 
 use app\core\Database;
+use app\core\ErrorLog;
 use DateTime;
 use DateTimeZone;
 
@@ -35,10 +36,16 @@ class EmployeeModel extends Model
             $sql = "INSERT INTO employee (id, username, password, fName, lName, nic, age, managerId, regDate) VALUES ('$this->id','$this->username', '$this->password', '$this->fname', '$this->lname', '$this->nic', '$this->age', null, '$regDate')";
             $stmt = $db->prepare($sql);
             $stmt->execute();
+
+            if ($stmt->affected_rows == 1) {
+                return true;
+            }
+
             $stmt->close();
 
             return true;
         } catch (\Exception $e) {
+            ErrorLog::logError($e->getMessage());
             echo $e->getMessage();
             return false;
         }
