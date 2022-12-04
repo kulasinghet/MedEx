@@ -4,7 +4,7 @@
     <link href="../../../public/components/sidebar/src/sidemenu-blob.css" type="text/css" rel="stylesheet"/>
     
     <script src="../../../public/components/sidebar/src/sidemenu-blob.js"></script>
-    <title>Supplier | Login</title>
+    <title>Supplier | Register</title>
     <link href="../../../public/css/homepage/footer.css" type="text/css" rel="stylesheet"/>
     <link href="../../../public/css/homepage/carousel.css" type="text/css" rel="stylesheet"/>
     <link href="../../../public/css/homepage/navbar.css" type="text/css" rel="stylesheet"/>
@@ -73,21 +73,37 @@ sorigin="anonymous"
             </ul>
         </div>
     </div>
-    <!--Login-->
-<div class="card" style="width: 30%; height: 60%; left: 35%; top: 20%;">
+    <!--Register-->
+    <div class="card" style="width: 30%; height: auto; left: 10%; top: 20%; position: absolute;">
   <div class="card-body">
-    <h2 class="card-title" style="text-align:center;"><img src="../../../public/res/logo/Logo-text.png" alt="logo" height="40px" width="auto"><br>Supplier Login</h2>
+    <h2 class="card-title" style="text-align:center;"><img src="../../../public/res/logo/Logo-text.png" alt="logo" height="40px" width="auto"><br>Supplier Registration</h2>
     <p class="card-text">
-    <form action="auth.php" method="post">
-      Username <br><input type="text" name="username" class="input-box"> <br>
-      Password <br><input type="password" name="pswd" class="input-box"><br>
-      <input type="submit" value="Login" class="button">
+    <form action="auth.php" method="post" enctype="multipart/form-data">
+    Name<br><input type="text" name="name" class="input-box" required><br>
+      Username<br><input type="text" name="username" class="input-box" required><br>
+      Password<br><input type="password" name="pswd" class="input-box" required><br>
+      Email<br><input type="text" name="email" class="input-box" required><br>
+      Address<br><input type="text" name="address" class="input-box" required><br>
+      Mobile Phone Number<br><input type="text" name="mobile" class="input-box" required><br>
+    </p>
+  </div>
+</div>
+<div class="card" style="width: 30%; height: auto; left: 55%;  top: 20%;">
+  <div class="card-body">
+    <p class="card-text">
+        <br>
+        Supplier Registration Number<br><input type="text" name="supRegNum" class="input-box" required><br>
+        Business Registration Number<br><input type="text" name="busiRegNum" class="input-box" required><br>
+        Supplier Certificate ID<br><input type="text" name="supCertId" class="input-box" required><br>
+        Business Registration Certificate <small>(3Mb - jpg,jpeg,png,pdf) </small><br><input type="file" name="BusRegiCert" id="BusRegiCert" required accept="image/*,.pdf"><br><br>
+        Supplier Registration Certificate <small>(3Mb - jpg,jpeg,png,pdf) </small><br><input type="file" name="SuppRegiCert" id ="SuppRegiCert" required accept="image/*,.pdf"><br>
+      <br><input type="submit" value="Create Account" class="button">
 </form>
     </p>
   </div>
 </div>
 <!--footer-->
-<div style="padding-top: 30%; width: auto;">
+<div style="padding-top: 30%; width: auto; background-color: #a6cabd;">
     <footer class="footer-distributed">
 
         <div class="footer-left">

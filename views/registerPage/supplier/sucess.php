@@ -4,7 +4,7 @@
     <link href="../../../public/components/sidebar/src/sidemenu-blob.css" type="text/css" rel="stylesheet"/>
     
     <script src="../../../public/components/sidebar/src/sidemenu-blob.js"></script>
-    <title>Supplier | Login</title>
+    <title>Supplier Registration Sucessful</title>
     <link href="../../../public/css/homepage/footer.css" type="text/css" rel="stylesheet"/>
     <link href="../../../public/css/homepage/carousel.css" type="text/css" rel="stylesheet"/>
     <link href="../../../public/css/homepage/navbar.css" type="text/css" rel="stylesheet"/>
@@ -14,7 +14,7 @@
     <link href="../../../public/css/search.css" type="text/css" rel="stylesheet"/>
     <link href="../../../public/css/felxbox.css" type="text/css" rel="stylesheet"/>
     <link rel="stylesheet" href="../../../public/sass/main.css" />
-    <link rel="stylesheet" href="../../../public/css/supplier/formcss.css" />
+    <link rel="stylesheet" href="../../../public/css/loginPage/Supplierlogin.css" />
     <link rel="stylesheet" href="login.css" />
     
     <meta charset="UTF-8" />
@@ -73,21 +73,17 @@ sorigin="anonymous"
             </ul>
         </div>
     </div>
-    <!--Login-->
-<div class="card" style="width: 30%; height: 60%; left: 35%; top: 20%;">
+    <!--Register-->
+    <div class="card" style="width: 30%; height: auto; left: 35%; top: 20%;">
   <div class="card-body">
-    <h2 class="card-title" style="text-align:center;"><img src="../../../public/res/logo/Logo-text.png" alt="logo" height="40px" width="auto"><br>Supplier Login</h2>
+    <h2 class="card-title" style="text-align:center;"><img src="../../../public/res/logo/Logo-text.png" alt="logo" height="40px" width="auto"><br>Supplier Registration Sucessful</h2>
     <p class="card-text">
-    <form action="auth.php" method="post">
-      Username <br><input type="text" name="username" class="input-box"> <br>
-      Password <br><input type="password" name="pswd" class="input-box"><br>
-      <input type="submit" value="Login" class="button">
-</form>
+        Please use your Username and Password to <a href="../../loginPage/supplier/login.php">Login.</a>
     </p>
   </div>
 </div>
 <!--footer-->
-<div style="padding-top: 30%; width: auto;">
+<div style="padding-top: 30%; width: auto; background-color: #a6cabd;">
     <footer class="footer-distributed">
 
         <div class="footer-left">
