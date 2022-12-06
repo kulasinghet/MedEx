@@ -3,7 +3,7 @@
 namespace app\models;
 
 use app\core\Database;
-use app\core\ErrorLog;
+use app\core\Logger;
 use app\core\Request;
 use DateTime;
 use DateTimeZone;
@@ -49,7 +49,7 @@ class DeliveryModel extends Model
                 }
 
             } catch (\Exception $e) {
-                ErrorLog::logError($e->getMessage());
+                Logger::logError($e->getMessage());
                 return false;
             }
 
