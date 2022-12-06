@@ -3,7 +3,7 @@
 namespace app\models;
 
 use app\core\Database;
-use app\core\ErrorLog;
+use app\core\Logger;
 use DateTime;
 use DateTimeZone;
 
@@ -45,12 +45,12 @@ class PharmacyModel extends Model
             if ($stmt->affected_rows == 1) {
                 return true;
             } else {
-                ErrorLog::logError($stmt->error->__toString());
+                Logger::logError($stmt->error->__toString());
                 return false;
             }
 
         } catch (\Exception $e) {
-            ErrorLog::logError($e->getMessage());
+            Logger::logError($e->getMessage());
             echo $e->getMessage();
             return false;
         }
