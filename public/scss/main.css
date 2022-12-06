@@ -149,18 +149,16 @@ footer .footer-inner section .footer-logo img {
   vertical-align: center;
 }
 footer .footer-inner section .footer-links {
-  color: inherit;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 1rem;
+  color: inherit;
 }
 footer .footer-inner section .footer-links a {
   text-decoration: none;
   cursor: default;
   position: relative;
-  display: inline-block;
-  text-decoration: none;
   color: inherit;
 }
 footer .footer-inner section .footer-links a:link, footer .footer-inner section .footer-links a:visited {

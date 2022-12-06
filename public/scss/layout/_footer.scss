@@ -1,15 +1,14 @@
-@use "../abstracts/variables" as *;
 @use "../abstracts/variables2" as *;
 @use "../abstracts/mixins" as *;
 
 footer {
   display: block;
-  margin-top: 1rem;
-  background: #1e6da7;
+  margin-top: $footer-gap;
+  background: $footer-bg;
   width: 100%;
-  padding: 1rem 2rem;
-  font-size: 0.8rem;
-  color: $light;
+  padding: $footer-padding;
+  font-size: $footer-font-size;
+  color: $footer-font-color;
 
   .footer-inner {
     display: flex;
@@ -29,19 +28,16 @@ footer {
       }
 
       .footer-links {
-        color:  inherit;
         display: flex;
         align-items: center;
         justify-content: center;
         gap: 1rem;
+        color: $footer-links-color;
 
         a {
           text-decoration: $link-decoration;
           cursor: default;
           position: relative;
-
-          display:inline-block;
-          text-decoration: none;
           color:  inherit;
 
           &:link, &:visited {
@@ -74,8 +70,8 @@ footer {
       }
 
       ul {
-        line-height: 1.3rem;
-        color:  $gray-3;
+        line-height: $footer-context-line-height;
+        color:  $footer-context-color;
         list-style: none;
       }
 
