@@ -1,4 +1,3 @@
-@use "../abstracts/variables" as *;
 @use "../abstracts/variables2" as *;
 
 
@@ -12,17 +11,17 @@
   min-width: 0;
   word-wrap: break-word;
 
-  background: $gradient-light;
+  background: $light-gradient;
   background-clip: border-box;
   color: $dark;
-  border: $card-border-light;
+  // border: $card-border-light;
   border-radius: $card-border-radius;
   box-shadow: $card-shadow;
 
   &.dark {
-    background: $gradient-dark;
+    background: $dark-gradient;
     color: $light;
-    border: $card-border-dark;
+    // border: $card-border-dark;
   }
 
   .card-img {

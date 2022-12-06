@@ -1,0 +1,26 @@
+@use "../../abstracts/variables2" as *;
+
+.form-group, .button-group {
+  width: 100%;
+}
+
+.form-group {
+  font-size: $form-group-font-size;
+
+  * {
+    margin: 0;
+  }
+
+  &:not(:last-child) {
+    margin-bottom: $form-group-margin-bottom;
+  }
+
+  label {
+    display: inline-block;
+    margin-bottom: $form-group-context-gap;
+  }
+}
+
+.button-group {
+  margin-bottom: $button-group-margin-bottom;
+}

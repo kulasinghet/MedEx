@@ -14,7 +14,7 @@ html {
 
 html,
 body {
-  background-color: #f8f9fa;
+  background-color: #a6cabd;
   color: #343a40;
   font-family: "Roboto", sans-serif;
   font-size: 1rem;
@@ -40,6 +40,11 @@ a:not(.btn):active:not(.disabled) {
 
 p {
   margin-bottom: 2rem;
+}
+
+.block {
+  display: block;
+  width: 100%;
 }
 
 h1 {
@@ -131,10 +136,14 @@ h6 {
   max-width: 400px;
 }
 
+.section-remember {
+  text-align: right;
+}
+
 footer {
   display: block;
   margin-top: 1rem;
-  background: #1e6da7;
+  background: #326164;
   width: 100%;
   height: 142.5px;
   padding: 1rem 2rem;
@@ -222,24 +231,22 @@ footer .footer-inner section p {
   background: linear-gradient(180deg, #ffffff 0%, #f2f2f2 100%);
   background-clip: border-box;
   color: #343a40;
-  border: 1px solid #dedede;
-  border-radius: 1.5rem;
-  box-shadow: 2px 6px 8px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 1rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
 }
 .card.dark {
   background: linear-gradient(180deg, #343a40 0%, #202223 100%);
   color: #f8f9fa;
-  border: 1px solid #282828;
 }
 .card .card-img {
   width: 100%;
   background: #d9d9d9;
 }
 .card .card-body {
-  padding: 1.2rem;
+  padding: 1.5rem;
 }
 .card .card-body .card-title {
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   font-weight: 700;
   text-align: center;
 }
@@ -633,12 +640,26 @@ nav .navbar-inner .navbar-account {
   transition: all 100ms ease-out;
 }
 
+.form-group, .button-group {
+  width: 100%;
+}
+
 .form-group {
+  font-size: 0.8rem;
+}
+.form-group * {
+  margin: 0;
+}
+.form-group:not(:last-child) {
   margin-bottom: 1rem;
 }
 .form-group label {
   display: inline-block;
   margin-bottom: 0.3rem;
+}
+
+.button-group {
+  margin-bottom: 1.5rem;
 }
 
 button {
@@ -648,15 +669,15 @@ button {
 .form-input {
   display: block;
   width: 100%;
-  height: 2.3rem;
-  padding: 0.5rem 0.75rem;
-  font-size: 14px;
+  min-height: 2.3rem;
+  padding: 0.75rem;
   position: relative;
+  font-size: 1rem;
   color: #495057;
   background-color: #f7f7f7;
   background-clip: padding-box;
   border: 1px solid rgba(106, 148, 210, 0.53);
-  border-radius: 0.5rem;
+  border-radius: 0.4rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 .form-input:focus {
