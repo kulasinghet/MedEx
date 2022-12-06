@@ -7,10 +7,10 @@
 
 // layout
 @use "layout/container";
-@use "layout/footer";
 @use "layout/login";
 
 // components
+@use "components/footer";
 @use "components/card";
 @use "components/carousel";
 @use "components/sidebar";
