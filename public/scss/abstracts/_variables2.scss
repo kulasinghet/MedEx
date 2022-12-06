@@ -99,3 +99,42 @@ $footer-font-color: $light !default;
 $footer-links-color: inherit !default;
 $footer-context-color: $gray-3 !default;
 $footer-context-line-height: 1.3rem !default;
+
+// ------------------- Forms ------------------- //
+
+// form group
+$form-group-margin-bottom: 1rem !default;
+$form-group-context-gap: 0.3rem !default;
+
+// Form input
+$input-height: 2.3rem;
+$input-background-color: #f7f7f7;
+$input-text-color: #495057;
+$input-placeholder-color: #92a7be;
+$input-border-color: rgba(106, 148, 210, 0.53);
+$input-border-color-active: #80bdff;
+
+// Form input - checkbox
+$checkbox-size: 1.25rem;
+$checkbox-border-radius: .2rem;
+$checkbox-color-active: #0095ff;
+
+// ------------------- Forms ------------------- //
+
+// ------------------- Cards ------------------- //
+
+$card-margin: 1rem !default;
+$card-border: 1px solid;
+$card-padding: 1.2rem !default;
+
+$card-border-light: $card-border #dedede !default;
+$card-border-dark: $card-border #282828 !default;
+$card-border-radius: 1.5rem !default;
+$card-shadow: 2px 6px 8px 2px rgba(0, 0, 0, 0.25) !default;
+
+$card-hollow-color: #d9d9d9 !default;
+$card-context-gap: 1rem !default;
+$card-title-weight: 700 !default;
+$card-title-margin-bottom: $card-context-gap !default;
+
+// ------------------- Cards ------------------- //

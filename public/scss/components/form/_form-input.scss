@@ -1,4 +1,4 @@
-@use "../../abstracts/variables" as *;
+@use "../../abstracts/variables2" as *;
 
 
 button {
@@ -9,7 +9,6 @@ button {
   display: block;
   width: 100%;
   height: $input-height;
-  margin: .75rem 0;
   padding: .5rem .75rem;
 
   font-size: 14px;

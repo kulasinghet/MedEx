@@ -1,8 +1,9 @@
 @use "../abstracts/variables" as *;
+@use "../abstracts/variables2" as *;
 
 
 .card {
-  margin: 1rem;
+  margin: $card-margin;
   overflow: hidden;
   position: relative;
   display: flex;
@@ -13,45 +14,33 @@
 
   background: $gradient-light;
   background-clip: border-box;
-  color: $color-dark;
-  border: 1px solid #dedede;
-  box-shadow: 2px 6px 8px 2px rgba(0, 0, 0, 0.25);
-  border-radius: 1.5rem;
-}
+  color: $dark;
+  border: $card-border-light;
+  border-radius: $card-border-radius;
+  box-shadow: $card-shadow;
 
-.card-dark {
-  background: $gradient-dark;
-  color: $color-light;
-  border: 1px solid #282828;
-}
+  &.dark {
+    background: $gradient-dark;
+    color: $light;
+    border: $card-border-dark;
+  }
 
-.card-img {
-  width: 100%;
-  background: #d9d9d9;
-}
+  .card-img {
+    width: 100%;
+    background: $card-hollow-color;
+  }
 
-.card-body {
-  padding: 1.2rem;
-}
+  .card-body {
+    padding: $card-padding;
 
-.card-link:link,
-.card-link:visited {
-  text-decoration: none;
-  color: $color-link;
-}
+    .card-title {
+      margin-bottom: $card-title-margin-bottom;
+      font-weight: $card-title-weight;
+      text-align: center;
+    }
 
-.card-link:hover {
-  color: $color-grayblue-70;
-}
-
-.card-link:active {
-  color: $color-dark;
-}
-
-.card-title {
-  margin-bottom: 0.6rem;
-}
-
-.card-text {
-  margin-bottom: 0.6rem;
+    .card-text {
+      margin-bottom: $card-context-gap;
+    }
+  }
 }
