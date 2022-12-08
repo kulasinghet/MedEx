@@ -4,17 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d562d650-3ba6-41bd-a690-150a19a299d5" name="Changes" comment="Optimized card &amp; form styles">
+    <list default="true" id="d562d650-3ba6-41bd-a690-150a19a299d5" name="Changes" comment="Added FuseUI-like styles to cards. Changed colors">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/registrationPage/employee_register/register.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/registrationPage/supplier_register_page/register.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/abstracts/_variables2.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/abstracts/_variables2.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/base/_body.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/base/_body.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/components/_card.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/components/_card.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/components/form/_form-group.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/components/form/_form-groups.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/components/form/_form-input.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/components/form/_form-input.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/layout/_login.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/layout/_login.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/demo/demo-buttons.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/demo/demo-buttons.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/style.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/style-g28.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scss/components/_dropdown.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/components/_dropdown.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scss/demo.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/demo.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scss/demo.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/demo.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scss/demo.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/demo.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/scss/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/main.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/scss/main.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/main.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/main.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/main.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/homepage/homepage.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/homepage/homepage.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/loginPage/employee/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/loginPage/employee/login.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -22,7 +25,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
   </component>
@@ -31,6 +34,7 @@
       <list>
         <option value="Sass File" />
         <option value="SCSS File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -56,8 +60,11 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "DefaultHtmlFileTemplate": "HTML File",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "list.type.of.created.stylesheet": "SCSS",
     "node.js.detected.package.eslint": "true",
@@ -81,7 +88,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1670329119745</updated>
-      <workItem from="1670329123576" duration="16118000" />
+      <workItem from="1670329123576" duration="17483000" />
+      <workItem from="1670472733079" duration="2652000" />
     </task>
     <task id="LOCAL-00001" summary="Centralized properties of the footer">
       <created>1670335693151</created>
@@ -104,7 +112,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670342601645</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Added FuseUI-like styles to cards. Changed colors">
+      <created>1670346714187</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1670346714187</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -115,7 +130,8 @@
     <MESSAGE value="Centralized properties of the footer" />
     <MESSAGE value="Created proper layout for login page" />
     <MESSAGE value="Optimized card &amp; form styles" />
-    <option name="LAST_COMMIT_MESSAGE" value="Optimized card &amp; form styles" />
+    <MESSAGE value="Added FuseUI-like styles to cards. Changed colors" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added FuseUI-like styles to cards. Changed colors" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

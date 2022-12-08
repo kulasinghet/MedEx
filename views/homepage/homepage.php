@@ -4,7 +4,6 @@
     <meta charset="UTF-8"/>
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
-    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <title>MedEx</title>
 
     <link rel="stylesheet" href="../../public/scss/main.css"/>
@@ -91,7 +90,7 @@
             <section>
                 <div class="footer-logo">
                     <a href="#">
-                        <img src="../../../public/res/logo/Logo-text.png" alt="MedEx Logo with name" width="100%"/>
+                        <img src="res/logo/Logo-text.png" alt="MedEx Logo with name" width="100%"/>
                     </a>
                 </div>
 

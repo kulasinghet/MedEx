@@ -594,7 +594,7 @@ nav .navbar-inner .navbar-account {
   padding: 10px 0;
   min-width: 80%;
   /* hiding on the default state */
-  display: none;
+  display: flex;
   overflow: hidden;
   flex-direction: column;
   justify-content: center;
@@ -606,38 +606,35 @@ nav .navbar-inner .navbar-account {
   animation: 300ms ease-in-out forwards growDown;
   transform-origin: top center;
 }
+.dropdown .dropdown-list:not(.active) {
+  display: none;
+}
 .dropdown .dropdown-list .dropdown-itm {
   display: inline-block;
   width: 100%;
   padding: 0.3rem 1rem;
   text-align: center;
   vertical-align: middle;
-  color: #4d5e80;
+  color: #7e8286;
   cursor: pointer;
   user-select: none;
 }
 .dropdown .dropdown-list .dropdown-itm:hover {
   background: rgba(195, 204, 205, 0.356);
-  color: #007bff;
+  color: #0474ed;
+  text-decoration: none;
 }
 .dropdown .dropdown-list .dropdown-itm:active {
   background: rgba(77, 94, 128, 0.8);
   color: #f8f9fa;
+  text-decoration: none;
 }
 .dropdown .dropdown-list .dropdown-divider {
   width: 60%;
   height: 0;
   margin: 0.2rem 0;
   overflow: hidden;
-  border-top: 1px solid #c3cad9;
-}
-
-.dropdown-active {
-  display: flex;
-}
-
-.dropdown-toggle {
-  transition: all 100ms ease-out;
+  border-top: 1px solid #c7cacc;
 }
 
 .form-group, .button-group {
