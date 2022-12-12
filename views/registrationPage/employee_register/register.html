@@ -15,14 +15,14 @@
         <div class="article-body">
             <h4 class="card-title">Create Account - Employee</h4>
             <form action="/employee/register" method="post">
-              <div class="form-group flex-row">
+              <div class="flex-row">
                 <p>Role: </p>
                 <div class="form-check">
-                  <input type="radio" class="form-input" id="user-staff">
+                  <input type="radio" class="form-input" id="user-staff" name="user-role">
                   <label class="form-check-label" for="user-staff">Staff</label>
                 </div>
                 <div class="form-check">
-                  <input type="radio" class="form-input" id="user-manager">
+                  <input type="radio" class="form-input" id="user-manager" name="user-role">
                   <label class="form-check-label" for="user-manager">Manager</label>
                 </div>
               </div>

@@ -69,6 +69,10 @@
         --o: 1;
       }
     }
+    &.form-input {
+      min-height: 0;
+      padding: 0;
+    }
     & + label {
       font-size: 14px;
       line-height: 21px;
@@ -76,6 +80,7 @@
       vertical-align: top;
       cursor: pointer;
       margin-left: 4px;
+      margin-top: 1px;
     }
   }
   input[type='checkbox'] {
@@ -134,4 +139,9 @@
       --s: .5;
     }
   }
+}
+
+.form-check {
+  margin: 16px 0;
+  position: relative;
 }

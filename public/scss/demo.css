@@ -798,6 +798,11 @@ input[type=radio]:not(.switch):after {
 input[type=radio]:not(.switch):checked {
     --o: 1;
   }
+  input[type=checkbox].form-input,
+input[type=radio].form-input {
+    min-height: 0;
+    padding: 0;
+  }
   input[type=checkbox] + label,
 input[type=radio] + label {
     font-size: 14px;
@@ -806,6 +811,7 @@ input[type=radio] + label {
     vertical-align: top;
     cursor: pointer;
     margin-left: 4px;
+    margin-top: 1px;
   }
   input[type=checkbox]:not(.switch) {
     border-radius: 7px;
@@ -858,6 +864,11 @@ input[type=radio] + label {
     --s: .5;
   }
 }
+.form-check {
+  margin: 16px 0;
+  position: relative;
+}
+
 form {
   width: 500px;
 }
