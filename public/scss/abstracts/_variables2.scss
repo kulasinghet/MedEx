@@ -128,9 +128,14 @@ $input-border-color-active: #80bdff;
 $input-border-radius: .4rem;
 
 // Form input - checkbox
-$checkbox-size: 1.25rem;
-$checkbox-border-radius: .2rem;
-$checkbox-color-active: #0095ff;
+$checkbox-active: #275EFE;
+$checkbox-active-inner: #fff;
+$checkbox-focus: 2px rgba(39, 94, 254, .3);
+$checkbox-border: #BBC1E1;
+$checkbox-border-hover: #275EFE;
+$checkbox-background: #fff;
+$checkbox-disabled: #F6F8FF;
+$checkbox-disabled-inner: #E1E6F9;
 
 // ------------------- Forms ------------------- //
 

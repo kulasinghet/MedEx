@@ -1,5 +1,28 @@
 // import main styles
-// @use "main";
+// global reset
+@use "base/reset";
+
+// base
+@use "base/body";
+@use "base/typography";
+
+// layout
+@use "layout/container";
+@use "layout/flex";
+@use "layout/login";
+@use "layout/register";
+
+// components
+@use "components/footer";
+@use "components/card";
+@use "components/carousel";
+@use "components/sidebar";
+@use "components/navbar";
+@use "components/button";
+@use "components/dropdown";
+@use "components/form/form-groups";
+@use "components/form/form-input";
+@use "components/form/form-check";
 
 form {
   width: 500px;
@@ -22,4 +45,16 @@ form {
   width: 100%;
   display: flex;
   justify-content: center;
+}
+
+ul {
+  margin: 12px;
+  padding: 0;
+  list-style: none;
+  width: 100%;
+  max-width: 320px;
+  li {
+    margin: 16px 0;
+    position: relative;
+  }
 }
