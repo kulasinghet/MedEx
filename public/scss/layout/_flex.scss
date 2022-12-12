@@ -14,4 +14,8 @@
   .form-group:not(:last-child) {
     margin: 0;
   }
+
+  &.center {
+    justify-content: center;
+  }
 }

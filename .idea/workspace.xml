@@ -4,14 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d562d650-3ba6-41bd-a690-150a19a299d5" name="Changes" comment="Styled checkboxes. Added demo">
+    <list default="true" id="d562d650-3ba6-41bd-a690-150a19a299d5" name="Changes" comment="Bug fixed">
+      <change afterPath="$PROJECT_DIR$/public/scss/layout/_register.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/components/form/_form-check.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/components/form/_form-check.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/scss/demo.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/demo.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/demo.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/demo.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/layout/_flex.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/layout/_flex.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scss/layout/_container.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/layout/_container.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/scss/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/main.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/scss/main.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/main.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scss/main.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/main.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/registrationPage/employee_register/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/registrationPage/employee_register/register.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -97,7 +97,7 @@
       <workItem from="1670812866353" duration="4760000" />
       <workItem from="1670863721172" duration="312000" />
       <workItem from="1670864048620" duration="397000" />
-      <workItem from="1670864773332" duration="6157000" />
+      <workItem from="1670864773332" duration="7412000" />
     </task>
     <task id="LOCAL-00001" summary="Centralized properties of the footer">
       <created>1670335693151</created>
@@ -155,7 +155,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670870493078</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Bug fixed">
+      <created>1670871710873</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1670871710873</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -171,7 +178,8 @@
     <MESSAGE value="Created Employee register page" />
     <MESSAGE value="Added propper gitignore" />
     <MESSAGE value="Styled checkboxes. Added demo" />
-    <option name="LAST_COMMIT_MESSAGE" value="Styled checkboxes. Added demo" />
+    <MESSAGE value="Bug fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Bug fixed" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -8,7 +8,9 @@
 
 // layout
 @use "layout/container";
+@use "layout/flex";
 @use "layout/login";
+@use "layout/register";
 
 // components
 @use "components/footer";

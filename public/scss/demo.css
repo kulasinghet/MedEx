@@ -117,10 +117,27 @@ h6 {
 }
 .canvas article .article-body {
   margin: 1rem 0;
-  padding: 1rem;
+  padding: 1.5rem;
   background: #97c8cb;
   border: 1px solid #fff;
   border-radius: 0.3rem;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.flex-row * {
+  margin: 0;
+}
+.flex-row .form-group:not(:last-child) {
+  margin: 0;
+}
+.flex-row.center {
+  justify-content: center;
 }
 
 .login-window {
@@ -146,6 +163,15 @@ h6 {
 
 .section-remember {
   text-align: right;
+}
+
+.register-window .canvas article {
+  min-width: 600px;
+  width: 60vw;
+  margin: 0 auto;
+}
+.register-window .canvas article h4 {
+  text-align: center;
 }
 
 footer {
