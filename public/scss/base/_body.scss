@@ -8,16 +8,22 @@ body {
   font-size: $font-size-base;
 }
 
-a {
+a:not(.btn) {
+  color: $dark;
+  text-decoration: $link-decoration;
+  cursor: pointer;
+
   &:link, &:visited {
     color: $link-color;
     text-decoration: $link-decoration;
   }
-  &:hover {
+
+  &:hover:not(.disabled) {
     color: $link-hover-color;
     text-decoration: $link-hover-decoration;
   }
-  &:active {
+
+  &:active:not(.disabled) {
     color: $link-active-color;
     text-decoration: $link-active-decoration;
   }
@@ -25,4 +31,9 @@ a {
 
 p {
   margin-bottom: 2rem;
+}
+
+.block {
+  display: block;
+  width: 100%;
 }

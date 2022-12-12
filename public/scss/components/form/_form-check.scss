@@ -1,4 +1,4 @@
-@use "../../abstracts/variables" as *;
+@use "../../abstracts/variables2" as *;
 
 .form-check {
   display: flex;
@@ -63,7 +63,7 @@
         height: 100%;
         border-radius: inherit;
 
-        background: $color-light;
+        background: $light;
         transform: scale(0);
         transition: .3s;
       }

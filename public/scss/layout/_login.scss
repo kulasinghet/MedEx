@@ -1,0 +1,22 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/variables2" as *;
+@use "../abstracts/mixins" as *;
+
+.login-window {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+
+  .canvas {
+    height: calc(100% - #{$footer-height} - #{$footer-gap});
+  }
+}
+
+.card-login {
+  width: 100%;
+  max-width: 400px;
+}
+
+.section-remember {
+  text-align: right;
+}

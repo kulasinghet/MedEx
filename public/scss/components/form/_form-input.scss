@@ -1,4 +1,4 @@
-@use "../../abstracts/variables" as *;
+@use "../../abstracts/variables2" as *;
 
 
 button {
@@ -8,19 +8,17 @@ button {
 .form-input {
   display: block;
   width: 100%;
-  height: $input-height;
-  margin: .75rem 0;
-  padding: .5rem .75rem;
-
-  font-size: 14px;
+  min-height: $input-min-height;
+  padding: $input-padding;
 
   position: relative;
 
-  color: $input-text-color;
+  font-size: $input-font-size;
+  color: $input-font-color;
   background-color: $input-background-color;
   background-clip: padding-box;
   border: 1px solid $input-border-color;
-  border-radius: .5rem;
+  border-radius: $input-border-radius;
   transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 
   &:focus {
@@ -65,7 +63,7 @@ button {
 
 textarea, select[multiple] {
   &.form-input {
-    min-height: $input-height * 2;
+    min-height: $input-min-height * 2;
   }
 }
 
