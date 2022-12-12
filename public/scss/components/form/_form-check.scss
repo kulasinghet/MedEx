@@ -15,6 +15,7 @@
     padding: 0;
     height: $checkbox-size;
     width: $checkbox-size;
+    min-height: 0;
     outline: none;
 
     &:checked {

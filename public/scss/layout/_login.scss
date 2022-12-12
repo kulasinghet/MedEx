@@ -9,6 +9,14 @@
 
   .canvas {
     height: calc(100% - #{$footer-height} - #{$footer-gap});
+
+    article {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
   }
 }
 
