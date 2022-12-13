@@ -56,7 +56,8 @@ echo "<div class='navBar'>
   <div class="card-body">
     <h2 class="card-title" style="text-align:center;"><img src="../../../public/res/logo/Logo-text.png" alt="logo" height="40px" width="auto"><br>Supplier Registration Sucessful</h2>
     <p class="card-text">
-       Your new medicine  request has being sent the Lab request ID is:<?php echo $reqid; ?>  Please send the reqested samples to the lab to approve your request</a>
+       Your new medicine  request has being sent the Lab request ID is:<?php echo $reqid; ?> <br>
+       Please send the reqested samples to the lab to approve your request</a>
     </p>
   </div>
 </div>
