@@ -46,7 +46,7 @@ nav {
         a {
           color: $dark;
           text-decoration: $link-decoration;
-          cursor: not-allowed;
+          cursor: default;
 
           &:link, &:visited {
             color: $color-grayblue-60;

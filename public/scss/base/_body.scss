@@ -8,7 +8,7 @@ body {
   font-size: $font-size-base;
 }
 
-a {
+a:not(.btn) {
   color: $dark;
   text-decoration: $link-decoration;
   cursor: pointer;
@@ -31,4 +31,9 @@ a {
 
 p {
   margin-bottom: 2rem;
+}
+
+.block {
+  display: block;
+  width: 100%;
 }

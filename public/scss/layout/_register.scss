@@ -1,0 +1,17 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/variables2" as *;
+@use "../abstracts/mixins" as *;
+
+.register-window {
+  .canvas {
+    article {
+      min-width: 600px;
+      width: 60vw;
+      margin: 0 auto;
+
+      h4 {
+        text-align: center;
+      }
+    }
+  }
+}

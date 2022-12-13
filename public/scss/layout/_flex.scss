@@ -1,0 +1,21 @@
+@use "../abstracts/variables2" as *;
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: $form-group-margin-bottom;
+
+  * {
+    margin: 0;
+  }
+
+  .form-group:not(:last-child) {
+    margin: 0;
+  }
+
+  &.center {
+    justify-content: center;
+  }
+}
