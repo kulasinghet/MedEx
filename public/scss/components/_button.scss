@@ -1,4 +1,5 @@
 @use "../abstracts/variables" as *;
+@use "../abstracts/variables2" as *;
 
 
 .btn{
@@ -16,6 +17,7 @@
   color: $color-dark;
   box-shadow: $effects-default;
   border-radius: 30px;
+  text-decoration: none;
 
   &:active {
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), $color-light;

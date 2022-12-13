@@ -7,14 +7,18 @@
 
 // layout
 @use "layout/container";
-@use "layout/footer";
+@use "layout/flex";
+@use "layout/login";
+@use "layout/register";
 
 // components
+@use "components/footer";
 @use "components/card";
 @use "components/carousel";
 @use "components/sidebar";
 @use "components/navbar";
 @use "components/button";
 @use "components/dropdown";
+@use "components/form/form-groups";
 @use "components/form/form-input";
 @use "components/form/form-check";
