@@ -4,7 +4,7 @@
     <link href="../../../public/components/sidebar/src/sidemenu-blob.css" type="text/css" rel="stylesheet"/>
     
     <script src="../../../public/components/sidebar/src/sidemenu-blob.js"></script>
-    <title>Supplier Dashboard</title>
+    <title>Supplier Registration Sucessful</title>
     <link href="../../../public/css/homepage/footer.css" type="text/css" rel="stylesheet"/>
     <link href="../../../public/css/homepage/carousel.css" type="text/css" rel="stylesheet"/>
     <link href="../../../public/css/homepage/navbar.css" type="text/css" rel="stylesheet"/>
@@ -14,6 +14,8 @@
     <link href="../../../public/css/search.css" type="text/css" rel="stylesheet"/>
     <link href="../../../public/css/felxbox.css" type="text/css" rel="stylesheet"/>
     <link rel="stylesheet" href="../../../public/sass/main.css" />
+    <link rel="stylesheet" href="../../../public/css/loginPage/Supplierlogin.css" />
+    <link rel="stylesheet" href="login.css" />
     
     <meta charset="UTF-8" />
     <meta
@@ -25,9 +27,10 @@
     <!--chart JS--->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"> </script>
   </head>
-  <body>
+  <body style = "background-color: #a6cabd;">
   <?php
   $id =$_GET['id'];
+  $reqid = $_GET['rid'];
   $link1 = '../../dashboard/supplier/supplierDashboard.php?id=' . $id;
   $link2 = '../../updateInventory/supplier/updateInventory.php?id=' . $id;
   $link3 = '../../addMedicine/supplier/addMed.php?id=' . $id;
@@ -48,33 +51,17 @@ echo "<div class='navBar'>
         </div>
     </div>";
 ?>
-
-<!--Profile-->
-<div class="card" style="width: 30%; height: auto; left: 35%; top: 20%;">
+    <!--Register-->
+    <div class="card" style="width: 30%; height: auto; left: 35%; top: 20%;">
   <div class="card-body">
-    <h2 class="card-title" style="text-align:center;"><img src="../../../public/res/logo/Logo-text.png" alt="logo" height="40px" width="auto"></h2>
+    <h2 class="card-title" style="text-align:center;"><img src="../../../public/res/logo/Logo-text.png" alt="logo" height="40px" width="auto"><br>Supplier Registration Sucessful</h2>
     <p class="card-text">
-      <?php
-    include("status.php");
-    ?>
-    </p>
-  </div>
-</div>
-<!--Table-->
-<div class="card" style="width: 60%; min-height: 50%; left: 20%; top: 30%;">
-  <div class="card-body">
-    <h3 class="card-title" style="text-align:center;">Your Inventory </h3>
-    <p class="card-text">
-
-    </br>
-      <?php
-    include("inventory.php");
-    ?>
+       Your new medicine  request has being sent the Lab request ID is:<?php echo $reqid; ?>  Please send the reqested samples to the lab to approve your request</a>
     </p>
   </div>
 </div>
 <!--footer-->
-<div style="padding-top: 30%; width: auto;">
+<div style="padding-top: 30%; width: auto; background-color: #a6cabd;">
     <footer class="footer-distributed">
 
         <div class="footer-left">

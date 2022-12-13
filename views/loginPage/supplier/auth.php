@@ -14,8 +14,10 @@ $supplier_username= $_POST["username"];
 $supplier_password = $_POST["pswd"];
 $sql = "SELECT id FROM supplier  WHERE username='$supplier_username' && supplier.password='$supplier_password';";
 $result = $conn->query($sql);
+$row = $result->fetch_assoc();
+$supId = $row["id"];
 if($result->num_rows > 0) {
-  header("location: ../../dashboard/supplier/supplierDashboard.php");
+  header("location: ../../dashboard/supplier/supplierDashboard.php?id=$supId");
 }else {
   echo '<script type="text/javascript">alert("Wrong UserName or Password");window.location=\'login.php\';</script>';
 }
