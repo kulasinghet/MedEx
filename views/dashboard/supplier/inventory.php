@@ -10,15 +10,15 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
-
-$sql = "SELECT medName, weight,quantity, unitPrice FROM supplier_medicine, medicine WHERE supplier_medicine.supId='S0001' && medicine.id=supplier_medicine.medId;";
+$id =$_GET['id'];
+$sql = "SELECT medName, weight,quantity, unitPrice FROM supplier_medicine, medicine WHERE supplier_medicine.supId='$id' && medicine.id=supplier_medicine.medId;";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     echo "<table style='border: solid 1px black; text-align:center; width:100%'><tr>
     <th>Medicine Name</th>
     <th>Weight</th>	
-    <th>Cost</th>	
+    <th>Cost</th>	 
     <th>Quantity</th>		
     </tr>";
     // output data of each row

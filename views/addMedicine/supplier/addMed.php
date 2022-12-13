@@ -4,7 +4,7 @@
     <link href="../../../public/components/sidebar/src/sidemenu-blob.css" type="text/css" rel="stylesheet"/>
     
     <script src="../../../public/components/sidebar/src/sidemenu-blob.js"></script>
-    <title>Supplier Dashboard</title>
+    <title>Supplier | Add New Medicine</title>
     <link href="../../../public/css/homepage/footer.css" type="text/css" rel="stylesheet"/>
     <link href="../../../public/css/homepage/carousel.css" type="text/css" rel="stylesheet"/>
     <link href="../../../public/css/homepage/navbar.css" type="text/css" rel="stylesheet"/>
@@ -14,6 +14,8 @@
     <link href="../../../public/css/search.css" type="text/css" rel="stylesheet"/>
     <link href="../../../public/css/felxbox.css" type="text/css" rel="stylesheet"/>
     <link rel="stylesheet" href="../../../public/sass/main.css" />
+    <link rel="stylesheet" href="../../../public/css/supplier/formcss.css" />
+    <link rel="stylesheet" href="login.css" />
     
     <meta charset="UTF-8" />
     <meta
@@ -25,8 +27,19 @@
     <!--chart JS--->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"> </script>
   </head>
-  <body>
+  <body style = "background-color: #a6cabd;">
   <?php
+  $servername = "localhost";
+  $username = "root";
+  $password = "";
+  $dbname = "medex";
+  
+  // Create connection
+  $conn = new mysqli($servername, $username, $password, $dbname);
+  // Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+  }
   $id =$_GET['id'];
   $link1 = '../../dashboard/supplier/supplierDashboard.php?id=' . $id;
   $link2 = '../../updateInventory/supplier/updateInventory.php?id=' . $id;
@@ -46,35 +59,51 @@ echo "<div class='navBar'>
                 <li><a href='$link3'>Add New Medicine</a></li>
             </ul>
         </div>
-    </div>";
+    </div>
+    <div class='card' style='width: 40%; height: auto; left: 30%; top: 20%;'>
+    <div class='card-body'>
+      <h2 class='card-title' style='text-align:center;'><img src='../../../public/res/logo/Logo-text.png' alt='logo' height='40px' width='auto'><br>Add New Medicine</h2>
+      <p class='card-text'>
+    ";
+
+$sql1 = "SELECT name,verified FROM supplier WHERE id = '$id';";
+$result1 = $conn->query($sql1);
+
+if ($result1->num_rows > 0) {
+    echo "<h1>";
+    while ($row1 = $result1->fetch_assoc()) 
+    {
+        echo $row1["name"] . "</h1></br>" . "<h3>Profile Status: ";
+        if ($row1["verified"])
+        {
+        echo "<font color='#17A600'>Verfied </font></h3>
+            <br>
+            <form action='auth.php' method='post' enctype='multipart/form-data'>
+            Medicine Name<br><input type='text' name='name' class='input-box' required><br>
+              Weight (mg)<br><input type='text' name='weight' class='input-box' required><br>
+              Scientific Name<br><input type='text' name='sciname' class='input-box' required><br>
+              Manufacture<br>"; include('manufacture.php'); echo "<br>
+              <input type='hidden' name='supid' value='<?php echo $id;?>'>
+              <br><input type='submit' value='Add New Medicine' class='button'>
+              </form>";
+        }
+            else {
+                echo "<font color='#FF5854'>Unverfied<br>
+                Sorry you cannot add medicine as you are unverfied</font></h3>
+                (Please contact adminstration)";
+
+            }
+        }
+} else {
+    echo "Error";
+}
 ?>
 
-<!--Profile-->
-<div class="card" style="width: 30%; height: auto; left: 35%; top: 20%;">
-  <div class="card-body">
-    <h2 class="card-title" style="text-align:center;"><img src="../../../public/res/logo/Logo-text.png" alt="logo" height="40px" width="auto"></h2>
-    <p class="card-text">
-      <?php
-    include("status.php");
-    ?>
-    </p>
-  </div>
-</div>
-<!--Table-->
-<div class="card" style="width: 60%; min-height: 50%; left: 20%; top: 30%;">
-  <div class="card-body">
-    <h3 class="card-title" style="text-align:center;">Your Inventory </h3>
-    <p class="card-text">
-
-    </br>
-      <?php
-    include("inventory.php");
-    ?>
-    </p>
-  </div>
-</div>
+</p>
+          </div>
+        </div>
 <!--footer-->
-<div style="padding-top: 30%; width: auto;">
+<div style="padding-top: 20%; width: auto; background-color: #a6cabd;">
     <footer class="footer-distributed">
 
         <div class="footer-left">
