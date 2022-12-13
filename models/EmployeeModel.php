@@ -3,6 +3,7 @@
 namespace app\models;
 
 use app\core\Database;
+use app\core\Logger;
 use DateTime;
 use DateTimeZone;
 
@@ -44,6 +45,7 @@ class EmployeeModel extends Model
 
             return true;
         } catch (\Exception $e) {
+            Logger::logError($e->getMessage());
             echo $e->getMessage();
             return false;
         }

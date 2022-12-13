@@ -1,20 +1,24 @@
 // global reset
 @use "base/reset";
 
-// components
-@use "layout/container";
+// base
+@use "base/body";
 @use "base/typography";
+
+// layout
+@use "layout/container";
+@use "layout/flex";
+@use "layout/login";
+@use "layout/register";
+
+// components
+@use "components/footer";
 @use "components/card";
 @use "components/carousel";
 @use "components/sidebar";
 @use "components/navbar";
 @use "components/button";
 @use "components/dropdown";
+@use "components/form/form-groups";
 @use "components/form/form-input";
 @use "components/form/form-check";
-@use "layout/footer";
-
-body, html {
-  background-color: #b8c7dc;
-  font-weight: 400;
-}

@@ -1,4 +1,5 @@
 @use "../abstracts/variables" as *;
+@use "../abstracts/variables2" as *;
 @use "../abstracts/mixins" as *;
 
 .container {
@@ -9,10 +10,39 @@
 
 .canvas {
   width: 100%;
-  @include cutoff("top", $navbar-height);
+  //height: 100%;
+
+  &:not(.canvas-fluid) {
+    @include cutoff("top", $navbar-height);
+  }
+
+  header {
+    height: 100vh;
+    background-image:
+            linear-gradient(to right bottom,
+                    rgba(76, 216, 255, 0.8),
+                    rgba(30, 108, 217, 0.8)),
+            url('https://images.pexels.com/photos/213399/pexels-photo-213399.jpeg');
+    color: $color-light;
+
+    background-size: cover;
+    background-position: top;
+    position: relative;
+
+    clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+    margin-bottom: 2rem;
+  }
 
   article {
     margin: $article-margin;
+
+    .article-body {
+      margin: 1rem 0;
+      padding: 1.5rem;
+      background: lighten($secondary, 40%);
+      border: 1px solid $white;
+      border-radius: 0.3rem;
+    }
   }
 }
 

@@ -1,4 +1,5 @@
 @use "../abstracts/variables" as *;
+@use "../abstracts/variables2" as *;
 @use "../abstracts/mixins" as *;
 
 nav {
@@ -42,17 +43,28 @@ nav {
         font-size: 16px;
         line-height: 20px;
 
-        a:link, a:visited {
-          color: $color-grayblue-60;
-          text-decoration: none;
-        }
+        a {
+          color: $dark;
+          text-decoration: $link-decoration;
+          cursor: default;
 
-        a:hover {
-          color: $color-grayblue-70;
-        }
+          &:link, &:visited {
+            color: $color-grayblue-60;
+            text-decoration: $link-decoration;
+            cursor: pointer;
+          }
 
-        a:active {
-          color: $color-grayblue-50;
+          &:hover:not(.disabled) {
+            color: $color-grayblue-70;
+            text-decoration: $link-decoration;
+            cursor: pointer;
+          }
+
+          &:active:not(.disabled) {
+            color: $color-grayblue-50;
+            text-decoration: $link-decoration;
+            cursor: pointer;
+          }
         }
       }
     }

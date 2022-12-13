@@ -6,7 +6,7 @@
 
     <body>
         <h1>Login</h1>
-        <form action="/employee/login" method="post">
+        <form action="/supplier/login" method="post">
 
             <label for="username">Username</label>
             <input type="text" name="username" id="username" />

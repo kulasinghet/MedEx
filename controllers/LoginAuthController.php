@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\core\Controller;
+use app\core\Logger;
 use app\core\Request;
 use app\models\LoginModel;
 
@@ -15,6 +16,7 @@ class LoginAuthController extends Controller
             $login->loadData($request->getBody());
 
             if ($login->validate() && $login->loginEmployee()) {
+                Logger::signInLog("employee ". $request->getBody()['username']);
                 return header('Location: /dashboard');
             }
 
@@ -29,6 +31,7 @@ class LoginAuthController extends Controller
             $login->loadData($request->getBody());
 
             if ($login->validate() && $login->deliveryPartnerLogin()) {
+                Logger::signInLog("delivery ".$request->getBody()['username']);
                 header('Location: /dashboard');
             }
 
@@ -42,7 +45,8 @@ class LoginAuthController extends Controller
             $login = new LoginModel();
             $login->loadData($request->getBody());
 
-            if ($login->validate() && $login->loginLab()) {
+            if ($login->validate() && $login->labLogin()) {
+                Logger::signInLog("lab ".$request->getBody()['username']);
                 return header('Location: /dashboard');
             }
 
@@ -52,11 +56,13 @@ class LoginAuthController extends Controller
     }
 
     public function supplierLogin(Request $request) {
+
         if ($request->isPost()) {
             $login = new LoginModel();
             $login->loadData($request->getBody());
 
             if ($login->validate() && $login->loginSupplier()) {
+                Logger::signInLog("supplier ".$request->getBody()['username']);
                 return header('Location: /dashboard');
             }
 
@@ -71,6 +77,7 @@ class LoginAuthController extends Controller
             $login->loadData($request->getBody());
 
             if ($login->validate() && $login->loginPharmacy()) {
+                Logger::signInLog("pharmacy ".$request->getBody()['username']);
                 return header('Location: /dashboard');
             }
 
