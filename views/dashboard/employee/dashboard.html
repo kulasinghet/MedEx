@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Dashboard - Employee</title>
+
+    <link href="../../../public/scss/main.css" rel="stylesheet"/>
+    <script src="../../../public/js/sidemenu-blob.js"></script>
+    <!-- Font awesome kit -->
+    <script crossorigin="anonymous" src="https://kit.fontawesome.com/9b33f63a16.js"></script>
+</head>
+<body class="app-window">
+<section>
+    <div id="sidebar">
+        <div class="sidebar-toggle">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+        <div class="sidebar-inner">
+            <div class="sidebar-context">
+                <div class="sidebar-context-top">
+                    <div class="sidebar-logo">
+                        <a href="#">
+                            <img alt="MedEx Logo with name" src="../../../public/res/logo/logo-text_light.svg"/>
+                        </a>
+                    </div>
+                    <div class="sidebar-handlers">
+                        <input id="sidebar-autohide" type="checkbox" class="switch">
+                        <label for="sidebar-autohide">Auto Hide</label>
+                    </div>
+                </div>
+                <div class="sidebar-list">
+                    <a class="sidebar-list-itm" href="#">Menu Item</a>
+                    <a class="sidebar-list-itm" href="#">Menu Item</a>
+                    <a class="sidebar-list-itm" href="#">Menu Item</a>
+                    <a class="sidebar-list-itm" href="#">Menu Item</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav>
+        <div class="navbar-logo">
+            <a href="#">
+                <img alt="MedEx Logo with name" src="../../../public/res/logo/logo-text_light.svg"/>
+            </a>
+        </div>
+        <div class="navbar-inner">
+            <ul class="navbar-routes">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Account</a></li>
+                <li><a class="disabled">Dashboard</a></li>
+                <li><a href="#">About Us</a></li>
+            </ul>
+            <div class="navbar-separator"></div>
+            <div class="navbar-account">
+                <!-- User state: anonymous -->
+                <a class="btn btn-info">Login</a>
+                <a class="btn btn-warning">Register</a>
+            </div>
+        </div>
+    </nav>
+</section>
+<div class="canvas">
+    <article>
+        <div class="article-body">
+            <h4 class="card-title">Create Account - Employee</h4>
+            <form action="/employee/register" method="post">
+                <div class="flex-row center">
+                    <p>Role: </p>
+                    <div class="form-check">
+                        <input type="radio" class="form-input" id="user-staff" name="user-role">
+                        <label class="form-check-label" for="user-staff">Staff</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-input" id="user-manager" name="user-role">
+                        <label class="form-check-label" for="user-manager">Manager</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input class="form-input" id="username" name="username" type="text">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input class="form-input" id="email" name="email" type="email"/>
+                </div>
+                <div class="flex-row">
+                    <div class="form-group">
+                        <label for="fname">First Name</label>
+                        <input class="form-input" id="fname" name="fname" type="text"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="lname">Last Name</label>
+                        <input class="form-input" id="lname" name="lname" type="text"/>
+                    </div>
+                </div>
+                <div class="flex-row">
+                    <div class="form-group">
+                        <label for="age">Age</label>
+                        <input class="form-input" id="age" name="age" type="text"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="nic">NIC No</label>
+                        <input class="form-input" id="nic" name="nic" type="text"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="uploadnic">Upload NIC</label>
+                    <input accept="image/png,image/jpeg" class="form-input" id="uploadnic" name="uploadnic"
+                           type="file"/>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input class="form-input" id="password" name="password" type="password">
+                </div>
+                <div class="form-group">
+                    <label for="retypepassword">Re-type password</label>
+                    <input class="form-input" id="retypepassword" name="retypepassword" type="password"/>
+                </div>
+
+                <div class="button-group">
+                    <button class="btn btn-primary block" id="loginButton" type="submit" value="Login">Register</button>
+                </div>
+                <div class="form-group">
+                    <p>Do you have an account? <a href="#">Login</a></p>
+                </div>
+            </form>
+        </div>
+    </article>
+</div>
+<footer>
+    <div class="footer-inner">
+        <section>
+            <div class="footer-logo">
+                <a href="#">
+                    <img alt="MedEx Logo with name" src="../../../public/res/logo/logo-box_dark.svg"/>
+                </a>
+            </div>
+
+            <div class="footer-links">
+                <a class="link-1" href="#">Home</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+            </div>
+        </section>
+
+        <section>
+            <h6>Team Members</h6>
+            <ul>
+                <li>R.D.T.D. Kulasinghe</li>
+                <li>I.A.P.P. Wijegunawardana</li>
+                <li>W.D.D.N. Dharmathunga</li>
+                <li>M.C.W. Samarasinghe</li>
+            </ul>
+        </section>
+
+        <section>
+            <p>© 2022 Group 28, All Right reserved</p>
+        </section>
+    </div>
+</footer>
+</body>
+</html>

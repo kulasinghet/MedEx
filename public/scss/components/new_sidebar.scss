@@ -3,10 +3,11 @@
 /* https://github.com/D-Naveenz/sidemenu-blob */
 
 @use "../abstracts/variables" as *;
+@use "../abstracts/variables2" as *;
 @use "../abstracts/mixins" as *;
 
 
-#sidebar {
+.sidebar {
   position: fixed;
   height: 100%;
   background-color: #2536b8;
@@ -30,7 +31,12 @@
     margin-top: -10px;
     font-size: 20px;
     text-align: center;
-    color: #fff;
+
+    svg {
+      path {
+        fill: #fff;
+      }
+    }
   }
 
   .sidebar-inner {
@@ -42,7 +48,7 @@
     background: linear-gradient(180deg, #D8EEF8 0%, #B5C3DE 100%);
 
     .sidebar-context {
-      width: 248px;
+      width: calc($sidebar-width - $sidebar-width-collapsed);
       height: 100%;
       position: relative;
 
