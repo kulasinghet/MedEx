@@ -30,9 +30,8 @@ class DashboardController extends Controller
             } elseif (isset($_SESSION['isEmployee']) && $_SESSION['isEmployee']) {
                 return $this->render('employee/dashboard.php');
             } else {
+                return header('Location: /login');
                 session_abort();
-                header('Location: /login');
-
             }
         }
     }

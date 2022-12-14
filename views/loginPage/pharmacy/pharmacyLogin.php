@@ -1,7 +1,7 @@
 <html lang="en">
     <head>
         <title>Login - Pharmacy - MedEx</title>
-        <link rel="stylesheet" href="/css/loginPage/loginPage.css">
+        <link rel="stylesheet" href="/css/pharmacy/loginPage.css">
         <script src="/js/pharmacy/login-error.js" defer></script>
     </head>
 
