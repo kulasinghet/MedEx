@@ -5,6 +5,7 @@ if(isset($_SESSION["user_username"])){
 }
 
 
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -45,7 +46,7 @@ if(isset($_SESSION["user_username"])){
                 <button class="ghost" id="signIn">Sign In</button>
             </div>
             <div class="overlay-panel overlay-right">
-            <img class="del" src="../../../public/res/delivery.png">
+            <img class="del" src="../../../public/res/deliveryphoto.png">
             </div>
         </div>
     </div>

@@ -50,6 +50,7 @@ class LoginAuthController extends Controller
                 return header('Location: /dashboard');
             }
 
+
             return $this->render('loginPage/lab/labLogin.php');
         }
         return $this->render('loginPage/lab/labLogin.php');
