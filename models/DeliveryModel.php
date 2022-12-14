@@ -22,6 +22,9 @@ class DeliveryModel extends Model
     public string $maxLoad;
     public string $regDate;
     public string $refrigeration;
+   public  string $email;
+   public  string $contactnumber;
+    public  string $address;
 
 
 
@@ -36,7 +39,9 @@ class DeliveryModel extends Model
 
             try {
                 $this -> password = password_hash($this -> password, PASSWORD_DEFAULT);
+
                 $sql = "INSERT INTO deliverypartner (id, username, password, name, license_id, driverLicenseName, vehicle_no, vehicle_type, delivery_location, max_load, reg_date, refrigerators) VALUES ('$this->id', '$this->username', '$this->password', '$this->name', '$this->licenseId', '$this->drivingLicenseName', '$this->vehicleNo', '$this->vehicleType', '$this->deliveryLocations', '$this->maxLoad', '$regDate', '$this->refrigeration')";
+                $sql = "INSERT INTO delivery_partner_contact (id,email,address,mobile) VALUES ('$this->id','$this->email','$this->address','$this->contactnumber') id reference to deliverypartner table";
                 $stmt = $db->prepare($sql);
                 $stmt->execute();
 
