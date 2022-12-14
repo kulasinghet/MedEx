@@ -1,154 +1,158 @@
 <html lang="en">
 <head>
     <title>DeliveryPartner-Register - MedEx</title>
-    <link rel="stylesheet" href="deliregisterpage.css">
+    <link rel="stylesheet" href="../../../public/css/registerPage/delivery/deliregisterpage.css">
 </head>
 <body>
 <div class="container">
 
-    <img class="logo" src="logo.png">
+    <img class="logo" src="../../../public/res/logo/logo-box_light.svg">
 
 
 <body>
-<h1>Create Account - Delivery Partner</h1>
-<form action="/delivery/register" method="post">
+<!--<h1>Create Account - Delivery Partner</h1>-->
+<!--<form action="/delivery/register" method="post">-->
+<!---->
+<!--    <div class="form">-->
+<!--        <div class="left-side-form">-->
+<!--            <div>-->
+<!--                <label for="id">User ID</label>-->
+<!--                <input type="text" name="id" id="id" />-->
+<!--            </div>-->
+<!---->
+<!--            <div>-->
+<!--                <label for="username">Username</label>-->
+<!--                <input type="text" name="username" id="username" />-->
+<!--            </div>-->
+<!---->
+<!--            <div>-->
+<!--                <label for="name">Name</label>-->
+<!--                <input type="text" name="name" id="name" />-->
+<!--            </div>-->
+<!---->
+<!--            <div>-->
+<!--                <label for="email">Email</label>-->
+<!--                <input type="email" name="email" id="email" />-->
+<!--            </div>-->
+<!---->
+<!--            <div>-->
+<!--                <label for="password">Password</label>-->
+<!--                <input type="text" name="password" id="password" />-->
+<!--            </div>-->
+<!---->
+<!--            <div>-->
+<!--                <label for="retypepassword">Re-type password</label>-->
+<!--                <input type="text" name="retypepassword" id="retypepassword" />-->
+<!--            </div>-->
+<!--        </div>-->
+<!---->
+<!--        <div class="right-side-form">-->
+<!---->
+<!--            <div>-->
+<!--                <label for="address">Address</label>-->
+<!--                <input type="text" name="address" id="address" />-->
+<!--            </div>-->
+<!---->
+<!--            <div>-->
+<!--                <label for="deliveryLocations">Deliverable Cities</label>-->
+<!--                <input type="text" name="deliveryLocations" id="deliveryLocations" />-->
+<!--            </div>-->
+<!---->
+<!--            <div>-->
+<!--                <label for="contactnumber">Contact Number</label>-->
+<!--                <input type="text" name="contactnumber" id="contactnumber" />-->
+<!--            </div>-->
+<!---->
+<!--            <div>-->
+<!--                <label for="licenseId">Driving License Id</label>-->
+<!--                <input type="text" name="licenseId" id="licenseId" />-->
+<!--            </div>-->
+<!---->
+<!--            <div>-->
+<!--                <label for="drivingLicenseName">Driving License Name</label>-->
+<!--                <input type="text" name="drivingLicenseName" id="drivingLicenseName" />-->
+<!--            </div>-->
+<!---->
+<!--            <div>-->
+<!--                <label for="vehicleType">Vehicle Type</label>-->
+<!--                <input type="text" name="vehicleType" id="vehicleType" />-->
+<!--            </div>-->
+<!---->
+<!--            <div>-->
+<!--                <label for="vehicleNo">Vehicle Registration Number</label>-->
+<!--                <input type="text" name="vehicleNo" id="vehicleNo" />-->
+<!--            </div>-->
+<!---->
+<!--            <div>-->
+<!--                <label for="maxLoad">Max Load</label>-->
+<!--                <input type="text" name="maxLoad" id="maxLoad" />-->
+<!--            </div>-->
+<!---->
+<!--            <div>-->
+<!--                <label for="refrigeration">Refrigerators</label>-->
+<!--                <input type="checkbox" name="refrigeration" id="refrigeration" />-->
+<!--            </div>-->
+<!---->
+<!--            <div>-->
+<!--                <label for="uploadvehiclelicense">Upload Vehicle License</label>-->
+<!--                <input type="file" name="uploadvehiclelicense" id="uploadvehiclelicense" accept="image/png,image/jpeg" />-->
+<!--            </div>-->
+<!---->
+<!--            <div>-->
+<!--                <label for="uploaddrivinglicense">Upload Driving License</label>-->
+<!--                <input type="file" name="uploaddrivinglicense" id="uploaddrivinglicense" accept="image/png,image/jpeg" />-->
+<!--            </div>-->
+<!---->
+<!---->
+<!--        </div>-->
+<!---->
+<!---->
+<!--    <input type="submit" value="Register" id="regButton" />-->
+<!--    </div>-->
+<!--</form>-->
 
-    <div class="form">
-        <div class="left-side-form">
-            <div>
-                <label for="id">User ID</label>
-                <input type="text" name="id" id="id" />
-            </div>
 
-            <div>
-                <label for="username">Username</label>
-                <input type="text" name="username" id="username" />
-            </div>
-
-            <div>
-                <label for="name">Name</label>
-                <input type="text" name="name" id="name" />
-            </div>
-
-            <div>
-                <label for="email">Email</label>
-                <input type="email" name="email" id="email" />
-            </div>
-
-            <div>
-                <label for="password">Password</label>
-                <input type="text" name="password" id="password" />
-            </div>
-
-            <div>
-                <label for="retypepassword">Re-type password</label>
-                <input type="text" name="retypepassword" id="retypepassword" />
-            </div>
-        </div>
-
-        <div class="right-side-form">
-
-            <div>
-                <label for="address">Address</label>
-                <input type="text" name="address" id="address" />
-            </div>
-
-            <div>
-                <label for="deliveryLocations">Deliverable Cities</label>
-                <input type="text" name="deliveryLocations" id="deliveryLocations" />
-            </div>
-
-            <div>
-                <label for="contactnumber">Contact Number</label>
-                <input type="text" name="contactnumber" id="contactnumber" />
-            </div>
-
-            <div>
-                <label for="licenseId">Driving License Id</label>
-                <input type="text" name="licenseId" id="licenseId" />
-            </div>
-
-            <div>
-                <label for="drivingLicenseName">Driving License Name</label>
-                <input type="text" name="drivingLicenseName" id="drivingLicenseName" />
-            </div>
-
-            <div>
-                <label for="vehicleType">Vehicle Type</label>
-                <input type="text" name="vehicleType" id="vehicleType" />
-            </div>
-
-            <div>
-                <label for="vehicleNo">Vehicle Registration Number</label>
-                <input type="text" name="vehicleNo" id="vehicleNo" />
-            </div>
-
-            <div>
-                <label for="maxLoad">Max Load</label>
-                <input type="text" name="maxLoad" id="maxLoad" />
-            </div>
-
-            <div>
-                <label for="refrigeration">Refrigerators</label>
-                <input type="checkbox" name="refrigeration" id="refrigeration" />
-            </div>
-
-            <div>
-                <label for="uploadvehiclelicense">Upload Vehicle License</label>
-                <input type="file" name="uploadvehiclelicense" id="uploadvehiclelicense" accept="image/png,image/jpeg" />
-            </div>
-
-            <div>
-                <label for="uploaddrivinglicense">Upload Driving License</label>
-                <input type="file" name="uploaddrivinglicense" id="uploaddrivinglicense" accept="image/png,image/jpeg" />
-            </div>
-
-
-        </div>
-
-
-    <input type="submit" value="Register" id="regButton" />
-    </div>
-</form>
-
-=======
         <h1>  Delivery Partner Registration</h1>
-        <form action="#">
+        <form action="/delvery/register">
             <div class="middle">
 <!--           <div class="user__details">-->
 <div class="details personal">
     <span class="title">Personal Details</span>
     <div class="field">
+        <div class="input_field">
+            <label>User ID</label>
+            <input type="text" placeholder="D001" name="id" id="id" required/>
+        </div>
  <div class="input_field">
                   <label>Username</label>
                     <input type="text" placeholder="johnWC98" id="username" required>
                    </div>
                       <div class="input_field">
                     <label>First Name</label>
-                    <input type="text" placeholder="E.g: John" id="firstname" required>
+                    <input type="text" placeholder="E.g: John" id="firstname" pattern="[a-zA-Z]{0,}" title="only use characters" required>
 </div>
 <div class="input_field">
                     <label>Last Name</label>
-                    <input type="text" placeholder="E.g: Smith" id="lastname" required>
+                    <input type="text" placeholder="E.g: Smith" id="lastname" pattern="[a-zA-Z]{0,}" title="only use characters" required>
 </div>
 
 <div class="input_field">
                     <label>Email</label>
-                   <input type="email" id="email" placeholder="johnsmith@hotmail.com" required>
+                   <input type="email" id="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="johnsmith@hotmail.com" required>
 
 </div>
         <div class="input_field">
                     <label>Contact Number</label>
-                    <input type="tel" pattern="[0-9]{3}-[0-9]{7}" placeholder="E.g: 071-2345678" id="contactnumber" required>
+                    <input type="tel" pattern="[][0-9]{}" placeholder="E.g: 071-2345678" id="contactnumber" required>
 </div>
 <div class="input_field">
                     <label>Password</label>
-                    <input type="password" id="password" placeholder="********" required>
+                    <input type="password" id="password" pattern=".{8,}" title="password must contain at least 8 characters" placeholder="********" required>
             </div>
             <div class="input_field">
                     <label>Confirm Password</label>
 
-                    <input type="password" id="retypepassword" placeholder="********" required>
+                    <input type="password" id="retypepassword" pattern=".{8,}" title="password must contain at least 8 characters" placeholder="********" required>
             </div>
             <div class="input_field">
                     <label>Address</label>
@@ -174,7 +178,7 @@
 
     <div class="input_field">
                     <label>Vehicle Register Number</label>
-                    <input type="vehicleregno" pattern="[a-zA-Z]{2,3}-[0-9a-zA-Z]{2,3}-[0-9]{4}" id="vehicleregno" placeholder="************" required>
+                    <input type="vehicleregno" pattern="[a-zA-Z]{2,3}-[0-9a-zA-Z]{2,3}-[0-9]{4}" id="vehicleregno" placeholder="eg: CP-BCD-2345" required>
             </div>
     <div class="input_field">
                     <label>Max Load</label>
@@ -204,7 +208,7 @@
     <div class="btn-reg">
 
             <button type="submit" class="btn" name="reg-btn" id="reg-btn">Register</button>
-    <a href="../loginpage/loginpage.php" >already registered?</a>
+    <a href="../../loginPage/" >already registered?</a>
     </div>
 
 

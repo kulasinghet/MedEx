@@ -35,9 +35,9 @@ class LoginAuthController extends Controller
                 header('Location: /dashboard');
             }
 
-            return $this->render('loginPage/delivery/deliveryLogin.php');
+            return $this->render('loginPage/delivery/loginpage.php');
         }
-        return $this->render('loginPage/delivery/deliveryLogin.php');
+        return $this->render('loginPage/delivery/loginpage.php');
     }
 
     public function labLogin(Request $request) {

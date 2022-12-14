@@ -14,16 +14,16 @@ if(isset($_SESSION["user_username"])){
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Delivery Partner -Login</title>
-    <link rel="stylesheet" href="loginpage.css">
+    <link rel="stylesheet" href="../../../public/css/loginPage/delivery/loginpage.css">
 </head>
 <body>
 <div class="container" id="container">
 
     <div class="form-container sign-in-container">
-        <form method="post" action="../database/login.inc.php">
-            <img class="logo" src="../delivery/logo.png"><br>
+        <form method="post" action="/delivery/login">
+            <img class="logo" src="../../../public/res/logo/logo-text_light.svg"><br>
             <h3>Delivery Partner -Sign in</h3>
-            <span>Don't have an account? <a href="../delivery/deliregister.php">sign up</a></span><br>
+            <span>Don't have an account? <a href="../../registrationPage/delivery_partner_register_page/deliregister.php">sign up</a></span><br>
 
             <input type="text" id="username" name="username" placeholder="username" />
 
@@ -45,7 +45,7 @@ if(isset($_SESSION["user_username"])){
                 <button class="ghost" id="signIn">Sign In</button>
             </div>
             <div class="overlay-panel overlay-right">
-            <img class="del" src="delivery.png">
+            <img class="del" src="../../../public/res/delivery.png">
             </div>
         </div>
     </div>
