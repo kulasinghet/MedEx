@@ -114,6 +114,7 @@ const lqsStyle = `
   color: #F8F9FA;
 }
 `;
+
 const lqsToggle  = `
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
     <path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/>
@@ -148,6 +149,10 @@ window.onload = () => {
     viewport.height = window.innerHeight;
     viewport.width = window.innerWidth;
     viewport.y = viewport.height / 2;
+
+    // Adding a padding to the elements to make space
+    document.querySelectorAll("nav").forEach(itm => itm.style.paddingLeft = `${lqsCollapsedWidth}px`);
+    document.querySelectorAll(".canvas").forEach(itm => itm.style.paddingLeft = `${lqsCollapsedWidth}px`);
 
     window.addEventListener("resize", () => {
         viewport.height = window.innerHeight;
@@ -206,9 +211,11 @@ class LiquidSideMenu extends HTMLElement {
         this.lqsInner.addEventListener("mouseleave", () => {
             // using this condition to prevent repeating
             if (this.menuExpanded) {
-                this.lqs.classList.remove("expanded");
                 // asynchronously setting it to false for avoid the sidebar keeps expanded forever
-                setTimeout(() => this.menuExpanded = false, 1000);
+                setTimeout(() => {
+                    this.menuExpanded = false;
+                    this.lqs.classList.remove("expanded");
+                    }, 1000);
             }
         });
 

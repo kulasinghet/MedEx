@@ -4,21 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d562d650-3ba6-41bd-a690-150a19a299d5" name="Changes" comment="Changed background colors">
+    <list default="true" id="d562d650-3ba6-41bd-a690-150a19a299d5" name="Changes" comment="Created a new custom element for sidebar">
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/demo/demo-fixed-comps.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/demo/demo-fixed-comps.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/abstracts/_mixins.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/abstracts/_mixins.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/abstracts/_variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/abstracts/_variables.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/abstracts/_variables2.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/abstracts/_variables2.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/components/_footer.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/components/_footer.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/components/_navbar.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/components/_navbar.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/components/_sidebar.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/components/_sidebar.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/demo/demo-sidebar-new.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/demo/demo-sidebar-new.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/lq-sidemenu.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/lq-sidemenu.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scss/components/new_sidebar.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/components/new_sidebar.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/scss/demo.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/demo.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/demo.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/demo.css.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/scss/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/main.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/main.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/dashboard/employee/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/dashboard/employee/dashboard.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/dashboard/supplier/dashboard.html" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,7 +51,8 @@
     </include_path>
   </component>
   <component name="ProjectId" id="2IXXtf3ZgfOKoiK2wPUApqwyAEk" />
-  <component name="ProjectLevelVcsManager">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <OptionsSetting value="false" id="Update" />
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
