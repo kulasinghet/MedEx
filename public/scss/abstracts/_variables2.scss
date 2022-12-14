@@ -31,7 +31,7 @@ $grays: (
 // theme colors
 $primary: #0474ed !default;
 $secondary: #326164 !default;
-$success: #a2b458 !default;
+$success: rgba(142, 201, 45, 0.84) !default;
 $info: #08a29e !default;
 $warning: #ffb200 !default;
 $danger: #ff3a29 !default;
@@ -103,7 +103,7 @@ $font-sizes: (
 // footer
 $footer-gap: 1rem !default;
 $footer-height: 142.5px !default;
-$footer-bg: rgba(50, 97, 100, 0.75) !default;
+$footer-bg: rgba(64, 108, 115, 0.75) !default;
 $footer-padding: 1rem 2rem !default;
 $footer-font-size: 0.8rem !default;
 $footer-font-color: $light !default;
