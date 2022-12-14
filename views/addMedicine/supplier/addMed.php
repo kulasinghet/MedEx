@@ -61,7 +61,6 @@ session_start();
         <div class="footer-left">
     
             <h3>Med<span>Ex</span></h3>
-    
             <p class="footer-links">
                 <a href="#" class="link-1">Home</a>
                 <a href="#">About</a>

@@ -45,8 +45,6 @@ session_start();
             </ul>
         </div>
     </div>
-
-
 <!--Profile-->
 <div class="card" style="width: 30%; height: auto; left: 35%; top: 20%;">
   <div class="card-body">
@@ -63,7 +61,6 @@ session_start();
   <div class="card-body">
     <h3 class="card-title" style="text-align:center;">Your Inventory </h3>
     <p class="card-text">
-
     </br>
       <?php
     include("inventory.php");

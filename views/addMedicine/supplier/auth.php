@@ -22,12 +22,9 @@ $result1 = $conn->query("SELECT * from medicine;");
 $count1 = $result1->num_rows +1;
 $num1 = (string) $count1;
 $medid = 'Med000'.$num1;
-
 // Enter detials to DB
-
 $sql1= "INSERT INTO medicine (id,medName, weight, sciName, manId) VALUES ('$medid', '$med_name', '$weight', '$sciname', '$manid')";
 $result2 = $conn->query($sql1);
-
 // Get Lab Req Id
 $result3 = $conn->query("SELECT * from labreq;");
 $count2 = $result3->num_rows +1;

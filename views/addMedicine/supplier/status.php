@@ -4,7 +4,6 @@ $id = $_SESSION['id'];
   $username = "root";
   $password = "";
   $dbname = "medex";
-  
   // Create connection
   $conn = new mysqli($servername, $username, $password, $dbname);
   // Check connection

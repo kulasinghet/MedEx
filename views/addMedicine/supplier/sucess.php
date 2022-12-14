@@ -56,7 +56,6 @@ session_start();
     </p>
   </div>
 </div>
-
 <!--footer-->
 <div style="padding-top: 30%; width: auto; background-color: #a6cabd;">
     <footer class="footer-distributed">

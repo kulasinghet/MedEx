@@ -13,8 +13,6 @@ if ($conn->connect_error) {
 
 $sql="SELECT id,name FROM manufacture;"; 
 $result = $conn->query($sql);
-
-
 echo "<select name='manufacture' value='' class='input-box' required>Manufacture Name</option>";
 
 while($row = $result->fetch_assoc()){
