@@ -5,7 +5,7 @@ body {
     line-height: 1.42857143;
     color: #333;
     background-image: url("../images/bg.jpg");
-    background-repeat: no-repeat;
+    background-repeat: repeat;
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
@@ -26,15 +26,6 @@ body {
 
 }
 
-.navBar .navBar__logo {
-    font-size: 2.5vh;
-    font-weight: 700;
-    color: #333;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-}
-
 .navBar  img {
     /*width: 5vw;*/
     height: 5vh;
@@ -50,7 +41,7 @@ body {
 .links a {
     color: #333;
     text-decoration: none;
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-weight: 500;
     margin-right: 2vh;
     padding-right: 4vw;

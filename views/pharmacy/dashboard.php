@@ -9,6 +9,9 @@
 
 <?php include_once 'navbar.php' ?>
 <div id="main-content">
+    <div class="card">
+        <p>hasdjashdkjlsadkasdgasdka,sjdjakdhasdasidgiaksjbmandhaksgdjaksudhkb</p>
+    </div>
 </div>
 
 </body>
