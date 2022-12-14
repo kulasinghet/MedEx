@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d562d650-3ba6-41bd-a690-150a19a299d5" name="Changes" comment="Created a new custom element for sidebar">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+    <list default="true" id="d562d650-3ba6-41bd-a690-150a19a299d5" name="Changes" comment="Bug fixed in sidebar">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/demo/demo-sidebar-new.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/demo/demo-sidebar-new.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/lq-sidemenu.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/lq-sidemenu.js" afterDir="false" />
@@ -195,7 +194,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671004182718</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Bug fixed in sidebar">
+      <created>1671044365909</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1671044365909</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -226,7 +232,8 @@
     <MESSAGE value="Added new logos" />
     <MESSAGE value="Fixed the footer logo" />
     <MESSAGE value="Changed background colors" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed background colors" />
+    <MESSAGE value="Bug fixed in sidebar" />
+    <option name="LAST_COMMIT_MESSAGE" value="Bug fixed in sidebar" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

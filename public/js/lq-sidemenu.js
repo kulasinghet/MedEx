@@ -115,6 +115,23 @@ const lqsStyle = `
 }
 `;
 
+const lqsTemplate = `
+<!-- external stylesheet -->
+<link href="../scss/main.css" rel="stylesheet"/>
+
+<div class="sidebar-context-top">
+    <div class="sidebar-logo">
+        <a href="#">
+            <img alt="MedEx Logo with name" src="../res/logo/logo-text_light.svg"/>
+        </a>
+    </div>
+    <div class="sidebar-handlers">
+        <input id="sidebar-autohide" type="checkbox" class="switch" data-action="sidebar-auto-hide">
+        <label for="sidebar-autohide">Auto Hide</label>
+    </div>
+</div>
+`;
+
 const lqsToggle  = `
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
     <path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/>
@@ -170,6 +187,7 @@ class LiquidSideMenu extends HTMLElement {
 
         // component variables
         this.menuExpanded = false;
+        this.autoHide = true;
 
         // blob variables
         this.curveX = 10;
@@ -202,30 +220,38 @@ class LiquidSideMenu extends HTMLElement {
         // EVENT LISTENERS
         this.lqsInner.addEventListener("mousemove", () => {
             // using this condition to prevent repeating
-            if (!this.menuExpanded) {
-                this.lqs.classList.add("expanded");
-                this.menuExpanded = true;
+            if (!this.menuExpanded && this.autoHide) {
+                this.expandSidebar(!this.menuExpanded);
             }
         });
 
         this.lqsInner.addEventListener("mouseleave", () => {
             // using this condition to prevent repeating
-            if (this.menuExpanded) {
-                // asynchronously setting it to false for avoid the sidebar keeps expanded forever
-                setTimeout(() => {
-                    this.menuExpanded = false;
-                    this.lqs.classList.remove("expanded");
-                    }, 1000);
+            if (this.menuExpanded && this.autoHide) {
+                this.expandSidebar(!this.menuExpanded);
             }
         });
 
         // Toggle does not need a mouse leave event
-        this.toggle.addEventListener("mouseenter", (e) => {
-            const target = e.currentTarget;
+        this.toggle.addEventListener("mouseenter", () => {
             // using this condition to prevent repeating
-            if (!this.menuExpanded) {
-                target.parentNode.classList.add("expanded");
-                this.menuExpanded = true;
+            if (!this.menuExpanded && this.autoHide) {
+                this.expandSidebar(!this.menuExpanded);
+            }
+        });
+
+        // https://stackoverflow.com/questions/57387346/adding-event-listener-on-a-dom-element-inside-template-tag
+        this.lqsContext.addEventListener("click", (e) => {
+            if (e.target.dataset.action === "sidebar-auto-hide" && e.target.checked) {
+                this.expandSidebar();
+                this.registerSVGAnimation();
+                this.autoHide = true;
+                console.log("Liquid Sidebar: auto hide enabled");
+            } else if (e.target.dataset.action === "sidebar-auto-hide") {
+                this.expandSidebar();
+                this.unregisterSVGAnimation();
+                this.autoHide = false;
+                console.log("Liquid Sidebar: auto hide disabled");
             }
         });
         // EVENT LISTENERS
@@ -280,8 +306,15 @@ class LiquidSideMenu extends HTMLElement {
         // sidebar context
         this.lqsContext = document.createElement("div");
         this.lqsContext.setAttribute("class", "sidebar-context");
+        this.lqsContextTmp = document.createElement("template");
+        this.lqsContextTmp.innerHTML = lqsTemplate;
+        this.lqsContext.appendChild(this.lqsContextTmp.content.cloneNode(true));
+        this.lqsAutoHideCheck = this.lqsContext.querySelector("#sidebar-autohide");
+        if (this.autoHide) {
+            this.lqsAutoHideCheck.setAttribute("checked", true);
+        }
         setTimeout(() => {
-            this.lqsContext.appendChild(document.querySelector('#sidebar-context').content.cloneNode(true));
+            this.lqsContext.innerHTML += this.innerHTML;
         });
         this.lqsInner.appendChild(this.lqsContext);
 
@@ -289,7 +322,9 @@ class LiquidSideMenu extends HTMLElement {
         this.shadowRoot.appendChild(this.lqs);
 
         // rendering the animation
-        this.registerSVGAnimation();
+        if (this.autoHide) {
+            this.registerSVGAnimation();
+        }
         // setTimeout(() => this.unregisterSVGAnimation(), 10000);
     }
 
@@ -369,7 +404,22 @@ class LiquidSideMenu extends HTMLElement {
 
     unregisterSVGAnimation() {
         unregisterMouseTracker();
-        setTimeout(() => cancelAnimationFrame(this.svgAnimation), 1000);
+        setTimeout(() => cancelAnimationFrame(this.svgAnimation), 2000);
+    }
+
+    expandSidebar(state = true) {
+        if (state) {
+            this.lqs.classList.add("expanded");
+            this.menuExpanded = true;
+        } else {
+            if (this.autoHide) {
+                // asynchronously setting it to false for avoid the sidebar keeps expanded forever
+                setTimeout(() => {
+                    this.menuExpanded = false;
+                    this.lqs.classList.remove("expanded");
+                }, 1000);
+            }
+        }
     }
 }
 
