@@ -2,8 +2,8 @@
 
 namespace app\controllers\employee;
 
-use app\base\Controller;
-use app\base\Request;
+use app\core\Controller;
+use app\core\Request;
 use app\models\EmployeeModel;
 
 class EmployeeAuthController extends Controller
@@ -15,10 +15,6 @@ class EmployeeAuthController extends Controller
             $employee = new EmployeeModel();
             $employee->loadData($request->getBody());
 
-            echo '<pre>';
-            var_dump($employee->validate());
-            echo '</pre>';
-//
             if ($employee->validate() && $employee->registerEmployee()) {
                 echo "New record created successfully";
                 return header('Location: /employee/login');

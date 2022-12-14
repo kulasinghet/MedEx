@@ -2,58 +2,56 @@
 
 namespace app\models;
 
+use app\core\Database;
+use app\core\Logger;
+use app\core\Request;
+use DateTime;
+use DateTimeZone;
+
 class DeliveryModel extends Model
 {
+    public string $id;
     public string $username;
     public string $password;
     public string $name;
     public string $licenseId;
+    public string $drivingLicenseName;
     public string $vehicleNo;
+    public string $vehicleType;
     public string $deliveryLocations;
     public string $maxLoad;
     public string $regDate;
     public string $refrigeration;
 
-    //    public function loadData(array $getBody)
-    //    {
-    //        $this->username = $getBody['username'];
-    //        $this->password = $getBody['password'];
-    //        $this->name = $getBody['name'];
-    //        $this->licenseId = $getBody['licenseId'];
-    //        $this->vehicleNo = $getBody['vehicleNo'];
-    //        $this->deliveryLocations = $getBody['deliveryLocations'];
-    //        $this->maxLoad = $getBody['maxLoad'];
-    //        $this->regDate = $getBody['regDate'];
-    //        $this->refrigeration = $getBody['refrigeration'];
-    //    }
-    //
-    //    public function validate()
-    //    {
-    //        if (empty($this->username)) {
-    //            return false;
-    //        } else if (empty($this->password)) {
-    //            return false;
-    //        } else if (empty($this->name)) {
-    //            return false;
-    //        } else if (empty($this->licenseId)) {
-    //            return false;
-    //        } else if (empty($this->vehicleNo)) {
-    //            return false;
-    //        } else if (empty($this->deliveryLocations)) {
-    //            return false;
-    //        } else if (empty($this->maxLoad)) {
-    //            return false;
-    //        } else if (empty($this->regDate)) {
-    //            return false;
-    //        } else if (empty($this->refrigeration)) {
-    //            return false;
-    //        } else {
-    //            return true;
-    //        }
-    //    }
+
 
     public function registerDeliveryPartner()
     {
+
+            $db = new Database();
+
+            $regDate = new DateTime("now");
+            $regDate->setTimezone(new DateTimeZone('Asia/Colombo'));
+            $regDate = $regDate->format('Y/m/d');
+
+            try {
+                $this -> password = password_hash($this -> password, PASSWORD_DEFAULT);
+                $sql = "INSERT INTO deliverypartner (id, username, password, name, license_id, driverLicenseName, vehicle_no, vehicle_type, delivery_location, max_load, reg_date, refrigerators) VALUES ('$this->id', '$this->username', '$this->password', '$this->name', '$this->licenseId', '$this->drivingLicenseName', '$this->vehicleNo', '$this->vehicleType', '$this->deliveryLocations', '$this->maxLoad', '$regDate', '$this->refrigeration')";
+                $stmt = $db->prepare($sql);
+                $stmt->execute();
+
+                if ($stmt->affected_rows == 1) {
+                    $stmt->close();
+                    return true;
+                } else {
+                    $stmt->close();
+                    return false;
+                }
+
+            } catch (\Exception $e) {
+                Logger::logError($e->getMessage());
+                return false;
+            }
 
     }
 
