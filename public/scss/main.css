@@ -235,6 +235,188 @@ h6 {
   color: rgba(248, 249, 250, 0.6);
 }
 
+/* SideMenu Blob 1.0 CSS file */
+/* By Naveen Dharmathunga 2022 */
+/* https://github.com/D-Naveenz/sidemenu-blob */
+#sidebar {
+  position: fixed;
+  height: 100%;
+  background-color: #2536b8;
+  width: 300px;
+  transition: 1000ms all cubic-bezier(0.19, 1, 0.22, 1);
+  transform: translateX(-100%);
+  left: 52px;
+  z-index: 100;
+}
+#sidebar.expanded {
+  transform: translateX(0%);
+  left: 0;
+}
+#sidebar .sidebar-toggle {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  right: 16px;
+  z-index: 102;
+  margin-top: -10px;
+  font-size: 20px;
+  text-align: center;
+  color: #fff;
+}
+#sidebar .sidebar-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 100;
+  background: linear-gradient(180deg, #D8EEF8 0%, #B5C3DE 100%);
+}
+#sidebar .sidebar-inner .sidebar-context {
+  width: 248px;
+  height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+#sidebar .sidebar-inner .sidebar-context::after {
+  content: "";
+  height: 100%;
+  background: rgba(133, 146, 200, 0.2509803922);
+  width: 1px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+#sidebar .sidebar-inner .sidebar-context .sidebar-context-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  width: 248px;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  padding-top: 5px;
+}
+#sidebar .sidebar-inner .sidebar-context .sidebar-context-top .sidebar-logo {
+  display: inline-block;
+  overflow: hidden;
+  padding: 10px;
+  width: 200px;
+  flex: 0 0 auto;
+}
+#sidebar .sidebar-inner .sidebar-context .sidebar-context-top .sidebar-logo img {
+  width: 100%;
+  vertical-align: center;
+}
+#sidebar .sidebar-inner .sidebar-context .sidebar-list {
+  width: 100%;
+  padding: 20px 14px;
+}
+#sidebar .sidebar-inner .sidebar-context .sidebar-list .sidebar-list-itm {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 13px 18px;
+  gap: 10px;
+  margin-bottom: 10px;
+  transition: all 300ms ease-out;
+}
+#sidebar .sidebar-inner .sidebar-context .sidebar-list .sidebar-list-itm:link, #sidebar .sidebar-inner .sidebar-context .sidebar-list .sidebar-list-itm:visited {
+  text-decoration: none;
+  color: #343A40;
+}
+#sidebar .sidebar-inner .sidebar-context .sidebar-list .sidebar-list-itm:hover {
+  padding-left: 30px;
+  background: rgba(2, 160, 252, 0.5);
+  box-shadow: 1px 4px 4px rgba(97, 193, 249, 0.28);
+  border-radius: 10px;
+}
+#sidebar .sidebar-inner .sidebar-context .sidebar-list .sidebar-list-itm:active {
+  padding-left: 30px;
+  background: rgba(52, 58, 64, 0.5);
+  box-shadow: inset 1px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  color: #F8F9FA;
+}
+
+nav {
+  position: fixed;
+  z-index: 90;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+  width: 100%;
+  height: 5rem;
+  background-color: #F7F8FA;
+  box-shadow: 2px 0 4px;
+}
+nav .navbar-logo {
+  display: inline-block;
+  overflow: hidden;
+  padding: 10px;
+  width: 248px;
+  flex: 0 0 auto;
+}
+nav .navbar-logo img {
+  width: 100%;
+  vertical-align: center;
+}
+nav .navbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+  height: 100%;
+  width: 100%;
+  padding-right: 20px;
+}
+nav .navbar-inner ul {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 0;
+  list-style: none;
+}
+nav .navbar-inner ul li {
+  user-select: none;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+}
+nav .navbar-inner ul li a {
+  color: #343a40;
+  text-decoration: none;
+  cursor: default;
+}
+nav .navbar-inner ul li a:link, nav .navbar-inner ul li a:visited {
+  color: #6b7a99;
+  text-decoration: none;
+  cursor: pointer;
+}
+nav .navbar-inner ul li a:hover:not(.disabled) {
+  color: #7d8fb3;
+  text-decoration: none;
+  cursor: pointer;
+}
+nav .navbar-inner ul li a:active:not(.disabled) {
+  color: #4d5e80;
+  text-decoration: none;
+  cursor: pointer;
+}
+nav .navbar-inner .navbar-separator {
+  height: 60%;
+  width: 1px;
+  background-color: rgba(133, 146, 200, 0.2509803922);
+}
+nav .navbar-inner .navbar-account {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
 .btn {
   display: flex;
   flex-direction: row;
