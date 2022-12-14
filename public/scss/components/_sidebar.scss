@@ -3,6 +3,7 @@
 /* https://github.com/D-Naveenz/sidemenu-blob */
 
 @use "../abstracts/variables" as *;
+@use "../abstracts/variables2" as *;
 @use "../abstracts/mixins" as *;
 
 
@@ -42,7 +43,7 @@
     background: linear-gradient(180deg, #D8EEF8 0%, #B5C3DE 100%);
 
     .sidebar-context {
-      width: 248px;
+      width: calc($sidebar-width - $sidebar-width-collapsed);
       height: 100%;
       position: relative;
 
@@ -64,10 +65,10 @@
 
       .sidebar-logo {
         position: absolute;
-        top: 0;
-        left: 0;
+        top: 5px;
+        left: 3px;
 
-        @include logo-text;
+        @include company-logo(200px);
       }
 
       .sidebar-list {

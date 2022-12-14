@@ -14,10 +14,13 @@ html {
 
 html,
 body {
-  background-color: #a6cabd;
   color: #343a40;
   font-family: "Roboto", sans-serif;
   font-size: 1rem;
+  background: radial-gradient(1.5em 6.28571em at 1.95em, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.25) 50%, rgba(255, 255, 255, 0.25) 55%, rgba(255, 255, 255, 0) 55%) 0 0, radial-gradient(1.5em 6.28571em at -0.45em, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.25) 50%, rgba(255, 255, 255, 0.25) 55%, rgba(255, 255, 255, 0) 55%) 1.5em 5.5em, radial-gradient(2.3em 4.57143em at 2.99em, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.3) 55%, rgba(255, 255, 255, 0) 55%) 0 0, radial-gradient(2.3em 4.57143em at -0.69em, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.3) 55%, rgba(255, 255, 255, 0) 55%) 2.3em 4em, radial-gradient(3.5em 6.28571em at 4.55em, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.25) 50%, rgba(255, 255, 255, 0.25) 55%, rgba(255, 255, 255, 0) 55%) 0 0, radial-gradient(3.5em 6.28571em at -1.05em, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.25) 50%, rgba(255, 255, 255, 0.25) 55%, rgba(255, 255, 255, 0) 55%) 3.5em 5.5em, radial-gradient(#15ffa5, #00ced1);
+  background-color: mediumspringgreen;
+  background-size: 1.5em 11em, 1.5em 11em, 2.3em 8em, 2.3em 8em, 3.5em 11em, 3.5em 11em, 100% 100%;
+  background-repeat: repeat;
 }
 
 a:not(.btn) {
@@ -100,7 +103,7 @@ h6 {
 }
 .canvas:not(.canvas-fluid) {
   overflow: hidden;
-  padding-top: 5rem;
+  padding-top: 4rem;
 }
 .canvas header {
   height: 100vh;
@@ -118,7 +121,7 @@ h6 {
 .canvas article .article-body {
   margin: 1rem 0;
   padding: 1.5rem;
-  background: #97c8cb;
+  background: rgba(174, 238, 218, 0.8);
   border: 1px solid #fff;
   border-radius: 0.3rem;
 }
@@ -177,7 +180,7 @@ h6 {
 footer {
   display: block;
   margin-top: 1rem;
-  background: #326164;
+  background: rgba(64, 108, 115, 0.75);
   width: 100%;
   height: 142.5px;
   padding: 1rem 2rem;
@@ -196,12 +199,13 @@ footer .footer-inner section {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  gap: 0.3rem;
 }
 footer .footer-inner section .footer-logo {
   display: inline-block;
   overflow: hidden;
-  padding: 10px;
-  width: 248px;
+  padding: 5px;
+  width: 120px;
   flex: 0 0 auto;
 }
 footer .footer-inner section .footer-logo img {
@@ -356,7 +360,7 @@ footer .footer-inner section p {
   position: fixed;
   height: 100%;
   background-color: #2536b8;
-  width: 300px;
+  width: 260px;
   transition: 1000ms all cubic-bezier(0.19, 1, 0.22, 1);
   transform: translateX(-100%);
   left: 52px;
@@ -385,7 +389,7 @@ footer .footer-inner section p {
   background: linear-gradient(180deg, #D8EEF8 0%, #B5C3DE 100%);
 }
 #sidebar .sidebar-inner .sidebar-context {
-  width: 248px;
+  width: 208px;
   height: 100%;
   position: relative;
   display: flex;
@@ -403,12 +407,12 @@ footer .footer-inner section p {
 }
 #sidebar .sidebar-inner .sidebar-context .sidebar-logo {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 5px;
+  left: 3px;
   display: inline-block;
   overflow: hidden;
-  padding: 10px;
-  width: 248px;
+  padding: 5px;
+  width: 200px;
   flex: 0 0 auto;
 }
 #sidebar .sidebar-inner .sidebar-context .sidebar-logo img {
@@ -451,19 +455,20 @@ nav {
   z-index: 90;
   top: 0;
   display: flex;
+  overflow: hidden;
   align-items: center;
   justify-content: space-between;
   flex-shrink: 0;
   width: 100%;
-  height: 5rem;
+  height: 4rem;
   background-color: #F7F8FA;
   box-shadow: 2px 0 4px;
 }
 nav .navbar-logo {
   display: inline-block;
   overflow: hidden;
-  padding: 10px;
-  width: 248px;
+  padding: 5px;
+  width: 200px;
   flex: 0 0 auto;
 }
 nav .navbar-logo img {
