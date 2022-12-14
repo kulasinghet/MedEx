@@ -18,7 +18,7 @@ class DeliveryAuthController extends Controller
             $delivery -> loadData($request->getBody());
 
             if ($delivery->validate() && $delivery->registerDeliveryPartner()) {
-                header("Location: /delivery/dashboard");
+                header("Location: /delivery/login");
             }
 
             return $this->render('registrationPage/delivery_partner_register_page/deliregister.php');

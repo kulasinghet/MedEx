@@ -5,20 +5,39 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d562d650-3ba6-41bd-a690-150a19a299d5" name="Changes" comment="Changed background colors">
+      <change afterPath="$PROJECT_DIR$/core/ExceptionHandler.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/Pharmacy/navbar.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/pharmacy/login-error.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/res/background-image-login.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sql/database.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/pharmacy/dashboard.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/pharmacy/navbar.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/error.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/error.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/signin.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/signin.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/demo/demo-fixed-comps.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/demo/demo-fixed-comps.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/res/4957412_Mobile-login-Cristina.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/res/logo/logo-box_dark.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/res/logo/logo-box_light.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/res/logo/logo-text_dark.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/res/logo/logo-text_light.svg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/public/scss/abstracts/_mixins.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/abstracts/_mixins.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/scss/abstracts/_variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/abstracts/_variables.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/scss/abstracts/_variables2.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/abstracts/_variables2.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scss/base/_body.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/base/_body.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/scss/components/_footer.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/components/_footer.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/scss/components/_navbar.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/components/_navbar.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/scss/components/_sidebar.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/components/_sidebar.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/scss/demo.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/demo.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/scss/demo.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/demo.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scss/layout/_container.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/layout/_container.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/scss/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/main.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/scss/main.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/main.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/dashboard/employee/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/dashboard/employee/dashboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/dashboard/employee/dashboard.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/views/dashboard/supplier/dashboard.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/homepage/homepage.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/homepage/homepage.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/loginPage/employee/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/loginPage/employee/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/registrationPage/employee_register/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/registrationPage/employee_register/register.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,7 +77,8 @@
     </include_path>
   </component>
   <component name="ProjectId" id="2IXXtf3ZgfOKoiK2wPUApqwyAEk" />
-  <component name="ProjectLevelVcsManager">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <OptionsSetting value="false" id="Update" />
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -90,7 +110,7 @@
       <recent name="C:\Users\dashe\My Projects\MedEx\MedEx\public\scss\components" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="PHP Built-in Web Server.Medex">
     <configuration name="Medex" type="PhpBuiltInWebServerConfigurationType" factoryName="PHP Built-in Web Server" document_root="$PROJECT_DIR$/public" port="8080">
       <method v="2" />
     </configuration>

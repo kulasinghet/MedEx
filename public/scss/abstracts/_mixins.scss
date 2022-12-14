@@ -4,11 +4,11 @@
   padding-#{$direction}: $size;
 }
 
-@mixin company-logo($width) {
+@mixin logo-text {
   display: inline-block;
   overflow: hidden;
-  padding: 5px;
-  width: $width;
+  padding: 10px;
+  width: 248px;
   flex: 0 0 auto;
 
   img {

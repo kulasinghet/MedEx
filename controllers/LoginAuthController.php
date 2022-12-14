@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\core\Controller;
+use app\core\ExceptionHandler;
 use app\core\Logger;
 use app\core\Request;
 use app\models\LoginModel;
@@ -17,9 +18,14 @@ class LoginAuthController extends Controller
 
             if ($login->validate() && $login->loginEmployee()) {
                 Logger::signInLog("employee ". $request->getBody()['username']);
+                $_SESSION['isPharmacy'] = false;
+                $_SESSION['isSupplier'] = false;
+                $_SESSION['isLab'] = false;
+                $_SESSION['isDelivery'] = false;
+                $_SESSION['isEmployee'] = true;
                 return header('Location: /dashboard');
             }
-
+            echo (new \app\core\ExceptionHandler)->userNameOrPasswordIncorrect($request->getBody()['username']);
             return $this->render('loginPage/employee/employeeLogin.php');
         }
         return $this->render('loginPage/employee/employeeLogin.php');
@@ -32,9 +38,14 @@ class LoginAuthController extends Controller
 
             if ($login->validate() && $login->deliveryPartnerLogin()) {
                 Logger::signInLog("delivery ".$request->getBody()['username']);
+                $_SESSION['isPharmacy'] = false;
+                $_SESSION['isSupplier'] = false;
+                $_SESSION['isLab'] = false;
+                $_SESSION['isDelivery'] = true;
+                $_SESSION['isEmployee'] = false;
                 header('Location: /dashboard');
             }
-
+            echo (new \app\core\ExceptionHandler)->userNameOrPasswordIncorrect($request->getBody()['username']);
             return $this->render('loginPage/delivery/deliveryLogin.php');
         }
         return $this->render('loginPage/delivery/deliveryLogin.php');
@@ -47,9 +58,14 @@ class LoginAuthController extends Controller
 
             if ($login->validate() && $login->labLogin()) {
                 Logger::signInLog("lab ".$request->getBody()['username']);
+                $_SESSION['isPharmacy'] = false;
+                $_SESSION['isSupplier'] = false;
+                $_SESSION['isLab'] = true;
+                $_SESSION['isDelivery'] = false;
+                $_SESSION['isEmployee'] = false;
                 return header('Location: /dashboard');
             }
-
+            echo (new \app\core\ExceptionHandler)->userNameOrPasswordIncorrect($request->getBody()['username']);
             return $this->render('loginPage/lab/labLogin.php');
         }
         return $this->render('loginPage/lab/labLogin.php');
@@ -63,9 +79,14 @@ class LoginAuthController extends Controller
 
             if ($login->validate() && $login->loginSupplier()) {
                 Logger::signInLog("supplier ".$request->getBody()['username']);
+                $_SESSION['isPharmacy'] = false;
+                $_SESSION['isSupplier'] = true;
+                $_SESSION['isLab'] = false;
+                $_SESSION['isDelivery'] = false;
+                $_SESSION['isEmployee'] = false;
                 return header('Location: /dashboard');
             }
-
+            echo (new \app\core\ExceptionHandler)->userNameOrPasswordIncorrect($request->getBody()['username']);
             return $this->render('loginPage/supplier/supplierLogin.php');
         }
         return $this->render('loginPage/supplier/supplierLogin.php');
@@ -78,9 +99,17 @@ class LoginAuthController extends Controller
 
             if ($login->validate() && $login->loginPharmacy()) {
                 Logger::signInLog("pharmacy ".$request->getBody()['username']);
+                // set isPharmacy session variable
+                $_SESSION['isPharmacy'] = true;
+                $_SESSION['isSupplier'] = false;
+                $_SESSION['isLab'] = false;
+                $_SESSION['isDelivery'] = false;
+                $_SESSION['isEmployee'] = false;
                 return header('Location: /dashboard');
             }
 
+            echo (new \app\core\ExceptionHandler)->userNameOrPasswordIncorrect($request->getBody()['username']);
+            $_SESSION['isPharmacy'] = false;
             return $this->render('loginPage/pharmacy/pharmacyLogin.php');
         }
         return $this->render('loginPage/pharmacy/pharmacyLogin.php');
