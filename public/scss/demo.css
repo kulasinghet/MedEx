@@ -12,44 +12,6 @@ html {
   height: 100%;
 }
 
-html,
-body {
-  color: #343a40;
-  font-family: "Roboto", sans-serif;
-  font-size: 1rem;
-  background: radial-gradient(1.5em 6.28571em at 1.95em, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.25) 50%, rgba(255, 255, 255, 0.25) 55%, rgba(255, 255, 255, 0) 55%) 0 0, radial-gradient(1.5em 6.28571em at -0.45em, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.25) 50%, rgba(255, 255, 255, 0.25) 55%, rgba(255, 255, 255, 0) 55%) 1.5em 5.5em, radial-gradient(2.3em 4.57143em at 2.99em, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.3) 55%, rgba(255, 255, 255, 0) 55%) 0 0, radial-gradient(2.3em 4.57143em at -0.69em, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.3) 55%, rgba(255, 255, 255, 0) 55%) 2.3em 4em, radial-gradient(3.5em 6.28571em at 4.55em, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.25) 50%, rgba(255, 255, 255, 0.25) 55%, rgba(255, 255, 255, 0) 55%) 0 0, radial-gradient(3.5em 6.28571em at -1.05em, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.25) 50%, rgba(255, 255, 255, 0.25) 55%, rgba(255, 255, 255, 0) 55%) 3.5em 5.5em, radial-gradient(#15ffa5, #00ced1);
-  background-color: mediumspringgreen;
-  background-size: 1.5em 11em, 1.5em 11em, 2.3em 8em, 2.3em 8em, 3.5em 11em, 3.5em 11em, 100% 100%;
-  background-repeat: repeat;
-}
-
-a:not(.btn) {
-  color: #343a40;
-  text-decoration: none;
-  cursor: pointer;
-}
-a:not(.btn):link, a:not(.btn):visited {
-  color: #0474ed;
-  text-decoration: none;
-}
-a:not(.btn):hover:not(.disabled) {
-  color: #5ba8fc;
-  text-decoration: underline;
-}
-a:not(.btn):active:not(.disabled) {
-  color: #024389;
-  text-decoration: underline;
-}
-
-p {
-  margin-bottom: 2rem;
-}
-
-.block {
-  display: block;
-  width: 100%;
-}
-
 h1 {
   font-size: 2.5rem;
   font-weight: 500;
@@ -121,7 +83,7 @@ h6 {
 .canvas article .article-body {
   margin: 1rem 0;
   padding: 1.5rem;
-  background: rgba(174, 238, 218, 0.8);
+  background: #97c8cb;
   border: 1px solid #fff;
   border-radius: 0.3rem;
 }
@@ -175,85 +137,6 @@ h6 {
 }
 .register-window .canvas article h4 {
   text-align: center;
-}
-
-footer {
-  display: block;
-  margin-top: 1rem;
-  background: rgba(64, 108, 115, 0.75);
-  width: 100%;
-  height: 142.5px;
-  padding: 1rem 2rem;
-  font-size: 0.8rem;
-  color: #f8f9fa;
-}
-footer .footer-inner {
-  display: flex;
-  width: 100%;
-  height: 100%;
-  align-items: center;
-  justify-content: space-between;
-}
-footer .footer-inner section {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-}
-footer .footer-inner section .footer-logo {
-  display: inline-block;
-  overflow: hidden;
-  padding: 10px;
-  width: 120px;
-  flex: 0 0 auto;
-}
-footer .footer-inner section .footer-logo img {
-  width: 100%;
-  vertical-align: center;
-}
-footer .footer-inner section .footer-links {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  color: inherit;
-}
-footer .footer-inner section .footer-links a {
-  text-decoration: none;
-  cursor: default;
-  position: relative;
-  color: inherit;
-}
-footer .footer-inner section .footer-links a:link, footer .footer-inner section .footer-links a:visited {
-  color: inherit;
-  text-decoration: none;
-  cursor: pointer;
-}
-footer .footer-inner section .footer-links a:hover:not(.disabled) {
-  color: inherit;
-  text-decoration: underline;
-  cursor: pointer;
-}
-footer .footer-inner section .footer-links a:not(:last-child):after {
-  position: absolute;
-  right: -0.65rem;
-  top: -0.35rem;
-  content: "|";
-  font-weight: 300;
-  font-size: 20px;
-  color: inherit;
-  display: inline-block;
-}
-footer .footer-inner section h6 {
-  align-self: start;
-}
-footer .footer-inner section ul {
-  line-height: 1.3rem;
-  color: #c7cacc;
-  list-style: none;
-}
-footer .footer-inner section p {
-  margin: 0;
 }
 
 .card {
@@ -534,7 +417,6 @@ nav .navbar-inner .navbar-account {
   align-items: center;
   gap: 1rem;
 }
-
 .btn {
   display: flex;
   flex-direction: row;
@@ -761,7 +643,7 @@ textarea.form-input {
 
 @supports (-webkit-appearance: none) or (-moz-appearance: none) {
   input[type=checkbox],
-input[type=radio] {
+  input[type=radio] {
     --active: #275EFE;
     --active-inner: #fff;
     --focus: 2px rgba(39, 94, 254, 0.3);
@@ -784,7 +666,7 @@ input[type=radio] {
     transition: background 0.3s, border-color 0.3s, box-shadow 0.2s;
   }
   input[type=checkbox]:after,
-input[type=radio]:after {
+  input[type=radio]:after {
     content: "";
     display: block;
     left: 0;
@@ -793,7 +675,7 @@ input[type=radio]:after {
     transition: transform var(--d-t) var(--d-t-e, ease), opacity var(--d-o, 0.2s);
   }
   input[type=checkbox]:checked,
-input[type=radio]:checked {
+  input[type=radio]:checked {
     --b: var(--active);
     --bc: var(--active);
     --d-o: .3s;
@@ -801,47 +683,47 @@ input[type=radio]:checked {
     --d-t-e: cubic-bezier(.2, .85, .32, 1.2);
   }
   input[type=checkbox]:disabled,
-input[type=radio]:disabled {
+  input[type=radio]:disabled {
     --b: var(--disabled);
     cursor: not-allowed;
     opacity: 0.9;
   }
   input[type=checkbox]:disabled:checked,
-input[type=radio]:disabled:checked {
+  input[type=radio]:disabled:checked {
     --b: var(--disabled-inner);
     --bc: var(--border);
   }
   input[type=checkbox]:disabled + label,
-input[type=radio]:disabled + label {
+  input[type=radio]:disabled + label {
     cursor: not-allowed;
   }
   input[type=checkbox]:hover:not(:checked):not(:disabled),
-input[type=radio]:hover:not(:checked):not(:disabled) {
+  input[type=radio]:hover:not(:checked):not(:disabled) {
     --bc: var(--border-hover);
   }
   input[type=checkbox]:focus,
-input[type=radio]:focus {
+  input[type=radio]:focus {
     box-shadow: 0 0 0 var(--focus);
   }
   input[type=checkbox]:not(.switch),
-input[type=radio]:not(.switch) {
+  input[type=radio]:not(.switch) {
     width: 21px;
   }
   input[type=checkbox]:not(.switch):after,
-input[type=radio]:not(.switch):after {
+  input[type=radio]:not(.switch):after {
     opacity: var(--o, 0);
   }
   input[type=checkbox]:not(.switch):checked,
-input[type=radio]:not(.switch):checked {
+  input[type=radio]:not(.switch):checked {
     --o: 1;
   }
   input[type=checkbox].form-input,
-input[type=radio].form-input {
+  input[type=radio].form-input {
     min-height: 0;
     padding: 0;
   }
   input[type=checkbox] + label,
-input[type=radio] + label {
+  input[type=radio] + label {
     font-size: 14px;
     line-height: 21px;
     display: inline-block;

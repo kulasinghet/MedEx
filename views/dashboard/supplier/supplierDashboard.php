@@ -26,102 +26,49 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"> </script>
   </head>
   <body>
-<!-- Nav Bar-->
-    <div class="navBar">
-        <div class="navBar__logo">
-            <a href="index.php"><img src="../../../public/res/logo/Logo-text.png" alt="logo" height="40px" width="auto"></a>
+  <?php
+  $id =$_GET['id'];
+  $link1 = '../../dashboard/supplier/supplierDashboard.php?id=' . $id;
+  $link2 = '../../updateInventory/supplier/updateInventory.php?id=' . $id;
+  $link3 = '../../addMedicine/supplier/addMed.php?id=' . $id;
+//Nav Bar
+echo "<div class='navBar'>
+        <div class='navBar__logo'>
+            <a href='index.php'><img src='../../../public/res/logo/Logo-text.png' alt='logo' height='40px' width='auto'></a>
         </div>
-
-<!--register popup for the Are you a page?-->
-        <div class="register-modal">
-            <div class="register-modal-content">
-                <span class="register-close-button">×</span>
-                <div class="register-modal-content__title">
-                    <h1>Are you a?</h1>
-                    <button>Pharmacy</button>
-                    <button>Supplier</button>
-                    <button>Delivery Partner</button>
-                    <button>Laboratory</button>
-                    <button>Staff</button>
-                </div>
-            </div>
-        </div>
-        <div class="login-modal">
-            <div class="login-modal-content">
-                <span class="login-close-button">×</span>
-                <div class="login-modal-content__title">
-                    <h1>Are you a?</h1>
-                    <button>Pharmacy</button>
-                    <button>Supplier</button>
-                    <button>Delivery Partner</button>
-                    <button>Laboratory</button>
-                    <button>Staff</button>
-                </div>
-            </div>
-        </div>
-        <div class="navBar__menu">
-            <ul>
-                <li><a href="/index.php">Home</a></li>
-                <li><a href="/index.php?page=about">About</a></li>
-                <li><a href="/index.php?page=contact">Contact</a></li>
-                <li><button id="login" class="login-trigger">Login</button></li>
-                <li><button id="register" class="register-trigger">Register</button></li>
+  <div class='navBar__menu'>
+        <ul>
+                <li><a href='#'>Home</a></li>
+                <li><a href='#'>About</a></li>
+                <li><a href='#'>Contact</a></li>
+                <li><a href='$link1'>Dashboard</a></li>
+                <li><a href='$link2'> Update Inventory</a></li>
+                <li><a href='$link3'>Add New Medicine</a></li>
             </ul>
         </div>
-    </div>
-    <!--search-->
-<div class="wrap">
-    <div class="search">
-       <input type="text" class="searchTerm" placeholder="Start typing anything to search">
-       <button type="submit" class="searchButton">
-         <i class="fa fa-search"></i>
-      </button>
-    </div>
- </div>
-<!--Graph-->
-<div class="card" style="width: 600px; height: 300px; left: 200px; top: 192px;">
+    </div>";
+?>
+
+<!--Profile-->
+<div class="card" style="width: 30%; height: auto; left: 35%; top: 20%;">
   <div class="card-body">
-    <h3 class="card-title" style="text-align:center;">Sales This Month </h3>
+    <h2 class="card-title" style="text-align:center;"><img src="../../../public/res/logo/Logo-text.png" alt="logo" height="40px" width="auto"></h2>
     <p class="card-text">
-      <canvas id="myChart" style="width: 450px; height: 200px; padding: auto;"></canvas>
+      <?php
+    include("status.php");
+    ?>
     </p>
-    <script>
-      var xValues = [50,60,70,80,90,100,110,120,130,140,150];
-var yValues = [7,8,8,9,9,9,10,11,14,14,15];
-
-new Chart("myChart", {
-  type: "line",
-  data: {
-    labels: xValues,
-    datasets: [{
-    label: 'Sales',
-      fill: false,
-      lineTension: 0,
-      backgroundColor: "rgb(6, 79, 147)",
-      borderColor: "rgb(6, 79, 147)",
-      data: yValues
-    }]
-  },
-  options: {
-    legend: {display:false},
-    scales: {
-      yAxes: [{ticks: {min: 6, max:16}}],
-    }
-  }
-});
-    </script>
-
   </div>
 </div>
 <!--Table-->
-<div class="card" style="width: 800px; height: 50%; left: 300px; top: 40%;">
+<div class="card" style="width: 60%; min-height: 50%; left: 20%; top: 30%;">
   <div class="card-body">
-    <h3 class="card-title" style="text-align:center;">Inventory </h3>
+    <h3 class="card-title" style="text-align:center;">Your Inventory </h3>
     <p class="card-text">
 
     </br>
       <?php
-    include("dbconnection.php");
+    include("inventory.php");
     ?>
     </p>
   </div>

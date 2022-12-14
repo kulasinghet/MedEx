@@ -3,7 +3,7 @@
 namespace app\models;
 
 use app\core\Database;
-use app\core\ErrorLog;
+use app\core\Logger;
 use DateTime;
 use DateTimeZone;
 
@@ -38,7 +38,7 @@ class LabModel extends Model
             $stmt->close();
             return true;
         } catch (\Exception $e) {
-            ErrorLog::logError($e->getMessage());
+            Logger::logError($e->getMessage());
             echo $e->getMessage();
             return false;
         }

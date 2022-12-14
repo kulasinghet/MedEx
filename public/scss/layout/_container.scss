@@ -39,7 +39,7 @@
     .article-body {
       margin: 1rem 0;
       padding: 1.5rem;
-      background: rgba(174, 238, 218, 0.8);
+      background: lighten($secondary, 40%);
       border: 1px solid $white;
       border-radius: 0.3rem;
     }

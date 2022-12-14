@@ -16,7 +16,7 @@ $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     echo "<table style='border: solid 1px black; text-align:center; width:100%'><tr>
-    <th>Pharmacy Name</th>
+    <th>pharmacy Name</th>
     <th>City</th>		
     </tr>";
     // output data of each row

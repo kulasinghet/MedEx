@@ -24,7 +24,6 @@ $app -> router -> get('/', [SiteController::class, 'home']);
 $app -> router -> get('/dashboard', [DashboardController::class, 'redirectDashboard']);
 $app -> router -> get('/404', [SiteController::class, '_404']);
 
-
 // delivery Routes
 $app -> router -> get('/delivery/login', [LoginAuthController::class, 'deliveryLogin']);
 $app -> router -> post('/delivery/login', [LoginAuthController::class, 'deliveryLogin']);
@@ -43,7 +42,7 @@ $app -> router -> post('/employee/login', [LoginAuthController::class, 'employee
 $app -> router -> get('/employee/register', [EmployeeAuthController::class, 'employeeRegister']);
 $app -> router -> post('/employee/register', [EmployeeAuthController::class, 'employeeRegister']);
 
-// Pharmacy Routes
+// pharmacy Routes
 $app -> router -> get('/pharmacy/login', [LoginAuthController::class, 'pharmacyLogin']);
 $app -> router -> post('/pharmacy/login', [LoginAuthController::class, 'pharmacyLogin']);
 $app -> router -> get('/pharmacy/register', [PharmacyAuthController::class, 'pharmacyRegister']);
