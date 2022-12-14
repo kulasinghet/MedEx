@@ -103,7 +103,7 @@ h6 {
 }
 .canvas:not(.canvas-fluid) {
   overflow: hidden;
-  padding-top: 5rem;
+  padding-top: 4rem;
 }
 .canvas header {
   height: 100vh;
@@ -199,11 +199,12 @@ footer .footer-inner section {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  gap: 0.3rem;
 }
 footer .footer-inner section .footer-logo {
   display: inline-block;
   overflow: hidden;
-  padding: 10px;
+  padding: 5px;
   width: 120px;
   flex: 0 0 auto;
 }
@@ -359,7 +360,7 @@ footer .footer-inner section p {
   position: fixed;
   height: 100%;
   background-color: #2536b8;
-  width: 300px;
+  width: 260px;
   transition: 1000ms all cubic-bezier(0.19, 1, 0.22, 1);
   transform: translateX(-100%);
   left: 52px;
@@ -388,7 +389,7 @@ footer .footer-inner section p {
   background: linear-gradient(180deg, #D8EEF8 0%, #B5C3DE 100%);
 }
 #sidebar .sidebar-inner .sidebar-context {
-  width: 248px;
+  width: 208px;
   height: 100%;
   position: relative;
   display: flex;
@@ -406,12 +407,12 @@ footer .footer-inner section p {
 }
 #sidebar .sidebar-inner .sidebar-context .sidebar-logo {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 5px;
+  left: 3px;
   display: inline-block;
   overflow: hidden;
-  padding: 10px;
-  width: 248px;
+  padding: 5px;
+  width: 200px;
   flex: 0 0 auto;
 }
 #sidebar .sidebar-inner .sidebar-context .sidebar-logo img {
@@ -454,19 +455,20 @@ nav {
   z-index: 90;
   top: 0;
   display: flex;
+  overflow: hidden;
   align-items: center;
   justify-content: space-between;
   flex-shrink: 0;
   width: 100%;
-  height: 5rem;
+  height: 4rem;
   background-color: #F7F8FA;
   box-shadow: 2px 0 4px;
 }
 nav .navbar-logo {
   display: inline-block;
   overflow: hidden;
-  padding: 10px;
-  width: 248px;
+  padding: 5px;
+  width: 200px;
   flex: 0 0 auto;
 }
 nav .navbar-logo img {
