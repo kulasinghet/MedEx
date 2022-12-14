@@ -25,7 +25,7 @@ footer {
       align-items: center;
 
       .footer-logo {
-        @include logo-text;
+        @include company-logo(120px);
       }
 
       .footer-links {

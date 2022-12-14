@@ -14,10 +14,13 @@ html {
 
 html,
 body {
-  background-color: #a6cabd;
   color: #343a40;
   font-family: "Roboto", sans-serif;
   font-size: 1rem;
+  background: radial-gradient(1.5em 6.28571em at 1.95em, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.25) 50%, rgba(255, 255, 255, 0.25) 55%, rgba(255, 255, 255, 0) 55%) 0 0, radial-gradient(1.5em 6.28571em at -0.45em, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.25) 50%, rgba(255, 255, 255, 0.25) 55%, rgba(255, 255, 255, 0) 55%) 1.5em 5.5em, radial-gradient(2.3em 4.57143em at 2.99em, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.3) 55%, rgba(255, 255, 255, 0) 55%) 0 0, radial-gradient(2.3em 4.57143em at -0.69em, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.3) 55%, rgba(255, 255, 255, 0) 55%) 2.3em 4em, radial-gradient(3.5em 6.28571em at 4.55em, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.25) 50%, rgba(255, 255, 255, 0.25) 55%, rgba(255, 255, 255, 0) 55%) 0 0, radial-gradient(3.5em 6.28571em at -1.05em, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.25) 50%, rgba(255, 255, 255, 0.25) 55%, rgba(255, 255, 255, 0) 55%) 3.5em 5.5em, radial-gradient(#15ffa5, #00ced1);
+  background-color: mediumspringgreen;
+  background-size: 1.5em 11em, 1.5em 11em, 2.3em 8em, 2.3em 8em, 3.5em 11em, 3.5em 11em, 100% 100%;
+  background-repeat: repeat;
 }
 
 a:not(.btn) {
@@ -118,7 +121,7 @@ h6 {
 .canvas article .article-body {
   margin: 1rem 0;
   padding: 1.5rem;
-  background: #97c8cb;
+  background: rgba(174, 238, 218, 0.8);
   border: 1px solid #fff;
   border-radius: 0.3rem;
 }
@@ -177,7 +180,7 @@ h6 {
 footer {
   display: block;
   margin-top: 1rem;
-  background: #326164;
+  background: rgba(64, 108, 115, 0.75);
   width: 100%;
   height: 142.5px;
   padding: 1rem 2rem;
@@ -201,7 +204,7 @@ footer .footer-inner section .footer-logo {
   display: inline-block;
   overflow: hidden;
   padding: 10px;
-  width: 248px;
+  width: 120px;
   flex: 0 0 auto;
 }
 footer .footer-inner section .footer-logo img {

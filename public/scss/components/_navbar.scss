@@ -17,7 +17,7 @@ nav {
   box-shadow: 2px 0 4px;
 
   .navbar-logo {
-    @include logo-text;
+    @include company-logo(248px);
   }
 
   .navbar-inner {

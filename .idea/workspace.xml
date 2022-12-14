@@ -8,6 +8,7 @@
       <change afterPath="$PROJECT_DIR$/views/dashboard/employee/dashboard.html" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/views/dashboard/supplier/dashboard.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scss/abstracts/_variables2.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/abstracts/_variables2.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/scss/demo.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/demo.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/scss/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/main.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/loginPage/loginPage.css" beforeDir="false" />
@@ -34,6 +35,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="feature/employee" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -161,11 +167,43 @@
       <option name="project" value="LOCAL" />
       <updated>1670871710873</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Added new logos">
+      <created>1670998897669</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1670998897669</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Fixed the footer logo">
+      <created>1671001402737</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1671001402737</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Changed background colors">
+      <created>1671003334212</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1671003334212</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
@@ -178,7 +216,10 @@
     <MESSAGE value="Added propper gitignore" />
     <MESSAGE value="Styled checkboxes. Added demo" />
     <MESSAGE value="Bug fixed" />
-    <option name="LAST_COMMIT_MESSAGE" value="Bug fixed" />
+    <MESSAGE value="Added new logos" />
+    <MESSAGE value="Fixed the footer logo" />
+    <MESSAGE value="Changed background colors" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed background colors" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

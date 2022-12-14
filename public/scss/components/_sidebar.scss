@@ -67,7 +67,7 @@
         top: 0;
         left: 0;
 
-        @include logo-text;
+        @include company-logo(248px);
       }
 
       .sidebar-list {
