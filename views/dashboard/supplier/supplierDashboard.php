@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -26,13 +29,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"> </script>
   </head>
   <body>
-  <?php
-  $id =$_GET['id'];
-  $link1 = '../../dashboard/supplier/supplierDashboard.php?id=' . $id;
-  $link2 = '../../updateInventory/supplier/updateInventory.php?id=' . $id;
-  $link3 = '../../addMedicine/supplier/addMed.php?id=' . $id;
-//Nav Bar
-echo "<div class='navBar'>
+    <!--Nav Bar-->
+<div class='navBar'>
         <div class='navBar__logo'>
             <a href='index.php'><img src='../../../public/res/logo/Logo-text.png' alt='logo' height='40px' width='auto'></a>
         </div>
@@ -41,13 +39,13 @@ echo "<div class='navBar'>
                 <li><a href='#'>Home</a></li>
                 <li><a href='#'>About</a></li>
                 <li><a href='#'>Contact</a></li>
-                <li><a href='$link1'>Dashboard</a></li>
-                <li><a href='$link2'> Update Inventory</a></li>
-                <li><a href='$link3'>Add New Medicine</a></li>
+                <li><a href='../../dashboard/supplier/supplierDashboard.php'>Dashboard</a></li>
+                <li><a href='../../addMedicine/supplier/addMed.php'>Add New Medicine</a></li>
+                <li><a href='../../logoutPage/supplier/logout.php'>Logout</a></li>
             </ul>
         </div>
-    </div>";
-?>
+    </div>
+
 
 <!--Profile-->
 <div class="card" style="width: 30%; height: auto; left: 35%; top: 20%;">

@@ -1,4 +1,5 @@
-<?php 
+<?php
+session_start(); 
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -17,7 +18,8 @@ $result = $conn->query($sql);
 $row = $result->fetch_assoc();
 $supId = $row["id"];
 if($result->num_rows > 0) {
-  header("location: ../../dashboard/supplier/supplierDashboard.php?id=$supId");
+  $_SESSION['id'] = $supId;
+  header("location: ../../dashboard/supplier/supplierDashboard.php");
 }else {
   echo '<script type="text/javascript">alert("Wrong UserName or Password");window.location=\'login.php\';</script>';
 }

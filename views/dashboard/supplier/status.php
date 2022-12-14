@@ -10,7 +10,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
-$id =$_GET['id'];
+$id = $_SESSION['id'];
 $sql = "SELECT name,verified FROM supplier WHERE id = '$id';";
 $result = $conn->query($sql);
 

@@ -10,7 +10,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
-$id =$_GET['id'];
+$id = $_SESSION['id'];
 $sql = "SELECT medName, weight,quantity, unitPrice FROM supplier_medicine, medicine WHERE supplier_medicine.supId='$id' && medicine.id=supplier_medicine.medId;";
 $result = $conn->query($sql);
 
@@ -27,7 +27,7 @@ if ($result->num_rows > 0) {
     }
     echo "</table>";
 } else {
-    echo "0 results";
+    echo "No medicine added yet.";
 }
 
 $conn->close();

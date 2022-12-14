@@ -1,4 +1,5 @@
-<?php 
+<?php
+session_start();
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -14,16 +15,13 @@ $med_name = $_POST["name"];
 $weight= $_POST["weight"];
 $sciname = $_POST["sciname"];
 $manid= $_POST["manufacture"];
-$id =$_POST["supid"];
-echo $id;
+$id = $_SESSION['id'];
 
 // Get med ID
 $result1 = $conn->query("SELECT * from medicine;");
 $count1 = $result1->num_rows +1;
 $num1 = (string) $count1;
 $medid = 'Med000'.$num1;
-
-
 
 // Enter detials to DB
 
@@ -42,9 +40,10 @@ $sql2= "INSERT INTO labreq (id, medId, SupId,status) VALUES ('$reqid','$medid','
 $result4 = $conn->query($sql2);
 
 if($result2 && $result4) {
-  header("location: ../../addMedicine/supplier/sucess.php?id=$id&rid=$reqid");
+  $_SESSION['reqid'] = $reqid;
+  header("location: ../../addMedicine/supplier/sucess.php");
 }else {
-  echo '<script type="text/javascript">alert("Something is wrong please try again!");window.location=\'addMed.php?id='."$id"; echo '</script>';
+  echo '<script type="text/javascript">alert("Something is wrong please try again!");window.location=\'addMed.php\'</script>';
 }
 
 ?>

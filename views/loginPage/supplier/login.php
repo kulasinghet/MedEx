@@ -1,3 +1,7 @@
+<?php
+session_start();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -74,7 +78,7 @@ sorigin="anonymous"
         </div>
     </div>
     <!--Login-->
-<div class="card" style="width: 30%; height: 60%; left: 35%; top: 20%;">
+<div class="card" style="width: 30%; height:auto; left: 35%; top: 20%;">
   <div class="card-body">
     <h2 class="card-title" style="text-align:center;"><img src="../../../public/res/logo/Logo-text.png" alt="logo" height="40px" width="auto"><br>Supplier Login</h2>
     <p class="card-text">
@@ -87,7 +91,7 @@ sorigin="anonymous"
   </div>
 </div>
 <!--footer-->
-<div style="padding-top: 30%; width: auto;">
+<div style="padding-top: 20%; width: auto;">
     <footer class="footer-distributed">
 
         <div class="footer-left">
