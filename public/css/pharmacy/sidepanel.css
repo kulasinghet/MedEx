@@ -1,0 +1,84 @@
+body {
+    background-image: url("/res/background-image-login - Copy.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    color: #333;
+    line-height: 1.42857143;
+    margin: 0;
+    padding: 0;
+}
+
+.sidepanel {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 15vw;
+    padding: 2vh;
+    /*padding-top: 1vh;*/
+    height: 100%;
+    background: #fff;
+    z-index: 1000;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.sidepanel img {
+    height: 5vh;
+    /*margin-bottom: 2vw;*/
+}
+
+.sidepanel .logo {
+    /*margin-bottom: 2vw;*/
+}
+
+
+.sidepanel #links {
+    margin-bottom: 2vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 100%;
+}
+
+.sidepanel #links a {
+    color: #333;
+    text-decoration: none;
+    font-size: 1.3rem;
+    font-weight: 500;
+
+}
+
+.sidepanel #links a #contact-us {
+    border-bottom: none !important;
+}
+
+.sidepanel hr {
+    /*border: 0;*/
+    height: 1px;
+    background: #333;
+    width: 100%;
+    display: none;
+}
+
+.sidepanel span {
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin-bottom: 2vh;
+    display: flex;
+    align-items: center;
+}
+
+.sidepanel i {
+    margin-right: 1vw;
+}

@@ -12,5 +12,21 @@ class SiteController extends Controller
         return $this->render('loginPage/loginPage.phphomepage/home.php');
     }
 
+    public function _404()
+    {
+        return $this->render('404.php');
+    }
+
+    public function logout(Request $request)
+    {
+        if ($request->isPost()) {
+            session_destroy();
+            return header("Location: /");
+        } else {
+            session_destroy();
+            return header("Location: /");
+        }
+    }
+
 
 }

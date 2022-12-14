@@ -1,0 +1,70 @@
+body {
+    background-image: url("/res/background-image-login - Copy.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    color: #333;
+    line-height: 1.42857143;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.error {
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 2vh;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding-top: 20vh;
+    padding-bottom: 20vh;
+    padding-right: 20vw;
+    padding-left: 20vw;
+}
+
+.error__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.error__content img {
+    height: 10vh;
+    margin-bottom: 2vh;
+}
+
+.error__content h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 2vh;
+}
+
+.error__content p {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 2vh;
+}
+
+.error__link {
+    color: #333;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.error__link a {
+    color: #333;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: 500;
+}

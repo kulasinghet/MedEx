@@ -23,6 +23,7 @@ $app -> router -> get('', [SiteController::class, 'home']);
 $app -> router -> get('/', [SiteController::class, 'home']);
 $app -> router -> get('/dashboard', [DashboardController::class, 'redirectDashboard']);
 $app -> router -> get('/404', [SiteController::class, '_404']);
+$app -> router -> get('/logout', [SiteController::class, 'logout']);
 
 // delivery Routes
 $app -> router -> get('/delivery/login', [LoginAuthController::class, 'deliveryLogin']);

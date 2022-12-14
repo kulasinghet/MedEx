@@ -112,3 +112,6 @@ $RECYCLE.BIN/
 
 
 /vendor/
+
+# webstorm .idea
+.idea/
