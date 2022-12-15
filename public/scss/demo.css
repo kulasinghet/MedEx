@@ -177,6 +177,27 @@ h6 {
   text-align: center;
 }
 
+.app-window {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+.app-window .lqs-space {
+  width: inherit;
+  height: inherit;
+}
+.app-window .lqs-space .canvas {
+  width: inherit;
+  height: inherit;
+}
+.app-window .lqs-space .canvas article {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 6px;
+}
+
 footer {
   display: block;
   margin-top: 1rem;
@@ -356,7 +377,7 @@ footer .footer-inner section p {
 /* SideMenu Blob 1.0 CSS file */
 /* By Naveen Dharmathunga 2022 */
 /* https://github.com/D-Naveenz/sidemenu-blob */
-#sidebar {
+.sidebar {
   position: fixed;
   height: 100%;
   background-color: #2536b8;
@@ -366,11 +387,11 @@ footer .footer-inner section p {
   left: 52px;
   z-index: 100;
 }
-#sidebar.expanded {
+.sidebar.expanded {
   transform: translateX(0%);
   left: 0;
 }
-#sidebar .sidebar-toggle {
+.sidebar .sidebar-toggle {
   position: absolute;
   width: 20px;
   height: 20px;
@@ -379,16 +400,41 @@ footer .footer-inner section p {
   margin-top: -10px;
   font-size: 20px;
   text-align: center;
-  color: #fff;
 }
-#sidebar .sidebar-inner {
+.sidebar .sidebar-toggle svg path {
+  fill: #f8f9fa;
+}
+.sidebar .sidebar-blob {
+  position: absolute;
+  height: 100%;
+  top: 0;
+  right: 60px;
+  z-index: 99;
+  transform: translateX(100%);
+}
+.sidebar .sidebar-blob path {
+  height: 100%;
+  fill: #2536b8;
+}
+.sidebar .sidebar-toggle-cover {
+  position: absolute;
+  width: 54px;
+  height: 70px;
+  top: 0;
+  right: -4px;
+  z-index: 101;
+}
+.sidebar .sidebar-toggle-cover path {
+  fill: #2536b8;
+}
+.sidebar .sidebar-inner {
   width: 100%;
   height: 100%;
   position: relative;
   z-index: 100;
   background: linear-gradient(180deg, #D8EEF8 0%, #B5C3DE 100%);
 }
-#sidebar .sidebar-inner .sidebar-context {
+.sidebar .sidebar-inner .sidebar-context {
   width: 208px;
   height: 100%;
   position: relative;
@@ -396,7 +442,7 @@ footer .footer-inner section p {
   flex-direction: column;
   justify-content: center;
 }
-#sidebar .sidebar-inner .sidebar-context::after {
+.sidebar .sidebar-inner .sidebar-context::after {
   content: "";
   height: 100%;
   background: rgba(133, 146, 200, 0.2509803922);
@@ -405,25 +451,33 @@ footer .footer-inner section p {
   top: 0;
   right: 0;
 }
-#sidebar .sidebar-inner .sidebar-context .sidebar-logo {
+.sidebar .sidebar-inner .sidebar-context .sidebar-context-top {
   position: absolute;
-  top: 5px;
-  left: 3px;
+  top: 0;
+  left: 0;
+  display: flex;
+  width: 208px;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  padding-top: 5px;
+}
+.sidebar .sidebar-inner .sidebar-context .sidebar-context-top .sidebar-logo {
   display: inline-block;
   overflow: hidden;
   padding: 5px;
   width: 200px;
   flex: 0 0 auto;
 }
-#sidebar .sidebar-inner .sidebar-context .sidebar-logo img {
+.sidebar .sidebar-inner .sidebar-context .sidebar-context-top .sidebar-logo img {
   width: 100%;
   vertical-align: center;
 }
-#sidebar .sidebar-inner .sidebar-context .sidebar-list {
+.sidebar .sidebar-inner .sidebar-context .sidebar-list {
   width: 100%;
   padding: 20px 14px;
 }
-#sidebar .sidebar-inner .sidebar-context .sidebar-list .sidebar-list-itm {
+.sidebar .sidebar-inner .sidebar-context .sidebar-list .sidebar-list-itm {
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -432,22 +486,30 @@ footer .footer-inner section p {
   margin-bottom: 10px;
   transition: all 300ms ease-out;
 }
-#sidebar .sidebar-inner .sidebar-context .sidebar-list .sidebar-list-itm:link, #sidebar .sidebar-inner .sidebar-context .sidebar-list .sidebar-list-itm:visited {
+.sidebar .sidebar-inner .sidebar-context .sidebar-list .sidebar-list-itm:link, .sidebar .sidebar-inner .sidebar-context .sidebar-list .sidebar-list-itm:visited {
   text-decoration: none;
   color: #343A40;
 }
-#sidebar .sidebar-inner .sidebar-context .sidebar-list .sidebar-list-itm:hover {
+.sidebar .sidebar-inner .sidebar-context .sidebar-list .sidebar-list-itm:hover {
   padding-left: 30px;
   background: rgba(2, 160, 252, 0.5);
   box-shadow: 1px 4px 4px rgba(97, 193, 249, 0.28);
   border-radius: 10px;
 }
-#sidebar .sidebar-inner .sidebar-context .sidebar-list .sidebar-list-itm:active {
+.sidebar .sidebar-inner .sidebar-context .sidebar-list .sidebar-list-itm:active {
   padding-left: 30px;
   background: rgba(52, 58, 64, 0.5);
   box-shadow: inset 1px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
   color: #F8F9FA;
+}
+
+.lqs-space {
+  transition: padding-left 1000ms cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.lqs-space-fixed {
+  transition: width 1000ms cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 nav {

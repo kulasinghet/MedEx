@@ -177,6 +177,27 @@ h6 {
   text-align: center;
 }
 
+.app-window {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+.app-window .lqs-space {
+  width: inherit;
+  height: inherit;
+}
+.app-window .lqs-space .canvas {
+  width: inherit;
+  height: inherit;
+}
+.app-window .lqs-space .canvas article {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 6px;
+}
+
 footer {
   display: block;
   margin-top: 1rem;
