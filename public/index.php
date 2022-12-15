@@ -3,6 +3,7 @@
 require_once '../vendor/autoload.php';
 
 use app\controllers\DashboardController;
+use app\controllers\delivery\DeliveryDashboardController;
 use app\controllers\lab\LabAuthController;
 use app\controllers\pharmacy\PharmacyAuthController;
 use app\controllers\pharmacy\PharmacyDashboardController;
@@ -31,7 +32,12 @@ $app -> router -> get('/delivery/login', [LoginAuthController::class, 'deliveryL
 $app -> router -> post('/delivery/login', [LoginAuthController::class, 'deliveryLogin']);
 $app -> router -> get('/delivery/register', [DeliveryAuthController::class, 'deliveryRegister']);
 $app -> router -> post('/delivery/register', [DeliveryAuthController::class, 'deliveryRegister']);
-
+$app -> router -> get('/delivery/orders', [DeliveryDashboardController::class, 'orders']);
+$app -> router -> post('/delivery/orders', [DeliveryDashboardController::class, 'orders']);
+$app -> router -> get('/delivery/history', [DeliveryDashboardController::class, 'history']);
+$app -> router -> post('/delivery/history', [DeliveryDashboardController::class, 'history']);
+$app -> router -> get('/delivery/contact_us', [DeliveryDashboardController::class, 'contactUs']);
+$app -> router -> post('/delivery/contact_us', [DeliveryDashboardController::class, 'contactUs']);
 // Lab Routes
 $app -> router -> get('/lab/login', [LoginAuthController::class, 'labLogin']);
 $app -> router -> post('/lab/login', [LoginAuthController::class, 'labLogin']);

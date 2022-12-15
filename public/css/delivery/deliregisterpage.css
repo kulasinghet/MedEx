@@ -1,5 +1,6 @@
 body{
-    background-image: url("back.jpg");
+    font-family: "Roboto", sans-serif;
+    background-image: url("/res/back.jpg");
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -105,8 +106,7 @@ form .field .input_field{
     color: #FFFFFF;
     background-color: #4070f4;
     border-radius: 5px;
-    margin: 30px 0;
-    margin-left: 70%;
+    margin: 30px 0 30px 70%;
     transition: all 0.3s linear;
     cursor: pointer;
 

@@ -62,3 +62,5 @@ Unknown column 'drivingLicenseName' in 'field list'
 2022/12/14 20:33:22 User already existstestPharmacy
 2022/12/14 20:35:13 User already exists
 2022/12/14 20:35:13 User already existstestPharmacy
+2022/12/15 16:32:07 Duplicate entry '12131-j.k. doily' for key 'license_id'
+2022/12/15 16:32:58 Duplicate entry '12131-j.k. doily' for key 'license_id'
