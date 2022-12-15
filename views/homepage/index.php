@@ -12,8 +12,6 @@
     <link rel="stylesheet" href="components/homepage/css/animate.min.css">
     <link rel="stylesheet" href="scss/components/modals.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-
-    <script src="js/modal.js"></script>
 </head>
 <body>
 <div class="modal-container" id="m1-o" style="--m-background: transparent;">
