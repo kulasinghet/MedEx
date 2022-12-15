@@ -1,6 +1,6 @@
 <html lang="en">
 <head>
-    <title>Employee Register - MedEx</title>
+    <title>Dashboard</title>
     <link rel="stylesheet" href="/css/pharmacy/dashboard.css">
 <!--    <script src="js/pharmacy/.js"></script>-->
 </head>
@@ -10,7 +10,7 @@
 <?php include_once 'navbar.php' ?>
 <div id="main-content">
     <div class="card">
-        <p>hasdjashdkjlsadkasdgasdka,sjdjakdhasdasidgiaksjbmandhaksgdjaksudhkb</p>
+        djafg uaidguia sda sdkashjdkaui suidoasdashd iadh as
     </div>
 </div>
 

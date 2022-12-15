@@ -5,6 +5,7 @@ require_once '../vendor/autoload.php';
 use app\controllers\DashboardController;
 use app\controllers\lab\LabAuthController;
 use app\controllers\pharmacy\PharmacyAuthController;
+use app\controllers\pharmacy\PharmacyDashboardController;
 use app\controllers\supplier\SupplierAuthController;
 use app\core\Application;
 use app\controllers\AuthController;
@@ -48,6 +49,17 @@ $app -> router -> get('/pharmacy/login', [LoginAuthController::class, 'pharmacyL
 $app -> router -> post('/pharmacy/login', [LoginAuthController::class, 'pharmacyLogin']);
 $app -> router -> get('/pharmacy/register', [PharmacyAuthController::class, 'pharmacyRegister']);
 $app -> router -> post('/pharmacy/register', [PharmacyAuthController::class, 'pharmacyRegister']);
+$app -> router -> get('/pharmacy/sell-medicine', [PharmacyDashboardController::class, 'sellMedicine']);
+$app -> router -> post('/pharmacy/sell-medicine', [PharmacyDashboardController::class, 'sellMedicine']);
+$app -> router -> get('/pharmacy/order-medicine', [PharmacyDashboardController::class, 'orderMedicine']);
+$app -> router -> post('/pharmacy/order-medicine', [PharmacyDashboardController::class, 'orderMedicine']);
+$app -> router -> get('/pharmacy/orders', [PharmacyDashboardController::class, 'orders']);
+$app -> router -> post('/pharmacy/orders', [PharmacyDashboardController::class, 'orders']);
+$app -> router -> get('/pharmacy/inventory', [PharmacyDashboardController::class, 'inventory']);
+$app -> router -> post('/pharmacy/inventory', [PharmacyDashboardController::class, 'inventory']);
+$app -> router -> get('/pharmacy/contact-us', [PharmacyDashboardController::class, 'contactUs']);
+$app -> router -> post('/pharmacy/contact-us', [PharmacyDashboardController::class, 'contactUs']);
+
 
 // Supplier Routes
 $app -> router -> get('/supplier/login', [LoginAuthController::class, 'supplierLogin']);

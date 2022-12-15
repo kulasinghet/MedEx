@@ -15,8 +15,8 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    width: 15vw;
-    padding: 2vh;
+    width: 17vw;
+    padding: 2vw;
     /*padding-top: 1vh;*/
     height: 100%;
     background: #fff;
@@ -81,4 +81,22 @@ body {
 
 .sidepanel i {
     margin-right: 2vw;
+}
+
+#active {
+    background-color: #d9ece8;
+    color: #333 !important;
+    border-radius: 5px;
+    padding-left: 2vw;
+    padding-right: 2vw;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+}
+
+#active i {
+    color: #333333 !important;
+}
+
+#active a {
+    color: #333333 !important;
 }

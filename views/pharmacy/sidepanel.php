@@ -10,7 +10,7 @@
             <a href="/pharmacy/home"><img src="/res/logo/logo.svg" alt="logo"></a>
         </div>
         <div id="links">
-            <span id="active">
+            <span>
                 <i class='fa-solid fa-shop' style='color:#333333'></i>
                 <a href="/pharmacy/sell-medicine">Sell Medicine</a>
             </span>
