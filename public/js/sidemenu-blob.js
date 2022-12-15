@@ -65,7 +65,7 @@ window.onload = () => {
   let menuExpanded = false;
 
   // Loading HTML elements
-  const sidebar = document.getElementById("sidebar");
+  const sidebar = document.querySelector(".sidebar");
   // for debugging
   console.log(window.getComputedStyle(sidebar).backgroundColor);
   const blob = createSVGBlob();

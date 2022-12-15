@@ -8,6 +8,7 @@ nav {
   top: 0;
 
   display: flex;
+  overflow: hidden;
   align-items: center;
   justify-content: space-between;
   flex-shrink: 0;
@@ -17,7 +18,7 @@ nav {
   box-shadow: 2px 0 4px;
 
   .navbar-logo {
-    @include logo-text;
+    @include company-logo(200px);
   }
 
   .navbar-inner {

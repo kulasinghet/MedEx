@@ -49,7 +49,7 @@ class LoginModel extends Model
                 return false;
             }
         } catch (\Exception $e) {
-            echo $e->getMessage();
+//            echo $e->getMessage();
             return false;
         }
 
@@ -97,7 +97,7 @@ class LoginModel extends Model
             }
         } catch (\Exception $e) {
             Logger::logError($e->getMessage());
-            echo $e->getMessage();
+//            echo $e->getMessage();
             return false;
         }
     }
@@ -149,7 +149,7 @@ class LoginModel extends Model
             }
         } catch (\Exception $e) {
             Logger::logError($e->getMessage());
-            echo $e->getMessage();
+//            echo $e->getMessage();
             return false;
         }
     }
@@ -164,11 +164,12 @@ class LoginModel extends Model
             $stmt = $db->prepare($sql);
             $stmt->execute();
             $result = $stmt->get_result();
-            $hash = $result->fetch_row()[2];
+
 
             if ($result->num_rows == 1) {
-                $user = $result->fetch_row()[1];
-                $id = $result->fetch_row()[0];
+                @$hash = $result->fetch_row()[2];
+                @$user = $result->fetch_row()[1];
+                @$id = $result->fetch_row()[0];
                 $isPasswordValid = password_verify($this->password, $hash);
 //                $isPasswordValid = $this->password == $hash;
                 if ($isPasswordValid === true) {
@@ -181,7 +182,7 @@ class LoginModel extends Model
             }
         } catch (\Exception $e) {
             Logger::logError($e->getMessage());
-            echo $e->getMessage();
+//            echo $e->getMessage();
             return false;
         }
     }
@@ -213,7 +214,7 @@ class LoginModel extends Model
             }
         } catch (\Exception $e) {
             Logger::logError($e->getMessage());
-            echo $e->getMessage();
+//            echo $e->getMessage();
             return false;
         }
     }

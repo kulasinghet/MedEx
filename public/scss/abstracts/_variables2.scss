@@ -31,7 +31,7 @@ $grays: (
 // theme colors
 $primary: #0474ed !default;
 $secondary: #326164 !default;
-$success: #a2b458 !default;
+$success: rgba(142, 201, 45, 0.84) !default;
 $info: #08a29e !default;
 $warning: #ffb200 !default;
 $danger: #ff3a29 !default;
@@ -61,7 +61,10 @@ $dark-gradient: linear-gradient(180deg, #343a40 0%, #202223 100%);
 // ------------------- Theme ------------------- //
 
 // `<body>` element.
-$body-bg: $extra-2 !default;
+$body-bg: radial-gradient(1.5em 6.28571em at 1.95em, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.25) 50%, rgba(255, 255, 255, 0.25) 55%, rgba(255, 255, 255, 0) 55%) 0 0, radial-gradient(1.5em 6.28571em at -0.45em, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.25) 50%, rgba(255, 255, 255, 0.25) 55%, rgba(255, 255, 255, 0) 55%) 1.5em 5.5em, radial-gradient(2.3em 4.57143em at 2.99em, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.3) 55%, rgba(255, 255, 255, 0) 55%) 0 0, radial-gradient(2.3em 4.57143em at -0.69em, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.3) 55%, rgba(255, 255, 255, 0) 55%) 2.3em 4em, radial-gradient(3.5em 6.28571em at 4.55em, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.25) 50%, rgba(255, 255, 255, 0.25) 55%, rgba(255, 255, 255, 0) 55%) 0 0, radial-gradient(3.5em 6.28571em at -1.05em, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.25) 50%, rgba(255, 255, 255, 0.25) 55%, rgba(255, 255, 255, 0) 55%) 3.5em 5.5em, radial-gradient(#15ffa5, #00ced1) !default;
+$body-bg-color: mediumspringgreen !default;
+$body-bg-size: 1.5em 11em, 1.5em 11em, 2.3em 8em, 2.3em 8em, 3.5em 11em, 3.5em 11em, 100% 100% !default;
+$body-bg-repeat: repeat !default;
 $body-color: $gray-9 !default;
 
 // links
@@ -97,10 +100,18 @@ $font-sizes: (
         6: $h6-font-size
 ) !default;
 
+// navbar
+$navbar-height: 4rem;  // 80px
+$navbar-color: #F7F8FA;
+
+// sidebar
+$sidebar-width: 260px;
+$sidebar-width-collapsed: 52px;
+
 // footer
 $footer-gap: 1rem !default;
 $footer-height: 142.5px !default;
-$footer-bg: $secondary !default;
+$footer-bg: rgba(64, 108, 115, 0.75) !default;
 $footer-padding: 1rem 2rem !default;
 $footer-font-size: 0.8rem !default;
 $footer-font-color: $light !default;

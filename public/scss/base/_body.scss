@@ -2,10 +2,14 @@
 
 html,
 body {
-  background-color: $body-bg;
   color: $body-color;
   font-family: $font-family-sans-serif;
   font-size: $font-size-base;
+
+  background: $body-bg;
+  background-color: $body-bg-color;
+  background-size: $body-bg-size;
+  background-repeat: $body-bg-repeat;
 }
 
 a:not(.btn) {
