@@ -83,3 +83,6 @@ Unknown column 'drivingLicenseName' in 'field list'
 2022/12/15 23:57:34 
 2022/12/15 23:58:10 
 2022/12/16 01:04:59 Table 'medex.delivery_contact_us' doesn't exist
+2022/12/16 01:34:52 Table 'medex.pharmacy_order' doesn't exist
+2022/12/16 01:34:57 Table 'medex.pharmacy_order' doesn't exist
+2022/12/16 01:35:22 Table 'medex.pharmacy_order' doesn't exist
