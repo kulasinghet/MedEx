@@ -1,141 +1,32 @@
 const lqsCollapsedWidth = 52;
-const lqsZIndex = 100; // z-index of the LQS: Max z index of the page
-const lqsBackground = `#2536b8`;
-const lqsStyle = `
-.sidebar {
-  position: fixed;
-  height: 100%;
-  background-color: ${lqsBackground};
-  width: 260px;
-  transition: 1000ms all cubic-bezier(0.19, 1, 0.22, 1);
-  transform: translateX(-100%);
-  left: 52px;
-  z-index: 100;
-}
-.sidebar.expanded {
-  transform: translateX(0%);
-  left: 0;
-}
-.sidebar .sidebar-toggle {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  right: 16px;
-  z-index: 102;
-  margin-top: -10px;
-  font-size: 20px;
-  text-align: center;
-}
-.sidebar .sidebar-toggle svg path {
-  fill: #fff;
-}
-.sidebar .sidebar-blob {
-    position: absolute;
-    height: 100%;
-    top: 0;
-    right: 60px;
-    z-index: ${lqsZIndex - 1};
-    transform: translateX(100%);
-}
-.sidebar .sidebar-inner {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  z-index: 100;
-  background: linear-gradient(180deg, #D8EEF8 0%, #B5C3DE 100%);
-}
-.sidebar .sidebar-inner .sidebar-context {
-  width: 208px;
-  height: 100%;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-.sidebar .sidebar-inner .sidebar-context::after {
-  content: "";
-  height: 100%;
-  background: rgba(133, 146, 200, 0.2509803922);
-  width: 1px;
-  position: absolute;
-  top: 0;
-  right: 0;
-}
-.sidebar .sidebar-inner .sidebar-context .sidebar-context-top {
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: flex;
-  width: 208px;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.8rem;
-  padding-top: 5px;
-}
-.sidebar .sidebar-inner .sidebar-context .sidebar-context-top .sidebar-logo {
-  display: inline-block;
-  overflow: hidden;
-  padding: 5px;
-  width: 200px;
-  flex: 0 0 auto;
-}
-.sidebar .sidebar-inner .sidebar-context .sidebar-context-top .sidebar-logo img {
-  width: 100%;
-  vertical-align: center;
-}
-.sidebar .sidebar-inner .sidebar-context .sidebar-list {
-  width: 100%;
-  padding: 20px 14px;
-}
-.sidebar .sidebar-inner .sidebar-context .sidebar-list .sidebar-list-itm {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 13px 18px;
-  gap: 10px;
-  margin-bottom: 10px;
-  transition: all 300ms ease-out;
-}
-.sidebar .sidebar-inner .sidebar-context .sidebar-list .sidebar-list-itm:link, .sidebar .sidebar-inner .sidebar-context .sidebar-list .sidebar-list-itm:visited {
-  text-decoration: none;
-  color: #343A40;
-}
-.sidebar .sidebar-inner .sidebar-context .sidebar-list .sidebar-list-itm:hover {
-  padding-left: 30px;
-  background: rgba(2, 160, 252, 0.5);
-  box-shadow: 1px 4px 4px rgba(97, 193, 249, 0.28);
-  border-radius: 10px;
-}
-.sidebar .sidebar-inner .sidebar-context .sidebar-list .sidebar-list-itm:active {
-  padding-left: 30px;
-  background: rgba(52, 58, 64, 0.5);
-  box-shadow: inset 1px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 10px;
-  color: #F8F9FA;
-}
-`;
-
 const lqsTemplate = `
 <!-- external stylesheet -->
 <link href="../scss/main.css" rel="stylesheet"/>
 
-<div class="sidebar-context-top">
-    <div class="sidebar-logo">
-        <a href="#">
-            <img alt="MedEx Logo with name" src="../res/logo/logo-text_light.svg"/>
-        </a>
-    </div>
-    <div class="sidebar-handlers">
-        <input id="sidebar-autohide" type="checkbox" class="switch" data-action="sidebar-auto-hide">
-        <label for="sidebar-autohide">Auto Hide</label>
+<div class="sidebar-toggle">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+        <path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/>
+    </svg>
+</div>
+<svg xmlns="http://www.w3.org/2000/svg" class="sidebar-blob">
+    <path d="M60,500H0V0h60c0,0,20,172,20,250S60,900,60,500z"/>
+</svg>
+<div class="sidebar-inner">
+    <div class="sidebar-context">
+        <div class="sidebar-context-top">
+            <div class="sidebar-logo">
+                <a href="#">
+                    <img alt="MedEx Logo with name" src="../res/logo/logo-text_light.svg"/>
+                </a>
+            </div>
+            <div class="sidebar-handlers">
+                <input class="switch" data-action="sidebar-auto-hide" id="sidebar-autohide" type="checkbox">
+                <label for="sidebar-autohide">Auto Hide</label>
+            </div>
+        </div>
+        <div class="sidebar-list"></div>
     </div>
 </div>
-`;
-
-const lqsToggle  = `
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-    <path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/>
-</svg>
 `;
 
 let viewport = {
@@ -174,9 +65,6 @@ window.onload = () => {
     window.addEventListener("resize", () => {
         viewport.height = window.innerHeight;
         viewport.width = window.innerWidth;
-
-        // for debugging
-        console.log(`width: ${viewport.width}, height: ${viewport.height}`);
     });
 }
 
@@ -198,7 +86,7 @@ class LiquidSideMenu extends HTMLElement {
     }
 
     static get observedAttributes() {
-        return [];
+        return ['menu-expanded', 'auto-hide'];
     }
 
     connectedCallback() {
@@ -209,13 +97,16 @@ class LiquidSideMenu extends HTMLElement {
         this.isDevMode = this.getAttribute('dev-mode') === "" || false;
         this.attachShadow({mode: this.isDevMode ? "open" : "closed"});
 
-        // rendering the style
-        const style = document.createElement('style');
-        style.innerHTML = lqsStyle;
-        this.shadowRoot.appendChild(style);
-
         // rendering the component
         this.renderElement();
+        setTimeout(() => {
+            this.lqsContext.querySelector(".sidebar-list").innerHTML += this.innerHTML;
+            this.innerHTML = "";
+        });
+        // rendering the animation
+        if (this.autoHide) {
+            this.registerSVGAnimation();
+        }
 
         // EVENT LISTENERS
         this.lqsInner.addEventListener("mousemove", () => {
@@ -242,16 +133,18 @@ class LiquidSideMenu extends HTMLElement {
 
         // https://stackoverflow.com/questions/57387346/adding-event-listener-on-a-dom-element-inside-template-tag
         this.lqsContext.addEventListener("click", (e) => {
-            if (e.target.dataset.action === "sidebar-auto-hide" && e.target.checked) {
-                this.expandSidebar();
-                this.registerSVGAnimation();
-                this.autoHide = true;
-                console.log("Liquid Sidebar: auto hide enabled");
-            } else if (e.target.dataset.action === "sidebar-auto-hide") {
-                this.expandSidebar();
-                this.unregisterSVGAnimation();
-                this.autoHide = false;
-                console.log("Liquid Sidebar: auto hide disabled");
+            if (e.target.dataset.action === "sidebar-auto-hide") {
+                if (e.target.checked) {
+                    this.expandSidebar();
+                    this.registerSVGAnimation();
+                    this.autoHide = true;
+                    console.log("Liquid Sidebar: auto hide enabled");
+                } else {
+                    this.expandSidebar();
+                    this.unregisterSVGAnimation();
+                    this.autoHide = false;
+                    console.log("Liquid Sidebar: auto hide disabled");
+                }
             }
         });
         // EVENT LISTENERS
@@ -271,61 +164,28 @@ class LiquidSideMenu extends HTMLElement {
         this.lqs = document.createElement("div");
         this.lqs.setAttribute("class", "sidebar");
 
-        // creating menu toggle
-        this.toggle = document.createElement("div");
-        this.toggle.setAttribute("class", "sidebar-toggle");
-        this.toggle.innerHTML = lqsToggle;
-        this.toggle.style.position = "absolute";
-        this.toggle.style.width = "20px";
-        this.toggle.style.height = "20px";
-        this.toggle.style.right = "16px";
-        this.toggle.style.zIndex = `${lqsZIndex + 2}`;
-        this.toggle.style.marginTop = "-10px";
-        this.toggle.style.fontSize = "20px";
-        this.toggle.style.textAlign = "center";
-        this.toggle.style.color = "fff";
-        this.lqs.appendChild(this.toggle);
+        // creating a template and attaching it to the shadow root
+        this.lqsTemp = document.createElement("template");
+        this.lqsTemp.innerHTML = lqsTemplate;
+        this.lqs.appendChild(this.lqsTemp.content.cloneNode(true));
+
+        // menu toggle
+        this.toggle = this.lqs.querySelector(".sidebar-toggle");
 
         // creating sidebar blob SVG
-        this.blob = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-        this.blob.setAttribute("class", "sidebar-blob");
-        this.blobPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-        this.blobPath.setAttribute("d", "M60,500H0V0h60c0,0,20,172,20,250S60,900,60,500z");
-        this.blobPath.style.height = "100%";
-        this.blobPath.style.fill = lqsBackground;
+        this.blob = this.lqs.querySelector(".sidebar-blob");
+        this.blobPath = this.blob.querySelector("path");
 
-        // appending blob elements to the sidebar
-        this.blob.appendChild(this.blobPath);
-        this.lqs.appendChild(this.blob);
-
-        // sidebar inner
-        this.lqsInner = document.createElement("div");
-        this.lqsInner.setAttribute("class", "sidebar-inner");
-        this.lqs.appendChild(this.lqsInner);
-
-        // sidebar context
-        this.lqsContext = document.createElement("div");
+        this.lqsInner = this.lqs.querySelector(".sidebar-inner");
+        this.lqsContext = this.lqs.querySelector(".sidebar-context");
         this.lqsContext.setAttribute("class", "sidebar-context");
-        this.lqsContextTmp = document.createElement("template");
-        this.lqsContextTmp.innerHTML = lqsTemplate;
-        this.lqsContext.appendChild(this.lqsContextTmp.content.cloneNode(true));
         this.lqsAutoHideCheck = this.lqsContext.querySelector("#sidebar-autohide");
         if (this.autoHide) {
             this.lqsAutoHideCheck.setAttribute("checked", true);
         }
-        setTimeout(() => {
-            this.lqsContext.innerHTML += this.innerHTML;
-        });
-        this.lqsInner.appendChild(this.lqsContext);
 
         // appending the sidebar to the shadow root
         this.shadowRoot.appendChild(this.lqs);
-
-        // rendering the animation
-        if (this.autoHide) {
-            this.registerSVGAnimation();
-        }
-        // setTimeout(() => this.unregisterSVGAnimation(), 10000);
     }
 
     renderSVG() {

@@ -13,13 +13,34 @@
 <body class="app-window">
 <section>
     <lq-side-menu dev-mode>
-        <div class="sidebar-list">
-            <a class="sidebar-list-itm" href="#">Menu Item</a>
-            <a class="sidebar-list-itm" href="#">Menu Item</a>
-            <a class="sidebar-list-itm" href="#">Menu Item</a>
-            <a class="sidebar-list-itm" href="#">Menu Item</a>
-        </div>
+        <a class="sidebar-list-itm" href="#">Menu Item</a>
+        <a class="sidebar-list-itm" href="#">Menu Item</a>
+        <a class="sidebar-list-itm" href="#">Menu Item</a>
+        <a class="sidebar-list-itm" href="#">Menu Item</a>
     </lq-side-menu>
+    <template>
+        <div class="sidebar-toggle">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                <path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/>
+            </svg>
+        </div>
+        <div class="sidebar-inner">
+            <div class="sidebar-context">
+                <div class="sidebar-context-top">
+                    <div class="sidebar-logo">
+                        <a href="#">
+                            <img alt="MedEx Logo with name" src="../res/logo/logo-text_light.svg"/>
+                        </a>
+                    </div>
+                    <div class="sidebar-handlers">
+                        <input class="switch" data-action="sidebar-auto-hide" id="sidebar-autohide" type="checkbox">
+                        <label for="sidebar-autohide">Auto Hide</label>
+                    </div>
+                </div>
+                <div class="sidebar-list"></div>
+            </div>
+        </div>
+    </template>
     <nav>
         <div class="navbar-logo">
             <a href="#">
@@ -50,11 +71,11 @@
                 <div class="flex-row center">
                     <p>Role: </p>
                     <div class="form-check">
-                        <input type="radio" class="form-input" id="user-staff" name="user-role">
+                        <input class="form-input" id="user-staff" name="user-role" type="radio">
                         <label class="form-check-label" for="user-staff">Staff</label>
                     </div>
                     <div class="form-check">
-                        <input type="radio" class="form-input" id="user-manager" name="user-role">
+                        <input class="form-input" id="user-manager" name="user-role" type="radio">
                         <label class="form-check-label" for="user-manager">Manager</label>
                     </div>
                 </div>
