@@ -8,6 +8,7 @@ use app\controllers\delivery\DeliveryDashboardController;
 use app\controllers\lab\LabAuthController;
 use app\controllers\pharmacy\PharmacyAuthController;
 use app\controllers\pharmacy\PharmacyDashboardController;
+use app\controllers\pharmacy\PharmacyOrderMedicineController;
 use app\controllers\supplier\SupplierAuthController;
 use app\core\Application;
 use app\controllers\AuthController;
@@ -60,7 +61,7 @@ $app -> router -> post('/pharmacy/register', [PharmacyAuthController::class, 'ph
 $app -> router -> get('/pharmacy/sell-medicine', [PharmacyDashboardController::class, 'sellMedicine']);
 $app -> router -> post('/pharmacy/sell-medicine', [PharmacyDashboardController::class, 'sellMedicine']);
 $app -> router -> get('/pharmacy/order-medicine', [PharmacyDashboardController::class, 'orderMedicine']);
-$app -> router -> post('/pharmacy/order-medicine', [PharmacyDashboardController::class, 'orderMedicine']);
+$app -> router -> post('/pharmacy/order-medicine', [PharmacyOrderMedicineController::class, 'createOrder']);
 $app -> router -> get('/pharmacy/orders', [PharmacyDashboardController::class, 'orders']);
 $app -> router -> post('/pharmacy/orders', [PharmacyDashboardController::class, 'orders']);
 $app -> router -> get('/pharmacy/inventory', [PharmacyDashboardController::class, 'inventory']);

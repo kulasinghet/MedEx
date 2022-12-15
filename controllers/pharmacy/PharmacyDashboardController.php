@@ -12,9 +12,9 @@ class PharmacyDashboardController extends Controller
         if ($_SESSION['isPharmacy']) {
 //            TODO: add sell medicine route in index php
             if ($request -> isGet()) {
-                $this -> render("pharmacy/history.php");
+                $this -> render("pharmacy/sell-medicine.php");
             } else if ($request -> isPost()) {
-                $this -> render("pharmacy/history.php");
+                $this -> render("pharmacy/sell-medicine.php");
             } else {
                 return header('Location: /pharmacy/login');
             }
@@ -72,9 +72,9 @@ class PharmacyDashboardController extends Controller
         if ($_SESSION['isPharmacy']) {
 
             if ($request -> isGet()) {
-                $this -> render("pharmacy/contact_us.php");
+                $this -> render("pharmacy/contact-us.php");
             } else if ($request -> isPost()) {
-                $this -> render("pharmacy/contact_us.php");
+                $this -> render("pharmacy/contact-us.php");
             } else {
                 return header('Location: /pharmacy/login');
             }

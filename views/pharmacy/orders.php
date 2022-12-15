@@ -103,7 +103,8 @@
                             echo "<td>" . $order['order_date'] . "</td>";
 //                            echo "<td>" . $order['order_status'] . "</td>";
                             echo "<td>" . (new PharmacyOrderHistoryController)->transformOrderStatus($order['order_status']) . "</td>";
-                            echo "<td>" . $order['order_total'] . "</td>";
+//                            echo "<td>" . $order['order_total'] . "</td>";
+                            echo "<td>" . (new PharmacyOrderHistoryController)->transformOrderTotal($order['order_total']) . "</td>";
 //                            echo "<td>" . $order['delivery_date'] . "</td>";
                             echo "<td>" . (new PharmacyOrderHistoryController)->transformDeliveryDate($order['delivery_date']) . "</td>";
                             echo "<td>" ."<a href='' id='".$order['id']."'>" . "<i class='fa-solid fa-circle-arrow-right view-order-details' style='color:#333333'></i>" ."</a>" . "</td>";
