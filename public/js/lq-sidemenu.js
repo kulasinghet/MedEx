@@ -12,6 +12,9 @@ const lqsTemplate = `
 <svg xmlns="http://www.w3.org/2000/svg" class="sidebar-blob">
     <path d="M60,500H0V0h60c0,0,20,172,20,250S60,900,60,500z"/>
 </svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56.47 70.01" class="sidebar-toggle-cover">
+    <path class="cls-1" d="M56.47,35c0,19.33-2,35-4.47,35H19.34C8.66,70,0,61.68,0,51.4V18.6C0,8.33,8.66,0,19.34,0H52C54.47,0,56.47,15.68,56.47,35Z"/>
+</svg>
 <div class="sidebar-inner" data-action="sidebar-expand-handler">
     <div class="sidebar-context">
         <div class="sidebar-context-top">
@@ -205,6 +208,7 @@ class LiquidSideMenu extends HTMLElement {
 
         // menu toggle
         this.toggle = this.lqs.querySelector(".sidebar-toggle");
+        this.toggleCover = this.lqs.querySelector(".sidebar-toggle-cover");
 
         // creating sidebar blob SVG
         this.blob = this.lqs.querySelector(".sidebar-blob");
@@ -299,7 +303,7 @@ class LiquidSideMenu extends HTMLElement {
         // Changing the position of the toggle button
         this.toggle.style.transform = "translate(" + this.curveX + "px, " + this.curveY + "px)";
         // Changing the position of the toggle cover
-        //toggleCover.style.transform = 'translateY(' + (curveY - 60) + 'px)';
+        this.toggleCover.style.transform = 'translateY(' + (this.curveY - 35) + 'px)';
 
         this.svgAnimation = requestAnimationFrame(() => this.renderSVG());
     }

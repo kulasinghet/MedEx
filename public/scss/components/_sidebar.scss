@@ -52,6 +52,19 @@
     }
   }
 
+  .sidebar-toggle-cover {
+    position: absolute;
+    width: 54px;
+    height: 70px;
+    top: 0;
+    right: -4px;
+    z-index: $z-sidebar + 1;
+
+    path {
+      fill: #2536b8;
+    }
+  }
+
   .sidebar-inner {
     width: 100%;
     height: 100%;

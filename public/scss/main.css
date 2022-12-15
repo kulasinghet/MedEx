@@ -395,6 +395,17 @@ footer .footer-inner section p {
   height: 100%;
   fill: #2536b8;
 }
+.sidebar .sidebar-toggle-cover {
+  position: absolute;
+  width: 54px;
+  height: 70px;
+  top: 0;
+  right: -4px;
+  z-index: 101;
+}
+.sidebar .sidebar-toggle-cover path {
+  fill: #2536b8;
+}
 .sidebar .sidebar-inner {
   width: 100%;
   height: 100%;
