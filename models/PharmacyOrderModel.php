@@ -121,11 +121,7 @@ class PharmacyOrderModel extends Model
 
         $this->id = $this->createRandomID($pharmacyId);
         $order_date = date("Y-m-d");
-//        $this->setPharmacyId($pharmacyId);
-//        $this->setMedId($medId);
-//        $this->setOrderTotal(0);
 
-//        $sql = "INSERT INTO pharmacy_order (id, pharmacyId, order_date, order_status, order_total) VALUES
         $sql = "INSERT INTO pharmacy_order (id, pharmacyId, order_date, order_status, order_total) VALUES
                 ('$this->id', '$pharmacyId', '$order_date', 0, '$order_total');";
         try {

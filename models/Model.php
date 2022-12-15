@@ -38,7 +38,9 @@ class Model
         $time = str_replace(" ", "", $time);
         $time = str_replace(":", "", $time);
         $time = str_replace("-", "", $time);
-        $time = substr($time ,0 ,8);
+        // take only the last 6 digits
+        $time = substr($time, -6);
+//        $time = substr($time ,0 ,2);
         return $time . $entity  . rand(0, 1000);
     }
 

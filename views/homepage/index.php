@@ -4,12 +4,12 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Medex | Revolutionize Medical Supply Chain Management </title>
-    <link rel="stylesheet" href="../../public/components/homepage/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../public/components/homepage/css/flexslider.css">
-    <link rel="stylesheet" href="../../public/components/homepage/css/jquery.fancybox.css">
-    <link rel="stylesheet" href="../../public/components/homepage/css/main.css">
-    <link rel="stylesheet" href="../../public/components/homepage/css/responsive.css">
-    <link rel="stylesheet" href="../../public/components/homepage/css/animate.min.css">
+    <link rel="stylesheet" href="components/homepage/css/bootstrap.min.css">
+    <link rel="stylesheet" href="components/homepage/css/flexslider.css">
+    <link rel="stylesheet" href="components/homepage/css/jquery.fancybox.css">
+    <link rel="stylesheet" href="components/homepage/css/main.css">
+    <link rel="stylesheet" href="components/homepage/css/responsive.css">
+    <link rel="stylesheet" href="components/homepage/css/animate.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 </head>
 <body>
@@ -83,7 +83,7 @@
             <div class="row">
                 <div class="col-md-3 col-sm-6">
                     <div class="person">
-                        <img src="../../public/components/homepage/images/team-1.jpg" alt="" class="img-responsive">
+                        <img src="components/homepage/images/team-1.jpg" alt="" class="img-responsive">
                         <div class="person-content">
                             <h4>Thevindu Kulasinghe​</h4>
                             <h5 class="role">20000995​</h5>
@@ -92,7 +92,7 @@
                 </div>
                 <div class="col-md-3 col-sm-6">
                     <div class="person">
-                        <img src="../../public/components/homepage/images/team-2.jpg" alt="" class="img-responsive">
+                        <img src="components/homepage/images/team-2.jpg" alt="" class="img-responsive">
                         <div class="person-content">
                             <h4>Pawandi Wijegunawardane​</h4>
                             <h5 class="role">20002157​</h5>
@@ -101,7 +101,7 @@
                 </div>
                 <div class="col-md-3 col-sm-6">
                     <div class="person">
-                        <img src="../../public/components/homepage/images/team-3.jpeg" alt="" class="img-responsive">
+                        <img src="components/homepage/images/team-3.jpeg" alt="" class="img-responsive">
                         <div class="person-content">
                             <h4>Madhawa Samasarasinghe ​</h4>
                             <h5 class="role">20001576​</h5>
@@ -110,7 +110,7 @@
                 </div>
                 <div class="col-md-3 col-sm-6">
                     <div class="person">
-                        <img src="../../public/components/homepage/images/team-4.png" alt="" class="img-responsive">
+                        <img src="components/homepage/images/team-4.png" alt="" class="img-responsive">
                         <div class="person-content">
                             <h4>Naveen Dharamathunga​</h4>
                             <h5 class="role">20000405​</h5>
@@ -125,10 +125,10 @@
             <div class="col-md-8 col-md-offset-2 text-center">
                 <h3>Ready to join the Medex Family?</h3>
                 <p>You are one step away</p>
-                <a href="#" class="btn btn-large">Register As a Pharmacy</a>
-                <a href="../registerPage/supplier/register.php" class="btn btn-large">Register As a Supplier</a>
-                <a href="#" class="btn btn-large">Register As a Laboratary</a>
-                <a href="#" class="btn btn-large">Register As a Delivery Partner</a>
+                <a href="/pharmacy/register" class="btn btn-large">Register As a Pharmacy</a>
+                <a href="/supplier/register" class="btn btn-large">Register As a Supplier</a>
+                <a href="/lab/register" class="btn btn-large">Register As a Laboratary</a>
+                <a href="/delivery/register" class="btn btn-large">Register As a Delivery Partner</a>
             </div>
         </div>
     </section><!-- download -->
@@ -161,15 +161,5 @@
             </div>
         </div>
     </footer><!-- footer -->
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')</script>
-    <script src="../../public/components/homepage/js/bootstrap.min.js"></script>
-    <script src="../../public/components/homepage/js/jquery.flexslider-min.js"></script>
-    <script src="../../public/components/homepage/js/jquery.fancybox.pack.js"></script>
-    <script src="../../public/components/homepage/js/jquery.waypoints.min.js"></script>
-    <script src="../../public/components/homepage/js/retina.min.js"></script>
-    <script src="../../public/components/homepage/js/modernizr.js"></script>
-    <script src="../../public/components/homepage/js/main.js"></script>
 </body>
 </html>

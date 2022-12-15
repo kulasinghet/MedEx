@@ -5,13 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d562d650-3ba6-41bd-a690-150a19a299d5" name="Changes" comment="Create order medicine partially">
+      <change afterPath="$PROJECT_DIR$/public/components/homepage/sass/main.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/components/homepage/sass/responsive.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/pharmacy/PharmacyDashboardController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/pharmacy/PharmacyDashboardController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/SiteController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/SiteController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/pharmacy/PharmacyOrderMedicineController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/pharmacy/PharmacyOrderMedicineController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logs/error.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/error.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/components/new_sidebar.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/components/new_sidebar.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/components/new_sidebar.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/components/new_sidebar.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/demo.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/demo.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/signin.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/signin.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Model.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/Model.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/PharmacyOrderModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/PharmacyOrderModel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/homepage/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/homepage/index.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +48,7 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP 8.1">
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/composer" />
       <path value="$PROJECT_DIR$/vendor/squizlabs/php_codesniffer" />
@@ -62,6 +66,7 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
     &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
     &quot;Git.Branch.Popup.ShowAllRemotes&quot;: &quot;true&quot;,
@@ -119,7 +124,6 @@
       <workItem from="1671088857140" duration="2130000" />
       <workItem from="1671105557438" duration="1442000" />
       <workItem from="1671112581603" duration="7705000" />
-      <workItem from="1671126472116" duration="2259000" />
     </task>
     <task id="LOCAL-00001" summary="Centralized properties of the footer">
       <created>1670335693151</created>
@@ -240,12 +244,12 @@
       <option name="project" value="LOCAL" />
       <updated>1671114811430</updated>
     </task>
-    <task id="LOCAL-00018" summary="Created contact us view">
-      <created>1671126333877</created>
+    <task id="LOCAL-00018" summary="Create order medicine partially">
+      <created>1671127259255</created>
       <option name="number" value="00018" />
       <option name="presentableId" value="LOCAL-00018" />
       <option name="project" value="LOCAL" />
-      <updated>1671126333877</updated>
+      <updated>1671127259255</updated>
     </task>
     <option name="localTasksCounter" value="19" />
     <servers />
@@ -282,8 +286,8 @@
     <MESSAGE value="removed sidebar dev mode" />
     <MESSAGE value="bug fixed" />
     <MESSAGE value="Initialized lab partner views" />
-    <MESSAGE value="Created contact us view" />
-    <option name="LAST_COMMIT_MESSAGE" value="Created contact us view" />
+    <MESSAGE value="Create order medicine partially" />
+    <option name="LAST_COMMIT_MESSAGE" value="Create order medicine partially" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
