@@ -1,12 +1,12 @@
 /* SideMenu Blob 1.0 CSS file */
 /* By Naveen Dharmathunga 2022 */
 /* https://github.com/D-Naveenz/sidemenu-blob */
-
 @use "../abstracts/variables" as *;
+@use "../abstracts/variables2" as *;
 @use "../abstracts/mixins" as *;
 
 
-#sidebar {
+.sidebar {
   position: fixed;
   height: 100%;
   background-color: #2536b8;
@@ -30,7 +30,39 @@
     margin-top: -10px;
     font-size: 20px;
     text-align: center;
-    color: #fff;
+
+    svg {
+      path {
+        fill: $light;
+      }
+    }
+  }
+
+  .sidebar-blob {
+    position: absolute;
+    height: 100%;
+    top: 0;
+    right: 60px;
+    z-index: $z-sidebar - 1;
+    transform: translateX(100%);
+
+    path {
+      height: 100%;
+      fill: #2536b8;
+    }
+  }
+
+  .sidebar-toggle-cover {
+    position: absolute;
+    width: 54px;
+    height: 70px;
+    top: 0;
+    right: -4px;
+    z-index: $z-sidebar + 1;
+
+    path {
+      fill: #2536b8;
+    }
   }
 
   .sidebar-inner {
@@ -42,7 +74,7 @@
     background: linear-gradient(180deg, #D8EEF8 0%, #B5C3DE 100%);
 
     .sidebar-context {
-      width: 248px;
+      width: calc($sidebar-width - $sidebar-width-collapsed);
       height: 100%;
       position: relative;
 
@@ -118,3 +150,25 @@
     }
   }
 }
+
+.lqs-space {
+  transition: padding-left 1000ms cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
