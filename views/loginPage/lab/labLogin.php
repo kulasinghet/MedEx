@@ -15,7 +15,7 @@
         <div class="card card-login">
             <div class="card-body">
                 <h4 class="card-title">Login</h4>
-                <form action="/employee/login" method="post">
+                <form action="/lab/login" method="post">
                     <div class="form-group">
                         <label for="username">Username</label>
                         <input type="text" class="form-input" id="username" name="username" placeholder="Jon">

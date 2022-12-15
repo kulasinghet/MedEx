@@ -305,7 +305,7 @@ class LiquidSideMenu extends HTMLElement {
         // Changing the position of the toggle button
         this.toggle.style.transform = "translate(" + this.curveX + "px, " + this.curveY + "px)";
         // Changing the position of the toggle cover
-        this.toggleCover.style.transform = 'translateY(' + (this.curveY - 35) + 'px)';
+        this.toggleCover.style.transform = 'translateY(' + (this.curveY - 34) + 'px)';
 
         this.svgAnimation = requestAnimationFrame(() => this.renderSVG());
     }
