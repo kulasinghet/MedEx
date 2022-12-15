@@ -10,7 +10,7 @@
         </div>
         <div class="content">
             <h1>Under Construction</h1>
-            <p>Sorry for the inconvenience, we are working on it.</p>
+            <p>Please check back again in the final presentation.</p>
         </div>
     </div>
 </body>

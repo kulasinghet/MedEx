@@ -4,25 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d562d650-3ba6-41bd-a690-150a19a299d5" name="Changes" comment="Create order medicine partially">
-      <change afterPath="$PROJECT_DIR$/controllers/lab/LabContactusController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controllers/lab/LabDashboardController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/LabContactusModel.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/lab/contact_us.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/lab/navbar.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/lab/sidepanel.php" afterDir="false" />
+    <list default="true" id="d562d650-3ba6-41bd-a690-150a19a299d5" name="Changes" comment="Create lab reg for Naveen">
+      <change afterPath="$PROJECT_DIR$/public/res/404.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/lab/LabAuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/lab/LabAuthController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/error.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/error.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logs/signin.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/signin.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/demo.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/demo.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/dashboard/lab/dashboard-404.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/lab/dashboard-404.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/dashboard/lab/dashboard-contact.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/lab/dashboard-contact.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/dashboard/lab/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/lab/dashboard.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/delivery/navbar.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/delivery/navbar.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/loginPage/lab/labLogin.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/loginPage/lab/labLogin.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/404.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/404.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/404.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/404.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/homepage/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/homepage/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/pharmacy/navbar.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/pharmacy/navbar.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/pharmacy/under-construction.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/pharmacy/under-construction.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +72,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "SONARLINT_PRECOMMIT_ANALYSIS": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "G:/Coding/University Projects/MedEx/views/lab",
+    "last_opened_file_path": "G:/Coding/University Projects/MedEx/public/res",
     "list.type.of.created.stylesheet": "SCSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -95,11 +85,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="G:\Coding\University Projects\MedEx\public\res" />
       <recent name="G:\Coding\University Projects\MedEx\views\lab" />
       <recent name="C:\Users\dashe\My Projects\MedEx\MedEx\views\registrationPage\lab" />
       <recent name="C:\Users\dashe\My Projects\MedEx\MedEx\views\loginPage\lab" />
       <recent name="C:\Users\dashe\My Projects\MedEx\MedEx\views\dashboard\lab" />
-      <recent name="G:\Coding\University Projects\MedEx\views\pharmacy" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="G:\Coding\University Projects\MedEx\views\lab" />
@@ -133,7 +123,7 @@
       <workItem from="1671088857140" duration="2130000" />
       <workItem from="1671105557438" duration="1442000" />
       <workItem from="1671112581603" duration="7705000" />
-      <workItem from="1671134583810" duration="5072000" />
+      <workItem from="1671134583810" duration="6589000" />
     </task>
     <task id="LOCAL-00001" summary="Centralized properties of the footer">
       <created>1670335693151</created>
@@ -268,7 +258,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671133527959</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Create lab reg for Naveen">
+      <created>1671141167571</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1671141167571</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -304,7 +301,8 @@
     <MESSAGE value="bug fixed" />
     <MESSAGE value="Initialized lab partner views" />
     <MESSAGE value="Create order medicine partially" />
-    <option name="LAST_COMMIT_MESSAGE" value="Create order medicine partially" />
+    <MESSAGE value="Create lab reg for Naveen" />
+    <option name="LAST_COMMIT_MESSAGE" value="Create lab reg for Naveen" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

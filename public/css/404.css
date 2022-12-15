@@ -25,10 +25,10 @@ body {
     padding: 2vh;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     text-align: center;
-    padding-top: 20vh;
-    padding-bottom: 20vh;
-    padding-right: 20vw;
-    padding-left: 20vw;
+    /*padding-top: 20vh;*/
+    /*padding-bottom: 20vh;*/
+    padding-right: 10vw;
+    padding-left: 10vw;
 }
 
 .error__content {
@@ -67,4 +67,9 @@ body {
     text-decoration: none;
     font-size: 1.5rem;
     font-weight: 500;
+}
+
+img {
+    width: 50vw !important;
+    height: 50vh !important;
 }

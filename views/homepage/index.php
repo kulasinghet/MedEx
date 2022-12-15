@@ -16,12 +16,12 @@
 	<section class="banner" role="banner">
         <header id="header">
             <div class="header-content clearfix">
-                <a class="logo" href="#"><img src="../../public/res/logo/logo-box_dark.svg" alt=""></a>
+                <a class="logo" href="#"><img src="/res/logo/logo.svg" style="height: 3vh" alt=""></a>
                 <nav class="navigation" role="navigation">
                     <ul class="primary-nav">
-                        <li><a href="#features">Features</a></li>
-                        <li><a href="#teams">Our Team</a></li>
-                        <li><a href="#download">Register</a></li>
+                        <li><a href="#features" style="color: #333333">Features</a></li>
+                        <li><a href="#teams" style="color: #333333">Our Team</a></li>
+                        <li><a href="#download" style="color: #333333">Register</a></li>
                     </ul>
                 </nav>
                 <a href="#" class="nav-toggle">Menu<span></span></a>
