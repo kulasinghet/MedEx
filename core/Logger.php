@@ -20,4 +20,12 @@ class Logger
         error_log($dateTime." ". $message . " signed in" . "\n", 3, "../logs/signin.log");
     }
 
+    public function orderCreated($message): void
+    {
+        $dateTime = new \DateTime("now");
+        $dateTime->setTimezone(new \DateTimeZone('Asia/Colombo'));
+        $dateTime = $dateTime->format('Y/m/d H:i:s');
+        error_log($dateTime." ". $message . " order created" . "\n", 3, "../logs/pharmacy-order.log");
+    }
+
 }

@@ -1,0 +1,27 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/variables2" as *;
+@use "../abstracts/mixins" as *;
+
+.app-window {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+
+  .lqs-space {
+    width: inherit;
+    height: inherit;
+
+    .canvas {
+      width: inherit;
+      height: inherit;
+
+      article {
+        height: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        gap: 6px;
+      }
+    }
+  }
+}

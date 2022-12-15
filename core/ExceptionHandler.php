@@ -51,4 +51,14 @@ class ExceptionHandler extends Logger
         return $message;
     }
 
+    public function somethingWentWrong(): string
+    {
+        $alertClass = "<div class='loginError alert alert-danger' id='loginError' role='alert'>";
+        $spanClass = "<span class='closebtn' id='closebtn' style='padding-bottom: 0' onclick='this.parentElement.style.display='none';'>&times;</span>";
+        $closeClass = "</div>";
+
+        $message = $alertClass.$spanClass."Something went wrong. Please try again".$closeClass;
+        return $message;
+    }
+
 }

@@ -1,11 +1,10 @@
 <!Doctype html>
 <html lang="en">
 <head>
-    <title>Under Construction</title>
     <link rel="stylesheet" href="/css/under-construction.css">
 </head>
 <body>
-    <div class="container">
+    <div class="under-construction-container">
         <div class="image">
             <img src="/res/under-construction.svg" alt="under-construction">
         </div>
