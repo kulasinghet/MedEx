@@ -1,4 +1,5 @@
 const lqsCollapsedWidth = 52;
+const lqsExpandedWidth = 260;
 const lqsTemplate = `
 <!-- external stylesheet -->
 <link href="../scss/main.css" rel="stylesheet"/>
@@ -11,7 +12,7 @@ const lqsTemplate = `
 <svg xmlns="http://www.w3.org/2000/svg" class="sidebar-blob">
     <path d="M60,500H0V0h60c0,0,20,172,20,250S60,900,60,500z"/>
 </svg>
-<div class="sidebar-inner">
+<div class="sidebar-inner" data-action="sidebar-expand-handler">
     <div class="sidebar-context">
         <div class="sidebar-context-top">
             <div class="sidebar-logo">
@@ -58,13 +59,29 @@ window.onload = () => {
     viewport.width = window.innerWidth;
     viewport.y = viewport.height / 2;
 
+    const lqs = document.querySelector("lq-side-menu");
+
     // Adding a padding to the elements to make space
-    document.querySelectorAll("nav").forEach(itm => itm.style.paddingLeft = `${lqsCollapsedWidth}px`);
-    document.querySelectorAll(".canvas").forEach(itm => itm.style.paddingLeft = `${lqsCollapsedWidth}px`);
+    if (lqs.getAttribute("auto-hide") === "false" && lqs.getAttribute("expanded") === "") {
+        document.querySelectorAll(".lqs-space").forEach(itm => itm.style.paddingLeft = `${lqsExpandedWidth}px`);
+    } else {
+        document.querySelectorAll(".lqs-space").forEach(itm => itm.style.paddingLeft = `${lqsCollapsedWidth}px`);
+    }
 
     window.addEventListener("resize", () => {
         viewport.height = window.innerHeight;
         viewport.width = window.innerWidth;
+    });
+
+    lqs.addEventListener("state-change", (e) => {
+        // console.log("state-change", e.detail);
+        if (e.detail.expanded && !e.detail.autoHide) {
+            // Adding a padding to the elements to make space
+            document.querySelectorAll(".lqs-space").forEach(itm => itm.style.paddingLeft = `${lqsExpandedWidth}px`);
+        } else {
+            // Adding a padding to the elements to make space
+            document.querySelectorAll(".lqs-space").forEach(itm => itm.style.paddingLeft = `${lqsCollapsedWidth}px`);
+        }
     });
 }
 
@@ -72,10 +89,6 @@ class LiquidSideMenu extends HTMLElement {
     constructor() {
         super();
         // element created
-
-        // component variables
-        this.menuExpanded = false;
-        this.autoHide = true;
 
         // blob variables
         this.curveX = 10;
@@ -86,45 +99,55 @@ class LiquidSideMenu extends HTMLElement {
     }
 
     static get observedAttributes() {
-        return ['menu-expanded', 'auto-hide'];
+        return ['dev-mode', 'expanded', 'auto-hide'];
     }
 
     connectedCallback() {
         // browser calls this method when the element is added to the document
         // (can be called many times if an element is repeatedly added/removed)
 
-        // creating shadow root
+        // initializing sidebar variables
         this.isDevMode = this.getAttribute('dev-mode') === "" || false;
+        this.menuExpanded = this.getAttribute('expanded') === "" || false;
+        this.autoHide = this.getAttribute('auto-hide') !== "false";
+
+        // --------------------- RENDERING THE ELEMENT ---------------------
+        // creating shadow root
         this.attachShadow({mode: this.isDevMode ? "open" : "closed"});
 
-        // rendering the component
         this.renderElement();
         setTimeout(() => {
             this.lqsContext.querySelector(".sidebar-list").innerHTML += this.innerHTML;
             this.innerHTML = "";
         });
-        // rendering the animation
-        if (this.autoHide) {
-            this.registerSVGAnimation();
-        }
+        // --------------------- RENDERING THE ELEMENT ---------------------
 
-        // EVENT LISTENERS
-        this.lqsInner.addEventListener("mousemove", () => {
-            // using this condition to prevent repeating
-            if (!this.menuExpanded && this.autoHide) {
-                this.expandSidebar(!this.menuExpanded);
+        // --------------------- EVENT LISTENERS ---------------------
+        this.lqs.addEventListener("mousemove", (e) => {
+            e.preventDefault();
+            if (e.target.dataset.action === "sidebar-expand-handler") {
+                // using this condition to prevent repeating
+                if (!this.menuExpanded && this.autoHide) {
+                    this.expandSidebar(!this.menuExpanded);
+                }
             }
         });
 
-        this.lqsInner.addEventListener("mouseleave", () => {
-            // using this condition to prevent repeating
-            if (this.menuExpanded && this.autoHide) {
-                this.expandSidebar(!this.menuExpanded);
-            }
+        this.lqsContext.addEventListener("mouseleave", (e) => {
+            e.preventDefault();
+            // asynchronously setting it to false for avoid the sidebar keeps expanded forever
+            setTimeout(() => {
+                // using this condition to prevent repeating
+                if (this.menuExpanded && this.autoHide) {
+                    console.log("mouseleave");
+                    this.expandSidebar(!this.menuExpanded);
+                }
+            }, 1000);
         });
 
         // Toggle does not need a mouse leave event
-        this.toggle.addEventListener("mouseenter", () => {
+        this.toggle.addEventListener("mouseenter", (e) => {
+            e.preventDefault();
             // using this condition to prevent repeating
             if (!this.menuExpanded && this.autoHide) {
                 this.expandSidebar(!this.menuExpanded);
@@ -135,24 +158,35 @@ class LiquidSideMenu extends HTMLElement {
         this.lqsContext.addEventListener("click", (e) => {
             if (e.target.dataset.action === "sidebar-auto-hide") {
                 if (e.target.checked) {
-                    this.expandSidebar();
+                    this.expandSidebar(true, false);
                     this.registerSVGAnimation();
                     this.autoHide = true;
-                    console.log("Liquid Sidebar: auto hide enabled");
                 } else {
-                    this.expandSidebar();
+                    this.expandSidebar(true, false);
                     this.unregisterSVGAnimation();
                     this.autoHide = false;
-                    console.log("Liquid Sidebar: auto hide disabled");
                 }
+
+                this.dispatchSidebarEvent();
             }
         });
-        // EVENT LISTENERS
+        // --------------------- EVENT LISTENERS ---------------------
+
+        // --------------------- SIDEBAR EVENTS ---------------------
+        this.dispatchSidebarEvent();
+        // --------------------- SIDEBAR EVENTS ---------------------
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
         // called when one of attributes listed above is modified
-        this.renderElement();
+
+        // initializing sidebar variables
+        this.isDevMode = this.getAttribute('dev-mode') === "" || false;
+        this.menuExpanded = this.getAttribute('expanded') === "" || false;
+        this.autoHide = this.getAttribute('auto-hide') !== "false";
+        // rendering the component
+        //this.renderState();
+        this.dispatchSidebarEvent();
     }
 
     #easeOutExpo(currentIteration, startValue, changeInValue, totalIterations) {
@@ -176,16 +210,30 @@ class LiquidSideMenu extends HTMLElement {
         this.blob = this.lqs.querySelector(".sidebar-blob");
         this.blobPath = this.blob.querySelector("path");
 
-        this.lqsInner = this.lqs.querySelector(".sidebar-inner");
         this.lqsContext = this.lqs.querySelector(".sidebar-context");
         this.lqsContext.setAttribute("class", "sidebar-context");
         this.lqsAutoHideCheck = this.lqsContext.querySelector("#sidebar-autohide");
         if (this.autoHide) {
-            this.lqsAutoHideCheck.setAttribute("checked", true);
+            this.lqsAutoHideCheck.setAttribute("checked", "");
+        } else {
+            this.lqsAutoHideCheck.removeAttribute("checked");
         }
 
         // appending the sidebar to the shadow root
         this.shadowRoot.appendChild(this.lqs);
+
+        // rendering the state
+        this.renderState();
+    }
+
+    renderState() {
+        // configuring the sidebar
+        this.expandSidebar(this.menuExpanded);
+        this.registerSVGAnimation();
+
+        if (!this.autoHide) {
+            setTimeout(() => this.unregisterSVGAnimation(), 500);
+        }
     }
 
     renderSVG() {
@@ -200,7 +248,6 @@ class LiquidSideMenu extends HTMLElement {
             if (this.menuExpanded) {
                 this.targetX = 0;
             } else {
-
                 this.xIteration = 0;
                 if (viewport.x > hoverZone) {
                     this.targetX = 0;
@@ -267,19 +314,31 @@ class LiquidSideMenu extends HTMLElement {
         setTimeout(() => cancelAnimationFrame(this.svgAnimation), 2000);
     }
 
-    expandSidebar(state = true) {
+    expandSidebar(state = true, eventDispatch = true) {
         if (state) {
-            this.lqs.classList.add("expanded");
-            this.menuExpanded = true;
+            if (!this.lqs.classList.contains("expanded")) {
+                this.lqs.classList.add("expanded");
+                this.menuExpanded = true;
+
+                if (eventDispatch) this.dispatchSidebarEvent();
+            }
         } else {
-            if (this.autoHide) {
-                // asynchronously setting it to false for avoid the sidebar keeps expanded forever
-                setTimeout(() => {
-                    this.menuExpanded = false;
-                    this.lqs.classList.remove("expanded");
-                }, 1000);
+            if (this.autoHide && this.lqs.classList.contains("expanded")) {
+                this.menuExpanded = false;
+                this.lqs.classList.remove("expanded");
+
+                if (eventDispatch) this.dispatchSidebarEvent();
             }
         }
+    }
+
+    dispatchSidebarEvent() {
+        this.dispatchEvent(new CustomEvent("state-change", {
+            detail: {
+                expanded: this.menuExpanded,
+                autoHide: this.autoHide
+            }
+        }));
     }
 }
 

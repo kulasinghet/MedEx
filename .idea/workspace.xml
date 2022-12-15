@@ -4,14 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d562d650-3ba6-41bd-a690-150a19a299d5" name="Changes" comment="added auto hide function to the sidebar">
+    <list default="true" id="d562d650-3ba6-41bd-a690-150a19a299d5" name="Changes" comment="cleaned up the code">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/demo/demo-sidebar-new.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/demo/demo-sidebar-new.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/demo/demo-sidebar-new.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/demo/demo-sidebar.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/lq-sidemenu.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/lq-sidemenu.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/scss/components/_sidebar.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/components/_sidebar.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/components/new_sidebar.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/components/new_sidebar.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/components/new_sidebar.scss" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/public/scss/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/main.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/scss/main.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/main.css.map" afterDir="false" />
     </list>
@@ -213,7 +210,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671054014155</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="cleaned up the code">
+      <created>1671082642457</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1671082642457</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -246,7 +250,8 @@
     <MESSAGE value="Changed background colors" />
     <MESSAGE value="Bug fixed in sidebar" />
     <MESSAGE value="added auto hide function to the sidebar" />
-    <option name="LAST_COMMIT_MESSAGE" value="added auto hide function to the sidebar" />
+    <MESSAGE value="cleaned up the code" />
+    <option name="LAST_COMMIT_MESSAGE" value="cleaned up the code" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

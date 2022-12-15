@@ -472,6 +472,10 @@ footer .footer-inner section p {
   color: #F8F9FA;
 }
 
+.lqs-space {
+  transition: padding-left 1000ms cubic-bezier(0.19, 1, 0.22, 1);
+}
+
 nav {
   position: fixed;
   z-index: 90;
