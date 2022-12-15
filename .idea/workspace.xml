@@ -44,7 +44,7 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP">
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP 8.1">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/composer" />
       <path value="$PROJECT_DIR$/vendor/squizlabs/php_codesniffer" />
@@ -119,6 +119,7 @@
       <workItem from="1671088857140" duration="2130000" />
       <workItem from="1671105557438" duration="1442000" />
       <workItem from="1671112581603" duration="7705000" />
+      <workItem from="1671126472116" duration="2259000" />
     </task>
     <task id="LOCAL-00001" summary="Centralized properties of the footer">
       <created>1670335693151</created>
@@ -239,7 +240,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671114811430</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Created contact us view">
+      <created>1671126333877</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1671126333877</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -274,7 +282,8 @@
     <MESSAGE value="removed sidebar dev mode" />
     <MESSAGE value="bug fixed" />
     <MESSAGE value="Initialized lab partner views" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initialized lab partner views" />
+    <MESSAGE value="Created contact us view" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created contact us view" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
