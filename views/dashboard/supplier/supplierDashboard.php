@@ -16,7 +16,7 @@ session_start();
     <link href="../../../public/css/homepage/loginPopup.css" type="text/css" rel="stylesheet"/>
     <link href="../../../public/css/search.css" type="text/css" rel="stylesheet"/>
     <link href="../../../public/css/felxbox.css" type="text/css" rel="stylesheet"/>
-    <link rel="stylesheet" href="../../../public/sass/main.css" />
+    <link rel="stylesheet" href="../../../public/scss/main.css" />
     
     <meta charset="UTF-8" />
     <meta
@@ -69,8 +69,8 @@ session_start();
   </div>
 </div>
 <!--footer-->
-<div style="padding-top: 30%; width: auto;">
-    <footer class="footer-distributed">
+<div style="background-color: #a6cabd;padding-top: 30%; width: auto;">
+    <footer class="footer-distributed" style="height: 100%;">
 
         <div class="footer-left">
     
@@ -105,6 +105,7 @@ session_start();
     
     </footer>
     </div>
+
 
   </body>
 </html>

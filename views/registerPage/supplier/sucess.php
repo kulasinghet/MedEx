@@ -13,7 +13,7 @@
     <link href="../../../public/css/homepage/loginPopup.css" type="text/css" rel="stylesheet"/>
     <link href="../../../public/css/search.css" type="text/css" rel="stylesheet"/>
     <link href="../../../public/css/felxbox.css" type="text/css" rel="stylesheet"/>
-    <link rel="stylesheet" href="../../../public/sass/main.css" />
+    <link rel="stylesheet" href="../../../public/scss/main.css" />
     <link rel="stylesheet" href="../../../public/css/loginPage/Supplierlogin.css" />
     <link rel="stylesheet" href="login.css" />
     
@@ -83,8 +83,8 @@ sorigin="anonymous"
   </div>
 </div>
 <!--footer-->
-<div style="padding-top: 30%; width: auto; background-color: #a6cabd;">
-    <footer class="footer-distributed">
+<div style="background-color: #a6cabd;padding-top: 30%; width: auto;">
+    <footer class="footer-distributed" style="height: 100%;">
 
         <div class="footer-left">
     

@@ -16,7 +16,8 @@ session_start();
     <link href="../../../public/css/homepage/loginPopup.css" type="text/css" rel="stylesheet"/>
     <link href="../../../public/css/search.css" type="text/css" rel="stylesheet"/>
     <link href="../../../public/css/felxbox.css" type="text/css" rel="stylesheet"/>
-    <link rel="stylesheet" href="../../../public/scss/main.css" />
+    <link rel="stylesheet" href="../../../public/sass/main.css" />
+    <link rel="stylesheet" href="../../../public/demo.css" />
     
     <meta charset="UTF-8" />
     <meta
@@ -28,7 +29,7 @@ session_start();
     <!--chart JS--->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"> </script>
   </head>
-  <body style = "background-color: #a6cabd;">
+  <body>
     <!--Nav Bar-->
 <div class='navBar'>
         <div class='navBar__logo'>
@@ -40,25 +41,26 @@ session_start();
                 <li><a href='#'>About</a></li>
                 <li><a href='#'>Contact</a></li>
                 <li><a href='../../dashboard/supplier/supplierDashboard.php'>Dashboard</a></li>
+                <li><a href='../../updateInventory/supplier/updateInventory.php'> Update Inventory</a></li>
                 <li><a href='../../addMedicine/supplier/addMed.php'>Add New Medicine</a></li>
-                <li><a href='../../logoutPage/supplier/logout.php'>Logout</a></li>
             </ul>
         </div>
     </div>
-    <!--Message-->
-    <div class="card" style="width: 50%; height: auto; left: 25%; top: 20%;">
+
+<!--Profile-->
+<div class="card" style="width: 60%; height: auto; left: 20%; top: 20%;">
   <div class="card-body">
-    <h2 class="card-title" style="text-align:center;"><img src="../../../public/res/logo/Logo-text.png" alt="logo" height="40px" width="auto"><br>New Medicine Request Sent</h2>
+    <h2 class="card-title" style="text-align:center;"><img src="../../../public/res/logo/Logo-text.png" alt="logo" height="40px" width="auto"></h2>
     <p class="card-text">
-       <h3>Your new medicine request has being sent.</h3>
-      <br>Lab request ID: <?php echo $_SESSION['reqid']; ?><br>
-       Please send the reqested samples to the lab to approve your request
+      <?php
+        include("status.php");
+    ?>
     </p>
   </div>
 </div>
 <!--footer-->
-<div style="background-color: #a6cabd;padding-top: 30%; width: auto;">
-    <footer class="footer-distributed" style="height: 100%;">
+<div style="padding-top: 30%; width: auto;">
+    <footer class="footer-distributed">
 
         <div class="footer-left">
     
@@ -93,7 +95,6 @@ session_start();
     
     </footer>
     </div>
-
 
   </body>
 </html>

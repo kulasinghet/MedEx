@@ -1,13 +1,10 @@
-<?php
-session_start();
-?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <link href="../../../public/components/sidebar/src/sidemenu-blob.css" type="text/css" rel="stylesheet"/>
     
     <script src="../../../public/components/sidebar/src/sidemenu-blob.js"></script>
-    <title>Supplier | Login</title>
+    <title>Update Inventory</title>
     <link href="../../../public/css/homepage/footer.css" type="text/css" rel="stylesheet"/>
     <link href="../../../public/css/homepage/carousel.css" type="text/css" rel="stylesheet"/>
     <link href="../../../public/css/homepage/navbar.css" type="text/css" rel="stylesheet"/>
@@ -16,9 +13,8 @@ session_start();
     <link href="../../../public/css/homepage/loginPopup.css" type="text/css" rel="stylesheet"/>
     <link href="../../../public/css/search.css" type="text/css" rel="stylesheet"/>
     <link href="../../../public/css/felxbox.css" type="text/css" rel="stylesheet"/>
-    <link rel="stylesheet" href="../../../public/scss/main.css" />
+    <link rel="stylesheet" href="../../../public/sass/main.css" />
     <link rel="stylesheet" href="../../../public/css/supplier/formcss.css" />
-    <link rel="stylesheet" href="login.css" />
     
     <meta charset="UTF-8" />
     <meta
@@ -30,7 +26,7 @@ session_start();
     <!--chart JS--->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"> </script>
   </head>
-  <body style = "background-color: #a6cabd;">
+  <body>
 sorigin="anonymous"
   ></script>
 <!-- Nav Bar-->
@@ -38,59 +34,55 @@ sorigin="anonymous"
         <div class="navBar__logo">
             <a href="index.php"><img src="../../../public/res/logo/Logo-text.png" alt="logo" height="40px" width="auto"></a>
         </div>
-<!--register popup for the Are you a page?-->
-        <div class="register-modal">
-            <div class="register-modal-content">
-                <span class="register-close-button">×</span>
-                <div class="register-modal-content__title">
-                    <h1>Are you a?</h1>
-                    <button>Pharmacy</button>
-                    <button>Supplier</button>
-                    <button>Delivery Partner</button>
-                    <button>Laboratory</button>
-                    <button>Staff</button>
-                </div>
-            </div>
-        </div>
-        <div class="login-modal">
-            <div class="login-modal-content">
-                <span class="login-close-button">×</span>
-                <div class="login-modal-content__title">
-                    <h1>Are you a?</h1>
-                    <button>Pharmacy</button>
-                    <button>Supplier</button>
-                    <button>Delivery Partner</button>
-                    <button>Laboratory</button>
-                    <button>Staff</button>
-                </div>
-            </div>
-        </div>
+
+<!--Nav Bar-->
         <div class="navBar__menu">
-            <ul>
-                <li><a href="/index.php">Home</a></li>
-                <li><a href="/index.php?page=about">About</a></li>
-                <li><a href="/index.php?page=contact">Contact</a></li>
-                <li><button id="login" class="login-trigger">Login</button></li>
-                <li><button id="register" class="register-trigger">Register</button></li>
+        <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="../../updateInventory/supplier.php"> Update Inventory</a></li>
+                <li><a href="#">Add New Medicine</a></li>
             </ul>
         </div>
     </div>
-    <!--Login-->
-<div class="card" style="width: 30%; height:auto; left: 35%; top: 20%;">
+<!--Profile-->
+<div class="card" style="width: 30%; height: auto; left: 35%; top: 20%;">
   <div class="card-body">
-    <h2 class="card-title" style="text-align:center;"><img src="../../../public/res/logo/Logo-text.png" alt="logo" height="40px" width="auto"><br>Supplier Login</h2>
+    <h2 class="card-title" style="text-align:center;"><img src="../../../public/res/logo/Logo-text.png" alt="logo" height="40px" width="auto"></h2>
     <p class="card-text">
-    <form action="auth.php" method="post">
-      Username <br><input type="text" name="username" class="input-box"> <br>
-      Password <br><input type="password" name="pswd" class="input-box"><br>
-      <input type="submit" value="Login" class="button">
-</form>
-    </p>
+      <?php
+      $servername = "localhost";
+      $username = "root";
+      $password = "";
+      $dbname = "medex";
+      // Create connection
+      $conn = new mysqli($servername, $username, $password, $dbname);
+      // Check connection
+      if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+      }
+      $medid =$_GET['medid'];
+      $supId = $_GET['id'];
+      $sql1 = "SELECT medName,weight,quantity, unitPrice FROM supplier_medicine, medicine WHERE supplier_medicine.supId='$supId' && supplier_medicine.medId = '$medid' && medicine.id=supplier_medicine.medId;";
+      $result1 = $conn->query($sql1);
+      while ($row1 = $result1->fetch_assoc()) {
+        $medname = $row1['medName'];
+        $weight = $row1['weight'];
+        $unitp = $row1['unitPrice'];
+        $qty = $row1['quantity'];
+        echo "<h2>$medname - $weight mg</h2>";
+        echo " <form method='post' action='update.php?medid=$medid&id=$supId' enctype='multipart/form-data'> Quantity: <input type='text' name='qty' value='$qty' class='input-box'><br>Unit Price: <input type ='text' name='unitp' value='$unitp'class='input-box'>";
+        echo "<input type='submit' value='Update' class='button'>
+        </form>";
+      }
+      ?>
+  </p>
   </div>
 </div>
 <!--footer-->
-<div style="background-color: #a6cabd;padding-top: 30%; width: auto;">
-    <footer class="footer-distributed" style="height: 100%;">
+<div style="padding-top: 30%; width: auto;">
+    <footer class="footer-distributed">
 
         <div class="footer-left">
     
@@ -125,7 +117,6 @@ sorigin="anonymous"
     
     </footer>
     </div>
-
 
   </body>
 </html>
