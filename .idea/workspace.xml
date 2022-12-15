@@ -4,22 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d562d650-3ba6-41bd-a690-150a19a299d5" name="Changes" comment="Dashboard for pharmacy layout completed">
-      <change afterPath="$PROJECT_DIR$/controllers/pharmacy/PharmacyDashboardController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/pharmacy/contact-us.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/pharmacy/inventory.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/pharmacy/order-medicine.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/pharmacy/orders.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/pharmacy/sell-medicine.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/under-construction.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/DashboardController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/DashboardController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/signin.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/signin.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/pharmacy/dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/pharmacy/dashboard.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/pharmacy/sidepanel.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/pharmacy/sidepanel.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/pharmacy/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/pharmacy/dashboard.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/pharmacy/sidepanel.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/pharmacy/sidepanel.php" afterDir="false" />
+    <list default="true" id="d562d650-3ba6-41bd-a690-150a19a299d5" name="Changes" comment="finished the sidebar">
+      <change beforePath="$PROJECT_DIR$/public/scss/demo.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/demo.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scss/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/dashboard/employee/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/dashboard/employee/dashboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/homepage/homepage.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/homepage/homepage.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/loginPage/employee/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/loginPage/employee/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/registrationPage/employee_register/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/registrationPage/employee_register/register.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

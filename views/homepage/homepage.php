@@ -90,7 +90,7 @@
             <section>
                 <div class="footer-logo">
                     <a href="#">
-                        <img src="res/logo/Logo-text.png" alt="MedEx Logo with name" width="100%"/>
+                        <img alt="MedEx Logo with name" src="../../public/res/logo/logo-box_dark.svg"/>
                     </a>
                 </div>
 
