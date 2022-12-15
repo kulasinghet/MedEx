@@ -1,3 +1,4 @@
+@charset "UTF-8";
 *,
 *::before,
 *::after {
@@ -848,6 +849,80 @@ table td.r, table th.r {
     content: "Box Type";
   }
 }
+/* modal */
+.modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  /* --m-background is set as inline style */
+  background: rgba(0, 0, 0, 0.18);
+}
+
+/* using :target */
+/*
+when users will click/enter button(link) browser will add a #id in a url and when that happens we'll show our users the modal that contains that id.
+*/
+.modal-container:target {
+  display: flex;
+}
+
+.modal {
+  background: #f8f9fa;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  position: relative;
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #000;
+  text-align: center;
+  border-radius: 20px;
+  padding: 30px 30px 50px;
+  overflow: hidden;
+}
+.modal .modal-title {
+  font-size: 3.2rem;
+  margin-bottom: 2rem;
+}
+.modal .modal-context {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.2rem;
+}
+.modal .modal-close {
+  width: 4rem;
+  height: 4rem;
+  border: 1px solid #343a40;
+  border-radius: 100rem;
+  color: inherit;
+  font-size: 2.2rem;
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.2s;
+}
+.modal .modal-close::before {
+  content: "×";
+  transform: translateY(-0.1rem);
+}
+.modal .modal-close:hover, .modal .modal-close:focus {
+  background: #0474ed;
+  border-color: #0474ed;
+  transform: translateY(-0.2rem);
+}
+
 .form-group, .button-group {
   width: 100%;
 }
@@ -930,7 +1005,7 @@ textarea.form-input {
 
 @supports (-webkit-appearance: none) or (-moz-appearance: none) {
   input[type=checkbox],
-  input[type=radio] {
+input[type=radio] {
     --active: #275EFE;
     --active-inner: #fff;
     --focus: 2px rgba(39, 94, 254, 0.3);
@@ -953,7 +1028,7 @@ textarea.form-input {
     transition: background 0.3s, border-color 0.3s, box-shadow 0.2s;
   }
   input[type=checkbox]:after,
-  input[type=radio]:after {
+input[type=radio]:after {
     content: "";
     display: block;
     left: 0;
@@ -962,7 +1037,7 @@ textarea.form-input {
     transition: transform var(--d-t) var(--d-t-e, ease), opacity var(--d-o, 0.2s);
   }
   input[type=checkbox]:checked,
-  input[type=radio]:checked {
+input[type=radio]:checked {
     --b: var(--active);
     --bc: var(--active);
     --d-o: .3s;
@@ -970,47 +1045,47 @@ textarea.form-input {
     --d-t-e: cubic-bezier(.2, .85, .32, 1.2);
   }
   input[type=checkbox]:disabled,
-  input[type=radio]:disabled {
+input[type=radio]:disabled {
     --b: var(--disabled);
     cursor: not-allowed;
     opacity: 0.9;
   }
   input[type=checkbox]:disabled:checked,
-  input[type=radio]:disabled:checked {
+input[type=radio]:disabled:checked {
     --b: var(--disabled-inner);
     --bc: var(--border);
   }
   input[type=checkbox]:disabled + label,
-  input[type=radio]:disabled + label {
+input[type=radio]:disabled + label {
     cursor: not-allowed;
   }
   input[type=checkbox]:hover:not(:checked):not(:disabled),
-  input[type=radio]:hover:not(:checked):not(:disabled) {
+input[type=radio]:hover:not(:checked):not(:disabled) {
     --bc: var(--border-hover);
   }
   input[type=checkbox]:focus,
-  input[type=radio]:focus {
+input[type=radio]:focus {
     box-shadow: 0 0 0 var(--focus);
   }
   input[type=checkbox]:not(.switch),
-  input[type=radio]:not(.switch) {
+input[type=radio]:not(.switch) {
     width: 21px;
   }
   input[type=checkbox]:not(.switch):after,
-  input[type=radio]:not(.switch):after {
+input[type=radio]:not(.switch):after {
     opacity: var(--o, 0);
   }
   input[type=checkbox]:not(.switch):checked,
-  input[type=radio]:not(.switch):checked {
+input[type=radio]:not(.switch):checked {
     --o: 1;
   }
   input[type=checkbox].form-input,
-  input[type=radio].form-input {
+input[type=radio].form-input {
     min-height: 0;
     padding: 0;
   }
   input[type=checkbox] + label,
-  input[type=radio] + label {
+input[type=radio] + label {
     font-size: 14px;
     line-height: 21px;
     display: inline-block;

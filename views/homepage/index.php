@@ -10,9 +10,24 @@
     <link rel="stylesheet" href="components/homepage/css/main.css">
     <link rel="stylesheet" href="components/homepage/css/responsive.css">
     <link rel="stylesheet" href="components/homepage/css/animate.min.css">
+    <link rel="stylesheet" href="scss/components/modals.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <script src="js/modal.js"></script>
 </head>
 <body>
+<div class="modal-container" id="m1-o" style="--m-background: transparent;">
+    <div class="modal">
+        <h1 class="modal-title">Login As</h1>
+        <div class="modal-context">
+            <a href="/pharmacy/login">Pharmacy</a>
+            <a href="/supplier/login">Supplier</a>
+            <a href="/lab/login">Laboratary</a>
+            <a href="/delivery/login">Delivery Partner</a>
+        </div>
+        <a href="#m1-c" class="modal-close"></a>
+    </div>
+</div>
 	<section class="banner" role="banner">
         <header id="header">
             <div class="header-content clearfix">
@@ -21,7 +36,7 @@
                     <ul class="primary-nav">
                         <li><a href="#features">Features</a></li>
                         <li><a href="#teams">Our Team</a></li>
-                        <li><a href="#download">Register</a></li>
+                        <li><a href="#m1-o" id="m1-c">Login</a></li>
                     </ul>
                 </nav>
                 <a href="#" class="nav-toggle">Menu<span></span></a>
