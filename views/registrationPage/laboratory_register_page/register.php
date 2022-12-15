@@ -55,7 +55,7 @@
                         <input class="form-input" id="business_registration_id" name="business_registration_id" type="text"/>
                     </div>
                     <div class="form-group">
-                        <label for="BusinessRegCertName">Business Registration Id</label>
+                        <label for="BusinessRegCertName">Business Registration Certificate Name/label>
                         <input class="form-input" id="BusinessRegCertName" name="BusinessRegCertName" type="text"/>
                     </div>
                 </div>
