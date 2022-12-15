@@ -4,18 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d562d650-3ba6-41bd-a690-150a19a299d5" name="Changes" comment="Added lab dashboards">
+    <list default="true" id="d562d650-3ba6-41bd-a690-150a19a299d5" name="Changes" comment="Created contact us view">
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/components/form/_form-groups.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/components/form/_form-groups.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/demo.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/demo.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/demo.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/demo.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/layout/_app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/layout/_app.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/layout/dashboard/_lab.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/layout/dashboard/_lab.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/main.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/main.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/dashboard/lab/dashboard-contact.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/dashboard/lab/dashboard-contact.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/dashboard/lab/dashboard-orders.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/dashboard/lab/dashboard-404.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/dashboard/lab/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/dashboard/lab/dashboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/lab/LabAuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/lab/LabAuthController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/loginPage/lab/labLogin.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/loginPage/lab/labLogin.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/loginPage/lab/login.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/registrationPage/lab/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/registrationPage/laboratory_register_page/register.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +45,7 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP">
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP 8.1">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/composer" />
       <path value="$PROJECT_DIR$/vendor/squizlabs/php_codesniffer" />
@@ -65,28 +60,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;Git.Branch.Popup.ShowAllRemotes&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/dashe/My Projects/MedEx/MedEx/views/registrationPage/lab&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;SCSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;two.files.diff.last.used.file&quot;: &quot;C:/Users/dashe/My Projects/MedEx/MedEx/.gitignore&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "DefaultHtmlFileTemplate": "HTML File",
+    "Git.Branch.Popup.ShowAllRemotes": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/dashe/My Projects/MedEx/MedEx/views/registrationPage/lab",
+    "list.type.of.created.stylesheet": "SCSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "two.files.diff.last.used.file": "C:/Users/dashe/My Projects/MedEx/MedEx/.gitignore",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
+    ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\dashe\My Projects\MedEx\MedEx\views\registrationPage\lab" />
@@ -95,6 +95,7 @@
       <recent name="G:\Coding\University Projects\MedEx\views\pharmacy" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\dashe\My Projects\MedEx\MedEx\views\registrationPage\laboratory_register_page" />
       <recent name="C:\Users\dashe\My Projects\MedEx\MedEx\public\scss\components" />
     </key>
   </component>
@@ -123,6 +124,7 @@
       <workItem from="1671088857140" duration="2130000" />
       <workItem from="1671105557438" duration="1442000" />
       <workItem from="1671112581603" duration="7705000" />
+      <workItem from="1671126472116" duration="2259000" />
     </task>
     <task id="LOCAL-00001" summary="Centralized properties of the footer">
       <created>1670335693151</created>
@@ -243,7 +245,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671114811430</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Created contact us view">
+      <created>1671126333877</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1671126333877</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -278,7 +287,8 @@
     <MESSAGE value="removed sidebar dev mode" />
     <MESSAGE value="bug fixed" />
     <MESSAGE value="Initialized lab partner views" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initialized lab partner views" />
+    <MESSAGE value="Created contact us view" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created contact us view" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

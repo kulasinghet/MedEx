@@ -19,7 +19,7 @@ class LabAuthController extends Controller
 
             return 'Handling auth data';
         }
-        return $this->render('registerPage/deliregister.php');
+        return $this->render('registrationPage/laboratory_register_page/register.php');
     }
 
 }
