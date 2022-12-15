@@ -16,7 +16,8 @@ session_start();
     <link href="../../../public/css/homepage/loginPopup.css" type="text/css" rel="stylesheet"/>
     <link href="../../../public/css/search.css" type="text/css" rel="stylesheet"/>
     <link href="../../../public/css/felxbox.css" type="text/css" rel="stylesheet"/>
-    <link rel="stylesheet" href="../../../public/scss/main.css" />
+    <link rel="stylesheet" href="../../../public/sass/main.css" />
+    <link rel="stylesheet" href="../../../public/demo.css" />
     
     <meta charset="UTF-8" />
     <meta
@@ -32,7 +33,7 @@ session_start();
     <!--Nav Bar-->
 <div class='navBar'>
         <div class='navBar__logo'>
-            <a href='index.php'><img src='../../../public/res/logo/Logo-text.png' alt='logo' height="40%" width="40%"></a>
+            <a href='index.php'><img src='../../../public/res/logo/Logo-text.png' alt='logo' height='40px' width='auto'></a>
         </div>
   <div class='navBar__menu'>
         <ul>
@@ -40,37 +41,26 @@ session_start();
                 <li><a href='#'>About</a></li>
                 <li><a href='#'>Contact</a></li>
                 <li><a href='../../dashboard/supplier/supplierDashboard.php'>Dashboard</a></li>
+                <li><a href='../../updateInventory/supplier/updateInventory.php'> Update Inventory</a></li>
                 <li><a href='../../addMedicine/supplier/addMed.php'>Add New Medicine</a></li>
-                <li><a href='../../logoutPage/supplier/logout.php'>Logout</a></li>
             </ul>
         </div>
     </div>
+
 <!--Profile-->
-<div class="card" style="width: 30%; height: auto; left: 35%; top: 20%;">
+<div class="card" style="width: 60%; height: auto; left: 20%; top: 20%;">
   <div class="card-body">
-    <h2 class="card-title" style="text-align:center;"><img src="../../../public/res/logo/Logo-text.png" alt="logo" height="40%" width="40%"></h2>
+    <h2 class="card-title" style="text-align:center;"><img src="../../../public/res/logo/Logo-text.png" alt="logo" height="40px" width="auto"></h2>
     <p class="card-text">
       <?php
-    include("status.php");
-    ?>
-    </p>
-  </div>
-</div>
-<!--Table-->
-<div class="card" style="width: 60%; min-height: 50%; left: 20%; top: 30%;">
-  <div class="card-body">
-    <h3 class="card-title" style="text-align:center;">Your Inventory </h3>
-    <p class="card-text">
-    </br>
-      <?php
-    include("inventory.php");
+        include("status.php");
     ?>
     </p>
   </div>
 </div>
 <!--footer-->
-<div style="background-color: #a6cabd;padding-top: 30%; width: auto;">
-    <footer class="footer-distributed" style="height: 100%;">
+<div style="padding-top: 30%; width: auto;">
+    <footer class="footer-distributed">
 
         <div class="footer-left">
     
@@ -105,7 +95,6 @@ session_start();
     
     </footer>
     </div>
-
 
   </body>
 </html>
