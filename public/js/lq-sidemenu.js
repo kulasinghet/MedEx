@@ -67,8 +67,10 @@ window.onload = () => {
     // Adding a padding to the elements to make space
     if (lqs.getAttribute("auto-hide") === "false" && lqs.getAttribute("expanded") === "") {
         document.querySelectorAll(".lqs-space").forEach(itm => itm.style.paddingLeft = `${lqsExpandedWidth}px`);
+        document.querySelectorAll(".lqs-space-fixed").forEach(itm => itm.style.width = `calc(100% - ${lqsExpandedWidth}px)`);
     } else {
         document.querySelectorAll(".lqs-space").forEach(itm => itm.style.paddingLeft = `${lqsCollapsedWidth}px`);
+        document.querySelectorAll(".lqs-space-fixed").forEach(itm => itm.style.width = `calc(100% - ${lqsCollapsedWidth}px)`);
     }
 
     window.addEventListener("resize", () => {
@@ -81,9 +83,11 @@ window.onload = () => {
         if (e.detail.expanded && !e.detail.autoHide) {
             // Adding a padding to the elements to make space
             document.querySelectorAll(".lqs-space").forEach(itm => itm.style.paddingLeft = `${lqsExpandedWidth}px`);
+            document.querySelectorAll(".lqs-space-fixed").forEach(itm => itm.style.width = `calc(100% - ${lqsExpandedWidth}px)`);
         } else {
             // Adding a padding to the elements to make space
             document.querySelectorAll(".lqs-space").forEach(itm => itm.style.paddingLeft = `${lqsCollapsedWidth}px`);
+            document.querySelectorAll(".lqs-space-fixed").forEach(itm => itm.style.width = `calc(100% - ${lqsCollapsedWidth}px)`);
         }
     });
 }

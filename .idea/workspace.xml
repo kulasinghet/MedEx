@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d562d650-3ba6-41bd-a690-150a19a299d5" name="Changes" comment="Changed background colors">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="d562d650-3ba6-41bd-a690-150a19a299d5" name="Changes" comment="removed sidebar dev mode">
       <change beforePath="$PROJECT_DIR$/public/js/lq-sidemenu.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/lq-sidemenu.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scss/components/_sidebar.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/components/_sidebar.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/scss/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scss/main.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/main.css.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/dashboard/employee/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/dashboard/employee/dashboard.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -209,7 +210,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671050113227</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="removed sidebar dev mode">
+      <created>1671101772743</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1671101772743</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -241,7 +249,8 @@
     <MESSAGE value="Fixed the footer logo" />
     <MESSAGE value="Changed background colors" />
     <MESSAGE value="Dashboard for pharmacy layout completed" />
-    <option name="LAST_COMMIT_MESSAGE" value="Dashboard for pharmacy layout completed" />
+    <MESSAGE value="removed sidebar dev mode" />
+    <option name="LAST_COMMIT_MESSAGE" value="removed sidebar dev mode" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
