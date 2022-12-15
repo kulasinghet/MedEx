@@ -5,6 +5,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="/css/pharmacy/sidepanel.css">
     <link rel="stylesheet" href="/css/pharmacy/dashboard.css">
+    <link rel="stylesheet" href="/css/pharmacy/orders.css">
+
+    <script src="/js/pharmacy/login-error.js" defer></script>
 <!--    <script src="js/pharmacy/.js"></script>-->
 </head>
 
@@ -58,8 +61,70 @@
 
 <!--content-->
 <div id="main-content">
-    <div class="card">
-        djafg uaidguia sda sdkashjdkaui suidoasdashd iadh as
+
+<!--    --><?php //echo $_SESSION['pharmacyId']; ?>
+
+    <div class="orders">
+        <table>
+            <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Order Date</th>
+                <th>Order Status</th>
+                <th>Order Total</th>
+                <th>Delivery Date</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+
+
+            <?php
+
+            use app\controllers\pharmacy\PharmacyOrderHistoryController;
+            use app\core\ExceptionHandler;
+            use app\models\PharmacyOrderModel;
+
+            if (isset($_SESSION['pharmacyId'])) {
+                    $pharmacy_id = $_SESSION['pharmacyId'];
+                    $orders = (new PharmacyOrderHistoryController)->getOrdersByPharmacyId($pharmacy_id);
+                    if ($orders) {
+                        foreach ($orders as $order) {
+//                            echo "<tr>";
+//                            echo "<td>" . $order['order_id'] . "</td>";
+//                            echo "<td>" . $order['order_date'] . "</td>";
+//                            echo "<td>" . $order['order_status'] . "</td>";
+//                            echo "<td>" . $order['order_total'] . "</td>";
+//                            echo "</tr>";
+
+                            echo "<tr>";
+//                            echo "<a href='/pharmacy/order-details?order_id='" . $order['id'] . "'>";
+                            echo "<td>" . $order['id'] . "</td>";
+                            echo "<td>" . $order['order_date'] . "</td>";
+//                            echo "<td>" . $order['order_status'] . "</td>";
+                            echo "<td>" . (new PharmacyOrderHistoryController)->transformOrderStatus($order['order_status']) . "</td>";
+                            echo "<td>" . $order['order_total'] . "</td>";
+//                            echo "<td>" . $order['delivery_date'] . "</td>";
+                            echo "<td>" . (new PharmacyOrderHistoryController)->transformDeliveryDate($order['delivery_date']) . "</td>";
+                            echo "<td>" ."<a href='' id='".$order['id']."'>" . "<i class='fa-solid fa-circle-arrow-right view-order-details' style='color:#333333'></i>" ."</a>" . "</td>";
+                            echo "</a>";
+                            echo "</tr>";
+
+                        }
+                    } else {
+                        echo "<tr>";
+                        echo "<td colspan='6'>No Orders</td>";
+                        echo "</tr>";
+                    }
+            } else {
+                echo "<tr>";
+                echo "<td colspan='6'>No Orders</td>";
+                echo "</tr>";
+                echo (new ExceptionHandler)->somethingWentWrong();
+            }
+            ?>
+            </tbody>
+        </table>
     </div>
 </div>
 

@@ -23,8 +23,8 @@
                 <input type="text" name="email" id="email" required/>
                 <label for="password">Password</label>
                 <input type="text" name="password" id="password" required/>
-                <label for="retypepassword">Re-type password</label>
-                <input type="text" name="retypepassword" id="retypepassword" required/>
+                <label for="confirmPassword">Re-type password</label>
+                <input type="text" name="confirmPassword" id="confirmPassword" required/>
                 <label for="name">Pharmacy Name</label>
                 <input type="text" name="name" id="name" required/>
 

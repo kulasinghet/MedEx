@@ -58,9 +58,7 @@
 
 <!--content-->
 <div id="main-content">
-    <div class="card">
-        djafg uaidguia sda sdkashjdkaui suidoasdashd iadh as
-    </div>
+    <?php require 'under-construction.php'; ?>
 </div>
 
 </body>
