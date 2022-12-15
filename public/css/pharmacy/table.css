@@ -1,0 +1,43 @@
+table {
+    border-spacing: 0;
+    border-radius: 0.5rem;
+    display: block;
+    overflow-x: auto;
+    text-align: left;
+    width: 100%;
+}
+
+table td {
+    border-bottom: .1rem solid #e1e1e1 !important;
+    background-color: #fff;
+    padding: 1.2rem 1.5rem;
+}
+
+table td th{
+    border-bottom: .1rem solid #e1e1e1 !important;
+    padding: 1.2rem 1.5rem;
+    background-color: #fff;
+}
+
+table th {
+    border-bottom: .1rem solid #e1e1e1 !important;
+    padding: 1.2rem 1.5rem;
+    background-color: #fff;
+}
+
+
+/*&:first-child padding-left: 0*/
+
+
+
+/*&:last-child*/
+/*padding-right: 0*/
+
+@media (min-width: 40.0rem) {
+
+    table {
+        display: table;
+        overflow-x: initial;
+    }
+
+}

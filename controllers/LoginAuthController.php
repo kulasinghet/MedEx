@@ -7,6 +7,7 @@ use app\core\ExceptionHandler;
 use app\core\Logger;
 use app\core\Request;
 use app\models\LoginModel;
+use app\models\PharmacyModel;
 
 class LoginAuthController extends Controller
 {
@@ -46,9 +47,9 @@ class LoginAuthController extends Controller
                 header('Location: /dashboard');
             }
             echo (new \app\core\ExceptionHandler)->userNameOrPasswordIncorrect($request->getBody()['username']);
-            return $this->render('loginPage/delivery/deliveryLogin.php');
+            return $this->render('loginPage/delivery/loginpage.php');
         }
-        return $this->render('loginPage/delivery/deliveryLogin.php');
+        return $this->render('loginPage/delivery/loginpage.php');
     }
 
     public function labLogin(Request $request) {
@@ -105,6 +106,17 @@ class LoginAuthController extends Controller
                 $_SESSION['isLab'] = false;
                 $_SESSION['isDelivery'] = false;
                 $_SESSION['isEmployee'] = false;
+
+                $pharmacyDetails = (new PharmacyModel())->getPharmacyByUsername($request->getBody()['username']);
+                $_SESSION['pharmacyId'] = $pharmacyDetails['id'];
+                $_SESSION['pharmacyUsername'] = $pharmacyDetails['username'];
+                $_SESSION['pharmacyName'] = $pharmacyDetails['name'];
+                $_SESSION['pharmacyCity'] = $pharmacyDetails['city'];
+                $_SESSION['pharmacyRegno'] = $pharmacyDetails['pharmacyRegNo'];
+                $_SESSION['pharmacyOwnerName'] = $pharmacyDetails['ownerName'];
+                $_SESSION['pharmacyStatus'] = $pharmacyDetails['verified'];
+                $_SESSION['pharmacyDeliveryTime'] = $pharmacyDetails['deliveryTime'];
+
                 return header('Location: /dashboard');
             }
 

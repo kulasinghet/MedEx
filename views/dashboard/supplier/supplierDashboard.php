@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -13,7 +16,7 @@
     <link href="../../../public/css/homepage/loginPopup.css" type="text/css" rel="stylesheet"/>
     <link href="../../../public/css/search.css" type="text/css" rel="stylesheet"/>
     <link href="../../../public/css/felxbox.css" type="text/css" rel="stylesheet"/>
-    <link rel="stylesheet" href="../../../public/sass/main.css" />
+    <link rel="stylesheet" href="../../../public/scss/main.css" />
     
     <meta charset="UTF-8" />
     <meta
@@ -26,33 +29,26 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"> </script>
   </head>
   <body>
-  <?php
-  $id =$_GET['id'];
-  $link1 = '../../dashboard/supplier/supplierDashboard.php?id=' . $id;
-  $link2 = '../../updateInventory/supplier/updateInventory.php?id=' . $id;
-  $link3 = '../../addMedicine/supplier/addMed.php?id=' . $id;
-//Nav Bar
-echo "<div class='navBar'>
+    <!--Nav Bar-->
+<div class='navBar'>
         <div class='navBar__logo'>
-            <a href='index.php'><img src='../../../public/res/logo/Logo-text.png' alt='logo' height='40px' width='auto'></a>
+            <a href='index.php'><img src='../../../public/res/logo/Logo-text.png' alt='logo' height="40%" width="40%"></a>
         </div>
   <div class='navBar__menu'>
         <ul>
                 <li><a href='#'>Home</a></li>
                 <li><a href='#'>About</a></li>
                 <li><a href='#'>Contact</a></li>
-                <li><a href='$link1'>Dashboard</a></li>
-                <li><a href='$link2'> Update Inventory</a></li>
-                <li><a href='$link3'>Add New Medicine</a></li>
+                <li><a href='../../dashboard/supplier/supplierDashboard.php'>Dashboard</a></li>
+                <li><a href='../../addMedicine/supplier/addMed.php'>Add New Medicine</a></li>
+                <li><a href='../../logoutPage/supplier/logout.php'>Logout</a></li>
             </ul>
         </div>
-    </div>";
-?>
-
+    </div>
 <!--Profile-->
 <div class="card" style="width: 30%; height: auto; left: 35%; top: 20%;">
   <div class="card-body">
-    <h2 class="card-title" style="text-align:center;"><img src="../../../public/res/logo/Logo-text.png" alt="logo" height="40px" width="auto"></h2>
+    <h2 class="card-title" style="text-align:center;"><img src="../../../public/res/logo/Logo-text.png" alt="logo" height="40%" width="40%"></h2>
     <p class="card-text">
       <?php
     include("status.php");
@@ -65,7 +61,6 @@ echo "<div class='navBar'>
   <div class="card-body">
     <h3 class="card-title" style="text-align:center;">Your Inventory </h3>
     <p class="card-text">
-
     </br>
       <?php
     include("inventory.php");
@@ -74,8 +69,8 @@ echo "<div class='navBar'>
   </div>
 </div>
 <!--footer-->
-<div style="padding-top: 30%; width: auto;">
-    <footer class="footer-distributed">
+<div style="background-color: #a6cabd;padding-top: 30%; width: auto;">
+    <footer class="footer-distributed" style="height: 100%;">
 
         <div class="footer-left">
     
@@ -110,6 +105,7 @@ echo "<div class='navBar'>
     
     </footer>
     </div>
+
 
   </body>
 </html>

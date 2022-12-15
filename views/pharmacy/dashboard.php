@@ -9,9 +9,7 @@
 
 <?php include_once 'navbar.php' ?>
 <div id="main-content">
-    <div class="card">
-        djafg uaidguia sda sdkashjdkaui suidoasdashd iadh as
-    </div>
+    <?php include_once 'under-construction.php' ?>
 </div>
 
 </body>

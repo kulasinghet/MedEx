@@ -32,8 +32,6 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Sass File" />
-        <option value="JavaScript File" />
-        <option value="CSS File" />
         <option value="SCSS File" />
         <option value="HTML File" />
       </list>
@@ -100,14 +98,19 @@
       <recent name="G:\Coding\University Projects\MedEx\views\pharmacy" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\dashe\My Projects\MedEx\MedEx\views\registrationPage\laboratory_register_page" />
+      <recent name="G:\Coding\University Projects\MedEx\views" />
+      <recent name="G:\Coding\University Projects\MedEx\views\pharmacy" />
       <recent name="C:\Users\dashe\My Projects\MedEx\MedEx\public\scss\components" />
     </key>
   </component>
   <component name="RunManager" selected="PHP Built-in Web Server.Medex">
-    <configuration name="Medex" type="PhpBuiltInWebServerConfigurationType" factoryName="PHP Built-in Web Server" document_root="$PROJECT_DIR$/public" port="8080">
+    <configuration name="Medex" type="PhpBuiltInWebServerConfigurationType" factoryName="PHP Built-in Web Server" document_root="$PROJECT_DIR$/public" port="8000">
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="PHP Built-in Web Server.Medex" />
+      <item itemvalue="PHP Built-in Web Server.MedEx Server" />
+    </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -129,7 +132,7 @@
       <workItem from="1671088857140" duration="2130000" />
       <workItem from="1671105557438" duration="1442000" />
       <workItem from="1671112581603" duration="7705000" />
-      <workItem from="1671126472116" duration="2259000" />
+      <workItem from="1671134600617" duration="51000" />
     </task>
     <task id="LOCAL-00001" summary="Centralized properties of the footer">
       <created>1670335693151</created>
@@ -229,12 +232,12 @@
       <option name="project" value="LOCAL" />
       <updated>1671050113227</updated>
     </task>
-    <task id="LOCAL-00015" summary="removed sidebar dev mode">
-      <created>1671101772743</created>
+    <task id="LOCAL-00015" summary="Dashboard for pharmacy layout completed">
+      <created>1671091066146</created>
       <option name="number" value="00015" />
       <option name="presentableId" value="LOCAL-00015" />
       <option name="project" value="LOCAL" />
-      <updated>1671101772743</updated>
+      <updated>1671091066146</updated>
     </task>
     <task id="LOCAL-00016" summary="bug fixed">
       <created>1671102292086</created>
@@ -250,12 +253,12 @@
       <option name="project" value="LOCAL" />
       <updated>1671114811430</updated>
     </task>
-    <task id="LOCAL-00018" summary="Created contact us view">
-      <created>1671126333877</created>
+    <task id="LOCAL-00018" summary="Create order medicine partially">
+      <created>1671127259255</created>
       <option name="number" value="00018" />
       <option name="presentableId" value="LOCAL-00018" />
       <option name="project" value="LOCAL" />
-      <updated>1671126333877</updated>
+      <updated>1671127259255</updated>
     </task>
     <option name="localTasksCounter" value="19" />
     <servers />
@@ -292,8 +295,8 @@
     <MESSAGE value="removed sidebar dev mode" />
     <MESSAGE value="bug fixed" />
     <MESSAGE value="Initialized lab partner views" />
-    <MESSAGE value="Created contact us view" />
-    <option name="LAST_COMMIT_MESSAGE" value="Created contact us view" />
+    <MESSAGE value="Create order medicine partially" />
+    <option name="LAST_COMMIT_MESSAGE" value="Create order medicine partially" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -32,6 +32,18 @@ class Model
         return json_encode($array);
     }
 
+    public function createRandomID($entity): string
+    {
+        $time = time();
+        $time = str_replace(" ", "", $time);
+        $time = str_replace(":", "", $time);
+        $time = str_replace("-", "", $time);
+        // take only the last 6 digits
+        $time = substr($time, -6);
+//        $time = substr($time ,0 ,2);
+        return $time . $entity  . rand(0, 1000);
+    }
+
 
 
 }

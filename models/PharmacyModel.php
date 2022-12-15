@@ -52,7 +52,9 @@ class PharmacyModel extends Model
         try {
             $this -> password = password_hash($this -> password, PASSWORD_DEFAULT);
 
-            $sql = "INSERT INTO pharmacy (username, password, name, ownerName, city, pharmacyRegNo, BusinessRegId, pharmacyCertId, BusinessRegCertName, pharmacyCertName, verified, deliveryTime, regDate) VALUES ('$this->username', '$this->password', '$this->name', '$this->ownerName', '$this->city', '$this->pharmacyRegNo', '$this->BusinessRegId', '$this->pharmacyCertId', '$this->BusinessRegCertName', '$this->pharmacyCertName', '0', '10:00:00', '$regDate');";
+            $this -> id = $this->createRandomID("PH");
+
+            $sql = "INSERT INTO pharmacy (id, username, password, name, ownerName, city, pharmacyRegNo, BusinessRegId, pharmacyCertId, BusinessRegCertName, pharmacyCertName, verified, deliveryTime, regDate) VALUES ('$this->id', '$this->username', '$this->password', '$this->name', '$this->ownerName', '$this->city', '$this->pharmacyRegNo', '$this->BusinessRegId', '$this->pharmacyCertId', '$this->BusinessRegCertName', '$this->pharmacyCertName', '0', '10:00:00', '$regDate');";
 
             $stmt = $db->prepare($sql);
             $stmt->execute();
@@ -92,4 +94,24 @@ class PharmacyModel extends Model
         }
     }
 
+    public function getPharmacyByUsername($username): false|array
+    {
+        $db = new Database();
+
+        try {
+            $sql = "SELECT * FROM pharmacy WHERE username = '$username'";
+            $stmt = $db->prepare($sql);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            if ($result->num_rows == 1) {
+                return $result->fetch_assoc();
+            } else {
+                return false;
+            }
+        } catch (\Exception $e) {
+            Logger::logError($e->getMessage());
+            return false;
+        }
+    }
 }

@@ -3,9 +3,12 @@
 require_once '../vendor/autoload.php';
 
 use app\controllers\DashboardController;
+use app\controllers\delivery\DeliveryContactusController;
+use app\controllers\delivery\DeliveryDashboardController;
 use app\controllers\lab\LabAuthController;
 use app\controllers\pharmacy\PharmacyAuthController;
 use app\controllers\pharmacy\PharmacyDashboardController;
+use app\controllers\pharmacy\PharmacyOrderMedicineController;
 use app\controllers\supplier\SupplierAuthController;
 use app\core\Application;
 use app\controllers\AuthController;
@@ -31,7 +34,13 @@ $app -> router -> get('/delivery/login', [LoginAuthController::class, 'deliveryL
 $app -> router -> post('/delivery/login', [LoginAuthController::class, 'deliveryLogin']);
 $app -> router -> get('/delivery/register', [DeliveryAuthController::class, 'deliveryRegister']);
 $app -> router -> post('/delivery/register', [DeliveryAuthController::class, 'deliveryRegister']);
-
+$app -> router -> get('/delivery/orders', [DeliveryDashboardController::class, 'orders']);
+$app -> router -> post('/delivery/orders', [DeliveryDashboardController::class, 'orders']);
+$app -> router -> get('/delivery/history', [DeliveryDashboardController::class, 'history']);
+$app -> router -> post('/delivery/history', [DeliveryDashboardController::class, 'history']);
+$app -> router -> get('/delivery/contact_us', [DeliveryDashboardController::class, 'contactUs']);
+$app -> router -> post('/delivery/contact_us', [DeliveryDashboardController::class, 'contactUs']);
+$app -> router -> post('/delivery/contact_us', [DeliveryContactusController::class, 'delivery_contact_us']);
 // Lab Routes
 $app -> router -> get('/lab/login', [LoginAuthController::class, 'labLogin']);
 $app -> router -> post('/lab/login', [LoginAuthController::class, 'labLogin']);
@@ -52,7 +61,7 @@ $app -> router -> post('/pharmacy/register', [PharmacyAuthController::class, 'ph
 $app -> router -> get('/pharmacy/sell-medicine', [PharmacyDashboardController::class, 'sellMedicine']);
 $app -> router -> post('/pharmacy/sell-medicine', [PharmacyDashboardController::class, 'sellMedicine']);
 $app -> router -> get('/pharmacy/order-medicine', [PharmacyDashboardController::class, 'orderMedicine']);
-$app -> router -> post('/pharmacy/order-medicine', [PharmacyDashboardController::class, 'orderMedicine']);
+$app -> router -> post('/pharmacy/order-medicine', [PharmacyOrderMedicineController::class, 'createOrder']);
 $app -> router -> get('/pharmacy/orders', [PharmacyDashboardController::class, 'orders']);
 $app -> router -> post('/pharmacy/orders', [PharmacyDashboardController::class, 'orders']);
 $app -> router -> get('/pharmacy/inventory', [PharmacyDashboardController::class, 'inventory']);
