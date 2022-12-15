@@ -10,15 +10,13 @@
     <!-- Font awesome kit -->
     <script crossorigin="anonymous" src="https://kit.fontawesome.com/9b33f63a16.js"></script>
     <!--chart JS--->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"> </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 </head>
 <body class="app-window">
 <section>
     <lq-side-menu>
-        <a class="sidebar-list-itm" href="#">Menu Item</a>
-        <a class="sidebar-list-itm" href="#">Menu Item</a>
-        <a class="sidebar-list-itm" href="#">Menu Item</a>
-        <a class="sidebar-list-itm" href="#">Menu Item</a>
+        <a class="sidebar-list-itm" href="#">Orders</a>
+        <a class="sidebar-list-itm" href="#">Contact Us</a>
     </lq-side-menu>
 </section>
 <section class="lqs-space">
@@ -45,60 +43,89 @@
     </nav>
     <div class="canvas">
         <article>
-            <!--Graph-->
-            <div class="card">
+            <!-- Ongoing tests-->
+            <div class="card card-widget widget-1">
+                <div class="card-header">
+                    Some Icons
+                </div>
                 <div class="card-body">
-                    <h5 class="card-title">Sales This Month </h5>
-                    <canvas id="myChart" style="width: 320px; height: 140px;"></canvas>
-                    <script>
-                        var xValues = [50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150];
-                        var yValues = [7, 8, 8, 9, 9, 9, 10, 11, 14, 14, 15];
-
-                        new Chart("myChart", {
-                            type: "line",
-                            data: {
-                                labels: xValues,
-                                datasets: [{
-                                    label: 'Sales',
-                                    fill: false,
-                                    lineTension: 0,
-                                    backgroundColor: "rgb(6, 79, 147)",
-                                    borderColor: "rgb(6, 79, 147)",
-                                    data: yValues
-                                }]
-                            },
-                            options: {
-                                legend: {display: false},
-                                scales: {
-                                    yAxes: [{ticks: {min: 6, max: 16}}],
-                                }
-                            }
-                        });
-                    </script>
+                    <ul>
+                        <li>Test-001</li>
+                        <li>Test-002</li>
+                    </ul>
+                    <h5 class="card-title">Ongoing Tests</h5>
                 </div>
             </div>
-            <!--Table-->
-            <div class="card">
+            <!-- Total Earnings -->
+            <div class="card card-widget widget-2">
+                <div class="card-header">
+                    Some Icons
+                </div>
                 <div class="card-body">
-                    <h5 class="card-title">Inventory </h5>
                     <p class="card-text">
+                        LKR 13400.00
                     </p>
+                    <h5 class="card-title">Total Earnings</h5>
+                    <span>Last Month</span>
                 </div>
             </div>
-            <!--Table-->
-            <div class="card">
+            <!--Completed tests-->
+            <div class="card card-widget widget-3">
+                <div class="card-header">
+                    Some Icons
+                </div>
                 <div class="card-body">
-                    <h5 class="card-title">Inventory </h5>
                     <p class="card-text">
+                        142
                     </p>
+                    <h5 class="card-title">Total Tests Completed</h5>
+                    <span>Last Month</span>
                 </div>
             </div>
-            <!--Table-->
-            <div class="card">
+            <!-- Table -->
+            <div class="card widget-4">
                 <div class="card-body">
-                    <h5 class="card-title">Inventory </h5>
-                    <p class="card-text">
-                    </p>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Test Type</th>
+                            <th>Test ID</th>
+                            <th>Deadline</th>
+                            <th>Price</th>
+                            <th>Action</th>
+                        </tr>
+                        <thead>
+                        <tbody>
+                        <tr>
+                            <td>Type A</td>
+                            <td>Test-003</td>
+                            <td>12.11.22</td>
+                            <td>LKR 120</td>
+                            <td>Some buttons</td>
+                        </tr>
+                        <tr>
+                            <td>Type A</td>
+                            <td>Test-003</td>
+                            <td>12.11.22</td>
+                            <td>LKR 120</td>
+                            <td>Some buttons</td>
+                        </tr>
+                        <tr>
+                            <td>Type A</td>
+                            <td>Test-003</td>
+                            <td>12.11.22</td>
+                            <td>LKR 120</td>
+                            <td>Some buttons</td>
+                        </tr>
+                        <tr>
+                            <td>Type A</td>
+                            <td>Test-003</td>
+                            <td>12.11.22</td>
+                            <td>LKR 120</td>
+                            <td>Some buttons</td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </article>

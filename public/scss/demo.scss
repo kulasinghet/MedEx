@@ -21,9 +21,13 @@
 @use "components/navbar";
 @use "components/button";
 @use "components/dropdown";
+@use "components/table";
 @use "components/form/form-groups";
 @use "components/form/form-input";
 @use "components/form/form-check";
+
+// dashboards
+@use "layout/dashboard/lab";
 
 form {
   width: 500px;
