@@ -64,3 +64,16 @@ Unknown column 'drivingLicenseName' in 'field list'
 2022/12/14 20:35:13 User already existstestPharmacy
 2022/12/15 16:32:07 Duplicate entry '12131-j.k. doily' for key 'license_id'
 2022/12/15 16:32:58 Duplicate entry '12131-j.k. doily' for key 'license_id'
+2022/12/15 20:40:42 Duplicate entry '16711170' for key 'PRIMARY'
+2022/12/15 20:40:51 Duplicate entry '16711170' for key 'PRIMARY'
+2022/12/15 22:07:51 No connection could be made because the target machine actively refused it
+2022/12/15 22:07:55 No connection could be made because the target machine actively refused it
+2022/12/15 22:08:31 No connection could be made because the target machine actively refused it
+2022/12/15 22:08:44 No connection could be made because the target machine actively refused it
+2022/12/15 22:09:15 No connection could be made because the target machine actively refused it
+2022/12/15 22:09:31 No connection could be made because the target machine actively refused it
+2022/12/15 22:26:15 Duplicate entry '16711233' for key 'PRIMARY'
+2022/12/15 22:26:36 Duplicate entry '16711233' for key 'PRIMARY'
+2022/12/15 22:27:06 Duplicate entry '16711234' for key 'PRIMARY'
+2022/12/15 22:27:29 Duplicate entry '16711234' for key 'PRIMARY'
+2022/12/15 22:28:04 Duplicate entry '16711234' for key 'PRIMARY'

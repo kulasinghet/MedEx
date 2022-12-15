@@ -48,7 +48,7 @@
             </span>
     </div>
 </div>
-
+<form method="post" action="/delivery/contact_us">
 <div class="input">
     <label>Subject</label>
     <input type="text" name="subject" id="subject" placeholder="Subject">
@@ -57,6 +57,10 @@
     <textarea name="message" id="message" cols="30" rows="10" placeholder="Message"></textarea>
 
 </div>
+    <div id="btn">
+        <button type="submit" name="send-btn" id="send-btn">Send</button>
+    </div>
+</form>
 
 </body>
 </html>

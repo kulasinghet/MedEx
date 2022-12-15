@@ -15,14 +15,16 @@ class DeliveryContactusModel extends Model
 
 
 
-    public function contactUs()
+    public function delivey_contact_us()
     {
         $db = new Database();
         $date = new DateTime("now");
         $date->setTimezone(new DateTimeZone('Asia/Colombo'));
         $date = $date->format('Y/m/d');
+
+        $this-> id = $this->createRandomID("DELCONTACTUS");
         try {
-            $sql = "INSERT INTO contactus (id, subject, message,date) VALUES ('$this->id', '$this->subject', '$this->message', '$date')";
+            $sql = "INSERT INTO delivery_contact_us (id,subject, message,date) VALUES ('$this->id', '$this->subject', '$this->message', '$date')";
             $stmt = $db->prepare($sql);
             $stmt->execute();
             if ($stmt->affected_rows == 1) {

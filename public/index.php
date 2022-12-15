@@ -3,6 +3,7 @@
 require_once '../vendor/autoload.php';
 
 use app\controllers\DashboardController;
+use app\controllers\delivery\DeliveryContactusController;
 use app\controllers\delivery\DeliveryDashboardController;
 use app\controllers\lab\LabAuthController;
 use app\controllers\pharmacy\PharmacyAuthController;
@@ -38,6 +39,7 @@ $app -> router -> get('/delivery/history', [DeliveryDashboardController::class, 
 $app -> router -> post('/delivery/history', [DeliveryDashboardController::class, 'history']);
 $app -> router -> get('/delivery/contact_us', [DeliveryDashboardController::class, 'contactUs']);
 $app -> router -> post('/delivery/contact_us', [DeliveryDashboardController::class, 'contactUs']);
+$app -> router -> post('/delivery/contact_us', [DeliveryContactusController::class, 'delivery_contact_us']);
 // Lab Routes
 $app -> router -> get('/lab/login', [LoginAuthController::class, 'labLogin']);
 $app -> router -> post('/lab/login', [LoginAuthController::class, 'labLogin']);
