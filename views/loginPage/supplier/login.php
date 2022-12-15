@@ -36,49 +36,22 @@ sorigin="anonymous"
 <!-- Nav Bar-->
     <div class="navBar">
         <div class="navBar__logo">
-            <a href="index.php"><img src="../../../public/res/logo/Logo-text.png" alt="logo" height="40px" width="auto"></a>
-        </div>
-<!--register popup for the Are you a page?-->
-        <div class="register-modal">
-            <div class="register-modal-content">
-                <span class="register-close-button">×</span>
-                <div class="register-modal-content__title">
-                    <h1>Are you a?</h1>
-                    <button>Pharmacy</button>
-                    <button>Supplier</button>
-                    <button>Delivery Partner</button>
-                    <button>Laboratory</button>
-                    <button>Staff</button>
-                </div>
-            </div>
-        </div>
-        <div class="login-modal">
-            <div class="login-modal-content">
-                <span class="login-close-button">×</span>
-                <div class="login-modal-content__title">
-                    <h1>Are you a?</h1>
-                    <button>Pharmacy</button>
-                    <button>Supplier</button>
-                    <button>Delivery Partner</button>
-                    <button>Laboratory</button>
-                    <button>Staff</button>
-                </div>
-            </div>
+            <a href="index.php"><img src="../../../public/res/logo/Logo-text.png" alt="logo" height="30%" width="30%"></a>
         </div>
         <div class="navBar__menu">
-            <ul>
+        <ul>
                 <li><a href="/index.php">Home</a></li>
                 <li><a href="/index.php?page=about">About</a></li>
                 <li><a href="/index.php?page=contact">Contact</a></li>
-                <li><button id="login" class="login-trigger">Login</button></li>
-                <li><button id="register" class="register-trigger">Register</button></li>
+                <li><a href="../../loginPage/supplier/login.php">Login</a></li>
+                <li><a href="../../registerPage/supplier/register.php">Register</a></li>
             </ul>
         </div>
     </div>
     <!--Login-->
 <div class="card" style="width: 30%; height:auto; left: 35%; top: 20%;">
   <div class="card-body">
-    <h2 class="card-title" style="text-align:center;"><img src="../../../public/res/logo/Logo-text.png" alt="logo" height="40px" width="auto"><br>Supplier Login</h2>
+    <h2 class="card-title" style="text-align:center;"><img src="../../../public/res/logo/Logo-text.png" alt="logo" height="40%" width="40%"><br>Supplier Login</h2>
     <p class="card-text">
     <form action="auth.php" method="post">
       Username <br><input type="text" name="username" class="input-box"> <br>

@@ -32,7 +32,7 @@ session_start();
     <!--Nav Bar-->
 <div class='navBar'>
         <div class='navBar__logo'>
-            <a href='index.php'><img src='../../../public/res/logo/Logo-text.png' alt='logo' height='40px' width='auto'></a>
+            <a href='index.php'><img src='../../../public/res/logo/Logo-text.png' alt='logo' height="40%" width="40%"></a>
         </div>
   <div class='navBar__menu'>
         <ul>
@@ -48,7 +48,7 @@ session_start();
     <!--Message-->
     <div class="card" style="width: 50%; height: auto; left: 25%; top: 20%;">
   <div class="card-body">
-    <h2 class="card-title" style="text-align:center;"><img src="../../../public/res/logo/Logo-text.png" alt="logo" height="40px" width="auto"><br>New Medicine Request Sent</h2>
+    <h2 class="card-title" style="text-align:center;"><img src="../../../public/res/logo/Logo-text.png" alt="logo"height="40%" width="40%"><br>New Medicine Request Sent</h2>
     <p class="card-text">
        <h3>Your new medicine request has being sent.</h3>
       <br>Lab request ID: <?php echo $_SESSION['reqid']; ?><br>

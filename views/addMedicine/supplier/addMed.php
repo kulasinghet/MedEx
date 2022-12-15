@@ -34,7 +34,7 @@ session_start();
     <!--Nav Bar-->
 <div class='navBar'>
         <div class='navBar__logo'>
-            <a href='index.php'><img src='../../../public/res/logo/Logo-text.png' alt='logo' height='40px' width='auto'></a>
+            <a href='index.php'><img src='../../../public/res/logo/Logo-text.png' alt='logo' height="40%" width="40%"></a>
         </div>
   <div class='navBar__menu'>
         <ul>
@@ -49,7 +49,7 @@ session_start();
     </div>
     <div class='card' style='width: 40%; height: auto; left: 30%; top: 20%;'>
     <div class='card-body'>
-      <h2 class='card-title' style='text-align:center;'><img src='../../../public/res/logo/Logo-text.png' alt='logo' height='40px' width='auto'><br>Add New Medicine</h2>
+      <h2 class='card-title' style='text-align:center;'><img src='../../../public/res/logo/Logo-text.png' alt='logo' height="40%" width="40%"><br>Add New Medicine</h2>
       <p class='card-text'><h1> <?php include('status.php')?></p>
           </div>
         </div>
