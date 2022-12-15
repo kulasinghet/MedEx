@@ -10,80 +10,137 @@ class PharmacyOrderModel extends Model
 {
     private $id;
     private $pharmacyId;
-    private $medId = "";
-    private $quantity;/**
- * @return mixed
- */
+    private $order_date;
+    private $order_status;
+    private $order_total;
+    private $delivery_date;
+//    private $getId;
+
+    /**
+     * @return mixed
+     */
     public function getId()
     {
         return $this->id;
-    }/**
+    }
+
+    /**
      * @param mixed $id
      */
     public function setId($id): void
     {
         $this->id = $id;
-    }/**
+    }
+
+    /**
      * @return mixed
      */
     public function getPharmacyId()
     {
         return $this->pharmacyId;
-    }/**
+    }
+
+    /**
      * @param mixed $pharmacyId
      */
     public function setPharmacyId($pharmacyId): void
     {
         $this->pharmacyId = $pharmacyId;
-    }/**
-     * @return mixed
-     */
-    public function getMedId(): mixed
-    {
-        return $this->medId;
-    }/**
-     * @param mixed $medId
-     */
-    public function setMedId($medId): void
-    {
-        $this->medId = $medId;
-    }/**
-     * @return mixed
-     */
-    public function getQuantity()
-    {
-        return $this->quantity;
-    }/**
-     * @param mixed $quantity
-     */
-    public function setQuantity($quantity): void
-    {
-        $this->quantity = $quantity;
     }
 
-    public function createOrder($pharmacyId, $quantity): bool
+    /**
+     * @return mixed
+     */
+    public function getOrderDate()
+    {
+        return $this->order_date;
+    }
+
+    /**
+     * @param mixed $order_date
+     */
+    public function setOrderDate($order_date): void
+    {
+        $this->order_date = $order_date;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOrderStatus()
+    {
+        return $this->order_status;
+    }
+
+    /**
+     * @param mixed $order_status
+     */
+    public function setOrderStatus($order_status): void
+    {
+        $this->order_status = $order_status;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOrderTotal()
+    {
+        return $this->order_total;
+    }
+
+    /**
+     * @param mixed $order_total
+     */
+    public function setOrderTotal($order_total): void
+    {
+        $this->order_total = $order_total;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDeliveryDate()
+    {
+        return $this->delivery_date;
+    }
+
+    /**
+     * @param mixed $delivery_date
+     */
+    public function setDeliveryDate($delivery_date): void
+    {
+        $this->delivery_date = $delivery_date;
+    }
+
+
+
+
+    public function createOrder($pharmacyId, $order_total): bool
     {
         // generate random order id with time stamp and pharmacy id
 
-        $this->setId($this->createRandomID($pharmacyId));
-        $this->setPharmacyId($pharmacyId);
+        $this->id = $this->createRandomID($pharmacyId);
+        $order_date = date("Y-m-d");
+//        $this->setPharmacyId($pharmacyId);
 //        $this->setMedId($medId);
-        $this->setQuantity($quantity);
+//        $this->setOrderTotal(0);
 
-        $sql = "INSERT INTO pharmacy_order (id, pharmacy_id, med_id, quantity) VALUES ('$this->getId()', '$this->getPharmacyId()', '$this->getMedId()', '$this->getQuantity()');";
-
+//        $sql = "INSERT INTO pharmacy_order (id, pharmacyId, order_date, order_status, order_total) VALUES
+        $sql = "INSERT INTO pharmacy_order (id, pharmacyId, order_date, order_status, order_total) VALUES
+                ('$this->id', '$pharmacyId', '$order_date', 0, '$order_total');";
         try {
 
             $db = new Database();
+
             $stmt = $db->prepare($sql);
             $stmt->execute();
+            $result = $stmt->get_result();
 
-            if ($stmt->affected_rows == 1) {
-                (new \app\core\Logger)->orderCreated($this->getId() . $this->getPharmacyId() . $this->getMedId() . $this->getQuantity());
+            if ($stmt->get_result()) {
+                (new \app\core\Logger)->orderCreated($this->getId() . $this->getPharmacyId()) ;
                 return true;
             } else {
-                Logger::logError($this->getId() . "Order creation failed");
-                echo (new ExceptionHandler)->somethingWentWrong();
+                Logger::logError($result->num_rows);
                 return false;
             }
         } catch (\Exception $e) {
@@ -96,7 +153,7 @@ class PharmacyOrderModel extends Model
     public function getOrdersByPharmacyId($pharmacyId): false|array
     {
 //        Logger::logError("Pharmacy order history fetched");
-        $sql = "SELECT * FROM pharmacy_order WHERE pharmacyId = '$pharmacyId';";
+        $sql = "SELECT * FROM pharmacy_order WHERE pharmacyId = '$pharmacyId' ORDER BY order_date DESC;";
 
         try {
             $db = new Database();
@@ -130,6 +187,10 @@ class PharmacyOrderModel extends Model
             echo (new ExceptionHandler)->somethingWentWrong();
             return false;
         }
+    }
+
+    private function setQuantity($quantity)
+    {
     }
 
 

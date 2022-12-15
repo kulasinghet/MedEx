@@ -43,6 +43,19 @@ class PharmacyOrderHistoryController extends Controller
     {
         if ($deliveryDate == "0000-00-00") {
             return 'Pending';
+        } else if ($deliveryDate == null) {
+            return 'Pending';
+        } else {
+            return $deliveryDate;
+        }
+    }
+
+    public function transformOrderTotal($orderTotal): string
+    {
+        if ($orderTotal == "0") {
+            return 'Finalizing Order';
+        } else {
+            return $orderTotal;
         }
     }
 
