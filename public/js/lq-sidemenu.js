@@ -2,7 +2,7 @@ const lqsCollapsedWidth = 52;
 const lqsExpandedWidth = 260;
 const lqsTemplate = `
 <!-- external stylesheet -->
-<link href="../scss/main.css" rel="stylesheet"/>
+<link href="../../../public/scss/main.css" rel="stylesheet"/>
 
 <div class="sidebar-toggle">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
@@ -20,7 +20,7 @@ const lqsTemplate = `
         <div class="sidebar-context-top">
             <div class="sidebar-logo">
                 <a href="#">
-                    <img alt="MedEx Logo with name" src="../res/logo/logo-text_light.svg"/>
+                    <img alt="MedEx Logo with name" src="../../../public/res/logo/logo-text_light.svg"/>
                 </a>
             </div>
             <div class="sidebar-handlers">
@@ -67,8 +67,10 @@ window.onload = () => {
     // Adding a padding to the elements to make space
     if (lqs.getAttribute("auto-hide") === "false" && lqs.getAttribute("expanded") === "") {
         document.querySelectorAll(".lqs-space").forEach(itm => itm.style.paddingLeft = `${lqsExpandedWidth}px`);
+        document.querySelectorAll(".lqs-space-fixed").forEach(itm => itm.style.width = `calc(100% - ${lqsExpandedWidth}px)`);
     } else {
         document.querySelectorAll(".lqs-space").forEach(itm => itm.style.paddingLeft = `${lqsCollapsedWidth}px`);
+        document.querySelectorAll(".lqs-space-fixed").forEach(itm => itm.style.width = `calc(100% - ${lqsCollapsedWidth}px)`);
     }
 
     window.addEventListener("resize", () => {
@@ -81,9 +83,11 @@ window.onload = () => {
         if (e.detail.expanded && !e.detail.autoHide) {
             // Adding a padding to the elements to make space
             document.querySelectorAll(".lqs-space").forEach(itm => itm.style.paddingLeft = `${lqsExpandedWidth}px`);
+            document.querySelectorAll(".lqs-space-fixed").forEach(itm => itm.style.width = `calc(100% - ${lqsExpandedWidth}px)`);
         } else {
             // Adding a padding to the elements to make space
             document.querySelectorAll(".lqs-space").forEach(itm => itm.style.paddingLeft = `${lqsCollapsedWidth}px`);
+            document.querySelectorAll(".lqs-space-fixed").forEach(itm => itm.style.width = `calc(100% - ${lqsCollapsedWidth}px)`);
         }
     });
 }
@@ -102,7 +106,7 @@ class LiquidSideMenu extends HTMLElement {
     }
 
     static get observedAttributes() {
-        return ['dev-mode', 'expanded', 'auto-hide'];
+        return ['expanded', 'auto-hide'];
     }
 
     connectedCallback() {
@@ -110,13 +114,12 @@ class LiquidSideMenu extends HTMLElement {
         // (can be called many times if an element is repeatedly added/removed)
 
         // initializing sidebar variables
-        this.isDevMode = this.getAttribute('dev-mode') === "" || false;
         this.menuExpanded = this.getAttribute('expanded') === "" || false;
-        this.autoHide = this.getAttribute('auto-hide') !== "false";
+        this.autoHide = this.getAttribute('auto-hide') !== "false" || false;
 
         // --------------------- RENDERING THE ELEMENT ---------------------
         // creating shadow root
-        this.attachShadow({mode: this.isDevMode ? "open" : "closed"});
+        this.attachShadow({mode: "open"});
 
         this.renderElement();
         setTimeout(() => {
@@ -184,9 +187,8 @@ class LiquidSideMenu extends HTMLElement {
         // called when one of attributes listed above is modified
 
         // initializing sidebar variables
-        this.isDevMode = this.getAttribute('dev-mode') === "" || false;
         this.menuExpanded = this.getAttribute('expanded') === "" || false;
-        this.autoHide = this.getAttribute('auto-hide') !== "false";
+        this.autoHide = this.getAttribute('auto-hide') !== "false" || false;
         // rendering the component
         //this.renderState();
         this.dispatchSidebarEvent();
