@@ -13,13 +13,8 @@ class PharmacyOrderMedicineController extends Controller
     public function createOrder(Request $request) {
 
         if ($request->isPost()) {
-//            $data = $request->getBody();
+
             $order = new \app\models\PharmacyOrderModel();
-//            $order->setPharmacyId($_SESSION['pharmacyId']);
-//            $order->setOrderDate($_SESSION['orderDate']);
-//            $order->setOrderStatus();
-//            $order->setOrderTotal(1000);
-//            $order->setDeliveryDate();
 
             if ($order->createOrder($_SESSION['pharmacyId'], 1000)) {
                 Logger::orderLog("pharmacy order created");
@@ -28,10 +23,6 @@ class PharmacyOrderMedicineController extends Controller
                 echo (new ExceptionHandler)->somethingWentWrong();
                 return header('Location: /pharmacy/order-medicine');
             }
-
-
-
-//            $this->redirect('/pharmacy/order');
         }
     }
 

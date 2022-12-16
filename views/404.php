@@ -9,6 +9,7 @@
         <div class="error">
             <div class="error__content">
                 <div class="error__message">
+                    <img src="/res/404.svg" alt="404" />
                     <h1>404</h1>
                     <h2>Page not found</h2>
                 </div>

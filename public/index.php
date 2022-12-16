@@ -6,6 +6,8 @@ use app\controllers\DashboardController;
 use app\controllers\delivery\DeliveryContactusController;
 use app\controllers\delivery\DeliveryDashboardController;
 use app\controllers\lab\LabAuthController;
+use app\controllers\lab\LabContactusController;
+use app\controllers\lab\LabDashboardController;
 use app\controllers\pharmacy\PharmacyAuthController;
 use app\controllers\pharmacy\PharmacyDashboardController;
 use app\controllers\pharmacy\PharmacyOrderMedicineController;
@@ -46,6 +48,8 @@ $app -> router -> get('/lab/login', [LoginAuthController::class, 'labLogin']);
 $app -> router -> post('/lab/login', [LoginAuthController::class, 'labLogin']);
 $app -> router -> get('/lab/register', [LabAuthController::class, 'labRegister']);
 $app -> router -> post('/lab/register', [LabAuthController::class, 'labRegister']);
+$app -> router -> get('/lab/contact-us', [LabDashboardController::class, 'contactus']);
+$app -> router -> post('/lab/contact-us', [LabContactusController::class, 'lab_contact_us']);
 
 // Employee Routes
 $app -> router -> get('/employee/login', [LoginAuthController::class, 'employeeLogin']);
