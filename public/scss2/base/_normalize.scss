@@ -1,0 +1,25 @@
+@use "../abstracts/variables" as *;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  // for development
+  margin: 0;
+}
+
+body {
+  background: $body-bg;
+  color: $body-color;
+
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  font-weight: $font-weight-base;
+
+  line-height: $line-height-base;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 2rem;
+}

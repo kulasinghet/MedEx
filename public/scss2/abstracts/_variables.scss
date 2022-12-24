@@ -53,7 +53,6 @@ $font-family-monospace: 'DM Mono', monospace !default;
 // font styles (normalization)
 $font-family-base: $font-family-sans-serif !default;
 $font-family-code: $font-family-monospace !default;
-$font-family-headings: 'Ubuntu', sans-serif !default;
 
 // font sizes
 $font-size-base: 1rem !default; // typically `16px`
@@ -92,4 +91,14 @@ $font-sizes: (
         6: $h6-font-size
 ) !default;
 
+$headings-font-family: 'Ubuntu', sans-serif !default;
+$headings-font-weight: $font-weight-medium !default;
+$headings-line-height: 1.2 !default;
+$headings-color: $black !default;
+$headings-margin-bottom: .5rem !default;
+
 // ------------------- Theme properties ------------------- //
+
+// ------------------- Body ------------------- //
+$body-bg: $light !default;
+$body-color: $dark !default;

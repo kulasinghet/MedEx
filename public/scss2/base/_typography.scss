@@ -1,0 +1,18 @@
+@use "../abstracts/variables" as *;
+
+
+%heading {
+  font-family: $headings-font-family;
+  font-weight: $headings-font-weight;
+  line-height: $headings-line-height;
+  color: $headings-color;
+
+  margin-bottom: $headings-margin-bottom;
+}
+
+@each $type, $value in $font-sizes {
+  h#{$type} {
+    font-size: $value;
+    @extend %heading;
+  }
+}
