@@ -18,7 +18,11 @@ class DeliveryAuthController extends Controller
             $delivery -> loadData($request->getBody());
 
             if ($delivery->validate() && $delivery->registerDeliveryPartner()) {
-                header("Location: /delivery/dashboard");
+                header("Location: /delivery/login");
+            }
+            if ($_POST['password'] != $_POST['confirmPassword']) {
+                echo (new \app\core\ExceptionHandler)->passwordDoesNotMatch();
+                return $this->render('registrationPage/delivery_partner_register_page/deliregister.php');
             }
 
             return $this->render('registrationPage/delivery_partner_register_page/deliregister.php');

@@ -10,6 +10,7 @@
 @use "layout/flex";
 @use "layout/login";
 @use "layout/register";
+@use "layout/app";
 
 // components
 @use "components/footer";
@@ -19,6 +20,11 @@
 @use "components/navbar";
 @use "components/button";
 @use "components/dropdown";
+@use "components/table";
+@use "components/modal";
 @use "components/form/form-groups";
 @use "components/form/form-input";
 @use "components/form/form-check";
+
+// dashboards
+@use "layout/dashboard/lab";

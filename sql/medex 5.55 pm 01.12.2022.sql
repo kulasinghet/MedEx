@@ -366,8 +366,8 @@ CREATE TABLE IF NOT EXISTS `pharmacy` (
 INSERT INTO `pharmacy` (`id`, `username`, `password`, `name`, `ownerName`, `city`, `pharmacyRegNo`, `BusinessRegId`, `pharmacyCertId`, `BusinessRegCertName`, `pharmacyCertName`, `verified`, `deliveryTime`, `regDate`) VALUES
 ('87965', 'testPharmacy', '$2y$10$bMhqBw0qrsWcY/h7dr5PeOCghzSSclYrSARv25rd8KKn4X9ExQgMK', 'Test PharmacyName', 'Test OwnName', 'Galle', '123456', '123456', '1234546', 'TestBRN', 'TestCN', 0, '10:00:00', '2022-12-01'),
 ('P0001', 'evolve', 'evolve@123', 'Evolve Health', 'Adesh Perera', 'Moratuwa', '17128/A1', '25615', 'PC001', 'business01', 'pharmacy01', 1, '10:00:00', '0000-00-00'),
-('P0002', 'biopharm', 'bio_123', 'Bio Pharmacy', 'S Priyantha', 'Ampara', '12328/A1', '51390', 'PC002', 'business02', 'pharmacy02', 1, '09:00:00', '0000-00-00'),
-('P0003', 'lifecare', 'lifecare@222', 'Life Care Pharmacy', 'D P I Jayaruwan', 'Galle', '12628/B1', '73533', 'PC003', 'business03', 'pharmacy02', 1, '13:30:00', '0000-00-00');
+('P0002', 'biopharm', 'bio_123', 'Bio pharmacy', 'S Priyantha', 'Ampara', '12328/A1', '51390', 'PC002', 'business02', 'pharmacy02', 1, '09:00:00', '0000-00-00'),
+('P0003', 'lifecare', 'lifecare@222', 'Life Care pharmacy', 'D P I Jayaruwan', 'Galle', '12628/B1', '73533', 'PC003', 'business03', 'pharmacy02', 1, '13:30:00', '0000-00-00');
 
 -- --------------------------------------------------------
 

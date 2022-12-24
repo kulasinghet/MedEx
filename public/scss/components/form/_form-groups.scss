@@ -22,5 +22,8 @@
 }
 
 .button-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-bottom: $button-group-margin-bottom;
 }

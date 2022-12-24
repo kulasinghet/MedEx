@@ -6,10 +6,9 @@ use mysqli;
 
 class Database
 {
-//    public mysqli $db;
-    private $servername = "localhost";
-    private $username = "medex";
-//    private $password = "";
+
+    private $servername = "3.83.240.41";
+    private $username = "medex-remote";
     private $password = "Medex@2022";
     private $dbname = "medex";
     private mysqli $db;
@@ -22,7 +21,6 @@ class Database
             die("Connection failed: " . $conn->connect_error);
         } else {
             $this -> db = $conn;
-//            echo "Connected successfully";
         }
     }
 
@@ -30,11 +28,4 @@ class Database
     {
         return $this->db->prepare($sql);
     }
-
-    public function execute()
-    {
-
-        return $this->db->execute();
-    }
-
 }
