@@ -1,5 +1,6 @@
 @use "variables" as *;
 
+
 @mixin btn-colors($color-name) {
   // check if the color name is in the btn-colors map
   @if map-has-key($btn-bg-colors, $color-name) {

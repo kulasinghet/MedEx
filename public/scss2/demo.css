@@ -166,4 +166,39 @@ h6 {
   --g28-btn-box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.38);
 }
 
-/*# sourceMappingURL=main.css.map */
+form {
+  width: 500px;
+}
+
+.demo-container {
+  margin: 3rem 10%;
+}
+
+.btn-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1.2rem;
+}
+
+.carousel-container {
+  margin-top: 6rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+ul {
+  margin: 12px;
+  padding: 0;
+  list-style: none;
+  width: 100%;
+  max-width: 320px;
+}
+ul li {
+  margin: 16px 0;
+  position: relative;
+}
+
+/*# sourceMappingURL=demo.css.map */

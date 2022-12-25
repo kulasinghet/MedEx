@@ -1,5 +1,6 @@
 @use "../abstracts/variables" as *;
-@use "../abstracts/functions" as *;
+@use "../abstracts/mixins" as *;
+
 
 .btn{
   @include btn-colors("light");
@@ -42,6 +43,7 @@
     background: var(--#{$prefix}btn-bg-color-active);
     color: var(--#{$prefix}btn-color-active);
     transform: translateY(1px);
+    transition: $btn-transition-active;
   }
 
   @each $name, $value in $theme-colors {

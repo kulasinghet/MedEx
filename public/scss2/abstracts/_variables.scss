@@ -44,6 +44,10 @@ $theme-colors: (
 // ------------------- Configurations ------------------- //
 // prefix for CSS variables
 $prefix: g28- !default;
+
+$disabled-color: $white !default;
+$disabled-bg: #6c757d !default;
+$disabled-border: transparent 1px solid !default;
 // ------------------- Configurations ------------------- //
 
 
@@ -120,6 +124,7 @@ $btn-shadow-opacity: 0.38 !default;
 $btn-focus-box-shadow: 0 0 0 0.2rem rgba(30, 105, 254, 0.25) !default;
 $btn-active-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !default;
 $btn-transition: all .2s ease-in-out !default;
+$btn-transition-active: all .1s ease-out !default;
 $btn-color: $dark !default;
 $btn-gap: 0.5rem !default;
 
