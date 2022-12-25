@@ -3,10 +3,8 @@
 @use "navbar" as nav;
 
 
-$width: 260px !default;
 $bg: $white !default;
 $z-index: $max-z-index - 10 !default;
-$border: 1px solid rgba($gray-2, 0.6) !default;
 $box-shadow: 1px 0 3px rgba(0, 0, 0, 0.12) !default;
 
 $nav-z-index: $z-index + 5 !default;
@@ -18,10 +16,10 @@ $context-padding: nav.$cutoff 1rem 1rem 1rem !default;
   position: fixed;
   z-index: $z-index;
 
-  height: 100%;
-  width: $width;
+  height: 100vh;
+  width: $sidebar-width;
   background: $bg;
-  border-right: $border;
+  border-right: $fixed-border;
   box-shadow: $box-shadow;
 
   .sidebar-inner {
@@ -40,9 +38,11 @@ $context-padding: nav.$cutoff 1rem 1rem 1rem !default;
     .sidebar-header {
       --#{$prefix}nav-position: absolute;
       --#{$prefix}nav-z-index: #{$nav-z-index};
+      --#{$prefix}nav-width: 100%;
+      --#{$prefix}nav-bg: #{$light};
 
-      border-right: $border;
-      border-bottom: $border;
+      border-right: $fixed-border;
+      border-bottom: $fixed-border;
 
       .sidebar-logo {
         @include company-logo(160px);
@@ -93,4 +93,8 @@ $context-padding: nav.$cutoff 1rem 1rem 1rem !default;
       }
     }
   }
+}
+
+.sidebar-cutoff {
+  margin-left: $sidebar-width;
 }

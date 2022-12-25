@@ -106,3 +106,10 @@ $font-sizes: (
 $body-bg: $light !default;
 $body-color: $dark !default;
 // ------------------- Body ------------------- //
+
+// ------------------- Fixed Components ------------------- //
+$sidebar-width: 260px !default;
+$navbar-height: 4rem !default;
+
+$fixed-border: 1px solid rgba($gray-2, 0.6) !default;
+// ------------------- Fixed Components ------------------- //
