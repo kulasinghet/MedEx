@@ -1,33 +1,52 @@
 @use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+@use "navbar" as nav;
+
+
+$width: 260px !default;
+$bg: $white !default;
+$z-index: $max-z-index - 10 !default;
+$border: 1px solid rgba($gray-2, 0.6) !default;
+$box-shadow: 1px 0 3px rgba(0, 0, 0, 0.12) !default;
+
+$nav-z-index: $z-index + 5 !default;
+
+$context-padding: nav.$cutoff 1rem 1rem 1rem !default;
 
 
 .sidebar {
   position: fixed;
-  z-index: $sidebar-z-index;
+  z-index: $z-index;
 
   height: 100%;
-  width: $sidebar-width;
-  background: $sidebar-bg;
-  border-right: $sidebar-border;
-  box-shadow: $sidebar-box-shadow;
-
-  div {
-    height: inherit;
-    width: inherit;
-  }
+  width: $width;
+  background: $bg;
+  border-right: $border;
+  box-shadow: $box-shadow;
 
   .sidebar-inner {
     position: relative;
 
+    width: 100%;
+    height: 100%;
     overflow-y: auto;
     overflow-x: hidden;
 
-    nav {
-      --#{$prefix}nav-position: absolute;
-      --#{$prefix}nav-z-index: #{$sidebar-nav-z-index};
+    div {
+      height: inherit;
+      width: inherit;
+    }
 
-      border-right: $sidebar-border;
-      border-bottom: $sidebar-border;
+    .sidebar-header {
+      --#{$prefix}nav-position: absolute;
+      --#{$prefix}nav-z-index: #{$nav-z-index};
+
+      border-right: $border;
+      border-bottom: $border;
+
+      .sidebar-logo {
+        @include company-logo(160px);
+      }
     }
 
     .sidebar-context {
@@ -37,7 +56,7 @@
       align-items: stretch;
       justify-content: flex-end;
 
-      padding: $sidebar-context-padding;
+      padding: $context-padding;
 
       .sidebar-context-title {
         color: rgba(117, 119, 129, 0.49);

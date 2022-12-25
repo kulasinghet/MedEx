@@ -1,37 +1,16 @@
 @use "variables" as *;
 
 
-@mixin btn-colors($color-name) {
-  // check if the color name is in the btn-colors map
-  @if map-has-key($btn-bg-colors, $color-name) {
-    --#{$prefix}btn-bg: #{map-get($btn-bg-colors, $color-name)};
-  } @else {
-    --#{$prefix}btn-bg: #{map-get($theme-colors, $color-name)};
-  }
+@mixin company-logo($width) {
+  display: inline-block;
+  overflow: hidden;
+  padding: 5px;
+  width: $width;
+  height: auto;
+  flex: 0 0 auto;
 
-  --#{$prefix}btn-bg-color-hover: #{map-get($btn-bg-hover-colors, $color-name)};
-  --#{$prefix}btn-bg-color-active: #{map-get($btn-bg-active-colors, $color-name)};
-
-  // check if the color name is in the btn-text-color map
-  @if map-has-key($btn-text-colors, $color-name) {
-    --#{$prefix}btn-color: #{map-get($btn-text-colors, $color-name)};
-  } @else {
-    --#{$prefix}btn-color: #{$btn-text-color-default};
-  }
-
-  // check if the color name is in the btn-text-active-color map
-  @if map-has-key($btn-text-active-colors, $color-name) {
-    --#{$prefix}btn-color-active: #{map-get($btn-text-active-colors, $color-name)};
-  } @else {
-    --#{$prefix}btn-color-active: #{map-get($theme-colors, $color-name)};
-  }
-
-  // check if the color name is in the btn-shadow-colors map
-  @if map-has-key($btn-shadow-colors, $color-name) {
-    $target-color: #{rgba(map-get($btn-shadow-colors, $color-name), $btn-shadow-opacity)};
-    --#{$prefix}btn-box-shadow: #{$btn-shadow-vars} #{$target-color};
-  } @else {
-    $target-color: #{rgba(map-get($theme-colors, $color-name), $btn-shadow-opacity)};
-    --#{$prefix}btn-box-shadow: #{$btn-shadow-vars} #{$target-color};
+  img {
+    width: 100%;
+    vertical-align: center;
   }
 }

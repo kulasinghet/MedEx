@@ -100,98 +100,9 @@ $font-sizes: (
         5: $h5-font-size,
         6: $h6-font-size
 ) !default;
-
-$headings-font-family: 'Ubuntu', sans-serif !default;
-$headings-font-weight: $font-weight-medium !default;
-$headings-line-height: 1.2 !default;
-$headings-color: $black !default;
-$headings-margin-bottom: .5rem !default;
 // ------------------- Theme properties ------------------- //
 
 // ------------------- Body ------------------- //
 $body-bg: $light !default;
 $body-color: $dark !default;
 // ------------------- Body ------------------- //
-
-// ------------------- Buttons ------------------- //
-$btn-margin: .5rem !default;
-$btn-padding-y: .5rem !default;
-$btn-padding-x: 1rem !default;
-$btn-font-family: $font-family-base !default;
-$btn-font-size: $font-size-sm !default;
-$btn-font-weight: $font-weight-semibold !default;
-$btn-line-height: $line-height-base !default;
-$btn-border-radius: .3rem !default;
-$btn-border-width: 1px !default;
-$btn-shadow-vars: 1px 2px 3px !default;
-$btn-shadow-opacity: 0.38 !default;
-$btn-focus-box-shadow: 0 0 0 0.2rem rgba(30, 105, 254, 0.25) !default;
-$btn-active-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !default;
-$btn-transition: all .2s ease-in-out !default;
-$btn-transition-active: all .1s ease-out !default;
-$btn-color: $dark !default;
-$btn-gap: 0.8rem !default;
-
-// button customized colors (the default is $theme-colors)
-$btn-bg-colors: (
-        "light": $white,
-) !default;
-$btn-bg-hover-colors: (
-        "primary": lighten($primary, 10%),
-        "secondary": lighten($secondary, 10%),
-        "success": lighten($success, 10%),
-        "info": lighten($info, 10%),
-        "warning": lighten($warning, 10%),
-        "danger": lighten($danger, 10%),
-        "light": #efefef,
-        "dark": #44467a,
-) !default;
-$btn-bg-active-colors: (
-        "primary": darken($primary, 10%),
-        "secondary": darken($secondary, 10%),
-        "success": darken($success, 10%),
-        "info": darken($info, 10%),
-        "warning": darken($warning, 10%),
-        "danger": darken($danger, 10%),
-        "light": #9da7af,
-        "dark": #9595ad,
-) !default;
-
-$btn-text-colors: (
-        "light": $dark,
-) !default;
-$btn-text-active-colors: (
-        "primary": $light,
-        "secondary": $light,
-        "success": $light,
-        "info": $light,
-        "warning": $light,
-        "danger": $light,
-) !default;
-$btn-text-color-default: $light !default;
-
-$btn-shadow-colors: (
-        "light": $black,
-        "dark": $black,
-        "success": darken($success, 10%),
-) !default;
-// ------------------- Buttons ------------------- //
-
-// ------------------- Navbar ------------------- //
-$nav-z-index: $max-z-index - 20 !default;
-$nav-height: 4rem !default;
-$nav-margin-bottom: 1rem !default;
-$nav-cutoff: $nav-height + $nav-margin-bottom !default;
-// ------------------- Navbar ------------------- //
-
-// ------------------- Sidebar ------------------- //
-$sidebar-width: 260px !default;
-$sidebar-bg: $white !default;
-$sidebar-z-index: $max-z-index - 10 !default;
-$sidebar-border: 1px solid rgba($gray-2, 0.6) !default;
-$sidebar-box-shadow: 1px 0 3px rgba(0, 0, 0, 0.12) !default;
-
-$sidebar-nav-z-index: $sidebar-z-index + 5 !default;
-
-$sidebar-context-padding: $nav-cutoff 1rem 1rem 1rem !default;
-// ------------------- Sidebar ------------------- //

@@ -2,31 +2,131 @@
 @use "../abstracts/mixins" as *;
 
 
+$margin: .5rem !default;
+$padding-y: .5rem !default;
+$padding-x: 1rem !default;
+$font-family: $font-family-base !default;
+$font-size: $font-size-sm !default;
+$font-weight: $font-weight-semibold !default;
+$line-height: $line-height-base !default;
+$border-radius: .3rem !default;
+$border-width: 1px !default;
+$shadow-vars: 1px 2px 3px !default;
+$shadow-opacity: 0.38 !default;
+//$focus-box-shadow: 0 0 0 0.2rem rgba(30, 105, 254, 0.25) !default;
+$active-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !default;
+$transition: all .2s ease-in-out !default;
+$transition-active: all .1s ease-out !default;
+$color: $dark !default;
+$gap: 0.8rem !default;
+
+
+// button customized colors (the default is $theme-colors)
+$bg-colors: (
+        "light": $white,
+) !default;
+$bg-hover-colors: (
+        "primary": lighten($primary, 10%),
+        "secondary": lighten($secondary, 10%),
+        "success": lighten($success, 10%),
+        "info": lighten($info, 10%),
+        "warning": lighten($warning, 10%),
+        "danger": lighten($danger, 10%),
+        "light": #efefef,
+        "dark": #44467a,
+) !default;
+$bg-active-colors: (
+        "primary": darken($primary, 10%),
+        "secondary": darken($secondary, 10%),
+        "success": darken($success, 10%),
+        "info": darken($info, 10%),
+        "warning": darken($warning, 10%),
+        "danger": darken($danger, 10%),
+        "light": #9da7af,
+        "dark": #9595ad,
+) !default;
+
+$text-colors: (
+        "light": $dark,
+) !default;
+$text-active-colors: (
+        "primary": $light,
+        "secondary": $light,
+        "success": $light,
+        "info": $light,
+        "warning": $light,
+        "danger": $light,
+) !default;
+$text-color-default: $light !default;
+
+$shadow-colors: (
+        "light": $black,
+        "dark": $black,
+        "success": darken($success, 10%),
+) !default;
+
+
+@mixin btn-colors($color-name) {
+  // check if the color name is in the btn-colors map
+  @if map-has-key($bg-colors, $color-name) {
+    --#{$prefix}btn-bg: #{map-get($bg-colors, $color-name)};
+  } @else {
+    --#{$prefix}btn-bg: #{map-get($theme-colors, $color-name)};
+  }
+
+  --#{$prefix}btn-bg-color-hover: #{map-get($bg-hover-colors, $color-name)};
+  --#{$prefix}btn-bg-color-active: #{map-get($bg-active-colors, $color-name)};
+
+  // check if the color name is in the btn-text-color map
+  @if map-has-key($text-colors, $color-name) {
+    --#{$prefix}btn-color: #{map-get($text-colors, $color-name)};
+  } @else {
+    --#{$prefix}btn-color: #{$text-color-default};
+  }
+
+  // check if the color name is in the btn-text-active-color map
+  @if map-has-key($text-active-colors, $color-name) {
+    --#{$prefix}btn-color-active: #{map-get($text-active-colors, $color-name)};
+  } @else {
+    --#{$prefix}btn-color-active: #{map-get($theme-colors, $color-name)};
+  }
+
+  // check if the color name is in the btn-shadow-colors map
+  @if map-has-key($shadow-colors, $color-name) {
+    $target-color: #{rgba(map-get($shadow-colors, $color-name), $shadow-opacity)};
+    --#{$prefix}btn-box-shadow: #{$shadow-vars} #{$target-color};
+  } @else {
+    $target-color: #{rgba(map-get($theme-colors, $color-name), $shadow-opacity)};
+    --#{$prefix}btn-box-shadow: #{$shadow-vars} #{$target-color};
+  }
+}
+
+
 .btn{
   @include btn-colors("light");
 
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: $btn-gap;
+  gap: $gap;
 
-  margin: $btn-margin;
-  padding: $btn-padding-y $btn-padding-x;
-  border: transparent $btn-border-width solid;
-  border-radius: $btn-border-radius;
+  margin: $margin;
+  padding: $padding-y $padding-x;
+  border: transparent $border-width solid;
+  border-radius: $border-radius;
   background: var(--#{$prefix}btn-bg);
   box-shadow: var(--#{$prefix}btn-box-shadow);
 
-  font-family: $btn-font-family;
-  font-size: $btn-font-size;
-  font-weight: $btn-font-weight;
-  line-height: $btn-line-height;
+  font-family: $font-family;
+  font-size: $font-size;
+  font-weight: $font-weight;
+  line-height: $line-height;
   color: var(--#{$prefix}btn-color);
 
   cursor: pointer;
   user-select: none;
   text-decoration: none;
-  transition: $btn-transition;
+  transition: $transition;
 
   // resets all child elements
   * {
@@ -43,7 +143,7 @@
     background: var(--#{$prefix}btn-bg-color-active);
     color: var(--#{$prefix}btn-color-active);
     transform: translateY(1px);
-    transition: $btn-transition-active;
+    transition: $transition-active;
   }
 
   @each $name, $value in $theme-colors {

@@ -1,15 +1,27 @@
 @use "../abstracts/variables" as *;
 
 
+$z-index: $max-z-index - 20 !default;
+$height: 4rem !default;
+$margin-bottom: 1rem !default;
+$padding: 0 1rem !default;
+$cutoff: $height + $margin-bottom !default;
+
+
 nav {
   --#{$prefix}nav-position: fixed;
-  --#{$prefix}nav-z-index: #{$nav-z-index};
+  --#{$prefix}nav-z-index: #{$z-index};
 
   position: var(--#{$prefix}nav-position);
   z-index: var(--#{$prefix}nav-z-index);
 
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
   width: 100%;
-  height: $nav-height;
-  margin-bottom: $nav-margin-bottom;
+  height: $height;
+  padding: $padding;
+  margin-bottom: $margin-bottom;
   background: $light;
 }
