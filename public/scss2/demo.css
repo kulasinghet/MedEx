@@ -70,7 +70,7 @@ h6 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 0.8rem;
   margin: 0.5rem;
   padding: 0.5rem 1rem;
   border: transparent 1px solid;
@@ -166,6 +166,78 @@ h6 {
   --g28-btn-box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.38);
 }
 
+.sidebar {
+  position: fixed;
+  z-index: 90;
+  height: 100%;
+  width: 260px;
+  background: #ffffff;
+  border-right: 1px solid rgba(230, 235, 244, 0.6);
+  box-shadow: 1px 0 3px rgba(0, 0, 0, 0.12);
+}
+.sidebar div {
+  height: inherit;
+  width: inherit;
+}
+.sidebar .sidebar-inner {
+  position: relative;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.sidebar .sidebar-inner nav {
+  --g28-nav-position: absolute;
+  --g28-nav-z-index: 95;
+  border-right: 1px solid rgba(230, 235, 244, 0.6);
+  border-bottom: 1px solid rgba(230, 235, 244, 0.6);
+}
+.sidebar .sidebar-inner .sidebar-context {
+  position: inherit;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-end;
+  padding: 5rem 1rem 1rem 1rem;
+}
+.sidebar .sidebar-inner .sidebar-context .sidebar-context-title {
+  color: rgba(117, 119, 129, 0.49);
+  padding: 0 1rem;
+  margin: 1rem 0;
+}
+.sidebar .sidebar-inner .sidebar-context ul {
+  flex: 1 0 auto;
+  width: 100%;
+  padding: 0;
+  list-style: none;
+}
+.sidebar .sidebar-inner .sidebar-context ul li {
+  display: flex;
+  justify-content: stretch;
+  margin-bottom: 1rem;
+  width: inherit;
+}
+.sidebar .sidebar-inner .sidebar-context ul li .btn {
+  --g28-btn-bg: transparent;
+  --g28-btn-color: #071232;
+  --g28-btn-box-shadow: none;
+  justify-content: flex-start;
+  width: inherit;
+  margin: 0;
+}
+.sidebar .sidebar-inner .sidebar-context ul li .btn:hover {
+  --g28-btn-color: #f6f9ff;
+}
+
+nav {
+  --g28-nav-position: fixed;
+  --g28-nav-z-index: 80;
+  position: var(--g28-nav-position);
+  z-index: var(--g28-nav-z-index);
+  width: 100%;
+  height: 4rem;
+  margin-bottom: 1rem;
+  background: #f6f9ff;
+}
+
 form {
   width: 500px;
 }
@@ -187,18 +259,6 @@ form {
   width: 100%;
   display: flex;
   justify-content: center;
-}
-
-ul {
-  margin: 12px;
-  padding: 0;
-  list-style: none;
-  width: 100%;
-  max-width: 320px;
-}
-ul li {
-  margin: 16px 0;
-  position: relative;
 }
 
 /*# sourceMappingURL=demo.css.map */

@@ -1,1 +1,15 @@
 @use "../abstracts/variables" as *;
+
+
+nav {
+  --#{$prefix}nav-position: fixed;
+  --#{$prefix}nav-z-index: #{$nav-z-index};
+
+  position: var(--#{$prefix}nav-position);
+  z-index: var(--#{$prefix}nav-z-index);
+
+  width: 100%;
+  height: $nav-height;
+  margin-bottom: $nav-margin-bottom;
+  background: $light;
+}

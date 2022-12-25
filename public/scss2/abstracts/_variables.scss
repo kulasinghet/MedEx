@@ -45,13 +45,17 @@ $theme-colors: (
 // prefix for CSS variables
 $prefix: g28- !default;
 
-$disabled-color: $white !default;
-$disabled-bg: #6c757d !default;
-$disabled-border: transparent 1px solid !default;
+$max-z-index: 100 !default;
 // ------------------- Configurations ------------------- //
 
 
 // ------------------- Theme properties ------------------- //
+// styles for the disabled state
+$disabled-color: $white !default;
+$disabled-bg: #6c757d !default;
+$disabled-border: transparent 1px solid !default;
+
+// fonts
 @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Poppins:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=Ubuntu:wght@300;400;500;700&display=swap');
 $font-family-sans-serif: 'Poppins', sans-serif !default;
 $font-family-monospace: 'DM Mono', monospace !default;
@@ -126,7 +130,7 @@ $btn-active-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !default;
 $btn-transition: all .2s ease-in-out !default;
 $btn-transition-active: all .1s ease-out !default;
 $btn-color: $dark !default;
-$btn-gap: 0.5rem !default;
+$btn-gap: 0.8rem !default;
 
 // button customized colors (the default is $theme-colors)
 $btn-bg-colors: (
@@ -172,3 +176,22 @@ $btn-shadow-colors: (
         "success": darken($success, 10%),
 ) !default;
 // ------------------- Buttons ------------------- //
+
+// ------------------- Navbar ------------------- //
+$nav-z-index: $max-z-index - 20 !default;
+$nav-height: 4rem !default;
+$nav-margin-bottom: 1rem !default;
+$nav-cutoff: $nav-height + $nav-margin-bottom !default;
+// ------------------- Navbar ------------------- //
+
+// ------------------- Sidebar ------------------- //
+$sidebar-width: 260px !default;
+$sidebar-bg: $white !default;
+$sidebar-z-index: $max-z-index - 10 !default;
+$sidebar-border: 1px solid rgba($gray-2, 0.6) !default;
+$sidebar-box-shadow: 1px 0 3px rgba(0, 0, 0, 0.12) !default;
+
+$sidebar-nav-z-index: $sidebar-z-index + 5 !default;
+
+$sidebar-context-padding: $nav-cutoff 1rem 1rem 1rem !default;
+// ------------------- Sidebar ------------------- //

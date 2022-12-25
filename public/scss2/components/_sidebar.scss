@@ -1,1 +1,77 @@
 @use "../abstracts/variables" as *;
+
+
+.sidebar {
+  position: fixed;
+  z-index: $sidebar-z-index;
+
+  height: 100%;
+  width: $sidebar-width;
+  background: $sidebar-bg;
+  border-right: $sidebar-border;
+  box-shadow: $sidebar-box-shadow;
+
+  div {
+    height: inherit;
+    width: inherit;
+  }
+
+  .sidebar-inner {
+    position: relative;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    nav {
+      --#{$prefix}nav-position: absolute;
+      --#{$prefix}nav-z-index: #{$sidebar-nav-z-index};
+
+      border-right: $sidebar-border;
+      border-bottom: $sidebar-border;
+    }
+
+    .sidebar-context {
+      position: inherit;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: flex-end;
+
+      padding: $sidebar-context-padding;
+
+      .sidebar-context-title {
+        color: rgba(117, 119, 129, 0.49);
+        padding: 0 1rem;
+        margin: 1rem 0;
+      }
+
+      ul {
+        flex: 1 0 auto;
+        width: 100%;
+        padding: 0; // resets default style
+        list-style: none;
+
+        li {
+          display: flex;
+          justify-content: stretch;
+          margin-bottom: 1rem;
+          width: inherit;
+
+          .btn {
+            --#{$prefix}btn-bg: transparent;
+            --#{$prefix}btn-color: #{$dark};
+            --#{$prefix}btn-box-shadow: none;
+
+            justify-content: flex-start;
+            width: inherit;
+            margin: 0;
+
+            &:hover {
+              --#{$prefix}btn-color: #{$light};
+            }
+          }
+        }
+      }
+    }
+  }
+}
