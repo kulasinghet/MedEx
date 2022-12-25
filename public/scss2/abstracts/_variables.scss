@@ -1,10 +1,9 @@
 // Variables should follow the `$component-state-property-size` formula for consistent naming.
 
 // ------------------- Colors ------------------- //
-
 // main colors
-$white: #fff !default;
-$black: #000 !default;
+$white: #ffffff !default;
+$black: #000000 !default;
 $blue: #1e69fe !default;
 
 // gray colors
@@ -22,7 +21,7 @@ $grays: (
 // theme colors
 $primary: $blue !default;
 $secondary: #326164 !default;
-$success: rgba(142, 201, 45, 0.84) !default;
+$success: #8EC92DD6 !default;
 $info: #08a29e !default;
 $warning: #ffb200 !default;
 $danger: #ff3a29 !default;
@@ -40,12 +39,15 @@ $theme-colors: (
         "light": $light,
         "dark": $dark,
 ) !default;
-
 // ------------------- Colors ------------------- //
+
+// ------------------- Configurations ------------------- //
+// prefix for CSS variables
+$prefix: g28- !default;
+// ------------------- Configurations ------------------- //
 
 
 // ------------------- Theme properties ------------------- //
-
 @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Poppins:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=Ubuntu:wght@300;400;500;700&display=swap');
 $font-family-sans-serif: 'Poppins', sans-serif !default;
 $font-family-monospace: 'DM Mono', monospace !default;
@@ -96,9 +98,72 @@ $headings-font-weight: $font-weight-medium !default;
 $headings-line-height: 1.2 !default;
 $headings-color: $black !default;
 $headings-margin-bottom: .5rem !default;
-
 // ------------------- Theme properties ------------------- //
 
 // ------------------- Body ------------------- //
 $body-bg: $light !default;
 $body-color: $dark !default;
+// ------------------- Body ------------------- //
+
+// ------------------- Buttons ------------------- //
+$btn-margin: .5rem !default;
+$btn-padding-y: .5rem !default;
+$btn-padding-x: 1rem !default;
+$btn-font-family: $font-family-base !default;
+$btn-font-size: $font-size-sm !default;
+$btn-font-weight: $font-weight-semibold !default;
+$btn-line-height: $line-height-base !default;
+$btn-border-radius: .3rem !default;
+$btn-border-width: 1px !default;
+$btn-shadow-vars: 1px 2px 3px !default;
+$btn-shadow-opacity: 0.38 !default;
+$btn-focus-box-shadow: 0 0 0 0.2rem rgba(30, 105, 254, 0.25) !default;
+$btn-active-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !default;
+$btn-transition: all .2s ease-in-out !default;
+$btn-color: $dark !default;
+$btn-gap: 0.5rem !default;
+
+// button customized colors (the default is $theme-colors)
+$btn-bg-colors: (
+        "light": $white,
+) !default;
+$btn-bg-hover-colors: (
+        "primary": lighten($primary, 10%),
+        "secondary": lighten($secondary, 10%),
+        "success": lighten($success, 10%),
+        "info": lighten($info, 10%),
+        "warning": lighten($warning, 10%),
+        "danger": lighten($danger, 10%),
+        "light": #efefef,
+        "dark": #44467a,
+) !default;
+$btn-bg-active-colors: (
+        "primary": darken($primary, 10%),
+        "secondary": darken($secondary, 10%),
+        "success": darken($success, 10%),
+        "info": darken($info, 10%),
+        "warning": darken($warning, 10%),
+        "danger": darken($danger, 10%),
+        "light": #9da7af,
+        "dark": #9595ad,
+) !default;
+
+$btn-text-colors: (
+        "light": $dark,
+) !default;
+$btn-text-active-colors: (
+        "primary": $light,
+        "secondary": $light,
+        "success": $light,
+        "info": $light,
+        "warning": $light,
+        "danger": $light,
+) !default;
+$btn-text-color-default: $light !default;
+
+$btn-shadow-colors: (
+        "light": $black,
+        "dark": $black,
+        "success": darken($success, 10%),
+) !default;
+// ------------------- Buttons ------------------- //

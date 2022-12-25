@@ -1,0 +1,52 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/functions" as *;
+
+.btn{
+  @include btn-colors("light");
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $btn-gap;
+
+  margin: $btn-margin;
+  padding: $btn-padding-y $btn-padding-x;
+  border: transparent $btn-border-width solid;
+  border-radius: $btn-border-radius;
+  background: var(--#{$prefix}btn-bg);
+  box-shadow: var(--#{$prefix}btn-box-shadow);
+
+  font-family: $btn-font-family;
+  font-size: $btn-font-size;
+  font-weight: $btn-font-weight;
+  line-height: $btn-line-height;
+  color: var(--#{$prefix}btn-color);
+
+  cursor: pointer;
+  user-select: none;
+  text-decoration: none;
+  transition: $btn-transition;
+
+  // resets all child elements
+  * {
+    display: inline-block;
+    margin: 0;
+    flex: 0 0 auto;
+  }
+
+  &:hover {
+    background: var(--#{$prefix}btn-bg-color-hover);
+  }
+
+  &:active {
+    background: var(--#{$prefix}btn-bg-color-active);
+    color: var(--#{$prefix}btn-color-active);
+    transform: translateY(1px);
+  }
+
+  @each $name, $value in $theme-colors {
+    &--#{$name} {
+      @include btn-colors($name);
+    }
+  }
+}
