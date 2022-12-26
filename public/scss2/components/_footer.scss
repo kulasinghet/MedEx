@@ -2,12 +2,12 @@
 @use "../abstracts/mixins" as *;
 
 
-$gap: 1rem !default;
-$height: 142.5px !default;
+$height: 142.5px !default;  // not used because unable to get actual height
 $bg: rgba(64, 108, 115, 0.75) !default;
 $padding: 1rem 2rem !default;
 $font-size: 0.8rem !default;
 $font-color: $light !default;
+$cutoff: $height !default;
 
 $links-color: inherit !default;
 
@@ -16,11 +16,12 @@ $context-line-height: 1.3rem !default;
 
 
 footer {
+  position: absolute;
+  bottom: 0;
+
   display: block;
-  margin-top: $gap;
   background: $bg;
   width: 100%;
-  height: $height;
   padding: $padding;
   font-size: $font-size;
   color: $font-color;
@@ -96,4 +97,8 @@ footer {
       }
     }
   }
+}
+
+.footer-cutoff {
+  padding-bottom: $cutoff;
 }

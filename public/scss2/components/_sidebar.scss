@@ -1,15 +1,17 @@
 @use "../abstracts/variables" as *;
 @use "../abstracts/mixins" as *;
+@use "button" as btn;
 @use "navbar" as nav;
 
 
 $bg: $white !default;
 $z-index: $max-z-index - 10 !default;
 $box-shadow: 1px 0 3px rgba(0, 0, 0, 0.12) !default;
+$cutoff: $sidebar-width !default;
 
 $nav-z-index: $z-index + 5 !default;
 
-$context-padding: nav.$cutoff 1rem 1rem 1rem !default;
+$context-padding: calc(#{nav.$cutoff} + 1rem) 1rem 1rem 1rem !default;
 
 
 .sidebar {
@@ -40,9 +42,6 @@ $context-padding: nav.$cutoff 1rem 1rem 1rem !default;
       --#{$prefix}nav-z-index: #{$nav-z-index};
       --#{$prefix}nav-width: 100%;
       --#{$prefix}nav-bg: #{$light};
-
-      border-right: $fixed-border;
-      border-bottom: $fixed-border;
 
       .sidebar-logo {
         @include company-logo(160px);
@@ -77,8 +76,15 @@ $context-padding: nav.$cutoff 1rem 1rem 1rem !default;
           width: inherit;
 
           .btn {
+            // sidebar buttons are inspired by the primary button
+            $color-name: "primary";
+            $target-color: #{rgba(map-get($theme-colors, $color-name), btn.$shadow-opacity)};
+
             --#{$prefix}btn-bg: transparent;
+            --#{$prefix}btn-bg-hover: #{map-get($theme-colors, $color-name)};
+            --#{$prefix}btn-bg-active: #{map-get(btn.$bg-active-colors, $color-name)};
             --#{$prefix}btn-color: #{$dark};
+            --#{$prefix}btn-color-active: #{map-get(btn.$text-active-colors, $color-name)};
             --#{$prefix}btn-box-shadow: none;
 
             justify-content: flex-start;
@@ -87,6 +93,7 @@ $context-padding: nav.$cutoff 1rem 1rem 1rem !default;
 
             &:hover {
               --#{$prefix}btn-color: #{$light};
+              --#{$prefix}btn-box-shadow: #{btn.$shadow-vars} #{$target-color};
             }
           }
         }
@@ -96,5 +103,6 @@ $context-padding: nav.$cutoff 1rem 1rem 1rem !default;
 }
 
 .sidebar-cutoff {
-  margin-left: $sidebar-width;
+  margin-left: $cutoff !important;
+  width: calc(100% - #{$cutoff}) !important;
 }

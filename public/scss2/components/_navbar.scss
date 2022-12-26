@@ -3,10 +3,11 @@
 
 
 $z-index: $max-z-index - 20 !default;
-$width: calc(100vw - $sidebar-width) !default;
+$width: calc(100% - $sidebar-width) !default;
 $margin-bottom: 1rem !default;
 $padding: 0 1rem !default;
-$cutoff: $navbar-height + $margin-bottom !default;
+$cutoff: $navbar-height !default;
+$box-shadow: 1px 0 2px $gray-3 !default;
 
 
 nav {
@@ -29,6 +30,7 @@ nav {
   margin-bottom: $margin-bottom;
   background: var(--#{$prefix}nav-bg);
   border-bottom: $fixed-border;
+  box-shadow: $box-shadow;
 
   .sidebar-logo {
     @include company-logo(200px);
@@ -92,5 +94,5 @@ nav {
 }
 
 .navbar-cutoff {
-  padding-top: $cutoff;
+  padding-top: $cutoff !important;
 }

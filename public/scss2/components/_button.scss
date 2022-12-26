@@ -74,8 +74,8 @@ $shadow-colors: (
     --#{$prefix}btn-bg: #{map-get($theme-colors, $color-name)};
   }
 
-  --#{$prefix}btn-bg-color-hover: #{map-get($bg-hover-colors, $color-name)};
-  --#{$prefix}btn-bg-color-active: #{map-get($bg-active-colors, $color-name)};
+  --#{$prefix}btn-bg-hover: #{map-get($bg-hover-colors, $color-name)};
+  --#{$prefix}btn-bg-active: #{map-get($bg-active-colors, $color-name)};
 
   // check if the color name is in the btn-text-color map
   @if map-has-key($text-colors, $color-name) {
@@ -136,11 +136,11 @@ $shadow-colors: (
   }
 
   &:hover {
-    background: var(--#{$prefix}btn-bg-color-hover);
+    background: var(--#{$prefix}btn-bg-hover);
   }
 
   &:active {
-    background: var(--#{$prefix}btn-bg-color-active);
+    background: var(--#{$prefix}btn-bg-active);
     color: var(--#{$prefix}btn-color-active);
     transform: translateY(1px);
     transition: $transition-active;

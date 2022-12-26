@@ -1,44 +1,40 @@
 @use "../abstracts/variables" as *;
 
 
+$canvas-gap: 1rem !default;
+$article-margin: 0 auto !default;
+
+
 .container {
-  width: 100%;
-  margin-right: auto;
-  margin-left: auto;
+  margin: 0 auto;
+
+  &-fluid {
+    width: 100%;
+  height: 100%;
+  }
 }
 
 .canvas {
+  position: relative;
+
   width: 100%;
   height: 100%;
+  //overflow: hidden;
 
-  header {
-    height: 100vh;
-    background-image:
-            linear-gradient(to right bottom,
-                    rgba(76, 216, 255, 0.8),
-                    rgba(30, 108, 217, 0.8)),
-            url('https://images.pexels.com/photos/213399/pexels-photo-213399.jpeg');
-    color: $light;
-
-    background-size: cover;
-    background-position: top;
-    position: relative;
-
-    clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
-    margin-bottom: 2rem;
-  }
-
-  article {
-    //margin: $article-margin;
-
-    .article-body {
-      margin: 1rem 0;
-      padding: 1.5rem;
-      background: rgba(174, 238, 218, 0.8);
-      border: 1px solid $white;
-      border-radius: 0.3rem;
-    }
+  .canvas-inner {
+    width: 100%;
+    height: 100%;
+    padding: $canvas-gap;
   }
 }
 
+article {
+  width: 95%;
+  height: 100%;
+  margin: $article-margin;
 
+  padding: 1.5rem;
+  background: rgba(174, 238, 218, 0.8);
+  border: 1px solid $white;
+  border-radius: 0.3rem;
+}
