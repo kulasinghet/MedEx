@@ -1,0 +1,10 @@
+@use "../abstracts/variables" as *;
+
+
+.disabled {
+  pointer-events: none;
+  cursor: default;
+  color: $disabled-color !important;
+  background: $disabled-bg !important;
+  border: $disabled-border !important;
+}
