@@ -5,12 +5,13 @@
 @use "../base/helpers";
 
 // Layout & components
+@use "../layout/container";
+@use "../layout/grid";
 @use "../components/links";
 @use "../components/button";
 @use "../components/sidebar";
 @use "../components/navbar";
 @use "../components/footer";
-@use "../layout/container";
 
 
 form {
