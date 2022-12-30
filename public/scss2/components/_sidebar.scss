@@ -8,6 +8,7 @@ $bg: $white !default;
 $z-index: $max-z-index - 10 !default;
 $box-shadow: 1px 0 3px rgba(0, 0, 0, 0.12) !default;
 $cutoff: $sidebar-width !default;
+$border: 1px solid rgba($gray-2, 0.8) !default;
 
 $nav-z-index: $z-index + 5 !default;
 
@@ -21,7 +22,7 @@ $context-padding: calc(#{nav.$cutoff} + 1rem) 1rem 1rem 1rem !default;
   height: 100vh;
   width: $sidebar-width;
   background: $bg;
-  border-right: $fixed-border;
+  border-right: $border;
   box-shadow: $box-shadow;
 
   .sidebar-inner {
@@ -41,7 +42,7 @@ $context-padding: calc(#{nav.$cutoff} + 1rem) 1rem 1rem 1rem !default;
       --#{$prefix}nav-position: absolute;
       --#{$prefix}nav-z-index: #{$nav-z-index};
       --#{$prefix}nav-width: 100%;
-      --#{$prefix}nav-bg: #{$light};
+      --#{$prefix}nav-bg: #fbfbfb;
 
       .sidebar-logo {
         @include company-logo(160px);

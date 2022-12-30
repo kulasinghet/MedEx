@@ -120,3 +120,4 @@ $RECYCLE.BIN/
 .idea/*
 !.idea/.gitignore
 .idea/workspace.xml
+/vendor/

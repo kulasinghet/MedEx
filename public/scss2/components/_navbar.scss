@@ -5,9 +5,9 @@
 $z-index: $max-z-index - 20 !default;
 $width: calc(100% - $sidebar-width) !default;
 $margin-bottom: 1rem !default;
-$padding: 0 1rem !default;
+$padding: 0 2rem !default;
 $cutoff: $navbar-height !default;
-$box-shadow: 1px 0 2px $gray-3 !default;
+$box-shadow: 0 0 3px $gray-3 !default;
 
 
 nav {
@@ -29,27 +29,26 @@ nav {
   padding: $padding;
   margin-bottom: $margin-bottom;
   background: var(--#{$prefix}nav-bg);
-  border-bottom: $fixed-border;
   box-shadow: $box-shadow;
 
   .sidebar-logo {
     @include company-logo(200px);
   }
 
-  .navbar-inner {
+  .nav-inner {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    gap: 1rem;
+    gap: 2rem;
     height: 100%;
     width: 100%;
-    //padding-right: 20px;
 
     ul {
       display: flex;
       align-items: center;
-      gap: 1rem;
+      gap: 1.5rem;
       margin: 0;
+      padding: 0;
       list-style: none;
 
       li {
@@ -84,15 +83,99 @@ nav {
         }
       }
     }
+  }
+}
 
-    .navbar-account {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
+.nav-search {
+  --rad: 3rem;
+  --dur: .3s;
+  --color-dark: #{$dark};
+  --color-light: #ececf3;
+  --color-brand: #57bd84;
+  --font-fam: 'Lato', sans-serif;
+  --height: 2.5rem;
+  --btn-width: 3.5rem;
+  --bez: cubic-bezier(0, 0, 0.43, 1.49);
+
+  //width: 256px;
+
+  // Main styles
+  form {
+    position: relative;
+    width: 20rem;
+    background: var(--color-brand);
+    border-radius: var(--rad);
+
+    input, button {
+      height: var(--height);
+      font-family: var(--font-fam);
+      border: 0;
+      color: var(--color-dark);
+      font-size: 1.2rem;
+    }
+
+    input[type="search"] {
+      outline: 0; // <-- shold probably remove this for better accessibility, adding for demo aesthetics for now.
+      width: 100%;
+      background: var(--color-light);
+      padding: 0 1.6rem;
+      border-radius: var(--rad);
+      appearance: none; //for iOS input[type="search"] roundedness issue. border-radius alone doesn't work
+      transition: all var(--dur) var(--bez);
+      transition-property: width, border-radius;
+      z-index: 1;
+      position: relative;
+    }
+
+    button {
+      display: none; // prevent being able to tab to it
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: var(--btn-width);
+      font-weight: bold;
+      background: var(--color-brand);
+      border-radius: 0 var(--rad) var(--rad) 0;
+      cursor: pointer;
+    }
+
+    input:not(:placeholder-shown) {
+      border-radius: var(--rad) 0 0 var(--rad);
+      width: calc(100% - var(--btn-width));
+
+      + button {
+        display: block;
+      }
+    }
+
+    label {
+      position: absolute;
+      clip: rect(1px, 1px, 1px, 1px);
+      padding: 0;
+      border: 0;
+      height: 1px;
+      width: 1px;
+      overflow: hidden;
     }
   }
 }
 
-.navbar-cutoff {
+.nav-profile-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: $gray-3;
+  overflow: hidden;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+}
+
+.nav-cutoff {
   padding-top: $cutoff !important;
 }

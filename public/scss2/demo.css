@@ -182,11 +182,10 @@ nav {
   justify-content: space-between;
   width: var(--g28-nav-width);
   height: 4rem;
-  padding: 0 1rem;
+  padding: 0 2rem;
   margin-bottom: 1rem;
   background: var(--g28-nav-bg);
-  border-bottom: 1px solid rgba(230, 235, 244, 0.8);
-  box-shadow: 1px 0 2px #b5bccf;
+  box-shadow: 0 0 3px #b5bccf;
 }
 nav .sidebar-logo {
   display: inline-block;
@@ -200,48 +199,123 @@ nav .sidebar-logo img {
   width: 100%;
   vertical-align: center;
 }
-nav .navbar-inner {
+nav .nav-inner {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 1rem;
+  gap: 2rem;
   height: 100%;
   width: 100%;
 }
-nav .navbar-inner ul {
+nav .nav-inner ul {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1.5rem;
   margin: 0;
+  padding: 0;
   list-style: none;
 }
-nav .navbar-inner ul li {
+nav .nav-inner ul li {
   user-select: none;
   font-style: normal;
   font-weight: 700;
   font-size: 16px;
   line-height: 20px;
 }
-nav .navbar-inner ul li a {
+nav .nav-inner ul li a {
   color: #071232;
   cursor: default;
 }
-nav .navbar-inner ul li a:link, nav .navbar-inner ul li a:visited {
+nav .nav-inner ul li a:link, nav .nav-inner ul li a:visited {
   cursor: pointer;
 }
-nav .navbar-inner ul li a:hover:not(.disabled) {
+nav .nav-inner ul li a:hover:not(.disabled) {
   cursor: pointer;
 }
-nav .navbar-inner ul li a:active:not(.disabled) {
+nav .nav-inner ul li a:active:not(.disabled) {
   cursor: pointer;
-}
-nav .navbar-inner .navbar-account {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
 }
 
-.navbar-cutoff {
+.nav-search {
+  --rad: 3rem;
+  --dur: .3s;
+  --color-dark: #071232;
+  --color-light: #ececf3;
+  --color-brand: #57bd84;
+  --font-fam: "Lato", sans-serif;
+  --height: 2.5rem;
+  --btn-width: 3.5rem;
+  --bez: cubic-bezier(0, 0, 0.43, 1.49);
+}
+.nav-search form {
+  position: relative;
+  width: 20rem;
+  background: var(--color-brand);
+  border-radius: var(--rad);
+}
+.nav-search form input, .nav-search form button {
+  height: var(--height);
+  font-family: var(--font-fam);
+  border: 0;
+  color: var(--color-dark);
+  font-size: 1.2rem;
+}
+.nav-search form input[type=search] {
+  outline: 0;
+  width: 100%;
+  background: var(--color-light);
+  padding: 0 1.6rem;
+  border-radius: var(--rad);
+  appearance: none;
+  transition: all var(--dur) var(--bez);
+  transition-property: width, border-radius;
+  z-index: 1;
+  position: relative;
+}
+.nav-search form button {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: var(--btn-width);
+  font-weight: bold;
+  background: var(--color-brand);
+  border-radius: 0 var(--rad) var(--rad) 0;
+  cursor: pointer;
+}
+.nav-search form input:not(:placeholder-shown) {
+  border-radius: var(--rad) 0 0 var(--rad);
+  width: calc(100% - var(--btn-width));
+}
+.nav-search form input:not(:placeholder-shown) + button {
+  display: block;
+}
+.nav-search form label {
+  position: absolute;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 0;
+  border: 0;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+}
+
+.nav-profile-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #b5bccf;
+  overflow: hidden;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+}
+.nav-profile-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.nav-cutoff {
   padding-top: 4rem !important;
 }
 
@@ -269,7 +343,7 @@ nav .navbar-inner .navbar-account {
   --g28-nav-position: absolute;
   --g28-nav-z-index: 95;
   --g28-nav-width: 100%;
-  --g28-nav-bg: #f6f9ff;
+  --g28-nav-bg: #fbfbfb;
 }
 .sidebar .sidebar-inner .sidebar-header .sidebar-logo {
   display: inline-block;
