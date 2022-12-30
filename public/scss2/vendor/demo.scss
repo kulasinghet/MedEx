@@ -1,15 +1,16 @@
 // import main styles
 // base styles
-@use "base/normalize";
-@use "base/typography";
-@use "base/helpers";
+@use "../base/normalize";
+@use "../base/typography";
+@use "../base/helpers";
 
 // Layout & components
-@use "components/button";
-@use "components/sidebar";
-@use "components/navbar";
-@use "components/footer";
-@use "layout/container";
+@use "../components/links";
+@use "../components/button";
+@use "../components/sidebar";
+@use "../components/navbar";
+@use "../components/footer";
+@use "../layout/container";
 
 
 form {

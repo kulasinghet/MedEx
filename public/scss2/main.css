@@ -63,13 +63,41 @@ h6 {
   border: transparent 1px solid !important;
 }
 
+a:not(.btn) {
+  --g28-a-decoration: none;
+  --g28-a-color: #071232;
+  --g28-i-color: #b5bccf;
+  color: var(--g28-a-color);
+  text-decoration: var(--g28-a-decoration);
+  cursor: pointer;
+}
+a:not(.btn) i {
+  color: var(--g28-i-color);
+}
+a:not(.btn):not(.disabled):link, a:not(.btn):not(.disabled):visited {
+  --g28-a-color: #1e69fe;
+  --g28-a-decoration: none;
+}
+a:not(.btn):not(.disabled):hover {
+  --g28-a-color: #84adfe;
+  --g28-a-decoration: underline;
+  --g28-i-color: rgba(181, 188, 207, 0.8);
+}
+a:not(.btn):not(.disabled):active {
+  --g28-a-color: #013db5;
+  --g28-i-color: #071232;
+}
+
 .btn {
   --g28-btn-bg: #ffffff;
   --g28-btn-bg-hover: #efefef;
   --g28-btn-bg-active: #9da7af;
+  --g28-btn-i-color: rgba(7, 18, 50, 0.6);
   --g28-btn-color: #071232;
   --g28-btn-color-active: #f6f9ff;
+  --g28-btn-i-color-active: #f6f9ff;
   --g28-btn-box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.38);
+  --g28-btn-box-shadow-active: 0 0 3px rgba(0, 0, 0, 0.38);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -85,9 +113,9 @@ h6 {
   font-weight: 600;
   line-height: 1.5;
   color: var(--g28-btn-color);
+  text-decoration: none;
   cursor: pointer;
   user-select: none;
-  text-decoration: none;
   transition: all 0.2s ease-in-out;
 }
 .btn * {
@@ -95,78 +123,109 @@ h6 {
   margin: 0;
   flex: 0 0 auto;
 }
+.btn i {
+  color: var(--g28-btn-i-color);
+}
 .btn:hover {
   background: var(--g28-btn-bg-hover);
 }
 .btn:active {
   background: var(--g28-btn-bg-active);
   color: var(--g28-btn-color-active);
+  box-shadow: var(--g28-btn-box-shadow-active);
   transform: translateY(1px);
   transition: all 0.1s ease-out;
+}
+.btn:active i {
+  color: var(--g28-btn-i-color-active);
 }
 .btn--primary {
   --g28-btn-bg: #1e69fe;
   --g28-btn-bg-hover: #518bfe;
   --g28-btn-bg-active: #014ee8;
+  --g28-btn-i-color: rgba(255, 255, 255, 0.6);
   --g28-btn-color: #f6f9ff;
   --g28-btn-color-active: #f6f9ff;
+  --g28-btn-i-color-active: #f6f9ff;
   --g28-btn-box-shadow: 1px 2px 3px rgba(30, 105, 254, 0.38);
+  --g28-btn-box-shadow-active: 0 0 3px rgba(30, 105, 254, 0.38);
 }
 .btn--secondary {
   --g28-btn-bg: #326164;
   --g28-btn-bg-hover: #438286;
   --g28-btn-bg-active: #214042;
+  --g28-btn-i-color: rgba(255, 255, 255, 0.6);
   --g28-btn-color: #f6f9ff;
   --g28-btn-color-active: #f6f9ff;
+  --g28-btn-i-color-active: #f6f9ff;
   --g28-btn-box-shadow: 1px 2px 3px rgba(50, 97, 100, 0.38);
+  --g28-btn-box-shadow-active: 0 0 3px rgba(50, 97, 100, 0.38);
 }
 .btn--success {
   --g28-btn-bg: rgba(142, 201, 45, 0.8392156863);
   --g28-btn-bg-hover: rgba(165, 216, 81, 0.8392156863);
   --g28-btn-bg-active: rgba(113, 159, 36, 0.8392156863);
+  --g28-btn-i-color: rgba(255, 255, 255, 0.6);
   --g28-btn-color: #f6f9ff;
   --g28-btn-color-active: #f6f9ff;
+  --g28-btn-i-color-active: #f6f9ff;
   --g28-btn-box-shadow: 1px 2px 3px rgba(113, 159, 36, 0.38);
+  --g28-btn-box-shadow-active: 0 0 3px rgba(113, 159, 36, 0.38);
 }
 .btn--info {
   --g28-btn-bg: #08a29e;
   --g28-btn-bg-hover: #0ad3cd;
   --g28-btn-bg-active: #06716f;
+  --g28-btn-i-color: rgba(255, 255, 255, 0.6);
   --g28-btn-color: #f6f9ff;
   --g28-btn-color-active: #f6f9ff;
+  --g28-btn-i-color-active: #f6f9ff;
   --g28-btn-box-shadow: 1px 2px 3px rgba(8, 162, 158, 0.38);
+  --g28-btn-box-shadow-active: 0 0 3px rgba(8, 162, 158, 0.38);
 }
 .btn--warning {
   --g28-btn-bg: #ffb200;
   --g28-btn-bg-hover: #ffc133;
   --g28-btn-bg-active: #cc8e00;
+  --g28-btn-i-color: rgba(255, 255, 255, 0.6);
   --g28-btn-color: #f6f9ff;
   --g28-btn-color-active: #f6f9ff;
+  --g28-btn-i-color-active: #f6f9ff;
   --g28-btn-box-shadow: 1px 2px 3px rgba(255, 178, 0, 0.38);
+  --g28-btn-box-shadow-active: 0 0 3px rgba(255, 178, 0, 0.38);
 }
 .btn--danger {
   --g28-btn-bg: #ff3a29;
   --g28-btn-bg-hover: #ff695c;
   --g28-btn-bg-active: #f51300;
+  --g28-btn-i-color: rgba(255, 255, 255, 0.6);
   --g28-btn-color: #f6f9ff;
   --g28-btn-color-active: #f6f9ff;
+  --g28-btn-i-color-active: #f6f9ff;
   --g28-btn-box-shadow: 1px 2px 3px rgba(255, 58, 41, 0.38);
+  --g28-btn-box-shadow-active: 0 0 3px rgba(255, 58, 41, 0.38);
 }
 .btn--light {
   --g28-btn-bg: #ffffff;
   --g28-btn-bg-hover: #efefef;
   --g28-btn-bg-active: #9da7af;
+  --g28-btn-i-color: rgba(7, 18, 50, 0.6);
   --g28-btn-color: #071232;
   --g28-btn-color-active: #f6f9ff;
+  --g28-btn-i-color-active: #f6f9ff;
   --g28-btn-box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.38);
+  --g28-btn-box-shadow-active: 0 0 3px rgba(0, 0, 0, 0.38);
 }
 .btn--dark {
   --g28-btn-bg: #071232;
   --g28-btn-bg-hover: #44467a;
   --g28-btn-bg-active: #9595ad;
+  --g28-btn-i-color: rgba(255, 255, 255, 0.6);
   --g28-btn-color: #f6f9ff;
   --g28-btn-color-active: #071232;
+  --g28-btn-i-color-active: #071232;
   --g28-btn-box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.38);
+  --g28-btn-box-shadow-active: 0 0 3px rgba(0, 0, 0, 0.38);
 }
 
 nav {
@@ -258,7 +317,7 @@ nav .nav-inner ul li a:active:not(.disabled) {
   font-family: var(--font-fam);
   border: 0;
   color: var(--color-dark);
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 .nav-search form input[type=search] {
   outline: 0;
@@ -325,8 +384,8 @@ nav .nav-inner ul li a:active:not(.disabled) {
   height: 100vh;
   width: 250px;
   background: #ffffff;
-  border-right: 1px solid rgba(230, 235, 244, 0.8);
-  box-shadow: 1px 0 3px rgba(0, 0, 0, 0.12);
+  border-right: 1px solid rgba(230, 235, 244, 0.4);
+  box-shadow: 1px 0 3px rgba(0, 0, 0, 0.15);
 }
 .sidebar .sidebar-inner {
   position: relative;
@@ -389,6 +448,7 @@ nav .nav-inner ul li a:active:not(.disabled) {
   --g28-btn-color: #071232;
   --g28-btn-color-active: #f6f9ff;
   --g28-btn-box-shadow: none;
+  --g28-btn-i-color: #b5bccf;
   justify-content: flex-start;
   width: inherit;
   margin: 0;
@@ -396,6 +456,7 @@ nav .nav-inner ul li a:active:not(.disabled) {
 .sidebar .sidebar-inner .sidebar-context ul li .btn:hover {
   --g28-btn-color: #f6f9ff;
   --g28-btn-box-shadow: 1px 2px 3px rgba(30, 105, 254, 0.38);
+  --g28-btn-i-color: rgba(255, 255, 255, 0.6);
 }
 
 .sidebar-cutoff {

@@ -6,9 +6,9 @@
 
 $bg: $white !default;
 $z-index: $max-z-index - 10 !default;
-$box-shadow: 1px 0 3px rgba(0, 0, 0, 0.12) !default;
+$box-shadow: 1px 0 3px rgba(0, 0, 0, 0.15) !default;
 $cutoff: $sidebar-width !default;
-$border: 1px solid rgba($gray-2, 0.8) !default;
+$border: 1px solid rgba($gray-2, 0.4) !default;
 
 $nav-z-index: $z-index + 5 !default;
 
@@ -87,6 +87,7 @@ $context-padding: calc(#{nav.$cutoff} + 1rem) 1rem 1rem 1rem !default;
             --#{$prefix}btn-color: #{$dark};
             --#{$prefix}btn-color-active: #{map-get(btn.$text-active-colors, $color-name)};
             --#{$prefix}btn-box-shadow: none;
+            --#{$prefix}btn-i-color: #{$gray-3};
 
             justify-content: flex-start;
             width: inherit;
@@ -95,6 +96,7 @@ $context-padding: calc(#{nav.$cutoff} + 1rem) 1rem 1rem 1rem !default;
             &:hover {
               --#{$prefix}btn-color: #{$light};
               --#{$prefix}btn-box-shadow: #{btn.$shadow-vars} #{$target-color};
+              --#{$prefix}btn-i-color: #{btn.$i-color-default};
             }
           }
         }
