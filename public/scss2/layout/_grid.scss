@@ -35,6 +35,11 @@ $grid-gutter-height: 1.5rem !default;
         flex: 1 0 0;
       }
 
+      .col#{$infix}-auto {
+        flex: 0 0 auto;
+        width: auto;
+      }
+
       @if($columns > 0) {
         @for $i from 1 through $columns {
           .col#{$infix}-#{$i} {
@@ -46,16 +51,21 @@ $grid-gutter-height: 1.5rem !default;
   }
 }
 
+
 .row {
   display: flex;
   flex-wrap: wrap;
-  margin: 0 calc(var(--#{$prefix}gap) * -1);
+  margin: 0 calc(var(--#{$prefix}gap) * -.5);
 
   > * {
-    @include make-grid-columns();
+    flex: 1 0 0;
+    width: 100%;
+    max-width: 100%;
+    padding: 0 calc(var(--#{$prefix}gap) * .5);
   }
 }
 
+// The grid system is incomplete
 .grid {
   display: grid;
   grid-template-rows: repeat(var(--#{$prefix}rows, 1), 1fr);
@@ -64,3 +74,6 @@ $grid-gutter-height: 1.5rem !default;
 
   @include make-grid();
 }
+
+// generating the grid columns
+@include make-grid-columns();
