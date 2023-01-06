@@ -1,3 +1,79 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/breakpoints" as *;
+
+
+$grid-columns: 12 !default;
+$grid-gutter-width: 1.5rem !default;
+$grid-gutter-height: 1.5rem !default;
+
+@mixin make-grid($columns: $grid-columns, $breakpoints: $grid-breakpoints) {
+  @each $breakpoint in map-keys($breakpoints) {
+    @include media-breakpoint-up($breakpoint, $breakpoints) {
+      @if($columns > 0) {
+        @for $i from 1 through $columns {
+          .g-col-#{$i} {
+            grid-column: auto / span $i;
+          }
+        }
+
+        @for $i from 1 through $columns {
+          .g-start-#{$i} {
+            grid-column-start: $i;
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin make-grid-columns($columns: $grid-columns, $breakpoints: $grid-breakpoints) {
+  @each $breakpoint in map-keys($breakpoints) {
+    $infix: get-breakpoint-infix($breakpoint, $breakpoints);
+
+    @include media-breakpoint-up($breakpoint, $breakpoints) {
+      .col#{$infix} {
+        flex: 1 0 0;
+      }
+
+      .col#{$infix}-auto {
+        flex: 0 0 auto;
+        width: auto;
+      }
+
+      @if($columns > 0) {
+        @for $i from 1 through $columns {
+          .col#{$infix}-#{$i} {
+            flex: 0 0 calc(100% / #{$columns} * #{$i});
+          }
+        }
+      }
+    }
+  }
+}
+
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 calc(var(--#{$prefix}gap) * -.5);
+
+  > * {
+    flex: 1 0 0;
+    width: 100%;
+    max-width: 100%;
+    padding: 0 calc(var(--#{$prefix}gap) * .5);
+  }
+}
+
+// The grid system is incomplete
 .grid {
   display: grid;
+  grid-template-rows: repeat(var(--#{$prefix}rows, 1), 1fr);
+  grid-template-columns: repeat(var(--#{$prefix}columns, #{$grid-columns}), 1fr);
+  grid-gap: var(--#{$prefix}gap, #{$grid-gutter-width})  var(--#{$prefix}gap, #{$grid-gutter-height});
+
+  @include make-grid();
 }
+
+// generating the grid columns
+@include make-grid-columns();
