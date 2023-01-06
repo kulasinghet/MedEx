@@ -1,0 +1,7 @@
+@use "../abstracts/variables" as *;
+
+:root {
+  --#{$prefix}gap: #{$gap};
+  --#{$prefix}rows: 1;
+  --#{$prefix}columns: 12;
+}

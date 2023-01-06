@@ -110,4 +110,16 @@ $body-color: $dark !default;
 // ------------------- Fixed Components ------------------- //
 $sidebar-width: 250px !default;
 $navbar-height: 4rem !default;
+$gap: 1rem !default;
 // ------------------- Fixed Components ------------------- //
+
+// ------------------- Grid System ------------------- //
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px
+) !default;
+// ------------------- Grid System ------------------- //

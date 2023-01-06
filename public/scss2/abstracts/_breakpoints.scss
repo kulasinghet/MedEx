@@ -1,0 +1,25 @@
+@use "variables" as *;
+
+
+// returns the min width of the breakpoint. null, if the breakpoint is the smallest
+@function get-breakpoint-min($breakpoint, $breakpoints: $grid-breakpoints) {
+  $min: map-get($breakpoints, $breakpoint);
+  @return if($min != 0, $min, null);
+}
+
+// Returns a blank string if smallest breakpoint, otherwise returns the name
+@function get-breakpoint-infix($breakpoint, $breakpoints: $grid-breakpoints) {
+  @return if(get-breakpoint-min($breakpoint, $breakpoints) == null, "", "-#{$breakpoint}");
+}
+
+// creates media queries for the given breakpoints, excluding the smallest breakpoint
+@mixin media-breakpoint-up($breakpoint, $breakpoints: $grid-breakpoints) {
+  $min: get-breakpoint-min($breakpoint, $breakpoints);
+  @if $min {
+    @media (min-width: $min) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}

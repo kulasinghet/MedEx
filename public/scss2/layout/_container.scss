@@ -1,7 +1,6 @@
 @use "../abstracts/variables" as *;
 
 
-$canvas-gap: 1rem !default;
 $article-margin: 0 auto !default;
 
 
@@ -24,7 +23,7 @@ $article-margin: 0 auto !default;
   .canvas-inner {
     width: 100%;
     height: 100%;
-    padding: $canvas-gap;
+    padding: var(--#{$prefix}gap, 1rem);
   }
 }
 
