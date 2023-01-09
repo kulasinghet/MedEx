@@ -1,0 +1,25 @@
+@use "../abstracts/variables" as *;
+
+
+$headings-font-family: 'Ubuntu', sans-serif !default;
+$headings-font-weight: $font-weight-medium !default;
+$headings-line-height: 1.2 !default;
+$headings-color: $black !default;
+$headings-margin-bottom: .5rem !default;
+
+
+%heading {
+  font-family: $headings-font-family;
+  font-weight: $headings-font-weight;
+  line-height: $headings-line-height;
+  color: $headings-color;
+
+  margin-bottom: $headings-margin-bottom;
+}
+
+@each $type, $value in $font-sizes {
+  h#{$type} {
+    font-size: $value;
+    @extend %heading;
+  }
+}
