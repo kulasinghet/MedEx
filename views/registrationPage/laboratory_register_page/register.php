@@ -79,7 +79,7 @@
                 </div>
 
                 <div class="button-group">
-                    <button class="btn btn-primary block" id="loginButton" type="submit" value="Login">Register</button>
+                    <button class="btn btn-primary" id="loginButton" type="submit" value="Login">Register</button>
                 </div>
                 <div class="form-group">
                     <p>Do you have an account? <a href="/lab/login">Login</a></p>

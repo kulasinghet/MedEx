@@ -1,0 +1,39 @@
+// import main styles
+// base styles
+@use "../base/root";
+@use "../base/normalize";
+@use "../base/typography";
+@use "../base/helpers";
+
+// Layout & components
+@use "../layout/container";
+@use "../layout/grid";
+@use "../components/links";
+@use "../components/button";
+@use "../components/sidebar";
+@use "../components/navbar";
+@use "../components/footer";
+
+
+form {
+  width: 500px;
+}
+
+.demo-container {
+  margin: 3rem 10%;
+}
+
+.btn-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1.2rem;
+}
+
+.carousel-container {
+  margin-top: 6rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}

@@ -1,0 +1,46 @@
+@use "../abstracts/variables" as *;
+
+
+$shade-percent: 20% !default;
+$color: $primary !default;
+$color-hover: lighten($color, $shade-percent) !default;
+$color-active: darken($color, $shade-percent) !default;
+$decoration: none !default;
+$decoration-hover: underline !default;
+
+$i-color: $gray-3 !default;
+$i-color-hover: rgba($gray-3, 0.8) !default;
+$i-color-active: $dark !default;
+
+
+a:not(.btn) {
+  --#{$prefix}a-decoration: #{$decoration};
+  --#{$prefix}a-color: #{$dark};
+  --#{$prefix}i-color: #{$i-color};
+
+  color: var(--#{$prefix}a-color);
+  text-decoration: var(--#{$prefix}a-decoration);
+  cursor: pointer;
+
+  i {
+    color: var(--#{$prefix}i-color);
+  }
+
+  &:not(.disabled) {
+    &:link, &:visited {
+      --#{$prefix}a-color: #{$color};
+      --#{$prefix}a-decoration: #{$decoration};
+    }
+
+    &:hover {
+      --#{$prefix}a-color: #{$color-hover};
+      --#{$prefix}a-decoration: #{$decoration-hover};
+      --#{$prefix}i-color: #{$i-color-hover};
+    }
+
+    &:active {
+      --#{$prefix}a-color: #{$color-active};
+      --#{$prefix}i-color: #{$i-color-active};
+    }
+  }
+}
