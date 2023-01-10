@@ -71,51 +71,27 @@ $shadow-colors: (
         "success": darken($success, 10%),
 ) !default;
 
-
 @mixin btn-colors($color-name) {
   // check if the color name is in the btn-colors map
-  @if map-has-key($bg-colors, $color-name) {
-    --#{$prefix}btn-bg: #{map-get($bg-colors, $color-name)};
-  } @else {
-    --#{$prefix}btn-bg: #{map-get($theme-colors, $color-name)};
-  }
+  --#{$prefix}btn-bg: #{pick-value($color-name, $bg-colors, $theme-colors)};
 
   --#{$prefix}btn-bg-hover: #{map-get($bg-hover-colors, $color-name)};
   --#{$prefix}btn-bg-active: #{map-get($bg-active-colors, $color-name)};
 
   // check if the color name is in the i-colors map
-  @if map-has-key($i-colors, $color-name) {
-    --#{$prefix}btn-i-color: #{map-get($i-colors, $color-name)};
-  } @else {
-    --#{$prefix}btn-i-color: #{$i-color-default};
-  }
+  --#{$prefix}btn-i-color: #{pick-value($color-name, $i-colors, null, $i-color-default)};
 
   // check if the color name is in the btn-text-color map
-  @if map-has-key($text-colors, $color-name) {
-    --#{$prefix}btn-color: #{map-get($text-colors, $color-name)};
-  } @else {
-    --#{$prefix}btn-color: #{$text-color-default};
-  }
+  --#{$prefix}btn-color: #{pick-value($color-name, $text-colors, null, $text-color-default)};
 
   // check if the color name is in the btn-text-active-color map
-  @if map-has-key($text-active-colors, $color-name) {
-    --#{$prefix}btn-color-active: #{map-get($text-active-colors, $color-name)};
-    --#{$prefix}btn-i-color-active: #{map-get($text-active-colors, $color-name)};
-  } @else {
-    --#{$prefix}btn-color-active: #{map-get($theme-colors, $color-name)};
-    --#{$prefix}btn-i-color-active: #{map-get($theme-colors, $color-name)};
-  }
+  --#{$prefix}btn-color-active: #{pick-value($color-name, $text-active-colors, $theme-colors)};
+  --#{$prefix}btn-i-color-active: #{pick-value($color-name, $text-active-colors, $theme-colors)};
 
   // check if the color name is in the btn-shadow-colors map
-  @if map-has-key($shadow-colors, $color-name) {
-    $target-color: #{rgba(map-get($shadow-colors, $color-name), $shadow-opacity)};
-    --#{$prefix}btn-box-shadow: #{$shadow-vars} #{$target-color};
-    --#{$prefix}btn-box-shadow-active: #{$shadow-vars-active} #{$target-color};
-  } @else {
-    $target-color: #{rgba(map-get($theme-colors, $color-name), $shadow-opacity)};
-    --#{$prefix}btn-box-shadow: #{$shadow-vars} #{$target-color};
-    --#{$prefix}btn-box-shadow-active: #{$shadow-vars-active} #{$target-color};
-  }
+  $target-color: #{rgba(pick-value($color-name, $shadow-colors, $theme-colors), $shadow-opacity)};
+  --#{$prefix}btn-box-shadow: #{$shadow-vars} #{$target-color};
+  --#{$prefix}btn-box-shadow-active: #{$shadow-vars-active} #{$target-color};
 }
 
 
