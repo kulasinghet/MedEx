@@ -1,5 +1,4 @@
-window.onload = () => {
-  // Initializing grid system
+function initGrid() {
   document.querySelectorAll(".grid").forEach(grid => {
     let max_row = 1;
 
@@ -10,8 +9,7 @@ window.onload = () => {
           // https://www.regular-expressions.info/lookaround.html
           let row = Number(cls.match(/(?<=g-row-)[0-9]+/i));
           let span = Number(cls.match(/(?<!g-row-)[0-9]+/i));
-          // for debugging
-          console.log("row: " + row + " span: " + span);
+          // console.log("row: " + row + " span: " + span); // for debugging
 
           // calculating the max value of the row that used in the grid
           let value = row + ((span !== 0)? span - 1 : 0);
@@ -25,8 +23,9 @@ window.onload = () => {
     // setting template grid rows of the grid
     grid.style.gridTemplateRows = `repeat(${max_row}, 1fr)`;
   });
+}
 
-  // Initializing dropdowns
+function initDropDown() {
   document.querySelectorAll(".dropdown").forEach(dropdown => {
     const btn = dropdown.querySelector(".btn");
     const dropdownList = dropdown.querySelector(".dropdown-list");
@@ -57,4 +56,10 @@ window.onload = () => {
       }
     }
   });
+}
+
+window.onload = () => {
+  // Initializing components
+  initGrid();
+  // initDropDown(); // not included with the new scss framework
 }

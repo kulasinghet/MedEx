@@ -1,8 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Poppins:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=Ubuntu:wght@300;400;500;700&display=swap");
 :root {
   --g28-gap: 1rem;
-  --g28-rows: 1;
-  --g28-columns: 12;
 }
 
 *,
