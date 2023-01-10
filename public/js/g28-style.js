@@ -1,4 +1,31 @@
 window.onload = () => {
+  // Initializing grid system
+  document.querySelectorAll(".grid").forEach(grid => {
+    let max_row = 1;
+
+    Array.from(grid.children).forEach(child => {
+      child.classList.forEach(cls => {
+        // considering grid rows
+        if (cls.startsWith('g-row-')) {
+          // https://www.regular-expressions.info/lookaround.html
+          let row = Number(cls.match(/(?<=g-row-)[0-9]+/i));
+          let span = Number(cls.match(/(?<!g-row-)[0-9]+/i));
+          // for debugging
+          console.log("row: " + row + " span: " + span);
+
+          // calculating the max value of the row that used in the grid
+          let value = row + ((span !== 0)? span - 1 : 0);
+          if (max_row < value) {
+            max_row = value;
+          }
+        }
+      })
+    });
+
+    // setting template grid rows of the grid
+    grid.style.gridTemplateRows = `repeat(${max_row}, 1fr)`;
+  });
+
   // Initializing dropdowns
   document.querySelectorAll(".dropdown").forEach(dropdown => {
     const btn = dropdown.querySelector(".btn");
