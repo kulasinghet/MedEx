@@ -391,6 +391,9 @@ article {
   grid-auto-flow: var(--g28-grid-auto-flow);
   grid-gap: var(--g28-gap, 1.5rem) var(--g28-gap, 1.5rem);
 }
+.grid > * {
+  margin: 0 0 auto 0 !important;
+}
 .grid.flow-row {
   --g28-grid-auto-flow: row;
 }
@@ -2677,6 +2680,44 @@ footer .footer-inner section p {
 
 .footer-cutoff {
   padding-bottom: 142.5px;
+}
+
+.card {
+  margin: 1rem;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  /* See https://github.com/twbs/bootstrap/pull/22740#issuecomment-305868106 */
+  min-width: 0;
+  word-wrap: break-word;
+  background: #ffffff;
+  background-clip: border-box;
+  color: #071232;
+  border-radius: 0.3rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+}
+.card.dark {
+  background: #071232;
+  color: #f6f9ff;
+}
+.card.dark .card-title {
+  color: #f6f9ff;
+}
+.card .card-img {
+  width: 100%;
+  background: #d9d9d9;
+}
+.card .card-body {
+  padding: 1rem;
+}
+.card .card-body .card-title {
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  text-align: center;
+}
+.card .card-body .card-text {
+  margin-bottom: 1rem;
 }
 
 /*# sourceMappingURL=main.css.map */

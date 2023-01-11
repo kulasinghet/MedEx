@@ -44,6 +44,10 @@ $grid-auto-flows: (
   grid-auto-flow: var(--#{$prefix}grid-auto-flow);
   grid-gap: var(--#{$prefix}gap, #{$grid-gutter-width}) var(--#{$prefix}gap, #{$grid-gutter-height});
 
+  > * {
+    margin: 0 0 auto 0 !important;
+  }
+
   @each $name, $value in $grid-auto-flows {
     &.flow-#{$name} {
       --#{$prefix}grid-auto-flow: #{$value};
