@@ -33,5 +33,5 @@ function initDropDown() {
 
 window.onload = () => {
   // Initializing components
-  // initDropDown(); // not included with the new scss framework
+  initDropDown(); // not included with the new scss framework
 }
