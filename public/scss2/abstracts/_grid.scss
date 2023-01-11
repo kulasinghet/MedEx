@@ -1,0 +1,62 @@
+@use "variables" as *;
+@use "breakpoints" as *;
+
+
+@mixin make-css-grid($columns: $grid-columns, $rows: $grid-rows, $breakpoints: $grid-breakpoints) {
+  @for $i from 1 through $rows {
+    .g-row-#{$i} {
+      grid-row: auto / span $i;
+
+      // After the grid item spanned, it can be placed into any empty remaining tracks. But 0 is invalid. So,
+      @for $j from 1 through ($rows - $i + 1) {
+        &-start-#{$j} {
+          grid-row: $j / span $i;
+        }
+      }
+    }
+  }
+
+  @each $breakpoint in map-keys($breakpoints) {
+    $infix: get-breakpoint-infix($breakpoint, $breakpoints);
+
+    @include media-breakpoint-up($breakpoint, $breakpoints) {
+      @for $i from 1 through $columns {
+        .g-col#{$infix}-#{$i} {
+          grid-column: auto / span $i;
+
+          // After the grid item spanned, it can be placed into any empty remaining tracks. But 0 is invalid. So,
+          @for $j from 1 through ($columns - $i + 1) {
+            &-start-#{$j} {
+              grid-column: $j / span $i;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin make-grid-columns($columns: $grid-columns, $breakpoints: $grid-breakpoints) {
+  @each $breakpoint in map-keys($breakpoints) {
+    $infix: get-breakpoint-infix($breakpoint, $breakpoints);
+
+    @include media-breakpoint-up($breakpoint, $breakpoints) {
+      .col#{$infix} {
+        flex: 1 0 0;
+      }
+
+      .col#{$infix}-auto {
+        flex: 0 0 auto;
+        width: auto;
+      }
+
+      @if ($columns > 0) {
+        @for $i from 1 through $columns {
+          .col#{$infix}-#{$i} {
+            flex: 0 0 calc(100% / #{$columns} * #{$i});
+          }
+        }
+      }
+    }
+  }
+}

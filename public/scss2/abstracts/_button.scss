@@ -1,0 +1,80 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+
+$shadow-vars: 1px 2px 3px !default;
+$shadow-vars-active: 0 0 3px !default;
+$shadow-opacity: 0.38 !default;
+// $active-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !default;
+
+// button customized colors (the default is $theme-colors)
+$bg-colors: (
+        "light": $white,
+) !default;
+$bg-hover-colors: (
+        "primary": lighten($primary, 10%),
+        "secondary": lighten($secondary, 10%),
+        "success": lighten($success, 10%),
+        "info": lighten($info, 10%),
+        "warning": lighten($warning, 10%),
+        "danger": lighten($danger, 10%),
+        "light": #efefef,
+        "dark": #44467a,
+) !default;
+$bg-active-colors: (
+        "primary": darken($primary, 10%),
+        "secondary": darken($secondary, 10%),
+        "success": darken($success, 10%),
+        "info": darken($info, 10%),
+        "warning": darken($warning, 10%),
+        "danger": darken($danger, 10%),
+        "light": #9da7af,
+        "dark": #9595ad,
+) !default;
+
+$text-colors: (
+        "light": $dark,
+) !default;
+$text-active-colors: (
+        "primary": $light,
+        "secondary": $light,
+        "success": $light,
+        "info": $light,
+        "warning": $light,
+        "danger": $light,
+) !default;
+$text-color-default: $light !default;
+
+$i-colors: (
+        "light": rgba($dark, 0.6),
+) !default;
+$i-color-default: rgba($white, 0.6) !default;
+
+$shadow-colors: (
+        "light": $black,
+        "dark": $black,
+        "success": darken($success, 10%),
+) !default;
+
+@mixin btn-colors($color-name) {
+  // check if the color name is in the btn-colors map
+  --#{$prefix}btn-bg: #{pick-value($color-name, $bg-colors, $theme-colors)};
+
+  --#{$prefix}btn-bg-hover: #{map-get($bg-hover-colors, $color-name)};
+  --#{$prefix}btn-bg-active: #{map-get($bg-active-colors, $color-name)};
+
+  // check if the color name is in the i-colors map
+  --#{$prefix}btn-i-color: #{pick-value($color-name, $i-colors, null, $i-color-default)};
+
+  // check if the color name is in the btn-text-color map
+  --#{$prefix}btn-color: #{pick-value($color-name, $text-colors, null, $text-color-default)};
+
+  // check if the color name is in the btn-text-active-color map
+  --#{$prefix}btn-color-active: #{pick-value($color-name, $text-active-colors, $theme-colors)};
+  --#{$prefix}btn-i-color-active: #{pick-value($color-name, $text-active-colors, $theme-colors)};
+
+  // check if the color name is in the btn-shadow-colors map
+  $target-color: #{rgba(pick-value($color-name, $shadow-colors, $theme-colors), $shadow-opacity)};
+  --#{$prefix}btn-box-shadow: #{$shadow-vars} #{$target-color};
+  --#{$prefix}btn-box-shadow-active: #{$shadow-vars-active} #{$target-color};
+}
