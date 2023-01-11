@@ -392,6 +392,9 @@ article {
   grid-gap: var(--g28-gap, 1.5rem) var(--g28-gap, 1.5rem);
 }
 .grid > * {
+  margin: 0 !important;
+}
+.grid > .card, .grid .container {
   margin: 0 0 auto 0 !important;
 }
 .grid.flow-row {

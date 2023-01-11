@@ -45,6 +45,10 @@ $grid-auto-flows: (
   grid-gap: var(--#{$prefix}gap, #{$grid-gutter-width}) var(--#{$prefix}gap, #{$grid-gutter-height});
 
   > * {
+    margin: 0 !important;
+  }
+
+  > .card, .container {
     margin: 0 0 auto 0 !important;
   }
 
