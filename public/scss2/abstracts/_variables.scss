@@ -122,4 +122,10 @@ $grid-breakpoints: (
   xl: 1200px,
   xxl: 1400px
 ) !default;
+
+// following variables are used in both the grid and the flexbox.
+// the grid system generates its template based on its own child components.
+// So these variables will be the max values it can take.
+$grid-columns: 12 !default;
+$grid-rows: 9 !default;
 // ------------------- Grid System ------------------- //
