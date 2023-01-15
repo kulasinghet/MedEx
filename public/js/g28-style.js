@@ -1,5 +1,4 @@
-window.onload = () => {
-  // Initializing dropdowns
+function initDropDown() {
   document.querySelectorAll(".dropdown").forEach(dropdown => {
     const btn = dropdown.querySelector(".btn");
     const dropdownList = dropdown.querySelector(".dropdown-list");
@@ -30,4 +29,9 @@ window.onload = () => {
       }
     }
   });
+}
+
+window.onload = () => {
+  // Initializing components
+  initDropDown(); // not included with the new scss framework
 }

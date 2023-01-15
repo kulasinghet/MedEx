@@ -1,0 +1,62 @@
+@use "../abstracts/variables" as *;
+
+
+$card-margin: 1rem !default;
+// $card-border: 1px solid;
+$card-padding: 1rem !default;
+
+// $card-border-light: $card-border #dedede !default;
+// $card-border-dark: $card-border #282828 !default;
+$card-border-radius: .3rem !default;
+// $card-shadow: 2px 6px 8px 2px rgba(0, 0, 0, 0.25) !default;
+$card-shadow: 0 1px 3px 0 rgb(0 0 0 / .1), 0 1px 2px -1px rgb(0 0 0 / .1) !default;
+
+$card-hollow-color: #d9d9d9 !default;
+$card-context-gap: 1rem !default;
+$card-title-weight: 700 !default;
+$card-title-margin-bottom: calc($card-context-gap + .5rem) !default;
+
+.card {
+  margin: $card-margin;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  /* See https://github.com/twbs/bootstrap/pull/22740#issuecomment-305868106 */
+  min-width: 0;
+  word-wrap: break-word;
+
+  background: $white;
+  background-clip: border-box;
+  color: $dark;
+  border-radius: $card-border-radius;
+  box-shadow: $card-shadow;
+
+  &.dark {
+    background: $dark;
+    color: $light;
+
+    .card-title {
+      color: $light;
+    }
+  }
+
+  .card-img {
+    width: 100%;
+    background: $card-hollow-color;
+  }
+
+  .card-body {
+    padding: $card-padding;
+
+    .card-title {
+      margin-bottom: $card-title-margin-bottom;
+      font-weight: $card-title-weight;
+      text-align: center;
+    }
+
+    .card-text {
+      margin-bottom: $card-context-gap;
+    }
+  }
+}
