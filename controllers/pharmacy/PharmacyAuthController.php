@@ -26,7 +26,8 @@ class PharmacyAuthController extends Controller
             }
 
             if ($pharmacy->validate() && $pharmacy->registerPharmacy()) {
-                return header("Location: /pharmacy/login");
+                echo (new \app\core\ExceptionHandler)->userCreated();
+                return $this->render("/general/login.php");
             }
 
             return $this->render('registrationPage/pharmacy_register_page/phr_register.php');

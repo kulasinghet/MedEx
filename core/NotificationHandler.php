@@ -2,7 +2,7 @@
 
 namespace app\core;
 
-class ExceptionHandler extends Logger
+class NotificationHandler extends Logger
 {
     private string $exceptionMessage;
 
@@ -77,20 +77,17 @@ class ExceptionHandler extends Logger
         return $message;
     }
 
-    public function loginFirst()
+    public function orderCreatedSuccessfully(String $pharmacyID)
     {
+        Logger::orderLog($pharmacyID." pharmacy order created");
+
         $scriptClass  = "<head><script src='/js/pharmacy/login-error.js' defer></script><link href='/css/error-model' rel='stylesheet'></head>";
-        $alertClass = "<div class='loginError alert alert-danger' id='loginError' role='alert'>";
+        $alertClass = "<div class='loginError alert alert-success' id='loginError' role='alert'>";
         $spanClass = "<span class='closebtn' id='closebtn' style='padding-bottom: 0' onclick='this.parentElement.style.display='none';'>&times;</span>";
         $closeClass = "</div>";
 
-        $message = $scriptClass.$alertClass.$spanClass."Please login first".$closeClass;
+        $message = $scriptClass.$alertClass.$spanClass."Order created successfully".$closeClass;
         return $message;
-    }
-
-    public function orderCreatedSuccessfully()
-    {
-
     }
 
 }

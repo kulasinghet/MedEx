@@ -4,13 +4,45 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d562d650-3ba6-41bd-a690-150a19a299d5" name="Changes" comment="Create lab reg for Naveen">
+    <list default="true" id="d562d650-3ba6-41bd-a690-150a19a299d5" name="Changes" comment="Changed database files to facilitate new server requirement">
+      <change afterPath="$PROJECT_DIR$/core/NotificationHandler.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/error-model.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/model.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/model.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/res/images/fast-delivery.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/res/images/microscope.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/res/images/pharmacist.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/res/images/supplier.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/homepage/index-copy.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/pharmacy/template.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/addMedicine/supplier/addMed.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/addMedicine/supplier/addMed.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/addMedicine/supplier/sucess.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/addMedicine/supplier/sucess.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/dashboard/supplier/supplierDashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/dashboard/supplier/supplierDashboard.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/homepage/home.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/loginPage/supplier/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/loginPage/supplier/login.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/LoginAuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/LoginAuthController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/SiteController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/SiteController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/pharmacy/PharmacyAuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/pharmacy/PharmacyAuthController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/pharmacy/PharmacyOrderMedicineController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/pharmacy/PharmacyOrderMedicineController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/supplier/SupplierAuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/supplier/SupplierAuthController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/Database.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/Database.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/ExceptionHandler.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/ExceptionHandler.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/error.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/error.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/signin.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/signin.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/LoginModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/LoginModel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Model.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/Model.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/PharmacyOrderModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/PharmacyOrderModel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/pharmacy/dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/pharmacy/dashboard.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/pharmacy/loginPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/loginPage.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/pharmacy/table.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/table.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scss/demo.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/demo.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scss/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/404.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/general/404.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/homepage/homepage.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/homepage/homepage.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/lab/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/lab/dashboard.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/loginPage/pharmacy/pharmacyLogin.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/general/login.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/pharmacy/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/pharmacy/dashboard.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/pharmacy/navbar.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/pharmacy/navbar.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/pharmacy/order-medicine.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/pharmacy/order-medicine.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/pharmacy/orders.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/pharmacy/orders.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/pharmacy/sidepanel.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/pharmacy/sidepanel.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/registerPage/supplier/register.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/registerPage/supplier/register.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -30,6 +62,8 @@
         <option value="Sass File" />
         <option value="SCSS File" />
         <option value="HTML File" />
+        <option value="CSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -79,8 +113,8 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "SONARLINT_PRECOMMIT_ANALYSIS": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/xampp/htdocs/medex",
-    "list.type.of.created.stylesheet": "SCSS",
+    "last_opened_file_path": "E:/University Projects/MedEx/public/res/images",
+    "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -92,20 +126,21 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\University Projects\MedEx\public\res\images" />
       <recent name="G:\Coding\University Projects\MedEx\public\res" />
       <recent name="G:\Coding\University Projects\MedEx\views\lab" />
       <recent name="C:\Users\dashe\My Projects\MedEx\MedEx\views\registrationPage\lab" />
       <recent name="C:\Users\dashe\My Projects\MedEx\MedEx\views\loginPage\lab" />
-      <recent name="C:\Users\dashe\My Projects\MedEx\MedEx\views\dashboard\lab" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\University Projects\MedEx\public\css" />
       <recent name="G:\Coding\University Projects\MedEx\views\lab" />
       <recent name="G:\Coding\University Projects\MedEx\views" />
       <recent name="G:\Coding\University Projects\MedEx\views\pharmacy" />
       <recent name="C:\Users\dashe\My Projects\MedEx\MedEx\public\scss\components" />
     </key>
   </component>
-  <component name="RunManager" selected="PHP Built-in Web Server.Medex">
+  <component name="RunManager">
     <configuration name="Medex" type="PhpBuiltInWebServerConfigurationType" factoryName="PHP Built-in Web Server" document_root="$PROJECT_DIR$/public" port="8080">
       <method v="2" />
     </configuration>

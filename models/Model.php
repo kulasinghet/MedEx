@@ -34,6 +34,7 @@ class Model
 
     public function createRandomID($entity): string
     {
+        //TODO: create ID generation function
         $time = time();
         $time = str_replace(" ", "", $time);
         $time = str_replace(":", "", $time);

@@ -7,7 +7,7 @@ use mysqli;
 class Database
 {
 
-    private $servername = "http://medex.cf0qkfwuwc3x.us-east-1.rds.amazonaws.com";
+    private $servername = "medex.cf0qkfwuwc3x.us-east-1.rds.amazonaws.com";
     private $username = "medex";
     private $password = "rt182ifCi5I8WmSxfpp5";
     private $dbname = "medex";
