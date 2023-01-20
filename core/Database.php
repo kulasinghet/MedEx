@@ -7,9 +7,9 @@ use mysqli;
 class Database
 {
 
-    private $servername = "3.83.240.41";
-    private $username = "medex-remote";
-    private $password = "Medex@2022";
+    private $servername = "medex.cf0qkfwuwc3x.us-east-1.rds.amazonaws.com";
+    private $username = "medex";
+    private $password = "rt182ifCi5I8WmSxfpp5";
     private $dbname = "medex";
     private mysqli $db;
 

@@ -160,16 +160,15 @@ class LoginModel extends Model
 
         try {
 
-            $sql = "SELECT * FROM pharmacy WHERE username = '$this->username';";
+            $sql = "SELECT * FROM login WHERE username = '$this->username';";
             $stmt = $db->prepare($sql);
             $stmt->execute();
             $result = $stmt->get_result();
 
 
             if ($result->num_rows == 1) {
-                @$hash = $result->fetch_row()[2];
-                @$user = $result->fetch_row()[1];
-                @$id = $result->fetch_row()[0];
+                @$hash = $result->fetch_row()[1];
+                @$user = $result->fetch_row()[0];
                 $isPasswordValid = password_verify($this->password, $hash);
 //                $isPasswordValid = $this->password == $hash;
                 if ($isPasswordValid === true) {

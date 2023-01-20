@@ -1,0 +1,184 @@
+
+h1{
+    color: #ffffff;
+    padding: 1em;
+}
+#openPopUp{
+    text-align:center;
+    background-color: #1abc9c;
+    padding: 15px 15px;
+    color: #ffffff;
+    font-weight: 500;
+    font-size: 1.5em;
+    border-radius: 3.5px;
+    text-decoration: none;
+    font-weight: 100;
+    transition:background-color 0.15s linear;
+    -webkit-transition:background-color 0.15s linear;
+    -moz-transition:background-color 0.25s linear;
+    -o-transition:background-color 0.25s linear;
+}
+a#openPopUp:hover{
+    cursor: pointer;
+    background-color: #1abc9e;
+}
+.popup{
+    position: fixed;
+    top: -100vh;
+    left: 0;
+    z-index: 9999999;
+    background: rgba(0,0,0, 0.75);
+    width: 100vw;
+    height: 100vh;
+    opacity: 0;
+    -webkit-transition: opacity  0.35s ease;
+    -moz-transition: opacity 0.35s ease;
+    -o-transition: opacity 0.35s ease;
+    transition: opacity 0.35s ease;
+}
+.popup .popUpContainer{
+    width: 100%;
+    max-width: 70vw;
+    position: fixed;/* To avoid scroll to target */
+    top: 15% !important;
+    left: 13%;
+    text-align: center;
+    padding: 5vh 1vw 5vh 1vw !important;
+    /*top: -100vh;*/
+    -webkit-transition: top  0.35s ease;
+    -moz-transition: top 0.35s ease;
+    -o-transition: top 0.35s ease;
+    transition: top 0.35s ease;
+
+    /* Trick to properly center the element by using negative
+    1/2 length of element as margin left and top */
+    /*margin-left: -250px;*/
+    background-color: #ffffff;
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    border-radius: 2px;
+    z-index: 9999999;
+}
+.popup h2{
+    padding: 0.5em;
+    text-align: center;
+    color: #444444;
+    margin: 0;
+}
+.popup img{
+    width: 100%;
+    display: block;
+}
+.popup article{
+    /*height: 300px;*/
+}
+/* The cancel button on popup dialog */
+.popup a.closePopUp{
+    font-family: verdana;
+    position: absolute;
+    top: 0.2em;
+    right: 0.375em;
+    margin: 0;
+    padding: 5px;
+    font-weight: bold;
+    font-size: 1.5em;
+    text-decoration: none;
+}
+/* The cancel button on popup dialog */
+.popup a:hover{
+    color: #006dc2;
+}
+/* When popup is targeted, by clicking on link with #popup in HTML */
+.popup:target{
+    opacity: 1;
+    top: 0;
+}
+.popup .closePopUpOutSide{
+    position: absolute;
+    left:0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999991;
+}
+.popup:target .popUpContainer{
+    top: 50px;
+    -webkit-transition: top  0.35s ease;
+    -moz-transition: top 0.35s ease;
+    -o-transition: top 0.35s ease;
+    transition: top 0.35s ease;
+}
+
+@media  (max-width: 796px) {
+    .popup .popUpContainer{
+        width: 90%;
+        max-width: none;
+        left: 5%;
+        margin-left: 0;
+    }
+    .popup ul{
+        padding: 0 1em 0 1em;
+    }
+    .popup:target .popUpContainer{
+        top: 25px;
+        -webkit-transition: top  0.35s ease;
+        -moz-transition: top 0.35s ease;
+        -o-transition: top 0.35s ease;
+        transition: top 0.35s ease;
+    }
+}
+
+
+.entity-choose {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+
+    /*background-color: #f5f5f5;*/
+}
+
+.entity {
+    justify-content: center !important;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    padding-right: 3rem;
+    padding-left: 3rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+    margin: 1rem;
+}
+
+.entity:hover {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+    transform: translateY(-0.25rem);
+}
+
+.entity a {
+    color: #000;
+    text-decoration: none !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.entity img {
+    height: 3rem;
+    width: 3rem;
+}
+
+.entity p {
+    margin-top: 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+}

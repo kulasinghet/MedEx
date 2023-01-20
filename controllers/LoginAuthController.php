@@ -93,7 +93,7 @@ class LoginAuthController extends Controller
         return $this->render('loginPage/supplier/supplierLogin.php');
     }
 
-    public function pharmacyLogin(Request $request) {
+    public function login(Request $request) {
         if ($request->isPost()) {
             $login = new LoginModel();
             $login->loadData($request->getBody());
@@ -122,8 +122,8 @@ class LoginAuthController extends Controller
 
             echo (new \app\core\ExceptionHandler)->userNameOrPasswordIncorrect($request->getBody()['username']);
             $_SESSION['isPharmacy'] = false;
-            return $this->render('loginPage/pharmacy/pharmacyLogin.php');
+            return $this->render('general/login.php');
         }
-        return $this->render('loginPage/pharmacy/pharmacyLogin.php');
+        return $this->render('general/login.php');
     }
 }
