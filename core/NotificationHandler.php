@@ -4,8 +4,6 @@ namespace app\core;
 
 class NotificationHandler extends Logger
 {
-    private string $exceptionMessage;
-
     private string $scriptClass  = "<head><script src='/js/pharmacy/login-error.js' defer></script><link href='/css/error-model.css' rel='stylesheet'></head>";
     private string $closeClass   = "</div>";
     private string $alertClass = "<div class='loginError alert alert-danger' id='loginError' role='alert'>";
