@@ -41,6 +41,8 @@
                 <a href="#popUp" id="registerButton"> Register </a>
             </button>
 
+
+<!--            // todo: add a model for register button-->
         </div>
     </div>
 
