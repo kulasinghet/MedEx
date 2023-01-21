@@ -37,7 +37,10 @@
 
         <div class="register-now">
 <!--            <button id="registerButton" data-modal-target="modal5">Register</button>-->
-            <a href="#popUp" id="openPopUp"> Register </a>
+            <button id="registerButton">
+                <a href="#popUp" id="registerButton"> Register </a>
+            </button>
+
         </div>
     </div>
 
@@ -46,45 +49,7 @@
 
 <script src="/js/model.js" defer></script>
 
-<aside id="popUp" class="popup">
-    <div class="popUpContainer">
-        <header>
-            <a href="#!" class="closePopUp">X</a>
-            <h2>Who are you?</h2>
-        </header>
-        <article>
-            <div class="entity-choose">
-                <div class="entity">
-                    <a href="/pharmacy/register">
-                        <img src="/res/images/pharmacist.png" alt="pharmacist">
-                        <p>Pharmacy</p>
-                    </a>
-                </div>
-                <div class="entity">
-                    <a href="/supplier/register">
-                        <img src="/res/images/supplier.png" alt="supplier">
-                        <p>Supplier</p>
-                    </a>
-                </div>
-                <div class="entity">
-                    <a href="/delivery/register">
-                        <img src="/res/images/fast-delivery.png" alt="delivery">
-                        <p>Delivery</p>
-                    </a>
-                </div>
-                <div class="entity">
-                    <a href="/lab/register">
-                        <img src="/res/images/microscope.png" alt="lab">
-                        <p>Lab</p>
-                    </a>
-                </div>
 
-
-            </div>
-        </article>
-    </div>
-    <a href="#!" class="closePopUpOutSide"></a>
-</aside
 
 
 </body>
