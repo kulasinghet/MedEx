@@ -90,7 +90,7 @@ b {
 #registerButton {
 /*style={{background-color: "#36a420"}}*/
     background-color: #1eb000;
-    color: #fff;
+    color: #fff !important;
     padding-top: 2vh;
     padding-bottom: 2vh;
     border: none;

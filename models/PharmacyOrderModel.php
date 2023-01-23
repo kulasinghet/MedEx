@@ -181,9 +181,5 @@ class PharmacyOrderModel extends Model
         }
     }
 
-    private function setQuantity($quantity)
-    {
-    }
-
 
 }
