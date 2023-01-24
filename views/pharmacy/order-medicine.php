@@ -50,7 +50,8 @@
                     <a class="btn" href="/pharmacy/sell-medicine"> <i class="fa fa-usd"></i> Sell Medicine </a>
                 </li>
                 <li>
-                    <a class="btn disabled" href="/pharmacy/order-medicine"> <i class="fa fa-plus-square"></i> Order Medicine </a>
+                    <a class="btn disabled" href="/pharmacy/order-medicine"> <i class="fa fa-plus-square"></i> Order
+                        Medicine </a>
                 </li>
                 <li>
                     <a class="btn" href="/pharmacy/orders"> <i class="fa fa-clock-o"></i> Orders </a>
@@ -85,25 +86,25 @@
                                 </tr>
 
 
-                                <?php
-                                $medicines = (new \app\controllers\supplier\MedicineController())->getAllMedicines();
-                                foreach ($medicines as $medicine) {
-                                    $medicinePrice = (new \app\controllers\supplier\SupplierMedicineController())->getMedicinePrice($medicine['id']);
+								<?php
+								$medicines = (new \app\controllers\supplier\MedicineController())->getAllMedicines();
+								foreach ($medicines as $medicine) {
+									$medicinePrice = (new \app\controllers\supplier\SupplierMedicineController())->getMedicinePrice($medicine['id']);
 //                $medicinePrice = $medicinePrice['price'];
-                                    if ($medicinePrice != null) {
+									if ($medicinePrice != null) {
 
-                                        echo "<tr>";
-                                        echo "<td>" . $medicine['id'] . "</td>";
-                                        echo "<td>" . $medicine['medName'] . "</td>";
-                                        echo "<td>" . $medicine['sciName'] . "</td>";
-                                        echo "<td>" . $medicine['weight'] . "</td>";
-                                        echo "<td>" . $medicinePrice . "</td>";
-                                        echo "<td><input type='number' name='quantity' id='quantity' placeholder='1 2 3 . . .'></td>";
-                                        echo "</tr>";
-                                    }
-                                }
+										echo "<tr>";
+										echo "<td>" . $medicine['id'] . "</td>";
+										echo "<td>" . $medicine['medName'] . "</td>";
+										echo "<td>" . $medicine['sciName'] . "</td>";
+										echo "<td>" . $medicine['weight'] . "</td>";
+										echo "<td>" . $medicinePrice . "</td>";
+										echo "<td><input type='number' name='quantity' id='quantity' placeholder='1 2 3 . . .'></td>";
+										echo "</tr>";
+									}
+								}
 
-                                ?>
+								?>
 
 
                             </table>
