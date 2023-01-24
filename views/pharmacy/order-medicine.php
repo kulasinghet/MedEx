@@ -47,20 +47,19 @@
             <h6 class="sidebar-context-title">Menu</h6>
             <ul>
                 <li>
-                    <a class="btn" href="/pharmacy/sell-medicine"> <i class="fa fa-house"></i> Sell Medicine </a>
+                    <a class="btn" href="/pharmacy/sell-medicine"> <i class="fa fa-usd"></i> Sell Medicine </a>
                 </li>
                 <li>
-                    <a class="btn" href="/pharmacy/order-medicine"> <i class="fa fa-house"></i> Order Medicine
-                    </a>
+                    <a class="btn disabled" href="/pharmacy/order-medicine"> <i class="fa fa-plus-square"></i> Order Medicine </a>
                 </li>
                 <li>
                     <a class="btn" href="/pharmacy/orders"> <i class="fa fa-clock-o"></i> Orders </a>
                 </li>
                 <li>
-                    <a class="btn" href="/pharmacy/inventory"> <i class="fa fa-house"></i> Inventory </a>
+                    <a class="btn" href="/pharmacy/inventory"> <i class="fa fa-dropbox"></i> Inventory </a>
                 </li>
                 <li>
-                    <a class="btn" href="/pharmacy/contact-us"> <i class="fa fa-house"></i> Contact Us </a>
+                    <a class="btn" href="/pharmacy/contact-us"> <i class="fa fa-phone"></i> Contact Us </a>
                 </li>
             </ul>
         </div>
