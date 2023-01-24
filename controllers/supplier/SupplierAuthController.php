@@ -19,9 +19,9 @@ class SupplierAuthController extends Controller
                 header("Location: /supplier/login");
             }
 
-            return $this->render('registerPage/supplier/register.php');
+            return $this->render('/supplier/register.php');
         }
-        return $this->render('registerPage/supplier/register.php');
+        return $this->render('/supplier/register.php');
     }
 
 
