@@ -17,7 +17,7 @@ class DeliveryContactusModel extends Model
 
     public function delivey_contact_us()
     {
-        $db = new Database();
+        $connection = (new Database())->getConnection();
         $date = new DateTime("now");
         $date->setTimezone(new DateTimeZone('Asia/Colombo'));
         $date = $date->format('Y/m/d');

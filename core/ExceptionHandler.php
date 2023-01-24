@@ -91,4 +91,8 @@ class ExceptionHandler extends Logger
 
     }
 
+    public function userNotAssigned(mixed $username)
+    {
+    }
+
 }

@@ -13,7 +13,6 @@ use app\controllers\pharmacy\PharmacyDashboardController;
 use app\controllers\pharmacy\PharmacyOrderMedicineController;
 use app\controllers\supplier\SupplierAuthController;
 use app\core\Application;
-use app\controllers\AuthController;
 use app\controllers\delivery\DeliveryAuthController;
 use app\controllers\employee\EmployeeAuthController;
 use app\controllers\LoginAuthController;
@@ -34,8 +33,8 @@ $app -> router -> get('/login', [LoginAuthController::class, 'login']);
 $app -> router -> post('/login', [LoginAuthController::class, 'login']);
 
 // delivery Routes
-$app -> router -> get('/delivery/login', [LoginAuthController::class, 'deliveryLogin']);
-$app -> router -> post('/delivery/login', [LoginAuthController::class, 'deliveryLogin']);
+//$app -> router -> get('/delivery/login', [LoginAuthController::class, 'deliveryLogin']);
+//$app -> router -> post('/delivery/login', [LoginAuthController::class, 'deliveryLogin']);
 $app -> router -> get('/delivery/register', [DeliveryAuthController::class, 'deliveryRegister']);
 $app -> router -> post('/delivery/register', [DeliveryAuthController::class, 'deliveryRegister']);
 $app -> router -> get('/delivery/orders', [DeliveryDashboardController::class, 'orders']);
@@ -46,22 +45,22 @@ $app -> router -> get('/delivery/contact_us', [DeliveryDashboardController::clas
 $app -> router -> post('/delivery/contact_us', [DeliveryDashboardController::class, 'contactUs']);
 $app -> router -> post('/delivery/contact_us', [DeliveryContactusController::class, 'delivery_contact_us']);
 // Lab Routes
-$app -> router -> get('/lab/login', [LoginAuthController::class, 'labLogin']);
-$app -> router -> post('/lab/login', [LoginAuthController::class, 'labLogin']);
+//$app -> router -> get('/lab/login', [LoginAuthController::class, 'labLogin']);
+//$app -> router -> post('/lab/login', [LoginAuthController::class, 'labLogin']);
 $app -> router -> get('/lab/register', [LabAuthController::class, 'labRegister']);
 $app -> router -> post('/lab/register', [LabAuthController::class, 'labRegister']);
 $app -> router -> get('/lab/contact-us', [LabDashboardController::class, 'contactus']);
 $app -> router -> post('/lab/contact-us', [LabContactusController::class, 'lab_contact_us']);
 
 // Employee Routes
-$app -> router -> get('/employee/login', [LoginAuthController::class, 'employeeLogin']);
-$app -> router -> post('/employee/login', [LoginAuthController::class, 'employeeLogin']);
+//$app -> router -> get('/employee/login', [LoginAuthController::class, 'employeeLogin']);
+//$app -> router -> post('/employee/login', [LoginAuthController::class, 'employeeLogin']);
 $app -> router -> get('/employee/register', [EmployeeAuthController::class, 'employeeRegister']);
 $app -> router -> post('/employee/register', [EmployeeAuthController::class, 'employeeRegister']);
 
 // pharmacy Routes
-$app -> router -> get('/pharmacy/login', [LoginAuthController::class, 'pharmacyLogin']);
-$app -> router -> post('/pharmacy/login', [LoginAuthController::class, 'pharmacyLogin']);
+//$app -> router -> get('/pharmacy/login', [LoginAuthController::class, 'pharmacyLogin']);
+//$app -> router -> post('/pharmacy/login', [LoginAuthController::class, 'pharmacyLogin']);
 $app -> router -> get('/pharmacy/register', [PharmacyAuthController::class, 'pharmacyRegister']);
 $app -> router -> post('/pharmacy/register', [PharmacyAuthController::class, 'pharmacyRegister']);
 $app -> router -> get('/pharmacy/sell-medicine', [PharmacyDashboardController::class, 'sellMedicine']);
@@ -77,8 +76,8 @@ $app -> router -> post('/pharmacy/contact-us', [PharmacyDashboardController::cla
 
 
 // Supplier Routes
-$app -> router -> get('/supplier/login', [LoginAuthController::class, 'supplierLogin']);
-$app -> router -> post('/supplier/login', [LoginAuthController::class, 'supplierLogin']);
+//$app -> router -> get('/supplier/login', [LoginAuthController::class, 'supplierLogin']);
+//$app -> router -> post('/supplier/login', [LoginAuthController::class, 'supplierLogin']);
 $app -> router -> get('/supplier/register', [SupplierAuthController::class, 'supplierRegister']);
 $app -> router -> post('/supplier/register', [SupplierAuthController::class, 'supplierRegister']);
 
