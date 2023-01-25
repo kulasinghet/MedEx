@@ -71,17 +71,22 @@ class Components
             <h6 class="sidebar-context-title">Menu</h6>
             <ul>
                 <li>
+       
                     <a class="btn ' . ($selectedPage == 'sell-medicine' ? 'disabled' : '') . '" href="/pharmacy/sell-medicine">
-                        <i class="fa-solid fa-usd"></i> Sell Medicine </a>
+                        <i class="fa-solid fa-usd" style="color: ' . ($selectedPage == 'sell-medicine' ? '#fff' : '#7577817d') . '"></i> Sell Medicine </a>
+                        </li>
                 <li>
-                    <a class="btn ' . ($selectedPage == 'order-medicine' ? 'disabled' : '') . '" href="/pharmacy/order-medicine"> <i class="fa fa-shopping-cart"></i> Order Medicine </a>
-                </li>
+                    <a class="btn ' . ($selectedPage == 'order-medicine' ? 'disabled' : '') . '" href="/pharmacy/order-medicine"> <i class="fa fa-shopping-cart" style="color: ' . ($selectedPage == 'order-medicine' ? '#fff' : '#7577817d') . '"></i> Order Medicine </a>
+                    </li>
                 <li>
-                    <a class="btn ' . ($selectedPage == 'orders' ? 'disabled' : '') . '" href="/pharmacy/orders"> <i class="fa-solid fa-list"></i> Orders </a>
+                    <a class="btn ' . ($selectedPage == 'orders' ? 'disabled' : '') . '" href="/pharmacy/orders"> <i class="fa-solid fa-list" style="color: ' . ($selectedPage == 'orders' ? '#fff' : '#7577817d') . '"></i> Orders </a>
+                    </li>
                 <li>
-                    <a class="btn ' . ($selectedPage == 'inventory' ? 'disabled' : '') . '" href="/pharmacy/inventory"> <i class="fa-solid fa-box"></i> Inventory </a>
+                    <a class="btn ' . ($selectedPage == 'inventory' ? 'disabled' : '') . '" href="/pharmacy/inventory"> <i class="fa-solid fa-box" style="color: ' . ($selectedPage == 'inventory' ? '#fff' : '#7577817d') . '"></i> Inventory </a>
+                    </li>
                 <li>
-                    <a class="btn ' . ($selectedPage == 'contact-us' ? 'disabled' : '') . '" href="/pharmacy/contact-us"> <i class="fa-solid fa-envelope"></i> Contact Us </a>
+                    <a class="btn ' . ($selectedPage == 'contact-us' ? 'disabled' : '') . '" href="/pharmacy/contact-us"> <i class="fa-solid fa-envelope" style="color: ' . ($selectedPage == 'contact-us' ? '#fff' : '#7577817d') . '"></i> Contact Us </a>
+                    </li>
             </ul>
         </div>
     </div>

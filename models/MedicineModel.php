@@ -110,15 +110,14 @@ class MedicineModel extends Model
         $this->manId = $manId;
     }
 
-    public function getAllMedicines() {
-        $db = new Database();
-        $sql = "SELECT * FROM medicine";
+    public function getAllMedicines(): false|array|null
+    {
 
         try {
-            $stmt = $db->prepare($sql);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            return $result;
+            $conn = (new Database())->getConnection();
+            $sql = 'SELECT * FROM medicine';
+            $results = $conn->query($sql);
+            return $results->fetch_array(MYSQLI_ASSOC);
         } catch (\Exception $e) {
             Logger::logError($e->getMessage());
             return false;

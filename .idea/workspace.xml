@@ -5,19 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d562d650-3ba6-41bd-a690-150a19a299d5" name="Changes" comment="Changed UI into more component function looking, and added username to the Navbar">
+      <change afterPath="$PROJECT_DIR$/controllers/entity/MedicineEntity.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/pharmacy/PharmacyOrderHistoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/pharmacy/PharmacyOrderHistoryController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/ExceptionHandler.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/ExceptionHandler.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/error.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/error.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/PharmacyOrderModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/PharmacyOrderModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql/medex 5.55 pm 01.12.2022.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/medex 5.55 pm 01.12.2022.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/pharmacy/PharmacyOrderMedicineController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/pharmacy/PharmacyOrderMedicineController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/supplier/MedicineController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/supplier/MedicineController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/MedicineModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/MedicineModel.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/pharmacy/Components.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/pharmacy/Components.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/pharmacy/contact-us.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/pharmacy/contact-us.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/pharmacy/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/pharmacy/dashboard.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/pharmacy/inventory.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/pharmacy/inventory.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/pharmacy/order-medicine.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/pharmacy/order-medicine.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/pharmacy/orders.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/pharmacy/orders.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/pharmacy/sell-medicine.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/pharmacy/sell-medicine.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -166,7 +160,7 @@
       <workItem from="1674547127574" duration="757000" />
       <workItem from="1674562557120" duration="6544000" />
       <workItem from="1674579040340" duration="3813000" />
-      <workItem from="1674616951337" duration="7818000" />
+      <workItem from="1674616951337" duration="9820000" />
     </task>
     <task id="LOCAL-00001" summary="Centralized properties of the footer">
       <created>1670335693151</created>
@@ -364,7 +358,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674618998922</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Changed UI into more component function looking, and added username to the Navbar">
+      <created>1674625460391</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1674625460391</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
