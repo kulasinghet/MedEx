@@ -113,8 +113,6 @@ class PharmacyOrderModel extends Model
     }
 
 
-
-
     public function createOrder($pharmacyId, $order_total): bool
     {
         // generate random order id with time stamp and pharmacy id
@@ -142,36 +140,13 @@ class PharmacyOrderModel extends Model
         }
     }
 
-    public function getOrdersByPharmacyId($pharmacyId): false|array
+    public function getOrdersByUsername($username): false|array
     {
-//        Logger::logError("Pharmacy order history fetched");
-        $sql = "SELECT * FROM pharmacy_order WHERE pharmacyId = '$pharmacyId' ORDER BY order_date DESC;";
-
         try {
-            $db = new Database();
-            $stmt = $db->prepare($sql);
-            $stmt->execute();
-            $result = $stmt->get_result();
-
-            $result = $result->fetch_all(MYSQLI_ASSOC);
-
-//            if (@$result['order_status'] == 0) {
-//                $result['order_status'] = "Pending";
-//            } else if ($result['order_status'] == 1) {
-//                $result['order_status'] = "Approved";
-//            } else if ($result['order_status'] == 2) {
-//                $result['order_status'] = "Rejected";
-//            } else if ($result['order_status'] == 3) {
-//                $result['order_status'] = "Delivered";
-//            } else {
-//                $result['order_status'] = "Unknown";
-//            }
-//
-//            if (@$result['delivery_date'] == null) {
-//                $result['delivery_date'] = "Pending";
-//            }
-
-            return $result;
+            $conn = (new Database())->getConnection();
+            $sql = "SELECT * FROM pharmacy_order WHERE pharmacyName = '$username' ORDER BY order_date DESC;";
+            $result = $conn->query($sql);
+            return $result->fetch_all(MYSQLI_ASSOC);
 
 
         } catch (\Exception $e) {

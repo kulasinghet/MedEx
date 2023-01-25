@@ -1,21 +1,11 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Dashboard</title>
-    <link href="../scss2/vendor/demo.css" rel="stylesheet"/>
-    <link href="../css/table.css" rel="stylesheet"/>
-    <script crossorigin="anonymous" src="https://kit.fontawesome.com/9b33f63a16.js"></script>
-</head>
-
-<body>
-
 <?php
 
 use app\controllers\pharmacy\PharmacyOrderHistoryController;
+use app\core\ExceptionHandler;
 use app\views\pharmacy\Components;
 
 $components = new Components();
+echo $components->viewHeader("Order History");
 echo $components->navBar($_SESSION['username']);
 echo $components->sideBar('orders');
 ?>
@@ -43,44 +33,40 @@ echo $components->sideBar('orders');
 
                         <?php
 
-                        if (isset($_SESSION['pharmacyId'])) {
-                            $pharmacy_id = $_SESSION['pharmacyId'];
-                            $orders = (new PharmacyOrderHistoryController)->getOrdersByPharmacyId($pharmacy_id);
-                            if ($orders) {
-                                foreach ($orders as $order) {
-//                            echo "<tr>";
-//                            echo "<td>" . $order['order_id'] . "</td>";
-//                            echo "<td>" . $order['order_date'] . "</td>";
-//                            echo "<td>" . $order['order_status'] . "</td>";
-//                            echo "<td>" . $order['order_total'] . "</td>";
-//                            echo "</tr>";
+                        if (isset($_SESSION['userType']) && $_SESSION['userType'] == 'pharmacy') {
+                            try {
+                                $username = $_SESSION['username'];
+                                $pharmacyOrderHistoryController = new PharmacyOrderHistoryController();
+                                $orders = $pharmacyOrderHistoryController->getOrdersByUsername($username);
+                                if ($orders) {
+                                    foreach ($orders as $order) {
+                                        echo "<tr>";
+                                        echo "<td>" . $order['id'] . "</td>";
+                                        echo "<td>" . $order['order_date'] . "</td>";
+                                        echo "<td>" . $pharmacyOrderHistoryController->transformOrderStatus($order['order_status']) . "</td>";
+                                        echo "<td>" . $pharmacyOrderHistoryController->transformOrderTotal($order['order_total']) . "</td>";
+                                        echo "<td>" . $pharmacyOrderHistoryController->transformDeliveryDate($order['delivery_date']) . "</td>";
+                                        echo "<td>" . "<a href='' id='" . $order['id'] . "'>" . "<i class='fa-solid fa-circle-arrow-right view-order-details' style='color:#333333'></i>" . "</a>" . "</td>";
+                                        echo "</a>";
+                                        echo "</tr>";
 
+                                    }
+                                } else {
                                     echo "<tr>";
-//                            echo "<a href='/pharmacy/order-details?order_id='" . $order['id'] . "'>";
-                                    echo "<td>" . $order['id'] . "</td>";
-                                    echo "<td>" . $order['order_date'] . "</td>";
-//                            echo "<td>" . $order['order_status'] . "</td>";
-                                    echo "<td>" . (new PharmacyOrderHistoryController)->transformOrderStatus($order['order_status']) . "</td>";
-//                            echo "<td>" . $order['order_total'] . "</td>";
-                                    echo "<td>" . (new PharmacyOrderHistoryController)->transformOrderTotal($order['order_total']) . "</td>";
-//                            echo "<td>" . $order['delivery_date'] . "</td>";
-                                    echo "<td>" . (new PharmacyOrderHistoryController)->transformDeliveryDate($order['delivery_date']) . "</td>";
-                                    echo "<td>" . "<a href='' id='" . $order['id'] . "'>" . "<i class='fa-solid fa-circle-arrow-right view-order-details' style='color:#333333'></i>" . "</a>" . "</td>";
-                                    echo "</a>";
+                                    echo "<td colspan='6' style='text-align: center'>You don't have any orders</td>";
                                     echo "</tr>";
-
                                 }
-                            } else {
-                                echo "<tr>";
-                                echo "<td colspan='6'>No Orders</td>";
-                                echo "</tr>";
+                            } catch (Exception $e) {
+                                echo (new ExceptionHandler)->somethingWentWrong();
                             }
                         } else {
                             echo "<tr>";
-                            echo "<td colspan='6' style='text-align: center'>No Orders</td>";
+                            echo "<td colspan='6' style='text-align: center'>You don't have any orders</td>";
                             echo "</tr>";
-//                    echo (new ExceptionHandler)->somethingWentWrong();
+                            echo (new ExceptionHandler)->somethingWentWrong();
                         }
+
+
                         ?>
                         </tbody>
                     </table>
