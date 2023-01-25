@@ -10,62 +10,15 @@
 </head>
 
 <body>
+<?php
 
+use app\views\pharmacy\Components;
 
-<nav>
-    <div class="nav-search">
-        <form onsubmit="preventDefault();" role="search">
-            <label for="search">Search for stuff</label>
-            <input autofocus id="search" placeholder="Search..." required type="search"/>
-            <button type="submit">Go</button>
-        </form>
-    </div>
-    <div class="nav-inner">
-        <ul>
-            <li><a href="#"><i class="fa-solid fa-circle-question"></i></a></li>
-            <li><a href="#"><i class="fa-solid fa-gear"></i></a></li>
-            <li><a href="#"><i class="fa-solid fa-bell"></i></a></li>
-        </ul>
-        <a class="nav-profile" href="#">
-            <div class="nav-profile-image">
-                <img alt="Profile image" src="../res/avatar-empty.png"/>
-            </div>
-        </a>
-    </div>
-</nav>
+$components = new Components();
+echo $components->navBar($_SESSION['username']);
+echo $components->sideBar('order-medicine');
+?>
 
-<div class="sidebar">
-    <div class="sidebar-inner">
-        <nav class="sidebar-header">
-            <div class="sidebar-logo">
-                <a href="/dashboard">
-                    <img alt="MedEx logo" src="../res/logo/logo-text_light.svg"/>
-                </a>
-            </div>
-        </nav>
-        <div class="sidebar-context">
-            <h6 class="sidebar-context-title">Menu</h6>
-            <ul>
-                <li>
-                    <a class="btn" href="/pharmacy/sell-medicine"> <i class="fa fa-usd"></i> Sell Medicine </a>
-                </li>
-                <li>
-                    <a class="btn disabled" href="/pharmacy/order-medicine"> <i class="fa fa-plus-square"></i> Order
-                        Medicine </a>
-                </li>
-                <li>
-                    <a class="btn" href="/pharmacy/orders"> <i class="fa fa-clock-o"></i> Orders </a>
-                </li>
-                <li>
-                    <a class="btn" href="/pharmacy/inventory"> <i class="fa fa-dropbox"></i> Inventory </a>
-                </li>
-                <li>
-                    <a class="btn" href="/pharmacy/contact-us"> <i class="fa fa-phone"></i> Contact Us </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>
 
 <div class="canvas nav-cutoff sidebar-cutoff">
     <div class="canvas-inner">
@@ -86,25 +39,25 @@
                                 </tr>
 
 
-								<?php
-								$medicines = (new \app\controllers\supplier\MedicineController())->getAllMedicines();
-								foreach ($medicines as $medicine) {
-									$medicinePrice = (new \app\controllers\supplier\SupplierMedicineController())->getMedicinePrice($medicine['id']);
+                                <?php
+                                $medicines = (new \app\controllers\supplier\MedicineController())->getAllMedicines();
+                                foreach ($medicines as $medicine) {
+                                    $medicinePrice = (new \app\controllers\supplier\SupplierMedicineController())->getMedicinePrice($medicine['id']);
 //                $medicinePrice = $medicinePrice['price'];
-									if ($medicinePrice != null) {
+                                    if ($medicinePrice != null) {
 
-										echo "<tr>";
-										echo "<td>" . $medicine['id'] . "</td>";
-										echo "<td>" . $medicine['medName'] . "</td>";
-										echo "<td>" . $medicine['sciName'] . "</td>";
-										echo "<td>" . $medicine['weight'] . "</td>";
-										echo "<td>" . $medicinePrice . "</td>";
-										echo "<td><input type='number' name='quantity' id='quantity' placeholder='1 2 3 . . .'></td>";
-										echo "</tr>";
-									}
-								}
+                                        echo "<tr>";
+                                        echo "<td>" . $medicine['id'] . "</td>";
+                                        echo "<td>" . $medicine['medName'] . "</td>";
+                                        echo "<td>" . $medicine['sciName'] . "</td>";
+                                        echo "<td>" . $medicine['weight'] . "</td>";
+                                        echo "<td>" . $medicinePrice . "</td>";
+                                        echo "<td><input type='number' name='quantity' id='quantity' placeholder='1 2 3 . . .'></td>";
+                                        echo "</tr>";
+                                    }
+                                }
 
-								?>
+                                ?>
 
 
                             </table>
