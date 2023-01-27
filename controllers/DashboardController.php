@@ -18,21 +18,22 @@ class DashboardController extends Controller
             if (session_status() == PHP_SESSION_NONE) {
                 session_start();
             }
-//
-            if (isset($_SESSION['isPharmacy']) && $_SESSION['isPharmacy']) {
+
+            if (isset($_SESSION['userType']) && $_SESSION['userType'] == 'pharmacy') {
                 return $this->render('pharmacy/dashboard.php');
-            } elseif (isset($_SESSION['isSupplier']) && $_SESSION['isSupplier']) {
+            } elseif (isset($_SESSION['userType']) && $_SESSION['userType'] == 'supplier') {
                 return $this->render('supplier/dashboard.php');
-            } elseif (isset($_SESSION['isLab']) && $_SESSION['isLab']) {
+            } elseif (isset($_SESSION['userType']) && $_SESSION['userType'] == 'lab') {
                 return $this->render('lab/dashboard.php');
-            } elseif (isset($_SESSION['isDelivery']) && $_SESSION['isDelivery']) {
+            } elseif (isset($_SESSION['userType']) && $_SESSION['userType'] == 'delivery') {
                 return $this->render('delivery/dashboard.php');
-            } elseif (isset($_SESSION['isEmployee']) && $_SESSION['isEmployee']) {
+            } elseif (isset($_SESSION['userType']) && $_SESSION['userType'] == 'employee') {
                 return $this->render('employee/dashboard.php');
             } else {
-                return header('Location: /');
                 session_abort();
+                return header('Location: /');
             }
+
         }
     }
 

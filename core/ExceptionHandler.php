@@ -91,6 +91,11 @@ class ExceptionHandler extends Logger
 
     }
 
+    public function userNotAssigned(mixed $username)
+    {
+    }
+
+}
     public function uploadtobig()
     {
         $scriptClass = "<head><script src='/js/pharmacy/login-error.js' defer></script><link href='/css/error-model' rel='stylesheet'></head>";
