@@ -33,13 +33,9 @@ class ExceptionHandler extends Logger
     // password does not match
     public function passwordDoesNotMatch()
     {
-        $scriptClass = "<head><script src='/js/pharmacy/login-error.js' defer></script><link href='/css/error-model' rel='stylesheet'></head>";
-        $alertClass = "<div class='loginError alert alert-danger' id='loginError' role='alert'>";
-        $spanClass = "<span class='closebtn' id='closebtn' style='padding-bottom: 0' onclick='this.parentElement.style.display='none';'>&times;</span>";
-        $closeClass = "</div>";
 
-        $message = $scriptClass . $alertClass . $spanClass . "Password does not match" . $closeClass;
-        return $message;
+        $spanClass = "<span class='closebtn' id='closebtn' onclick='this.parentElement.style.display='none';'>&times;</span>";
+        return $this->scriptClass . $this->alertClass . $spanClass . "Password doesnt match" . $this->closeClass;
     }
 
     public function emptyFields()
@@ -66,13 +62,8 @@ class ExceptionHandler extends Logger
 
     public function userCreated()
     {
-        $scriptClass = "<head><script src='/js/pharmacy/login-error.js' defer></script><link href='/css/error-model' rel='stylesheet'></head>";
-        $alertClass = "<div class='loginError alert alert-success' id='loginError' role='alert'>";
-        $spanClass = "<span class='closebtn' id='closebtn' style='padding-bottom: 0' onclick='this.parentElement.style.display='none';'>&times;</span>";
-        $closeClass = "</div>";
-
-        $message = $scriptClass . $alertClass . $spanClass . "User created successfully" . $closeClass;
-        return $message;
+        $spanClass = "<span class='closebtn' id='closebtn' onclick='this.parentElement.style.display='none';'>&times;</span>";
+        return $this->scriptClass . $this->alertClass . $spanClass . "Userr created sucessfully!" . $this->closeClass;
     }
 
     public function loginFirst()
@@ -95,16 +86,10 @@ class ExceptionHandler extends Logger
     {
     }
 
-}
     public function uploadtobig()
     {
-        $scriptClass = "<head><script src='/js/pharmacy/login-error.js' defer></script><link href='/css/error-model' rel='stylesheet'></head>";
-        $alertClass = "<div class='loginError alert alert-success' id='loginError' role='alert'>";
-        $spanClass = "<span class='closebtn' id='closebtn' style='padding-bottom: 0' onclick='this.parentElement.style.display='none';'>&times;</span>";
-        $closeClass = "</div>";
-
-        $message = $scriptClass . $alertClass . $spanClass . "Uploaded documents too large" . $closeClass;
-        return $message;
+        $spanClass = "<span class='closebtn' id='closebtn' onclick='this.parentElement.style.display='none';'>&times;</span>";
+        return $this->scriptClass . $this->alertClass . $spanClass . "Upload files too big" . $this->closeClass;
     }
 
 
