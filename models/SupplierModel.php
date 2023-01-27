@@ -8,9 +8,7 @@ use DateTimeZone;
 
 class SupplierModel extends Model
 {
-    public string $id;
     public string $username;
-    public string $password;
     public string $name;
     public string $supplierRegNo;
     public string $BusinessRegId;
@@ -19,8 +17,12 @@ class SupplierModel extends Model
     public string $supplierCertName;
     public string $verified;
     public string $regDate;
+    public string $email;
+    public string $address;
+    public string $mobile;
 
-    public function registerSupplier() {
+    public function registerSupplier()
+    {
 
         $db = new Database();
 
@@ -29,8 +31,7 @@ class SupplierModel extends Model
         $regDate = $regDate->format('Y/m/d');
 
         try {
-            $this -> password = password_hash($this -> password, PASSWORD_DEFAULT);
-            $sql = "INSERT INTO supplier (id, username, password, name, supplierRegNo, BusinessRegId, supplierCertId, BusinessRegCertName, supplierCertName, verified, regDate) VALUES ('$this->id','$this->username', '$this->password', '$this->name', '$this->supplierRegNo', '$this->BusinessRegId', '$this->supplierCertId', '$this->BusinessRegCertName', '$this->supplierCertName', '0', '$regDate')";
+            $sql = "INSERT INTO supplier (username, name, supplierRegNo, BusinessRegId, supplierCertId, BusinessRegCertName, supplierCertName, verified, regDate, email, address, mobile) VALUES ('$this->username', '$this->name', '$this->supplierRegNo', '$this->BusinessRegId', '$this->supplierCertId', '$this->BusinessRegCertName', '$this->supplierCertName', '0', '$regDate', '$this->email', '$this->address', '$this->mobile')";
 
             $stmt = $db->prepare($sql);
             $stmt->execute();
