@@ -41,6 +41,8 @@ class SupplierAuthController extends Controller
                 $filedestination2 = '..\uploads\supplier\supplierRegCert' . DIRECTORY_SEPARATOR . $SuppRegiCert_Name_New;
                 move_uploaded_file($file1['tmp_name'], $filedestination1);
                 move_uploaded_file($file2['tmp_name'], $filedestination2);
+
+
             } else {
                 echo (new \app\core\ExceptionHandler)->uploadtobig();
                 return $this->render('/supplier/register.php');
@@ -51,7 +53,6 @@ class SupplierAuthController extends Controller
 
             $actor->username = $_POST["username"];
             $actor->password = $_POST["pswd"];
-            $actor->repassword = $_POST["re-pswd"];
             $actor->isSupplier = '1';
             $actor->isDelivery = '0';
             $actor->isLab = '0';

@@ -24,7 +24,7 @@ class SupplierModel extends Model
     public function registerSupplier()
     {
 
-        $db = new Database();
+        $db = (new Database())->getConnection();
 
         $regDate = new DateTime("now");
         $regDate->setTimezone(new DateTimeZone('Asia/Colombo'));
