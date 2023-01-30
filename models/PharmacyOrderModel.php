@@ -14,7 +14,7 @@ class PharmacyOrderModel extends Model
     private $order_status;
     private $order_total;
     private $delivery_date;
-//    private $getId;
+
 
     /**
      * @return mixed
@@ -119,29 +119,25 @@ class PharmacyOrderModel extends Model
     {
         // generate random order id with time stamp and pharmacy id
 
-        $this->id = $this->createRandomID($pharmacyId);
+        $this->setId($this->createRandomID($pharmacyId));
         $order_date = date("Y-m-d");
 
         $sql = "INSERT INTO pharmacy_order (id, pharmacyId, order_date, order_status, order_total) VALUES
-                ('$this->id', '$pharmacyId', '$order_date', 0, '$order_total');";
+                ('$this->getId()', '$pharmacyId', '$order_date', 0, '$order_total');";
         try {
 
             $db = new Database();
 
             $stmt = $db->prepare($sql);
             $stmt->execute();
-            $result = $stmt->get_result();
 
             if ($stmt->get_result()) {
-                (new \app\core\Logger)->orderCreated($this->getId() . $this->getPharmacyId()) ;
                 return true;
             } else {
-                Logger::logError($result->num_rows);
                 return false;
             }
+
         } catch (\Exception $e) {
-            Logger::logError($e->getMessage());
-            echo (new ExceptionHandler)->somethingWentWrong();
             return false;
         }
     }
@@ -183,10 +179,6 @@ class PharmacyOrderModel extends Model
             echo (new ExceptionHandler)->somethingWentWrong();
             return false;
         }
-    }
-
-    private function setQuantity($quantity)
-    {
     }
 
 

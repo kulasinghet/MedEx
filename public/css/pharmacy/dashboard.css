@@ -3,9 +3,6 @@
     padding: 2vh;
     padding-top: 10vh;
     padding-left: 3vh;
-
-    /*height: 100%;*/
-    /*background: #fff;*/
     z-index: 1000;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
@@ -16,6 +13,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
 }
 
 .card {

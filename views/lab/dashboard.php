@@ -13,7 +13,7 @@
 
 <div class="navbar">
     <div class="logo">
-        <a href="/"><img src="/res/logo/logo.svg" alt="logo"></a>
+        <a href="/dashbaord"><img src="/res/logo/logo.svg" alt="logo"></a>
     </div>
     <div class="links">
         <a href="/">Home</a>

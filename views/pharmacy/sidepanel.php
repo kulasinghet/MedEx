@@ -21,7 +21,7 @@
             </span>
             <hr>
             <span>
-                <i class='fa fa-history' style='color:#333333'></i>
+                <i class='fa fa-clock-o' style='color:#333333'></i>
                 <a href="/pharmacy/orders">Orders</a>
             </span>
             <hr>

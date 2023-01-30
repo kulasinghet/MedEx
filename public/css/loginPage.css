@@ -1,13 +1,10 @@
 body {
     /*add image as background*/
-    background-image: url("/res/background-image-login.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+    background-color: #f0f2f5;
     font-family: 'Roboto', sans-serif, Arial;
-    font-size: 14px;
-    color: #333;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333333;
     margin: 0;
     padding: 0;
     display: flex;
@@ -18,7 +15,7 @@ body {
 }
 
 b {
-    display: none;
+    /*display: none;*/
 }
 
 .container {
@@ -26,9 +23,6 @@ b {
     max-width: 70vw;
     padding: 3vh 3vw;
     margin: auto;
-    background-color: #fff;
-    border-radius: 1vh;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -40,17 +34,21 @@ b {
     margin: auto;
     display: flex;
     flex-direction: column;
+    background-color: #FFFFFF;
+    padding: 3vh;
+    border-radius: 1vh;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 }
 
 .sign-in-component h1 {
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: 400;
     margin-bottom: 0;
     /*margin-bottom: 2vh;*/
 }
 
 .sign-in-component h2 {
-    font-size: 1.5rem;
+    font-size: 1rem;
     font-weight: 400;
     margin-bottom: 5vh;
     margin-top: 1vh;
@@ -63,46 +61,74 @@ b {
 }
 
 .sign-in-component form input {
-    padding: 1vh;
     margin-bottom: 3vh;
     border: 1px solid #ccc;
     border-radius: 1vh;
-    height: 6vh;
-    font-size: 1rem;
+    font-size: 16px;
     font-weight: 300;
     outline: none;
+    padding: 2vh 2vw;
 }
 
-.sign-in-component form input[type="submit"] {
-    background-color: #4CAF50;
+#loginButton {
+    background-color: #006dc2;
     color: #fff;
-    padding-top: 1vh;
-    padding-bottom: 1vh;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
     border: none;
     cursor: pointer;
-    font-size: 1.5rem;
+    font-size: 20px;
+    font-weight: 600;
+    border-radius: 1vh;
+    width: 100%;
 }
 
-.sign-in-component form input[type="submit"]:hover {
-    background-color: #45a049;
+#loginButton:hover {
+    background-color: #005a9e;
+}
+
+#registerButton {
+/*style={{background-color: "#36a420"}}*/
+    background-color: #1eb000;
+    color: #fff !important;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 600;
+    border-radius: 1vh;
+    width: 100%;
+}
+
+#registerButton:hover {
+    background-color: #2e7f1a;
+}
+
+hr {
+    border: 1px solid #dadde1;
+    margin-bottom: 5vh;
+    width: 100%;
 }
 
 .sign-in-component form label {
-    font-size: 1.2rem;
+    font-size: 16px;
     font-weight: 400;
     margin-bottom: 0.5vh;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
 }
 
 .register-now p {
-    font-size: 1rem;
+    font-size: 16px;
     font-weight: 300;
     /*margin-bottom: 0;*/
 }
 
 .register-now a {
-    font-size: 1rem;
+    font-size: 16px;
     font-weight: 300;
-    color: #4CAF50;
+    color: #006dc2;
     text-decoration: none;
 }
 
@@ -111,18 +137,23 @@ b {
 }
 
 .image {
-    width: 100%;
-    max-width: 60vh;
-    margin: auto;
+    width: 70% !important;
     display: flex;
-    flex-direction: column
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
+    max-width: 90vh;
 }
 
 .image img{
-    max-width: 60vw;
+    width: 60%;
     object-fit: cover;
+}
+
+#tagline {
+    font-size: 1.5rem;
+    font-weight: 300;
+    margin-bottom: 0;
+    margin-top: 1vh;
 }
 
 
@@ -191,33 +222,3 @@ b {
     }
 }
 
-/*error handling*/
-.loginError {
-    position: fixed;
-    z-index: 100;
-    top: 5px;
-    left: 77%;
-    padding: 20px;
-    background-color: #f44336; /* Red */
-    color: white;
-    margin-bottom: 15px;
-    /*add box shadow*/
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
-}
-
-
-.closebtn {
-    margin-left: 15px;
-    color: white;
-    font-weight: bold;
-    float: right;
-    font-size: 22px;
-    line-height: 20px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-/* When moving the mouse over the close button */
-.closebtn:hover {
-    color: black;
-}

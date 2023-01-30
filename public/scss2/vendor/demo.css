@@ -2523,7 +2523,7 @@ nav .nav-inner ul li a:active:not(.disabled) {
   height: 100vh;
   width: 250px;
   background: #ffffff;
-  border-right: 1px solid rgba(230, 235, 244, 0.4);
+  border-right: 1px solid rgba(7, 48, 122, 0.4);
   box-shadow: 1px 0 3px rgba(0, 0, 0, 0.15);
 }
 .sidebar .sidebar-inner {
@@ -2744,6 +2744,22 @@ form {
   width: 100%;
   display: flex;
   justify-content: center;
+}
+
+/* Forms*/
+.input-box {
+
+  border: 2px solid rgb(145, 141, 141);
+  border-radius: 10px;
+  width: 70%;
+  height: 50px;
+  margin: 8px 0px;
+  padding: 0px 1px;
+}
+
+::placeholder {
+  padding-left: 10px;
+  font-family: "Poppins", sans-serif;
 }
 
 /*# sourceMappingURL=demo.css.map */
