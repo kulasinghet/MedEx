@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Poppins:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=Ubuntu:wght@300;400;500;700&display=swap");
 :root {
   --g28-gap: 1rem;
@@ -2379,7 +2380,7 @@ nav {
   align-items: center;
   justify-content: space-between;
   width: var(--g28-nav-width);
-  height: 4rem;
+  height: 3.5rem;
   padding: 0 2rem;
   margin-bottom: 1rem;
   background: var(--g28-nav-bg);
@@ -2514,7 +2515,7 @@ nav .nav-inner ul li a:active:not(.disabled) {
 }
 
 .nav-cutoff {
-  padding-top: 4rem !important;
+  padding-top: 3.5rem !important;
 }
 
 .sidebar {
@@ -2523,7 +2524,6 @@ nav .nav-inner ul li a:active:not(.disabled) {
   height: 100vh;
   width: 250px;
   background: #ffffff;
-  border-right: 1px solid rgba(7, 48, 122, 0.4);
   box-shadow: 1px 0 3px rgba(0, 0, 0, 0.15);
 }
 .sidebar .sidebar-inner {
@@ -2561,7 +2561,7 @@ nav .nav-inner ul li a:active:not(.disabled) {
   flex-direction: column;
   align-items: stretch;
   justify-content: flex-end;
-  padding: calc(4rem + 1rem) 1rem 1rem 1rem;
+  padding: calc(3.5rem + 1rem) 1rem 1rem 1rem;
 }
 .sidebar .sidebar-inner .sidebar-context .sidebar-context-title {
   color: rgba(117, 119, 129, 0.49);
@@ -2723,6 +2723,307 @@ footer .footer-inner section p {
   margin-bottom: 1rem;
 }
 
+/* modal */
+.modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  /* --m-background is set as inline style */
+  background: rgba(0, 0, 0, 0.18);
+}
+
+/* using :target */
+/*
+when users will click/enter button(link) browser will add a #id in a url and when that happens we'll show our users the modal that contains that id.
+*/
+.modal-container:target {
+  display: flex;
+}
+
+.modal {
+  background: #f6f9ff;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  position: relative;
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #000;
+  text-align: center;
+  border-radius: 20px;
+  padding: 30px 30px 50px;
+  overflow: hidden;
+}
+.modal .modal-title {
+  font-size: 3.2rem;
+  margin-bottom: 2rem;
+}
+.modal .modal-context {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.2rem;
+}
+.modal .modal-close {
+  width: 4rem;
+  height: 4rem;
+  border: 1px solid #071232;
+  border-radius: 100rem;
+  color: inherit;
+  font-size: 2.2rem;
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.2s;
+}
+.modal .modal-close::before {
+  content: "×";
+  transform: translateY(-0.1rem);
+}
+.modal .modal-close:hover, .modal .modal-close:focus {
+  background: #1e69fe;
+  border-color: #1e69fe;
+  transform: translateY(-0.2rem);
+}
+
+.form-group, .button-group {
+  width: 100%;
+}
+
+.form-group {
+  font-size: 0.8rem;
+}
+.form-group * {
+  margin: 0;
+}
+.form-group:not(:last-child) {
+  margin-bottom: 1rem;
+}
+.form-group label {
+  display: inline-block;
+  margin-bottom: 0.3rem;
+}
+
+.button-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+button {
+  border-style: none;
+}
+
+.form-input {
+  display: block;
+  width: 100%;
+  min-height: 2.3rem;
+  padding: 0.75rem;
+  position: relative;
+  font-size: 1rem;
+  color: #495057;
+  background-color: #f7f7f7;
+  background-clip: padding-box;
+  border: 1px solid rgba(106, 148, 210, 0.53);
+  border-radius: 0.4rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.form-input:focus {
+  outline: 0;
+  border-color: #80bdff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.24);
+}
+.form-input::-webkit-scrollbar, .form-input::-webkit-scrollbar-thumb {
+  width: 26px;
+  border-radius: 13px;
+  background-clip: padding-box;
+  border: 10px solid transparent;
+}
+.form-input::-webkit-scrollbar-thumb {
+  box-shadow: inset 0 0 0 10px;
+  color: rgba(0, 0, 0, 0.08);
+}
+.form-input::-webkit-scrollbar-thumb:hover {
+  color: rgba(0, 0, 0, 0.35);
+}
+.form-input::-webkit-scrollbar-thumb:active {
+  color: rgba(0, 0, 0, 0.6);
+}
+.form-input::-webkit-scrollbar-button {
+  display: none;
+}
+.form-input::placeholder {
+  color: #92a7be;
+  opacity: 1;
+}
+
+textarea.form-input, select[multiple].form-input {
+  min-height: 4.6rem;
+}
+
+textarea.form-input {
+  overflow: hidden;
+}
+
+@supports (-webkit-appearance: none) or (-moz-appearance: none) {
+  input[type=checkbox],
+  input[type=radio] {
+    --active: #275EFE;
+    --active-inner: #fff;
+    --focus: 2px rgba(39, 94, 254, 0.3);
+    --border: #BBC1E1;
+    --border-hover: #275EFE;
+    --background: #fff;
+    --disabled: #F6F8FF;
+    --disabled-inner: #E1E6F9;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    height: 21px;
+    outline: none;
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    margin: 0;
+    cursor: pointer;
+    border: 1px solid var(--bc, var(--border));
+    background: var(--b, var(--background));
+    transition: background 0.3s, border-color 0.3s, box-shadow 0.2s;
+  }
+  input[type=checkbox]:after,
+  input[type=radio]:after {
+    content: "";
+    display: block;
+    left: 0;
+    top: 0;
+    position: absolute;
+    transition: transform var(--d-t) var(--d-t-e, ease), opacity var(--d-o, 0.2s);
+  }
+  input[type=checkbox]:checked,
+  input[type=radio]:checked {
+    --b: var(--active);
+    --bc: var(--active);
+    --d-o: .3s;
+    --d-t: .6s;
+    --d-t-e: cubic-bezier(.2, .85, .32, 1.2);
+  }
+  input[type=checkbox]:disabled,
+  input[type=radio]:disabled {
+    --b: var(--disabled);
+    cursor: not-allowed;
+    opacity: 0.9;
+  }
+  input[type=checkbox]:disabled:checked,
+  input[type=radio]:disabled:checked {
+    --b: var(--disabled-inner);
+    --bc: var(--border);
+  }
+  input[type=checkbox]:disabled + label,
+  input[type=radio]:disabled + label {
+    cursor: not-allowed;
+  }
+  input[type=checkbox]:hover:not(:checked):not(:disabled),
+  input[type=radio]:hover:not(:checked):not(:disabled) {
+    --bc: var(--border-hover);
+  }
+  input[type=checkbox]:focus,
+  input[type=radio]:focus {
+    box-shadow: 0 0 0 var(--focus);
+  }
+  input[type=checkbox]:not(.switch),
+  input[type=radio]:not(.switch) {
+    width: 21px;
+  }
+  input[type=checkbox]:not(.switch):after,
+  input[type=radio]:not(.switch):after {
+    opacity: var(--o, 0);
+  }
+  input[type=checkbox]:not(.switch):checked,
+  input[type=radio]:not(.switch):checked {
+    --o: 1;
+  }
+  input[type=checkbox].form-input,
+  input[type=radio].form-input {
+    min-height: 0;
+    padding: 0;
+  }
+  input[type=checkbox] + label,
+  input[type=radio] + label {
+    font-size: 14px;
+    line-height: 21px;
+    display: inline-block;
+    vertical-align: top;
+    cursor: pointer;
+    margin-left: 4px;
+    margin-top: 1px;
+  }
+  input[type=checkbox]:not(.switch) {
+    border-radius: 7px;
+  }
+  input[type=checkbox]:not(.switch):after {
+    width: 5px;
+    height: 9px;
+    border: 2px solid var(--active-inner);
+    border-top: 0;
+    border-left: 0;
+    left: 7px;
+    top: 4px;
+    transform: rotate(var(--r, 20deg));
+  }
+  input[type=checkbox]:not(.switch):checked {
+    --r: 43deg;
+  }
+  input[type=checkbox].switch {
+    width: 38px;
+    border-radius: 11px;
+  }
+  input[type=checkbox].switch:after {
+    left: 2px;
+    top: 2px;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    background: var(--ab, var(--border));
+    transform: translateX(var(--x, 0));
+  }
+  input[type=checkbox].switch:checked {
+    --ab: var(--active-inner);
+    --x: 17px;
+  }
+  input[type=checkbox].switch:disabled:not(:checked):after {
+    opacity: 0.6;
+  }
+  input[type=radio] {
+    border-radius: 50%;
+  }
+  input[type=radio]:after {
+    width: 19px;
+    height: 19px;
+    border-radius: 50%;
+    background: var(--active-inner);
+    opacity: 0;
+    transform: scale(var(--s, 0.7));
+  }
+  input[type=radio]:checked {
+    --s: .5;
+  }
+}
+.form-check {
+  margin: 16px 0;
+  position: relative;
+}
+
 form {
   width: 500px;
 }
@@ -2744,22 +3045,6 @@ form {
   width: 100%;
   display: flex;
   justify-content: center;
-}
-
-/* Forms*/
-.input-box {
-
-  border: 2px solid rgb(145, 141, 141);
-  border-radius: 10px;
-  width: 70%;
-  height: 50px;
-  margin: 8px 0px;
-  padding: 0px 1px;
-}
-
-::placeholder {
-  padding-left: 10px;
-  font-family: "Poppins", sans-serif;
 }
 
 /*# sourceMappingURL=demo.css.map */

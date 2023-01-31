@@ -22,7 +22,7 @@ $context-padding: calc(#{nav.$cutoff} + 1rem) 1rem 1rem 1rem !default;
   height: 100vh;
   width: $sidebar-width;
   background: $bg;
-  border-right: $border;
+  // border-right: $border;
   box-shadow: $box-shadow;
 
   .sidebar-inner {
@@ -75,8 +75,6 @@ $context-padding: calc(#{nav.$cutoff} + 1rem) 1rem 1rem 1rem !default;
           justify-content: stretch;
           margin-bottom: 1rem;
           width: inherit;
-
-
 
           .btn {
             // sidebar buttons are inspired by the primary button
