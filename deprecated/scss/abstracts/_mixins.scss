@@ -1,0 +1,18 @@
+
+@mixin cutoff($direction, $size) {
+  overflow: hidden;
+  padding-#{$direction}: $size;
+}
+
+@mixin company-logo($width) {
+  display: inline-block;
+  overflow: hidden;
+  padding: 5px;
+  width: $width;
+  flex: 0 0 auto;
+
+  img {
+    width: 100%;
+    vertical-align: center;
+  }
+}

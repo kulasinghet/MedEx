@@ -29,6 +29,8 @@ class LabModel extends Model
             $regDate->setTimezone(new DateTimeZone('Asia/Colombo'));
             $regDate = $regDate->format('Y/m/d');
 
+            $this->id = $this->createRandomID("LAB");
+
             $this -> password = password_hash($this -> password, PASSWORD_DEFAULT);
 
             $sql = "INSERT INTO laboratory (id, username, password, laboratory_name, business_registration_id, laboratory_certificate_id, BusinessRegCertName, LabCertName, reg_date) VALUES ('$this->id','$this->username', '$this->password', '$this->laboratory_name', '$this->business_registration_id', '$this->laboratory_certificate_id', '$this->BusinessRegCertName', '$this->LabCertName', '$regDate');";

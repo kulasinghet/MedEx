@@ -1,10 +1,13 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <link href="../../../public/components/sidebar/src/sidemenu-blob.css" type="text/css" rel="stylesheet"/>
     
     <script src="../../../public/components/sidebar/src/sidemenu-blob.js"></script>
-    <title>Supplier Registration Sucessful</title>
+    <title>Supplier Dashboard</title>
     <link href="../../../public/css/homepage/footer.css" type="text/css" rel="stylesheet"/>
     <link href="../../../public/css/homepage/carousel.css" type="text/css" rel="stylesheet"/>
     <link href="../../../public/css/homepage/navbar.css" type="text/css" rel="stylesheet"/>
@@ -13,9 +16,7 @@
     <link href="../../../public/css/homepage/loginPopup.css" type="text/css" rel="stylesheet"/>
     <link href="../../../public/css/search.css" type="text/css" rel="stylesheet"/>
     <link href="../../../public/css/felxbox.css" type="text/css" rel="stylesheet"/>
-    <link rel="stylesheet" href="../../../public/sass/main.css" />
-    <link rel="stylesheet" href="../../../public/css/loginPage/Supplierlogin.css" />
-    <link rel="stylesheet" href="login.css" />
+    <link rel="stylesheet" href="../../../deprecated/scss/main.css" />
     
     <meta charset="UTF-8" />
     <meta
@@ -28,76 +29,32 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"> </script>
   </head>
   <body style = "background-color: #a6cabd;">
-  <?php
-  $id =$_GET['id'];
-  $reqid = $_GET['rid'];
-  $link1 = '../../dashboard/supplier/supplierDashboard.php?id=' . $id;
-  $link2 = '../../updateInventory/supplier/updateInventory.php?id=' . $id;
-  $link3 = '../../addMedicine/supplier/addMed.php?id=' . $id;
-//Nav Bar
-echo "<div class='navBar'>
+    <!--Nav Bar-->
+<div class='navBar'>
         <div class='navBar__logo'>
-            <a href='index.php'><img src='../../../public/res/logo/Logo-text.png' alt='logo' height='40px' width='auto'></a>
+            <a href='index.php'><img src='../../../public/res/logo/Logo-text.png' alt='logo' height="40%" width="40%"></a>
         </div>
   <div class='navBar__menu'>
         <ul>
                 <li><a href='#'>Home</a></li>
                 <li><a href='#'>About</a></li>
                 <li><a href='#'>Contact</a></li>
-                <li><a href='$link1'>Dashboard</a></li>
-                <li><a href='$link2'> Update Inventory</a></li>
-                <li><a href='$link3'>Add New Medicine</a></li>
+                <li><a href='../../dashboard/supplier/supplierDashboard.php'>Dashboard</a></li>
+                <li><a href='../../addMedicine/supplier/addMed.php'>Add New Medicine</a></li>
+                <li><a href='../../logoutPage/supplier/logout.php'>Logout</a></li>
             </ul>
         </div>
-    </div>";
-?>
-    <!--Register-->
-    <div class="card" style="width: 30%; height: auto; left: 35%; top: 20%;">
+    </div>
+    <!--Message-->
+    <div class="card" style="width: 50%; height: auto; left: 25%; top: 20%;">
   <div class="card-body">
-    <h2 class="card-title" style="text-align:center;"><img src="../../../public/res/logo/Logo-text.png" alt="logo" height="40px" width="auto"><br>Supplier Registration Sucessful</h2>
+    <h2 class="card-title" style="text-align:center;"><img src="../../../public/res/logo/Logo-text.png" alt="logo"height="40%" width="40%"><br>New Medicine Request Sent</h2>
     <p class="card-text">
-       Your new medicine  request has being sent the Lab request ID is:<?php echo $reqid; ?> <br>
-       Please send the reqested samples to the lab to approve your request</a>
+       <h3>Your new medicine request has being sent.</h3>
+      <br>Lab request ID: <?php echo $_SESSION['reqid']; ?><br>
+       Please send the reqested samples to the lab to approve your request
     </p>
   </div>
 </div>
-<!--footer-->
-<div style="padding-top: 30%; width: auto; background-color: #a6cabd;">
-    <footer class="footer-distributed">
-
-        <div class="footer-left">
-    
-            <h3>Med<span>Ex</span></h3>
-    
-            <p class="footer-links">
-                <a href="#" class="link-1">Home</a>
-                <a href="#">About</a>
-    
-                <a href="#">Contact</a>
-            </p>
-    
-    
-        </div>
-
-        <div class="footer-center">
-    
-    
-            <p class="footer-site-tm">
-                <span>Team Members</span>
-            <li class="tm-color">R.D.T.D. Kulasinghe </li>
-            <li class="tm-color">I.A.P.P. Wijegunawardana </li>
-            <li class="tm-color">W.D.D.N. Dharmathunga </li>
-            <li class="tm-color">M.C.W. Samarasinghe </li>
-            </p>
-        </div>
-    
-        <div class="footer-right">
-            <p class="footer-site-right">© 2022 Group 28, All Right reserved</p>
-    
-        </div>
-    
-    </footer>
-    </div>
-
   </body>
 </html>

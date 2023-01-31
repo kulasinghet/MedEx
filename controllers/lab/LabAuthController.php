@@ -13,13 +13,23 @@ class LabAuthController extends Controller
         if ($request->isPost()) {
 
             $lab = new LabModel();
-            $id = $request->getBody()['id'];
+            $lab -> loadData($request->getBody());
 
+            if ($_POST['password'] != $_POST['retypepassword']) {
+                echo (new \app\core\ExceptionHandler)->passwordDoesNotMatch();
+                return $this->render('registrationPage/laboratory_register_page/register.php');
+            }
 
+            if ($lab->validate() && $lab->registerLab()) {
+                header("Location: /lab/login");
+            } else {
+                echo (new \app\core\ExceptionHandler)->somethingWentWrong();
+                header("Location: /lab/register");
 
-            return 'Handling auth data';
+            }
+
         }
-        return $this->render('registerPage/deliregister.php');
+        return $this->render('registrationPage/laboratory_register_page/register.php');
     }
 
 }

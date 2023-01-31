@@ -47,7 +47,7 @@ body {
     margin-bottom: 2vw;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-around;
     height: 100%;
 }
 
@@ -77,6 +77,10 @@ body {
     margin-bottom: 2vh;
     display: flex;
     align-items: center;
+    padding-left: 2vw;
+    padding-right: 2vw;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
 }
 
 .sidepanel i {

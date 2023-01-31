@@ -1,49 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MedEx Theme</title>
+    <meta charset="UTF-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Dashboard with the grid system</title>
 
-  <link rel="stylesheet" href="../scss/demo.css" />
-  <!-- Font awesome kit -->
-  <script
-          src="https://kit.fontawesome.com/9b33f63a16.js"
-          crossorigin="anonymous"
-  ></script>
+    <link href="../scss/vendor/demo.css" rel="stylesheet"/>
+    <!-- Font awesome kit -->
+    <script crossorigin="anonymous" src="https://kit.fontawesome.com/9b33f63a16.js"></script>
 </head>
 <body>
-<div class="container">
-  <section>
-    <h2>Cards</h2>
-
-    <div class="card">
-      <img class="card-img" src="sample.jpg" alt="Mondstadt - Genshin Impact" />
-      <div class="card-body">
-        <h5 class="card-title">Card Title</h5>
-        <p class="card-text">
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </p>
-        <a class="btn btn-primary btn-block">Go somewhere</a>
-        <a href="#">Card link</a>
-      </div>
+<!-- Section: Dashboard Layout -->
+<div class="canvas">
+    <div class="canvas-inner grid flow-row-dense">
+        <div class="card g-col-2 g-row-4-start-3">
+            <img class="card-img" src="sample.jpg" alt="Mondstadt - Genshin Impact"/>
+            <div class="card-body">
+                <h5 class="card-title">Card Title</h5>
+                <p class="card-text">
+                    Some quick example text to build on the card title and make up the
+                    bulk of the card's content.
+                </p>
+                <a class="btn btn--primary">Go somewhere</a>
+                <a href="#">Card link</a>
+            </div>
+        </div>
+        <div class="card dark g-col-2 g-row-4">
+            <img class="card-img" src="sample.jpg" alt="Mondstadt - Genshin Impact"/>
+            <div class="card-body">
+                <h5 class="card-title">Card Title</h5>
+                <p class="card-text">
+                    Some quick example text to build on the card title and make up the
+                    bulk of the card's content.
+                </p>
+                <a class="btn btn--primary">Go somewhere</a>
+                <a href="#">Card link</a>
+            </div>
+        </div>
+        <div class="card g-col-3-start-3 g-row-3-start-4">
+            <div class="card-body">
+                <h5 class="card-title">Card Title</h5>
+                <p class="card-text">
+                    Some quick example text to build on the card title and make up the
+                    bulk of the card's content.
+                </p>
+                <a class="btn btn--primary btn-block">Go somewhere</a>
+                <a href="#">Card link</a>
+            </div>
+        </div>
+        <div class="card dark g-col-4 g-row-1-start-1">
+            <div class="card-body">
+                <h5 class="card-title">Card Title</h5>
+                <p class="card-text">
+                    Some quick example text to build on the card title and make up the
+                    bulk of the card's content.
+                </p>
+            </div>
+        </div>
+        <div class="card g-col-2 g-row-2-start-3">
+            <div class="card-body">
+                <h5 class="card-title">Card Title</h5>
+                <p class="card-text">
+                    Some quick example text to build on the card title and make up the
+                    bulk of the card's content.
+                </p>
+                <a class="btn btn--primary btn-block">Go somewhere</a>
+                <a href="#">Card link</a>
+            </div>
+        </div>
     </div>
-
-    <div class="card dark">
-      <img class="card-img" src="sample.jpg" alt="Mondstadt - Genshin Impact" />
-      <div class="card-body">
-        <h5 class="card-title">Card Title</h5>
-        <p class="card-text">
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </p>
-        <a class="btn btn-primary btn-block">Go somewhere</a>
-        <a href="#">Card link</a>
-      </div>
-    </div>
-  </section>
 </div>
+<!-- Section: Dashboard Layout -->
 </body>
 </html>
