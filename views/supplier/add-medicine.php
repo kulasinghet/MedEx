@@ -24,6 +24,7 @@
                 <li><a href="#"><i class="fa-solid fa-circle-question"></i></a></li>
                 <li><a href="#"><i class="fa-solid fa-gear"></i></a></li>
                 <li><a href="#"><i class="fa-solid fa-bell"></i></a></li>
+                <li><a href="../login"><i class="fa-solid fa-power-off"></i></a></li>
             </ul>
             <a class="nav-profile" href="#">
                 <div class="nav-profile-image">
@@ -74,7 +75,7 @@
         <div class="canvas-inner">
             <div class="row">
                 <div class="col">
-                    <p> Sell Medicine </p>
+                    <p> Add New Medicine </p>
                 </div>
             </div>
         </div>

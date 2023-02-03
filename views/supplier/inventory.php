@@ -1,3 +1,9 @@
+<?php
+use app\controllers\supplier\SupplierDashboardController;
+use app\models\SupplierMedicineModel;
+use app\controllers\supplier\SupplierMedicineController;
+
+?>
 <html lang="en">
 
 <head>
@@ -12,18 +18,12 @@
 <body>
 
     <nav>
-        <div class="nav-search">
-            <form onsubmit="preventDefault();" role="search">
-                <label for="search">Search for stuff</label>
-                <input autofocus id="search" placeholder="Search..." required type="search" />
-                <button type="submit">Go</button>
-            </form>
-        </div>
         <div class="nav-inner">
             <ul>
                 <li><a href="#"><i class="fa-solid fa-circle-question"></i></a></li>
                 <li><a href="#"><i class="fa-solid fa-gear"></i></a></li>
                 <li><a href="#"><i class="fa-solid fa-bell"></i></a></li>
+                <li><a href="../login"><i class="fa-solid fa-power-off"></i></a></li>
             </ul>
             <a class="nav-profile" href="#">
                 <div class="nav-profile-image">
@@ -74,10 +74,44 @@
         <div class="canvas-inner">
             <div class="row">
                 <div class="col">
-                    <p> Sell Medicine </p>
+                    <div class="card g-col-2 g-row-2-start-3"
+                        style=" box-shadow: 0 3px 10px rgb(0 0 0 / 0.2); border-radius: 20px; width:100% padding: 1%;">
+                        <div class="card-body">
+                            <div style="padding: 2%;">
+                                <h3>Inventory</h3>
+                                </br>
+                                <div class="nav-search">
+                                    <form onsubmit="preventDefault();" role="search">
+                                        <label for="search">Filter Medicine</label>
+                                        <input autofocus id="search" placeholder="Filter Medicine" required
+                                            type="search" />
+                                        <button type="submit">Go</button>
+                                    </form>
+                                </div>
+                                </br></br>
+                                <table style="width: 100%; text-align:center;">
+                                    <tr>
+                                        <th>Medicine Name</th>
+                                        <th>Scientific Name</th>
+                                        <th>Weight</th>
+                                        <th>Quantity</th>
+                                        <th>Unit Price</th>
+                                    </tr>
+
+                                    <?php $supmed = new SupplierMedicineController;
+                                    $supmed->viewallMed($_SESSION['username']);
+                                    ?>
+
+
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 
 </body>

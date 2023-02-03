@@ -7,110 +7,52 @@ use app\core\Logger;
 
 class MedicineModel extends Model
 {
-    private $id;
-    private $medName;
-    private $weight;
-    private $sciName;
-    private $price;
-    private $manId;
+    public $id;
+    public $medName;
+    public $weight;
+    public $sciName;
+    public $manId;
 
-    /**
-     * @return mixed
-     */
-    public function getId()
+    public function getMedicine($id)
     {
-        return $this->id;
+        $db = (new Database())->getConnection();
+        $sql = "SELECT * from medicine WHERE medicine.id = '$id'";
+        $result = $db->query($sql);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $this->id = $row["id"];
+                $this->medName = $row["medName"];
+                $this->weight = $row["weight"];
+                $this->sciName = $row["sciName"];
+                $this->manId = $row["manId"];
+            }
+        }
+        $db->close();
+
     }
 
-    /**
-     * @param mixed $id
-     */
-    public function setId($id): void
+    public function getName($id)
     {
-        $this->id = $id;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getMedName()
-    {
+        $this->getMedicine($id);
         return $this->medName;
-    }
 
-    /**
-     * @param mixed $medName
-     */
-    public function setMedName($medName): void
-    {
-        $this->medName = $medName;
     }
-
-    /**
-     * @return mixed
-     */
-    public function getWeight()
+    public function getSciname($id)
     {
-        return $this->weight;
-    }
-
-    /**
-     * @param mixed $weight
-     */
-    public function setWeight($weight): void
-    {
-        $this->weight = $weight;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getSciName()
-    {
+        $this->getMedicine($id);
         return $this->sciName;
+
     }
 
-    /**
-     * @param mixed $sciName
-     */
-    public function setSciName($sciName): void
+    public function getWeight($id)
     {
-        $this->sciName = $sciName;
+        $this->getMedicine($id);
+        return $this->weight;
+
     }
 
-    /**
-     * @return mixed
-     */
-    public function getPrice()
+    public function getAllMedicines()
     {
-        return $this->price;
-    }
-
-    /**
-     * @param mixed $price
-     */
-    public function setPrice($price): void
-    {
-        $this->price = $price;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getManId()
-    {
-        return $this->manId;
-    }
-
-    /**
-     * @param mixed $manId
-     */
-    public function setManId($manId): void
-    {
-        $this->manId = $manId;
-    }
-
-    public function getAllMedicines() {
         $db = new Database();
         $sql = "SELECT * FROM medicine";
 
