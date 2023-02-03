@@ -1,48 +1,131 @@
-// ~~~~~~~~~~~~~~ DEPRECATED ~~~~~~~~~~~~~~
+// Variables should follow the `$component-state-property-size` formula for consistent naming.
 
-$color-light: #f8f9fa;
-$color-dark: #343a40;
-$color-primary: #4339f2;
-$color-info: #02a0fc;
-$color-success: #34b53a;
-$color-warning: #ffb200;
-$color-danger: #ff3a29;
+// ------------------- Colors ------------------- //
+// main colors
+$white: #ffffff !default;
+$black: #000000 !default;
+$blue: #1e69fe !default;
 
-$color-link: #007bff;
+// gray colors
+$gray-1: #f6f9ff !default;
+$gray-2: #e6ebf4 !default;
+$gray-3: #b5bccf !default;
 
-$color-grayblue-50: #4d5e80;
-$color-grayblue-60: #6b7a99;
-$color-grayblue-70: #7d8fb3;
-$color-grayblue-80: #adb8cc;
-$color-grayblue-85: #c3cad9;
+// gray colors map
+$grays: (
+        1: $gray-1,
+        2: $gray-2,
+        3: $gray-3
+) !default;
 
-$gradient-light: linear-gradient(180deg, #ffffff 0%, #f2f2f2 100%);
-$gradient-dark: linear-gradient(180deg, #343a40 0%, #202223 100%);
+// theme colors
+$primary: $blue !default;
+$secondary: #326164 !default;
+$success: #8EC92DD6 !default;
+$info: #08a29e !default;
+$warning: #ffb200 !default;
+$danger: #ff3a29 !default;
+$light: $gray-1 !default;
+$dark: #071232 !default;
 
-$effects-default: 1px 4px 4px rgba(0, 0, 0, 0.25);
-$effects-clicked: inset 1px 4px 4px rgba(0, 0, 0, 0.25);
-$effects-primary: 1px 4px 4px rgba(57, 98, 242, 0.38);
-$effects-info: 1px 4px 4px rgba(97, 193, 249, 0.38);
-$effects-success: 1px 4px 4px rgba(16, 192, 24, 0.38);
-$effects-warning: 1px 4px 4px rgba(255, 199, 0, 0.38);
-$effects-danger: 1px 4px 4px rgba(255, 92, 41, 0.38);
+// theme colors map
+$theme-colors: (
+        "primary": $primary,
+        "secondary": $secondary,
+        "success": $success,
+        "info": $info,
+        "warning": $warning,
+        "danger": $danger,
+        "light": $light,
+        "dark": $dark,
+) !default;
+// ------------------- Colors ------------------- //
 
-// Form input
-$input-height: 2.3rem;
-$input-background-color: #f7f7f7;
-$input-text-color: #495057;
-$input-placeholder-color: #92a7be;
-$input-border-color: rgba(106, 148, 210, 0.53);
-$input-border-color-active: #80bdff;
-// Form input - checkbox
-$checkbox-size: 1.25rem;
-$checkbox-border-radius: .2rem;
-$checkbox-color-active: #0095ff;
+// ------------------- Configurations ------------------- //
+// prefix for CSS variables
+$prefix: g28- !default;
 
-// Z indexes
-$z-sidebar: 100;
-$z-navbar: 90;
-$z-max: 89;
+$max-z-index: 100 !default;
+// ------------------- Configurations ------------------- //
 
-//layout
-$article-margin: 0 5rem;
+
+// ------------------- Theme properties ------------------- //
+// styles for the disabled state
+$disabled-color: $white !default;
+$disabled-bg: #6c757d !default;
+$disabled-border: transparent 1px solid !default;
+
+// fonts
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Poppins:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=Ubuntu:wght@300;400;500;700&display=swap');
+$font-family-sans-serif: 'Poppins', sans-serif !default;
+$font-family-monospace: 'DM Mono', monospace !default;
+
+// font styles (normalization)
+$font-family-base: $font-family-sans-serif !default;
+$font-family-code: $font-family-monospace !default;
+
+// font sizes
+$font-size-base: 1rem !default; // typically `16px`
+$font-size-sm: $font-size-base * .875 !default;
+$font-size-lg: $font-size-base * 1.25 !default;
+
+// font weights
+$font-weight-light:           300 !default;
+$font-weight-normal:          400 !default;
+$font-weight-medium:          500 !default;
+$font-weight-semibold:        600 !default;
+$font-weight-bold:            700 !default;
+
+$font-weight-base: $font-weight-normal !default;
+
+// line heights
+$line-height-base:            1.5 !default;
+$line-height-sm:              1.25 !default;
+$line-height-lg:              2 !default;
+
+// headings
+$h1-font-size: $font-size-base * 2.5 !default;
+$h2-font-size: $font-size-base * 2 !default;
+$h3-font-size: $font-size-base * 1.75 !default;
+$h4-font-size: $font-size-base * 1.5 !default;
+$h5-font-size: $font-size-base * 1.25 !default;
+$h6-font-size: $font-size-base !default;
+
+// font sizes map
+$font-sizes: (
+        1: $h1-font-size,
+        2: $h2-font-size,
+        3: $h3-font-size,
+        4: $h4-font-size,
+        5: $h5-font-size,
+        6: $h6-font-size
+) !default;
+// ------------------- Theme properties ------------------- //
+
+// ------------------- Body ------------------- //
+$body-bg: $light !default;
+$body-color: $dark !default;
+// ------------------- Body ------------------- //
+
+// ------------------- Fixed Components ------------------- //
+$sidebar-width: 250px !default;
+$navbar-height: 3.5rem !default;
+$gap: 1rem !default;
+// ------------------- Fixed Components ------------------- //
+
+// ------------------- Grid System ------------------- //
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px
+) !default;
+
+// following variables are used in both the grid and the flexbox.
+// the grid system generates its template based on its own child components.
+// So these variables will be the max values it can take.
+$grid-columns: 12 !default;
+$grid-rows: 9 !default;
+// ------------------- Grid System ------------------- //

@@ -16,7 +16,7 @@ session_start();
     <link href="../../../public/css/homepage/loginPopup.css" type="text/css" rel="stylesheet"/>
     <link href="../../../public/css/search.css" type="text/css" rel="stylesheet"/>
     <link href="../../../public/css/felxbox.css" type="text/css" rel="stylesheet"/>
-    <link rel="stylesheet" href="../../../public/scss/main.css" />
+    <link rel="stylesheet" href="../../../deprecated/scss/main.css" />
     
     <meta charset="UTF-8" />
     <meta
