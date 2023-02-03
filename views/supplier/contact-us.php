@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Dashboard</title>
-    <link href="../scss2/vendor/demo.css" rel="stylesheet" />
+    <title>Contact Us</title>
+    <link href="../scss/vendor/demo.css" rel="stylesheet" />
     <!-- Font awesome kit -->
     <script crossorigin="anonymous" src="https://kit.fontawesome.com/9b33f63a16.js"></script>
 </head>
@@ -24,6 +24,7 @@
                 <li><a href="#"><i class="fa-solid fa-circle-question"></i></a></li>
                 <li><a href="#"><i class="fa-solid fa-gear"></i></a></li>
                 <li><a href="#"><i class="fa-solid fa-bell"></i></a></li>
+                <li><a href="../login"><i class="fa-solid fa-power-off"></i></a></li>
             </ul>
             <a class="nav-profile" href="#">
                 <div class="nav-profile-image">
@@ -74,7 +75,7 @@
         <div class="canvas-inner">
             <div class="row">
                 <div class="col">
-                    <p> Sell Medicine </p>
+                    <p> Contact Us </p>
                 </div>
             </div>
         </div>

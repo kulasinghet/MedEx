@@ -77,5 +77,4 @@ class SupplierAuthController extends Controller
         return $this->render('/supplier/register.php');
     }
 
-
 }

@@ -51,4 +51,44 @@ class SupplierModel extends Model
         }
     }
 
+    public function getSupplier($uname)
+    {
+        $db = (new Database())->getConnection();
+        $sql = "SELECT * from supplier WHERE supplier.username = '$uname'";
+        $result = $db->query($sql);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $this->username = $row["username"];
+                $this->name = $row["name"];
+                $this->supplierRegNo = $row["supplierRegNo"];
+                $this->BusinessRegId = $row["BusinessRegId"];
+                $this->supplierCertId = $row["supplierCertId"];
+                $this->BusinessRegCertName = $row["BusinessRegCertName"];
+                $this->supplierCertName = $row["supplierCertName"];
+                $this->verified = $row["verified"];
+                $this->regDate = $row["regDate"];
+                $this->email = $row["email"];
+                $this->address = $row["address"];
+                $this->mobile = $row["mobile"];
+            }
+
+        }
+        $db->close();
+
+
+    }
+    public function getStatus($uname)
+    {
+        $this->getSupplier($uname);
+        $_SESSION['stat'] = $this->verified;
+        return $_SESSION['stat'];
+    }
+
+    public function getName($uname)
+    {
+        $this->getSupplier($uname);
+        $_SESSION['name'] = $this->name;
+        return $_SESSION['name'];
+    }
+
 }
