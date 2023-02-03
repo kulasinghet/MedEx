@@ -13,6 +13,27 @@ class MedicineModel extends Model
     public $sciName;
     public $manId;
 
+    public function addMedicine()
+    {
+        $db = (new Database())->getConnection();
+        try {
+            $sql = "INSERT INTO medicine (id, medName, weight, sciName, manId)  VALUES ('$this->id', '$this->medName','$this->weight','$this->sciName','$this->manId')";
+            $stmt = $db->prepare($sql);
+            $stmt->execute();
+            if ($stmt->affected_rows == 1) {
+                $stmt->close();
+                return true;
+            }
+
+            $stmt->close();
+
+            return true;
+        } catch (\Exception $e) {
+            ErrorLog::logError($e->getMessage());
+            echo $e->getMessage();
+            return false;
+        }
+    }
     public function getMedicine($id)
     {
         $db = (new Database())->getConnection();
@@ -65,6 +86,16 @@ class MedicineModel extends Model
             Logger::logError($e->getMessage());
             return false;
         }
+    }
+
+    public function getCount()
+    {
+        $db = (new Database())->getConnection();
+        $sql = "SELECT * from medicine";
+        $result = $db->query($sql);
+        $count = $result->num_rows + 1;
+        $db->close();
+        return $count;
     }
 
 }

@@ -18,6 +18,7 @@ use app\controllers\delivery\DeliveryAuthController;
 use app\controllers\employee\EmployeeAuthController;
 use app\controllers\LoginAuthController;
 use app\controllers\SiteController;
+use app\controllers\supplier\SupplierAddMedicineController;
 
 
 $app = new Application();
@@ -82,15 +83,17 @@ $app->router->post('/pharmacy/contact-us', [PharmacyDashboardController::class, 
 $app->router->get('/supplier/register', [SupplierAuthController::class, 'supplierRegister']);
 $app->router->post('/supplier/register', [SupplierAuthController::class, 'supplierRegister']);
 $app->router->get('/supplier/add-medicine', [SupplierDashboardController::class, 'addMedicine']);
-$app->router->post('/supplier/add-medicine', [SupplierDashboardController::class, 'addMedicine']);
-$app->router->get('/supplier/update-medicine', [SupplierDashboardController::class, 'updateMedicine']);
-$app->router->post('/supplier/update-medicine', [SupplierDashboardController::class, 'updateMedicine']);
+$app->router->post('/supplier/add-medicine', [SupplierAddMedicineController::class, 'addMedicine']);
+$app->router->get('/supplier/update-inventory', [SupplierDashboardController::class, 'updateInventory']);
+$app->router->post('/supplier/update-inventory', [SupplierDashboardController::class, 'updateInventory']);
 $app->router->get('/supplier/accept-orders', [SupplierDashboardController::class, 'acceptOrders']);
 $app->router->post('/supplier/accept-orders', [SupplierDashboardController::class, 'acceptOrders']);
 $app->router->get('/supplier/inventory', [SupplierDashboardController::class, 'inventory']);
 $app->router->post('/supplier/inventory', [SupplierDashboardController::class, 'inventory']);
 $app->router->get('/supplier/contact-us', [SupplierDashboardController::class, 'contactUs']);
 $app->router->post('/supplier/contact-us', [SupplierDashboardController::class, 'contactUs']);
+$app->router->get('/supplier/medicine-requests', [SupplierDashboardController::class, 'medicineRequests']);
+$app->router->post('/supplier/medicine-requests', [SupplierDashboardController::class, 'medicineRequests']);
 
 
 

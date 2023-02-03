@@ -30,7 +30,7 @@ use app\models\SupplierModel;
                 <li><a href="#"><i class="fa-solid fa-circle-question"></i></a></li>
                 <li><a href="#"><i class="fa-solid fa-gear"></i></a></li>
                 <li><a href="#"><i class="fa-solid fa-bell"></i></a></li>
-                <li><a href="login"><i class="fa-solid fa-power-off"></i></a></li>
+                <li><a href="login"><i class="fa fa-sign-out"></i></a></li>
             </ul>
             <a class="nav-profile" href="#">
                 <div class="nav-profile-image">
@@ -53,23 +53,33 @@ use app\models\SupplierModel;
                 <h6 class="sidebar-context-title">Menu</h6>
                 <ul>
                     <li>
-                        <a class="btn" href="/supplier/add-medicine"> <i class="fa fa-usd"></i> Add New
+                        <a class="btn" href="/supplier/add-medicine"> <i class="fa fa-medkit"></i> Add New
                             Medicine
                         </a>
-                    </li>
-                    <li>
-                        <a class="btn" href="/supplier/update-medicine"> <i class="fa fa-plus-square"></i> Update
-                            Inventory
-                        </a>
-                    </li>
-                    <li>
-                        <a class="btn" href="/supplier/accept-orders"> <i class="fa fa-clock-o"></i> Accept Orders </a>
                     </li>
                     <li>
                         <a class="btn" href="/supplier/inventory"> <i class="fa fa-dropbox"></i> Inventory </a>
                     </li>
                     <li>
+                        <a class="btn" href="/supplier/update-inventory"> <i class="fa fa-plus-square"></i> Update
+                            Inventory
+                        </a>
+                    </li>
+                    <li>
+                        <a class="btn" href="/supplier/accept-orders"> <i class="fa fa-check-circle"></i> Accept Orders
+                        </a>
+                    </li>
+                    <li>
+                        <a class="btn" href="/supplier/medicine-requests"> <i class="fa fa-hourglass-half"></i> Medicine
+                            Requests </a>
+                    </li>
+
+                    <li>
                         <a class="btn" href="/supplier/contact-us"> <i class="fa fa-phone"></i> Contact Us </a>
+                    </li>
+
+                    <li>
+                        <a class="btn" href="#"> <i class="fa fa-user"></i> Profile </a>
                     </li>
                 </ul>
             </div>
