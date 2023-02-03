@@ -1,3 +1,10 @@
+<?php
+use app\controllers\supplier\SupplierDashboardController;
+use app\models\ScietificNameModel;
+use app\models\SupplierModel;
+use app\models\ManufactureModel;
+
+?>
 <html lang="en">
 
 <head>
@@ -5,6 +12,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Supplier - Add Medicine</title>
     <link href="../scss/vendor/demo.css" rel="stylesheet" />
+    <link href="../css/supplier/formcss.css" rel="stylesheet" />
     <!-- Font awesome kit -->
     <script crossorigin="anonymous" src="https://kit.fontawesome.com/9b33f63a16.js"></script>
 </head>
@@ -24,7 +32,7 @@
                 <li><a href="#"><i class="fa-solid fa-circle-question"></i></a></li>
                 <li><a href="#"><i class="fa-solid fa-gear"></i></a></li>
                 <li><a href="#"><i class="fa-solid fa-bell"></i></a></li>
-                <li><a href="../login"><i class="fa-solid fa-power-off"></i></a></li>
+                <li><a href="/login"><i class="fa fa-sign-out"></i></a></li>
             </ul>
             <a class="nav-profile" href="#">
                 <div class="nav-profile-image">
@@ -47,23 +55,35 @@
                 <h6 class="sidebar-context-title">Menu</h6>
                 <ul>
                     <li>
-                        <a class="btn disabled" href="/supplier/add-medicine"> <i class="fa fa-usd"></i> Add New
+                        <a class="btn disabled" href="/supplier/add-medicine"> <i class="fa fa-medkit"></i> Add New
                             Medicine
                         </a>
-                    </li>
-                    <li>
-                        <a class="btn" href="/supplier/update-medicine"> <i class="fa fa-plus-square"></i> Update
-                            Inventory
-                        </a>
-                    </li>
-                    <li>
-                        <a class="btn" href="/supplier/accept-orders"> <i class="fa fa-clock-o"></i> Accept Orders </a>
                     </li>
                     <li>
                         <a class="btn" href="/supplier/inventory"> <i class="fa fa-dropbox"></i> Inventory </a>
                     </li>
                     <li>
+                        <a class="btn" href="/supplier/update-inventory"> <i class="fa fa-plus-square"></i>
+                            Update
+                            Inventory
+                        </a>
+                    </li>
+                    <li>
+                        <a class="btn" href="/supplier/accept-orders"> <i class="fa fa-check-circle"></i> Accept Orders
+                        </a>
+                    </li>
+                    <li>
+                        <a class="btn" href="/supplier/medicine-requests"> <i class="fa fa-hourglass-half"></i>
+                            Medicine
+                            Requests </a>
+                    </li>
+
+                    <li>
                         <a class="btn" href="/supplier/contact-us"> <i class="fa fa-phone"></i> Contact Us </a>
+                    </li>
+
+                    <li>
+                        <a class="btn" href="#"> <i class="fa fa-user"></i> Profile </a>
                     </li>
                 </ul>
             </div>
@@ -74,8 +94,37 @@
     <div class="canvas nav-cutoff sidebar-cutoff">
         <div class="canvas-inner">
             <div class="row">
-                <div class="col">
-                    <p> Add New Medicine </p>
+                <div class="col" style="display: flex; flex-direction: row; padding-left: 10%;">
+                    <div class="card g-col-2 g-row-2-start-3"
+                        style=" box-shadow: 0 3px 10px rgb(0 0 0 / 0.2); border-radius: 20px; width:80%;">
+                        <div class="card-body">
+                            <div style="padding: 2%;">
+                                <h3>Add New Medicine</h3>
+                                <?php
+                                $sup = new SupplierModel;
+                                $sup->getStatus($_SESSION['username']);
+                                $sup->getName($_SESSION['username']);
+                                if ($_SESSION['stat']) {
+                                    echo "<form action='/supplier/add-medicine' method='post' enctype='multipart/form-data' style='padding-top: 2%; padding-left: 5%; width:70%; text-align: center;'>
+                                    Medicine Name: <input type='text' name='name' class='input-box' placeholder='Enter Medicine Name' required><br>
+                                    Weight (mg): <input type='text' name='weight' class='input-box' placeholder='Enter Weight in mg' required><br>
+                                    Scietific Name: <select name='sciname' value='' class='input-box option' required>Manufacture Name";
+                                    $sciname = new ScietificNameModel;
+                                    $sciname->SciNameDropdown();
+                                    echo "</select>
+                                    Manufacture: <select name='manufacture' value='' class='input-box option' required>Manufacture Name";
+                                    $man = new ManufactureModel;
+                                    $man->ManufactureDropdown();
+                                    echo "</select> <br><input type='submit' value='Add New Medicine' class='btn btn--primary'>
+                                    </form>";
+                                } else {
+                                    echo "<h5><font color='#FF5854'>Cannot add medicine as you are unverfied </font></h5>";
+                                }
+                                ?>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>

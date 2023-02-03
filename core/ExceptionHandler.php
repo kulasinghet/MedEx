@@ -63,7 +63,13 @@ class ExceptionHandler extends Logger
     public function userCreated()
     {
         $spanClass = "<span class='closebtn' id='closebtn' onclick='this.parentElement.style.display='none';'>&times;</span>";
-        return $this->scriptClass . $this->alertClass . $spanClass . "Userr created sucessfully!" . $this->closeClass;
+        return $this->scriptClass . $this->alertClass . $spanClass . "User created sucessfully!" . $this->closeClass;
+    }
+
+    public function RequestSent()
+    {
+        $spanClass = "<span class='closebtn' id='closebtn' onclick='this.parentElement.style.display='none';'>&times;</span>";
+        return $this->scriptClass . $this->alertClass . $spanClass . "New Medicine Request Sent!" . $this->closeClass;
     }
 
     public function loginFirst()
