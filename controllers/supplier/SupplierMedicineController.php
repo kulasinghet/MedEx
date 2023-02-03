@@ -16,15 +16,20 @@ class SupplierMedicineController extends Controller
         $med = new MedicineModel;
         $supMed = new SupplierMedicineModel;
         $result = $supMed->getSupMedicine($_SESSION['username']);
-        while ($row = $result->fetch_assoc()) {
-            $medid = $row["medId"];
-            $medNam = $med->getName($medid);
-            $sciName = $med->getSciname($medid);
-            $weight = $med->getWeight($medid);
-            $quantity = $row["quantity"];
-            $unitPrice = $row["unitPrice"];
-            echo "<tr><td>" . $medNam . "</td><td>" . $sciName . "</td><td>" . $weight . " mg</td><td>" . $quantity . "</td><td>" . $unitPrice . "</td> </tr>";
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $medid = $row["medId"];
+                $medNam = $med->getName($medid);
+                $sciName = $med->getSciname($medid);
+                $weight = $med->getWeight($medid);
+                $quantity = $row["quantity"];
+                $unitPrice = $row["unitPrice"];
+                echo "<tr><td>" . $medNam . "</td><td>" . $sciName . "</td><td>" . $weight . " mg</td><td>" . $quantity . "</td><td>" . $unitPrice . "</td> </tr>";
+            }
+        } else {
+            echo "<tr><td colspan='5' style='padding:2%;'> No Medicine Added</td>";
         }
+
 
     }
 

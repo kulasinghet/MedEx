@@ -44,8 +44,6 @@ class SupplierMedicineModel extends Model
         $result = $db->query($sql);
         if ($result->num_rows > 0) {
             return $result;
-        } else {
-            echo "No medicine added";
         }
         $db->close();
 
