@@ -84,6 +84,7 @@ $app->router->get('/supplier/register', [SupplierAuthController::class, 'supplie
 $app->router->post('/supplier/register', [SupplierAuthController::class, 'supplierRegister']);
 $app->router->get('/supplier/add-medicine', [SupplierDashboardController::class, 'addMedicine']);
 $app->router->post('/supplier/add-medicine', [SupplierAddMedicineController::class, 'addMedicine']);
+$app->router->post('/supplier/add-existing-medicine', [SupplierAddMedicineController::class, 'addExsisting']);
 $app->router->get('/supplier/update-inventory', [SupplierDashboardController::class, 'updateInventory']);
 $app->router->post('/supplier/update-inventory', [SupplierDashboardController::class, 'updateInventory']);
 $app->router->get('/supplier/accept-orders', [SupplierDashboardController::class, 'acceptOrders']);

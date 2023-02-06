@@ -120,7 +120,7 @@ use app\controllers\supplier\SupplierMedicineController;
                                     </tr>
 
                                     <?php $supmed = new SupplierMedicineController;
-                                    $supmed->viewallMed($_SESSION['username']);
+                                    $supmed->updateInventory($_SESSION['username']);
                                     ?>
 
 

@@ -15,6 +15,8 @@ class LabRequestModel extends Model
     public $SupName;
     public $recivedDate;
     public $status;
+
+    // Add Supplier Lab Requests
     public function addRequest()
     {
         $db = (new Database())->getConnection();
@@ -42,6 +44,7 @@ class LabRequestModel extends Model
         }
     }
 
+    // Get Lab Requests Counts
     public function getCount()
     {
         $db = (new Database())->getConnection();
@@ -50,6 +53,17 @@ class LabRequestModel extends Model
         $count = $result->num_rows + 1;
         $db->close();
         return $count;
+    }
+
+    // Get Req ID for a supplier
+    public function getSupMedReq($medid, $supid)
+    {
+        $db = (new Database())->getConnection();
+        $sql = "SELECT  id, status from labreq WHERE  labreq.medId = '$medid' AND labreq.SupName ='$supid' ;";
+        $result = $db->query($sql);
+        $db->close();
+        return $result;
+
     }
 
 }

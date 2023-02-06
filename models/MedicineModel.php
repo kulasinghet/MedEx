@@ -13,6 +13,7 @@ class MedicineModel extends Model
     public $sciName;
     public $manId;
 
+    // Add New Medicine by Supplier
     public function addMedicine()
     {
         $db = (new Database())->getConnection();
@@ -34,6 +35,8 @@ class MedicineModel extends Model
             return false;
         }
     }
+
+    // Get Medicine details by id
     public function getMedicine($id)
     {
         $db = (new Database())->getConnection();
@@ -52,12 +55,14 @@ class MedicineModel extends Model
 
     }
 
+    // Get Medicine Name
     public function getName($id)
     {
         $this->getMedicine($id);
         return $this->medName;
 
     }
+    // Get Scientific Name
     public function getSciname($id)
     {
         $this->getMedicine($id);
@@ -65,6 +70,7 @@ class MedicineModel extends Model
 
     }
 
+    // Get Weight
     public function getWeight($id)
     {
         $this->getMedicine($id);
@@ -72,6 +78,7 @@ class MedicineModel extends Model
 
     }
 
+    // Get all medicine
     public function getAllMedicines()
     {
         $db = new Database();
@@ -88,6 +95,7 @@ class MedicineModel extends Model
         }
     }
 
+    // Get count of Medicine
     public function getCount()
     {
         $db = (new Database())->getConnection();
@@ -96,6 +104,20 @@ class MedicineModel extends Model
         $count = $result->num_rows + 1;
         $db->close();
         return $count;
+    }
+
+
+    // Get ids of all Medicine (to compare unadded medicine for a supplier)
+    public function getallMedid()
+    {
+        $db = (new Database())->getConnection();
+        $sql = "SELECT id  from medicine";
+        $result = $db->query($sql);
+        if ($result->num_rows > 0) {
+            return $result;
+        }
+
+        $db->close();
     }
 
 }

@@ -40,10 +40,36 @@ class SupplierMedicineModel extends Model
     public function getSupMedicine($uname)
     {
         $db = (new Database())->getConnection();
-        $sql = "SELECT medId,verified,quantity,unitPrice from supplier_medicine WHERE supplier_medicine.supName = '$uname'";
+        $sql = "SELECT medId,verified,quantity,unitPrice from supplier_medicine WHERE supplier_medicine.supName = '$uname' && verified='1'";
         $result = $db->query($sql);
         if ($result->num_rows > 0) {
             return $result;
+        }
+        $db->close();
+
+
+    }
+    public function getPendingMedicine($uname)
+    {
+        $db = (new Database())->getConnection();
+        $sql = "SELECT medId,verified,quantity,unitPrice from supplier_medicine WHERE supplier_medicine.supName = '$uname' && verified='0'";
+        $result = $db->query($sql);
+        if ($result->num_rows > 0) {
+            return $result;
+        }
+        $db->close();
+
+
+    }
+
+    public function getSupMedIds($uname)
+    {
+        $db = (new Database())->getConnection();
+        $sql = "SELECT medId from supplier_medicine WHERE supplier_medicine.supName = '$uname'";
+        $result = $db->query($sql);
+        if ($result->num_rows > 0) {
+            return $result;
+
         }
         $db->close();
 
