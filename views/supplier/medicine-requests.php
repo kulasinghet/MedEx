@@ -1,10 +1,17 @@
 <html lang="en">
+<?php
+use app\controllers\supplier\SupplierDashboardController;
+use app\models\SupplierMedicineModel;
+use app\controllers\supplier\SupplierMedicineController;
+
+?>
 
 <head>
     <meta charset="UTF-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Contact Us</title>
     <link href="../scss/vendor/demo.css" rel="stylesheet" />
+    <link href="../css/supplier/formcss.css" rel="stylesheet" />
     <!-- Font awesome kit -->
     <script crossorigin="anonymous" src="https://kit.fontawesome.com/9b33f63a16.js"></script>
 </head>
@@ -88,26 +95,36 @@
             <div class="row">
                 <div class="col" style="display: flex; flex-direction: column;">
                     <div class="card g-col-2 g-row-2-start-3"
-                        style=" box-shadow: 0 3px 10px rgb(0 0 0 / 0.2); border-radius: 20px; width:50%">
+                        style=" box-shadow: 0 3px 10px rgb(0 0 0 / 0.2); border-radius: 20px; width:80%">
                         <div class="card-body">
                             <div style="padding: 2%;">
                                 <h3>Pending Requests</h3>
-                                <?php
+                                </br>
+                                <div class="nav-search">
+                                    <form onsubmit="preventDefault();" role="search">
+                                        <label for="search">Filter Medicine</label>
+                                        <input autofocus id="search" placeholder="Filter Medicine" required
+                                            type="search" />
+                                        <button type="submit">Go</button>
+                                    </form>
+                                </div>
+                                <table style='width: 100%; text-align:center; padding-top:5%' class='scrollable'>
+                                    <tr style='padding:1%; border-bottom: 1pt solid black;'>
+                                        <th>Medicine Name</th>
+                                        <th>Scientific Name</th>
+                                        <th>Weight</th>
+                                        <th>Status</th>
+                                        <th>Request ID</th>
+                                    </tr>
 
-                                ?>
+                                    <?php $supmed = new SupplierMedicineController;
+                                    $supmed->viewPendig($_SESSION['username']);
+                                    ?>
+
+
+                                </table>
                             </div>
                         </div>
-
-                    </div>
-
-                    <div class="card g-col-2 g-row-2-start-3"
-                        style=" box-shadow: 0 3px 10px rgb(0 0 0 / 0.2); border-radius: 20px; width:50%">
-                        <div class="card-body">
-                            <div style="padding: 2%;">
-                                <h3>Approved Requests</h3>
-                            </div>
-                        </div>
-
 
                     </div>
                 </div>

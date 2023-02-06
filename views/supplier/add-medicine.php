@@ -3,6 +3,9 @@ use app\controllers\supplier\SupplierDashboardController;
 use app\models\ScietificNameModel;
 use app\models\SupplierModel;
 use app\models\ManufactureModel;
+use app\models\MedicineModel;
+use app\models\SupplierMedicineModel;
+use app\controllers\supplier\SupplierMedicineController;
 
 ?>
 <html lang="en">
@@ -93,10 +96,40 @@ use app\models\ManufactureModel;
 
     <div class="canvas nav-cutoff sidebar-cutoff">
         <div class="canvas-inner">
-            <div class="row">
-                <div class="col" style="display: flex; flex-direction: row; padding-left: 10%;">
+            <div class="row" style="padding-left:10%">
+                <div class="col" style="display: flex; flex-direction: column;">
                     <div class="card g-col-2 g-row-2-start-3"
-                        style=" box-shadow: 0 3px 10px rgb(0 0 0 / 0.2); border-radius: 20px; width:80%;">
+                        style=" box-shadow: 0 3px 10px rgb(0 0 0 / 0.2); border-radius: 20px; height: 50%; width:70%; padding-bottom:2%;">
+                        <div class="card-body">
+
+                            <div style="padding: 2%;">
+                                <h3>Add Exsiting Medicine</h3>
+                                <div class="nav-search">
+                                    <form onsubmit="preventDefault();" role="search">
+                                        <label for="search">Filter Medicine</label>
+                                        <input autofocus id="search" placeholder="Filter Medicine" required
+                                            type="search" />
+                                        <button type="submit">Go</button>
+                                    </form>
+                                </div>
+                                <?php
+                                $sup = new SupplierModel;
+                                $sup->getStatus($_SESSION['username']);
+                                $sup->getName($_SESSION['username']);
+                                if ($_SESSION['stat']) {
+                                    $supmed = new SupplierMedicineController;
+                                    $supmed->viewOtherMed($_SESSION['username']);
+
+                                } else {
+                                    echo "<h5><font color='#FF5854'>Cannot add medicine as you are unverfied </font></h5>";
+                                }
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card g-col-2 g-row-2-start-3"
+                        style=" box-shadow: 0 3px 10px rgb(0 0 0 / 0.2); border-radius: 20px; width:70%; height: fit-content;">
                         <div class="card-body">
                             <div style="padding: 2%;">
                                 <h3>Add New Medicine</h3>
@@ -105,7 +138,7 @@ use app\models\ManufactureModel;
                                 $sup->getStatus($_SESSION['username']);
                                 $sup->getName($_SESSION['username']);
                                 if ($_SESSION['stat']) {
-                                    echo "<form action='/supplier/add-medicine' method='post' enctype='multipart/form-data' style='padding-top: 2%; padding-left: 5%; width:70%; text-align: center;'>
+                                    echo "<form action='/supplier/add-medicine' method='post' enctype='multipart/form-data' style='padding-top: 2%; padding-left: 5%; width:70%;''>
                                     Medicine Name: <input type='text' name='name' class='input-box' placeholder='Enter Medicine Name' required><br>
                                     Weight (mg): <input type='text' name='weight' class='input-box' placeholder='Enter Weight in mg' required><br>
                                     Scietific Name: <select name='sciname' value='' class='input-box option' required>Manufacture Name";
@@ -128,6 +161,7 @@ use app\models\ManufactureModel;
                 </div>
             </div>
         </div>
+    </div>
     </div>
 
 </body>

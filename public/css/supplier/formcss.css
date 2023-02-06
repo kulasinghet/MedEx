@@ -18,3 +18,47 @@
     padding: 1%;
 
 }
+.scrollable thead,
+.scrollable tfoot,
+.scrollable tbody,
+.scrollable th,
+.scrollable td {
+  display: block;
+  width: 100%;
+}
+
+.scrollable thead,
+.scrollable tfoot,
+.scrollable tbody {
+  overflow-y: scroll;
+}
+
+.scrollable thead,
+.scrollable tfoot {
+  -ms-overflow-style: none;
+}
+
+.scrollable thead::-webkit-scrollbar,
+.scrollable tfoot::-webkit-scrollbar {
+  visibility: hidden;
+}
+
+.scrollable tbody {
+  max-height: 20em;
+  position: relative;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
+.scrollable tr {
+  display: flex;
+}
+
+.scrollable tbody th,
+.scrollable tbody td {
+  border-top: none;
+}
+
+.scrollable th:not(:last-child),
+.scrollable td:not(:last-child) {
+  border-right: none;
+}
