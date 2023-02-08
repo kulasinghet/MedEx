@@ -27,9 +27,6 @@ use app\models\SupplierModel;
         </div>
         <div class="nav-inner">
             <ul>
-                <li><a href="#"><i class="fa-solid fa-circle-question"></i></a></li>
-                <li><a href="#"><i class="fa-solid fa-gear"></i></a></li>
-                <li><a href="#"><i class="fa-solid fa-bell"></i></a></li>
                 <li><a href="login"><i class="fa fa-sign-out"></i></a></li>
             </ul>
             <a class="nav-profile" href="#">
@@ -77,10 +74,6 @@ use app\models\SupplierModel;
                     <li>
                         <a class="btn" href="/supplier/contact-us"> <i class="fa fa-phone"></i> Contact Us </a>
                     </li>
-
-                    <li>
-                        <a class="btn" href="#"> <i class="fa fa-user"></i> Profile </a>
-                    </li>
                 </ul>
             </div>
         </div>
@@ -95,7 +88,10 @@ use app\models\SupplierModel;
                         style=" box-shadow: 0 3px 10px rgb(0 0 0 / 0.2); border-radius: 20px; width:50%">
                         <div class="card-body">
                             <div style="padding: 2%;">
-                                <h3>Supplier Profile</h3>
+                                <div style="display: flex; flex-direction: row;">
+                                    <h3 style="padding-right:60%">Supplier Profile</h3><a href='#'
+                                        style="padding-top:5%"><i class='fa fa-pencil'></i></a>
+                                </div>
                                 <?php
                                 $sup = new SupplierModel;
                                 $sup->getStatus($_SESSION['username']);

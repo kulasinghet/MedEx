@@ -27,9 +27,6 @@ use app\controllers\supplier\SupplierMedicineController;
         </div>
         <div class="nav-inner">
             <ul>
-                <li><a href="#"><i class="fa-solid fa-circle-question"></i></a></li>
-                <li><a href="#"><i class="fa-solid fa-gear"></i></a></li>
-                <li><a href="#"><i class="fa-solid fa-bell"></i></a></li>
                 <li><a href="/login"><i class="fa fa-sign-out"></i></a></li>
             </ul>
             <a class="nav-profile" href="#">
@@ -78,10 +75,6 @@ use app\controllers\supplier\SupplierMedicineController;
 
                     <li>
                         <a class="btn" href="/supplier/contact-us"> <i class="fa fa-phone"></i> Contact Us </a>
-                    </li>
-
-                    <li>
-                        <a class="btn" href="#"> <i class="fa fa-user"></i> Profile </a>
                     </li>
                 </ul>
             </div>

@@ -62,3 +62,12 @@
 .scrollable td:not(:last-child) {
   border-right: none;
 }
+
+textarea{
+    border-radius: 6px 6px 6px 6px;
+    border-style: none solid solid none;
+    border: 2px solid rgb(145, 141, 141);
+    font-family: "Ubuntu", sans-serif;
+    padding: 1%;
+    color: rgb(145, 141, 141);
+}

@@ -32,11 +32,17 @@ class SupplierAddMedicineController extends Controller
             $supmed->supName = $_SESSION['username'];
             $supmed->unitPrice = 0;
 
+            if ($med->weight < 1) {
+                echo (new \app\core\ExceptionHandler)->inValidWeight();
+                return $this->render("/supplier/add-medicine.php");
 
-            if ($med->addMedicine() && $labreq->addRequest() && $supmed->addMedicine()) {
-                echo (new \app\core\ExceptionHandler)->RequestSent();
-                return $this->render("/supplier/update-medicine.php");
+            } else {
+                if ($med->addMedicine() && $labreq->addRequest() && $supmed->addMedicine()) {
+                    echo (new \app\core\ExceptionHandler)->RequestSent();
+                    return $this->render("/supplier/update-medicine.php");
+                }
             }
+
 
 
         }
