@@ -1,7 +1,16 @@
+@use "variables" as *;
 
-@mixin cutoff($direction, $size) {
-  overflow: hidden;
-  padding-#{$direction}: $size;
+
+@function pick-value($key, $target-map, $alt-map: null, $alt-key: null) {
+  @if (map-has-key($target-map, $key)) {
+    @return map-get($target-map, $key);
+  } @else if($alt-map != null) {
+    @return map-get($alt-map, $key);
+  } @else if($alt-key != null) {
+    @return $alt-key;
+  }
+
+  @return null;
 }
 
 @mixin company-logo($width) {
@@ -9,6 +18,7 @@
   overflow: hidden;
   padding: 5px;
   width: $width;
+  height: auto;
   flex: 0 0 auto;
 
   img {

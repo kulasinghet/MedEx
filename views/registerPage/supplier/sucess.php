@@ -13,7 +13,7 @@
     <link href="../../../public/css/homepage/loginPopup.css" type="text/css" rel="stylesheet"/>
     <link href="../../../public/css/search.css" type="text/css" rel="stylesheet"/>
     <link href="../../../public/css/felxbox.css" type="text/css" rel="stylesheet"/>
-    <link rel="stylesheet" href="../../../public/scss/main.css" />
+    <link rel="stylesheet" href="../../../deprecated/scss/main.css" />
     <link rel="stylesheet" href="../../../public/css/loginPage/Supplierlogin.css" />
     <link rel="stylesheet" href="login.css" />
     

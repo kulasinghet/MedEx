@@ -26,20 +26,16 @@ class ExceptionHandler extends Logger
         $closeClass = "</div>";
 
         $message = $scriptClass . $alertClass . $spanClass . "User already exists" . $closeClass;
-//        Logger::logError("User already exists" . $exceptionMessage);
+        //        Logger::logError("User already exists" . $exceptionMessage);
         return $message;
     }
 
     // password does not match
     public function passwordDoesNotMatch()
     {
-        $scriptClass = "<head><script src='/js/pharmacy/login-error.js' defer></script><link href='/css/error-model' rel='stylesheet'></head>";
-        $alertClass = "<div class='loginError alert alert-danger' id='loginError' role='alert'>";
-        $spanClass = "<span class='closebtn' id='closebtn' style='padding-bottom: 0' onclick='this.parentElement.style.display='none';'>&times;</span>";
-        $closeClass = "</div>";
 
-        $message = $scriptClass . $alertClass . $spanClass . "Password does not match" . $closeClass;
-        return $message;
+        $spanClass = "<span class='closebtn' id='closebtn' onclick='this.parentElement.style.display='none';'>&times;</span>";
+        return $this->scriptClass . $this->alertClass . $spanClass . "Password doesnt match" . $this->closeClass;
     }
 
     public function emptyFields()
@@ -55,7 +51,7 @@ class ExceptionHandler extends Logger
 
     public function somethingWentWrong(): string
     {
-        $scriptClass = "<head><script src='/js/pharmacy/login-error.js' defer></script><link href='/css/error-model.css' rel='stylesheet'></head>";
+        $scriptClass = "<head><script src='/js/pharmacy/login-error.js' defer></script><link href='/css/error-model' rel='stylesheet'></head>";
         $alertClass = "<div class='loginError alert alert-danger' id='loginError' role='alert'>";
         $spanClass = "<span class='closebtn' id='closebtn' style='padding-bottom: 0' onclick='this.parentElement.style.display='none';'>&times;</span>";
         $closeClass = "</div>";
@@ -66,13 +62,21 @@ class ExceptionHandler extends Logger
 
     public function userCreated()
     {
-        $scriptClass = "<head><script src='/js/pharmacy/login-error.js' defer></script><link href='/css/error-model' rel='stylesheet'></head>";
-        $alertClass = "<div class='loginError alert alert-success' id='loginError' role='alert'>";
-        $spanClass = "<span class='closebtn' id='closebtn' style='padding-bottom: 0' onclick='this.parentElement.style.display='none';'>&times;</span>";
-        $closeClass = "</div>";
+        $spanClass = "<span class='closebtn' id='closebtn' onclick='this.parentElement.style.display='none';'>&times;</span>";
+        return "<head><script src='/js/pharmacy/login-error.js' defer></script><link href='/css/error-model.css' rel='stylesheet'></head>" . "<div class='loginError alert alert-danger' id='loginError' role='alert' style='background-color: green;'>" . $spanClass . "User Created!" . "</div>";
+    }
 
-        $message = $scriptClass . $alertClass . $spanClass . "User created successfully" . $closeClass;
-        return $message;
+    public function inValidWeight()
+    {
+        $spanClass = "<span class='closebtn' id='closebtn' onclick='this.parentElement.style.display='none';'>&times;</span>";
+        return $this->scriptClass . $this->alertClass . $spanClass . "Invalid Weight" . $this->closeClass;
+    }
+
+    public function RequestSent()
+    {
+
+        $spanClass = "<span class='closebtn' id='closebtn' onclick='this.parentElement.style.display='none';'>&times;</span>";
+        return "<head><script src='/js/pharmacy/login-error.js' defer></script><link href='/css/error-model.css' rel='stylesheet'></head>" . "<div class='loginError alert alert-danger' id='loginError' role='alert' style='background-color: green;'>" . $spanClass . "New Medicine Request Sent!" . "</div>";
     }
 
     public function loginFirst()
@@ -95,4 +99,17 @@ class ExceptionHandler extends Logger
     {
     }
 
+    public function uploadtobig()
+    {
+        $spanClass = "<span class='closebtn' id='closebtn' onclick='this.parentElement.style.display='none';'>&times;</span>";
+        return $this->scriptClass . $this->alertClass . $spanClass . "Upload files too big" . $this->closeClass;
+    }
+
+
+    public function RequestAccepted()
+    {
+
+        $spanClass = "<span class='closebtn' id='closebtn' onclick='this.parentElement.style.display='none';'>&times;</span>";
+        return "<head><script src='/js/pharmacy/login-error.js' defer></script><link href='/css/error-model.css' rel='stylesheet'></head>" . "<div class='loginError alert alert-danger' id='loginError' role='alert' style='background-color: green;'>" . $spanClass . " Lab Request Accepted !" . "</div>";
+    }
 }

@@ -11,6 +11,14 @@ class LoginModel extends Model
     public string $username;
     public string $password;
 
+    public string $isSupplier;
+
+    public string $isPharmacy;
+    public string $isStaff;
+    public string $isLab;
+    public string $isDelivery;
+
+
     public function login(): string
     {
         $connection = (new Database())->getConnection();
@@ -41,13 +49,13 @@ class LoginModel extends Model
                         } elseif ($row['isLab'] == 1) {
                             $userType = "lab";
                             break;
-                        } elseif ($row['supplier'] == 1) {
+                        } elseif ($row['isSupplier'] == 1) {
                             $userType = "supplier";
                             break;
                         }
                     }
 
-                    echo "user type is ".$userType;
+                    echo "user type is " . $userType;
 
                     $connection->close();
 
@@ -62,6 +70,34 @@ class LoginModel extends Model
         $connection->close();
         return "unassigned";
     }
+
+    public function registerActor()
+    {
+
+        $db = (new Database())->getConnection();
+
+        try {
+            $this->password = password_hash($this->password, PASSWORD_DEFAULT);
+            $sql = "INSERT INTO login(username, password, isSupplier, isPharmacy, isStaff, isLab, isDelivery) VALUES ('$this->username' , '$this->password', '$this->isSupplier',' $this->isPharmacy', '$this->isStaff', '$this->isLab', '$this->isDelivery' )";
+
+            $stmt = $db->prepare($sql);
+            $stmt->execute();
+
+            if ($stmt->affected_rows == 1) {
+                $stmt->close();
+                return true;
+            }
+
+            $stmt->close();
+
+            return true;
+        } catch (\Exception $e) {
+            Logger::logError($e->getMessage());
+            echo $e->getMessage();
+            return false;
+        }
+    }
+
 
 
 }

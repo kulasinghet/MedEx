@@ -6,110 +6,75 @@ use app\core\Database;
 
 class SupplierMedicineModel extends Model
 {
-    private $supId;
-    private $medId;
-    private $verified;
-    private $quantity;
-    private $unitPrice;
-
-    /**
-     * @return mixed
-     */
-    public function getSupId()
+    public $supName;
+    public $medId;
+    public $verified;
+    public $quantity;
+    public $unitPrice;
+    public function addMedicine()
     {
-        return $this->supId;
-    }
 
-    /**
-     * @param mixed $supId
-     */
-    public function setSupId($supId): void
-    {
-        $this->supId = $supId;
-    }
+        $db = (new Database())->getConnection();
 
-    /**
-     * @return mixed
-     */
-    public function getMedId()
-    {
-        return $this->medId;
-    }
-
-    /**
-     * @param mixed $medId
-     */
-    public function setMedId($medId): void
-    {
-        $this->medId = $medId;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getVerified()
-    {
-        return $this->verified;
-    }
-
-    /**
-     * @param mixed $verified
-     */
-    public function setVerified($verified): void
-    {
-        $this->verified = $verified;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getQuantity()
-    {
-        return $this->quantity;
-    }
-
-    /**
-     * @param mixed $quantity
-     */
-    public function setQuantity($quantity): void
-    {
-        $this->quantity = $quantity;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getUnitPrice()
-    {
-        return $this->unitPrice;
-    }
-
-    /**
-     * @param mixed $unitPrice
-     */
-    public function setUnitPrice($unitPrice): void
-    {
-        $this->unitPrice = $unitPrice;
-    }
-
-    public function getMedicinePrice($medId)
-    {
-        $db = new Database();
         try {
-            $sql = "SELECT unitPrice FROM supplier_medicine WHERE medId = '$medId'";
+            $sql = "INSERT INTO supplier_medicine(supName, medId, verified, quantity, unitPrice) VALUES ('$this->supName','$this->medId','0','$this->quantity','$this->unitPrice')";
+
             $stmt = $db->prepare($sql);
             $stmt->execute();
-            $result = $stmt->get_result();
 
-            if ($result->num_rows == 1) {
-                return $result->fetch_assoc()['unitPrice'];
-            } else {
-                return false;
+            if ($stmt->affected_rows == 1) {
+                $stmt->close();
+                return true;
             }
+
+            $stmt->close();
+
+            return true;
         } catch (\Exception $e) {
-            Logger::logError($e->getMessage());
+            ErrorLog::logError($e->getMessage());
+            echo $e->getMessage();
             return false;
         }
     }
+
+    public function getSupMedicine($uname)
+    {
+        $db = (new Database())->getConnection();
+        $sql = "SELECT medId,verified,quantity,unitPrice from supplier_medicine WHERE supplier_medicine.supName = '$uname' && verified='1'";
+        $result = $db->query($sql);
+        if ($result->num_rows > 0) {
+            return $result;
+        }
+        $db->close();
+
+
+    }
+    public function getPendingMedicine($uname)
+    {
+        $db = (new Database())->getConnection();
+        $sql = "SELECT medId,verified,quantity,unitPrice from supplier_medicine WHERE supplier_medicine.supName = '$uname' && verified='0'";
+        $result = $db->query($sql);
+        if ($result->num_rows > 0) {
+            return $result;
+        }
+        $db->close();
+
+
+    }
+
+    public function getSupMedIds($uname)
+    {
+        $db = (new Database())->getConnection();
+        $sql = "SELECT medId from supplier_medicine WHERE supplier_medicine.supName = '$uname'";
+        $result = $db->query($sql);
+        if ($result->num_rows > 0) {
+            return $result;
+
+        }
+        $db->close();
+
+
+    }
+
 
 }

@@ -1,0 +1,86 @@
+@use "../../abstracts/variables" as *;
+
+
+$input-min-height: 2.3rem;
+$input-padding: .75rem;
+$input-background-color: #f7f7f7;
+$input-font-color: #495057;
+$input-font-size: $h6-font-size;
+$input-placeholder-color: #92a7be;
+$input-border-color: rgba(106, 148, 210, 0.53);
+$input-border-color-active: #80bdff;
+$input-border-radius: .4rem;
+
+button {
+  border-style: none;
+}
+
+.form-input {
+  display: block;
+  width: 100%;
+  min-height: $input-min-height;
+  padding: $input-padding;
+
+  position: relative;
+
+  font-size: $input-font-size;
+  color: $input-font-color;
+  background-color: $input-background-color;
+  background-clip: padding-box;
+  border: 1px solid $input-border-color;
+  border-radius: $input-border-radius;
+  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+
+  &:focus {
+    outline: 0;
+    border-color: $input-border-color-active;
+    box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 24%);
+  }
+
+  &::-webkit-scrollbar,
+  &::-webkit-scrollbar-thumb {
+    width: 26px;
+    border-radius: 13px;
+    background-clip: padding-box;
+    border: 10px solid transparent;
+  }
+
+  &::-webkit-scrollbar-thumb{
+    box-shadow: inset 0 0 0 10px;
+    color: rgba(0, 0, 0, 0.08);
+
+    &:hover {
+      color: rgba(0, 0, 0, 0.35);
+    }
+
+
+    &:active {
+      color: rgba(0, 0, 0, 0.6);
+    }
+  }
+
+  &::-webkit-scrollbar-button {
+    display: none;
+  }
+
+
+  &::placeholder {
+    color: $input-placeholder-color;
+    // Override Firefox's unusual default opacity; see https://github.com/twbs/bootstrap/pull/11526.
+    opacity: 1;
+  }
+}
+
+textarea, select[multiple] {
+  &.form-input {
+    min-height: $input-min-height * 2;
+  }
+}
+
+textarea {
+  &.form-input {
+    overflow: hidden;
+  }
+}
+
+

@@ -3,47 +3,81 @@
 namespace app\models;
 
 use app\core\Database;
-use app\core\Logger;
 use DateTime;
 use DateTimeZone;
 
 class LabModel extends Model
 {
-    public string $id;
     public string $username;
-    public string $password;
     public string $laboratory_name;
     public string $business_registration_id;
     public string $laboratory_certificate_id;
     public string $BusinessRegCertName;
     public string $LabCertName;
-    public string $regDate;
+    public string $reg_date;
+    public string $email;
+    public string $address;
+    public string $mobile;
 
-    public function registerLab(): bool
+    public function registerLab()
     {
-        $db = new Database();
+
+        $db = (new Database())->getConnection();
+
+        $reg_date = new DateTime("now");
+        $reg_date->setTimezone(new DateTimeZone('Asia/Colombo'));
+        $reg_date = $reg_date->format('Y/m/d');
 
         try {
-
-            $regDate = new DateTime("now");
-            $regDate->setTimezone(new DateTimeZone('Asia/Colombo'));
-            $regDate = $regDate->format('Y/m/d');
-
-            $this->id = $this->createRandomID("LAB");
-
-            $this -> password = password_hash($this -> password, PASSWORD_DEFAULT);
-
-            $sql = "INSERT INTO laboratory (id, username, password, laboratory_name, business_registration_id, laboratory_certificate_id, BusinessRegCertName, LabCertName, reg_date) VALUES ('$this->id','$this->username', '$this->password', '$this->laboratory_name', '$this->business_registration_id', '$this->laboratory_certificate_id', '$this->BusinessRegCertName', '$this->LabCertName', '$regDate');";
-//            $sql = "INSERT INTO laboratory (id, username, password, laboratory_name, business_registration_id, business_registration_id, laboratory_certificate_id, BusinessRegCertName, LabCertName, reg_date) VALUES ('$this->id','$this->username', '$this->password', '$this->laboratory_name', '$this->business_registration_id', '$this->laboratory_certificate_id', '$this->BusinessRegCertName', '$this->LabCertName', '$regDate');";
+            $sql = "INSERT INTO laboratory (username ,laboratory_name ,business_registration_id ,laboratory_certificate_id ,BusinessRegCertName ,LabCertName ,reg_date ,email ,address ,mobile) VALUES ('$this->username', '$this->laboratory_name', '$this->business_registration_id', '$this->laboratory_certificate_id', '$this->BusinessRegCertName', '$this->LabCertName', '$reg_date', '$this->email', '$this->address', '$this->mobile')";
             $stmt = $db->prepare($sql);
             $stmt->execute();
+
+            if ($stmt->affected_rows == 1) {
+                $stmt->close();
+                return true;
+            }
+
             $stmt->close();
+
             return true;
         } catch (\Exception $e) {
-            Logger::logError($e->getMessage());
+            ErrorLog::logError($e->getMessage());
             echo $e->getMessage();
             return false;
         }
     }
 
+    public function getLab($uname)
+    {
+        $db = (new Database())->getConnection();
+        $sql = "SELECT * from laboratory WHERE laboratory.username = '$uname'";
+        $result = $db->query($sql);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $this->username = $row["username"];
+                $this->laboratory_name = $row["laboratory_name"];
+                $this->business_registration_id = $row["business_registration_id"];
+                $this->laboratory_certificate_id = $row["laboratory_certificate_id"];
+                $this->BusinessRegCertName = $row["BusinessRegCertName"];
+                $this->LabCertName = $row["LabCertName"];
+                $this->reg_date = $row["reg_date"];
+                $this->email = $row["email"];
+                $this->address = $row["address"];
+                $this->mobile = $row["mobile"];
+            }
+        }
+
+        $db->close();
+
+
+    }
+
+    public function getName($username)
+    {
+
+        $this->getLab($username);
+        $_SESSION['name'] = $this->laboratory_name;
+        return $_SESSION['name'];
+    }
 }
