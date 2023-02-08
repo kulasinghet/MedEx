@@ -19,7 +19,7 @@ use app\controllers\employee\EmployeeAuthController;
 use app\controllers\LoginAuthController;
 use app\controllers\SiteController;
 use app\controllers\supplier\SupplierAddMedicineController;
-
+use app\controllers\lab\LabAcceptReqController;
 
 $app = new Application();
 
@@ -51,8 +51,13 @@ $app->router->post('/delivery/contact_us', [DeliveryContactusController::class, 
 //$app -> router -> post('/lab/login', [LoginAuthController::class, 'labLogin']);
 $app->router->get('/lab/register', [LabAuthController::class, 'labRegister']);
 $app->router->post('/lab/register', [LabAuthController::class, 'labRegister']);
-$app->router->get('/lab/contact-us', [LabDashboardController::class, 'contactus']);
-$app->router->post('/lab/contact-us', [LabContactusController::class, 'lab_contact_us']);
+$app->router->get('/lab/contact-us', [LabDashboardController::class, 'contactUs']);
+$app->router->post('/lab/contact-us', [LabDashboardController::class, 'contactUs']);
+$app->router->get('/lab/requests', [LabDashboardController::class, 'viewRequest']);
+$app->router->post('/lab/requests', [LabDashboardController::class, 'viewRequest']);
+$app->router->get('/lab/reports', [LabDashboardController::class, 'addLabReport']);
+$app->router->post('/lab/reports', [LabDashboardController::class, 'addLabReport']);
+$app->router->post('/lab/accept-req', [LabAcceptReqController::class, 'acceptRequest']);
 
 // Employee Routes
 //$app -> router -> get('/employee/login', [LoginAuthController::class, 'employeeLogin']);

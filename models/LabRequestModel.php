@@ -66,4 +66,36 @@ class LabRequestModel extends Model
 
     }
 
+    public function getNotAcceptedReq()
+    {
+        $db = (new Database())->getConnection();
+        $sql = "SELECT * from labreq WHERE  labreq.status = '0'";
+        $result = $db->query($sql);
+        $db->close();
+        return $result;
+    }
+
+    public function acceptReq($id)
+    {
+        $db = (new Database())->getConnection();
+        try {
+            $sql = "UPDATE  labreq SET labreq.status = '1' WHERE labreq.id='$id' ";
+            $stmt = $db->prepare($sql);
+            $stmt->execute();
+
+            if ($stmt->affected_rows == 1) {
+                $stmt->close();
+                return true;
+            }
+
+            $stmt->close();
+
+            return true;
+        } catch (\Exception $e) {
+            ErrorLog::logError($e->getMessage());
+            echo $e->getMessage();
+            return false;
+        }
+    }
+
 }

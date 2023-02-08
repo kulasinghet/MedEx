@@ -1,16 +1,11 @@
-<?php
-use app\controllers\lab\LabDashboardController;
-use app\models\LabModel;
-
-?>
-
 <html lang="en">
 
 <head>
     <meta charset="UTF-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Laboratory Dashboard</title>
+    <title>Contact Us</title>
     <link href="../scss/vendor/demo.css" rel="stylesheet" />
+    <link href="../css/supplier/formcss.css" rel="stylesheet" />
     <!-- Font awesome kit -->
     <script crossorigin="anonymous" src="https://kit.fontawesome.com/9b33f63a16.js"></script>
 </head>
@@ -27,7 +22,7 @@ use app\models\LabModel;
         </div>
         <div class="nav-inner">
             <ul>
-                <li><a href="login"><i class="fa fa-sign-out"></i></a></li>
+                <li><a href="/login"><i class="fa fa-sign-out"></i></a></li>
             </ul>
             <a class="nav-profile" href="#">
                 <div class="nav-profile-image">
@@ -58,7 +53,7 @@ use app\models\LabModel;
                     </li>
 
                     <li>
-                        <a class="btn" href="/lab/contact-us"> <i class="fa fa-phone"></i> Contact Us </a>
+                        <a class="btn disabled" href="/supplier/contact-us"> <i class="fa fa-phone"></i> Contact Us </a>
                     </li>
                 </ul>
             </div>
@@ -69,33 +64,28 @@ use app\models\LabModel;
     <div class="canvas nav-cutoff sidebar-cutoff">
         <div class="canvas-inner">
             <div class="row">
-                <div class="col" style="display: flex; flex-direction: row;">
+                <div class="col">
                     <div class="card g-col-2 g-row-2-start-3"
-                        style=" box-shadow: 0 3px 10px rgb(0 0 0 / 0.2); border-radius: 20px; width:50%">
+                        style=" box-shadow: 0 3px 10px rgb(0 0 0 / 0.2); border-radius: 20px; width:70%; padding-bottom:2%;">
                         <div class="card-body">
-                            <div style="padding: 2%;">
-                                <div style="display: flex; flex-direction: row;">
-                                    <h3 style="padding-right:60%">Laboratory Profile</h3><a href='#'
-                                        style="padding-top:5%"><i class='fa fa-pencil'></i></a>
-                                </div>
-                                <?php
-                                echo '<br><h5>Laboratory Username: ' . $_SESSION['username'];
-                                $lab = new LabModel;
-                                $lab->getName($_SESSION['username']);
-                                $lab->getLab($_SESSION['username']);
-                                echo '<br><br> Laboratory Name: ' . $_SESSION['username'] . '<br><br>Registerd Date: ' . $lab->reg_date;
 
-                                ?>
+                            <div style="padding: 2%;">
+                                <h3> Contact Us </h3>
+                                <form>
+                                    <input type='text' name='subject' class='input-box' placeholder='Enter Subject'
+                                        required><br><br>
+                                    <textarea id="contactus" name="message" rows="20" cols="50">Enter Message
+                                   </textarea>
+                                    <br>
+                                    <input type='submit' value='Submit' class='btn btn--primary'>
+                                </form>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    </div>
-
 </body>
 
 </html>

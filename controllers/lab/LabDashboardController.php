@@ -7,46 +7,51 @@ use app\core\Request;
 
 class LabDashboardController extends Controller
 {
-    public function orders(Request $request){
-        if ($_SESSION['isDelivery']) {
-//            TODO: add sell medicine route in index php
-            if ($request -> isGet()) {
-                $this -> render("delivery/orders.php");
-            } else if ($request -> isPost()) {
-                $this -> render("delivery/orders.php");
+    const login = 'Location: /login';
+
+    public function viewRequest(Request $request)
+    {
+        if ($_SESSION['userType'] == 'lab') {
+            if ($request->isGet()) {
+                $this->render("lab/requests.php");
+            } elseif ($request->isPost()) {
+                $this->render("lab/requests.php");
             } else {
-                return header('Location: /delivery/login');
+                return header(self::login);
             }
         } else {
-            return header('Location: /delivery/login');
+            return header(self::login);
         }
     }
-    public function history(Request $request){
-        if ($_SESSION['isDelivery']) {
-//            TODO: add sell medicine route in index php
-            if ($request -> isGet()) {
-                $this -> render("delivery/history.php");
-            } else if ($request -> isPost()) {
-                $this -> render("delivery/history.php");
+
+    public function addLabReport(Request $request)
+    {
+        if ($_SESSION['userType'] == 'lab') {
+
+            if ($request->isGet()) {
+                $this->render("lab/reports.php");
+            } elseif ($request->isPost()) {
+                $this->render("lab/reports.php");
             } else {
-                return header('Location: /delivery/login');
+                return header(self::login);
             }
         } else {
-            return header('Location: /delivery/login');
+            return header(self::login);
         }
     }
-    public function contactus(Request $request){
-        if ($_SESSION['isLab']) {
-//            TODO: add sell medicine route in index php
-            if ($request -> isGet()) {
-                $this -> render("lab/contact_us.php");
-            } else if ($request -> isPost()) {
-                $this -> render("lab/contact_us.php");
+    public function contactUs(Request $request)
+    {
+        if ($_SESSION['userType'] == 'lab') {
+
+            if ($request->isGet()) {
+                $this->render("lab/contact-us.php");
+            } else if ($request->isPost()) {
+                $this->render("lab/contact-us.php");
             } else {
-                return header('Location: /lab/login');
+                return header(self::login);
             }
         } else {
-            return header('Location: /lab/login');
+            return header(self::login);
         }
     }
 
