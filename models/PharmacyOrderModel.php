@@ -181,5 +181,16 @@ class PharmacyOrderModel extends Model
         }
     }
 
+    public function getNotAcceptedOrders(){
+        $db = (new Database())->getConnection();
+        $sql = "SELECT id  from medicine";
+        $result = $db->query($sql);
+        if ($result->num_rows > 0) {
+            return $result;
+        }
+
+        $db->close();
+    }
+
 
 }
