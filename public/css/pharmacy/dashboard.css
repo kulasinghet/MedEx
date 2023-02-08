@@ -16,17 +16,40 @@
 
 }
 
-.card {
+/*.card {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    justify-content: space-evenly;*/
+/*    align-items: center;*/
+/*    width: 30vh;*/
+/*    height: auto;*/
+/*    background: #fff;*/
+/*    border-radius: 5px;*/
+/*    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);*/
+/*    padding: 2vh;*/
+/*    margin-bottom: 2vh;*/
+
+/*}*/
+
+/*.card:hover {*/
+/*    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);*/
+/*    transform: scale(1.05);*/
+/*    transition: all 0.3s ease;*/
+/*}*/
+
+.contact-us {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-    width: 30vh;
-    height: auto;
-    background: #fff;
-    border-radius: 5px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    justify-content: center;
+    /*align-items: center;*/
     padding: 2vh;
     margin-bottom: 2vh;
+    margin-top: 2vh;
+}
 
+.contact-us h1 {
+    font-size: 2.5rem;
+    font-weight: 500;
+    color: #071232;
+    margin-bottom: 5vh;
 }

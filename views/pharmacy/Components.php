@@ -12,17 +12,28 @@ class Components
             <meta charset="UTF-8"/>
             <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
             <title>$title</title>
-            <link href="../scss2/vendor/demo.css" rel="stylesheet"/>
+            <link href="../scss/vendor/demo.css" rel="stylesheet"/>
             <link href="../css/table.css" rel="stylesheet"/>
+            <link href="../css/pharmacy/dashboard.css" rel="stylesheet"/>
             <!-- Font awesome kit -->
             <script crossorigin="anonymous" src="https://kit.fontawesome.com/9b33f63a16.js"></script>
+            
+            
         </head>
         <body>
         HTML;
     }
 
-    public function navBar($username)
+    public function navBar($username): string
     {
+        $profileURL = "../res/avatar-empty.png";
+        if (isset($_SESSION['username'])) {
+            $pharmacy = new \app\controllers\entity\Pharmacy($_SESSION['username']);
+            if ($pharmacy->getPharmacyProfilePicture($_SESSION['username']) != null) {
+                $profileURL = $pharmacy->getPharmacyProfilePicture($_SESSION['username']);
+            }
+        }
+
         {
             return ('
         <nav>
@@ -35,6 +46,7 @@ class Components
             </div>
             <div class="nav-inner">
                 <ul>
+                    <li><a href="/logout"><i class="fa-solid fa-right-from-bracket"></i></a></li>
                     <li><a href="#"><i class="fa-solid fa-circle-question"></i></a></li>
                     <li><a href="#"><i class="fa-solid fa-gear"></i></a></li>
                     <li><a href="#"><i class="fa-solid fa-bell"></i></a></li>
@@ -73,19 +85,19 @@ class Components
                 <li>
        
                     <a class="btn ' . ($selectedPage == 'sell-medicine' ? 'disabled' : '') . '" href="/pharmacy/sell-medicine">
-                        <i class="fa-solid fa-usd" style="color: ' . ($selectedPage == 'sell-medicine' ? '#fff' : '#7577817d') . '"></i> Sell Medicine </a>
+                        <i class="fa-solid fa-cash-register"></i> Sell Medicine </a>
                         </li>
                 <li>
-                    <a class="btn ' . ($selectedPage == 'order-medicine' ? 'disabled' : '') . '" href="/pharmacy/order-medicine"> <i class="fa fa-shopping-cart" style="color: ' . ($selectedPage == 'order-medicine' ? '#fff' : '#7577817d') . '"></i> Order Medicine </a>
+                    <a class="btn ' . ($selectedPage == 'order-medicine' ? 'disabled' : '') . '" href="/pharmacy/order-medicine"> <i class="fa-solid fa-truck-moving"></i> Order Medicine </a>
                     </li>
                 <li>
-                    <a class="btn ' . ($selectedPage == 'orders' ? 'disabled' : '') . '" href="/pharmacy/orders"> <i class="fa-solid fa-list" style="color: ' . ($selectedPage == 'orders' ? '#fff' : '#7577817d') . '"></i> Orders </a>
+                    <a class="btn ' . ($selectedPage == 'orders' ? 'disabled' : '') . '" href="/pharmacy/orders"> <i class="fa-solid fa-clock-rotate-left" ></i> Orders </a>
                     </li>
                 <li>
-                    <a class="btn ' . ($selectedPage == 'inventory' ? 'disabled' : '') . '" href="/pharmacy/inventory"> <i class="fa-solid fa-box" style="color: ' . ($selectedPage == 'inventory' ? '#fff' : '#7577817d') . '"></i> Inventory </a>
+                    <a class="btn ' . ($selectedPage == 'inventory' ? 'disabled' : '') . '" href="/pharmacy/inventory"> <i class="fa-sharp fa-solid fa-warehouse"></i> Inventory </a>
                     </li>
                 <li>
-                    <a class="btn ' . ($selectedPage == 'contact-us' ? 'disabled' : '') . '" href="/pharmacy/contact-us"> <i class="fa-solid fa-envelope" style="color: ' . ($selectedPage == 'contact-us' ? '#fff' : '#7577817d') . '"></i> Contact Us </a>
+                    <a class="btn ' . ($selectedPage == 'contact-us' ? 'disabled' : '') . '" href="/pharmacy/contact-us"> <i class="fa-solid fa-phone-volume"></i> Contact Us </a>
                     </li>
             </ul>
         </div>
