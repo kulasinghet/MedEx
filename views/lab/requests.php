@@ -1,16 +1,16 @@
 <?php
 use app\controllers\lab\LabDashboardController;
-use app\models\LabModel;
+use app\controllers\lab\LabRequestsController;
 
 ?>
-
 <html lang="en">
 
 <head>
     <meta charset="UTF-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Laboratory Dashboard</title>
+    <title>Laboratory Requests</title>
     <link href="../scss/vendor/demo.css" rel="stylesheet" />
+    <link href="../css/supplier/formcss.css" rel="stylesheet" />
     <!-- Font awesome kit -->
     <script crossorigin="anonymous" src="https://kit.fontawesome.com/9b33f63a16.js"></script>
 </head>
@@ -27,7 +27,7 @@ use app\models\LabModel;
         </div>
         <div class="nav-inner">
             <ul>
-                <li><a href="login"><i class="fa fa-sign-out"></i></a></li>
+                <li><a href="/login"><i class="fa fa-sign-out"></i></a></li>
             </ul>
             <a class="nav-profile" href="#">
                 <div class="nav-profile-image">
@@ -50,7 +50,7 @@ use app\models\LabModel;
                 <h6 class="sidebar-context-title">Menu</h6>
                 <ul>
                     <li>
-                        <a class="btn" href="/lab/requests"> <i class="fa fa-check"></i> Accept Lab Requests
+                        <a class="btn disabled" href="/lab/requests"> <i class="fa fa-check"></i> Accept Lab Requests
                         </a>
                     </li>
                     <li>
@@ -58,7 +58,7 @@ use app\models\LabModel;
                     </li>
 
                     <li>
-                        <a class="btn" href="/lab/contact-us"> <i class="fa fa-phone"></i> Contact Us </a>
+                        <a class="btn" href="/supplier/contact-us"> <i class="fa fa-phone"></i> Contact Us </a>
                     </li>
                 </ul>
             </div>
@@ -69,23 +69,35 @@ use app\models\LabModel;
     <div class="canvas nav-cutoff sidebar-cutoff">
         <div class="canvas-inner">
             <div class="row">
-                <div class="col" style="display: flex; flex-direction: row;">
+                <div class="col" style="display: flex; flex-direction: column;">
                     <div class="card g-col-2 g-row-2-start-3"
-                        style=" box-shadow: 0 3px 10px rgb(0 0 0 / 0.2); border-radius: 20px; width:50%">
+                        style=" box-shadow: 0 3px 10px rgb(0 0 0 / 0.2); border-radius: 20px; width:80%">
                         <div class="card-body">
                             <div style="padding: 2%;">
-                                <div style="display: flex; flex-direction: row;">
-                                    <h3 style="padding-right:60%">Laboratory Profile</h3><a href='#'
-                                        style="padding-top:5%"><i class='fa fa-pencil'></i></a>
+                                <h3>Pending Requests</h3>
+                                </br>
+                                <div class="nav-search">
+                                    <form onsubmit="preventDefault();" role="search">
+                                        <label for="search">Filter Medicine</label>
+                                        <input autofocus id="search" placeholder="Filter Medicine" required
+                                            type="search" />
+                                        <button type="submit">Go</button>
+                                    </form>
                                 </div>
-                                <?php
-                                echo '<br><h5>Laboratory Username: ' . $_SESSION['username'];
-                                $lab = new LabModel;
-                                $lab->getName($_SESSION['username']);
-                                $lab->getLab($_SESSION['username']);
-                                echo '<br><br> Laboratory Name: ' . $_SESSION['username'] . '<br><br>Registerd Date: ' . $lab->reg_date;
-
-                                ?>
+                                <table style='width: 100%; text-align:center; padding-top:5%' class='scrollable'>
+                                    <tr style='padding:1%; border-bottom: 1pt solid black;'>
+                                        <th>Request ID</th>
+                                        <th>Supplier Name</th>
+                                        <th>Medicine Name</th>
+                                        <th>Scientific Name</th>
+                                        <th>Weight</th>
+                                        <th></th>
+                                    </tr>
+                                    <?php
+                                    $req = new LabRequestsController;
+                                    $req->viewRequests();
+                                    ?>
+                                </table>
                             </div>
                         </div>
 
