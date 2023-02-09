@@ -29,12 +29,13 @@
                     <a href="/dashboard"> <i class="fa-solid fa-house"></i> Home </a>
                 </li>
                 <li>
-                    <a href="/employee/approvals/pharmacy"> <i class="fa-solid fa-check"></i> Confirmations </a>
+                    <i class="fa-solid fa-check"></i>
+                    Approvals
                     <ul class="hidden">
-                        <li>SubMenu Item 2</li>
-                        <li>SubMenu Item 2</li>
-                        <li>SubMenu Item 2</li>
-                        <li>SubMenu Item 2</li>
+                        <li><a href="/employee/approvals/pharmacy"> Pharmacy </a></li>
+                        <li><a href="/employee/approvals/supplier"> Supplier </a></li>
+                        <li><a href="/employee/approvals/lab"> Lab </a></li>
+                        <li><a href="/employee/approvals/delivery"> Delivery Partner </a></li>
                     </ul>
                 </li>
                 <li>
@@ -43,14 +44,14 @@
                 <li>
                     <a href="#"> <i class="fa-solid fa-server"></i> Resources </a>
                     <ul class="hidden">
-                        <li>SubMenu Item 3</li>
-                        <li>SubMenu Item 3</li>
-                        <li>SubMenu Item 3</li>
-                        <li>SubMenu Item 3</li>
+                        <li>Pharmacy</li>
+                        <li>Supplier</li>
+                        <li>Laboratory</li>
+                        <li>Delivery Partner</li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#"> <i class="fa-solid fa-wrench"></i> Configurations </a>
+                    <a href="/employee/configs"> <i class="fa-solid fa-wrench"></i> Configurations </a>
                 </li>
             </ul>
         </div>

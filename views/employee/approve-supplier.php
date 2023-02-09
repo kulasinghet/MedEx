@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Admin - Approvals - Pharmacy</title>
+    <title>Admin - Approvals - Supplier</title>
 
     <link href="../../scss/main.css" rel="stylesheet"/>
     <!-- Font awesome kit -->
@@ -30,8 +30,8 @@
                     <i class="fa-solid fa-check"></i>
                     Approvals
                     <ul class="hidden">
-                        <li class="disabled"><a href="/employee/approvals/pharmacy"> Pharmacy </a></li>
-                        <li><a href="/employee/approvals/supplier"> Supplier </a></li>
+                        <li><a href="/employee/approvals/pharmacy"> Pharmacy </a></li>
+                        <li class="disabled"><a href="/employee/approvals/supplier"> Supplier </a></li>
                         <li><a href="/employee/approvals/lab"> Lab </a></li>
                         <li><a href="/employee/approvals/delivery"> Delivery Partner </a></li>
                     </ul>
@@ -89,18 +89,18 @@
                     <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Pharmacy Reg No.</th>
-                        <th>City</th>
-                        <th>Owner</th>
+                        <th>Supplier Reg No.</th>
+                        <th>Business Reg ID</th>
+                        <th>Certificate ID</th>
                         <th class="c" style="max-width: 100px">Action</th>
                     </tr>
                     <thead>
                     <tbody>
                     <tr>
-                        <td>Thilakarathna Pharmacy</td>
-                        <td>PH200789</td>
-                        <td>Kurunegala</td>
-                        <td>Thilakarathna</td>
+                        <td>Unilever</td>
+                        <td>SP200789</td>
+                        <td>BI345896</td>
+                        <td>CT3456346</td>
                         <td>
                             <div class="row action-buttons">
                                 <div class="col">
@@ -133,15 +133,15 @@
                                     <td>Test 1</td>
                                 </tr>
                                 <tr>
+                                    <th>Reg No.</th>
+                                    <td>Test 1</td>
+                                </tr>
+                                <tr>
+                                    <th>Busyness Reg ID</th>
+                                    <td>Test 1</td>
+                                </tr>
+                                <tr>
                                     <th>Email</th>
-                                    <td>Test 1</td>
-                                </tr>
-                                <tr>
-                                    <th>Pharmacy Reg No.</th>
-                                    <td>Test 1</td>
-                                </tr>
-                                <tr>
-                                    <th>Pharmacy Certification</th>
                                     <td>Test 1</td>
                                 </tr>
                                 </tbody>
@@ -155,15 +155,15 @@
                                     <td>Test 1</td>
                                 </tr>
                                 <tr>
-                                    <th>Phone</th>
+                                    <th>Reg Date</th>
                                     <td>Test 1</td>
                                 </tr>
                                 <tr>
-                                    <th>Business Reg No.</th>
+                                    <th>Certificate ID</th>
                                     <td>Test 1</td>
                                 </tr>
                                 <tr>
-                                    <th>Business Certification</th>
+                                    <th>Mobile</th>
                                     <td>Test 1</td>
                                 </tr>
                                 </tbody>

@@ -24,12 +24,68 @@ class EmployeeDashboardController extends Controller
         }
     }
 
-    public function approvalPharmacy(Request $request)
+    public function approvePharmacy(Request $request)
     {
         if ($request->isGet()) {
             if ($_SESSION['userType'] == 'staff') {
                 // TODO: add order medicine route in index php
                 $this -> render("employee/approve-pharmacy.php");
+            } else {
+                return header(self::login);
+            }
+        } else {
+            return header(self::login);
+        }
+    }
+
+    public function approveSupplier(Request $request)
+    {
+        if ($request->isGet()) {
+            if ($_SESSION['userType'] == 'staff') {
+                // TODO: add order medicine route in index php
+                $this -> render("employee/approve-supplier.php");
+            } else {
+                return header(self::login);
+            }
+        } else {
+            return header(self::login);
+        }
+    }
+
+    public function approveLab(Request $request)
+    {
+        if ($request->isGet()) {
+            if ($_SESSION['userType'] == 'staff') {
+                // TODO: add order medicine route in index php
+                $this -> render("employee/approve-lab.php");
+            } else {
+                return header(self::login);
+            }
+        } else {
+            return header(self::login);
+        }
+    }
+
+    public function approveDelivery(Request $request)
+    {
+        if ($request->isGet()) {
+            if ($_SESSION['userType'] == 'staff') {
+                // TODO: add order medicine route in index php
+                $this -> render("employee/approve-delivery.php");
+            } else {
+                return header(self::login);
+            }
+        } else {
+            return header(self::login);
+        }
+    }
+
+    public function configs(Request $request)
+    {
+        if ($request->isGet()) {
+            if ($_SESSION['userType'] == 'staff') {
+                // TODO: add order medicine route in index php
+                $this -> render("employee/configs.php");
             } else {
                 return header(self::login);
             }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Admin - Approvals - Pharmacy</title>
+    <title>Admin - Approvals - Delivery Partner</title>
 
     <link href="../../scss/main.css" rel="stylesheet"/>
     <!-- Font awesome kit -->
@@ -30,10 +30,10 @@
                     <i class="fa-solid fa-check"></i>
                     Approvals
                     <ul class="hidden">
-                        <li class="disabled"><a href="/employee/approvals/pharmacy"> Pharmacy </a></li>
+                        <li><a href="/employee/approvals/pharmacy"> Pharmacy </a></li>
                         <li><a href="/employee/approvals/supplier"> Supplier </a></li>
                         <li><a href="/employee/approvals/lab"> Lab </a></li>
-                        <li><a href="/employee/approvals/delivery"> Delivery Partner </a></li>
+                        <li class="disabled"><a href="/employee/approvals/delivery"> Delivery Partner </a></li>
                     </ul>
                 </li>
                 <li>
@@ -89,18 +89,18 @@
                     <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Pharmacy Reg No.</th>
                         <th>City</th>
-                        <th>Owner</th>
+                        <th>Vehicle Type</th>
+                        <th>Delivery Location</th>
                         <th class="c" style="max-width: 100px">Action</th>
                     </tr>
                     <thead>
                     <tbody>
                     <tr>
-                        <td>Thilakarathna Pharmacy</td>
-                        <td>PH200789</td>
-                        <td>Kurunegala</td>
                         <td>Thilakarathna</td>
+                        <td>Kurunegala</td>
+                        <td>Lorry</td>
+                        <td>Dambulla</td>
                         <td>
                             <div class="row action-buttons">
                                 <div class="col">
@@ -123,7 +123,7 @@
         <div class="row">
             <div class="col card">
                 <div class="card-body">
-                    <h5 class="card-title">Pharmacy Details</h5>
+                    <h5 class="card-title">Delivery Partner Details</h5>
                     <div class="row">
                         <div class="col">
                             <table class="status-table">
@@ -133,15 +133,15 @@
                                     <td>Test 1</td>
                                 </tr>
                                 <tr>
-                                    <th>Email</th>
+                                    <th>Licence ID</th>
                                     <td>Test 1</td>
                                 </tr>
                                 <tr>
-                                    <th>Pharmacy Reg No.</th>
+                                    <th>Vehicle No</th>
                                     <td>Test 1</td>
                                 </tr>
                                 <tr>
-                                    <th>Pharmacy Certification</th>
+                                    <th>Max Load</th>
                                     <td>Test 1</td>
                                 </tr>
                                 </tbody>
@@ -155,15 +155,15 @@
                                     <td>Test 1</td>
                                 </tr>
                                 <tr>
-                                    <th>Phone</th>
+                                    <th>Licence Name</th>
                                     <td>Test 1</td>
                                 </tr>
                                 <tr>
-                                    <th>Business Reg No.</th>
+                                    <th>Vehicle Type</th>
                                     <td>Test 1</td>
                                 </tr>
                                 <tr>
-                                    <th>Business Certification</th>
+                                    <th>Email</th>
                                     <td>Test 1</td>
                                 </tr>
                                 </tbody>
