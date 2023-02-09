@@ -25,9 +25,9 @@ class PharmacyOrderHistoryController extends Controller
             return 'Pending';
         } elseif ($orderStatus == '1') {
             return 'Accepted';
-        } elseif ($orderStatus == '2') {
-            return 'Rejected';
         } elseif ($orderStatus == '3') {
+            return 'Rejected';
+        } elseif ($orderStatus == '2') {
             return 'Delivered';
         } elseif ($orderStatus == '4') {
             return 'Cancelled';
@@ -40,6 +40,10 @@ class PharmacyOrderHistoryController extends Controller
             return 'Pending';
         } elseif ($deliveryDate == null) {
             return 'Pending';
+        } else if ($deliveryDate == '1900-02-07') {
+            return 'Cancelled';
+        } else if ($deliveryDate == '1900-02-08') {
+            return 'Rejected';
         } else {
             return $deliveryDate;
         }
@@ -49,10 +53,12 @@ class PharmacyOrderHistoryController extends Controller
     {
         if ($orderTotal == "0") {
             return 'Finalizing Order';
+        } else if ($orderTotal == "99999999") {
+            return 'Rejected';
+        } else if ($orderTotal == "77777777") {
+            return 'Cancelled';
         } else {
             return $orderTotal;
         }
     }
-
-
 }

@@ -220,3 +220,71 @@
 #order-new-medicine a:hover i {
   color: #ffffff;
 }
+
+
+
+#inventory-table td {
+  background-color: transparent !important;
+}
+
+tr.danger {
+  background-color: #fcc7c7 !important;
+  color: #333;
+  border: 1px solid #000000;
+}
+
+tr.warning {
+  background-color: #fff5ab !important;
+  color: #333;
+  border: 1px solid #000000;
+}
+
+tr.success {
+  background-color: #fff !important;
+  color: #333;
+  border: 1px solid #000000;
+}
+
+/* ############################################################################### */
+
+/* orders page */
+
+#orders-table {
+  width: 100%;
+  height: auto;
+}
+
+tr.Pending {
+  background-color: #fff2a7 !important;
+  border: 1px solid #ffd900;
+  color: #333;
+  border: 1px solid #000000;
+}
+
+tr.Accepted {
+  background-color: #ceffce !important;
+  color: #333;
+  border: 1px solid #000000;
+}
+
+tr.Rejected {
+  background-color: #ffbbbb !important;
+  color: #333;
+  border: 1px solid #000000;
+}
+
+tr.Delivered {
+  background-color: #c6f0ff !important;
+  color: #333;
+  border: 1px solid #000000;
+}
+
+tr.Cancelled {
+  background-color: #ffddcf !important;
+  color: #333;
+  border: 1px solid #000000;
+}
+
+#orders-table td {
+  background-color: transparent;
+}

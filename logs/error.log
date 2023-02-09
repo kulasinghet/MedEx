@@ -110,3 +110,16 @@ Unknown column 'drivingLicenseName' in 'field list'
 2023/02/09 09:56:36 php_network_getaddresses: getaddrinfo for medex.cf0qkfwuwc3x.us-east-1.rds.amazonaws.com failed: No such host is known. 
 2023/02/09 09:57:14 php_network_getaddresses: getaddrinfo for medex.cf0qkfwuwc3x.us-east-1.rds.amazonaws.com failed: No such host is known. 
 2023/02/09 11:46:23 php_network_getaddresses: getaddrinfo for medex.cf0qkfwuwc3x.us-east-1.rds.amazonaws.com failed: No such host is known. 
+2023/02/09 21:11:54 Table 'medex.pharmacy_order' doesn't exist
+2023/02/09 21:12:10 Table 'medex.pharmacy_order' doesn't exist
+2023/02/09 21:14:14 Table 'medex.pharmacy_order' doesn't exist
+2023/02/09 21:14:29 Table 'medex.pharmacy_order' doesn't exist
+2023/02/09 21:14:38 Table 'medex.pharmacy_order' doesn't exist
+2023/02/09 21:14:57 Table 'medex.pharmacy_order' doesn't exist
+2023/02/09 21:15:25 Table 'medex.pharmacy_order' doesn't exist
+2023/02/09 21:15:34 Table 'medex.pharmacy_order' doesn't exist
+2023/02/09 21:15:44 Table 'medex.pharmacy_order' doesn't exist
+2023/02/09 21:16:32 Table 'medex.pharmacy_order' doesn't exist
+2023/02/09 21:17:13 Table 'medex.pharmacy_order' doesn't exist
+2023/02/09 21:19:01 Unknown column 'order_date' in 'order clause'
+2023/02/09 22:04:14 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ASEC' at line 1

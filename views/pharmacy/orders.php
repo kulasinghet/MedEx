@@ -47,7 +47,7 @@ echo $components->sideBar('orders');
 
                 <!--                order table-->
                 <div class=" orders">
-                    <table>
+                    <table id="orders-table">
                         <thead>
                             <tr>
                                 <th>Order ID</th>
@@ -69,7 +69,7 @@ echo $components->sideBar('orders');
                                     $orders = $pharmacyOrderHistoryController->getOrdersByUsername($username);
                                     if ($orders) {
                                         foreach ($orders as $order) {
-                                            echo "<tr>";
+                                            echo "<tr" . " class='" . $pharmacyOrderHistoryController->transformOrderStatus($order['order_status']) . "'>";
                                             echo "<td>" . $order['id'] . "</td>";
                                             echo "<td>" . $order['order_date'] . "</td>";
                                             echo "<td>" . $pharmacyOrderHistoryController->transformOrderStatus($order['order_status']) . "</td>";

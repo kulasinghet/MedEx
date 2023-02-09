@@ -12,6 +12,7 @@ class Components
             <meta charset="UTF-8"/>
             <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
             <title>$title | MedEx</title>
+            <link href='/css/error-model.css' rel='stylesheet'>
             <link href="../scss/vendor/demo.css" rel="stylesheet"/>
             <link href="../css/table.css" rel="stylesheet"/>
             <link href="../css/pharmacy/dashboard.css" rel="stylesheet"/>

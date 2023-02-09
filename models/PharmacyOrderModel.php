@@ -120,7 +120,7 @@ class PharmacyOrderModel extends Model
         $this->setId($this->createRandomID($pharmacyId));
         $order_date = date("Y-m-d");
 
-        $sql = "INSERT INTO pharmacy_order (id, pharmacyId, order_date, order_status, order_total) VALUES
+        $sql = "INSERT INTO pharmacyorder (id, pharmacyId, order_date, order_status, order_total) VALUES
                 ('$this->getId()', '$pharmacyId', '$order_date', 0, '$order_total');";
         try {
 
@@ -134,7 +134,6 @@ class PharmacyOrderModel extends Model
             } else {
                 return false;
             }
-
         } catch (\Exception $e) {
             return false;
         }
@@ -144,11 +143,9 @@ class PharmacyOrderModel extends Model
     {
         try {
             $conn = (new Database())->getConnection();
-            $sql = "SELECT * FROM pharmacy_order WHERE pharmacyName = '$username' ORDER BY order_date DESC;";
+            $sql = "SELECT * FROM pharmacyorder WHERE pharmacyName = '$username' ORDER BY order_status ASC;";
             $result = $conn->query($sql);
             return $result->fetch_all(MYSQLI_ASSOC);
-
-
         } catch (\Exception $e) {
             Logger::logError($e->getMessage());
             echo (new ExceptionHandler)->somethingWentWrong();
@@ -156,7 +153,8 @@ class PharmacyOrderModel extends Model
         }
     }
 
-    public function getNotAcceptedOrders(){
+    public function getNotAcceptedOrders()
+    {
         $db = (new Database())->getConnection();
         $sql = "SELECT id  from medicine";
         $result = $db->query($sql);
@@ -166,6 +164,4 @@ class PharmacyOrderModel extends Model
 
         $db->close();
     }
-
-
 }

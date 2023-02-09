@@ -1,7 +1,7 @@
 <?php
 
 use app\views\pharmacy\Components;
-use app\controllers\pharmacy\PharmacyOrderHistoryController;
+use app\controllers\pharmacy\PharmacyInventoryController;
 use app\core\ExceptionHandler;
 
 $components = new Components();
@@ -49,7 +49,7 @@ echo $components->sideBar('inventory');
 
                 <!--                order table-->
                 <div class=" orders">
-                    <table>
+                    <table id = "inventory-table">
                         <thead>
                             <tr>
                                 <th>Medicine ID</th>
@@ -68,17 +68,18 @@ echo $components->sideBar('inventory');
                             if (isset($_SESSION['userType']) && $_SESSION['userType'] == 'pharmacy') {
                                 try {
                                     $username = $_SESSION['username'];
-                                    $pharmacyOrderHistoryController = new PharmacyOrderHistoryController();
-                                    $orders = $pharmacyOrderHistoryController->getOrdersByUsername($username);
-                                    if ($orders) {
-                                        foreach ($orders as $order) {
-                                            echo "<tr>";
-                                            echo "<td>" . $order['id'] . "</td>";
-                                            echo "<td>" . $order['order_date'] . "</td>";
-                                            echo "<td>" . $pharmacyOrderHistoryController->transformOrderStatus($order['order_status']) . "</td>";
-                                            echo "<td>" . $pharmacyOrderHistoryController->transformOrderTotal($order['order_total']) . "</td>";
-                                            echo "<td>" . $pharmacyOrderHistoryController->transformDeliveryDate($order['delivery_date']) . "</td>";
-                                            echo "<td>" . "<a href='' id='" . $order['id'] . "'>" . "<i class='fa-solid fa-circle-arrow-right view-order-details' style='color:#333333'></i>" . "</a>" . "</td>";
+                                    $pharmacyInventoryController = new PharmacyInventoryController();
+                                    $stocks = $pharmacyInventoryController->getInventoryByUsername($username);
+                                    if ($stocks) {
+                                        foreach ($stocks as $stock) {
+                                            echo "<tr" . " class='" . $pharmacyInventoryController->remainingDays($stock['remaining_days']) . "'>" . "</a>";
+                                            echo "<td>" . $stock['medId'] . "</td>";
+                                            echo "<td>" . $pharmacyInventoryController->transformMedicineName($stock['medId']) . "</td>";
+                                            echo "<td>" . $stock['remQty'] . "</td>";
+                                            echo "<td>" . $stock['buying_price'] . "</td>";
+                                            echo "<td>" . $stock['sellingPrice'] . "</td>";
+                                            echo "<td>" . $stock['remaining_days'] . "</td>";
+                                            echo "<td>" . "<a href='' id='" . $stock['id'] . "'>" . "<i class='fa-solid fa-circle-arrow-right view-order-details' style='color:#333333'></i>" . "</a>" . "</td>";
                                             echo "</a>";
                                             echo "</tr>";
                                         }
