@@ -24,5 +24,7 @@ class EmployeeAuthController extends Controller
         }
         return $this->render('registrationPage/employee_register/employ_register.php');
     }
+
+
 }
 

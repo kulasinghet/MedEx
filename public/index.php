@@ -5,6 +5,7 @@ require_once '../vendor/autoload.php';
 use app\controllers\DashboardController;
 use app\controllers\delivery\DeliveryContactusController;
 use app\controllers\delivery\DeliveryDashboardController;
+use app\controllers\employee\EmployeeDashboardController;
 use app\controllers\lab\LabAuthController;
 use app\controllers\lab\LabContactusController;
 use app\controllers\lab\LabDashboardController;
@@ -58,6 +59,8 @@ $app->router->post('/lab/contact-us', [LabContactusController::class, 'lab_conta
 //$app -> router -> post('/employee/login', [LoginAuthController::class, 'employeeLogin']);
 $app->router->get('/employee/register', [EmployeeAuthController::class, 'employeeRegister']);
 $app->router->post('/employee/register', [EmployeeAuthController::class, 'employeeRegister']);
+$app->router->get('/employee/reports', [EmployeeDashboardController::class, 'showReports']);
+$app->router->post('/employee/reports', [EmployeeDashboardController::class, 'showReports']);
 
 // pharmacy Routes
 //$app -> router -> get('/pharmacy/login', [LoginAuthController::class, 'pharmacyLogin']);

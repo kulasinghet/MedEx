@@ -27,7 +27,7 @@ class DashboardController extends Controller
                 return $this->render('lab/dashboard.php');
             } elseif (isset($_SESSION['userType']) && $_SESSION['userType'] == 'delivery') {
                 return $this->render('delivery/dashboard.php');
-            } elseif (isset($_SESSION['userType']) && $_SESSION['userType'] == 'employee') {
+            } elseif (isset($_SESSION['userType']) && $_SESSION['userType'] == 'staff') {
                 return $this->render('employee/dashboard.php');
             } else {
                 session_abort();
