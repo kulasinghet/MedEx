@@ -14,7 +14,6 @@ class EmployeeDashboardController extends Controller
     {
         if ($request->isGet()) {
             if ($_SESSION['userType'] == 'staff') {
-                // TODO: add order medicine route in index php
                 $this -> render("employee/reports.php");
             } else {
                 return header(self::login);
@@ -28,7 +27,6 @@ class EmployeeDashboardController extends Controller
     {
         if ($request->isGet()) {
             if ($_SESSION['userType'] == 'staff') {
-                // TODO: add order medicine route in index php
                 $this -> render("employee/approve-pharmacy.php");
             } else {
                 return header(self::login);
@@ -42,7 +40,6 @@ class EmployeeDashboardController extends Controller
     {
         if ($request->isGet()) {
             if ($_SESSION['userType'] == 'staff') {
-                // TODO: add order medicine route in index php
                 $this -> render("employee/approve-supplier.php");
             } else {
                 return header(self::login);
@@ -56,7 +53,6 @@ class EmployeeDashboardController extends Controller
     {
         if ($request->isGet()) {
             if ($_SESSION['userType'] == 'staff') {
-                // TODO: add order medicine route in index php
                 $this -> render("employee/approve-lab.php");
             } else {
                 return header(self::login);
@@ -70,7 +66,6 @@ class EmployeeDashboardController extends Controller
     {
         if ($request->isGet()) {
             if ($_SESSION['userType'] == 'staff') {
-                // TODO: add order medicine route in index php
                 $this -> render("employee/approve-delivery.php");
             } else {
                 return header(self::login);
@@ -84,7 +79,6 @@ class EmployeeDashboardController extends Controller
     {
         if ($request->isGet()) {
             if ($_SESSION['userType'] == 'staff') {
-                // TODO: add order medicine route in index php
                 $this -> render("employee/configs.php");
             } else {
                 return header(self::login);
