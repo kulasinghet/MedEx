@@ -86,6 +86,14 @@ class MedicineModel extends Model
 
     }
 
+    public function getManufacture($id)
+    {
+        $this->getMedicine($id);
+        return $this->manId;
+
+
+    }
+
     // Get all medicine
     public function getAllMedicines()
     {

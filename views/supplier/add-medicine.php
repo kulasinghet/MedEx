@@ -137,7 +137,7 @@ use app\controllers\supplier\SupplierMedicineController;
                                     Scietific Name: <select name='sciname' value='' class='input-box option' required>Manufacture Name";
                                     $sciname = new ScietificNameModel;
                                     $sciname->SciNameDropdown();
-                                    echo "</select>
+                                    echo "</select><br>                              
                                     Manufacture: <select name='manufacture' value='' class='input-box option' required>Manufacture Name";
                                     $man = new ManufactureModel;
                                     $man->ManufactureDropdown();
