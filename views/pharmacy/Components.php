@@ -15,10 +15,9 @@ class Components
             <link href="../scss/vendor/demo.css" rel="stylesheet"/>
             <link href="../css/table.css" rel="stylesheet"/>
             <link href="../css/pharmacy/dashboard.css" rel="stylesheet"/>
+            <link rel="icon" href="../res/logo/logo-box_light.svg" type="image/svg+xml">
             <!-- Font awesome kit -->
             <script crossorigin="anonymous" src="https://kit.fontawesome.com/9b33f63a16.js"></script>
-            
-            
         </head>
         <body>
         HTML;
@@ -47,16 +46,18 @@ class Components
             <div class="nav-inner">
                 <ul>
                     <li><a href="/logout"><i class="fa-solid fa-right-from-bracket"></i></a></li>
-                    <li><a href="#"><i class="fa-solid fa-circle-question"></i></a></li>
-                    <li><a href="#"><i class="fa-solid fa-gear"></i></a></li>
-                    <li><a href="#"><i class="fa-solid fa-bell"></i></a></li>
+              <!--      <li><a href="#"><i class="fa-solid fa-circle-question"></i></a></li> -->
+                    <li><a href="/pharmacy/settings"><i class="fa-solid fa-gear"></i></a></li>
+         <!--           <li><a href="#"><i class="fa-solid fa-bell"></i></a></li>  -->
                     
                     <div class="nav-profile-inner">
+                    <a href="/pharmacy/profile" style="text-decoration: none; color: #071232;">
                         <div class="nav-profile-name">' . $username . '</div>
+                        </a>
                     </div>
                     
                 </ul>
-                <a class="nav-profile" href="#">
+                <a class="nav-profile" href="/pharmacy/profile">
                     <div class="nav-profile-image">
                         <img alt="Profile image" src="../res/avatar-empty.png"/>
                     </div>

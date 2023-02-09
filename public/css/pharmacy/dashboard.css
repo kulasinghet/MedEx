@@ -13,7 +13,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-
 }
 
 /*.card {*/
@@ -51,5 +50,127 @@
     font-size: 2.5rem;
     font-weight: 500;
     color: #071232;
+    margin-bottom: 5vh;
+}
+
+/*#####################################################################################################*/
+/*orders page*/
+
+#orders-page-row {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    padding: 2vh;
+    margin-bottom: 2vh;
+}
+
+#orders-page-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+
+.orders {
+    margin-top: 5vh;
+    width: 100%;
+}
+
+.filter-group input {
+    margin-left: 1vw;
+}
+
+.filter-group label {
+    margin-left: 2vw;
+}
+
+.filter-group {
+    display: flex !important;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center !important;
+    width: 100%;
+    height: auto;
+}
+
+.filter-group button {
+    font-size: 0.9rem;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.filter-group #pending:hover {
+    background-color: #FFD700;
+    color: #000000;
+    border: 1px solid #000000;
+}
+
+.filter-group #accepted:hover {
+    background-color: #00FF00;
+    color: #000000;
+    border: 1px solid #000000;
+}
+
+.filter-group #rejected:hover {
+    background-color: #FF0000;
+    color: #FFFFFF;
+    border: 1px solid #000000;
+}
+
+.filter-group #delivered:hover {
+    background-color: #ADD8E6;
+    color: #000000;
+    border: 1px solid #000000;
+}
+
+.filter-group #cancelled:hover {
+    background-color: #FFA07A;
+    color: #000000;
+    border: 1px solid #000000;
+}
+
+.filter-group #pending:active {
+    background-color: #FFD700;
+    color: #000000;
+    border: 1px solid #000000;
+}
+
+.filter-group #accepted:active {
+    background-color: #00FF00;
+    color: #000000;
+    border: 1px solid #000000;
+}
+
+.filter-group #rejected:active {
+    background-color: #FF0000;
+    color: #FFFFFF;
+    border: 1px solid #000000;
+}
+
+.filter-group #delivered:active {
+    background-color: #ADD8E6;
+    color: #000000;
+    border: 1px solid #000000;
+}
+
+.filter-group #cancelled:active {
+    background-color: #FFA07A;
+    color: #000000;
+    border: 1px solid #000000;
+}
+
+.filter-group #clear-filter {
+    margin-left: 2vw;
+} 
+
+.filter-group #clear-filter:hover {
+    color: #080808 !important;
+}
+
+#orders-page-col .nav-search {
     margin-bottom: 5vh;
 }

@@ -107,3 +107,6 @@ Unknown column 'drivingLicenseName' in 'field list'
 2022/12/22 20:57:28 User already exists
 2023/01/25 10:31:55 php_network_getaddresses: getaddrinfo for medex.cf0qkfwuwc3x.us-east-1.rds.amazonaws.com failed: No such host is known. 
 2023/01/25 10:34:30 No connection could be made because the target machine actively refused it
+2023/02/09 09:56:36 php_network_getaddresses: getaddrinfo for medex.cf0qkfwuwc3x.us-east-1.rds.amazonaws.com failed: No such host is known. 
+2023/02/09 09:57:14 php_network_getaddresses: getaddrinfo for medex.cf0qkfwuwc3x.us-east-1.rds.amazonaws.com failed: No such host is known. 
+2023/02/09 11:46:23 php_network_getaddresses: getaddrinfo for medex.cf0qkfwuwc3x.us-east-1.rds.amazonaws.com failed: No such host is known. 

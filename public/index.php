@@ -80,6 +80,10 @@ $app->router->get('/pharmacy/inventory', [PharmacyDashboardController::class, 'i
 $app->router->post('/pharmacy/inventory', [PharmacyDashboardController::class, 'inventory']);
 $app->router->get('/pharmacy/contact-us', [PharmacyDashboardController::class, 'contactUs']);
 $app->router->post('/pharmacy/contact-us', [PharmacyDashboardController::class, 'contactUs']);
+$app->router->get('/pharmacy/profile', [PharmacyDashboardController::class, 'profile']);
+$app->router->post('/pharmacy/profile', [PharmacyDashboardController::class, 'profile']);
+$app->router->get('/pharmacy/settings', [PharmacyDashboardController::class, 'settings']);
+$app->router->post('/pharmacy/settings', [PharmacyDashboardController::class, 'settings']);
 
 
 // Supplier Routes
