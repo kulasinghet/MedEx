@@ -181,5 +181,22 @@ class Stock extends Model {
         }
     }
 
+    public function getStockForDashboard(mixed $pharmacyName)
+    {
+        $conn = (new Database())->getConnection();
+        $sql = "SELECT * FROM stock WHERE pharmacyName = '$pharmacyName' AND remaining_days <= 14 ORDER BY remaining_days ASC;";
+
+        try {
+            $result = $conn->query($sql);
+            $conn->close();
+            return $result;
+        } catch (\Exception $e) {
+            $conn->close();
+            Logger::logError($e->getMessage());
+            echo (new ExceptionHandler())->somethingWentWrong();
+            return null;
+        }
+    }
+
 
 }

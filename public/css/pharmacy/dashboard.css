@@ -202,13 +202,19 @@
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  align-items: right;
-  width: 100%;
+  align-items: flex-end;
+  /*width: 100%;*/
   height: auto;
   padding: 2vh;
   margin-bottom: 2vh;
   position: absolute;
   bottom: -1vw;
+
+}
+
+#order-new-medicine a {
+  box-shadow: 0px 0px 50px 9px rgba(0, 0, 0, 0.49) !important;
+  -webkit-box-shadow: 0px 0px 50px 9px rgba(0, 0, 0, 0.49) !important;
 }
 
 #order-new-medicine a:hover {
@@ -287,4 +293,42 @@ tr.Cancelled {
 
 #orders-table td {
   background-color: transparent;
+}
+
+
+/*########################################################################################################*/
+
+/*order medicine page*/
+
+#quantity {
+  width: 100%;
+  height: 100%;
+  padding: 0.5vw;
+  border: 1px solid #333;
+  border-radius: 0.5vw;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #333;
+  margin-bottom: 1vh;
+}
+
+#order {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-end;
+  width: 100%;
+  height: auto;
+  padding: 2vh;
+  margin-bottom: 2vh;
+  position: absolute;
+  bottom: -1vw;
+}
+
+#order-medicine-table {
+  margin-top: 3vh;
+}
+
+#sell-medicine-table {
+  margin-top: 3vh;
 }

@@ -45,4 +45,16 @@ class PharmacyInventoryController extends Controller
             return "success";
         }
     }
+
+    public function getInventoryByUsernameForDashboard(mixed $username)
+    {
+        $stock = new Stock();
+        $results = $stock->getStockForDashboard($username);
+
+        if ($results) {
+            return $results;
+        } else {
+            return false;
+        }
+    }
 }

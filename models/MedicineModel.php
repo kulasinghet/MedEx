@@ -118,4 +118,17 @@ class MedicineModel extends Model
 
         $db->close();
     }
+
+    public function getMedicinePrice(mixed $id)
+    {
+        $db = (new Database())->getConnection();
+        $sql = "SELECT min(unitPrice) as price from supplier_medicine WHERE medId = '$id'";
+        $result = $db->query($sql);
+        if ($result->num_rows > 0) {
+            $db->close();
+            return $result->fetch_assoc();
+        }
+        $db->close();
+        return 0;
+    }
 }

@@ -37,4 +37,15 @@ class PharmacyOrderMedicineController extends Controller
         }
     }
 
+    public function getPrice(mixed $id)
+    {
+        $price =  (new \app\models\MedicineModel())->getMedicinePrice($id);
+
+        if ($price['price'] > 0) {
+            return $price['price'];
+        } else {
+            return 0;
+        }
+    }
+
 }
