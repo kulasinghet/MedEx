@@ -26,7 +26,7 @@
             <h6 class="sidebar-context-title">Menu</h6>
             <ul>
                 <li>
-                    <a class="btn disabled" href="#"> <i class="fa-solid fa-house"></i> Home </a>
+                    <a class="btn" href="#"> <i class="fa-solid fa-house"></i> Home </a>
                 </li>
                 <li>
                     <a class="btn" href="#"> <i class="fa-solid fa-check"></i> Confirmations </a>
@@ -87,7 +87,7 @@
                 </div>
             </div>
         </div>
-        <div class="g-col-1-start-2 g-row-2 card analysed">
+        <div class="g-col-1-start-2 g-row-2 card">
             <div class="card-body">
                 <h5 class="card-title">Income (02/03 - today)</h5>
                 <div class="row">
@@ -95,16 +95,14 @@
                 </div>
                 <script>
                     const ctx = document.getElementById('chart-income');
-                    const xValues = ['03', '04', '05', '06', '07', '08', '09'];
-                    const yValues = [100000, 150000, 125000, 300000, 80000, 276500, 220067];
 
                     new Chart(ctx, {
                         type: 'bar',
                         data: {
-                            labels: xValues,
+                            labels: ['03', '04', '05', '06', '07', '08', '09'],
                             datasets: [{
                                 label: 'Daily Income (Rs)',
-                                data: yValues,
+                                data: [100000, 150000, 125000, 300000, 80000, 276500, 220067],
                                 borderWidth: 1
                             }]
                         },
@@ -119,7 +117,7 @@
                 </script>
             </div>
         </div>
-        <div class="g-col-1 g-row-2 card">
+        <div class="g-col-1-start-1 g-row-2 card">
             <div class="card-body">
                 <h5 class="card-title">News</h5>
                 <div class="scroll">

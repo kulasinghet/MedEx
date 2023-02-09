@@ -3024,4 +3024,20 @@ textarea.form-input {
   position: relative;
 }
 
+.status-view .row {
+  margin-bottom: 0.4rem;
+}
+.status-view .row .col:last-child {
+  text-align: right;
+}
+
+.scroll {
+  min-height: 2rem;
+  overflow-y: scroll;
+}
+
+.analysed {
+  min-width: 380px;
+}
+
 /*# sourceMappingURL=main.css.map */

@@ -1,0 +1,20 @@
+.status-view {
+  .row {
+    margin-bottom: .4rem;
+
+    .col {
+      &:last-child {
+        text-align: right;
+      }
+    }
+  }
+}
+
+.scroll {
+  min-height: 2rem;
+  overflow-y: scroll;
+}
+
+.analysed {
+  min-width: 380px;
+}
