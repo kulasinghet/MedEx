@@ -1,0 +1,84 @@
+.scroll {
+  min-height: 2rem;
+  overflow-y: scroll;
+}
+
+.analysed {
+  min-width: 380px;
+}
+
+.margin-bottom {
+  margin-bottom: 1rem;
+}
+
+.search-box {
+  &.row {
+    justify-content: center;
+
+    > * {
+      flex: 0 0 auto;
+      width: auto;
+      min-width: auto;
+    }
+  }
+}
+
+.action-buttons {
+  &.row {
+    gap: .2rem;
+    justify-content: center;
+
+    .col {
+      flex-grow: 0;
+      padding: 0.2rem;
+
+      .btn {
+        margin: 0;
+      }
+    }
+  }
+}
+
+.status-table {
+  border-spacing: 1px;
+  border-collapse: collapse;
+  background: rgba(234, 234, 234, 0.3);
+  border: 2px solid rgba(70, 70, 70, 0.84);
+  border-radius:6px;
+  overflow:hidden;
+  width:100%;
+  margin:0 auto;
+  position:relative;
+
+  th {
+    text-transform: uppercase;
+  }
+
+  td,th {
+    padding: .4rem 1rem;
+  }
+
+  tbody tr {
+    border-bottom:1px solid #E3F1D5 ;
+
+    &:last-child {
+      border:0;
+    }
+  }
+
+  th {
+    text-align: left;
+  }
+
+  td {
+    text-align: right;
+  }
+}
+
+.report-description {
+  margin: 1.8rem 1rem 1rem;
+
+  p {
+    margin: 0;
+  }
+}

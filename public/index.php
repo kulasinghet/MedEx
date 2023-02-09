@@ -5,6 +5,7 @@ require_once '../vendor/autoload.php';
 use app\controllers\DashboardController;
 use app\controllers\delivery\DeliveryContactusController;
 use app\controllers\delivery\DeliveryDashboardController;
+use app\controllers\employee\EmployeeDashboardController;
 use app\controllers\lab\LabAuthController;
 use app\controllers\lab\LabContactusController;
 use app\controllers\lab\LabDashboardController;
@@ -64,6 +65,18 @@ $app->router->post('/lab/accept-req', [LabAcceptReqController::class, 'acceptReq
 //$app -> router -> post('/employee/login', [LoginAuthController::class, 'employeeLogin']);
 $app->router->get('/employee/register', [EmployeeAuthController::class, 'employeeRegister']);
 $app->router->post('/employee/register', [EmployeeAuthController::class, 'employeeRegister']);
+$app->router->get('/employee/reports', [EmployeeDashboardController::class, 'showReports']);
+$app->router->post('/employee/reports', [EmployeeDashboardController::class, 'showReports']);
+$app->router->get('/employee/approvals/pharmacy', [EmployeeDashboardController::class, 'approvePharmacy']);
+$app->router->post('/employee/approvals/pharmacy', [EmployeeDashboardController::class, 'approvePharmacy']);
+$app->router->get('/employee/approvals/supplier', [EmployeeDashboardController::class, 'approveSupplier']);
+$app->router->post('/employee/approvals/supplier', [EmployeeDashboardController::class, 'approveSupplier']);
+$app->router->get('/employee/approvals/lab', [EmployeeDashboardController::class, 'approveLab']);
+$app->router->post('/employee/approvals/lab', [EmployeeDashboardController::class, 'approveLab']);
+$app->router->get('/employee/approvals/delivery', [EmployeeDashboardController::class, 'approveDelivery']);
+$app->router->post('/employee/approvals/delivery', [EmployeeDashboardController::class, 'approveDelivery']);
+$app->router->get('/employee/configs', [EmployeeDashboardController::class, 'configs']);
+$app->router->post('/employee/configs', [EmployeeDashboardController::class, 'configs']);
 
 // pharmacy Routes
 //$app -> router -> get('/pharmacy/login', [LoginAuthController::class, 'pharmacyLogin']);
