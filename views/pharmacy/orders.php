@@ -27,30 +27,6 @@ echo $components->sideBar('orders');
 
                 <div class="filter-group">
 
-
-                    <!-- <form style="width: auto;">
-                        <input type="radio" class="form-input" id="pending" name="order-status" value="pending">
-                        <label class="form-check-label" for="pending">Pending</label>
-
-
-                        <input type="radio" class="form-input" id="accepted" name="order-status" value="accepted">
-                        <label class="form-check-label" for="accepted">Accepted</label>
-
-
-                        <input type="radio" class="form-input" id="rejected" name="order-status" value="rejected">
-                        <label class="form-check-label" for="rejected">Rejected</label>
-
-
-                        <input type="radio" class="form-input" id="delivered" name="order-status" value="delivered">
-                        <label class="form-check-label" for="delivered">Delivered</label>
-
-
-                        <input type="radio" class="form-input" id="cancelled" name="order-status" value="cancelled">
-                        <label class="form-check-label" for="cancelled">Cancelled</label>
-
-                        <i class="fa-solid fa-filter-circle-xmark" style="color: #333333; font-size: 1.5rem; margin-left: 1rem; cursor: pointer;" id="clear-filter"></i>
-                    </form> -->
-
                     <div class="filter-group">
 
                         <button class="btn btn-primary" id="pending">Pending</button>
@@ -126,6 +102,13 @@ echo $components->sideBar('orders');
 
 
             </div>
+
+
+
+            <div id="order-new-medicine">
+                <a class="btn ' . ($selectedPage == 'order-medicine' ? 'disabled' : '') . '" href="/pharmacy/order-medicine"> <i class="fa-solid fa-truck-moving"></i> Order Medicine </a>
+            </div>
+
         </div>
     </div>
 </div>

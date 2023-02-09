@@ -31,15 +31,13 @@ class Components
             if ($pharmacy->getPharmacyProfilePicture($_SESSION['username']) != null) {
                 $profileURL = $pharmacy->getPharmacyProfilePicture($_SESSION['username']);
             }
-        }
-
-        {
+        } {
             return ('
         <nav>
             <div class="nav-search">
                 <form onsubmit="preventDefault();" role="search">
                     <label for="search">Search for stuff</label>
-                    <input id="search" placeholder="Search..." required type="search"/>
+                    <input id="search" placeholder="Type anything to search . . ." required type="search"/>
                     <button type="submit">Go</button>
                 </form>
             </div>
@@ -106,5 +104,4 @@ class Components
 </div>
         ');
     }
-
 }
