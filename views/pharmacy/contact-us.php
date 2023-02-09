@@ -1,79 +1,39 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Dashboard</title>
-    <link href="../scss2/vendor/demo.css" rel="stylesheet"/>
-    <!-- Font awesome kit -->
-    <script crossorigin="anonymous" src="https://kit.fontawesome.com/9b33f63a16.js"></script>
-</head>
+<?php
 
-<body>
+use app\views\pharmacy\Components;
 
-<nav>
-    <div class="nav-search">
-        <form onsubmit="preventDefault();" role="search">
-            <label for="search">Search for stuff</label>
-            <input autofocus id="search" placeholder="Search..." required type="search"/>
-            <button type="submit">Go</button>
-        </form>
-    </div>
-    <div class="nav-inner">
-        <ul>
-            <li><a href="#"><i class="fa-solid fa-circle-question"></i></a></li>
-            <li><a href="#"><i class="fa-solid fa-gear"></i></a></li>
-            <li><a href="#"><i class="fa-solid fa-bell"></i></a></li>
-        </ul>
-        <a class="nav-profile" href="#">
-            <div class="nav-profile-image">
-                <img alt="Profile image" src="../res/avatar-empty.png"/>
-            </div>
-        </a>
-    </div>
-</nav>
+$components = new Components();
+echo $components->viewHeader("Contact Us");
+echo $components->navBar($_SESSION['username']);
+echo $components->sideBar('contact-us');
 
-<div class="sidebar">
-    <div class="sidebar-inner">
-        <nav class="sidebar-header">
-            <div class="sidebar-logo">
-                <a href="/dashboard">
-                    <img alt="MedEx logo" src="../res/logo/logo-text_light.svg"/>
-                </a>
-            </div>
-        </nav>
-        <div class="sidebar-context">
-            <h6 class="sidebar-context-title">Menu</h6>
-            <ul>
-                <li>
-                    <a class="btn" href="/pharmacy/sell-medicine"> <i class="fa fa-usd"></i> Sell Medicine </a>
-                </li>
-                <li>
-                    <a class="btn" href="/pharmacy/order-medicine"> <i class="fa fa-plus-square"></i> Order Medicine </a>
-                </li>
-                <li>
-                    <a class="btn" href="/pharmacy/orders"> <i class="fa fa-clock-o"></i> Orders </a>
-                </li>
-                <li>
-                    <a class="btn" href="/pharmacy/inventory"> <i class="fa fa-dropbox"></i> Inventory </a>
-                </li>
-                <li>
-                    <a class="btn disabled" href="/pharmacy/contact-us"> <i class="fa fa-phone"></i> Contact Us </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>
-
+?>
 
 <div class="canvas nav-cutoff sidebar-cutoff">
     <div class="canvas-inner">
         <div class="row">
-            <div class="col">
-                <p> Contact Us </p>
+            <div class="col ">
+
+                <div class="contact-us">
+                <h1>Contact Us</h1>
+
+                <form>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Subject</label>
+                        <input type="email" class="form-input" id="exampleFormControlInput1" placeholder="Subject">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Message</label>
+                        <textarea class="form-input" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+
+                </div>
             </div>
         </div>
     </div>
 </div>
-
 </body>
 </html>

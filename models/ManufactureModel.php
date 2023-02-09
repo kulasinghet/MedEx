@@ -36,26 +36,6 @@ class ManufactureModel extends Model
         }
     }
 
-    public function getManufacture($id)
-    {
-        $db = (new Database())->getConnection();
-        $sql = "SELECT * from manufacture WHERE manufacture.id = '$id'";
-        $result = $db->query($sql);
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $this->id = $row["id"];
-                $this->name = $row["name"];
-            }
-        }
-        $db->close();
-    }
-
-    public function getManufactureName($id)
-    {
-        $this->getManufacture($id);
-        return $this->name;
-    }
-
     public function ManufactureDropdown()
     {
         $db = (new Database())->getConnection();

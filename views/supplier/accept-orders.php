@@ -1,7 +1,3 @@
-<?php
-use app\controllers\supplier\AcceptOrdersController;
-
-?>
 <html lang="en">
 
 <head>
@@ -84,45 +80,10 @@ use app\controllers\supplier\AcceptOrdersController;
         <div class="canvas-inner">
             <div class="row">
                 <div class="col">
-                    <div class="card g-col-2 g-row-2-start-3"
-                        style=" box-shadow: 0 3px 10px rgb(0 0 0 / 0.2); border-radius: 20px; width:100% padding: 1%;">
-                        <div class="card-body">
-                            <div style="padding: 2%;">
-                                <h3>Inventory</h3>
-                                </br>
-                                <div class="nav-search">
-                                    <form onsubmit="preventDefault();" role="search">
-                                        <label for="search">Accpet Order</label>
-                                        <input autofocus id="search" placeholder="Filter Medicine" required
-                                            type="search" />
-                                        <button type="submit">Go</button>
-                                    </form>
-                                </div>
-                                </br></br>
-                                <table style="width: 100%; text-align:center;">
-                                    <tr>
-                                        <th>Order ID</th>
-                                        <th>Pharmacy Name</th>
-                                        <th>Medicine</th>
-                                        <th>Weight</th>
-                                        <th>Mannufacture</th>
-                                        <th>Quantity</th>
-                                        <th></th>
-                                    </tr>
-
-                                    <?php
-                                    $order = new AcceptOrdersController;
-                                    $order->ViewPendingOrders();
-                                    ?>
-                                </table>
-                            </div>
-                        </div>
-
-                    </div>
+                    <p> Accept Orders</p>
                 </div>
             </div>
         </div>
-    </div>
     </div>
 
 </body>

@@ -9,7 +9,7 @@ use app\controllers\supplier\SupplierMedicineController;
 <head>
     <meta charset="UTF-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Medicine Requests</title>
+    <title>Contact Us</title>
     <link href="../scss/vendor/demo.css" rel="stylesheet" />
     <link href="../css/supplier/formcss.css" rel="stylesheet" />
     <!-- Font awesome kit -->
@@ -106,7 +106,6 @@ use app\controllers\supplier\SupplierMedicineController;
                                         <th>Medicine Name</th>
                                         <th>Scientific Name</th>
                                         <th>Weight</th>
-                                        <th>Mannufacture</th>
                                         <th>Status</th>
                                         <th>Request ID</th>
                                     </tr>

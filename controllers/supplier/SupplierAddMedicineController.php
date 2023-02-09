@@ -39,7 +39,7 @@ class SupplierAddMedicineController extends Controller
             } else {
                 if ($med->addMedicine() && $labreq->addRequest() && $supmed->addMedicine()) {
                     echo (new \app\core\ExceptionHandler)->RequestSent();
-                    return $this->render("/supplier/add-medicine.php");
+                    return $this->render("/supplier/update-medicine.php");
                 }
             }
 
