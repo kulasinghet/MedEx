@@ -13,10 +13,11 @@ echo $components->sideBar('dashboard');
     <div class="canvas-inner">
         <div class="row">
             <div class="col">
-                <p> Profile </p>
+                <p> Dashboard </p>
             </div>
         </div>
     </div>
 </div>
 </body>
+
 </html>

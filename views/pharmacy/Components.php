@@ -11,11 +11,11 @@ class Components
         <head>
             <meta charset="UTF-8"/>
             <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-            <title>$title</title>
+            <title>$title | MedEx</title>
             <link href="../scss/vendor/demo.css" rel="stylesheet"/>
             <link href="../css/table.css" rel="stylesheet"/>
             <link href="../css/pharmacy/dashboard.css" rel="stylesheet"/>
-            <link rel="icon" href="../res/logo/logo-box_light.svg" type="image/svg+xml">
+            <link rel="icon" href="../res/logo/logo-box_light.jpg" type="image/svg+xml">
             <!-- Font awesome kit -->
             <script crossorigin="anonymous" src="https://kit.fontawesome.com/9b33f63a16.js"></script>
         </head>
