@@ -1,15 +1,17 @@
 <?php
 use app\controllers\supplier\SupplierDashboardController;
+use app\models\SupplierModel;
 use app\models\SupplierMedicineModel;
 use app\controllers\supplier\SupplierMedicineController;
 
 ?>
+
 <html lang="en">
 
 <head>
     <meta charset="UTF-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Supplier Inventory</title>
+    <title>Supplier - Update Medicine</title>
     <link href="../scss/vendor/demo.css" rel="stylesheet" />
     <!-- Font awesome kit -->
     <script crossorigin="anonymous" src="https://kit.fontawesome.com/9b33f63a16.js"></script>
@@ -55,10 +57,10 @@ use app\controllers\supplier\SupplierMedicineController;
                         </a>
                     </li>
                     <li>
-                        <a class="btn disabled" href="/supplier/inventory"> <i class="fa fa-dropbox"></i> Inventory </a>
+                        <a class="btn" href="/supplier/inventory"> <i class="fa fa-dropbox"></i> Inventory </a>
                     </li>
                     <li>
-                        <a class="btn" href="/supplier/update-inventory"> <i class="fa fa-plus-square"></i>
+                        <a class="btn  disabled" href="/supplier/update-inventory"> <i class="fa fa-plus-square"></i>
                             Update
                             Inventory
                         </a>
@@ -112,7 +114,7 @@ use app\controllers\supplier\SupplierMedicineController;
                                     </tr>
 
                                     <?php $supmed = new SupplierMedicineController;
-                                    $supmed->viewallMed($_SESSION['username']);
+                                    $supmed->updateInventory($_SESSION['username']);
                                     ?>
 
 

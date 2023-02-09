@@ -11,6 +11,7 @@ use app\models\LabModel;
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Laboratory Dashboard</title>
     <link href="../scss/vendor/demo.css" rel="stylesheet" />
+    <link href="../css/supplier/formcss.css" rel="stylesheet" />
     <!-- Font awesome kit -->
     <script crossorigin="anonymous" src="https://kit.fontawesome.com/9b33f63a16.js"></script>
 </head>
@@ -54,7 +55,8 @@ use app\models\LabModel;
                         </a>
                     </li>
                     <li>
-                        <a class="btn" href="lab/reports"> <i class="fa fa-file-text-o"></i> Provide Lab Reports </a>
+                        <a class="btn disabled" href="/lab/reports"> <i class="fa fa-file-text-o"></i> Provide Lab
+                            Reports </a>
                     </li>
 
                     <li>
@@ -71,29 +73,35 @@ use app\models\LabModel;
             <div class="row">
                 <div class="col" style="display: flex; flex-direction: row;">
                     <div class="card g-col-2 g-row-2-start-3"
-                        style=" box-shadow: 0 3px 10px rgb(0 0 0 / 0.2); border-radius: 20px; width:50%">
+                        style=" box-shadow: 0 3px 10px rgb(0 0 0 / 0.2); border-radius: 20px; width:80%">
                         <div class="card-body">
                             <div style="padding: 2%;">
-                                <div style="display: flex; flex-direction: row;">
-                                    <h3 style="padding-right:60%">Laboratory Profile</h3><a href='#'
-                                        style="padding-top:5%"><i class='fa fa-pencil'></i></a>
-                                </div>
-                                <?php
-                                echo '<br><h5>Laboratory Username: ' . $_SESSION['username'];
-                                $lab = new LabModel;
-                                $lab->getName($_SESSION['username']);
-                                $lab->getLab($_SESSION['username']);
-                                echo '<br><br> Laboratory Name: ' . $_SESSION['username'] . '<br><br>Registerd Date: ' . $lab->reg_date;
-
-                                ?>
+                                <h3>Generate Lab Report</h3>
+                                <br>
+                                <form>
+                                    Lab Request Id:<br>
+                                    <select name='manufacture' value='' class='input-box option' required>Lab Request
+                                        <option>Req0001</option>
+                                        <option>Req0001</option>
+                                    </select>
+                                    <br><br>
+                                    Status:<br>
+                                    <input type="radio" name="status" value='0'> Verify
+                                    <input type="radio" name="status" value='1'> Unverify
+                                    <br><br>
+                                    Comment:<br>
+                                    <textarea id="comment" name="comment" rows="10" cols="60">Enter Message
+                                   </textarea>
+                                    <br>
+                                    <input type='submit' value='Submit' class='btn btn--primary'>
+                                </form>
                             </div>
-                        </div>
 
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
 
 </body>

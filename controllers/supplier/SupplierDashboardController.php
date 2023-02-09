@@ -24,14 +24,29 @@ class SupplierDashboardController extends Controller
         }
     }
 
-    public function updateMedicine(Request $request)
+    public function updateInventory(Request $request)
     {
         if ($_SESSION['userType'] == 'supplier') {
 
             if ($request->isGet()) {
-                $this->render("supplier/update-medicine.php");
+                $this->render("supplier/update-inventory.php");
             } elseif ($request->isPost()) {
-                $this->render("supplier/update-medicine.php");
+                $this->render("supplier/update-inventory.php");
+            } else {
+                return header(self::login);
+            }
+        } else {
+            return header(self::login);
+        }
+    }
+    public function medicineRequests(Request $request)
+    {
+        if ($_SESSION['userType'] == 'supplier') {
+
+            if ($request->isGet()) {
+                $this->render("supplier/medicine-requests.php");
+            } elseif ($request->isPost()) {
+                $this->render("supplier/medicine-requests.php");
             } else {
                 return header(self::login);
             }
@@ -87,6 +102,5 @@ class SupplierDashboardController extends Controller
             return header(self::login);
         }
     }
-
 
 }

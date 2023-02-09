@@ -1,7 +1,6 @@
 <?php
-use app\controllers\supplier\SupplierDashboardController;
-use app\models\SupplierMedicineModel;
-use app\controllers\supplier\SupplierMedicineController;
+use app\controllers\lab\LabDashboardController;
+use app\controllers\lab\LabRequestsController;
 
 ?>
 <html lang="en">
@@ -9,8 +8,9 @@ use app\controllers\supplier\SupplierMedicineController;
 <head>
     <meta charset="UTF-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Supplier Inventory</title>
+    <title>Laboratory Requests</title>
     <link href="../scss/vendor/demo.css" rel="stylesheet" />
+    <link href="../css/supplier/formcss.css" rel="stylesheet" />
     <!-- Font awesome kit -->
     <script crossorigin="anonymous" src="https://kit.fontawesome.com/9b33f63a16.js"></script>
 </head>
@@ -50,31 +50,15 @@ use app\controllers\supplier\SupplierMedicineController;
                 <h6 class="sidebar-context-title">Menu</h6>
                 <ul>
                     <li>
-                        <a class="btn" href="/supplier/add-medicine"> <i class="fa fa-medkit"></i> Add New
-                            Medicine
+                        <a class="btn disabled" href="/lab/requests"> <i class="fa fa-check"></i> Accept Lab Requests
                         </a>
                     </li>
                     <li>
-                        <a class="btn disabled" href="/supplier/inventory"> <i class="fa fa-dropbox"></i> Inventory </a>
-                    </li>
-                    <li>
-                        <a class="btn" href="/supplier/update-inventory"> <i class="fa fa-plus-square"></i>
-                            Update
-                            Inventory
-                        </a>
-                    </li>
-                    <li>
-                        <a class="btn" href="/supplier/accept-orders"> <i class="fa fa-check-circle"></i> Accept Orders
-                        </a>
-                    </li>
-                    <li>
-                        <a class="btn" href="/supplier/medicine-requests"> <i class="fa fa-hourglass-half"></i>
-                            Medicine
-                            Requests </a>
+                        <a class="btn" href="/lab/reports"> <i class="fa fa-file-text-o"></i> Provide Lab Reports </a>
                     </li>
 
                     <li>
-                        <a class="btn" href="/supplier/contact-us"> <i class="fa fa-phone"></i> Contact Us </a>
+                        <a class="btn" href="/lab/contact-us"> <i class="fa fa-phone"></i> Contact Us </a>
                     </li>
                 </ul>
             </div>
@@ -85,12 +69,12 @@ use app\controllers\supplier\SupplierMedicineController;
     <div class="canvas nav-cutoff sidebar-cutoff">
         <div class="canvas-inner">
             <div class="row">
-                <div class="col">
+                <div class="col" style="display: flex; flex-direction: column;">
                     <div class="card g-col-2 g-row-2-start-3"
-                        style=" box-shadow: 0 3px 10px rgb(0 0 0 / 0.2); border-radius: 20px; width:100% padding: 1%;">
+                        style=" box-shadow: 0 3px 10px rgb(0 0 0 / 0.2); border-radius: 20px; width:80%">
                         <div class="card-body">
                             <div style="padding: 2%;">
-                                <h3>Inventory</h3>
+                                <h3>Pending Requests</h3>
                                 </br>
                                 <div class="nav-search">
                                     <form onsubmit="preventDefault();" role="search">
@@ -100,22 +84,19 @@ use app\controllers\supplier\SupplierMedicineController;
                                         <button type="submit">Go</button>
                                     </form>
                                 </div>
-                                </br></br>
-                                <table style="width: 100%; text-align:center;">
-                                    <tr>
+                                <table style='width: 100%; text-align:center; padding-top:5%' class='scrollable'>
+                                    <tr style='padding:1%; border-bottom: 1pt solid black;'>
+                                        <th>Request ID</th>
+                                        <th>Supplier Name</th>
                                         <th>Medicine Name</th>
                                         <th>Scientific Name</th>
                                         <th>Weight</th>
-                                        <th>Mannufacture</th>
-                                        <th>Quantity</th>
-                                        <th>Unit Price</th>
+                                        <th></th>
                                     </tr>
-
-                                    <?php $supmed = new SupplierMedicineController;
-                                    $supmed->viewallMed($_SESSION['username']);
+                                    <?php
+                                    $req = new LabRequestsController;
+                                    $req->viewRequests();
                                     ?>
-
-
                                 </table>
                             </div>
                         </div>

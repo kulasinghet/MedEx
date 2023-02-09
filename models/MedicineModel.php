@@ -7,110 +7,88 @@ use app\core\Logger;
 
 class MedicineModel extends Model
 {
-    private $id;
-    private $medName;
-    private $weight;
-    private $sciName;
-    private $price;
-    private $manId;
+    public $id;
+    public $medName;
+    public $weight;
+    public $sciName;
+    public $manId;
 
-    /**
-     * @return mixed
-     */
-    public function getId()
+    // Add New Medicine by Supplier
+    public function addMedicine()
     {
-        return $this->id;
+        $db = (new Database())->getConnection();
+        try {
+            $sql = "INSERT INTO medicine (id, medName, weight, sciName, manId)  VALUES ('$this->id', '$this->medName','$this->weight','$this->sciName','$this->manId')";
+            $stmt = $db->prepare($sql);
+            $stmt->execute();
+            if ($stmt->affected_rows == 1) {
+                $stmt->close();
+                return true;
+            }
+
+            $stmt->close();
+
+            return true;
+        } catch (\Exception $e) {
+            ErrorLog::logError($e->getMessage());
+            echo $e->getMessage();
+            return false;
+        }
     }
 
-    /**
-     * @param mixed $id
-     */
-    public function setId($id): void
+    // Get Medicine details by id
+    public function getMedicine($id)
     {
-        $this->id = $id;
+        $db = (new Database())->getConnection();
+        $sql = "SELECT * from medicine WHERE medicine.id = '$id'";
+        $result = $db->query($sql);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $this->id = $row["id"];
+                $this->medName = $row["medName"];
+                $this->weight = $row["weight"];
+                $this->sciName = $row["sciName"];
+                $this->manId = $row["manId"];
+            }
+        }
+        $db->close();
+
     }
 
-    /**
-     * @return mixed
-     */
-    public function getMedName()
+    // Get Medicine Name
+    public function getName($id)
     {
+        $this->getMedicine($id);
         return $this->medName;
-    }
 
-    /**
-     * @param mixed $medName
-     */
-    public function setMedName($medName): void
-    {
-        $this->medName = $medName;
     }
-
-    /**
-     * @return mixed
-     */
-    public function getWeight()
+    // Get Scientific Name
+    public function getSciname($id)
     {
-        return $this->weight;
-    }
-
-    /**
-     * @param mixed $weight
-     */
-    public function setWeight($weight): void
-    {
-        $this->weight = $weight;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getSciName()
-    {
+        $this->getMedicine($id);
         return $this->sciName;
+
     }
 
-    /**
-     * @param mixed $sciName
-     */
-    public function setSciName($sciName): void
+    // Get Weight
+    public function getWeight($id)
     {
-        $this->sciName = $sciName;
+        $this->getMedicine($id);
+        return $this->weight;
+
     }
 
-    /**
-     * @return mixed
-     */
-    public function getPrice()
+    public function getManufacture($id)
     {
-        return $this->price;
-    }
-
-    /**
-     * @param mixed $price
-     */
-    public function setPrice($price): void
-    {
-        $this->price = $price;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getManId()
-    {
+        $this->getMedicine($id);
         return $this->manId;
+
+
     }
 
-    /**
-     * @param mixed $manId
-     */
-    public function setManId($manId): void
+    // Get all medicine
+    public function getAllMedicines()
     {
-        $this->manId = $manId;
-    }
-
-    public function getAllMedicines() {
         $db = new Database();
         $sql = "SELECT * FROM medicine";
 
@@ -123,6 +101,31 @@ class MedicineModel extends Model
             Logger::logError($e->getMessage());
             return false;
         }
+    }
+
+    // Get count of Medicine
+    public function getCount()
+    {
+        $db = (new Database())->getConnection();
+        $sql = "SELECT * from medicine";
+        $result = $db->query($sql);
+        $count = $result->num_rows + 1;
+        $db->close();
+        return $count;
+    }
+
+
+    // Get ids of all Medicine (to compare unadded medicine for a supplier)
+    public function getallMedid()
+    {
+        $db = (new Database())->getConnection();
+        $sql = "SELECT id  from medicine";
+        $result = $db->query($sql);
+        if ($result->num_rows > 0) {
+            return $result;
+        }
+
+        $db->close();
     }
 
 }

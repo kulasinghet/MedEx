@@ -6,110 +6,120 @@ use app\core\Database;
 
 class SupplierMedicineModel extends Model
 {
-    private $supId;
-    private $medId;
-    private $verified;
-    private $quantity;
-    private $unitPrice;
+    public $supName;
+    public $medId;
+    public $verified;
+    public $quantity;
+    public $unitPrice;
 
-    /**
-     * @return mixed
-     */
-    public function getSupId()
+    public function getSupMed($medid, $supName)
     {
-        return $this->supId;
+        $db = (new Database())->getConnection();
+        $sql = "SELECT * from supplier_medicine WHERE supplier_medicine.supName = '$supName' && verified='1'";
+        $result = $db->query($sql);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $this->quantity = $row['quantity'];
+                $this->unitPrice = $row['$unitPrice'];
+
+            }
+        }
+        $db->close();
     }
 
-    /**
-     * @param mixed $supId
-     */
-    public function setSupId($supId): void
+    public function getQuantity($medid)
     {
-        $this->supId = $supId;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getMedId()
-    {
-        return $this->medId;
-    }
-
-    /**
-     * @param mixed $medId
-     */
-    public function setMedId($medId): void
-    {
-        $this->medId = $medId;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getVerified()
-    {
-        return $this->verified;
-    }
-
-    /**
-     * @param mixed $verified
-     */
-    public function setVerified($verified): void
-    {
-        $this->verified = $verified;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getQuantity()
-    {
+        $this->getSupMed($medid, $_SESSION['username']);
         return $this->quantity;
-    }
 
-    /**
-     * @param mixed $quantity
-     */
-    public function setQuantity($quantity): void
-    {
-        $this->quantity = $quantity;
     }
-
-    /**
-     * @return mixed
-     */
-    public function getUnitPrice()
+    public function addMedicine()
     {
-        return $this->unitPrice;
-    }
 
-    /**
-     * @param mixed $unitPrice
-     */
-    public function setUnitPrice($unitPrice): void
-    {
-        $this->unitPrice = $unitPrice;
-    }
+        $db = (new Database())->getConnection();
 
-    public function getMedicinePrice($medId)
-    {
-        $db = new Database();
         try {
-            $sql = "SELECT unitPrice FROM supplier_medicine WHERE medId = '$medId'";
+            $sql = "INSERT INTO supplier_medicine(supName, medId, verified, quantity, unitPrice) VALUES ('$this->supName','$this->medId','0','$this->quantity','$this->unitPrice')";
+
             $stmt = $db->prepare($sql);
             $stmt->execute();
-            $result = $stmt->get_result();
 
-            if ($result->num_rows == 1) {
-                return $result->fetch_assoc()['unitPrice'];
-            } else {
-                return false;
+            if ($stmt->affected_rows == 1) {
+                $stmt->close();
+                return true;
             }
+
+            $stmt->close();
+
+            return true;
         } catch (\Exception $e) {
-            Logger::logError($e->getMessage());
+            ErrorLog::logError($e->getMessage());
+            echo $e->getMessage();
             return false;
         }
     }
+
+    public function getSupMedicine($uname)
+    {
+        $db = (new Database())->getConnection();
+        $sql = "SELECT medId,verified,quantity,unitPrice from supplier_medicine WHERE supplier_medicine.supName = '$uname' && verified='1'";
+        $result = $db->query($sql);
+        if ($result->num_rows > 0) {
+            return $result;
+        }
+        $db->close();
+
+
+    }
+    public function getPendingMedicine($uname)
+    {
+        $db = (new Database())->getConnection();
+        $sql = "SELECT medId,verified,quantity,unitPrice from supplier_medicine WHERE supplier_medicine.supName = '$uname' && verified='0'";
+        $result = $db->query($sql);
+        if ($result->num_rows > 0) {
+            return $result;
+        }
+        $db->close();
+
+
+    }
+
+    public function getSupMedIds($uname)
+    {
+        $db = (new Database())->getConnection();
+        $sql = "SELECT medId from supplier_medicine WHERE supplier_medicine.supName = '$uname'";
+        $result = $db->query($sql);
+        if ($result->num_rows > 0) {
+            return $result;
+
+        }
+        $db->close();
+
+
+    }
+
+
+
+    public function acceptOrder($qauntity, $id, $uname)
+    {
+        $db = (new Database())->getConnection();
+        try {
+            $sql = "UPDATE supplier_medicine SET supplier_medicine.quantity = '$qauntity' WHERE supplier_medicine.supName = '$uname' AND supplier_medicine.medId = '$id'";
+            $stmt = $db->prepare($sql);
+            $stmt->execute();
+
+            if ($stmt->affected_rows == 1) {
+                $stmt->close();
+                return true;
+            }
+
+            $stmt->close();
+        } catch (\Exception $e) {
+            ErrorLog::logError($e->getMessage());
+            echo $e->getMessage();
+            return false;
+        }
+    }
+
 
 }
