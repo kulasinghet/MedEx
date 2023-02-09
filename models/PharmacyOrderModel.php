@@ -164,4 +164,18 @@ class PharmacyOrderModel extends Model
 
         $db->close();
     }
+
+    public function getOrdersByUsernameForDashboard(mixed $username)
+    {
+        try {
+            $conn = (new Database())->getConnection();
+            $sql = "SELECT * FROM pharmacyorder WHERE pharmacyName = '$username' AND order_status <= 1 ORDER BY order_status ASC;";
+            $result = $conn->query($sql);
+            return $result->fetch_all(MYSQLI_ASSOC);
+        } catch (\Exception $e) {
+            Logger::logError($e->getMessage());
+            echo (new ExceptionHandler)->somethingWentWrong();
+            return false;
+        }
+    }
 }

@@ -61,4 +61,16 @@ class PharmacyOrderHistoryController extends Controller
             return $orderTotal;
         }
     }
+
+    public function getOrdersByUsernameForDashboard(mixed $username)
+    {
+        $pharmacyOrder = new PharmacyOrderModel();
+        $results = $pharmacyOrder->getOrdersByUsernameForDashboard($username);
+
+        if ($results) {
+            return $results;
+        } else {
+            return false;
+        }
+    }
 }

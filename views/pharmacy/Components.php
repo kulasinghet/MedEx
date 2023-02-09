@@ -19,6 +19,7 @@ class Components
             <link rel="icon" href="../res/logo/logo-box_light.jpg" type="image/svg+xml">
             <!-- Font awesome kit -->
             <script crossorigin="anonymous" src="https://kit.fontawesome.com/9b33f63a16.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.0/dist/chart.umd.min.js"></script>
         </head>
         <body>
         HTML;
