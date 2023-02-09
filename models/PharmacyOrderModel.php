@@ -8,189 +8,78 @@ use app\core\Logger;
 
 class PharmacyOrderModel extends Model
 {
-    private $id;
-    private $pharmacyId;
-    private $order_date;
-    private $order_status;
-    private $order_total;
-    private $delivery_date;
+    public $id;
+    public $pharmacyName;
+    public $medId;
+    public $quantity;
+    public $status;
+    public $supName;
 
 
-    /**
-     * @return mixed
-     */
-    public function getId()
+    public function getOrder($id)
     {
-        return $this->id;
-    }
-
-    /**
-     * @param mixed $id
-     */
-    public function setId($id): void
-    {
-        $this->id = $id;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPharmacyId()
-    {
-        return $this->pharmacyId;
-    }
-
-    /**
-     * @param mixed $pharmacyId
-     */
-    public function setPharmacyId($pharmacyId): void
-    {
-        $this->pharmacyId = $pharmacyId;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getOrderDate()
-    {
-        return $this->order_date;
-    }
-
-    /**
-     * @param mixed $order_date
-     */
-    public function setOrderDate($order_date): void
-    {
-        $this->order_date = $order_date;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getOrderStatus()
-    {
-        return $this->order_status;
-    }
-
-    /**
-     * @param mixed $order_status
-     */
-    public function setOrderStatus($order_status): void
-    {
-        $this->order_status = $order_status;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getOrderTotal()
-    {
-        return $this->order_total;
-    }
-
-    /**
-     * @param mixed $order_total
-     */
-    public function setOrderTotal($order_total): void
-    {
-        $this->order_total = $order_total;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getDeliveryDate()
-    {
-        return $this->delivery_date;
-    }
-
-    /**
-     * @param mixed $delivery_date
-     */
-    public function setDeliveryDate($delivery_date): void
-    {
-        $this->delivery_date = $delivery_date;
-    }
-
-
-
-
-    public function createOrder($pharmacyId, $order_total): bool
-    {
-        // generate random order id with time stamp and pharmacy id
-
-        $this->setId($this->createRandomID($pharmacyId));
-        $order_date = date("Y-m-d");
-
-        $sql = "INSERT INTO pharmacy_order (id, pharmacyId, order_date, order_status, order_total) VALUES
-                ('$this->getId()', '$pharmacyId', '$order_date', 0, '$order_total');";
-        try {
-
-            $db = new Database();
-
-            $stmt = $db->prepare($sql);
-            $stmt->execute();
-
-            if ($stmt->get_result()) {
-                return true;
-            } else {
-                return false;
-            }
-
-        } catch (\Exception $e) {
-            return false;
-        }
-    }
-
-    public function getOrdersByPharmacyId($pharmacyId): false|array
-    {
-//        Logger::logError("Pharmacy order history fetched");
-        $sql = "SELECT * FROM pharmacy_order WHERE pharmacyId = '$pharmacyId' ORDER BY order_date DESC;";
-
-        try {
-            $db = new Database();
-            $stmt = $db->prepare($sql);
-            $stmt->execute();
-            $result = $stmt->get_result();
-
-            $result = $result->fetch_all(MYSQLI_ASSOC);
-
-//            if (@$result['order_status'] == 0) {
-//                $result['order_status'] = "Pending";
-//            } else if ($result['order_status'] == 1) {
-//                $result['order_status'] = "Approved";
-//            } else if ($result['order_status'] == 2) {
-//                $result['order_status'] = "Rejected";
-//            } else if ($result['order_status'] == 3) {
-//                $result['order_status'] = "Delivered";
-//            } else {
-//                $result['order_status'] = "Unknown";
-//            }
-//
-//            if (@$result['delivery_date'] == null) {
-//                $result['delivery_date'] = "Pending";
-//            }
-
-            return $result;
-
-
-        } catch (\Exception $e) {
-            Logger::logError($e->getMessage());
-            echo (new ExceptionHandler)->somethingWentWrong();
-            return false;
-        }
-    }
-
-    public function getNotAcceptedOrders(){
         $db = (new Database())->getConnection();
-        $sql = "SELECT id  from medicine";
+        $sql = "SELECT * from pharmacyorder WHERE pharmacyorder.id = '$id'";
+        $result = $db->query($sql);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $this->id = $row["id"];
+                $this->pharmacyName = $row['pharmacyName'];
+                $this->medId = $row['medId'];
+                $this->quantity = $row['quantity'];
+
+            }
+        }
+        $db->close();
+    }
+    public function getPendingOrders()
+    {
+        $db = (new Database())->getConnection();
+        $sql = "SELECT id from pharmacyorder WHERE pharmacyorder.status = '0'";
         $result = $db->query($sql);
         if ($result->num_rows > 0) {
             return $result;
         }
-
         $db->close();
     }
 
+    public function getPendingMedId($id)
+    {
+        $this->getOrder($id);
+        return $this->medId;
+    }
 
+    public function getPendingMedQuantiy($id)
+    {
+        $this->getOrder($id);
+        return $this->quantity;
+    }
+
+    public function getPendingOrderPharm($id)
+    {
+        $this->getOrder($id);
+        return $this->pharmacyName;
+    }
+
+    public function acceptOrder($supName, $id)
+    {
+        $db = (new Database())->getConnection();
+        try {
+            $sql = "UPDATE  pharmacyorder SET pharmacyorder.status = '1', pharmacyorder.supName='$supName' WHERE pharmacyorder.id = '$id' ";
+            $stmt = $db->prepare($sql);
+            $stmt->execute();
+
+            if ($stmt->affected_rows == 1) {
+                $stmt->close();
+                return true;
+            }
+
+            $stmt->close();
+        } catch (\Exception $e) {
+            ErrorLog::logError($e->getMessage());
+            echo $e->getMessage();
+            return false;
+        }
+
+    }
 }

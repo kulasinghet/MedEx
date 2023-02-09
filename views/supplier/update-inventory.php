@@ -108,6 +108,7 @@ use app\controllers\supplier\SupplierMedicineController;
                                         <th>Medicine Name</th>
                                         <th>Scientific Name</th>
                                         <th>Weight</th>
+                                        <th>Mannufacture</th>
                                         <th>Quantity</th>
                                         <th>Unit Price</th>
                                     </tr>
