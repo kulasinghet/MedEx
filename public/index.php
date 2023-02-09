@@ -61,6 +61,8 @@ $app->router->get('/employee/register', [EmployeeAuthController::class, 'employe
 $app->router->post('/employee/register', [EmployeeAuthController::class, 'employeeRegister']);
 $app->router->get('/employee/reports', [EmployeeDashboardController::class, 'showReports']);
 $app->router->post('/employee/reports', [EmployeeDashboardController::class, 'showReports']);
+$app->router->get('/employee/approvals/pharmacy', [EmployeeDashboardController::class, 'approvalPharmacy']);
+$app->router->post('/employee/approvals/pharmacy', [EmployeeDashboardController::class, 'approvalPharmacy']);
 
 // pharmacy Routes
 //$app -> router -> get('/pharmacy/login', [LoginAuthController::class, 'pharmacyLogin']);

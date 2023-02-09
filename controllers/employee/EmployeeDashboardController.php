@@ -23,4 +23,18 @@ class EmployeeDashboardController extends Controller
             return header(self::login);
         }
     }
+
+    public function approvalPharmacy(Request $request)
+    {
+        if ($request->isGet()) {
+            if ($_SESSION['userType'] == 'staff') {
+                // TODO: add order medicine route in index php
+                $this -> render("employee/approve-pharmacy.php");
+            } else {
+                return header(self::login);
+            }
+        } else {
+            return header(self::login);
+        }
+    }
 }

@@ -109,6 +109,9 @@ article {
   max-width: 100%;
   padding: 0 calc(var(--g28-gap) * 0.5);
 }
+.row.justify-content-center {
+  justify-content: center;
+}
 .row .col {
   flex: 1 0 0;
 }
@@ -2603,6 +2606,122 @@ nav .nav-inner ul li a:active:not(.disabled) {
   width: calc(100% - 250px) !important;
 }
 
+.sidebar-new {
+  position: fixed;
+  z-index: 90;
+  height: 100vh;
+  width: 250px;
+  background: #ffffff;
+  box-shadow: 1px 0 3px rgba(0, 0, 0, 0.15);
+}
+.sidebar-new .sidebar-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.sidebar-new .sidebar-inner div {
+  height: inherit;
+  width: inherit;
+}
+.sidebar-new .sidebar-inner .sidebar-header {
+  --g28-nav-position: absolute;
+  --g28-nav-z-index: 95;
+  --g28-nav-width: 100%;
+  --g28-nav-bg: #fbfbfb;
+}
+.sidebar-new .sidebar-inner .sidebar-header .sidebar-logo {
+  display: inline-block;
+  overflow: hidden;
+  padding: 5px;
+  width: 160px;
+  height: auto;
+  flex: 0 0 auto;
+}
+.sidebar-new .sidebar-inner .sidebar-header .sidebar-logo img {
+  width: 100%;
+  vertical-align: center;
+}
+.sidebar-new .sidebar-inner .sidebar-context {
+  position: inherit;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding: calc(3.5rem + 1rem) 0 1rem 0;
+}
+.sidebar-new .sidebar-inner .sidebar-context .sidebar-context-title {
+  color: rgba(117, 119, 129, 0.49);
+  padding: 0 1rem;
+  margin-top: 2rem;
+}
+.sidebar-new .sidebar-inner .sidebar-context .main-buttons {
+  list-style-type: none;
+  margin-bottom: 64px;
+  padding: 0;
+}
+.sidebar-new .sidebar-inner .sidebar-context .main-buttons li {
+  width: 100%;
+  letter-spacing: 2px;
+  font-size: 15px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+}
+.sidebar-new .sidebar-inner .sidebar-context .main-buttons li a:active, .sidebar-new .sidebar-inner .sidebar-context .main-buttons li a:hover {
+  color: #f6f9ff;
+  text-decoration: none;
+}
+.sidebar-new .sidebar-inner .sidebar-context .main-buttons li a, .sidebar-new .sidebar-inner .sidebar-context .main-buttons li a:visited {
+  color: #071232;
+}
+.sidebar-new .sidebar-inner .sidebar-context .main-buttons li.disabled a {
+  color: #f6f9ff;
+}
+.sidebar-new .sidebar-inner .sidebar-context .main-buttons > li {
+  padding: 16px 52px;
+}
+.sidebar-new .sidebar-inner .sidebar-context .main-buttons > li i {
+  position: absolute;
+  left: 12px;
+  color: #b5bccf;
+  font-size: 24px;
+}
+.sidebar-new .sidebar-inner .sidebar-context .main-buttons > li:hover, .sidebar-new .sidebar-inner .sidebar-context .main-buttons > li:active, .sidebar-new .sidebar-inner .sidebar-context .main-buttons > li:focus {
+  background-color: #1e69fe;
+  cursor: pointer;
+}
+.sidebar-new .sidebar-inner .sidebar-context .main-buttons > li:hover .hidden, .sidebar-new .sidebar-inner .sidebar-context .main-buttons > li:active .hidden, .sidebar-new .sidebar-inner .sidebar-context .main-buttons > li:focus .hidden {
+  width: 198px;
+}
+.sidebar-new .sidebar-inner .sidebar-context .main-buttons > li:hover i, .sidebar-new .sidebar-inner .sidebar-context .main-buttons > li:active i, .sidebar-new .sidebar-inner .sidebar-context .main-buttons > li:focus i {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.hidden {
+  width: 0;
+  height: 100%;
+  padding: 64px 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  overflow: hidden;
+  list-style-type: none;
+  background-color: #1e69fe;
+  color: #f6f9ff;
+  transition: 0.3s;
+}
+.hidden li {
+  padding: 16px 24px;
+}
+.hidden li:hover, .hidden li:active, .hidden li:focus {
+  background-color: #0d205a;
+}
+.hidden a, .hidden a:visited, .hidden a:active, .hidden a:hover {
+  color: #f6f9ff !important;
+  text-decoration: none;
+}
+
 footer {
   position: absolute;
   bottom: 0;
@@ -2800,7 +2919,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
 .table {
   border-spacing: 1px;
   border-collapse: collapse;
-  background: rgba(234, 234, 234, 0.3);
+  background: white;
   border: 2px solid rgba(70, 70, 70, 0.84);
   border-radius: 6px;
   overflow: hidden;
@@ -3113,13 +3232,6 @@ textarea.form-input {
   position: relative;
 }
 
-.status-view .row {
-  margin-bottom: 0.4rem;
-}
-.status-view .row .col:last-child {
-  text-align: right;
-}
-
 .scroll {
   min-height: 2rem;
   overflow-y: scroll;
@@ -3127,6 +3239,19 @@ textarea.form-input {
 
 .analysed {
   min-width: 380px;
+}
+
+.margin-bottom {
+  margin-bottom: 1rem;
+}
+
+.search-box.row {
+  justify-content: center;
+}
+.search-box.row > * {
+  flex: 0 0 auto;
+  width: auto;
+  min-width: auto;
 }
 
 .action-buttons.row {

@@ -1,15 +1,3 @@
-.status-view {
-  .row {
-    margin-bottom: .4rem;
-
-    .col {
-      &:last-child {
-        text-align: right;
-      }
-    }
-  }
-}
-
 .scroll {
   min-height: 2rem;
   overflow-y: scroll;
@@ -17,6 +5,22 @@
 
 .analysed {
   min-width: 380px;
+}
+
+.margin-bottom {
+  margin-bottom: 1rem;
+}
+
+.search-box {
+  &.row {
+    justify-content: center;
+
+    > * {
+      flex: 0 0 auto;
+      width: auto;
+      min-width: auto;
+    }
+  }
 }
 
 .action-buttons {

@@ -13,7 +13,7 @@
 </head>
 <body>
 <!-- Section: Fixed Components -->
-<div class="sidebar">
+<div class="sidebar-new">
     <div class="sidebar-inner">
         <nav class="sidebar-header">
             <div class="sidebar-logo">
@@ -24,21 +24,33 @@
         </nav>
         <div class="sidebar-context">
             <h6 class="sidebar-context-title">Menu</h6>
-            <ul>
-                <li>
-                    <a class="btn disabled" href="dashboard"> <i class="fa-solid fa-house"></i> Home </a>
+            <ul class="main-buttons">
+                <li class="disabled">
+                    <a href="/dashboard"> <i class="fa-solid fa-house"></i> Home </a>
                 </li>
                 <li>
-                    <a class="btn" href="#"> <i class="fa-solid fa-check"></i> Confirmations </a>
+                    <a href="/employee/approvals/pharmacy"> <i class="fa-solid fa-check"></i> Confirmations </a>
+                    <ul class="hidden">
+                        <li>SubMenu Item 2</li>
+                        <li>SubMenu Item 2</li>
+                        <li>SubMenu Item 2</li>
+                        <li>SubMenu Item 2</li>
+                    </ul>
                 </li>
                 <li>
-                    <a class="btn" href="employee/reports"> <i class="fa-solid fa-newspaper"></i> Reports </a>
+                    <a href="/employee/reports"> <i class="fa-solid fa-newspaper"></i> Reports </a>
                 </li>
                 <li>
-                    <a class="btn" href="#"> <i class="fa-solid fa-server"></i> Resources </a>
+                    <a href="#"> <i class="fa-solid fa-server"></i> Resources </a>
+                    <ul class="hidden">
+                        <li>SubMenu Item 3</li>
+                        <li>SubMenu Item 3</li>
+                        <li>SubMenu Item 3</li>
+                        <li>SubMenu Item 3</li>
+                    </ul>
                 </li>
                 <li>
-                    <a class="btn" href="#"> <i class="fa-solid fa-wrench"></i> Configurations </a>
+                    <a href="#"> <i class="fa-solid fa-wrench"></i> Configurations </a>
                 </li>
             </ul>
         </div>

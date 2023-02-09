@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Admin - Reports</title>
+    <title>Admin - Approvals - Pharmacy</title>
 
-    <link href="../scss/main.css" rel="stylesheet"/>
+    <link href="../../scss/main.css" rel="stylesheet"/>
     <!-- Font awesome kit -->
     <script crossorigin="anonymous" src="https://kit.fontawesome.com/9b33f63a16.js"></script>
 </head>
@@ -26,7 +26,7 @@
                 <li>
                     <a href="/dashboard"> <i class="fa-solid fa-house"></i> Home </a>
                 </li>
-                <li>
+                <li class="disabled">
                     <a href="/employee/approvals/pharmacy"> <i class="fa-solid fa-check"></i> Confirmations </a>
                     <ul class="hidden">
                         <li>SubMenu Item 2</li>
@@ -35,7 +35,7 @@
                         <li>SubMenu Item 2</li>
                     </ul>
                 </li>
-                <li class="disabled">
+                <li>
                     <a href="/employee/reports"> <i class="fa-solid fa-newspaper"></i> Reports </a>
                 </li>
                 <li>
@@ -63,7 +63,7 @@
         </ul>
         <a class="nav-profile" href="#">
             <div class="nav-profile-image">
-                <img alt="Profile image" src="../res/avatar-empty.png"/>
+                <img alt="Profile image" src="../../res/avatar-empty.png"/>
             </div>
         </a>
     </div>
@@ -87,16 +87,33 @@
                 <table class="table">
                     <thead>
                     <tr>
-                        <th>Inquiry ID</th>
-                        <th>Username</th>
-                        <th>Subject</th>
+                        <th>Name</th>
+                        <th>Pharmacy Reg No.</th>
+                        <th>City</th>
+                        <th>Owner</th>
+                        <th class="c" style="max-width: 100px">Action</th>
                     </tr>
                     <thead>
                     <tbody>
                     <tr>
-                        <td>ID2001</td>
-                        <td>Thevindu</td>
-                        <td>Contact us is not working</td>
+                        <td>Thilakarathna Pharmacy</td>
+                        <td>PH200789</td>
+                        <td>Kurunegala</td>
+                        <td>Thilakarathna</td>
+                        <td>
+                            <div class="row action-buttons">
+                                <div class="col">
+                                    <a class="btn btn--success">
+                                        <i class="fa-solid fa-circle-check"></i>
+                                    </a>
+                                </div>
+                                <div class="col">
+                                    <a class="btn btn--danger">
+                                        <i class="fa-solid fa-circle-xmark"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
@@ -105,7 +122,7 @@
         <div class="row">
             <div class="col card">
                 <div class="card-body">
-                    <h5 class="card-title">Report in Details</h5>
+                    <h5 class="card-title">Pharmacy Details</h5>
                     <div class="row">
                         <div class="col">
                             <table class="status-table">
@@ -114,6 +131,18 @@
                                     <th>Username</th>
                                     <td>Test 1</td>
                                 </tr>
+                                <tr>
+                                    <th>Email</th>
+                                    <td>Test 1</td>
+                                </tr>
+                                <tr>
+                                    <th>Pharmacy Reg No.</th>
+                                    <td>Test 1</td>
+                                </tr>
+                                <tr>
+                                    <th>Pharmacy Certification</th>
+                                    <td>Test 1</td>
+                                </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -121,15 +150,37 @@
                             <table class="status-table">
                                 <tbody>
                                 <tr>
-                                    <th>Subject</th>
+                                    <th>Name</th>
+                                    <td>Test 1</td>
+                                </tr>
+                                <tr>
+                                    <th>Phone</th>
+                                    <td>Test 1</td>
+                                </tr>
+                                <tr>
+                                    <th>Business Reg No.</th>
+                                    <td>Test 1</td>
+                                </tr>
+                                <tr>
+                                    <th>Business Certification</th>
                                     <td>Test 1</td>
                                 </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                    <div class="report-description">
-                        <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+
+                    <div class="row action-buttons">
+                        <div class="col">
+                            <a class="btn btn--success">
+                                <i class="fa-solid fa-circle-check"></i>
+                            </a>
+                        </div>
+                        <div class="col">
+                            <a class="btn btn--danger">
+                                <i class="fa-solid fa-circle-xmark"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
