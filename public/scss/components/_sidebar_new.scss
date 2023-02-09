@@ -1,0 +1,155 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+@use "../abstracts/button" as btn;
+@use "navbar" as nav;
+
+
+$bg: $white !default;
+$z-index: $max-z-index - 10 !default;
+$box-shadow: 1px 0 3px rgba(0, 0, 0, 0.15) !default;
+$cutoff: $sidebar-width !default;
+$border: 1px solid rgba($gray-2, 0.4) !default;
+
+$nav-z-index: $z-index + 5 !default;
+
+$context-padding: calc(#{nav.$cutoff} + 1rem) 0 1rem 0 !default;
+
+$width-compressed: 52px;
+
+
+.sidebar-new {
+  position: fixed;
+  z-index: $z-index;
+
+  height: 100vh;
+  width: $sidebar-width;
+  background: $bg;
+  box-shadow: $box-shadow;
+
+  .sidebar-inner {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    div {
+      height: inherit;
+      width: inherit;
+    }
+
+    .sidebar-header {
+      --#{$prefix}nav-position: absolute;
+      --#{$prefix}nav-z-index: #{$nav-z-index};
+      --#{$prefix}nav-width: 100%;
+      --#{$prefix}nav-bg: #fbfbfb;
+
+      .sidebar-logo {
+        @include company-logo(160px);
+      }
+    }
+
+    .sidebar-context {
+      position: inherit;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+
+      padding: $context-padding;
+
+      .sidebar-context-title {
+        color: rgba(117, 119, 129, 0.49);
+        padding: 0 1rem;
+        margin-top: 2rem;
+      }
+
+      .main-buttons{
+        list-style-type: none;
+        margin-bottom: 64px;
+        padding: 0;
+
+        li{
+          //text-transform: uppercase;
+          width: 100%;
+          letter-spacing: 2px;
+          font-size: 15px;
+          font-weight: 600;
+          display: inline-flex;
+          align-items: center;
+
+          a {
+            &:active, &:hover {
+              color: $light;
+              text-decoration: none;
+            }
+
+            &, &:visited {
+              color: $dark;
+            }
+          }
+
+          &.disabled {
+            a {
+              color: $light;
+            }
+          }
+        }
+
+        & > li{
+          padding: 16px $width-compressed;
+
+          i {
+            position: absolute;
+            left: 12px;
+            color: $gray-3;
+            font-size: 24px;
+          }
+
+          &:hover, &:active, &:focus{
+            .hidden{
+              width: $sidebar-width - $width-compressed;
+            }
+            background-color: $primary;
+            cursor: pointer;
+
+            i {
+              color: rgba(255, 255, 255, 0.6);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.hidden{
+  width: 0;
+  height: 100%;
+  padding: 64px 0;
+
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  overflow: hidden;
+
+  list-style-type: none;
+  background-color: $primary;
+  color: $light;
+  transition: .3s;
+
+  li{
+    padding: 16px 24px;
+    &:hover, &:active, &:focus{
+      background-color: lighten($dark, 9);
+    }
+  }
+
+  a {
+    &, &:visited, &:active, &:hover {
+      color: $light !important;
+      text-decoration: none;
+    }
+  }
+}

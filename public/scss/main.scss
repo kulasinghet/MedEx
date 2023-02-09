@@ -10,10 +10,15 @@
 @use "components/links";
 @use "components/button";
 @use "components/sidebar";
+@use "components/sidebar_new";
 @use "components/navbar";
 @use "components/footer";
 @use "components/cards";
 @use "components/modal";
+@use "components/table";
 @use "components/forms/form-groups";
 @use "components/forms/form-input";
 @use "components/forms/form-check";
+
+// vendors
+@use "vendor/employee";
