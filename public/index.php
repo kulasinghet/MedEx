@@ -19,7 +19,6 @@ use app\controllers\employee\EmployeeAuthController;
 use app\controllers\LoginAuthController;
 use app\controllers\SiteController;
 use app\controllers\supplier\SupplierAddMedicineController;
-use app\controllers\supplier\AcceptOrdersController;
 use app\controllers\lab\LabAcceptReqController;
 
 $app = new Application();
@@ -81,6 +80,10 @@ $app->router->get('/pharmacy/inventory', [PharmacyDashboardController::class, 'i
 $app->router->post('/pharmacy/inventory', [PharmacyDashboardController::class, 'inventory']);
 $app->router->get('/pharmacy/contact-us', [PharmacyDashboardController::class, 'contactUs']);
 $app->router->post('/pharmacy/contact-us', [PharmacyDashboardController::class, 'contactUs']);
+$app->router->get('/pharmacy/profile', [PharmacyDashboardController::class, 'profile']);
+$app->router->post('/pharmacy/profile', [PharmacyDashboardController::class, 'profile']);
+$app->router->get('/pharmacy/settings', [PharmacyDashboardController::class, 'settings']);
+$app->router->post('/pharmacy/settings', [PharmacyDashboardController::class, 'settings']);
 
 
 // Supplier Routes
@@ -101,7 +104,7 @@ $app->router->get('/supplier/contact-us', [SupplierDashboardController::class, '
 $app->router->post('/supplier/contact-us', [SupplierDashboardController::class, 'contactUs']);
 $app->router->get('/supplier/medicine-requests', [SupplierDashboardController::class, 'medicineRequests']);
 $app->router->post('/supplier/medicine-requests', [SupplierDashboardController::class, 'medicineRequests']);
-$app->router->post('/supplier/accept', [AcceptOrdersController::class, 'AcceptOrder']);
+
 
 
 

@@ -1,79 +1,136 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Dashboard</title>
-    <link href="../scss2/vendor/demo.css" rel="stylesheet"/>
-    <!-- Font awesome kit -->
-    <script crossorigin="anonymous" src="https://kit.fontawesome.com/9b33f63a16.js"></script>
-</head>
+<?php
 
-<body>
+use app\views\pharmacy\Components;
+use app\controllers\pharmacy\PharmacyInventoryController;
+use app\core\ExceptionHandler;
 
-<nav>
-    <div class="nav-search">
-        <form onsubmit="preventDefault();" role="search">
-            <label for="search">Search for stuff</label>
-            <input autofocus id="search" placeholder="Search..." required type="search"/>
-            <button type="submit">Go</button>
-        </form>
-    </div>
-    <div class="nav-inner">
-        <ul>
-            <li><a href="#"><i class="fa-solid fa-circle-question"></i></a></li>
-            <li><a href="#"><i class="fa-solid fa-gear"></i></a></li>
-            <li><a href="#"><i class="fa-solid fa-bell"></i></a></li>
-        </ul>
-        <a class="nav-profile" href="#">
-            <div class="nav-profile-image">
-                <img alt="Profile image" src="../res/avatar-empty.png"/>
-            </div>
-        </a>
-    </div>
-</nav>
+$components = new Components();
+echo $components->viewHeader("Inventory");
+echo $components->navBar($_SESSION['username']);
+echo $components->sideBar('inventory');
 
-<div class="sidebar">
-    <div class="sidebar-inner">
-        <nav class="sidebar-header">
-            <div class="sidebar-logo">
-                <a href="/dashboard">
-                    <img alt="MedEx logo" src="../res/logo/logo-text_light.svg"/>
-                </a>
-            </div>
-        </nav>
-        <div class="sidebar-context">
-            <h6 class="sidebar-context-title">Menu</h6>
-            <ul>
-                <li>
-                    <a class="btn" href="/pharmacy/sell-medicine"> <i class="fa fa-usd"></i> Sell Medicine </a>
-                </li>
-                <li>
-                    <a class="btn" href="/pharmacy/order-medicine"> <i class="fa fa-plus-square"></i> Order Medicine </a>
-                </li>
-                <li>
-                    <a class="btn" href="/pharmacy/orders"> <i class="fa fa-clock-o"></i> Orders </a>
-                </li>
-                <li>
-                    <a class="btn disabled" href="/pharmacy/inventory"> <i class="fa fa-dropbox"></i> Inventory </a>
-                </li>
-                <li>
-                    <a class="btn" href="/pharmacy/contact-us"> <i class="fa fa-phone"></i> Contact Us </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>
+?>
 
 
 <div class="canvas nav-cutoff sidebar-cutoff">
     <div class="canvas-inner">
-        <div class="row">
-            <div class="col">
-                <p> Inventory </p>
+        <div class="row" id="inventory-page-row">
+            <div class="col" id="inventory-page-col">
+
+
+                <div class="nav-search">
+                    <form onsubmit="preventDefault();" role="search">
+                        <label for="search">Search for stuff</label>
+                        <input id="search" placeholder="Search Inventory . . ." required type="search" />
+                        <button type="submit">Go</button>
+                    </form>
+                </div>
+
+
+                <!-- <div class="filter-group">
+
+                    <div class="filter-group">
+
+                        <button class="btn btn-primary" id="pending">Pending</button>
+
+                        <button class="btn btn-primary" id="accepted">Accepted</button>
+
+                        <button class="btn btn-primary" id="rejected">Rejected</button>
+
+                        <button class="btn btn-primary" id="delivered">Delivered</button>
+
+                        <button class="btn btn-primary" id="cancelled">Cancelled</button>
+
+                        <i class="fa-solid fa-filter-circle-xmark" style="color: #999999; font-size: 1.5rem; margin-left: 1rem; cursor: pointer;" id="clear-filter"></i>
+
+                    </div>
+
+                </div> -->
+
+                <!--                order table-->
+                <div class=" orders">
+                    <table id = "inventory-table">
+                        <thead>
+                            <tr>
+                                <th>Medicine ID</th>
+                                <th>Medicine Name</th>
+                                <th>Remaining Quantity</th>
+                                <th>Buying Price</th>
+                                <th>Selling Price</th>
+                                <th>Remaining Days</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <?php
+
+                            if (isset($_SESSION['userType']) && $_SESSION['userType'] == 'pharmacy') {
+                                try {
+                                    $username = $_SESSION['username'];
+                                    $pharmacyInventoryController = new PharmacyInventoryController();
+                                    $stocks = $pharmacyInventoryController->getInventoryByUsername($username);
+                                    if ($stocks) {
+                                        foreach ($stocks as $stock) {
+                                            echo "<tr" . " class='" . $pharmacyInventoryController->remainingDays($stock['remaining_days']) . "'>" . "</a>";
+                                            echo "<td>" . $stock['medId'] . "</td>";
+                                            echo "<td>" . $pharmacyInventoryController->transformMedicineName($stock['medId']) . "</td>";
+                                            echo "<td>" . $stock['remQty'] . "</td>";
+                                            echo "<td>" . $stock['buying_price'] . "</td>";
+                                            echo "<td>" . $stock['sellingPrice'] . "</td>";
+                                            echo "<td>" . $stock['remaining_days'] . "</td>";
+                                            echo "<td>" . "<a href='' id='" . $stock['id'] . "'>" . "<i class='fa-solid fa-circle-arrow-right view-order-details' style='color:#333333'></i>" . "</a>" . "</td>";
+                                            echo "</a>";
+                                            echo "</tr>";
+                                        }
+                                    } else {
+                                        echo "<tr>";
+                                        echo "<td colspan='7' style='text-align: center'>You don't have any medicine in your inventory</td>";
+                                        echo "</tr>";
+                                    }
+                                } catch (Exception $e) {
+                                    echo (new ExceptionHandler)->somethingWentWrong();
+                                }
+                            } else {
+                                echo "<tr>";
+                                echo "<td colspan='7' style='text-align: center'>You don't have any medicine in your inventory</td>";
+                                echo "</tr>";
+                                echo (new ExceptionHandler)->somethingWentWrong();
+                            }
+
+
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
+
+
+
+
+
+
             </div>
+
+
+
+            <div id="order-new-medicine">
+                <a class="btn ' . ($selectedPage == 'order-medicine' ? 'disabled' : '') . '" href="/pharmacy/order-medicine"> <i class="fa-solid fa-truck-moving"></i> Order Medicine </a>
+            </div>
+
         </div>
+
+
+
+
     </div>
+
+
+
+
 </div>
 
+
+
 </body>
+
 </html>

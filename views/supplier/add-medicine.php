@@ -122,7 +122,7 @@ use app\controllers\supplier\SupplierMedicineController;
                     </div>
 
                     <div class="card g-col-2 g-row-2-start-3"
-                        style=" box-shadow: 0 3px 10px rgb(0 0 0 / 0.2); border-radius: 20px; width:70%;">
+                        style=" box-shadow: 0 3px 10px rgb(0 0 0 / 0.2); border-radius: 20px; width:70%; height: fit-content;">
                         <div class="card-body">
                             <div style="padding: 2%;">
                                 <h3>Add New Medicine</h3>

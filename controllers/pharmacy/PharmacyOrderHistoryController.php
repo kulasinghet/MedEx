@@ -3,19 +3,14 @@
 namespace app\controllers\pharmacy;
 
 use app\core\Controller;
-use app\core\ExceptionHandler;
 use app\models\PharmacyOrderModel;
 
 class PharmacyOrderHistoryController extends Controller
 {
-    public function getOrdersByPharmacyId($pharmacyId): false|array
+    public function getOrdersByUsername($username): false|array
     {
         $pharmacyOrder = new PharmacyOrderModel();
-        $pharmacyOrder->setPharmacyId($pharmacyId);
-
-        $results = $pharmacyOrder->getOrdersByPharmacyId($pharmacyId);
-
-
+        $results = $pharmacyOrder->getOrdersByUsername($username);
 
         if ($results) {
             return $results;
@@ -28,13 +23,13 @@ class PharmacyOrderHistoryController extends Controller
     {
         if ($orderStatus == "0") {
             return 'Pending';
-        } else if ($orderStatus == '1') {
+        } elseif ($orderStatus == '1') {
             return 'Accepted';
-        } else if ($orderStatus == '2') {
+        } elseif ($orderStatus == '3') {
             return 'Rejected';
-        } else if ($orderStatus == '3') {
+        } elseif ($orderStatus == '2') {
             return 'Delivered';
-        } else if ($orderStatus == '4') {
+        } elseif ($orderStatus == '4') {
             return 'Cancelled';
         }
     }
@@ -43,8 +38,12 @@ class PharmacyOrderHistoryController extends Controller
     {
         if ($deliveryDate == "0000-00-00") {
             return 'Pending';
-        } else if ($deliveryDate == null) {
+        } elseif ($deliveryDate == null) {
             return 'Pending';
+        } else if ($deliveryDate == '1900-02-07') {
+            return 'Cancelled';
+        } else if ($deliveryDate == '1900-02-08') {
+            return 'Rejected';
         } else {
             return $deliveryDate;
         }
@@ -54,12 +53,24 @@ class PharmacyOrderHistoryController extends Controller
     {
         if ($orderTotal == "0") {
             return 'Finalizing Order';
+        } else if ($orderTotal == "99999999") {
+            return 'Rejected';
+        } else if ($orderTotal == "77777777") {
+            return 'Cancelled';
         } else {
             return $orderTotal;
         }
     }
 
+    public function getOrdersByUsernameForDashboard(mixed $username)
+    {
+        $pharmacyOrder = new PharmacyOrderModel();
+        $results = $pharmacyOrder->getOrdersByUsernameForDashboard($username);
 
-
-
+        if ($results) {
+            return $results;
+        } else {
+            return false;
+        }
+    }
 }

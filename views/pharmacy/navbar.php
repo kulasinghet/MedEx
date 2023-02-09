@@ -11,7 +11,7 @@
     <div class="nav-search">
         <form onsubmit="preventDefault();" role="search">
             <label for="search">Search for stuff</label>
-            <input autofocus id="search" placeholder="Search..." required type="search"/>
+            <input id="search" placeholder="Search..." required type="search"/>
             <button type="submit">Go</button>
         </form>
     </div>
@@ -30,7 +30,4 @@
 </nav>
 
 
-
-
 </body>
-

@@ -24,7 +24,8 @@ class PharmacyModel extends Model
     public string $verified;
     public string $deliveryTime;
 
-    public function registerPharmacy() {
+    public function registerPharmacy()
+    {
 
         $db = new Database();
 
@@ -37,7 +38,7 @@ class PharmacyModel extends Model
 
         try {
             if ($this->userExists()) {
-//                Logger::logErr("User already exists");
+                //                Logger::logErr("User already exists");
                 // throw new \Exception("User already exists");
                 throw new \Exception("User already exists");
             }
@@ -50,9 +51,9 @@ class PharmacyModel extends Model
 
 
         try {
-            $this -> password = password_hash($this -> password, PASSWORD_DEFAULT);
+            $this->password = password_hash($this->password, PASSWORD_DEFAULT);
 
-            $this -> id = $this->createRandomID("PH");
+            $this->id = $this->createRandomID("PH");
 
             $sql = "INSERT INTO pharmacy (id, username, password, name, ownerName, city, pharmacyRegNo, BusinessRegId, pharmacyCertId, BusinessRegCertName, pharmacyCertName, verified, deliveryTime, regDate) VALUES ('$this->id', '$this->username', '$this->password', '$this->name', '$this->ownerName', '$this->city', '$this->pharmacyRegNo', '$this->BusinessRegId', '$this->pharmacyCertId', '$this->BusinessRegCertName', '$this->pharmacyCertName', '0', '10:00:00', '$regDate');";
 
@@ -65,10 +66,9 @@ class PharmacyModel extends Model
                 Logger::logError($stmt->error->__toString());
                 return false;
             }
-
         } catch (\Exception $e) {
             Logger::logError($e->getMessage());
-//            echo $e->getMessage();
+            //            echo $e->getMessage();
             return false;
         }
     }
