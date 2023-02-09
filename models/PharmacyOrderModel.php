@@ -35,7 +35,7 @@ class PharmacyOrderModel extends Model
     public function getPendingOrders()
     {
         $db = (new Database())->getConnection();
-        $sql = "SELECT id from pharmacyorder WHERE pharmacyorder.status = '0'";
+        $sql = "SELECT id from pharmacyorder WHERE pharmacyorder.order_status = '0'";
         $result = $db->query($sql);
         if ($result->num_rows > 0) {
             return $result;
@@ -65,7 +65,7 @@ class PharmacyOrderModel extends Model
     {
         $db = (new Database())->getConnection();
         try {
-            $sql = "UPDATE  pharmacyorder SET pharmacyorder.status = '1', pharmacyorder.supName='$supName' WHERE pharmacyorder.id = '$id' ";
+            $sql = "UPDATE  pharmacyorder SET pharmacyorder.order_status = '1', pharmacyorder.supName='$supName' WHERE pharmacyorder.id = '$id' ";
             $stmt = $db->prepare($sql);
             $stmt->execute();
 

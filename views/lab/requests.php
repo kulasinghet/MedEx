@@ -54,11 +54,11 @@ use app\controllers\lab\LabRequestsController;
                         </a>
                     </li>
                     <li>
-                        <a class="btn" href="lab/reports"> <i class="fa fa-file-text-o"></i> Provide Lab Reports </a>
+                        <a class="btn" href="/lab/reports"> <i class="fa fa-file-text-o"></i> Provide Lab Reports </a>
                     </li>
 
                     <li>
-                        <a class="btn" href="/supplier/contact-us"> <i class="fa fa-phone"></i> Contact Us </a>
+                        <a class="btn" href="/lab/contact-us"> <i class="fa fa-phone"></i> Contact Us </a>
                     </li>
                 </ul>
             </div>
