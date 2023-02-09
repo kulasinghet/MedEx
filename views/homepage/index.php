@@ -34,7 +34,7 @@
                     <ul class="primary-nav">
                         <li><a href="#features">Features</a></li>
                         <li><a href="#teams">Our Team</a></li>
-                        <li><a href="#m1-o" id="m1-c">Login</a></li>
+                        <li><a href="/login" id="m1-c">Login</a></li>
                     </ul>
                 </nav>
                 <a href="#" class="nav-toggle">Menu<span></span></a>
