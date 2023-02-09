@@ -122,7 +122,7 @@ use app\controllers\supplier\SupplierMedicineController;
                     </div>
 
                     <div class="card g-col-2 g-row-2-start-3"
-                        style=" box-shadow: 0 3px 10px rgb(0 0 0 / 0.2); border-radius: 20px; width:70%; height: fit-content;">
+                        style=" box-shadow: 0 3px 10px rgb(0 0 0 / 0.2); border-radius: 20px; width:70%;">
                         <div class="card-body">
                             <div style="padding: 2%;">
                                 <h3>Add New Medicine</h3>
@@ -131,7 +131,7 @@ use app\controllers\supplier\SupplierMedicineController;
                                 $sup->getStatus($_SESSION['username']);
                                 $sup->getName($_SESSION['username']);
                                 if ($_SESSION['stat']) {
-                                    echo "<form action='/supplier/add-medicine' method='post' enctype='multipart/form-data' style='padding-top: 2%; padding-left: 5%; width:70%;'>
+                                    echo "<form action='/supplier/add-medicine' method='post' enctype='multipart/form-data' style='padding-top: 2%; padding-left: 5%; width:70%;padding-bottom: 5%'>
                                     Medicine Name: <input type='text' name='name' class='input-box' placeholder='Enter Medicine Name' required><br>
                                     Weight (mg): <input type='text' name='weight' class='input-box' placeholder='Enter Weight in mg' required><br>
                                     Scietific Name: <select name='sciname' value='' class='input-box option' required>Manufacture Name";
