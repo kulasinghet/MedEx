@@ -1,0 +1,334 @@
+#main-content {
+  margin-left: 21vw;
+  padding: 2vh;
+  padding-top: 10vh;
+  padding-left: 3vh;
+  z-index: 1000;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/*.card {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    justify-content: space-evenly;*/
+/*    align-items: center;*/
+/*    width: 30vh;*/
+/*    height: auto;*/
+/*    background: #fff;*/
+/*    border-radius: 5px;*/
+/*    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);*/
+/*    padding: 2vh;*/
+/*    margin-bottom: 2vh;*/
+
+/*}*/
+
+/*.card:hover {*/
+/*    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);*/
+/*    transform: scale(1.05);*/
+/*    transition: all 0.3s ease;*/
+/*}*/
+
+.contact-us {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /*align-items: center;*/
+  padding: 2vh;
+  margin-bottom: 2vh;
+  margin-top: 2vh;
+}
+
+.contact-us h1 {
+  font-size: 2.5rem;
+  font-weight: 500;
+  color: #071232;
+  margin-bottom: 5vh;
+}
+
+/*#####################################################################################################*/
+/*orders page*/
+
+#orders-page-row {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  padding: 2vh;
+  margin-bottom: 2vh;
+}
+
+#orders-page-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.orders {
+  margin-top: 5vh;
+  width: 100%;
+}
+
+.filter-group input {
+  margin-left: 1vw;
+}
+
+.filter-group label {
+  margin-left: 2vw;
+}
+
+.filter-group {
+  display: flex !important;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center !important;
+  width: 100%;
+  height: auto;
+}
+
+.filter-group button {
+  font-size: 0.9rem;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.filter-group #pending:hover {
+  background-color: #ffd700;
+  color: #000000;
+  border: 1px solid #000000;
+}
+
+.filter-group #accepted:hover {
+  background-color: #00ff00;
+  color: #000000;
+  border: 1px solid #000000;
+}
+
+.filter-group #rejected:hover {
+  background-color: #ff0000;
+  color: #ffffff;
+  border: 1px solid #000000;
+}
+
+.filter-group #delivered:hover {
+  background-color: #add8e6;
+  color: #000000;
+  border: 1px solid #000000;
+}
+
+.filter-group #cancelled:hover {
+  background-color: #ffa07a;
+  color: #000000;
+  border: 1px solid #000000;
+}
+
+.filter-group #pending:active {
+  background-color: #ffd700;
+  color: #000000;
+  border: 1px solid #000000;
+}
+
+.filter-group #accepted:active {
+  background-color: #00ff00;
+  color: #000000;
+  border: 1px solid #000000;
+}
+
+.filter-group #rejected:active {
+  background-color: #ff0000;
+  color: #ffffff;
+  border: 1px solid #000000;
+}
+
+.filter-group #delivered:active {
+  background-color: #add8e6;
+  color: #000000;
+  border: 1px solid #000000;
+}
+
+.filter-group #cancelled:active {
+  background-color: #ffa07a;
+  color: #000000;
+  border: 1px solid #000000;
+}
+
+.filter-group #clear-filter {
+  margin-left: 2vw;
+}
+
+.filter-group #clear-filter:hover {
+  color: #080808 !important;
+}
+
+#orders-page-col .nav-search {
+  margin-bottom: 5vh;
+}
+
+/* ############################################################################### */
+
+/* inventory page */
+
+#inventory-page-row {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  padding: 2vh;
+  margin-bottom: 2vh;
+}
+
+#inventory-page-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.inventory-page-col .nav-search {
+  margin-bottom: 5vh;
+}
+
+#order-new-medicine {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-end;
+  /*width: 100%;*/
+  height: auto;
+  padding: 2vh;
+  margin-bottom: 2vh;
+  position: absolute;
+  bottom: -1vw;
+
+}
+
+#order-new-medicine a {
+  box-shadow: 0px 0px 50px 9px rgba(0, 0, 0, 0.49) !important;
+  -webkit-box-shadow: 0px 0px 50px 9px rgba(0, 0, 0, 0.49) !important;
+}
+
+#order-new-medicine a:hover {
+  background-color: #4169e1;
+  color: #ffffff;
+  border: 1px solid #00144e;
+}
+
+#order-new-medicine a:hover i {
+  color: #ffffff;
+}
+
+
+
+#inventory-table td {
+  background-color: transparent !important;
+}
+
+tr.danger {
+  background-color: #fcc7c7 !important;
+  color: #333;
+  border: 1px solid #000000;
+}
+
+tr.warning {
+  background-color: #fff5ab !important;
+  color: #333;
+  border: 1px solid #000000;
+}
+
+tr.success {
+  background-color: #fff !important;
+  color: #333;
+  border: 1px solid #000000;
+}
+
+/* ############################################################################### */
+
+/* orders page */
+
+#orders-table {
+  width: 100%;
+  height: auto;
+}
+
+tr.Pending {
+  background-color: #fff2a7 !important;
+  border: 1px solid #ffd900;
+  color: #333;
+  border: 1px solid #000000;
+}
+
+tr.Accepted {
+  background-color: #ceffce !important;
+  color: #333;
+  border: 1px solid #000000;
+}
+
+tr.Rejected {
+  background-color: #ffbbbb !important;
+  color: #333;
+  border: 1px solid #000000;
+}
+
+tr.Delivered {
+  background-color: #c6f0ff !important;
+  color: #333;
+  border: 1px solid #000000;
+}
+
+tr.Cancelled {
+  background-color: #ffddcf !important;
+  color: #333;
+  border: 1px solid #000000;
+}
+
+#orders-table td {
+  background-color: transparent;
+}
+
+
+/*########################################################################################################*/
+
+/*order medicine page*/
+
+#quantity {
+  width: 100%;
+  height: 100%;
+  padding: 0.5vw;
+  border: 1px solid #333;
+  border-radius: 0.5vw;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #333;
+  margin-bottom: 1vh;
+}
+
+#order {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-end;
+  width: 100%;
+  height: auto;
+  padding: 2vh;
+  margin-bottom: 2vh;
+  position: absolute;
+  bottom: -1vw;
+}
+
+#order-medicine-table {
+  margin-top: 3vh;
+}
+
+#sell-medicine-table {
+  margin-top: 3vh;
+}

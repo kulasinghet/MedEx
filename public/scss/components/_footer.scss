@@ -1,15 +1,30 @@
-@use "../abstracts/variables2" as *;
+@use "../abstracts/variables" as *;
 @use "../abstracts/mixins" as *;
 
+
+$height: 142.5px !default;  // not used because unable to get actual height
+$bg: rgba(64, 108, 115, 0.75) !default;
+$padding: 1rem 2rem !default;
+$font-size: 0.8rem !default;
+$font-color: $light !default;
+$cutoff: $height !default;
+
+$links-color: inherit !default;
+
+$context-color: $gray-3 !default;
+$context-line-height: 1.3rem !default;
+
+
 footer {
+  position: absolute;
+  bottom: 0;
+
   display: block;
-  margin-top: $footer-gap;
-  background: $footer-bg;
+  background: $bg;
   width: 100%;
-  height: $footer-height;
-  padding: $footer-padding;
-  font-size: $footer-font-size;
-  color: $footer-font-color;
+  padding: $padding;
+  font-size: $font-size;
+  color: $font-color;
 
   .footer-inner {
     display: flex;
@@ -23,9 +38,10 @@ footer {
       flex-direction: column;
       justify-content: flex-start;
       align-items: center;
+      gap: 0.3rem;
 
       .footer-logo {
-        @include logo-text;
+        @include company-logo(120px);
       }
 
       .footer-links {
@@ -33,23 +49,23 @@ footer {
         align-items: center;
         justify-content: center;
         gap: 1rem;
-        color: $footer-links-color;
+        color: $links-color;
 
         a {
-          text-decoration: $link-decoration;
+          //text-decoration: $link-decoration;
           cursor: default;
           position: relative;
           color:  inherit;
 
           &:link, &:visited {
             color: inherit;
-            text-decoration: $link-decoration;
+            //text-decoration: $link-decoration;
             cursor: pointer;
           }
 
           &:hover:not(.disabled) {
             color: inherit;
-            text-decoration: $link-hover-decoration;
+            //text-decoration: $link-hover-decoration;
             cursor: pointer;
           }
 
@@ -71,8 +87,8 @@ footer {
       }
 
       ul {
-        line-height: $footer-context-line-height;
-        color:  $footer-context-color;
+        line-height: $context-line-height;
+        color: $context-color;
         list-style: none;
       }
 
@@ -81,4 +97,8 @@ footer {
       }
     }
   }
+}
+
+.footer-cutoff {
+  padding-bottom: $cutoff;
 }

@@ -15,12 +15,23 @@ class PharmacyAuthController extends Controller
             $pharmacy = new PharmacyModel();
             $pharmacy->loadData($request->getBody());
 
-            if ($pharmacy->validate() && $pharmacy->registerPharmacy()) {
-                header("Location: /pharmacy/login");
+            if (@$_POST['password'] != @$_POST['confirmPassword']) {
+                echo (new \app\core\ExceptionHandler)->passwordDoesNotMatch();
+                return $this->render('registrationPage/pharmacy_register_page/phr_register.php');
             }
 
-            return $this->render('registrationPage/pharmacy_register_page/phr_register.php');
+            if ($_POST['username'] == '' || $_POST['password'] == '' || $_POST['confirmPassword'] == '' || $_POST['email'] == '' || $_POST['name'] == '' || $_POST['address'] == '' || $_POST['contactnumber'] == '') {
+                echo (new \app\core\ExceptionHandler)->emptyFields();
+                return $this->render('registrationPage/pharmacy_register_page/phr_register.php');
+            }
+
+            if ($pharmacy->validate() && $pharmacy->registerPharmacy()) {
+                echo (new \app\core\ExceptionHandler)->userCreated();
+                return $this->render("/general/login.php");
+            }
+
+            return $this->render('pharmacy/register-page.php');
         }
-        return $this->render('registrationPage/pharmacy_register_page/phr_register.php');
+        return $this->render('pharmacy/register-page.php');
     }
 }

@@ -9,7 +9,20 @@ class SiteController extends Controller
 {
     public function home()
     {
-        return $this->render('loginPage/loginPage.phphomepage/home.php');
+        return $this->render('homepage/index.php');
+//        return $this->render('homepage/index-copy.php');
+    }
+
+    public function _404()
+    {
+        return $this->render('/general/404.php');
+    }
+
+    public function logout(Request $request)
+    {
+        session_destroy();
+        return header("Location: /login");
+
     }
 
 

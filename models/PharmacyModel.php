@@ -3,6 +3,7 @@
 namespace app\models;
 
 use app\core\Database;
+use app\core\ExceptionHandler;
 use app\core\Logger;
 use DateTime;
 use DateTimeZone;
@@ -23,7 +24,8 @@ class PharmacyModel extends Model
     public string $verified;
     public string $deliveryTime;
 
-    public function registerPharmacy() {
+    public function registerPharmacy()
+    {
 
         $db = new Database();
 
@@ -35,9 +37,25 @@ class PharmacyModel extends Model
         //todo: add delivery time function
 
         try {
-            $this -> password = password_hash($this -> password, PASSWORD_DEFAULT);
+            if ($this->userExists()) {
+                //                Logger::logErr("User already exists");
+                // throw new \Exception("User already exists");
+                throw new \Exception("User already exists");
+            }
+        } catch (\Exception $e) {
+            Logger::logError($e->getMessage());
+            echo (new \app\core\ExceptionHandler)->userExists($this->username);
 
-            $sql = "INSERT INTO pharmacy (id, username, password, name, ownerName, city, pharmacyRegNo, BusinessRegId, pharmacyCertId, BusinessRegCertName, pharmacyCertName, verified, deliveryTime, regDate) VALUES ('$this->id','$this->username', '$this->password', '$this->name', '$this->ownerName', '$this->city', '$this->pharmacyRegNo', '$this->BusinessRegId', '$this->pharmacyCertId', '$this->BusinessRegCertName', '$this->pharmacyCertName', '0', '10:00:00', '$regDate');";
+            return false;
+        }
+
+
+        try {
+            $this->password = password_hash($this->password, PASSWORD_DEFAULT);
+
+            $this->id = $this->createRandomID("PH");
+
+            $sql = "INSERT INTO pharmacy (id, username, password, name, ownerName, city, pharmacyRegNo, BusinessRegId, pharmacyCertId, BusinessRegCertName, pharmacyCertName, verified, deliveryTime, regDate) VALUES ('$this->id', '$this->username', '$this->password', '$this->name', '$this->ownerName', '$this->city', '$this->pharmacyRegNo', '$this->BusinessRegId', '$this->pharmacyCertId', '$this->BusinessRegCertName', '$this->pharmacyCertName', '0', '10:00:00', '$regDate');";
 
             $stmt = $db->prepare($sql);
             $stmt->execute();
@@ -48,12 +66,52 @@ class PharmacyModel extends Model
                 Logger::logError($stmt->error->__toString());
                 return false;
             }
-
         } catch (\Exception $e) {
             Logger::logError($e->getMessage());
-            echo $e->getMessage();
+            //            echo $e->getMessage();
             return false;
         }
     }
 
+    public function userExists(): bool
+    {
+        $db = new Database();
+
+        try {
+            $sql = "SELECT * FROM pharmacy WHERE username = '$this->username'";
+            $stmt = $db->prepare($sql);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            if ($result->num_rows == 1) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (\Exception $e) {
+            Logger::logError($e->getMessage());
+            return false;
+        }
+    }
+
+    public function getPharmacyByUsername($username): false|array
+    {
+        $db = new Database();
+
+        try {
+            $sql = "SELECT * FROM pharmacy WHERE username = '$username'";
+            $stmt = $db->prepare($sql);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            if ($result->num_rows == 1) {
+                return $result->fetch_assoc();
+            } else {
+                return false;
+            }
+        } catch (\Exception $e) {
+            Logger::logError($e->getMessage());
+            return false;
+        }
+    }
 }

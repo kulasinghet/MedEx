@@ -1,0 +1,224 @@
+body {
+    /*add image as background*/
+    background-color: #f0f2f5;
+    font-family: 'Roboto', sans-serif, Arial;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+b {
+    /*display: none;*/
+}
+
+.container {
+    width: 100%;
+    max-width: 70vw;
+    padding: 3vh 3vw;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.sign-in-component {
+    width: 100%;
+    max-width: 25vw;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    background-color: #FFFFFF;
+    padding: 3vh;
+    border-radius: 1vh;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.sign-in-component h1 {
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 0;
+    /*margin-bottom: 2vh;*/
+}
+
+.sign-in-component h2 {
+    font-size: 1rem;
+    font-weight: 400;
+    margin-bottom: 5vh;
+    margin-top: 1vh;
+}
+
+.sign-in-component form {
+    display: flex;
+    flex-direction: column;
+    /*margin-bottom: 5vh;*/
+}
+
+.sign-in-component form input {
+    margin-bottom: 3vh;
+    border: 1px solid #ccc;
+    border-radius: 1vh;
+    font-size: 16px;
+    font-weight: 300;
+    outline: none;
+    padding: 2vh 2vw;
+}
+
+#loginButton {
+    background-color: #006dc2;
+    color: #fff;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 600;
+    border-radius: 1vh;
+    width: 100%;
+}
+
+#loginButton:hover {
+    background-color: #005a9e;
+}
+
+#registerButton {
+/*style={{background-color: "#36a420"}}*/
+    background-color: #1eb000;
+    color: #fff !important;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 600;
+    border-radius: 1vh;
+    width: 100%;
+}
+
+#registerButton:hover {
+    background-color: #2e7f1a;
+}
+
+hr {
+    border: 1px solid #dadde1;
+    margin-bottom: 5vh;
+    width: 100%;
+}
+
+.sign-in-component form label {
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 0.5vh;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+}
+
+.register-now p {
+    font-size: 16px;
+    font-weight: 300;
+    /*margin-bottom: 0;*/
+}
+
+.register-now a {
+    font-size: 16px;
+    font-weight: 300;
+    color: #006dc2;
+    text-decoration: none;
+}
+
+.register-now a:hover {
+    text-decoration: underline;
+}
+
+.image {
+    width: 70% !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 90vh;
+}
+
+.image img{
+    width: 60%;
+    object-fit: cover;
+}
+
+#tagline {
+    font-size: 1.5rem;
+    font-weight: 300;
+    margin-bottom: 0;
+    margin-top: 1vh;
+}
+
+
+@media screen and (max-width: 1000px) {
+
+    body {
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: inherit;
+        background-attachment: fixed;
+    }
+
+    .container {
+        flex-direction: column;
+        max-width: 100vw;
+        /*padding: 0;*/
+    }
+
+    body h2  {
+        text-align: center;
+        font-size: 3rem !important;
+    }
+
+
+
+    body h1  {
+        text-align: center;
+        font-size: 3.5rem !important;
+    }
+
+    .container {
+        flex-direction: column;
+        align-items: center;
+        width: 70%;
+    }
+
+
+    .sign-in-component {
+        max-width: 100%;
+    }
+
+    .image {
+        display: none;
+    }
+
+    .sign-in-component form input[type="submit"] {
+        font-size: 3rem;
+    }
+
+    label {
+        font-size: 3em !important;
+    }
+
+    .sign-in-component input {
+        font-size: 3em !important;
+        padding: 0.5vh !important;
+        height: auto;
+    }
+
+    .register-now p {
+        font-size: 2rem;
+    }
+
+    .register-now a {
+        font-size: 2rem;
+    }
+}
+

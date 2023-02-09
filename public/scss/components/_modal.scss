@@ -1,0 +1,91 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+
+/* modal */
+.modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+
+  display: none;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+
+  /* --m-background is set as inline style */
+  background: rgba(0, 0, 0, 0.18);
+}
+
+/* using :target */
+/*
+when users will click/enter button(link) browser will add a #id in a url and when that happens we'll show our users the modal that contains that id.
+*/
+.modal-container:target {
+  display: flex;
+}
+
+.modal {
+  background: $light;
+  box-shadow: 0 10px 20px rgba(black, 0.2);
+  position: relative;
+
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #000;
+  text-align: center;
+  border-radius: 20px;
+  padding: 30px 30px 50px;
+
+  overflow: hidden;
+
+  .modal-title {
+    font-size: 3.2rem;
+    margin-bottom: 2rem;
+  }
+
+  .modal-context {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.2rem;
+  }
+
+  .modal-close {
+    width: 4rem;
+    height: 4rem;
+    border: 1px solid $dark;
+    border-radius: 100rem;
+
+    color: inherit;
+    font-size: 2.2rem;
+
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: .2s;
+
+    &::before {
+      content: '×';
+      transform: translateY(-.1rem);
+    }
+
+    &:hover, &:focus {
+      background: $primary;
+      border-color: $primary;
+      transform: translateY(-.2rem);
+    }
+  }
+}

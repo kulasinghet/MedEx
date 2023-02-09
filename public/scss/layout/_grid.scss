@@ -1,0 +1,63 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/grid" as *;
+
+
+$itm-width: 5rem;
+$grid-gutter-width: 1.5rem !default;
+$grid-gutter-height: 1.5rem !default;
+$grid-auto-flows: (
+        "row": row,
+        "column": column,
+        "row-dense": row dense,
+        "column-dense": column dense,
+) !default;
+
+/* Flex system */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 calc(var(--#{$prefix}gap) * -.5);
+
+  > * {
+    flex: 1 0 0;
+    width: 100%;
+    max-width: 100%;
+    padding: 0 calc(var(--#{$prefix}gap) * .5);
+  }
+
+  // generating the row columns
+  @include make-grid-columns();
+}
+
+/* Grid system */
+.grid {
+  --#{$prefix}grid-auto-flow: unset;
+
+  /*
+  * The dynamic grid system has made using the auto-fit method.
+  * After grid item placement any empty repeated tracks are collapsed.
+  * An empty track is one with no in-flow grid items placed into or spanning across it.
+  * https://stackoverflow.com/questions/43129360/css-grid-wrapping
+  */
+  display: grid;
+  grid-template: repeat(auto-fit, minmax($itm-width, 1fr)) / repeat(auto-fit, minmax($itm-width, 1fr));
+  grid-auto-flow: var(--#{$prefix}grid-auto-flow);
+  grid-gap: var(--#{$prefix}gap, #{$grid-gutter-width}) var(--#{$prefix}gap, #{$grid-gutter-height});
+
+  > * {
+    margin: 0 !important;
+  }
+
+  > .card, .container {
+    margin: 0 0 auto !important;
+  }
+
+  @each $name, $value in $grid-auto-flows {
+    &.flow-#{$name} {
+      --#{$prefix}grid-auto-flow: #{$value};
+    }
+  }
+
+  // generating the css grid
+  @include make-css-grid();
+}

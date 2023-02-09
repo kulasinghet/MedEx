@@ -1,0 +1,11 @@
+@use "../abstracts/variables2" as *;
+
+
+@each $type, $value in $font-sizes {
+  h#{$type} {
+    font-size: $value;
+    font-weight: 500;
+    line-height: 1.2;
+    margin-bottom: .5rem;
+  }
+}
