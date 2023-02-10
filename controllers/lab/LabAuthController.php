@@ -1,6 +1,5 @@
 <?php
 namespace app\controllers\lab;
-
 use app\core\Controller;
 use app\core\Request;
 
