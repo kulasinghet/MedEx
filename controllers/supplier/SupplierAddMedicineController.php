@@ -1,6 +1,5 @@
 <?php
 namespace app\controllers\supplier;
-
 use app\core\Controller;
 use app\core\Request;
 
