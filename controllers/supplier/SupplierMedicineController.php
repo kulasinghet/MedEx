@@ -1,7 +1,6 @@
 <?php
 
 namespace app\controllers\supplier;
-
 use app\core\Controller;
 use app\core\ExceptionHandler;
 use app\models\LabRequestModel;
