@@ -9,12 +9,15 @@ $z-index: $max-z-index - 10 !default;
 $box-shadow: 1px 0 3px rgba(0, 0, 0, 0.15) !default;
 $cutoff: $sidebar-width !default;
 $border: 1px solid rgba($gray-2, 0.4) !default;
+$width-compressed: 52px;
 
 $nav-z-index: $z-index + 5 !default;
 
-$context-padding: calc(#{nav.$cutoff} + 1rem) 0 1rem 0 !default;
+$font-family: $font-family-base !default;
+$font-size: $font-size-sm !default;
+$font-weight: $font-weight-semibold !default;
 
-$width-compressed: 52px;
+$context-padding: calc(#{nav.$cutoff} + 1rem) 0 1rem 0 !default;
 
 
 .sidebar-new {
@@ -73,8 +76,9 @@ $width-compressed: 52px;
           //text-transform: uppercase;
           width: 100%;
           letter-spacing: 2px;
-          font-size: 15px;
-          font-weight: 600;
+          font-family: $font-family;
+          font-size: $font-size;
+          font-weight: $font-weight;
           display: inline-flex;
           align-items: center;
 
@@ -101,9 +105,9 @@ $width-compressed: 52px;
 
           i {
             position: absolute;
-            left: 12px;
+            left: 16px;
             color: $gray-3;
-            font-size: 24px;
+            font-size: 20px;
           }
 
           &:hover, &:active, &:focus{
