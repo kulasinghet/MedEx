@@ -49,7 +49,7 @@ class LoginModel extends Model
                         } elseif ($row['isLab'] == 1) {
                             $userType = "lab";
                             break;
-                        } elseif ($row['supplier'] == 1) {
+                        } elseif ($row['isSupplier'] == 1) {
                             $userType = "supplier";
                             break;
                         }
