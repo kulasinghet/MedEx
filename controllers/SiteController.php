@@ -9,8 +9,8 @@ class SiteController extends Controller
 {
     public function home()
     {
-        return $this->render('homepage/index.php');
-//        return $this->render('homepage/index-copy.php');
+        return $this->render('homepage/homepage.php');
+        //        return $this->render('homepage/index-copy.php');
     }
 
     public function _404()
@@ -22,8 +22,5 @@ class SiteController extends Controller
     {
         session_destroy();
         return header("Location: /login");
-
     }
-
-
 }
