@@ -106,7 +106,6 @@ use app\controllers\supplier\SupplierMedicineController;
                                         <th>Medicine Name</th>
                                         <th>Scientific Name</th>
                                         <th>Weight</th>
-                                        <th>Mannufacture</th>
                                         <th>Status</th>
                                         <th>Request ID</th>
                                     </tr>

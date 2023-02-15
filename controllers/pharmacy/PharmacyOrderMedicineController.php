@@ -4,14 +4,14 @@ namespace app\controllers\pharmacy;
 
 use app\core\Controller;
 use app\core\ExceptionHandler;
-use app\core\Logger;
 use app\core\NotificationHandler;
 use app\core\Request;
 
 class PharmacyOrderMedicineController extends Controller
 {
 
-    public function createOrder(Request $request) {
+    public function createOrder(Request $request)
+    {
 
         if ($request->isPost()) {
 
@@ -34,6 +34,17 @@ class PharmacyOrderMedicineController extends Controller
         } else {
             echo (new ExceptionHandler)->somethingWentWrong();
             return header('Location: /pharmacy/order-medicine');
+        }
+    }
+
+    public function getPrice(mixed $id)
+    {
+        $price =  (new \app\models\MedicineModel())->getMedicinePrice($id);
+
+        if ($price['price'] > 0) {
+            return $price['price'];
+        } else {
+            return 0;
         }
     }
 

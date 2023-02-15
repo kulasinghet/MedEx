@@ -62,6 +62,27 @@ class PharmacyOrderModel extends Model
 
     public function acceptOrder($supName, $id)
     {
+        return $this->delivery_date;
+    }
+
+    /**
+     * @param mixed $delivery_date
+     */
+    public function setDeliveryDate($delivery_date): void
+    {
+        $this->delivery_date = $delivery_date;
+    }
+
+
+    public function createOrder($pharmacyId, $order_total): bool
+    {
+        // generate random order id with time stamp and pharmacy id
+
+        $this->setId($this->createRandomID($pharmacyId));
+        $order_date = date("Y-m-d");
+
+        $sql = "INSERT INTO pharmacyorder (id, pharmacyId, order_date, order_status, order_total) VALUES
+                ('$this->getId()', '$pharmacyId', '$order_date', 0, '$order_total');";
         $db = (new Database())->getConnection();
         try {
             $sql = "UPDATE  pharmacyorder SET pharmacyorder.order_status = '1', pharmacyorder.supName='$supName' WHERE pharmacyorder.id = '$id' ";
@@ -72,6 +93,18 @@ class PharmacyOrderModel extends Model
                 $stmt->close();
                 return true;
             }
+        } catch (\Exception $e) {
+            return false;
+        }
+    }
+
+    public function getOrdersByUsername($username): false|array
+    {
+        try {
+            $conn = (new Database())->getConnection();
+            $sql = "SELECT * FROM pharmacyorder WHERE pharmacyName = '$username' ORDER BY order_status ASC;";
+            $result = $conn->query($sql);
+            return $result->fetch_all(MYSQLI_ASSOC);
 
             $stmt->close();
         } catch (\Exception $e) {
@@ -79,6 +112,30 @@ class PharmacyOrderModel extends Model
             echo $e->getMessage();
             return false;
         }
+    }
 
+    public function getNotAcceptedOrders()
+    {
+        $db = (new Database())->getConnection();
+        $sql = "SELECT id  from medicine";
+        $result = $db->query($sql);
+        if ($result->num_rows > 0) {
+            return $result;
+        }
+
+    }
+
+    public function getOrdersByUsernameForDashboard(mixed $username)
+    {
+        try {
+            $conn = (new Database())->getConnection();
+            $sql = "SELECT * FROM pharmacyorder WHERE pharmacyName = '$username' AND order_status <= 1 ORDER BY order_status ASC;";
+            $result = $conn->query($sql);
+            return $result->fetch_all(MYSQLI_ASSOC);
+        } catch (\Exception $e) {
+            Logger::logError($e->getMessage());
+            echo (new ExceptionHandler)->somethingWentWrong();
+            return false;
+        }
     }
 }

@@ -23,6 +23,11 @@ class LoginAuthController extends Controller
                 if ($userType != 'unassigned') {
                     $_SESSION['userType'] = $userType;
                     $_SESSION['username'] = $request->getBody()['username'];
+                    $_SESSION['user'] = $login->getUserInfo($request->getBody()['username']);
+
+                    $logger = new Logger();
+                    $logger->signInLog($_SESSION['user']['username']);
+
                     return header('Location: /dashboard');
                 }
             }
