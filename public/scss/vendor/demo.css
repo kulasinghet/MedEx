@@ -2,6 +2,8 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Poppins:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=Ubuntu:wght@300;400;500;700&display=swap");
 :root {
   --g28-gap: 1rem;
+  --g28-i-color: #b5bccf;
+  --g28-a-color: #071232;
 }
 
 *,
@@ -26,6 +28,19 @@ body {
 p {
   margin-top: 0;
   margin-bottom: 2rem;
+}
+
+i {
+  font-size: 20px;
+  color: var(--g28-i-color);
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+a:hover, a:active {
+  text-decoration: underline;
 }
 
 h6, h5, h4, h3, h2, h1 {
@@ -2206,27 +2221,17 @@ article {
   }
 }
 
-a:not(.btn) {
-  --g28-a-decoration: none;
-  --g28-a-color: #071232;
-  --g28-i-color: #b5bccf;
+.link {
   color: var(--g28-a-color);
-  text-decoration: var(--g28-a-decoration);
-  cursor: pointer;
 }
-a:not(.btn) i {
-  color: var(--g28-i-color);
-}
-a:not(.btn):not(.disabled):link, a:not(.btn):not(.disabled):visited {
+.link:not(.disabled):link, .link:not(.disabled):visited {
   --g28-a-color: #1e69fe;
-  --g28-a-decoration: none;
 }
-a:not(.btn):not(.disabled):hover {
+.link:not(.disabled):hover {
   --g28-a-color: #84adfe;
-  --g28-a-decoration: underline;
   --g28-i-color: rgba(181, 188, 207, 0.8);
 }
-a:not(.btn):not(.disabled):active {
+.link:not(.disabled):active {
   --g28-a-color: #013db5;
   --g28-i-color: #071232;
 }
@@ -2606,7 +2611,8 @@ nav .nav-inner ul li a:active:not(.disabled) {
   width: calc(100% - 250px) !important;
 }
 
-.sidebar-new {
+.sidebar-fold {
+  --g28-sidebar-itm-color: #071232;
   position: fixed;
   z-index: 90;
   height: 100vh;
@@ -2614,24 +2620,24 @@ nav .nav-inner ul li a:active:not(.disabled) {
   background: #ffffff;
   box-shadow: 1px 0 3px rgba(0, 0, 0, 0.15);
 }
-.sidebar-new .sidebar-inner {
+.sidebar-fold .sidebar-inner {
   position: relative;
   width: 100%;
   height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
 }
-.sidebar-new .sidebar-inner div {
+.sidebar-fold .sidebar-inner div {
   height: inherit;
   width: inherit;
 }
-.sidebar-new .sidebar-inner .sidebar-header {
+.sidebar-fold .sidebar-inner .sidebar-header {
   --g28-nav-position: absolute;
   --g28-nav-z-index: 95;
   --g28-nav-width: 100%;
   --g28-nav-bg: #fbfbfb;
 }
-.sidebar-new .sidebar-inner .sidebar-header .sidebar-logo {
+.sidebar-fold .sidebar-inner .sidebar-header .sidebar-logo {
   display: inline-block;
   overflow: hidden;
   padding: 5px;
@@ -2639,88 +2645,88 @@ nav .nav-inner ul li a:active:not(.disabled) {
   height: auto;
   flex: 0 0 auto;
 }
-.sidebar-new .sidebar-inner .sidebar-header .sidebar-logo img {
+.sidebar-fold .sidebar-inner .sidebar-header .sidebar-logo img {
   width: 100%;
   vertical-align: center;
 }
-.sidebar-new .sidebar-inner .sidebar-context {
+.sidebar-fold .sidebar-inner .sidebar-context {
   position: inherit;
   display: flex;
   flex-direction: column;
   align-items: stretch;
   padding: calc(3.5rem + 1rem) 0 1rem 0;
 }
-.sidebar-new .sidebar-inner .sidebar-context .sidebar-context-title {
-  color: rgba(117, 119, 129, 0.49);
-  padding: 0 1rem;
-  margin-top: 2rem;
-}
-.sidebar-new .sidebar-inner .sidebar-context .main-buttons {
+.sidebar-fold .sidebar-inner .sidebar-context ul {
   list-style-type: none;
   margin-bottom: 64px;
   padding: 0;
 }
-.sidebar-new .sidebar-inner .sidebar-context .main-buttons li {
+.sidebar-fold .sidebar-inner .sidebar-context ul li {
+  display: inline-flex;
+  align-items: center;
   width: 100%;
   letter-spacing: 2px;
   font-family: "Poppins", sans-serif;
   font-size: 0.875rem;
   font-weight: 600;
-  display: inline-flex;
-  align-items: center;
-}
-.sidebar-new .sidebar-inner .sidebar-context .main-buttons li a:active, .sidebar-new .sidebar-inner .sidebar-context .main-buttons li a:hover {
-  color: #f6f9ff;
-  text-decoration: none;
-}
-.sidebar-new .sidebar-inner .sidebar-context .main-buttons li a, .sidebar-new .sidebar-inner .sidebar-context .main-buttons li a:visited {
-  color: #071232;
-}
-.sidebar-new .sidebar-inner .sidebar-context .main-buttons li.disabled a {
-  color: #f6f9ff;
-}
-.sidebar-new .sidebar-inner .sidebar-context .main-buttons > li {
-  padding: 16px 52px;
-}
-.sidebar-new .sidebar-inner .sidebar-context .main-buttons > li i {
-  position: absolute;
-  left: 16px;
-  color: #b5bccf;
-  font-size: 20px;
-}
-.sidebar-new .sidebar-inner .sidebar-context .main-buttons > li:hover, .sidebar-new .sidebar-inner .sidebar-context .main-buttons > li:active, .sidebar-new .sidebar-inner .sidebar-context .main-buttons > li:focus {
-  background-color: #1e69fe;
   cursor: pointer;
 }
-.sidebar-new .sidebar-inner .sidebar-context .main-buttons > li:hover .hidden, .sidebar-new .sidebar-inner .sidebar-context .main-buttons > li:active .hidden, .sidebar-new .sidebar-inner .sidebar-context .main-buttons > li:focus .hidden {
+.sidebar-fold .sidebar-inner .sidebar-context ul li a {
+  width: inherit;
+  height: inherit;
+  text-decoration: none;
+  color: var(--g28-sidebar-itm-color);
+}
+.sidebar-fold .sidebar-inner .sidebar-context ul li a:visited {
+  color: var(--g28-sidebar-itm-color);
+}
+.sidebar-fold .sidebar-inner .sidebar-context ul li a.disabled {
+  --g28-sidebar-itm-color: #f6f9ff;
+}
+.sidebar-fold .sidebar-inner .sidebar-context ul li.disabled {
+  --g28-sidebar-itm-color: #f6f9ff;
+}
+.sidebar-fold .sidebar-inner .sidebar-context .main-buttons > li {
+  padding: 16px 52px;
+}
+.sidebar-fold .sidebar-inner .sidebar-context .main-buttons > li i {
+  position: absolute;
+  left: 16px;
+}
+.sidebar-fold .sidebar-inner .sidebar-context .main-buttons > li:hover, .sidebar-fold .sidebar-inner .sidebar-context .main-buttons > li:active, .sidebar-fold .sidebar-inner .sidebar-context .main-buttons > li:focus {
+  background-color: #1e69fe;
+}
+.sidebar-fold .sidebar-inner .sidebar-context .main-buttons > li:hover i, .sidebar-fold .sidebar-inner .sidebar-context .main-buttons > li:active i, .sidebar-fold .sidebar-inner .sidebar-context .main-buttons > li:focus i {
+  --g28-i-color: rgba(255, 255, 255, 0.6);
+}
+.sidebar-fold .sidebar-inner .sidebar-context .main-buttons > li:hover > a, .sidebar-fold .sidebar-inner .sidebar-context .main-buttons > li:active > a, .sidebar-fold .sidebar-inner .sidebar-context .main-buttons > li:focus > a {
+  --g28-sidebar-itm-color: #f6f9ff;
+}
+.sidebar-fold .sidebar-inner .sidebar-context .main-buttons > li:hover .hidden, .sidebar-fold .sidebar-inner .sidebar-context .main-buttons > li:active .hidden, .sidebar-fold .sidebar-inner .sidebar-context .main-buttons > li:focus .hidden {
+  left: 52px;
+  box-shadow: -1px 0 3px rgba(0, 0, 0, 0.15);
+}
+.sidebar-fold .sidebar-inner .sidebar-context .hidden {
   width: 198px;
-}
-.sidebar-new .sidebar-inner .sidebar-context .main-buttons > li:hover i, .sidebar-new .sidebar-inner .sidebar-context .main-buttons > li:active i, .sidebar-new .sidebar-inner .sidebar-context .main-buttons > li:focus i {
-  color: rgba(255, 255, 255, 0.6);
-}
-
-.hidden {
-  width: 0;
   height: 100%;
-  padding: 64px 0;
+  padding: calc(3.5rem + 1rem) 0 1rem 0;
   position: absolute;
   top: 0;
-  right: 0;
+  left: 250px;
   overflow: hidden;
-  list-style-type: none;
-  background-color: #1e69fe;
+  background: #0141bf;
   color: #f6f9ff;
-  transition: 0.3s;
+  transition: 0.4s ease-out 0.1s;
 }
-.hidden li {
+.sidebar-fold .sidebar-inner .sidebar-context .hidden li {
+  --g28-sidebar-itm-color: #f6f9ff;
   padding: 16px 24px;
 }
-.hidden li:hover, .hidden li:active, .hidden li:focus {
-  background-color: #0d205a;
+.sidebar-fold .sidebar-inner .sidebar-context .hidden li:hover {
+  background: #3277fe;
 }
-.hidden a, .hidden a:visited, .hidden a:active, .hidden a:hover {
-  color: #f6f9ff !important;
-  text-decoration: none;
+.sidebar-fold .sidebar-inner .sidebar-context .hidden li:active, .sidebar-fold .sidebar-inner .sidebar-context .hidden li:focus {
+  background: #012c82;
 }
 
 footer {

@@ -13,7 +13,7 @@
 </head>
 <body>
 <!-- Section: Fixed Components -->
-<div class="sidebar-new">
+<div class="sidebar-fold">
     <div class="sidebar-inner">
         <nav class="sidebar-header">
             <div class="sidebar-logo">
