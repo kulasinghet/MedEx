@@ -24,5 +24,9 @@ $color-active: darken($color, $shade-percent) !default;
       --#{$prefix}a-color: #{$color-active};
       --#{$prefix}i-color: #{$i-color-active};
     }
+
+    &:hover, &:active {
+      text-decoration: underline;
+    }
   }
 }

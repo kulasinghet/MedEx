@@ -39,9 +39,6 @@ a {
   text-decoration: none;
   cursor: pointer;
 }
-a:hover, a:active {
-  text-decoration: underline;
-}
 
 h6, h5, h4, h3, h2, h1 {
   font-family: "Ubuntu", sans-serif;
@@ -2235,6 +2232,9 @@ article {
   --g28-a-color: #013db5;
   --g28-i-color: #071232;
 }
+.link:not(.disabled):hover, .link:not(.disabled):active {
+  text-decoration: underline;
+}
 
 .btn {
   --g28-btn-bg: #ffffff;
@@ -2611,7 +2611,7 @@ nav .nav-inner ul li a:active:not(.disabled) {
   width: calc(100% - 250px) !important;
 }
 
-.sidebar-fold {
+.sidebar-grouped {
   --g28-sidebar-itm-color: #071232;
   position: fixed;
   z-index: 90;
@@ -2620,24 +2620,24 @@ nav .nav-inner ul li a:active:not(.disabled) {
   background: #ffffff;
   box-shadow: 1px 0 3px rgba(0, 0, 0, 0.15);
 }
-.sidebar-fold .sidebar-inner {
+.sidebar-grouped .sidebar-inner {
   position: relative;
   width: 100%;
   height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
 }
-.sidebar-fold .sidebar-inner div {
+.sidebar-grouped .sidebar-inner div {
   height: inherit;
   width: inherit;
 }
-.sidebar-fold .sidebar-inner .sidebar-header {
+.sidebar-grouped .sidebar-inner .sidebar-header {
   --g28-nav-position: absolute;
   --g28-nav-z-index: 95;
   --g28-nav-width: 100%;
   --g28-nav-bg: #fbfbfb;
 }
-.sidebar-fold .sidebar-inner .sidebar-header .sidebar-logo {
+.sidebar-grouped .sidebar-inner .sidebar-header .sidebar-logo {
   display: inline-block;
   overflow: hidden;
   padding: 5px;
@@ -2645,23 +2645,23 @@ nav .nav-inner ul li a:active:not(.disabled) {
   height: auto;
   flex: 0 0 auto;
 }
-.sidebar-fold .sidebar-inner .sidebar-header .sidebar-logo img {
+.sidebar-grouped .sidebar-inner .sidebar-header .sidebar-logo img {
   width: 100%;
   vertical-align: center;
 }
-.sidebar-fold .sidebar-inner .sidebar-context {
+.sidebar-grouped .sidebar-inner .sidebar-context {
   position: inherit;
   display: flex;
   flex-direction: column;
   align-items: stretch;
   padding: calc(3.5rem + 1rem) 0 1rem 0;
 }
-.sidebar-fold .sidebar-inner .sidebar-context ul {
+.sidebar-grouped .sidebar-inner .sidebar-context ul {
   list-style-type: none;
   margin-bottom: 64px;
   padding: 0;
 }
-.sidebar-fold .sidebar-inner .sidebar-context ul li {
+.sidebar-grouped .sidebar-inner .sidebar-context ul li {
   display: inline-flex;
   align-items: center;
   width: 100%;
@@ -2671,42 +2671,42 @@ nav .nav-inner ul li a:active:not(.disabled) {
   font-weight: 600;
   cursor: pointer;
 }
-.sidebar-fold .sidebar-inner .sidebar-context ul li a {
+.sidebar-grouped .sidebar-inner .sidebar-context ul li a {
   width: inherit;
   height: inherit;
   text-decoration: none;
   color: var(--g28-sidebar-itm-color);
 }
-.sidebar-fold .sidebar-inner .sidebar-context ul li a:visited {
+.sidebar-grouped .sidebar-inner .sidebar-context ul li a:visited {
   color: var(--g28-sidebar-itm-color);
 }
-.sidebar-fold .sidebar-inner .sidebar-context ul li a.disabled {
+.sidebar-grouped .sidebar-inner .sidebar-context ul li a.disabled {
   --g28-sidebar-itm-color: #f6f9ff;
 }
-.sidebar-fold .sidebar-inner .sidebar-context ul li.disabled {
+.sidebar-grouped .sidebar-inner .sidebar-context ul li.disabled {
   --g28-sidebar-itm-color: #f6f9ff;
 }
-.sidebar-fold .sidebar-inner .sidebar-context .main-buttons > li {
+.sidebar-grouped .sidebar-inner .sidebar-context .main-buttons > li {
   padding: 16px 52px;
 }
-.sidebar-fold .sidebar-inner .sidebar-context .main-buttons > li i {
+.sidebar-grouped .sidebar-inner .sidebar-context .main-buttons > li i {
   position: absolute;
   left: 16px;
 }
-.sidebar-fold .sidebar-inner .sidebar-context .main-buttons > li:hover, .sidebar-fold .sidebar-inner .sidebar-context .main-buttons > li:active, .sidebar-fold .sidebar-inner .sidebar-context .main-buttons > li:focus {
+.sidebar-grouped .sidebar-inner .sidebar-context .main-buttons > li:hover, .sidebar-grouped .sidebar-inner .sidebar-context .main-buttons > li:active, .sidebar-grouped .sidebar-inner .sidebar-context .main-buttons > li:focus {
   background-color: #1e69fe;
 }
-.sidebar-fold .sidebar-inner .sidebar-context .main-buttons > li:hover i, .sidebar-fold .sidebar-inner .sidebar-context .main-buttons > li:active i, .sidebar-fold .sidebar-inner .sidebar-context .main-buttons > li:focus i {
+.sidebar-grouped .sidebar-inner .sidebar-context .main-buttons > li:hover i, .sidebar-grouped .sidebar-inner .sidebar-context .main-buttons > li:active i, .sidebar-grouped .sidebar-inner .sidebar-context .main-buttons > li:focus i {
   --g28-i-color: rgba(255, 255, 255, 0.6);
 }
-.sidebar-fold .sidebar-inner .sidebar-context .main-buttons > li:hover > a, .sidebar-fold .sidebar-inner .sidebar-context .main-buttons > li:active > a, .sidebar-fold .sidebar-inner .sidebar-context .main-buttons > li:focus > a {
+.sidebar-grouped .sidebar-inner .sidebar-context .main-buttons > li:hover > a, .sidebar-grouped .sidebar-inner .sidebar-context .main-buttons > li:active > a, .sidebar-grouped .sidebar-inner .sidebar-context .main-buttons > li:focus > a {
   --g28-sidebar-itm-color: #f6f9ff;
 }
-.sidebar-fold .sidebar-inner .sidebar-context .main-buttons > li:hover .hidden, .sidebar-fold .sidebar-inner .sidebar-context .main-buttons > li:active .hidden, .sidebar-fold .sidebar-inner .sidebar-context .main-buttons > li:focus .hidden {
+.sidebar-grouped .sidebar-inner .sidebar-context .main-buttons > li:hover .hidden, .sidebar-grouped .sidebar-inner .sidebar-context .main-buttons > li:active .hidden, .sidebar-grouped .sidebar-inner .sidebar-context .main-buttons > li:focus .hidden {
   left: 52px;
   box-shadow: -1px 0 3px rgba(0, 0, 0, 0.15);
 }
-.sidebar-fold .sidebar-inner .sidebar-context .hidden {
+.sidebar-grouped .sidebar-inner .sidebar-context .hidden {
   width: 198px;
   height: 100%;
   padding: calc(3.5rem + 1rem) 0 1rem 0;
@@ -2718,14 +2718,14 @@ nav .nav-inner ul li a:active:not(.disabled) {
   color: #f6f9ff;
   transition: 0.4s ease-out 0.1s;
 }
-.sidebar-fold .sidebar-inner .sidebar-context .hidden li {
+.sidebar-grouped .sidebar-inner .sidebar-context .hidden li {
   --g28-sidebar-itm-color: #f6f9ff;
   padding: 16px 24px;
 }
-.sidebar-fold .sidebar-inner .sidebar-context .hidden li:hover {
+.sidebar-grouped .sidebar-inner .sidebar-context .hidden li:hover {
   background: #3277fe;
 }
-.sidebar-fold .sidebar-inner .sidebar-context .hidden li:active, .sidebar-fold .sidebar-inner .sidebar-context .hidden li:focus {
+.sidebar-grouped .sidebar-inner .sidebar-context .hidden li:active, .sidebar-grouped .sidebar-inner .sidebar-context .hidden li:focus {
   background: #012c82;
 }
 
