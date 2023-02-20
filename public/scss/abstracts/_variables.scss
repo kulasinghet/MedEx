@@ -113,6 +113,12 @@ $navbar-height: 3.5rem !default;
 $gap: 1rem !default;
 // ------------------- Fixed Components ------------------- //
 
+// ------------------- i ------------------- //
+$i-color: $gray-3 !default;
+$i-color-hover: rgba($gray-3, 0.8) !default;
+$i-color-active: $dark !default;
+// ------------------- i ------------------- //
+
 // ------------------- Grid System ------------------- //
 $grid-breakpoints: (
   xs: 0,

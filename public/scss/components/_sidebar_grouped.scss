@@ -20,7 +20,9 @@ $font-weight: $font-weight-semibold !default;
 $context-padding: calc(#{nav.$cutoff} + 1rem) 0 1rem 0 !default;
 
 
-.sidebar-new {
+.sidebar-grouped {
+  --#{$prefix}sidebar-itm-color: #{$dark};
+
   position: fixed;
   z-index: $z-index;
 
@@ -61,99 +63,99 @@ $context-padding: calc(#{nav.$cutoff} + 1rem) 0 1rem 0 !default;
 
       padding: $context-padding;
 
-      .sidebar-context-title {
-        color: rgba(117, 119, 129, 0.49);
-        padding: 0 1rem;
-        margin-top: 2rem;
-      }
-
-      .main-buttons{
+      ul {
         list-style-type: none;
         margin-bottom: 64px;
         padding: 0;
 
-        li{
-          //text-transform: uppercase;
+        li {
+          display: inline-flex;
+          align-items: center;
+
           width: 100%;
           letter-spacing: 2px;
           font-family: $font-family;
           font-size: $font-size;
           font-weight: $font-weight;
-          display: inline-flex;
-          align-items: center;
+          cursor: pointer;
 
           a {
-            &:active, &:hover {
-              color: $light;
-              text-decoration: none;
+            width: inherit;
+            height: inherit;
+            text-decoration: none;
+            color: var(--#{$prefix}sidebar-itm-color);
+
+            &:visited {
+              color: var(--#{$prefix}sidebar-itm-color);
             }
 
-            &, &:visited {
-              color: $dark;
+            &.disabled {
+              --#{$prefix}sidebar-itm-color: #{$light};
             }
           }
 
           &.disabled {
-            a {
-              color: $light;
-            }
+            --#{$prefix}sidebar-itm-color: #{$light};
           }
         }
+      }
 
-        & > li{
+      .main-buttons{
+        & > li {
           padding: 16px $width-compressed;
 
           i {
             position: absolute;
             left: 16px;
-            color: $gray-3;
-            font-size: 20px;
           }
 
           &:hover, &:active, &:focus{
-            .hidden{
-              width: $sidebar-width - $width-compressed;
-            }
             background-color: $primary;
-            cursor: pointer;
 
             i {
-              color: rgba(255, 255, 255, 0.6);
+              --#{$prefix}i-color: rgba(255, 255, 255, 0.6);
+            }
+
+            & > a {
+              --#{$prefix}sidebar-itm-color: #{$light};
+            }
+
+            .hidden{
+              left: $width-compressed;
+              box-shadow: -1px 0 3px rgba(0, 0, 0, 0.15);
             }
           }
         }
       }
-    }
-  }
-}
 
-.hidden{
-  width: 0;
-  height: 100%;
-  padding: 64px 0;
+      .hidden{
+        width: $sidebar-width - $width-compressed;
+        height: 100%;
+        padding: $context-padding;
 
-  position: absolute;
-  top: 0;
-  right: 0;
+        position: absolute;
+        top: 0;
+        left: $sidebar-width;
 
-  overflow: hidden;
+        overflow: hidden;
 
-  list-style-type: none;
-  background-color: $primary;
-  color: $light;
-  transition: .3s;
+        background: darken($primary, 18);
+        color: $light;
+        transition: .4s ease-out .1s;
 
-  li{
-    padding: 16px 24px;
-    &:hover, &:active, &:focus{
-      background-color: lighten($dark, 9);
-    }
-  }
+        li{
+          --#{$prefix}sidebar-itm-color: #{$light};
+          padding: 16px 24px;
 
-  a {
-    &, &:visited, &:active, &:hover {
-      color: $light !important;
-      text-decoration: none;
+          &:hover {
+            background: lighten($primary, 4);
+          }
+
+          &:active, &:focus{
+            background: darken($primary, 30);
+          }
+        }
+      }
     }
   }
 }
