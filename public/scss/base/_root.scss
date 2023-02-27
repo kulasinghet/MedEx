@@ -1,5 +1,8 @@
 @use "../abstracts/variables" as *;
 
+
 :root {
   --#{$prefix}gap: #{$gap};
+  --#{$prefix}i-color: #{$i-color};
+  --#{$prefix}a-color: #{$dark};
 }
