@@ -8,10 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MedEx | Supplier Registration</title>
 
-
+    <link href="../scss/vendor/demo.css" rel="stylesheet" />
     <link href="../css/supplier/formcss.css" rel="stylesheet" />
     <script src="../js/g28-style.js"></script>
-    <link href="../scss/vendor/demo.css" rel="stylesheet" />
     <!-- Font awesome kit -->
     <script src="https://kit.fontawesome.com/9b33f63a16.js" crossorigin="anonymous"></script>
 </head>
@@ -27,28 +26,28 @@
                 <div style="width: 75%; padding: 2%;">
                     <form action="/supplier/register" method="post" enctype="multipart/form-data"
                         style="display: flex; flex-direction: row; width: 100%;">
-                        <div style="width: 50%;">
+                        <div style="width: 50%; padding:2%">
                             <h4> Supplier Registration</h4>
-                            <input type="text" name="name" class="input-box" placeholder="Enter Name" required><br>
-                            <input type="text" name="username" class="input-box" placeholder="Enter Userame"
+                            <input type="text" name="name" class="form-input" placeholder="Enter Name" required><br>
+                            <input type="text" name="username" class="form-input" placeholder="Enter Userame"
                                 required><br>
-                            <input type="password" name="pswd" class="input-box" placeholder="Enter Password"
+                            <input type="password" name="pswd" class="form-input" placeholder="Enter Password"
                                 required><br>
-                            <input type="password" name="re-pswd" class="input-box" placeholder="Re-enter Password"
+                            <input type="password" name="re-pswd" class="form-input" placeholder="Re-enter Password"
                                 required><br>
-                            <input type="text" name="email" class="input-box" placeholder="Enter Email" required><br>
-                            <input type="text" name="address" class="input-box" placeholder="Enter Address"
+                            <input type="text" name="email" class="form-input" placeholder="Enter Email" required><br>
+                            <input type="text" name="address" class="form-input" placeholder="Enter Address"
                                 required><br>
 
                         </div>
-                        <div style="width: 50%;">
-                            <input type="text" name="mobile" class="input-box" placeholder="Enter Mobile Phone Number"
+                        <div style="width: 50%; padding:2%">
+                            <input type="text" name="mobile" class="form-input" placeholder="Enter Mobile Phone Number"
                                 required><br>
-                            <input type="text" name="supRegNum" class="input-box"
+                            <input type="text" name="supRegNum" class="form-input"
                                 placeholder="Enter Supplier Registration Number" required><br>
-                            <input type="text" name="busiRegNum" class="input-box"
+                            <input type="text" name="busiRegNum" class="form-input"
                                 placeholder="Enter Business Registration Number" required><br>
-                            <input type="text" name="supCertId" class="input-box"
+                            <input type="text" name="supCertId" class="form-input"
                                 placeholder="Enter Supplier Certificate ID" required><br>
                             Business Registration Certificate <small>(3Mb - jpg,jpeg,png,pdf) </small><br><input
                                 type="file" name="BusRegiCert" id="BusRegiCert" required accept="image/*,.pdf"><br><br>

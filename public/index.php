@@ -117,6 +117,7 @@ $app->router->get('/supplier/contact-us', [SupplierDashboardController::class, '
 $app->router->post('/supplier/contact-us', [SupplierDashboardController::class, 'contactUs']);
 $app->router->get('/supplier/medicine-requests', [SupplierDashboardController::class, 'medicineRequests']);
 $app->router->post('/supplier/medicine-requests', [SupplierDashboardController::class, 'medicineRequests']);
+$app->router->post('/supplier/accept', [AcceptOrdersController::class, 'AcceptOrder']);
 
 
 
