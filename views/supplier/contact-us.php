@@ -1,18 +1,58 @@
 <html lang="en">
 
+<!DOCTYPE html>
+
 <head>
     <meta charset="UTF-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Contact Us</title>
+
     <link href="../scss/vendor/demo.css" rel="stylesheet" />
-    <link href="../css/pharmacy/dashboard.css" rel="stylesheet" />
-    <link href="../css/supplier/formcss.css" rel="stylesheet" />
     <!-- Font awesome kit -->
     <script crossorigin="anonymous" src="https://kit.fontawesome.com/9b33f63a16.js"></script>
 </head>
 
 <body>
-
+    <!-- Section: Fixed Components -->
+    <div class="sidebar-grouped">
+        <div class="sidebar-inner">
+            <nav class="sidebar-header">
+                <div class="sidebar-logo">
+                    <a href="#">
+                        <img alt="MedEx logo" src="../res/logo/logo-text_light.svg" />
+                    </a>
+                </div>
+            </nav>
+            <div class="sidebar-context">
+                <ul class="main-buttons">
+                    <li>
+                        <a href="/dashboard"> <i class="fa-solid fa-house"></i> Dashboard </a>
+                    </li>
+                    <li>
+                        <a href="#"> <i class="fa fa-dropbox"></i> Inventory </a>
+                        <ul class="hidden">
+                            <li><a href="/supplier/add-medicine"> Add New Medicine </a></li>
+                            <li><a href="/supplier/inventory"> View Inventory </a></li>
+                            <li><a href="/supplier/update-inventory"> Update Inventory</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"> <i class="fa fa-check-circle"></i> Orders </a>
+                        <ul class="hidden">
+                            <li><a href="/supplier/accept-orders"> Accept Orders</a></li>
+                            <li><a href="#"> View Orders </a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/supplier/medicine-requests"> <i class="fa fa-hourglass-half"></i>Medicine Requests</a>
+                    </li>
+                    <li class="disabled">
+                        <a href="/supplier/contact-us"> <i class="fa fa-phone"></i>Contact Us </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
     <nav>
         <div class="nav-search">
             <form onsubmit="preventDefault();" role="search">
@@ -23,7 +63,9 @@
         </div>
         <div class="nav-inner">
             <ul>
-                <li><a href="/login"><i class="fa fa-sign-out"></i></a></li>
+                <li><a class="link" href="#"><i class="fa-solid fa-gear"></i></a></li>
+                <li><a class="link" href="login"><i class="fa-solid fa-right-from-bracket"></i></a></li>
+                <li><a class="link" href="#"><i class="fa-solid fa-bell"></i></a></li>
             </ul>
             <a class="nav-profile" href="#">
                 <div class="nav-profile-image">
@@ -32,49 +74,7 @@
             </a>
         </div>
     </nav>
-
-    <div class="sidebar">
-        <div class="sidebar-inner">
-            <nav class="sidebar-header">
-                <div class="sidebar-logo">
-                    <a href="/dashboard">
-                        <img alt="MedEx logo" src="../res/logo/logo-text_light.svg" />
-                    </a>
-                </div>
-            </nav>
-            <div class="sidebar-context">
-                <h6 class="sidebar-context-title">Menu</h6>
-                <ul>
-                    <li>
-                        <a class="btn" href="/supplier/add-medicine"> <i class="fa fa-medkit"></i> Add New
-                            Medicine
-                        </a>
-                    </li>
-                    <li>
-                        <a class="btn" href="/supplier/inventory"> <i class="fa fa-dropbox"></i> Inventory </a>
-                    </li>
-                    <li>
-                        <a class="btn" href="/supplier/update-inventory"> <i class="fa fa-plus-square"></i>
-                            Update
-                            Inventory
-                        </a>
-                    </li>
-                    <li>
-                        <a class="btn" href="/supplier/accept-orders"> <i class="fa fa-check-circle"></i> Accept Orders
-                        </a>
-                    </li>
-                    <li>
-                        <a class="btn" href="/supplier/medicine-requests"> <i class="fa fa-hourglass-half"></i>
-                            Medicine
-                            Requests </a>
-                    </li>
-
-                    <li>
-                        <a class="btn disabled" href="/supplier/contact-us"> <i class="fa fa-phone"></i> Contact Us </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+    <!-- Section: Fixed Components -->
     </div>
 
 
@@ -89,7 +89,8 @@
                         <form>
                             <div class="form-group">
                                 <label for="exampleFormControlInput1">Subject</label>
-                                <input type="email" class="form-input" id="exampleFormControlInput1" placeholder="Subject">
+                                <input type="email" class="form-input" id="exampleFormControlInput1"
+                                    placeholder="Subject">
                             </div>
 
                             <div class="form-group">

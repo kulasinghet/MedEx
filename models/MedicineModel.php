@@ -51,6 +51,7 @@ class MedicineModel extends Model
             }
         }
         $db->close();
+
     }
 
     // Get Medicine Name
@@ -58,12 +59,14 @@ class MedicineModel extends Model
     {
         $this->getMedicine($id);
         return $this->medName;
+
     }
     // Get Scientific Name
     public function getSciname($id)
     {
         $this->getMedicine($id);
         return $this->sciName;
+
     }
 
     // Get Weight
@@ -71,6 +74,7 @@ class MedicineModel extends Model
     {
         $this->getMedicine($id);
         return $this->weight;
+
     }
 
     public function getManufacture($id)
@@ -84,17 +88,14 @@ class MedicineModel extends Model
     // Get all medicine
     public function getAllMedicines()
     {
-        $conn = (new Database())->getConnection();
+        $db = new Database();
         $sql = "SELECT * FROM medicine";
 
         try {
-
-            $result = $conn->query($sql);
-            if ($result->num_rows > 0) {
-                return $result;
-            } else {
-                return null;
-            }
+            $stmt = $db->prepare($sql);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result;
         } catch (\Exception $e) {
             Logger::logError($e->getMessage());
             return false;
@@ -126,16 +127,4 @@ class MedicineModel extends Model
         $db->close();
     }
 
-    public function getMedicinePrice(mixed $id)
-    {
-        $db = (new Database())->getConnection();
-        $sql = "SELECT min(unitPrice) as price from supplier_medicine WHERE medId = '$id'";
-        $result = $db->query($sql);
-        if ($result->num_rows > 0) {
-            $db->close();
-            return $result->fetch_assoc();
-        }
-        $db->close();
-        return 0;
-    }
 }

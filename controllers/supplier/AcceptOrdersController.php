@@ -49,20 +49,20 @@ class AcceptOrdersController extends Controller
 
     public function AcceptOrder(Request $request)
     { {
-        if ($request->isPost()) {
-            $order = new PharmacyOrderModel;
-            $orderid = $_POST['orderid'];
-            $supmed = new SupplierMedicineModel;
-            $medid = $_POST['medid'];
-            $oldq = (int) $supmed->getQuantity($medid);
-            $quantity = (int) $_POST['qauntity'];
-            $newq = $oldq - $quantity;
-            if ($supmed->acceptOrder($newq, $medid, $_SESSION['username']) && $order->acceptOrder($_SESSION['username'], $orderid)) {
-                echo (new \app\core\ExceptionHandler)->RequestSent();
-                return $this->render("/supplier/inventory.php");
+            if ($request->isPost()) {
+                $order = new PharmacyOrderModel;
+                $orderid = $_POST['orderid'];
+                $supmed = new SupplierMedicineModel;
+                $medid = $_POST['medid'];
+                $oldq = (int) $supmed->getQuantity($medid);
+                $quantity = (int) $_POST['qauntity'];
+                $newq = $oldq - $quantity;
+                if ($supmed->acceptOrder($newq, $medid, $_SESSION['username']) && $order->acceptOrder($_SESSION['username'], $orderid)) {
+                    echo (new \app\core\ExceptionHandler)->RequestSent();
+                    return $this->render("/supplier/inventory.php");
+                }
             }
         }
-    }
 
     }
 

@@ -19,7 +19,8 @@ class SupplierMedicineModel extends Model
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 $this->quantity = $row['quantity'];
-                @$this->unitPrice = $row['$unitPrice'];
+                $this->unitPrice = $row['$unitPrice'];
+
             }
         }
         $db->close();
