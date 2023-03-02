@@ -111,6 +111,8 @@ $app->router->get('/supplier/update-inventory', [SupplierDashboardController::cl
 $app->router->post('/supplier/update-inventory', [SupplierDashboardController::class, 'updateInventory']);
 $app->router->get('/supplier/accept-orders', [SupplierDashboardController::class, 'acceptOrders']);
 $app->router->post('/supplier/accept-orders', [SupplierDashboardController::class, 'acceptOrders']);
+$app->router->get('/supplier/orders', [SupplierDashboardController::class, 'Orders']);
+$app->router->post('/supplier/orders', [SupplierDashboardController::class, 'Orders']);
 $app->router->get('/supplier/inventory', [SupplierDashboardController::class, 'inventory']);
 $app->router->post('/supplier/inventory', [SupplierDashboardController::class, 'inventory']);
 $app->router->get('/supplier/contact-us', [SupplierDashboardController::class, 'contactUs']);

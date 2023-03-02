@@ -45,7 +45,7 @@ use app\controllers\supplier\SupplierMedicineController;
                         <a href="#"> <i class="fa fa-check-circle"></i> Orders </a>
                         <ul class="hidden">
                             <li><a href="/supplier/accept-orders"> Accept Orders</a></li>
-                            <li><a href="#"> View Orders </a></li>
+                            <li><a href="/supplier/orders"> View Accepted Orders </a></li>
                         </ul>
                     </li>
                     <li class="disabled">

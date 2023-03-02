@@ -1,6 +1,7 @@
 <?php
 
 namespace app\controllers\supplier;
+
 use app\core\Controller;
 use app\core\Request;
 
@@ -94,6 +95,22 @@ class SupplierDashboardController extends Controller
                 $this->render("supplier/contact-us.php");
             } else if ($request->isPost()) {
                 $this->render("supplier/contact-us.php");
+            } else {
+                return header(self::login);
+            }
+        } else {
+            return header(self::login);
+        }
+    }
+
+    public function Orders(Request $request)
+    {
+        if ($_SESSION['userType'] == 'supplier') {
+
+            if ($request->isGet()) {
+                $this->render("supplier/orders.php");
+            } else if ($request->isPost()) {
+                $this->render("supplier/orders.php");
             } else {
                 return header(self::login);
             }
