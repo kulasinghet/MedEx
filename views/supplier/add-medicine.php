@@ -49,7 +49,7 @@ use app\controllers\supplier\SupplierMedicineController;
                         <a href="#"> <i class="fa fa-check-circle"></i> Orders </a>
                         <ul class="hidden">
                             <li><a href="/supplier/accept-orders"> Accept Orders</a></li>
-                            <li><a href="#"> View Orders </a></li>
+                            <li><a href="/supplier/orders"> View Accepted Orders </a></li>
                         </ul>
                     </li>
                     <li>
@@ -95,7 +95,7 @@ use app\controllers\supplier\SupplierMedicineController;
                         <div class="card-body">
 
                             <div style="padding: 2%;">
-                                <h3>Add Exsiting Medicine</h3>
+                                <h3>Add Existing Medicine</h3>
                                 <div class="nav-search">
                                     <form onsubmit="preventDefault();" role="search">
                                         <label for="search">Filter Medicine</label>

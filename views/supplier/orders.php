@@ -1,5 +1,5 @@
 <?php
-use app\controllers\supplier\AcceptOrdersController;
+use app\controllers\supplier\SupplierOrdersController;
 
 ?>
 <!DOCTYPE html>
@@ -42,8 +42,8 @@ use app\controllers\supplier\AcceptOrdersController;
                     <li>
                         <a href="#"> <i class="fa fa-check-circle"></i> Orders </a>
                         <ul class="hidden">
-                            <li class="disabled"><a href="/supplier/accept-orders"> Accept Orders</a></li>
-                            <li><a href="/supplier/orders"> View Accepted Orders </a></li>
+                            <li><a href="/supplier/accept-orders"> Accept Orders</a></li>
+                            <li class="disabled"><a href="/supplier/orders"> View Accepted Orders </a></li>
                         </ul>
                     </li>
                     <li>
@@ -88,7 +88,7 @@ use app\controllers\supplier\AcceptOrdersController;
                         style=" box-shadow: 0 3px 10px rgb(0 0 0 / 0.2); border-radius: 20px; width:100% padding: 1%;">
                         <div class="card-body">
                             <div style="padding: 2%;">
-                                <h3>Accept Orders</h3>
+                                <h3>Accepted Orders</h3>
                                 </br>
                                 <div class="nav-search">
                                     <form onsubmit="preventDefault();" role="search">
@@ -107,12 +107,12 @@ use app\controllers\supplier\AcceptOrdersController;
                                         <th>Weight</th>
                                         <th>Mannufacture</th>
                                         <th>Quantity</th>
-                                        <th></th>
+                                        <th>Status</th>
                                     </tr>
 
                                     <?php
-                                    $order = new AcceptOrdersController;
-                                    $order->ViewPendingOrders();
+                                    $order = new SupplierOrdersController;
+                                    $order->ViewAcceptedOrders();
                                     ?>
                                 </table>
                             </div>
