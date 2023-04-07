@@ -1,5 +1,4 @@
 <?php
-
 namespace app\core;
 
 class ExceptionHandler extends Logger
@@ -63,7 +62,20 @@ class ExceptionHandler extends Logger
     public function userCreated()
     {
         $spanClass = "<span class='closebtn' id='closebtn' onclick='this.parentElement.style.display='none';'>&times;</span>";
-        return $this->scriptClass . $this->alertClass . $spanClass . "Userr created sucessfully!" . $this->closeClass;
+        return "<head><script src='/js/pharmacy/login-error.js' defer></script><link href='/css/error-model.css' rel='stylesheet'></head>" . "<div class='loginError alert alert-danger' id='loginError' role='alert' style='background-color: green;'>" . $spanClass . "User Created!" . "</div>";
+    }
+
+    public function inValidWeight()
+    {
+        $spanClass = "<span class='closebtn' id='closebtn' onclick='this.parentElement.style.display='none';'>&times;</span>";
+        return $this->scriptClass . $this->alertClass . $spanClass . "Invalid Weight" . $this->closeClass;
+    }
+
+    public function RequestSent()
+    {
+
+        $spanClass = "<span class='closebtn' id='closebtn' onclick='this.parentElement.style.display='none';'>&times;</span>";
+        return "<head><script src='/js/pharmacy/login-error.js' defer></script><link href='/css/error-model.css' rel='stylesheet'></head>" . "<div class='loginError alert alert-danger' id='loginError' role='alert' style='background-color: green;'>" . $spanClass . "New Medicine Request Sent!" . "</div>";
     }
 
     public function loginFirst()
@@ -93,4 +105,10 @@ class ExceptionHandler extends Logger
     }
 
 
+    public function RequestAccepted()
+    {
+
+        $spanClass = "<span class='closebtn' id='closebtn' onclick='this.parentElement.style.display='none';'>&times;</span>";
+        return "<head><script src='/js/pharmacy/login-error.js' defer></script><link href='/css/error-model.css' rel='stylesheet'></head>" . "<div class='loginError alert alert-danger' id='loginError' role='alert' style='background-color: green;'>" . $spanClass . " Lab Request Accepted !" . "</div>";
+    }
 }

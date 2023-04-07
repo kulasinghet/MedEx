@@ -30,8 +30,8 @@ class PharmacyAuthController extends Controller
                 return $this->render("/general/login.php");
             }
 
-            return $this->render('registrationPage/pharmacy_register_page/phr_register.php');
+            return $this->render('pharmacy/register-page.php');
         }
-        return $this->render('registrationPage/pharmacy_register_page/phr_register.php');
+        return $this->render('pharmacy/register-page.php');
     }
 }

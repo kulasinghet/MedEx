@@ -1,6 +1,5 @@
 <?php
 namespace app\controllers\supplier;
-
 use app\core\Controller;
 use app\core\Request;
 
@@ -76,6 +75,5 @@ class SupplierAuthController extends Controller
 
         return $this->render('/supplier/register.php');
     }
-
 
 }

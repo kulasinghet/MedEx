@@ -87,5 +87,33 @@ class PharmacyDashboardController extends Controller
         }
     }
 
+    public function profile(Request $request) {
+        if ($_SESSION['userType'] == 'pharmacy') {
+            if ($request -> isGet()) {
+                $this -> render("pharmacy/profile.php");
+            } else if ($request -> isPost()) {
+                $this -> render("pharmacy/profile.php");
+            } else {
+                return header('/login');
+            }
+        } else {
+            return header('/login');
+        }
+    }
+
+    public function settings(Request $request) {
+        if ($_SESSION['userType'] == 'pharmacy') {
+            if ($request -> isGet()) {
+                $this -> render("pharmacy/settings.php");
+            } else if ($request -> isPost()) {
+                $this -> render("pharmacy/settings.php");
+            } else {
+                return header('/login');
+            }
+        } else {
+            return header('/login');
+        }
+    }
+
 
 }

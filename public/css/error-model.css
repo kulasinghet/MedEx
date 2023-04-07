@@ -1,36 +1,35 @@
 /*error handling*/
 .alert {
-    position: fixed;
-    z-index: 100;
-    top: 5px;
-    right: 5px;
-    padding: 20px;
-    color: white;
-    margin-bottom: 15px;
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+  position: fixed;
+  z-index: 100;
+  top: 8vh;
+  right: 5px;
+  padding: 20px;
+  color: white;
+  margin-bottom: 15px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
 }
 
 .alert-danger {
-    background-color: #f44336; /* Red */
+  background-color: #f44336; /* Red */
 }
 
-
 .closebtn {
-    margin-left: 15px;
-    color: white;
-    font-weight: bold;
-    float: right;
-    font-size: 22px;
-    line-height: 20px;
-    cursor: pointer;
-    transition: 0.3s;
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
 /* When moving the mouse over the close button */
 .closebtn:hover {
-    color: black;
+  color: black;
 }
 
 .alert-success {
-    background-color: #4CAF50; /* Green */
+  background-color: #4caf50; /* Green */
 }

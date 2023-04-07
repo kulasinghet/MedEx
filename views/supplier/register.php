@@ -8,8 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MedEx | Supplier Registration</title>
 
-    <link rel="stylesheet" href="../scss2/vendor/demo.css" />
+
+    <link href="../css/supplier/formcss.css" rel="stylesheet" />
     <script src="../js/g28-style.js"></script>
+    <link href="../scss/vendor/demo.css" rel="stylesheet" />
     <!-- Font awesome kit -->
     <script src="https://kit.fontawesome.com/9b33f63a16.js" crossorigin="anonymous"></script>
 </head>
@@ -60,7 +62,7 @@
 
             </div>
         </div>
-        <div>
+    </div>
 </body>
 
 </html>

@@ -20,13 +20,9 @@ class SiteController extends Controller
 
     public function logout(Request $request)
     {
-        if ($request->isPost()) {
-            session_destroy();
-            return header("Location: /");
-        } else {
-            session_destroy();
-            return header("Location: /");
-        }
+        session_destroy();
+        return header("Location: /login");
+
     }
 
 
