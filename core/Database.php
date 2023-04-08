@@ -7,19 +7,23 @@ use mysqli;
 class Database
 {
 
-    private $servername = "medex.cf0qkfwuwc3x.us-east-1.rds.amazonaws.com";
-    private $username = "medex";
-    private $password = "rt182ifCi5I8WmSxfpp5";
-    private $dbname = "medex";
+    private $host = "medex-do-user-10529241-0.b.db.ondigitalocean.com";
+    private $port = "25060";
+    private $username = "doadmin";
+    private $password = "AVNS_1XxLJaaCdF9zuxtb5bR";
+    private $database = "medex";
+    private $sslmode = "REQUIRED";
     private mysqli $db;
 
     public function getConnection()
     {
-        $this->db = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
+        $this->db = new mysqli($this->host, $this->username, $this->password, $this->database, $this->port);
         if ($this->db->connect_error) {
+            Logger::logError("Connection failed: " . $this->db->connect_error);
             die("Connection failed: " . $this->db->connect_error);
         }
         return $this->db;
     }
+
 
 }
