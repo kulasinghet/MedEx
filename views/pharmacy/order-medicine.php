@@ -17,12 +17,39 @@ echo $components->sideBar('order-medicine');
 
 
                 <div class="nav-search">
-                    <form onsubmit="preventDefault();" role="search">
-                        <label for="search">Search for stuff</label>
-                        <input id="search" placeholder="Search Medicine . . ." required type="search" />
-                        <button type="submit">Go</button>
+                    <form onclick= "() => {
+						event.preventDefault();
+						showMedicineRowOnSearch(event);
+                          }">
+                        <label for="search-medicine">Search for stuff</label>
+                        <input id="search-medicine" placeholder="Search Medicine . . ." required type="search" />
+                        <button type="submit" onclick="showMedicineRowOnSearch(event)">Go</button>
                     </form>
                 </div>
+
+                <script>
+                    function showMedicineRowOnSearch(event) {
+
+						// prevent default form submit
+                        event.preventDefault();
+
+						// get search value
+                        let search = document.getElementById('search-medicine').value;
+                        let orderMedicineRows = document.getElementsByClassName('order-medicine-row-before');
+						if (search !== "") {
+							for (let i = 0; i < orderMedicineRows.length; i++) {
+								let medicineId = orderMedicineRows[i].getAttribute('data-id');
+								if (medicineId.toLowerCase().includes(search.toLowerCase())) {
+									// change class name
+									orderMedicineRows[i].className = 'order-medicine-row-after';
+								} else {
+									console.log("not found");
+									swal("Oops!", "Medicine not found!", "error");
+                                }
+							}
+						}
+                    }
+                </script>
 
 
 
@@ -46,7 +73,7 @@ echo $components->sideBar('order-medicine');
                     $medicines = $medicineEntity->getAllMedicines();
                     if ($medicines != null) {
                         foreach ($medicines as $medicine) {
-                            echo "<tr>";
+                            echo "<tr class='order-medicine-row-before' data-id='" . $medicine['medName'] . " " . $medicine['sciName'] . " " . $medicine['id'] . "'>";
                             echo "<td>" . $medicine['id'] . "</td>";
                             echo "<td>" . $medicine['medName'] . "</td>";
                             echo "<td>" . $medicine['sciName'] . "</td>";
@@ -69,7 +96,7 @@ echo $components->sideBar('order-medicine');
 //                    <div id="order-new-medicine">
 //                <a class="btn ' . ($selectedPage == 'order-medicine' ? 'disabled' : '') . '" href="/pharmacy/order-medicine"> <i class="fa-solid fa-truck-moving"></i> Order Medicine </a>
 //            </div>
-                    echo "<div id='order-new-medicine' style='position: absolute; bottom: 0; right: 0; margin: 1rem;'>";
+                    echo "<div id='order-new-medicine' style='position: fixed; bottom: 0; right: 0; margin: 1rem;'>";
                     echo "<a class='btn' href='/pharmacy/order-medicine'> <i class='fa-solid fa-truck-moving'></i> Order Medicine </a>";
                     echo "</div>";
 

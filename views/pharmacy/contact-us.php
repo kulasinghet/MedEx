@@ -20,7 +20,7 @@ echo $components->sideBar('contact-us');
                 <form>
                     <div class="form-group">
                         <label for="exampleFormControlInput1">Subject</label>
-                        <input type="email" class="form-input" id="exampleFormControlInput1" placeholder="Subject">
+                        <input type="text" class="form-input" id="exampleFormControlInput1" placeholder="Subject">
                     </div>
 
                     <div class="form-group">

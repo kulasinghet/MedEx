@@ -123,3 +123,7 @@ Unknown column 'drivingLicenseName' in 'field list'
 2023/02/09 21:17:13 Table 'medex.pharmacy_order' doesn't exist
 2023/02/09 21:19:01 Unknown column 'order_date' in 'order clause'
 2023/02/09 22:04:14 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ASEC' at line 1
+2023/04/08 11:51:00 Table 'defaultdb.login' doesn't exist
+2023/04/08 11:51:01 Table 'defaultdb.login' doesn't exist
+2023/04/08 11:52:14 Table 'defaultdb.login' doesn't exist
+2023/04/08 11:52:15 Table 'defaultdb.login' doesn't exist
