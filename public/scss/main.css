@@ -3037,6 +3037,36 @@ when users will click/enter button(link) browser will add a #id in a url and whe
   margin-bottom: 1.5rem;
 }
 
+.selector-group {
+  --g28-selector-group-flex-derection: row;
+  --g28-selector-group-align-items: center;
+  --g28-selector-group-justify-content: flex-start;
+  --g28-selector-group-margin-top: 0;
+  position: relative;
+  display: flex;
+  gap: 0.8rem;
+  flex-direction: var(--g28-selector-group-flex-derection);
+  align-items: var(--g28-selector-group-align-items);
+  justify-content: var(--g28-selector-group-justify-content);
+  margin-bottom: 1rem;
+  padding-top: var(--g28-selector-group-margin-top);
+}
+.selector-group.vertical {
+  --g28-selector-group-flex-derection: column;
+  --g28-selector-group-align-items: start;
+  --g28-selector-group-justify-content: center;
+}
+.selector-group.has-label {
+  --g28-selector-group-margin-top: 2rem;
+}
+.selector-group > label {
+  font-size: 0.8rem;
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
 button {
   border-style: none;
 }
@@ -3221,9 +3251,9 @@ textarea.form-input {
     --s: .5;
   }
 }
-.form-check {
-  margin: 16px 0;
+.form-selector {
   position: relative;
+  display: inline-block;
 }
 
 .scroll {

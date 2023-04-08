@@ -33,3 +33,37 @@ $button-group-margin-bottom: calc($form-group-margin-bottom * 1.5) !default;
   justify-content: center;
   margin-bottom: $button-group-margin-bottom;
 }
+
+.selector-group {
+  --#{$prefix}selector-group-flex-derection: row;
+  --#{$prefix}selector-group-align-items: center;
+  --#{$prefix}selector-group-justify-content: flex-start;
+  --#{$prefix}selector-group-margin-top: 0;
+
+  position: relative;
+  display: flex;
+  gap: .8rem;
+  flex-direction: var(--#{$prefix}selector-group-flex-derection);
+  align-items: var(--#{$prefix}selector-group-align-items);
+  justify-content: var(--#{$prefix}selector-group-justify-content);
+  margin-bottom: $form-group-margin-bottom;
+  padding-top: var(--#{$prefix}selector-group-margin-top);
+
+  &.vertical {
+    --#{$prefix}selector-group-flex-derection: column;
+    --#{$prefix}selector-group-align-items: start;
+    --#{$prefix}selector-group-justify-content: center;
+  }
+
+  &.has-label {
+    --#{$prefix}selector-group-margin-top: 2rem;
+  }
+
+  > label {
+    font-size: $form-group-font-size;
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
