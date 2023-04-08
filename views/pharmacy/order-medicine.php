@@ -15,7 +15,6 @@ echo $components->sideBar('order-medicine');
         <div class="row" id="inventory-page-row">
             <div class="col" id="inventory-page-col">
 
-
                 <div class="nav-search">
                     <form onclick= "() => {
 						event.preventDefault();
@@ -24,8 +23,11 @@ echo $components->sideBar('order-medicine');
                         <label for="search-medicine">Search for stuff</label>
                         <input id="search-medicine" placeholder="Search Medicine . . ." required type="search" />
                         <button type="submit" onclick="showMedicineRowOnSearch(event)">Go</button>
+
+
                     </form>
                 </div>
+
 
                 <script>
                     function showMedicineRowOnSearch(event) {
@@ -36,19 +38,23 @@ echo $components->sideBar('order-medicine');
 						// get search value
                         let search = document.getElementById('search-medicine').value;
                         let orderMedicineRows = document.getElementsByClassName('order-medicine-row-before');
+						let flag = false;
 						if (search !== "") {
 							for (let i = 0; i < orderMedicineRows.length; i++) {
 								let medicineId = orderMedicineRows[i].getAttribute('data-id');
 								if (medicineId.toLowerCase().includes(search.toLowerCase())) {
 									// change class name
 									orderMedicineRows[i].className = 'order-medicine-row-after';
-								} else {
-									console.log("not found");
-									swal("Oops!", "Medicine not found!", "error");
-                                }
+									document.getElementById('clear-filter').classList.remove('clear-filter-icon-hidden');
+									flag = true;
+								}
 							}
+							if (flag === false) {
+                                swal("No medicine found", "Please try again", "error");
+                            }
 						}
                     }
+
                 </script>
 
 
