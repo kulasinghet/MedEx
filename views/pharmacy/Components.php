@@ -9,6 +9,8 @@ class Components
         $additionalCSS = "";
         if ($title == "Order Medicine") {
             $additionalCSS = "<link href='../css/pharmacy/order-medicine.css' rel='stylesheet'>";
+        } else if ($title == "Order History") {
+            $additionalCSS = "<link href='../css/pharmacy/orders.css' rel='stylesheet'>";
         }
 
         return <<<HTML
