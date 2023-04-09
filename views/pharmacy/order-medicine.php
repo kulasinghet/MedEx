@@ -66,10 +66,10 @@ echo $components->sideBar('order-medicine');
                     <tr>
                         <th>Medicine ID</th>
                         <th>Medicine</th>
-                        <th>Medicine Scientific Name</th>
-                        <th>Weight</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
+                        <th style='text-align: center'>Medicine Scientific Name</th>
+                        <th style='text-align: center'>Weight</th>
+                        <th style='text-align: center'>Price</th>
+                        <th style='text-align: center'>Quantity</th>
                     </tr>
 
 
