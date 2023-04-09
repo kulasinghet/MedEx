@@ -55,6 +55,23 @@ echo $components->sideBar('order-medicine');
 						}
                     }
 
+					function handleQtyChange(name) {
+						let medicineID = name;
+						let medicineRow = document.getElementById('order-medicine-row-' + medicineID);
+						let quantity = document.getElementById('order-medicine-quantity-' + medicineID).value;
+						let price = medicineRow.children[4].innerHTML;
+						let totalPrice = parseInt(quantity) * parseInt(price);
+						document.getElementById('total-price-' + medicineID).innerHTML = totalPrice.toString();
+
+						let totalOrderValue = 0;
+						let totalPrices = document.getElementsByClassName('total-price-column');
+						for (let i = 0; i < totalPrices.length; i++) {
+							totalOrderValue += parseInt(totalPrices[i].innerHTML);
+						}
+						document.getElementById('total-order-value').innerHTML = totalOrderValue.toString();
+
+                    }
+
                 </script>
 
 
@@ -70,6 +87,7 @@ echo $components->sideBar('order-medicine');
                         <th style='text-align: center'>Weight</th>
                         <th style='text-align: center'>Price</th>
                         <th style='text-align: center'>Quantity</th>
+                        <th style='text-align: center'>Total Price</th>
                     </tr>
 
 
@@ -80,16 +98,22 @@ echo $components->sideBar('order-medicine');
                     echo "<form action='/pharmacy/order-medicine' method='post' id='order-medicine-form'>";
                     if ($medicines != null) {
                         foreach ($medicines as $medicine) {
-                            echo "<tr class='order-medicine-row-before' data-id='" . $medicine['medName'] . " " . $medicine['sciName'] . " " . $medicine['id'] . "'>";
+                            echo "<tr class='order-medicine-row-before' data-id='" . $medicine['medName'] . " " . $medicine['sciName'] . " " . $medicine['id'] . "' id='order-medicine-row-" . $medicine['id'] . "'>";
                             echo "<td>" . $medicine['id'] . "</td>";
                             echo "<td>" . $medicine['medName'] . "</td>";
                             echo "<td style='text-align: center'>" . $medicine['sciName'] . "</td>";
                             echo "<td style='text-align: center'>" . $medicine['weight'] . " (mg) " . "</td>";
                             echo "<td style='text-align: center'>" . $pharmacyOrderMedicineController->getPrice($medicine['id']) . "</td>";
-                            echo "<td  style='text-align: center'><input type='number' name='" . $medicine['id'] . "' min='0' max='100' placeholder='0' class='order-medicine-quantity' required></td>";
+                            echo "<td  style='text-align: center'><input type='number' name='" . $medicine['id'] . "' min='0' max='100' placeholder='0' class='order-medicine-quantity' required onchange='handleQtyChange(name)' id='order-medicine-quantity-" . $medicine['id'] . "'></td>";
+                            echo "<td style='text-align: center' id='total-price-" . $medicine['id'] . "' class='total-price-column'>0</td>";
                             echo "</tr>";
 
                         }
+                        echo "<tr style='background-color: #f2f2f2; font-weight: bold'>";
+                        echo "<td colspan='2'> Total Order Value </td>";
+                        echo "<td colspan='4'></td>";
+                        echo "<td id='total-order-value' style='text-align: center'>0</td>";
+                        echo "</tr>";
                     } else {
                         echo "<tr>";
                         echo "<td colspan='6' style='text-align: center'>No medicines available</td>";
