@@ -75,9 +75,6 @@ h6 {
 .disabled {
   pointer-events: none;
   cursor: default;
-  color: #ffffff !important;
-  background: #6c757d !important;
-  border: transparent 1px solid !important;
 }
 
 .container {
@@ -2942,17 +2939,28 @@ when users will click/enter button(link) browser will add a #id in a url and whe
 }
 
 .button-group {
+  --g28-button-group-justify-content: flex-start;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: var(--g28-button-group-justify-content);
   margin-bottom: 1.5rem;
+  padding: 0.5rem 0;
+}
+.button-group * {
+  margin: 0;
+}
+.button-group.center {
+  --g28-button-group-justify-content: center;
+}
+.button-group.right {
+  --g28-button-group-justify-content: flex-end;
 }
 
 .selector-group {
   --g28-selector-group-flex-derection: row;
   --g28-selector-group-align-items: center;
   --g28-selector-group-justify-content: flex-start;
-  --g28-selector-group-margin-top: 0;
+  --g28-selector-group-padding-top: 0;
   position: relative;
   display: flex;
   gap: 0.8rem;
@@ -2960,7 +2968,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
   align-items: var(--g28-selector-group-align-items);
   justify-content: var(--g28-selector-group-justify-content);
   margin-bottom: 1rem;
-  padding-top: var(--g28-selector-group-margin-top);
+  padding-top: var(--g28-selector-group-padding-top);
 }
 .selector-group.vertical {
   --g28-selector-group-flex-derection: column;
@@ -2968,7 +2976,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
   --g28-selector-group-justify-content: center;
 }
 .selector-group.has-label {
-  --g28-selector-group-margin-top: 2rem;
+  --g28-selector-group-padding-top: 2rem;
 }
 .selector-group > label {
   font-size: 0.8rem;
@@ -2990,7 +2998,7 @@ button {
   position: relative;
   font-size: 1rem;
   color: #495057;
-  background-color: #f7f7f7;
+  background-color: #fff;
   background-clip: padding-box;
   border: 1px solid rgba(106, 148, 210, 0.53);
   border-radius: 0.4rem;
@@ -3023,6 +3031,14 @@ button {
 .form-input::placeholder {
   color: #92a7be;
   opacity: 1;
+}
+.form-input.disabled {
+  color: #c0c0c0 !important;
+  background: #efefef !important;
+  border: 1px solid #b5bccf;
+}
+.form-input.disabled::placeholder {
+  color: #c0c0c0 !important;
 }
 
 textarea.form-input, select[multiple].form-input {
@@ -3167,6 +3183,31 @@ textarea.form-input {
   display: inline-block;
 }
 
+@supports (-webkit-appearance: none) or (-moz-appearance: none) {
+  .form-input[type=file]::file-selector-button {
+    position: absolute;
+    top: 0;
+    right: -4px;
+    height: 100%;
+    padding: 10px 20px;
+    color: #45588c;
+    background: linear-gradient(to top, #c4c5c7 0%, #dcdddf 52%, #ebebeb 100%);
+    border: none;
+    border-left: 1px solid rgba(138, 138, 138, 0.2);
+    box-shadow: -1px 0 4px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    transition: background 0.2s ease-in-out;
+  }
+  .form-input[type=file]::file-selector-button:hover {
+    color: #071232;
+    background: linear-gradient(to top, #accbee 0%, #e7f0fd 100%);
+    box-shadow: -1px 0 4px rgba(43, 53, 84, 0.15);
+  }
+  .form-input[type=file]::file-selector-button:active {
+    color: #b5bccf;
+    background: radial-gradient(circle at 10% 20%, rgb(59, 149, 237) 0%, rgb(7, 91, 173) 90%);
+  }
+}
 form {
   width: 500px;
 }

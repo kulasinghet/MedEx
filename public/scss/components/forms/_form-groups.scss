@@ -28,17 +28,32 @@ $button-group-margin-bottom: calc($form-group-margin-bottom * 1.5) !default;
 }
 
 .button-group {
+  --#{$prefix}button-group-justify-content: flex-start;
+
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: var(--#{$prefix}button-group-justify-content);
   margin-bottom: $button-group-margin-bottom;
+  padding: .5rem 0;
+
+  * {
+    margin: 0;
+  }
+
+  &.center {
+    --#{$prefix}button-group-justify-content: center;
+  }
+
+  &.right {
+    --#{$prefix}button-group-justify-content: flex-end;
+  }
 }
 
 .selector-group {
   --#{$prefix}selector-group-flex-derection: row;
   --#{$prefix}selector-group-align-items: center;
   --#{$prefix}selector-group-justify-content: flex-start;
-  --#{$prefix}selector-group-margin-top: 0;
+  --#{$prefix}selector-group-padding-top: 0;
 
   position: relative;
   display: flex;
@@ -47,7 +62,7 @@ $button-group-margin-bottom: calc($form-group-margin-bottom * 1.5) !default;
   align-items: var(--#{$prefix}selector-group-align-items);
   justify-content: var(--#{$prefix}selector-group-justify-content);
   margin-bottom: $form-group-margin-bottom;
-  padding-top: var(--#{$prefix}selector-group-margin-top);
+  padding-top: var(--#{$prefix}selector-group-padding-top);
 
   &.vertical {
     --#{$prefix}selector-group-flex-derection: column;
@@ -56,7 +71,7 @@ $button-group-margin-bottom: calc($form-group-margin-bottom * 1.5) !default;
   }
 
   &.has-label {
-    --#{$prefix}selector-group-margin-top: 2rem;
+    --#{$prefix}selector-group-padding-top: 2rem;
   }
 
   > label {

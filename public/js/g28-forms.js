@@ -7,4 +7,5 @@ document.querySelectorAll('.selector-group').forEach(selectorGrp => {
   }
 });
 
+// confirmation
 console.log('Forms: JS loaded successfully!');

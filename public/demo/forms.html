@@ -21,6 +21,10 @@
             <input type="email" class="form-input" id="exampleFormControlInput1" placeholder="name@example.com">
         </div>
         <div class="form-group">
+            <label for="exampleFormControlInput2">Textbox disabled</label>
+            <input type="email" class="form-input disabled" id="exampleFormControlInput2" placeholder="Disabled text" disabled>
+        </div>
+        <div class="form-group">
             <label for="exampleFormControlSelect1">Example select</label>
             <select class="form-input" id="exampleFormControlSelect1">
                 <option>1</option>
@@ -44,6 +48,10 @@
             <label for="exampleFormControlTextarea1">Example textarea</label>
             <textarea class="form-input" id="exampleFormControlTextarea1" rows="3"></textarea>
         </div>
+        <div class="form-group">
+            <label for="exampleFormFileUpload1">Example File Upload</label>
+            <input class="form-input" type="file" id="exampleFormFileUpload1" accept="image/*">
+        </div>
         <div class="selector-group">
             <label class="form-check-label">Horizontal(Default) Selector Group</label>
             <div class="form-selector">
@@ -56,7 +64,7 @@
             </div>
         </div>
         <div class="selector-group vertical">
-            <label class="form-check-label">Vertical Selector Group</label>
+            <label>Vertical Selector Group</label>
             <div class="form-selector">
                 <input type="checkbox" class="form-input" id="exampleCheck2">
                 <label class="form-check-label" for="exampleCheck2">Check me out</label>
@@ -66,7 +74,15 @@
                 <label class="form-check-label" for="exampleRadio2">Check me out</label>
             </div>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="button-group">
+            <button type="submit" class="btn btn-primary">Submit: Default(left align)</button>
+        </div>
+        <div class="button-group center">
+            <button type="submit" class="btn btn-primary">Submit: Center align</button>
+        </div>
+        <div class="button-group right">
+            <button type="submit" class="btn btn-primary">Submit: Right align</button>
+        </div>
     </form>
 </div>
 
