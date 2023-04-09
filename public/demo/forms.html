@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta
             name="viewport"
-            content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+            content="width=device-width, initial-scale=1.0"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Forms Demo</title>
@@ -21,11 +21,11 @@
             <input type="email" class="form-input" id="exampleFormControlInput1" placeholder="name@example.com">
         </div>
         <div class="form-group">
-            <label for="exampleFormControlInput2">Textbox disabled</label>
+            <label for="exampleFormControlInput2">TextBox disabled</label>
             <input type="email" class="form-input disabled" id="exampleFormControlInput2" placeholder="Disabled text" disabled>
         </div>
         <div class="form-group">
-            <label for="exampleFormControlSelect1">Example select</label>
+            <label for="exampleFormControlSelect1">SelectBox (legacy)</label>
             <select class="form-input" id="exampleFormControlSelect1">
                 <option>1</option>
                 <option>2</option>
@@ -35,7 +35,40 @@
             </select>
         </div>
         <div class="form-group">
-            <label for="exampleFormControlSelect2">Example multiple select</label>
+            <label>SelectBox (new: g28 style)</label>
+            <details class="form-input">
+                <summary class="radios">
+                    <input type="radio" name="item" id="default" class="form-input-placeholder" title="Please select an item" checked>
+                    <input type="radio" name="item" id="item1" title="Item 1">
+                    <input type="radio" name="item" id="item2" title="Item 2">
+                    <input type="radio" name="item" id="item3" title="Item 3">
+                    <input type="radio" name="item" id="item4" title="Item 4">
+                    <input type="radio" name="item" id="item5" title="Item 5">
+                </summary>
+                <ul class="list">
+                    <li>
+                        <label for="item1">
+                            Item 1
+                            <span></span>
+                        </label>
+                    </li>
+                    <li>
+                        <label for="item2">Item 2</label>
+                    </li>
+                    <li>
+                        <label for="item3">Item 3</label>
+                    </li>
+                    <li>
+                        <label for="item4">Item 4</label>
+                    </li>
+                    <li>
+                        <label for="item5">Item 5</label>
+                    </li>
+                </ul>
+            </details>
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlSelect2">SelectBox: multiple selections</label>
             <select multiple class="form-input" id="exampleFormControlSelect2">
                 <option>1</option>
                 <option>2</option>
@@ -45,11 +78,11 @@
             </select>
         </div>
         <div class="form-group">
-            <label for="exampleFormControlTextarea1">Example textarea</label>
+            <label for="exampleFormControlTextarea1">Textarea</label>
             <textarea class="form-input" id="exampleFormControlTextarea1" rows="3"></textarea>
         </div>
         <div class="form-group">
-            <label for="exampleFormFileUpload1">Example File Upload</label>
+            <label for="exampleFormFileUpload1">File Upload</label>
             <input class="form-input" type="file" id="exampleFormFileUpload1" accept="image/*">
         </div>
         <div class="selector-group">

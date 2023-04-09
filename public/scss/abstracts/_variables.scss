@@ -135,3 +135,12 @@ $grid-breakpoints: (
 $grid-columns: 12 !default;
 $grid-rows: 9 !default;
 // ------------------- Grid System ------------------- //
+
+// ------------------- Inputs ------------------- //
+$input-font-size: $h6-font-size !default;
+$input-padding: .75rem !default;
+$input-border-radius: .4rem !default;
+$input-placeholder-color: #92a7be;
+
+$selectbox-list-max-visible-items: 4 !default;
+// ------------------- Inputs ------------------- //
