@@ -77,15 +77,16 @@ echo $components->sideBar('order-medicine');
                     $medicineEntity = new \app\controllers\entity\MedicineEntity();
                     $pharmacyOrderMedicineController = new \app\controllers\pharmacy\PharmacyOrderMedicineController();
                     $medicines = $medicineEntity->getAllMedicines();
+                    echo "<form action='/pharmacy/order-medicine' method='post' id='order-medicine-form'>";
                     if ($medicines != null) {
                         foreach ($medicines as $medicine) {
                             echo "<tr class='order-medicine-row-before' data-id='" . $medicine['medName'] . " " . $medicine['sciName'] . " " . $medicine['id'] . "'>";
                             echo "<td>" . $medicine['id'] . "</td>";
                             echo "<td>" . $medicine['medName'] . "</td>";
-                            echo "<td>" . $medicine['sciName'] . "</td>";
-                            echo "<td>" . $medicine['weight'] . "</td>";
-                            echo "<td>" . $pharmacyOrderMedicineController->getPrice($medicine['id']) . "</td>";
-                            echo "<td><input type='number' name='quantity' id='quantity' placeholder='1 2 3 . . .'></td>";
+                            echo "<td style='text-align: center'>" . $medicine['sciName'] . "</td>";
+                            echo "<td style='text-align: center'>" . $medicine['weight'] . " (mg) " . "</td>";
+                            echo "<td style='text-align: center'>" . $pharmacyOrderMedicineController->getPrice($medicine['id']) . "</td>";
+                            echo "<td  style='text-align: center'><input type='number' name='" . $medicine['id'] . "' min='0' max='100' placeholder='0' class='order-medicine-quantity' required></td>";
                             echo "</tr>";
 
                         }
@@ -94,22 +95,86 @@ echo $components->sideBar('order-medicine');
                         echo "<td colspan='6' style='text-align: center'>No medicines available</td>";
                         echo "</tr>";
                     }
-
+                    echo "</form>";
                     ?>
+
                 </table>
                 <?php
                 if ($medicines != null) {
-//                    <div id="order-new-medicine">
-//                <a class="btn ' . ($selectedPage == 'order-medicine' ? 'disabled' : '') . '" href="/pharmacy/order-medicine"> <i class="fa-solid fa-truck-moving"></i> Order Medicine </a>
-//            </div>
                     echo "<div id='order-new-medicine' style='position: fixed; bottom: 0; right: 0; margin: 1rem;'>";
-                    echo "<a class='btn' href='/pharmacy/order-medicine'> <i class='fa-solid fa-truck-moving'></i> Order Medicine </a>";
+                    echo "<a class='btn' onclick='clickOrderNowButton()'> <i class='fa-solid fa-truck-moving'></i> Order Medicine </a>";
                     echo "</div>";
 
                 }
                 ?>
-                <!--                        </form>-->
-                <!--                    </div>-->
+
+
+                <script>
+                    function clickOrderNowButton() {
+
+						// get all the rows in the form
+                        let form = document.getElementById('order-medicine-form').elements;
+						let orderedMedicines = [];
+						for (let i = 0; i < form.length; i++) {
+                            let quantity = form[i].value;
+
+                            if (quantity > 0) {
+                                let medicineRow = {
+                                    medicineId: document.getElementById('order-medicine-table').rows[i + 1].cells[0].innerHTML,
+                                    medicineName: document.getElementById('order-medicine-table').rows[i + 1].cells[1].innerHTML,
+                                    medicineScientificName: document.getElementById('order-medicine-table').rows[i + 1].cells[2].innerHTML,
+                                    medicineWeight: document.getElementById('order-medicine-table').rows[i + 1].cells[3].innerHTML,
+                                    medicinePrice: document.getElementById('order-medicine-table').rows[i + 1].cells[4].innerHTML,
+                                    medicineQuantity: quantity,
+                                    totalPrice: parseInt(quantity) * parseInt(document.getElementById('order-medicine-table').rows[i + 1].cells[4].innerHTML)
+                                }
+								console.log(medicineRow);
+                                orderedMedicines.push(medicineRow);
+                            }
+						}
+
+						let total = 0;
+						for (let key in orderedMedicines) {
+                            total += parseInt(orderedMedicines[key].totalPrice);
+                        }
+
+                        let medicineInformationForSwal = '<table><th>Medicine ID</th><th>Medicine</th> <th>Medicine Scientific Name</th><th>Weight</th><th>Price</th><th>Quantity</th><th>Total Price</th>';
+                        for (let key in orderedMedicines) {
+                            medicineInformationForSwal += '<tr>';
+                            medicineInformationForSwal += '<td>' + orderedMedicines[key].medicineId + '</td>';
+                            medicineInformationForSwal += '<td>' + orderedMedicines[key].medicineName + '</td>';
+                            medicineInformationForSwal += '<td style="text-align: center">' + orderedMedicines[key].medicineScientificName + '</td>';
+                            medicineInformationForSwal += '<td style="text-align: center">' + orderedMedicines[key].medicineWeight + '</td>';
+                            medicineInformationForSwal += '<td style="text-align: center">' + orderedMedicines[key].medicinePrice + '</td>';
+                            medicineInformationForSwal += '<td style="text-align: center">' + orderedMedicines[key].medicineQuantity + '</td>';
+                            medicineInformationForSwal += '<td style="text-align: center">' + orderedMedicines[key].totalPrice + '</td>';
+                            medicineInformationForSwal += '</tr>';
+                        }
+                        medicineInformationForSwal += '<tr style="color: #071232; font-size: 1rem; font-weight: bold"><td>Total</td><td colspan="5"></td><td style="text-align: center">' + total + '</td></tr>';
+
+						console.log(orderedMedicines);
+
+						if (total > 0) {
+							swal({
+								title: "Order Summary",
+								content: {
+                                    element: "div",
+                                    attributes: {
+                                        innerHTML: medicineInformationForSwal
+                                    }
+                                },
+								showCancelButton: true,
+								confirmButtonText: "Order Now",
+								cancelButtonText: "Cancel",
+							})
+						} else {
+                            swal("No medicine selected", "Please select medicine to order", "error");
+                        }
+
+                    }
+
+                </script>
+
             </div>
         </div>
     </div>
