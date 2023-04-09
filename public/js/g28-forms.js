@@ -12,6 +12,7 @@ document.querySelectorAll('.selector-group').forEach(selectorGrp => {
 
 // Initializing SelectBoxes
 const selectBoxes = {};
+const itmListTimeout = 1000;
 
 document.querySelectorAll('details.form-selectbox').forEach((selectBox, index) => {
   const list = selectBox.querySelector('ul');
@@ -32,7 +33,7 @@ document.querySelectorAll('details.form-selectbox').forEach((selectBox, index) =
       selectBoxes[index].timeout = setTimeout(() => {
         selectBox.removeAttribute('open');
         logger("mouseleave triggered on the list of SelectBox[" + index + "]");
-      }, 1500);
+      }, itmListTimeout);
     }
   });
 
@@ -40,15 +41,15 @@ document.querySelectorAll('details.form-selectbox').forEach((selectBox, index) =
     setTimeout(() => {
       selectBox.removeAttribute('open');
       logger("mouseclick triggered on the list of SelectBox[" + index + "]");
-    }, 100);
+    }, itmListTimeout * 10 / 100);
 
     // prevent triggering mouseleave event
     setTimeout(() => {
       clearTimeout(selectBoxes[index].timeout);
-    }, 1000);
+    }, itmListTimeout * 80 / 100);
   });
 })
 
 
 // confirmation
-logger('Forms: JS loaded successfully!');
+logger('[g28 style: Forms] is loaded successfully!');
