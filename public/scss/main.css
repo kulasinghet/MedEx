@@ -2608,7 +2608,7 @@ nav .nav-inner ul li a:active:not(.disabled) {
   width: calc(100% - 250px) !important;
 }
 
-.sidebar-foldable {
+.sidebar-collapsible {
   --g28-sidebar-itm-color: #071232;
   position: fixed;
   z-index: 90;
@@ -2617,24 +2617,24 @@ nav .nav-inner ul li a:active:not(.disabled) {
   background: #ffffff;
   box-shadow: 1px 0 3px rgba(0, 0, 0, 0.15);
 }
-.sidebar-foldable .sidebar-inner {
+.sidebar-collapsible .sidebar-inner {
   position: relative;
   width: 100%;
   height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
 }
-.sidebar-foldable .sidebar-inner div {
+.sidebar-collapsible .sidebar-inner div {
   height: inherit;
   width: inherit;
 }
-.sidebar-foldable .sidebar-inner .sidebar-header {
+.sidebar-collapsible .sidebar-inner .sidebar-header {
   --g28-nav-position: absolute;
   --g28-nav-z-index: 95;
   --g28-nav-width: 100%;
   --g28-nav-bg: #fbfbfb;
 }
-.sidebar-foldable .sidebar-inner .sidebar-header .sidebar-logo {
+.sidebar-collapsible .sidebar-inner .sidebar-header .sidebar-logo {
   display: inline-block;
   overflow: hidden;
   padding: 5px;
@@ -2642,23 +2642,23 @@ nav .nav-inner ul li a:active:not(.disabled) {
   height: auto;
   flex: 0 0 auto;
 }
-.sidebar-foldable .sidebar-inner .sidebar-header .sidebar-logo img {
+.sidebar-collapsible .sidebar-inner .sidebar-header .sidebar-logo img {
   width: 100%;
   vertical-align: center;
 }
-.sidebar-foldable .sidebar-inner .sidebar-context {
+.sidebar-collapsible .sidebar-inner .sidebar-context {
   position: inherit;
   display: flex;
   flex-direction: column;
   align-items: stretch;
   padding: calc(3.5rem + 1rem) 0 1rem 0;
 }
-.sidebar-foldable .sidebar-inner .sidebar-context ul {
+.sidebar-collapsible .sidebar-inner .sidebar-context ul {
   list-style-type: none;
   margin-bottom: 64px;
   padding: 0;
 }
-.sidebar-foldable .sidebar-inner .sidebar-context ul li {
+.sidebar-collapsible .sidebar-inner .sidebar-context ul li {
   display: inline-flex;
   align-items: center;
   width: 100%;
@@ -2668,42 +2668,42 @@ nav .nav-inner ul li a:active:not(.disabled) {
   font-weight: 600;
   cursor: pointer;
 }
-.sidebar-foldable .sidebar-inner .sidebar-context ul li a {
+.sidebar-collapsible .sidebar-inner .sidebar-context ul li a {
   width: inherit;
   height: inherit;
   text-decoration: none;
   color: var(--g28-sidebar-itm-color);
 }
-.sidebar-foldable .sidebar-inner .sidebar-context ul li a:visited {
+.sidebar-collapsible .sidebar-inner .sidebar-context ul li a:visited {
   color: var(--g28-sidebar-itm-color);
 }
-.sidebar-foldable .sidebar-inner .sidebar-context ul li a.disabled {
+.sidebar-collapsible .sidebar-inner .sidebar-context ul li a.disabled {
   --g28-sidebar-itm-color: #f6f9ff;
 }
-.sidebar-foldable .sidebar-inner .sidebar-context ul li.disabled {
+.sidebar-collapsible .sidebar-inner .sidebar-context ul li.disabled {
   --g28-sidebar-itm-color: #f6f9ff;
 }
-.sidebar-foldable .sidebar-inner .sidebar-context .main-buttons > li {
+.sidebar-collapsible .sidebar-inner .sidebar-context .main-buttons > li {
   padding: 16px 52px;
 }
-.sidebar-foldable .sidebar-inner .sidebar-context .main-buttons > li i {
+.sidebar-collapsible .sidebar-inner .sidebar-context .main-buttons > li i {
   position: absolute;
   left: 16px;
 }
-.sidebar-foldable .sidebar-inner .sidebar-context .main-buttons > li:hover, .sidebar-foldable .sidebar-inner .sidebar-context .main-buttons > li:active, .sidebar-foldable .sidebar-inner .sidebar-context .main-buttons > li:focus {
+.sidebar-collapsible .sidebar-inner .sidebar-context .main-buttons > li:hover, .sidebar-collapsible .sidebar-inner .sidebar-context .main-buttons > li:active, .sidebar-collapsible .sidebar-inner .sidebar-context .main-buttons > li:focus {
   background-color: #1e69fe;
 }
-.sidebar-foldable .sidebar-inner .sidebar-context .main-buttons > li:hover i, .sidebar-foldable .sidebar-inner .sidebar-context .main-buttons > li:active i, .sidebar-foldable .sidebar-inner .sidebar-context .main-buttons > li:focus i {
+.sidebar-collapsible .sidebar-inner .sidebar-context .main-buttons > li:hover i, .sidebar-collapsible .sidebar-inner .sidebar-context .main-buttons > li:active i, .sidebar-collapsible .sidebar-inner .sidebar-context .main-buttons > li:focus i {
   --g28-i-color: rgba(255, 255, 255, 0.6);
 }
-.sidebar-foldable .sidebar-inner .sidebar-context .main-buttons > li:hover > a, .sidebar-foldable .sidebar-inner .sidebar-context .main-buttons > li:active > a, .sidebar-foldable .sidebar-inner .sidebar-context .main-buttons > li:focus > a {
+.sidebar-collapsible .sidebar-inner .sidebar-context .main-buttons > li:hover > a, .sidebar-collapsible .sidebar-inner .sidebar-context .main-buttons > li:active > a, .sidebar-collapsible .sidebar-inner .sidebar-context .main-buttons > li:focus > a {
   --g28-sidebar-itm-color: #f6f9ff;
 }
-.sidebar-foldable .sidebar-inner .sidebar-context .main-buttons > li:hover .hidden, .sidebar-foldable .sidebar-inner .sidebar-context .main-buttons > li:active .hidden, .sidebar-foldable .sidebar-inner .sidebar-context .main-buttons > li:focus .hidden {
+.sidebar-collapsible .sidebar-inner .sidebar-context .main-buttons > li:hover .hidden, .sidebar-collapsible .sidebar-inner .sidebar-context .main-buttons > li:active .hidden, .sidebar-collapsible .sidebar-inner .sidebar-context .main-buttons > li:focus .hidden {
   left: 52px;
   box-shadow: -1px 0 3px rgba(0, 0, 0, 0.15);
 }
-.sidebar-foldable .sidebar-inner .sidebar-context .hidden {
+.sidebar-collapsible .sidebar-inner .sidebar-context .hidden {
   width: 198px;
   height: 100%;
   padding: calc(3.5rem + 1rem) 0 1rem 0;
@@ -2715,14 +2715,14 @@ nav .nav-inner ul li a:active:not(.disabled) {
   color: #f6f9ff;
   transition: 0.4s ease-out 0.1s;
 }
-.sidebar-foldable .sidebar-inner .sidebar-context .hidden li {
+.sidebar-collapsible .sidebar-inner .sidebar-context .hidden li {
   --g28-sidebar-itm-color: #f6f9ff;
   padding: 16px 24px;
 }
-.sidebar-foldable .sidebar-inner .sidebar-context .hidden li:hover {
+.sidebar-collapsible .sidebar-inner .sidebar-context .hidden li:hover {
   background: #3277fe;
 }
-.sidebar-foldable .sidebar-inner .sidebar-context .hidden li:active, .sidebar-foldable .sidebar-inner .sidebar-context .hidden li:focus {
+.sidebar-collapsible .sidebar-inner .sidebar-context .hidden li:active, .sidebar-collapsible .sidebar-inner .sidebar-context .hidden li:focus {
   background: #012c82;
 }
 
