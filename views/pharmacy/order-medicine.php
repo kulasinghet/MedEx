@@ -152,7 +152,6 @@ echo $components->sideBar('order-medicine');
                                     medicineQuantity: quantity,
                                     totalPrice: parseInt(quantity) * parseInt(document.getElementById('order-medicine-table').rows[i + 1].cells[4].innerHTML)
                                 }
-								console.log(medicineRow);
                                 orderedMedicines.push(medicineRow);
                             }
 						}
@@ -176,21 +175,40 @@ echo $components->sideBar('order-medicine');
                         }
                         medicineInformationForSwal += '<tr style="color: #071232; font-size: 1rem; font-weight: bold"><td>Total</td><td colspan="5"></td><td style="text-align: center">' + total + '</td></tr>';
 
-						console.log(orderedMedicines);
-
 						if (total > 0) {
 							swal({
 								title: "Order Summary",
 								content: {
-                                    element: "div",
-                                    attributes: {
-                                        innerHTML: medicineInformationForSwal
-                                    }
-                                },
-								showCancelButton: true,
-								confirmButtonText: "Order Now",
-								cancelButtonText: "Cancel",
-							})
+									element: "div",
+									attributes: {
+										innerHTML: medicineInformationForSwal
+									}
+								},
+								buttons: {
+									cancel: "Cancel",
+									confirm: "Confirm Order"
+								},
+							}).then((value) => {
+                                if (value) {
+									fetch('/pharmacy/order-medicine', {
+										method: 'POST',
+                                        headers: {
+                                            'Content-Type': 'application/json'
+                                        },
+                                        body: JSON.stringify(orderedMedicines)
+                                    }).then((response) => {
+                                        return response.json();
+                                    }).then((data) => {
+                                        if (data.status === 'success') {
+                                            swal("Order Confirmed", "Your order has been placed", "success");
+                                        } else {
+                                            swal("Order Failed", "Please try again", "error");
+                                        }
+									}).catch((error) => {
+                                        swal("Order Failed", "Please try again", "error");
+                                    });
+                                }
+                            });
 						} else {
                             swal("No medicine selected", "Please select medicine to order", "error");
                         }
