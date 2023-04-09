@@ -1,12 +1,5 @@
 // Initializing variables
-let stage = 'development';
-
-// Utils
-const logger = (str) => {
-  if (stage === 'development') {
-    console.log(str);
-  }
-}
+initConfigs({stage: 'development'});
 
 // Initializing Selectors
 document.querySelectorAll('.selector-group').forEach(selectorGrp => {

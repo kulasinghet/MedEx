@@ -9,9 +9,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Forms Demo</title>
 
-    <link rel="stylesheet" href="../scss/vendor/demo.css" />
     <!-- Font awesome kit -->
     <script src="https://kit.fontawesome.com/9b33f63a16.js" crossorigin="anonymous"></script>
+    <!-- g28 style -->
+    <link rel="stylesheet" href="../scss/vendor/demo.css" />
+    <script src="../js/g28-main.js"></script>
 </head>
 <body>
 <div class="container demo-container">
@@ -121,7 +123,11 @@
 
 <!-- g28 style for forms -->
 <script type="application/javascript">
-    let stage;
+    // you can configure variables in here.
+    // configs.stage = 'production';
+
+    //logging
+    console.log(`Config variable -> stage: ${configs.stage}`);
 </script>
 <script src="../js/g28-forms.js"></script>
 </body>
