@@ -1,5 +1,5 @@
+// Initializing variables
 let stage = 'development';
-
 
 // Utils
 const logger = (str) => {
@@ -20,7 +20,7 @@ document.querySelectorAll('.selector-group').forEach(selectorGrp => {
 // Initializing SelectBoxes
 const selectBoxes = {};
 
-document.querySelectorAll('details.form-input').forEach((selectBox, index) => {
+document.querySelectorAll('details.form-selectbox').forEach((selectBox, index) => {
   const list = selectBox.querySelector('ul');
 
   selectBoxes[index] = {

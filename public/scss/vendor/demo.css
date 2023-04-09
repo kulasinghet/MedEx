@@ -3208,19 +3208,30 @@ textarea.form-input {
     background: radial-gradient(circle at 10% 20%, rgb(59, 149, 237) 0%, rgb(7, 91, 173) 90%);
   }
 }
-details.form-input {
+details.form-selectbox {
+  display: block;
   position: relative;
   width: 100%;
+  min-height: 2.3rem;
+  font-size: 1rem;
+  color: #495057;
   /* FAKE SELECT */
 }
-details.form-input summary {
+details.form-selectbox summary {
   cursor: pointer;
   list-style: none;
+  width: inherit;
+  padding: 0.6rem 0.75rem;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid rgba(106, 148, 210, 0.53);
+  border-radius: 0.4rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
-details.form-input summary::-webkit-details-marker {
+details.form-selectbox summary::-webkit-details-marker {
   display: none;
 }
-details.form-input summary:after {
+details.form-selectbox summary:after {
   content: "\f053";
   font-family: "Font Awesome 6 Free";
   font-weight: 900;
@@ -3232,16 +3243,18 @@ details.form-input summary:after {
   right: 1rem;
   transition: transform ease-in-out 100ms;
 }
-details.form-input summary:focus {
+details.form-selectbox summary:focus {
   outline: none;
+  border-color: #80bdff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.24);
 }
-details.form-input summary .form-input-placeholder {
+details.form-selectbox summary .form-input-placeholder {
   color: #92a7be;
 }
-details.form-input[open] {
+details.form-selectbox[open] {
   z-index: 1;
 }
-details.form-input[open] summary:before {
+details.form-selectbox[open] summary:before {
   content: "";
   display: block;
   width: 100vw;
@@ -3251,10 +3264,10 @@ details.form-input[open] summary:before {
   top: 0;
   left: 0;
 }
-details.form-input[open] summary:after {
+details.form-selectbox[open] summary:after {
   transform: rotate(-90deg);
 }
-details.form-input ul {
+details.form-selectbox ul {
   width: 100%;
   background: #ddd;
   position: absolute;
@@ -3269,54 +3282,56 @@ details.form-input ul {
   border: 1px solid rgba(164, 164, 164, 0.85);
   box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.38);
 }
-details.form-input ul li {
+details.form-selectbox ul li {
   margin: 0;
   padding: 0.5rem 0.75rem;
   border-bottom: 1px solid #ccc;
+  -webkit-user-select: none;
+  -moz-user-select: none;
 }
-details.form-input ul li:last-child {
+details.form-selectbox ul li:last-child {
   border-bottom: none;
 }
-details.form-input ul li * {
+details.form-selectbox ul li * {
   margin: 0;
   padding: 0;
 }
-details.form-input ul li:hover {
+details.form-selectbox ul li:hover {
   background: #c4c4c4;
 }
-details.form-input ul li:active {
+details.form-selectbox ul li:active {
   background: #a1a1a1;
 }
-details.form-input summary .radios {
+details.form-selectbox summary .radios {
   counter-reset: radios;
 }
-details.form-input summary .radios:before {
+details.form-selectbox summary .radios:before {
   content: var(--selection);
 }
-details.form-input input[type=radio] {
+details.form-selectbox input[type=radio] {
   counter-increment: radios;
   appearance: none;
   display: none;
 }
-details.form-input input[type=radio]:checked {
+details.form-selectbox input[type=radio]:checked {
   display: inline;
   --display: block;
 }
-details.form-input input[type=radio]:after {
+details.form-selectbox input[type=radio]:after {
   content: attr(title);
   display: inline;
   font-size: 1rem;
 }
-details.form-input ul.list {
+details.form-selectbox ul.list {
   counter-reset: labels;
 }
-details.form-input label {
+details.form-selectbox label {
   width: 100%;
   display: flex;
   cursor: pointer;
   justify-content: space-between;
 }
-details.form-input label span {
+details.form-selectbox label span {
   --display: none;
   display: var(--display);
   width: 1rem;

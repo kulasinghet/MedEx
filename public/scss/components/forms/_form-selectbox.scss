@@ -4,16 +4,30 @@
 $list-item-padding-vertical: .5rem;
 $list-item-padding: $list-item-padding-vertical $input-padding;
 $list-item-separator-width: 1px;
+$selectbox-padding: .6rem $input-padding;
 $selectbox-list-max-height: calc((24px + #{$list-item-padding-vertical}*2 + #{$list-item-separator-width})*#{$selectbox-list-max-visible-items});
 $selectbox-list-box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.38);
 
-details.form-input {
+details.form-selectbox {
+  display: block;
   position: relative;
   width: 100%;
+  min-height: $input-min-height;
+
+  font-size: $input-font-size;
+  color: $input-font-color;
 
   summary {
     cursor: pointer;
     list-style: none;
+
+    width: inherit;
+    padding: $selectbox-padding;
+    background-color: $input-background-color;
+    background-clip: padding-box;
+    border: 1px solid $input-border-color;
+    border-radius: $input-border-radius;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 
     &::-webkit-details-marker {
       display: none;
@@ -35,6 +49,8 @@ details.form-input {
 
     &:focus {
       outline: none;
+      border-color: $input-border-color-active;
+      box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 24%);
     }
 
     .form-input-placeholder {
@@ -82,6 +98,8 @@ details.form-input {
       margin: 0;
       padding: $list-item-padding;
       border-bottom: $list-item-separator-width solid #ccc;
+      -webkit-user-select: none;
+      -moz-user-select: none;
 
       &:last-child {
         border-bottom: none;
