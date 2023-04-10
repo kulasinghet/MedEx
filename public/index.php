@@ -14,6 +14,7 @@ use app\controllers\pharmacy\PharmacyDashboardController;
 use app\controllers\pharmacy\PharmacyOrderMedicineController;
 use app\controllers\supplier\SupplierAuthController;
 use app\controllers\supplier\SupplierDashboardController;
+use app\controllers\supplier\SupplierDeleteMedicineController;
 use app\core\Application;
 use app\controllers\delivery\DeliveryAuthController;
 use app\controllers\employee\EmployeeAuthController;
@@ -108,6 +109,7 @@ $app->router->get('/supplier/add-medicine', [SupplierDashboardController::class,
 $app->router->post('/supplier/add-medicine', [SupplierAddMedicineController::class, 'addMedicine']);
 $app->router->post('/supplier/add-existing-medicine', [SupplierAddMedicineController::class, 'addExsisting']);
 $app->router->get('/supplier/update-inventory', [SupplierDashboardController::class, 'updateInventory']);
+$app->router->post('/supplier/delete-medicine', [SupplierDeleteMedicineController::class, 'deleteMed']);
 $app->router->post('/supplier/update-inventory', [SupplierDashboardController::class, 'updateInventory']);
 $app->router->get('/supplier/accept-orders', [SupplierDashboardController::class, 'acceptOrders']);
 $app->router->post('/supplier/accept-orders', [SupplierDashboardController::class, 'acceptOrders']);

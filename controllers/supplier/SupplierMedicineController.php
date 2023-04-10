@@ -93,7 +93,13 @@ class SupplierMedicineController extends Controller
         }
         $otherids = array_diff($allmedids, $supmedids);
 
-        echo "<table style = 'width: 100%; text-align:center; padding:5%' class='scrollable'> <tr style = 'padding:1%; border-bottom: 1pt solid black;'><th>Medicine Name</th><th>Scientific Name</th><th>Weight</th><th>Mannufacture</th><th></th></tr>";
+        echo "<div style='height: 300px;'>
+        <table style = 'width: 100%; text-align:center; padding-top:5%;>
+        <thead style='position:fixed;'><tr style = 'padding:1%; border-bottom: 1pt solid black;'><th>Medicine Name</th><th>Scientific Name</th><th>Weight</th><th>Mannufacture</th><th></th></tr></thead>
+        </table>
+        <div style='height: 100%; overflow: auto;'>
+        <table style = 'width: 100%; text-align:center; padding-bottom:5%;>
+        <tbody>";
         foreach ($otherids as $value) {
             $name = $med->getName($value);
             $sciname = $med->getSciname($value);
@@ -104,33 +110,6 @@ class SupplierMedicineController extends Controller
             echo " <input type='hidden' value='$value' name='id'/>";
             echo "<tr style = 'padding:1%; border-bottom: 1pt solid black;' ><td>" . $name . "</td><td>" . $sciname . "</td><td>" . $weight . " mg</td><td>" . $manname . "</td><td><input type='submit' value='+' class='btn btn--primary'></td></tr></form>";
         }
-        echo "</table>";
-
+        echo "</tbody></table></div></div>";
     }
-
-    public function updateInventory($supName)
-    {
-        $med = new MedicineModel;
-        $supMed = new SupplierMedicineModel;
-        $man = new ManufactureModel;
-        $result = $supMed->getSupMedicine($_SESSION['username']);
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $medid = $row["medId"];
-                $medNam = $med->getName($medid);
-                $sciName = $med->getSciname($medid);
-                $weight = $med->getWeight($medid);
-                $quantity = $row["quantity"];
-                $unitPrice = $row["unitPrice"];
-                $manid = $med->getManufacture($medid);
-                $manname = $man->getManufactureName($manid);
-                echo "<tr><td>" . $medNam . "</td><td>" . $sciName . "</td><td>" . $weight . " mg</td><td>" . $manname . "</td><td>" . $quantity . "</td><td>" . $unitPrice . "</td><td><a href='#'><i class='fa fa-pencil'></i></a></td><td><a href='#'><i class='fa fa-trash'></i></a></td></tr>";
-            }
-        } else {
-            echo "<tr><td colspan='5' style='padding:2%;'> No Medicine Added</td>";
-        }
-
-
-    }
-
 }

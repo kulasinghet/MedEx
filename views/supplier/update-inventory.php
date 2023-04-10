@@ -2,7 +2,7 @@
 use app\controllers\supplier\SupplierDashboardController;
 use app\models\SupplierModel;
 use app\models\SupplierMedicineModel;
-use app\controllers\supplier\SupplierMedicineController;
+use app\controllers\supplier\SupplierUpdateMedicineController;
 
 ?>
 
@@ -15,6 +15,7 @@ use app\controllers\supplier\SupplierMedicineController;
     <title>Update Inventory</title>
 
     <link href="../scss/vendor/demo.css" rel="stylesheet" />
+    <link href="../css/supplier/supplier.css" rel="stylesheet" />
     <!-- Font awesome kit -->
     <script crossorigin="anonymous" src="https://kit.fontawesome.com/9b33f63a16.js"></script>
 </head>
@@ -113,11 +114,10 @@ use app\controllers\supplier\SupplierMedicineController;
                                         <th>Unit Price</th>
                                     </tr>
 
-                                    <?php $supmed = new SupplierMedicineController;
+                                    <?php
+                                    $supmed = new SupplierUpdateMedicineController;
                                     $supmed->updateInventory($_SESSION['username']);
                                     ?>
-
-
                                 </table>
                             </div>
                         </div>
@@ -128,7 +128,6 @@ use app\controllers\supplier\SupplierMedicineController;
         </div>
     </div>
     </div>
-
 </body>
 
 </html>
