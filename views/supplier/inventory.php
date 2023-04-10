@@ -110,11 +110,9 @@ use app\controllers\supplier\SupplierMedicineController;
                                         <th>Quantity</th>
                                         <th>Unit Price</th>
                                     </tr>
-
                                     <?php $supmed = new SupplierMedicineController;
                                     $supmed->viewallMed($_SESSION['username']);
                                     ?>
-
 
                                 </table>
                             </div>

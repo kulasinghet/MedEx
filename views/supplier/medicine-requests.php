@@ -88,7 +88,7 @@ use app\controllers\supplier\SupplierMedicineController;
             <div class="row">
                 <div class="col" style="display: flex; flex-direction: column;">
                     <div class="card g-col-2 g-row-2-start-3"
-                        style=" box-shadow: 0 3px 10px rgb(0 0 0 / 0.2); border-radius: 20px; width:80%">
+                        style=" box-shadow: 0 3px 10px rgb(0 0 0 / 0.2); border-radius: 20px; width:100% padding: 1%;">
                         <div class="card-body">
                             <div style="padding: 2%;">
                                 <h3>Pending Requests</h3>

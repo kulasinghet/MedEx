@@ -91,7 +91,7 @@ use app\controllers\supplier\SupplierMedicineController;
             <div class="row" style="padding-left:10%">
                 <div class="col" style="display: flex; flex-direction: column;">
                     <div class="card g-col-2 g-row-2-start-3"
-                        style=" box-shadow: 0 3px 10px rgb(0 0 0 / 0.2); border-radius: 20px; height: 50%; width:70%; padding-bottom:2%;">
+                        style=" box-shadow: 0 3px 10px rgb(0 0 0 / 0.2); border-radius: 20px; height: 45%; width:70%;">
                         <div class="card-body">
 
                             <div style="padding: 2%;">
@@ -121,7 +121,7 @@ use app\controllers\supplier\SupplierMedicineController;
                     </div>
 
                     <div class="card g-col-2 g-row-2-start-3"
-                        style=" box-shadow: 0 3px 10px rgb(0 0 0 / 0.2); border-radius: 20px; width:70%; height: 80%;">
+                        style=" box-shadow: 0 3px 10px rgb(0 0 0 / 0.2); border-radius: 20px; width:70%; height: 55%;">
                         <div class="card-body">
                             <div style="padding: 2%;">
                                 <h3>Add New Medicine</h3>

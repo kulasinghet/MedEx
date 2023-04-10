@@ -1,6 +1,7 @@
 <?php
 
 namespace app\models;
+
 use app\core\Database;
 
 class SupplierMedicineModel extends Model
@@ -62,6 +63,18 @@ class SupplierMedicineModel extends Model
     {
         $db = (new Database())->getConnection();
         $sql = "SELECT medId,verified,quantity,unitPrice from supplier_medicine WHERE supplier_medicine.supName = '$uname' && verified='1'";
+        $result = $db->query($sql);
+        if ($result->num_rows > 0) {
+            return $result;
+        }
+        $db->close();
+
+
+    }
+    public function DeleteMed($uname, $id)
+    {
+        $db = (new Database())->getConnection();
+        $sql = "DELETE from  supplier_medicine WHERE supplier_medicine.supName = '$uname' && supplier_medicine.medId = '$id'";
         $result = $db->query($sql);
         if ($result->num_rows > 0) {
             return $result;
