@@ -32,11 +32,6 @@
   right: 1rem;
   transition: transform ease-in-out 100ms;
 }
-:host(g28-selectbox) .selectbox .selectbox-display:focus {
-  outline: none;
-  border-color: #80bdff;
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.24);
-}
 :host(g28-selectbox) .selectbox .selectbox-display .placeholder {
   color: #92a7be;
 }
@@ -76,6 +71,11 @@
 :host(g28-selectbox) .selectbox ul li:active {
   background: #a1a1a1;
 }
+:host(g28-selectbox) .selectbox:focus .selectbox-display {
+  outline: none;
+  border-color: #80bdff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.24);
+}
 :host(g28-selectbox) .selectbox.opened {
   z-index: 1;
 }
@@ -97,4 +97,4 @@
   z-index: 1;
 }
 
-/*# sourceMappingURL=selectbox.css.map */
+/*# sourceMappingURL=form-selectbox.css.map */

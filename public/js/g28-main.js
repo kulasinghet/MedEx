@@ -5,7 +5,8 @@
 
 // Declaring config variables
 let configs = {
-    stage: undefined
+    stage: undefined,
+    customFormElmPath: undefined
 }
 
 
