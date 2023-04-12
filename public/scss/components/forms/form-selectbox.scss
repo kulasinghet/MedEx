@@ -51,45 +51,50 @@ $selectbox-list-box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.38);
       }
     }
 
-    ul {
+    .selectbox-list {
       display: none;
 
-      width: 100%;
-      background: #ddd;
+      width: calc(100% - 2px);
       position: absolute;
       top: calc(100% + .5rem);
       left: 0;
-      padding: 0;
-      margin: 0;
       border-radius: $input-border-radius;
       max-height: $selectbox-list-max-height;
+      overflow-x: hidden;
       overflow-y: auto;
-      list-style: none;
-      border: 1px solid rgba(164, 164, 164, 0.85);
+      border: 2px solid rgba(178, 178, 178, 0.78);
       box-shadow: $selectbox-list-box-shadow;
 
-      li {
+      ul {
+        width: inherit;
+        background: #ddd;
+        list-style: none;
+        padding: 0;
         margin: 0;
-        padding: $list-item-padding;
-        border-bottom: $list-item-separator-width solid #ccc;
-        -webkit-user-select: none;
-        -moz-user-select: none;
 
-        &:last-child {
-          border-bottom: none;
-        }
-
-        * {
+        li {
           margin: 0;
-          padding: 0;
-        }
+          padding: $list-item-padding;
+          border-bottom: $list-item-separator-width solid #ccc;
+          -webkit-user-select: none;
+          -moz-user-select: none;
 
-        &:hover {
-          background: #c4c4c4;
-        }
+          &:last-child {
+            border-bottom: none;
+          }
 
-        &:active {
-          background: #a1a1a1;
+          * {
+            margin: 0;
+            padding: 0;
+          }
+
+          &:hover {
+            background: #c4c4c4;
+          }
+
+          &:active {
+            background: #a1a1a1;
+          }
         }
       }
     }
@@ -122,9 +127,21 @@ $selectbox-list-box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.38);
         }
       }
 
-      ul {
+      .selectbox-list {
         display: block;
         z-index: 1;
+      }
+    }
+
+    &.disabled {
+      .selectbox-display {
+        color: #c0c0c0 !important;
+        background: #efefef !important;
+        border: 1px solid $gray-3;
+
+        .placeholder {
+          color: #c0c0c0 !important;
+        }
       }
     }
   }

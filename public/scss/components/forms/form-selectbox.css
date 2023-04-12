@@ -35,40 +35,44 @@
 :host(g28-selectbox) .selectbox .selectbox-display .placeholder {
   color: #92a7be;
 }
-:host(g28-selectbox) .selectbox ul {
+:host(g28-selectbox) .selectbox .selectbox-list {
   display: none;
-  width: 100%;
-  background: #ddd;
+  width: calc(100% - 2px);
   position: absolute;
   top: calc(100% + 0.5rem);
   left: 0;
-  padding: 0;
-  margin: 0;
   border-radius: 0.4rem;
   max-height: calc((24px + 0.5rem*2 + 0.8px)*4);
+  overflow-x: hidden;
   overflow-y: auto;
-  list-style: none;
-  border: 1px solid rgba(164, 164, 164, 0.85);
+  border: 2px solid rgba(178, 178, 178, 0.78);
   box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.38);
 }
-:host(g28-selectbox) .selectbox ul li {
+:host(g28-selectbox) .selectbox .selectbox-list ul {
+  width: inherit;
+  background: #ddd;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+:host(g28-selectbox) .selectbox .selectbox-list ul li {
   margin: 0;
   padding: 0.5rem 0.75rem;
   border-bottom: 0.8px solid #ccc;
   -webkit-user-select: none;
   -moz-user-select: none;
 }
-:host(g28-selectbox) .selectbox ul li:last-child {
+:host(g28-selectbox) .selectbox .selectbox-list ul li:last-child {
   border-bottom: none;
 }
-:host(g28-selectbox) .selectbox ul li * {
+:host(g28-selectbox) .selectbox .selectbox-list ul li * {
   margin: 0;
   padding: 0;
 }
-:host(g28-selectbox) .selectbox ul li:hover {
+:host(g28-selectbox) .selectbox .selectbox-list ul li:hover {
   background: #c4c4c4;
 }
-:host(g28-selectbox) .selectbox ul li:active {
+:host(g28-selectbox) .selectbox .selectbox-list ul li:active {
   background: #a1a1a1;
 }
 :host(g28-selectbox) .selectbox:focus .selectbox-display {
@@ -92,9 +96,17 @@
 :host(g28-selectbox) .selectbox.opened .selectbox-display:after {
   transform: rotate(90deg);
 }
-:host(g28-selectbox) .selectbox.opened ul {
+:host(g28-selectbox) .selectbox.opened .selectbox-list {
   display: block;
   z-index: 1;
+}
+:host(g28-selectbox) .selectbox.disabled .selectbox-display {
+  color: #c0c0c0 !important;
+  background: #efefef !important;
+  border: 1px solid #b5bccf;
+}
+:host(g28-selectbox) .selectbox.disabled .selectbox-display .placeholder {
+  color: #c0c0c0 !important;
 }
 
 /*# sourceMappingURL=form-selectbox.css.map */

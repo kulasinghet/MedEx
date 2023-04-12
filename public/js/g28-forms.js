@@ -1,5 +1,5 @@
 // Initializing config variables
-initConfigs({stage: 'development'});
+initConfigs({stage: 'dev'});
 initConfigs({customFormElmPath: '../scss/components/forms'});
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Selector ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -21,7 +21,9 @@ const sbShadowTmp = `
     <div class="selectbox-display">
         <span class="selectbox-display-text placeholder">Please select an item</span>
     </div>
-    <ul class="selectbox-list"></ul>
+    <div class="selectbox-list">
+        <ul></ul>
+    </div>
 </div>
 `;
 
@@ -30,6 +32,7 @@ class G28Selectbox extends HTMLElement {
   constructor() {
     super();
     // element created
+    this.valueChanged = false;
   }
 
   connectedCallback() {
@@ -52,7 +55,14 @@ class G28Selectbox extends HTMLElement {
     for (const itm of listContents) {
       const sbListItm = document.createElement('li');
       sbListItm.innerText = itm;
-      this.sbList.appendChild(sbListItm);
+      this.sbListInner.appendChild(sbListItm);
+    }
+    // adding simplebar api
+    new SimpleBar(this.sbList, { autoHide: false });
+
+    // adding disabled styles if the element is disabled.
+    if (this.isDisabled()) {
+      this.sb.classList.add('disabled');
     }
     // --------------------- RENDERING THE ELEMENT ---------------------
 
@@ -116,19 +126,26 @@ class G28Selectbox extends HTMLElement {
         this.toggleClass(this.sb, 'opened', false);
         this.opened = false;
       }
-    }
-
-    if (name === 'value') {
+    } else if (name === 'value') {
+      this.valueChanged = true;
       // removing placeholder class from the display text
       this.toggleClass(this.sbDisplayText, 'placeholder', false);
 
       this.sbDisplayText.innerText = newValue;
+    } else if (name === 'placeholder' && !this.valueChanged) {
+      setTimeout(() => this.sbDisplayText.innerText = newValue);
     }
   }
 
   renderElement() {
     // creating a template and attaching it to the shadow root
     this.sbTemp = document.createElement("template");
+
+    // adding simplebar API
+    const simpleLink = document.createElement('link');
+    simpleLink.rel = 'stylesheet';
+    simpleLink.href = "https://unpkg.com/simplebar@latest/dist/simplebar.css";
+    this.shadowRoot.appendChild(simpleLink);
 
     // adding stylesheet to the shadow DOM
     const styleLink = document.createElement('link');
@@ -143,6 +160,7 @@ class G28Selectbox extends HTMLElement {
     this.sbDisplay = this.shadowRoot.querySelector('.selectbox-display');
     this.sbDisplayText = this.shadowRoot.querySelector('.selectbox-display-text');
     this.sbList = this.shadowRoot.querySelector('.selectbox-list');
+    this.sbListInner = this.shadowRoot.querySelector('.selectbox-list ul');
   }
 
   toggleClass(elm, className, force = null) {
@@ -163,7 +181,14 @@ class G28Selectbox extends HTMLElement {
 
     return elm;
   }
+
+  isDisabled() {
+    return this.classList.contains('disabled');
+  }
 }
 
 customElements.define('g28-selectbox', G28Selectbox);
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ SelectBox ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+// todo: fix tab indexes when SelectBoxes exist in the form

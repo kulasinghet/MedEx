@@ -11,7 +11,7 @@ let configs = {
 
 
 // Utils
-const isDev = (configs.stage === 'development');
+const isDev = (configs.stage === 'dev');
 
 const logger = (output) => {
     if (isDev) {

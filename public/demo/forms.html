@@ -7,6 +7,9 @@
 
     <!-- Font awesome kit -->
     <script src="https://kit.fontawesome.com/9b33f63a16.js" crossorigin="anonymous"></script>
+    <!-- Simplebar -->
+    <link rel="stylesheet" href="https://unpkg.com/simplebar@latest/dist/simplebar.css"/>
+    <script src="https://unpkg.com/simplebar@latest/dist/simplebar.min.js"></script>
     <!-- g28 style -->
     <link rel="stylesheet" href="../scss/vendor/demo.css" />
     <script src="../js/g28-main.js"></script>
@@ -35,6 +38,12 @@
         <div class="form-group">
             <label>SelectBox (new: g28 style)</label>
             <g28-selectbox>Item 1, Item 2, Item 3, Item 4, Item 5</g28-selectbox>
+        </div>
+        <div class="form-group">
+            <label>Disabled SelectBox (new: g28 style)</label>
+            <g28-selectbox class="disabled" placeholder="The selectbox is disabled">
+                Item 1, Item 2, Item 3, Item 4, Item 5
+            </g28-selectbox>
         </div>
         <div class="form-group">
             <label for="exampleFormControlSelect2">SelectBox: multiple selections</label>
@@ -91,7 +100,8 @@
 <!-- g28 styling framework -->
 <script type="application/javascript">
     // you can configure variables in here.
-    // configs.stage = 'production';
+    configs.stage = 'dev';
+    configs.customFormElmPath = '../scss/components/forms';
 
     //logging
     console.log("Logging g28 initial state before loading specialized JS files...");
