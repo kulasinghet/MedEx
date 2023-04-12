@@ -1,0 +1,100 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Poppins:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=Ubuntu:wght@300;400;500;700&display=swap");
+:host(g28-selectbox) {
+  display: block;
+  position: relative;
+  width: 100%;
+  min-height: 2.3rem;
+  font-size: 1rem;
+  color: #495057;
+}
+:host(g28-selectbox) .selectbox {
+  width: inherit;
+}
+:host(g28-selectbox) .selectbox .selectbox-display {
+  position: relative;
+  cursor: pointer;
+  padding: 0.6rem 0.75rem;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid rgba(106, 148, 210, 0.53);
+  border-radius: 0.4rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+:host(g28-selectbox) .selectbox .selectbox-display:after {
+  content: "\f105";
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  font-size: 1.2rem;
+  line-height: 1.2rem;
+  display: inline-block;
+  position: absolute;
+  top: calc(50% - 0.6rem);
+  right: 1rem;
+  transition: transform ease-in-out 100ms;
+}
+:host(g28-selectbox) .selectbox .selectbox-display:focus {
+  outline: none;
+  border-color: #80bdff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.24);
+}
+:host(g28-selectbox) .selectbox .selectbox-display .placeholder {
+  color: #92a7be;
+}
+:host(g28-selectbox) .selectbox ul {
+  display: none;
+  width: 100%;
+  background: #ddd;
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 0;
+  padding: 0;
+  margin: 0;
+  border-radius: 0.4rem;
+  max-height: calc((24px + 0.5rem*2 + 0.8px)*4);
+  overflow-y: auto;
+  list-style: none;
+  border: 1px solid rgba(164, 164, 164, 0.85);
+  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.38);
+}
+:host(g28-selectbox) .selectbox ul li {
+  margin: 0;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 0.8px solid #ccc;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+}
+:host(g28-selectbox) .selectbox ul li:last-child {
+  border-bottom: none;
+}
+:host(g28-selectbox) .selectbox ul li * {
+  margin: 0;
+  padding: 0;
+}
+:host(g28-selectbox) .selectbox ul li:hover {
+  background: #c4c4c4;
+}
+:host(g28-selectbox) .selectbox ul li:active {
+  background: #a1a1a1;
+}
+:host(g28-selectbox) .selectbox.opened {
+  z-index: 1;
+}
+:host(g28-selectbox) .selectbox.opened .selectbox-display:before {
+  content: "";
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  background: transparent;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+:host(g28-selectbox) .selectbox.opened .selectbox-display:after {
+  transform: rotate(90deg);
+}
+:host(g28-selectbox) .selectbox.opened ul {
+  display: block;
+  z-index: 1;
+}
+
+/*# sourceMappingURL=selectbox.css.map */

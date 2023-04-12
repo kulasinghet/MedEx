@@ -10,8 +10,10 @@ let configs = {
 
 
 // Utils
+const isDev = (configs.stage === 'development');
+
 const logger = (output) => {
-    if (configs.stage === 'development') {
+    if (isDev) {
         console.log(output);
     }
 }

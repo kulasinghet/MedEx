@@ -49,7 +49,3 @@ document.querySelectorAll('details.form-selectbox').forEach((selectBox, index) =
     }, itmListTimeout * 80 / 100);
   });
 })
-
-
-// confirmation
-logger('[g28 style: Forms] is loaded successfully!');
