@@ -13,13 +13,13 @@ let configs = {
 // Utils
 const isDev = (configs.stage === 'dev');
 
-const logger = (output) => {
+function logger(output) {
     if (isDev) {
         console.log(output);
     }
 }
 
-const initConfigs = (obj = {}) => {
+function initConfigs(obj = {}) {
     for (let property in obj) {
         // looping through the properties of the obj
         if (typeof obj[property] !== 'undefined' || obj[property] !== null) {
