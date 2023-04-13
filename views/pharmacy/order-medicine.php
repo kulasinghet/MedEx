@@ -96,6 +96,7 @@ echo $components->sideBar('order-medicine');
                     $pharmacyOrderMedicineController = new \app\controllers\pharmacy\PharmacyOrderMedicineController();
                     $medicines = $medicineEntity->getAllMedicines();
                     echo "<form action='/pharmacy/order-medicine' method='post' id='order-medicine-form'>";
+
                     if ($medicines != null) {
                         foreach ($medicines as $medicine) {
                             echo "<tr class='order-medicine-row-before' data-id='" . $medicine['medName'] . " " . $medicine['sciName'] . " " . $medicine['id'] . "' id='order-medicine-row-" . $medicine['id'] . "'>";
@@ -188,25 +189,12 @@ echo $components->sideBar('order-medicine');
 									cancel: "Cancel",
 									confirm: "Confirm Order"
 								},
-							}).then((value) => {
+							}).then((value) =>
+                            {
                                 if (value) {
-									fetch('/pharmacy/order-medicine', {
-										method: 'POST',
-                                        headers: {
-                                            'Content-Type': 'application/json'
-                                        },
-                                        body: JSON.stringify(orderedMedicines)
-                                    }).then((response) => {
-                                        return response.json();
-                                    }).then((data) => {
-                                        if (data.status === 'success') {
-                                            swal("Order Confirmed", "Your order has been placed", "success");
-                                        } else {
-                                            swal("Order Failed", "Please try again", "error");
-                                        }
-									}).catch((error) => {
-                                        swal("Order Failed", "Please try again", "error");
-                                    });
+                                    document.getElementById('order-medicine-form').submit();
+                                    swal("Order Confirmed", "Your order has been placed", "success");
+
                                 }
                             });
 						} else {

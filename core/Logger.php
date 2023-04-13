@@ -28,6 +28,14 @@ class Logger
         error_log($dateTime." ". $string . "\n", 3, "../logs/order.log");
     }
 
+    public static function logDebug(string $message)
+    {
+        $dateTime = new \DateTime("now");
+        $dateTime->setTimezone(new \DateTimeZone('Asia/Colombo'));
+        $dateTime = $dateTime->format('Y/m/d H:i:s');
+        error_log($dateTime." ". $message . "\n", 3, "../logs/debug.log");
+    }
+
     public function orderCreated($message): void
     {
         $dateTime = new \DateTime("now");
