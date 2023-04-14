@@ -1,0 +1,22 @@
+{
+  "name": "medex",
+  "version": "1.0.0",
+  "description": "1. Composer\r 1.1 Autoloader",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kulasinghet/MedEx.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kulasinghet/MedEx/issues"
+  },
+  "homepage": "https://github.com/kulasinghet/MedEx#readme",
+  "dependencies": {
+    "micromodal": "^0.4.10"
+  }
+}

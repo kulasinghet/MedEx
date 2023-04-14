@@ -1,7 +1,6 @@
 <?php
 
 namespace app\controllers;
-
 use app\core\Controller;
 use app\core\ExceptionHandler;
 use app\core\Logger;

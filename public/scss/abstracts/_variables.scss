@@ -113,6 +113,12 @@ $navbar-height: 3.5rem !default;
 $gap: 1rem !default;
 // ------------------- Fixed Components ------------------- //
 
+// ------------------- i ------------------- //
+$i-color: $gray-3 !default;
+$i-color-hover: rgba($gray-3, 0.8) !default;
+$i-color-active: $dark !default;
+// ------------------- i ------------------- //
+
 // ------------------- Grid System ------------------- //
 $grid-breakpoints: (
   xs: 0,
@@ -129,3 +135,17 @@ $grid-breakpoints: (
 $grid-columns: 12 !default;
 $grid-rows: 9 !default;
 // ------------------- Grid System ------------------- //
+
+// ------------------- Inputs ------------------- //
+$input-font-size: $h6-font-size !default;
+$input-padding: .75rem !default;
+$input-border-radius: .4rem !default;
+$input-placeholder-color: #92a7be;
+$input-min-height: 2.3rem;
+$input-background-color: #fff;
+$input-font-color: #495057;
+$input-border-color: rgba(106, 148, 210, 0.53);
+$input-border-color-active: #80bdff;
+
+$selectbox-list-max-visible-items: 4 !default;
+// ------------------- Inputs ------------------- //

@@ -4,7 +4,9 @@
 .disabled {
   pointer-events: none;
   cursor: default;
-  color: $disabled-color !important;
-  background: $disabled-bg !important;
-  border: $disabled-border !important;
+
+  // Currently disabled for resolve conflict between form-input UI
+  //color: $disabled-color !important;
+  //background: $disabled-bg !important;
+  //border: $disabled-border !important;
 }

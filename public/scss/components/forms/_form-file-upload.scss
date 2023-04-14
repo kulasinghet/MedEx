@@ -1,0 +1,36 @@
+@use "../../abstracts/variables" as *;
+
+
+@supports(-webkit-appearance: none) or (-moz-appearance: none) {
+  .form-input {
+    &[type='file'] {
+      &::file-selector-button {
+        position: absolute;
+        top: 0;
+        right: -4px;
+
+        height: 100%;
+        padding: 10px 20px;
+        color: #45588c;
+        background: linear-gradient(to top, #c4c5c7 0%, #dcdddf 52%, #ebebeb 100%);
+        border: none;
+        border-left: 1px solid rgba(138, 138, 138, 0.2);
+        box-shadow: -1px 0 4px rgba(0, 0, 0, 0.15);
+
+        cursor: pointer;
+        transition: background .2s ease-in-out;
+
+        &:hover {
+          color: $dark;
+          background: linear-gradient(to top, #accbee 0%, #e7f0fd 100%);
+          box-shadow: -1px 0 4px rgba(43, 53, 84, 0.15);
+        }
+
+        &:active {
+          color: $gray-3;
+          background: radial-gradient(circle at 10% 20%, rgb(59, 149, 237) 0%, rgb(7, 91, 173) 90%);
+        }
+      }
+    }
+  }
+}

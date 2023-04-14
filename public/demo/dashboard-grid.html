@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Dashboard with the flex system</title>
+    <title>Dashboard with the grid system</title>
 
     <link href="../scss/vendor/demo.css" rel="stylesheet"/>
     <!-- Font awesome kit -->
@@ -49,9 +49,9 @@
     </div>
     <div class="nav-inner">
         <ul>
-            <li><a href="#"><i class="fa-solid fa-circle-question"></i></a></li>
-            <li><a href="#"><i class="fa-solid fa-gear"></i></a></li>
-            <li><a href="#"><i class="fa-solid fa-bell"></i></a></li>
+            <li><a class="link" href="#"><i class="fa-solid fa-gear"></i></a></li>
+            <li><a class="link" href="#"><i class="fa-solid fa-right-from-bracket"></i></a></li>
+            <li><a class="link" href="#"><i class="fa-solid fa-bell"></i></a></li>
         </ul>
         <a class="nav-profile" href="#">
             <div class="nav-profile-image">
@@ -64,12 +64,12 @@
 
 <!-- Section: Dashboard Layout -->
 <div class="canvas nav-cutoff sidebar-cutoff">
-    <div class="canvas-inner">
-        <div class="row">
-            <div class="col">
-                <p>Hello world!</p>
-            </div>
-        </div>
+    <div class="canvas-inner grid flow-row-dense">
+        <div class="g-col-1 g-row-2-start-4" style="background: blue"></div>
+        <div class="g-col-3 g-row-2" style="background: green"></div>
+        <div class="g-col-3-start-3 g-row-1" style="background: red"></div>
+        <div class="g-col-4 g-row-1-start-2" style="background: gray"></div>
+        <div class="g-col-1 g-row-1" style="background: purple"></div>
     </div>
 </div>
 <!-- Section: Dashboard Layout -->

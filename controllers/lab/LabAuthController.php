@@ -1,6 +1,5 @@
 <?php
 namespace app\controllers\lab;
-
 use app\core\Controller;
 use app\core\Request;
 
@@ -66,7 +65,7 @@ class LabAuthController extends Controller
 
             if ($actor->registerActor() && $lab->registerLab()) {
                 echo (new \app\core\ExceptionHandler)->userCreated();
-                return header('Location: /login');
+                return $this->render("/general/login.php");
             }
 
 

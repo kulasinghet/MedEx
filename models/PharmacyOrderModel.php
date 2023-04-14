@@ -40,7 +40,7 @@ class PharmacyOrderModel extends Model
     public function getPendingOrders()
     {
         $db = (new Database())->getConnection();
-        $sql = "SELECT id from pharmacyorder WHERE pharmacyorder.order_status = '0'";
+        $sql = "SELECT id from pharmacyorder WHERE pharmacyorder.status = '0'";
         $result = $db->query($sql);
         if ($result->num_rows > 0) {
             return $result;
@@ -48,19 +48,30 @@ class PharmacyOrderModel extends Model
         $db->close();
     }
 
-    public function getPendingMedId($id)
+    public function getSupOrders($name)
+    {
+        $db = (new Database())->getConnection();
+        $sql = "SELECT id from pharmacyorder WHERE pharmacyorder.status = '1' && pharmacyorder.supName = '$name'";
+        $result = $db->query($sql);
+        if ($result->num_rows > 0) {
+            return $result;
+        }
+        $db->close();
+    }
+
+    public function getMedId($id)
     {
         $this->getOrder($id);
         return $this->medId;
     }
 
-    public function getPendingMedQuantiy($id)
+    public function getMedQuantiy($id)
     {
         $this->getOrder($id);
         return $this->quantity;
     }
 
-    public function getPendingOrderPharm($id)
+    public function getOrderPharm($id)
     {
         $this->getOrder($id);
         return $this->pharmacyName;
@@ -153,6 +164,7 @@ class PharmacyOrderModel extends Model
         }
     }
 
+
     private function setId(string $createRandomID)
     {
         $this->id = $createRandomID;
@@ -190,4 +202,5 @@ class PharmacyOrderModel extends Model
 
         return $flag;
     }
+}
 }
