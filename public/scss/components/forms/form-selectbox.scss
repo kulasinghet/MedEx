@@ -1,0 +1,148 @@
+@use "../../abstracts/variables" as *;
+
+
+$list-item-padding-vertical: .5rem;
+$list-item-padding: $list-item-padding-vertical $input-padding;
+$list-item-separator-width: .8px;
+$selectbox-padding: .6rem $input-padding;
+$selectbox-list-max-height: calc((24px + #{$list-item-padding-vertical}*2 + #{$list-item-separator-width})*#{$selectbox-list-max-visible-items});
+$selectbox-list-box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.38);
+
+:host(g28-selectbox) {
+  display: block;
+  position: relative;
+  width: 100%;
+  min-height: $input-min-height;
+
+  font-size: $input-font-size;
+  color: $input-font-color;
+
+  .selectbox {
+    width: inherit;
+
+    .selectbox-display {
+      position: relative;
+      cursor: pointer;
+
+      // width: 100%;
+      padding: $selectbox-padding;
+      background-color: $input-background-color;
+      background-clip: padding-box;
+      border: 1px solid $input-border-color;
+      border-radius: $input-border-radius;
+      transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+
+      &:after {
+        content: '\f105';
+        font-family: 'Font Awesome 6 Free';
+        font-weight: 900;
+        font-size: 1.2rem;
+        line-height: 1.2rem;
+
+        display: inline-block;
+        position: absolute;
+        top: calc(50% - 1.2rem/2);
+        right: 1rem;
+        transition: transform ease-in-out 100ms
+      }
+
+      .placeholder {
+        color: $input-placeholder-color;
+      }
+    }
+
+    .selectbox-list {
+      display: none;
+
+      width: calc(100% - 2px);
+      position: absolute;
+      top: calc(100% + .5rem);
+      left: 0;
+      border-radius: $input-border-radius;
+      max-height: $selectbox-list-max-height;
+      overflow-x: hidden;
+      overflow-y: auto;
+      border: 2px solid rgba(178, 178, 178, 0.78);
+      box-shadow: $selectbox-list-box-shadow;
+
+      ul {
+        width: inherit;
+        background: #ddd;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+          margin: 0;
+          padding: $list-item-padding;
+          border-bottom: $list-item-separator-width solid #ccc;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+
+          &:last-child {
+            border-bottom: none;
+          }
+
+          * {
+            margin: 0;
+            padding: 0;
+          }
+
+          &:hover {
+            background: #c4c4c4;
+          }
+
+          &:active {
+            background: #a1a1a1;
+          }
+        }
+      }
+    }
+
+    &:focus {
+      .selectbox-display {
+        outline: none;
+        border-color: $input-border-color-active;
+        box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 24%);
+      }
+    }
+
+    &.opened {
+      z-index: 1;
+
+      .selectbox-display {
+        &:before {
+          content: '';
+          display: block;
+          width: 100vw;
+          height: 100vh;
+          background: transparent;
+          position: fixed;
+          top: 0;
+          left: 0;
+        }
+
+        &:after {
+          transform: rotate(90deg);
+        }
+      }
+
+      .selectbox-list {
+        display: block;
+        z-index: 1;
+      }
+    }
+
+    &.disabled {
+      .selectbox-display {
+        color: #c0c0c0 !important;
+        background: #efefef !important;
+        border: 1px solid $gray-3;
+
+        .placeholder {
+          color: #c0c0c0 !important;
+        }
+      }
+    }
+  }
+}

@@ -11,15 +11,15 @@
 @use "../components/links";
 @use "../components/button";
 @use "../components/sidebar";
-@use "../components/sidebar_grouped";
+@use "../components/sidebar-collapsible";
 @use "../components/navbar";
 @use "../components/footer";
 @use "../components/cards";
 @use "../components/modal";
 @use "../components/forms/form-groups";
 @use "../components/forms/form-input";
-@use "../components/forms/form-check";
-
+@use "../components/forms/form-selectors";
+@use "../components/forms/form-file-upload";
 
 form {
   width: 500px;

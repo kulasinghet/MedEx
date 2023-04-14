@@ -11,7 +11,7 @@
 </head>
 <body>
 <!-- Section: Fixed Components -->
-<div class="sidebar-grouped">
+<div class="sidebar-collapsible">
     <div class="sidebar-inner">
         <nav class="sidebar-header">
             <div class="sidebar-logo">
