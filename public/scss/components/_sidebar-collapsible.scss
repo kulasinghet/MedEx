@@ -20,7 +20,7 @@ $font-weight: $font-weight-semibold !default;
 $context-padding: calc(#{nav.$cutoff} + 1rem) 0 1rem 0 !default;
 
 
-.sidebar-grouped {
+.sidebar-collapsible {
   --#{$prefix}sidebar-itm-color: #{$dark};
 
   position: fixed;

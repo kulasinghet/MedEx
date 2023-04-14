@@ -1,125 +1,42 @@
-Unknown column 'drivingLicenseName' in 'field list'
-Unknown column 'drivingLicenseName' in 'field list'
-Unknown column 'drivingLicenseName' in 'field list'
-2022/12/01 Unknown column 'drivingLicenseName' in 'field list'
-2022/12/01 09:12:26 Unknown column 'drivingLicenseName' in 'field list'
-2022/12/01 09:15:01 Unknown column 'drivingLicenseName' in 'field list'
-2022/12/01 09:16:11 Unknown column 'drivingLicenseName' in 'field list'
-2022/12/01 09:18:00 Unknown column '35152399' in 'field list'
-2022/12/01 09:19:10 Unknown column '35152399' in 'field list'
-2022/12/01 09:23:44 Unknown column '35152399' in 'field list'
-2022/12/01 09:28:18 Unknown column 'testDelivery' in 'field list'
-2022/12/01 10:29:00 Duplicate entry '18967713343' for key 'laboratory.PRIMARY'
-2022/12/01 10:41:02 $2y$10$hBQMN1qjUKRDD1PbawLb.uf75uAuFDc97bL4Hx4EEjaay3tJi.ARi
-2022/12/01 12:53:02 Unknown column 'regDate' in 'field list'
-2022/12/01 23:18:08 No connection could be made because the target machine actively refused it
-2022/12/14 13:44:34 Username or password is incorrecttestPharmac
-2022/12/14 13:46:43 Username or password is incorrecttestPharmac
-2022/12/14 13:47:31 Username or password is incorrecttestPharmac
-2022/12/14 13:47:38 Username or password is incorrecttestPharmac
-2022/12/14 13:48:07 Username or password is incorrecttestPharmac
-2022/12/14 13:48:22 Username or password is incorrecttestPharmac
-2022/12/14 13:50:05 Username or password is incorrecttestPharmac
-2022/12/14 14:02:51 Username or password is incorrecttestPharmac
-2022/12/14 14:48:45 Username or password is incorrecttestDelivery
-2022/12/14 14:50:52 Username or password is incorrecttestDelivery
-2022/12/14 14:51:36 Username or password is incorrecttestDelivery
-2022/12/14 19:36:06 Username or password is incorrectcrystalPharm
-2022/12/14 19:38:06 Username or password is incorrectcrystalPharm
-2022/12/14 19:38:10 Username or password is incorrecttestPharmacy
-2022/12/14 19:40:22 Username or password is incorrectcrystalPharm
-2022/12/14 19:45:04 Username or password is incorrectcrystalPharm
-2022/12/14 19:45:08 Username or password is incorrectcrystalPharm
-2022/12/14 19:49:08 Username or password is incorrectcrystalPharm
-2022/12/14 19:50:12 Username or password is incorrectcrystalPharm
-2022/12/14 19:50:35 Username or password is incorrectcrystalPharm
-2022/12/14 19:52:35 Username or password is incorrectcrystalPharm
-2022/12/14 19:52:58 Username or password is incorrectcrystalPharm
-2022/12/14 19:54:00 Username or password is incorrectcrystalPharm
-2022/12/14 19:54:07 Username or password is incorrectcrystalPharm
-2022/12/14 19:54:18 Username or password is incorrectcrystalPharm
-2022/12/14 19:54:32 Username or password is incorrectcrystalPharm
-2022/12/14 19:56:46 Username or password is incorrectcrystalPharm
-2022/12/14 19:57:06 Username or password is incorrectcrystalPharm
-2022/12/14 19:57:14 Username or password is incorrectcrystalPharm
-2022/12/14 19:57:20 Username or password is incorrectcrystalPharm
-2022/12/14 20:01:44 Username or password is incorrectcrystalPharm
-2022/12/14 20:03:18 Username or password is incorrectcrystalPharm
-2022/12/14 20:03:53 Username or password is incorrectcrystalPharm
-2022/12/14 20:04:47 Username or password is incorrectcrystalPharm
-2022/12/14 20:04:51 Username or password is incorrectcrystalPharm
-2022/12/14 20:06:40 Username or password is incorrectcrystalPharm
-2022/12/14 20:06:47 Username or password is incorrectcrystalPharm
-2022/12/14 20:08:17 Username or password is incorrectcrystalPharm
-2022/12/14 20:08:35 Username or password is incorrectcrystalPharm
-2022/12/14 20:09:11 Username or password is incorrectcrystalPharm
-2022/12/14 20:09:19 Username or password is incorrectcrystalPharm
-2022/12/14 20:09:37 Username or password is incorrectcrystalPharm
-2022/12/14 20:10:22 Username or password is incorrectcrystalPharm
-2022/12/14 20:10:26 Username or password is incorrectcrystalPharm
-2022/12/14 20:11:56 Username or password is incorrectcrystalPharm
-2022/12/14 20:33:22 User already exists
-2022/12/14 20:33:22 User already existstestPharmacy
-2022/12/14 20:35:13 User already exists
-2022/12/14 20:35:13 User already existstestPharmacy
-2022/12/15 22:50:22 1671124816711088PH16598Order creation failed
-2022/12/15 22:57:09 1671125216711088PH1660Order creation failed
-2022/12/15 22:57:55 1671125216711088PH16613Order creation failed
-2022/12/15 22:58:53 1671125316711088PH16681Order creation failed
-2022/12/15 22:59:46 1671125316711088PH16590Order creation failed
-2022/12/15 23:01:29 1671125416711088PH16794Order creation failed
-2022/12/15 23:08:11 1671125816711088PH16471 Order creation failed
-2022/12/15 23:10:03 1671126016711088PH16662 Order creation failed
-2022/12/15 23:15:37 1671126316711088PH16134 Order creation failed
-2022/12/15 23:19:30 1671126516711088PH16586 Order creation failed
-2022/12/15 23:20:29 
-2022/12/15 23:20:55 
-2022/12/15 23:21:15 
-2022/12/15 23:22:43 
-2022/12/15 23:29:27 
-2022/12/15 23:30:30 
-2022/12/15 23:56:58 
-2022/12/15 23:57:22 
-2022/12/15 23:57:34 
-2022/12/15 23:58:10 
-2022/12/16 01:04:59 Table 'medex.delivery_contact_us' doesn't exist
-2022/12/16 01:34:23 
-2022/12/16 01:54:02 $2y$10$hBQMN1qjUKRDD1PbawLb.uf75uAuFDc97bL4Hx4EEjaay3tJi.ARi
-2022/12/16 02:03:53 $2y$10$hBQMN1qjUKRDD1PbawLb.uf75uAuFDc97bL4Hx4EEjaay3tJi.ARi
-2022/12/16 02:30:54 Lab Contact us
-2022/12/16 02:31:27 Lab Contact us
-2022/12/16 03:22:00 $2y$10$b9kSnSM9jTfF//HwCG2vbeP8CngGJIbFbYCdmK274WKyW9l0jGC4K
-2022/12/16 09:27:55 
-2022/12/16 09:33:04 $2y$10$hBQMN1qjUKRDD1PbawLb.uf75uAuFDc97bL4Hx4EEjaay3tJi.ARi
-2022/12/16 11:08:34 
-2022/12/16 11:10:03 $2y$10$hBQMN1qjUKRDD1PbawLb.uf75uAuFDc97bL4Hx4EEjaay3tJi.ARi
-2022/12/16 11:11:42 Lab Contact us
-2022/12/22 20:38:17 User already exists
-2022/12/22 20:39:41 Duplicate entry '2132-University of Colombo School of Computing-5466-University o' for key 'pharmacy.pharmacyRegNo'
-2022/12/22 20:42:27 Duplicate entry '2132-University of Colombo School of Computing-5466-University o' for key 'pharmacy.pharmacyRegNo'
-2022/12/22 20:43:09 Duplicate entry '2132-University of Colombo School of Computing-5466-University o' for key 'pharmacy.pharmacyRegNo'
-2022/12/22 20:44:45 User already exists
-2022/12/22 20:54:11 User already exists
-2022/12/22 20:54:34 User already exists
-2022/12/22 20:56:22 User already exists
-2022/12/22 20:56:34 User already exists
-2022/12/22 20:56:47 User already exists
-2022/12/22 20:57:28 User already exists
-2023/01/25 10:31:55 php_network_getaddresses: getaddrinfo for medex.cf0qkfwuwc3x.us-east-1.rds.amazonaws.com failed: No such host is known. 
-2023/01/25 10:34:30 No connection could be made because the target machine actively refused it
-2023/02/09 09:56:36 php_network_getaddresses: getaddrinfo for medex.cf0qkfwuwc3x.us-east-1.rds.amazonaws.com failed: No such host is known. 
-2023/02/09 09:57:14 php_network_getaddresses: getaddrinfo for medex.cf0qkfwuwc3x.us-east-1.rds.amazonaws.com failed: No such host is known. 
-2023/02/09 11:46:23 php_network_getaddresses: getaddrinfo for medex.cf0qkfwuwc3x.us-east-1.rds.amazonaws.com failed: No such host is known. 
-2023/02/09 21:11:54 Table 'medex.pharmacy_order' doesn't exist
-2023/02/09 21:12:10 Table 'medex.pharmacy_order' doesn't exist
-2023/02/09 21:14:14 Table 'medex.pharmacy_order' doesn't exist
-2023/02/09 21:14:29 Table 'medex.pharmacy_order' doesn't exist
-2023/02/09 21:14:38 Table 'medex.pharmacy_order' doesn't exist
-2023/02/09 21:14:57 Table 'medex.pharmacy_order' doesn't exist
-2023/02/09 21:15:25 Table 'medex.pharmacy_order' doesn't exist
-2023/02/09 21:15:34 Table 'medex.pharmacy_order' doesn't exist
-2023/02/09 21:15:44 Table 'medex.pharmacy_order' doesn't exist
-2023/02/09 21:16:32 Table 'medex.pharmacy_order' doesn't exist
-2023/02/09 21:17:13 Table 'medex.pharmacy_order' doesn't exist
-2023/02/09 21:19:01 Unknown column 'order_date' in 'order clause'
-2023/02/09 22:04:14 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ASEC' at line 1
+2023/04/14 00:01:32 /pharmacy/order-medicine
+2023/04/14 00:02:06 /pharmacy/order-medicine
+2023/04/14 00:02:15 Unknown column '410733testPharmacy49' in 'field list'
+2023/04/14 00:02:16 Unknown column '410735testPharmacy722' in 'field list'
+2023/04/14 00:02:16 /pharmacy/order-medicine
+2023/04/14 00:04:36 /pharmacy/order-medicine
+2023/04/14 00:04:54 /pharmacy/order-medicine
+2023/04/14 00:04:56 Unknown column '410895testPharmacy356' in 'field list'
+2023/04/14 00:06:21 /pharmacy/order-medicine
+2023/04/14 00:06:24 Cannot add or update a child row: a foreign key constraint fails ("medex"."pharmacyorder", CONSTRAINT "pharmacyorder_ibfk_3" FOREIGN KEY ("supName") REFERENCES "supplier" ("username"))
+2023/04/14 00:08:25 /pharmacy/order-medicine
+2023/04/14 00:08:27 /pharmacy/orders
+2023/04/14 00:09:39 /pharmacy/order-medicine
+2023/04/14 00:10:03 /pharmacy/order-medicine
+2023/04/14 00:10:08 /pharmacy/orders
+2023/04/14 00:10:32 /pharmacy/orders
+2023/04/14 00:26:29 /pharmacy/order-medicine
+2023/04/14 00:27:04 /pharmacy/order-medicine
+2023/04/14 00:27:09 /pharmacy/orders
+2023/04/14 00:36:18 /pharmacy/order-medicine
+2023/04/14 00:38:44 /pharmacy/order-medicine
+2023/04/14 00:38:48 /pharmacy/orders
+2023/04/14 00:42:46 /pharmacy/order-medicine
+2023/04/14 00:43:25 /pharmacy/order-medicine
+2023/04/14 00:44:41 /pharmacy/order-medicine
+2023/04/14 00:44:45 Incorrect integer value: '()' for column 'quantity' at row 1
+2023/04/14 00:46:02 /pharmacy/order-medicine
+2023/04/14 00:46:06 Incorrect integer value: '()' for column 'quantity' at row 1
+2023/04/14 00:47:32 /pharmacy/order-medicine
+2023/04/14 00:47:37 Incorrect integer value: '()' for column 'quantity' at row 1
+2023/04/14 00:48:59 /pharmacy/order-medicine
+2023/04/14 00:49:04 Incorrect date value: '413542testPharmacy25' for column 'order_date' at row 1
+2023/04/14 00:51:55 /pharmacy/order-medicine
+2023/04/14 00:52:23 /pharmacy/order-medicine
+2023/04/14 00:52:33 /pharmacy/order-medicine
+2023/04/14 00:53:12 /pharmacy/order-medicine
+2023/04/14 00:58:26 /pharmacy/order-medicine
+2023/04/14 00:58:48 /pharmacy/order-medicine
+2023/04/14 00:58:53 /pharmacy/orders
+2023/04/14 00:59:43 /pharmacy/order-medicine
+2023/04/14 01:00:27 /pharmacy/order-medicine
+2023/04/14 01:00:34 /pharmacy/orders

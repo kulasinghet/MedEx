@@ -3,7 +3,7 @@
     <title>Login | MedEx</title>
     <!--        <link href="../scss2/vendor/demo.css" rel="stylesheet"/>-->
     <link rel="stylesheet" href="/css/loginPage.css">
-    <link href='/css/error-model' rel='stylesheet'>
+    <link href='/css/error-model.css' rel='stylesheet'>
     <link href="/css/model.css" rel="stylesheet">
 
 

@@ -17,11 +17,12 @@ echo $components->sideBar('contact-us');
                 <div class="contact-us">
                     <h1>Contact Us</h1>
 
-                    <form>
-                        <div class="form-group">
-                            <label for="exampleFormControlInput1">Subject</label>
-                            <input type="email" class="form-input" id="exampleFormControlInput1" placeholder="Subject">
-                        </div>
+
+                <form>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Subject</label>
+                        <input type="text" class="form-input" id="exampleFormControlInput1" placeholder="Subject">
+                    </div>
 
                         <div class="form-group">
                             <label for="exampleFormControlTextarea1">Message</label>
