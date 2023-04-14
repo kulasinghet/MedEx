@@ -87,17 +87,19 @@ textarea{
 .modal-content {
   background-color: #fefefe;
   margin: auto;
-  padding: 20px;
+  padding: 1%;
   border: 1px solid #ccc;
   border-radius: 10px;
   width: 80%;
   max-width: 600px;
+  height: auto;
+  max-height: 100%;
   position: relative;
   top: 50%;
   transform: translateY(-50%);
 }
 
-.close {
+.delclose,.updateclose {
   color: red;
   position: absolute;
   top: 10px;
@@ -107,8 +109,7 @@ textarea{
   cursor: pointer;
 }
 
-.close:hover,
-.close:focus {
+.delclose:hover,.delclose:focus,.updateclose:hover,.updateclose:focus {
   color: #000;
   text-decoration: none;
 }
