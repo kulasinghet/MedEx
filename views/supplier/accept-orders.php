@@ -11,13 +11,16 @@ use app\controllers\supplier\AcceptOrdersController;
     <title>Supplier - Accept Orders</title>
 
     <link href="../scss/vendor/demo.css" rel="stylesheet" />
+    <!-- g28 style -->
+    <link rel="stylesheet" href="../scss/vendor/demo.css" />
+    <script src="../js/g28-main.js"></script>
     <!-- Font awesome kit -->
     <script crossorigin="anonymous" src="https://kit.fontawesome.com/9b33f63a16.js"></script>
 </head>
 
 <body>
     <!-- Section: Fixed Components -->
-    <div class="sidebar-grouped">
+    <div class="sidebar-collapsible">
         <div class="sidebar-inner">
             <nav class="sidebar-header">
                 <div class="sidebar-logo">

@@ -13,16 +13,17 @@ use app\controllers\supplier\SupplierUpdateMedicineController;
     <meta charset="UTF-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Update Inventory</title>
-
-    <link href="../scss/vendor/demo.css" rel="stylesheet" />
+    <!-- g28 style -->
+    <link rel="stylesheet" href="../scss/vendor/demo.css" />
     <link href="../css/supplier/supplier.css" rel="stylesheet" />
+    <script src="../js/g28-main.js"></script>
     <!-- Font awesome kit -->
     <script crossorigin="anonymous" src="https://kit.fontawesome.com/9b33f63a16.js"></script>
 </head>
 
 <body>
     <!-- Section: Fixed Components -->
-    <div class="sidebar-grouped">
+    <div class="sidebar-collapsible">
         <div class="sidebar-inner">
             <nav class="sidebar-header">
                 <div class="sidebar-logo">
@@ -95,14 +96,6 @@ use app\controllers\supplier\SupplierUpdateMedicineController;
                             <div style="padding: 2%;">
                                 <h3>Inventory</h3>
                                 </br>
-                                <div class="nav-search">
-                                    <form onsubmit="preventDefault();" role="search">
-                                        <label for="search">Filter Medicine</label>
-                                        <input autofocus id="search" placeholder="Filter Medicine" required
-                                            type="search" />
-                                        <button type="submit">Go</button>
-                                    </form>
-                                </div>
                                 </br></br>
                                 <table style="width: 100%; text-align:center;">
                                     <tr>
