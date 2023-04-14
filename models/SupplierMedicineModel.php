@@ -110,6 +110,34 @@ class SupplierMedicineModel extends Model
 
     }
 
+    public function getQty($uname, $id)
+    {
+        $db = (new Database())->getConnection();
+        $sql = "SELECT quantity from supplier_medicine WHERE supplier_medicine.supName = '$uname' && supplier_medicine.medId = '$id' ";
+        $result = $db->query($sql);
+        if ($result->num_rows > 0) {
+            return $result;
+
+        }
+        $db->close();
+
+
+    }
+    public function getUnitPrice($uname, $id)
+    {
+        $db = (new Database())->getConnection();
+        $sql = "SELECT unitPrice from supplier_medicine WHERE supplier_medicine.supName = '$uname' && supplier_medicine.medId = '$id' ";
+        $result = $db->query($sql);
+        if ($result->num_rows > 0) {
+            return $result;
+
+        }
+        $db->close();
+
+
+    }
+
+
 
 
     public function acceptOrder($qauntity, $id, $uname)
