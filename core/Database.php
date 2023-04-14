@@ -35,5 +35,10 @@ class Database
         return $_ENV[$string];
     }
 
+    public function prepare(string $query)
+    {
+        return $this->db->prepare($query);
+    }
+
 
 }

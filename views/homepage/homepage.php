@@ -7,7 +7,7 @@
     <title>MedEx</title>
 
     <link rel="stylesheet" href="/css/css-framework.css" />
-    <script src="../../public/js/carousel.js"></script>
+    <script src="/js/carousel.js"></script>
     <script src="https://kit.fontawesome.com/9b33f63a16.js" crossorigin="anonymous"></script>
 </head>
 
@@ -16,7 +16,7 @@
         <nav>
             <div class="navbar-logo">
                 <a href="#">
-                    <img src="../../public/res/logo/Logo-text.png" alt="MedEx Logo with name" />
+                    <img src="/res/logo/Logo-text.png" alt="MedEx Logo with name" />
                 </a>
             </div>
             <div class="navbar-inner">

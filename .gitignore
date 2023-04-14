@@ -100,3 +100,6 @@ fabric.properties
 .idea/caches/build_file_checksums.ser
 
 /node_modules/
+*.lock
+core/.env
+composer.lock

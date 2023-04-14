@@ -89,11 +89,11 @@ class MedicineModel extends Model
     // Get all medicine
     public function getAllMedicines()
     {
-        $db = new Database();
+        $conn = (new Database())->getConnection();
         $sql = "SELECT * FROM medicine";
 
         try {
-            $stmt = $db->prepare($sql);
+            $stmt = $conn->prepare($sql);
             $stmt->execute();
             $result = $stmt->get_result();
             return $result;
