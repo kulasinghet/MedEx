@@ -100,8 +100,9 @@ $selectbox-list-box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.38);
     }
 
     &:focus {
+      outline: none;
+
       .selectbox-display {
-        outline: none;
         border-color: $input-border-color-active;
         box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 24%);
       }
