@@ -78,7 +78,6 @@
         </div>
     </nav>
     <!-- Section: Fixed Components -->
-    </div>
 
 
     <div class="canvas nav-cutoff sidebar-cutoff">
