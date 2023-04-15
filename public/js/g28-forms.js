@@ -2,6 +2,7 @@
 initConfigs({stage: 'dev'});
 initConfigs({customFormElmPath: '../scss/components/forms'});
 
+
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Selector ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 document.querySelectorAll('.selector-group').forEach(selectorGrp => {
   const label = selectorGrp.querySelector('label');
@@ -14,25 +15,23 @@ document.querySelectorAll('.selector-group').forEach(selectorGrp => {
 
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ SelectBox ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-const sbListExistTimeoutVal = 1000;
-const sbPlaceholderDef = 'Please select an item';
-const sbShadowTmp = `
-<div class="selectbox" tabindex="0">
-    <div class="selectbox-display">
-        <span class="selectbox-display-text placeholder">Please select an item</span>
-    </div>
-    <div class="selectbox-list">
-        <ul></ul>
-    </div>
-</div>
-`;
-
-
 class G28Selectbox extends HTMLElement {
   constructor() {
     super();
     // element created
+
     this.valueChanged = false;
+    this.sbListExistTimeoutVal = 1000;
+    this.sbTemplate = `
+    <div class="selectbox" tabindex="0">
+        <div class="selectbox-display">
+            <span class="selectbox-display-text placeholder">Please select an item</span>
+        </div>
+        <div class="selectbox-list">
+            <ul></ul>
+        </div>
+    </div>
+    `;
   }
 
   connectedCallback() {
@@ -41,7 +40,7 @@ class G28Selectbox extends HTMLElement {
 
     // initializing selectbox variables
     this.opened = this.getAttribute('opened') === "" || false;
-    this.placeholder = this.getAttribute('placeholder') || sbPlaceholderDef;
+    this.placeholder = this.getAttribute('placeholder') || '';
 
     // taking the list of content into an array
     const listContents = this.innerText.trim().split(/,\s+/);
@@ -75,7 +74,7 @@ class G28Selectbox extends HTMLElement {
     this.sbList.addEventListener('mouseenter', (e) => {
       if (e.target === this.sbList  && this.opened) {
         clearTimeout(this.sbListExistTimeout);
-        logger("mouseenter triggered on the list of SelectBox[]");
+        logger("mouseenter triggered on the list of SelectBox");
       }
     });
 
@@ -83,8 +82,8 @@ class G28Selectbox extends HTMLElement {
       if (e.target === this.sbList  && this.opened) {
         this.sbListExistTimeout = setTimeout(() => {
           this.toggleAttribute('opened', false);
-          logger("mouseleave triggered on the list of SelectBox[]");
-        }, sbListExistTimeoutVal);
+          logger("mouseleave triggered on the list of SelectBox");
+        }, this.sbListExistTimeoutVal);
       }
     });
 
@@ -95,13 +94,13 @@ class G28Selectbox extends HTMLElement {
 
         setTimeout(() => {
           this.toggleAttribute('opened', false);
-          logger("mouseclick triggered on the list of SelectBox[]");
-        }, sbListExistTimeoutVal * 10 / 100);
+          logger("mouseclick triggered on the list of SelectBox");
+        }, this.sbListExistTimeoutVal * 10 / 100);
 
         // prevent triggering mouseleave event
         setTimeout(() => {
           clearTimeout(this.sbListExistTimeout);
-        }, sbListExistTimeoutVal * 80 / 100);
+        }, this.sbListExistTimeoutVal * 80 / 100);
       });
     });
   }
@@ -139,13 +138,13 @@ class G28Selectbox extends HTMLElement {
 
   renderElement() {
     // creating a template and attaching it to the shadow root
-    this.sbTemp = document.createElement("template");
+    const sbTemp = document.createElement("template");
 
     // adding simplebar API
-    const simpleLink = document.createElement('link');
-    simpleLink.rel = 'stylesheet';
-    simpleLink.href = "https://unpkg.com/simplebar@latest/dist/simplebar.css";
-    this.shadowRoot.appendChild(simpleLink);
+    const simpleBarLink = document.createElement('link');
+    simpleBarLink.rel = 'stylesheet';
+    simpleBarLink.href = "https://unpkg.com/simplebar@latest/dist/simplebar.css";
+    this.shadowRoot.appendChild(simpleBarLink);
 
     // adding stylesheet to the shadow DOM
     const styleLink = document.createElement('link');
@@ -153,8 +152,8 @@ class G28Selectbox extends HTMLElement {
     styleLink.href = configs.customFormElmPath + '/form-selectbox.css';
     this.shadowRoot.appendChild(styleLink);
 
-    this.sbTemp.innerHTML = sbShadowTmp;
-    this.shadowRoot.appendChild(this.sbTemp.content.cloneNode(true));
+    sbTemp.innerHTML = this.sbTemplate;
+    this.shadowRoot.appendChild(sbTemp.content.cloneNode(true));
 
     this.sb = this.shadowRoot.querySelector('.selectbox');
     this.sbDisplay = this.shadowRoot.querySelector('.selectbox-display');
@@ -185,10 +184,52 @@ class G28Selectbox extends HTMLElement {
   isDisabled() {
     return this.classList.contains('disabled');
   }
+
+  getValue() {
+    return this.getAttribute('value') || '';
+  }
+
+  setValue(val) {
+    this.setAttribute('value', val);
+  }
 }
 
 customElements.define('g28-selectbox', G28Selectbox);
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ SelectBox ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-// todo: fix tab indexes when SelectBoxes exist in the form
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Overrides ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+document.querySelectorAll('form').forEach(frm => {
+  const frmElements = frm.querySelectorAll('input, select, textarea, g28-selectbox');
+
+  frm.addEventListener('submit', (e) => {
+    // Creating a new FormData object
+    const formData = new FormData(frm);
+    frmElements.forEach(elem => {
+      // Adding the value of the custom input element to the form data
+      if (elem.nodeName === 'G28-SELECTBOX') {
+        formData.append(elem.id, JSON.stringify(elem.getValue()));
+      } else if (elem.getAttribute('type') === 'radio' ||
+          elem.getAttribute('type') === 'checkbox') {
+        formData.append(elem.id, JSON.stringify(elem.checked));
+      }
+      else {
+        formData.append(elem.id, JSON.stringify(elem.value));
+      }
+    })
+
+    // Submitting the form with the updated form data
+    fetch(frm.action, {
+      method: frm.method,
+      body: formData,
+    }).then(r => {
+      logger('Form is submitted! Showing key-value pairs.');
+      for (const pair of formData.entries()) {
+        logger(pair[0]+ ': ' + pair[1]);
+      }
+    });
+
+    e.preventDefault();
+  });
+});
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Overrides ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

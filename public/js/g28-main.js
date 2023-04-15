@@ -11,10 +11,8 @@ let configs = {
 
 
 // Utils
-const isDev = (configs.stage === 'dev');
-
 function logger(output) {
-    if (isDev) {
+    if (configs.stage === 'dev') {
         console.log(output);
     }
 }

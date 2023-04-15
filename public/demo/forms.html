@@ -16,7 +16,7 @@
 </head>
 <body>
 <div class="container demo-container">
-    <form>
+    <form method="POST" action="">
         <div class="form-group">
             <label for="exampleFormControlInput1">Email address</label>
             <input type="email" class="form-input" id="exampleFormControlInput1" placeholder="name@example.com">
@@ -36,12 +36,14 @@
             </select>
         </div>
         <div class="form-group">
-            <label>SelectBox (new: g28 style)</label>
-            <g28-selectbox>Item 1, Item 2, Item 3, Item 4, Item 5</g28-selectbox>
+            <label for="exampleCustomSelectBox1">SelectBox (new: g28 style)</label>
+            <g28-selectbox id="exampleCustomSelectBox1" placeholder="Please select an item">
+                Item 1, Item 2, Item 3, Item 4, Item 5
+            </g28-selectbox>
         </div>
         <div class="form-group">
-            <label>Disabled SelectBox (new: g28 style)</label>
-            <g28-selectbox class="disabled" placeholder="The selectbox is disabled">
+            <label  for="exampleCustomSelectBox2">Disabled SelectBox (new: g28 style)</label>
+            <g28-selectbox id="exampleCustomSelectBox2" class="disabled" placeholder="The selectbox is disabled">
                 Item 1, Item 2, Item 3, Item 4, Item 5
             </g28-selectbox>
         </div>
@@ -104,9 +106,9 @@
     configs.customFormElmPath = '../scss/components/forms';
 
     //logging
-    console.log("Logging g28 initial state before loading specialized JS files...");
+    logger("Logging g28 initial state before loading specialized JS files...");
     for (let property in configs) {
-        console.log(`Config variable -> ${property}: ${configs[property]}`);
+        logger(`> ${property}: ${configs[property]}`);
     }
 </script>
 <script src="../js/g28-forms.js"></script>
