@@ -53,7 +53,7 @@ class PharmacyModel extends Model
         try {
             $this->password = password_hash($this->password, PASSWORD_DEFAULT);
 
-            $this->id = $this->createRandomID("PH");
+            $this->id = $this->createRandomID("pharmacy");
 
             $sql = "INSERT INTO pharmacy (id, username, password, name, ownerName, city, pharmacyRegNo, BusinessRegId, pharmacyCertId, BusinessRegCertName, pharmacyCertName, verified, deliveryTime, regDate) VALUES ('$this->id', '$this->username', '$this->password', '$this->name', '$this->ownerName', '$this->city', '$this->pharmacyRegNo', '$this->BusinessRegId', '$this->pharmacyCertId', '$this->BusinessRegCertName', '$this->pharmacyCertName', '0', '10:00:00', '$regDate');";
 

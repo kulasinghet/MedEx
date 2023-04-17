@@ -47,8 +47,13 @@
     font-weight: 500;
     color: #071232;
     background-color: #fff;
+    padding: 15px;
 }
 
 .swal-modal {
     width: auto;
+}
+
+.swal-modal .swal-text {
+    text-align: center;
 }
