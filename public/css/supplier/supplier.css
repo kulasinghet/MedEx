@@ -75,6 +75,7 @@ textarea{
 .modal {
   display: none;
   position: fixed;
+  padding: 2%;
   z-index: 1;
   left: 0;
   top: 0;
@@ -87,7 +88,7 @@ textarea{
 .modal-content {
   background-color: #fefefe;
   margin: auto;
-  padding: 1%;
+  padding: 10px;
   border: 1px solid #ccc;
   border-radius: 10px;
   width: 80%;

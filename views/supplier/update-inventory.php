@@ -12,7 +12,7 @@ use app\controllers\supplier\SupplierUpdateMedicineController;
 <head>
     <meta charset="UTF-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Update Inventory</title>
+    <title>Supplier - Update Inventory</title>
     <!-- g28 style -->
     <link rel="stylesheet" href="../scss/vendor/demo.css" />
     <link href="../css/supplier/supplier.css" rel="stylesheet" />
@@ -22,41 +22,75 @@ use app\controllers\supplier\SupplierUpdateMedicineController;
 </head>
 
 <body>
-    <!-- Section: Fixed Components -->
-    <div class="sidebar-collapsible">
+
+    <nav>
+        <div class="nav-search">
+            <form onsubmit="preventDefault();" role="search">
+                <label for="search">Search for stuff</label>
+                <input autofocus id="search" placeholder="Search..." required type="search" />
+                <button type="submit">Go</button>
+            </form>
+        </div>
+        <div class="nav-inner">
+            <ul>
+                <li><a href="/login"><i class="fa fa-sign-out"></i></a></li>
+            </ul>
+            <a class="nav-profile" href="#">
+                <div class="nav-profile-image">
+                    <img alt="Profile image" src="../res/avatar-empty.png" />
+                </div>
+            </a>
+        </div>
+    </nav>
+
+    <div class="sidebar">
         <div class="sidebar-inner">
             <nav class="sidebar-header">
                 <div class="sidebar-logo">
-                    <a href="#">
+                    <a href="/dashboard">
                         <img alt="MedEx logo" src="../res/logo/logo-text_light.svg" />
                     </a>
                 </div>
             </nav>
             <div class="sidebar-context">
-                <ul class="main-buttons">
+                <ul>
                     <li>
-                        <a href="/dashboard"> <i class="fa-solid fa-house"></i> Dashboard </a>
+                        <a class="btn" href="/dashboard"> <i class="fa-solid fa-house"></i>Dashboard
+                        </a>
                     </li>
                     <li>
-                        <a href="#"> <i class="fa fa-dropbox"></i> Inventory </a>
-                        <ul class="hidden">
-                            <li><a href="/supplier/add-medicine"> Add New Medicine </a></li>
-                            <li><a href="/supplier/inventory"> View Inventory </a></li>
-                            <li class="disabled"><a href="/supplier/update-inventory"> Update Inventory</a></li>
-                        </ul>
+                        <a class="btn" href="/supplier/add-medicine"> <i class="fa fa-medkit"></i> Add New
+                            Medicine
+                        </a>
                     </li>
                     <li>
-                        <a href="#"> <i class="fa fa-check-circle"></i> Orders </a>
-                        <ul class="hidden">
-                            <li><a href="/supplier/accept-orders"> Accept Orders</a></li>
-                            <li><a href="#"> View Orders </a></li>
-                        </ul>
+                        <a class="btn" href="/supplier/inventory"> <i class="fa fa-dropbox"></i> Inventory </a>
                     </li>
                     <li>
-                        <a href="/supplier/medicine-requests"> <i class="fa fa-hourglass-half"></i>Medicine Requests</a>
+                        <a class="btn  disabled" href="/supplier/update-inventory"> <i class="fa fa-plus-square"></i>
+                            Update
+                            Inventory
+                        </a>
                     </li>
                     <li>
-                        <a href="/supplier/contact-us"> <i class="fa fa-phone"></i>Contact Us </a>
+                        <a class="btn" href="/supplier/accept-orders"> <i class="fa fa-check-circle"></i>
+                            Accept Orders
+                        </a>
+                    </li>
+                    <li>
+                        <a class="btn" href="/supplier/orders"> <i class="fa fa-list-alt"></i> View
+                            Accepted
+                            Orders
+                        </a>
+                    </li>
+                    <li>
+                        <a class="btn" href="/supplier/medicine-requests"> <i class="fa fa-hourglass-half"></i>
+                            Medicine
+                            Requests </a>
+                    </li>
+
+                    <li>
+                        <a class="btn" href="/supplier/contact-us"> <i class="fa fa-phone"></i> Contact Us </a>
                     </li>
                 </ul>
             </div>
@@ -73,7 +107,7 @@ use app\controllers\supplier\SupplierUpdateMedicineController;
         <div class="nav-inner">
             <ul>
                 <li><a class="link" href="#"><i class="fa-solid fa-gear"></i></a></li>
-                <li><a class="link" href="login"><i class="fa-solid fa-right-from-bracket"></i></a></li>
+                <li><a class="link" href="/login"><i class="fa-solid fa-right-from-bracket"></i></a></li>
                 <li><a class="link" href="#"><i class="fa-solid fa-bell"></i></a></li>
             </ul>
             <a class="nav-profile" href="#">

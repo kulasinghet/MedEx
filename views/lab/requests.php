@@ -96,7 +96,7 @@ use app\controllers\lab\LabRequestsController;
                                     </tr>
                                     <?php
                                     $req = new LabRequestsController;
-                                    $req->viewRequests();
+                                    $req->AcceptReq();
                                     ?>
                                 </table>
                             </div>

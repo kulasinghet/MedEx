@@ -19,31 +19,36 @@ class AcceptOrdersController extends Controller
         $order = new PharmacyOrderModel;
         $med = new MedicineModel;
         $manu = new ManufactureModel;
-        $supmed = new SupplierMedicineModel;
+        $supMed = new SupplierMedicineModel;
+        $supmedids = array();
+        $supids = $supMed->getSupMedIds($_SESSION['username']);
+        while ($row1 = $supids->fetch_assoc()) {
+            array_push($supmedids, $row1['medId']);
+        }
         $result = $order->getPendingOrders();
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 $id = $row['id'];
                 $pharname = $order->getOrderPharm($id);
                 $medid = $order->getMedId($id);
-                $medname = $med->getName($medid);
-                $weight = $med->getWeight($medid);
-                $manid = $med->getManufacture($id);
-                $manname = $manu->getManufactureName($manid);
-                $qauntity = $order->getMedQuantiy($id);
-                if ($supmed->getQuantity($medid) > $qauntity) {
-                    echo "<form method='post' action='/supplier/accept'>";
-                    echo " <input type='hidden' value='$medid' name='medid'/>";
-                    echo " <input type='hidden' value='$qauntity' name='qauntity'/>";
-                    echo " <input type='hidden' value='$id' name='orderid'/>";
-                    echo "<tr><td>" . $id . "</td><td>" . $pharname . "</td><td>" . $medname . "</td><td>" . $weight . "</td><td>" . $manname . "</td><td>" . $qauntity . "</td><td><input type='submit' value='Accept' class='btn btn--primary'></td></tr></form>";
+                if (in_array($medid, $supmedids)) {
+                    $medname = $med->getName($medid);
+                    $weight = $med->getWeight($medid);
+                    $manid = $med->getManufacture($id);
+                    $manname = $manu->getManufactureName($manid);
+                    $qauntity = $order->getMedQuantiy($id);
+                    $supmedq = $supMed->getQuantity($medid);
+                    if ($supMed->getQuantity($medid) > $qauntity) {
+                        echo "<form method='post' action='/supplier/accept'>";
+                        echo " <input type='hidden' value='$medid' name='medid'/>";
+                        echo " <input type='hidden' value='$qauntity' name='qauntity'/>";
+                        echo " <input type='hidden' value='$id' name='orderid'/>";
+                        echo "<tr><td>" . $id . "</td><td>" . $pharname . "</td><td>" . $medname . "</td><td>" . $weight . "</td><td>" . $manname . "</td><td>" . $qauntity . "</td><td><input type='submit' value='Accept' class='btn btn--primary'></td></tr></form>";
 
-                } else {
-                    echo "<form method='post' action='/supplier/accept'>";
-                    echo " <input type='hidden' value='$medid' name='medid'/>";
-                    echo " <input type='hidden' value='$qauntity' name='qauntity'/>";
-                    echo " <input type='hidden' value='$id' name='orderid'/>";
-                    echo "<tr><td>" . $id . "</td><td>" . $pharname . "</td><td>" . $medname . "</td><td>" . $weight . "</td><td>" . $manname . "</td><td>" . $qauntity . "</td><td><input type='submit' value='Accept' class='btn btn--primary'></td></tr></form>";
+                    } else {
+                        echo "<tr><td>" . $id . "</td><td>" . $pharname . "</td><td>" . $medname . "</td><td>" . $weight . "</td><td>" . $manname . "</td><td>" . $qauntity . "</td><td><h6><font color='#FF5854'>Insufficient Inventory</font></h6> </td></tr>";
+
+                    }
 
                 }
 
