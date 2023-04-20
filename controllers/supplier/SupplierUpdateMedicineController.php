@@ -15,11 +15,10 @@ class SupplierUpdateMedicineController extends Controller
     public function deleteMed(Request $request)
     {
         if ($request->isPost()) {
-            $id = $_POST['medId'];
+            $id = $_POST['DelmedId'];
             $supName = $_SESSION['username'];
             $supmed = new SupplierMedicineModel;
             if ($supmed->DeleteMed($supName, $id)) {
-                echo (new \app\core\ExceptionHandler)->DeleteCompleted();
                 return $this->render("/supplier/update-inventory.php");
             }
 
@@ -36,25 +35,13 @@ class SupplierUpdateMedicineController extends Controller
             $unitPrice = $_POST['unitPrice'];
             $supName = $_SESSION['username'];
             $supmed = new SupplierMedicineModel;
-            if ($quantity < 1) {
-                echo (new \app\core\ExceptionHandler)->inValidQty();
+            if ($supmed->UpdateMed($supName, $id, $unitPrice, $quantity)) {
                 return $this->render("/supplier/update-inventory.php");
-
             } else {
-                if ($unitPrice < 0) {
-                    echo (new \app\core\ExceptionHandler)->inValidUnitP();
-                    return $this->render("/supplier/update-inventory.php");
-
-                } else {
-                    if ($supmed->UpdateUnitP($supName, $id, $unitPrice) && $supmed->UpdateQty($supName, $id, $quantity)) {
-                        echo (new \app\core\ExceptionHandler)->UpdateCompleted();
-                        return $this->render("/supplier/update-inventory.php");
-                    }
-                }
+                return $this->render('/supplier/update-inventory.php');
             }
 
         }
-        return $this->render('/supplier/update-inventory.php');
     }
 
     // Update Inventory Invetory Display
@@ -90,19 +77,20 @@ class SupplierUpdateMedicineController extends Controller
         <span class="delclose">&times;</span>
         <form method='post' action='/supplier/delete-medicine'>
             <h5>Are you sure you want to delete this item from your inventory?</h5>
-            <input type="hidden" id="medId" name="medId">
+            <input type="hidden" id="DelmedId" name="DelmedId" value="">
             <button id="delconfirmBtn" class='btn btn-primary' type="submit">Yes</button>
         </form>
         <button id="delcancelBtn" class='btn btn-primary'>No</button>
     </div>
 </div>
 
-<div id="UpdateModal" class="modal" data-medId="">
+<div id="UpdateModal" class="modal">
     <!--Update Modal content -->
     <div class="modal-content">
         <span class="updateclose">&times;</span>
         <h5>Update Medicine</h5>
         <form id="updateForm" method='post' action='/supplier/update-medicine'>
+            <input type="hidden" id="medId" name="medId" value="">
             <label for="medNam" style="display: block; padding: 1%; text-align: left;">Medicine Name:</label>
             <input type="text" id="medNam" name="medNam" value="" disabled class='form-input' style='width:60%;'>
             <label for="sciName" style="display: block; padding: 1%; text-align: left;">Scientific Name:</label>
@@ -115,10 +103,8 @@ class SupplierUpdateMedicineController extends Controller
             <input type="number" id="quantity" name="quantity" value="" class='form-input' style='width:60%;'>
             <label for="unitPrice" style="display: block; padding: 1%; text-align: left;">Unit Price:</label>
             <input type="number" id="unitPrice" name="unitPrice" value="" class='form-input' style='width:60%;'>
-            <input type="hidden" id="medId" name="medId">
-            <input type="submit" value="Update" class='btn btn-primary'>
+            <button id="updateconfirmBtn" class='btn btn-primary' type="submit">Update</button>
         </form>
-
         <button id="updatecancelBtn" class='btn btn-primary'>Cancel</button>
     </div>
 </div>
@@ -128,12 +114,12 @@ class SupplierUpdateMedicineController extends Controller
     var delspan = document.getElementsByClassName("delclose")[0];
     var delcancelBtn = document.getElementById("delcancelBtn");
     var delconfirmBtn = document.getElementById("delconfirmBtn");
-    var medId;
+    var DelmedId;
 
-    function confirmDelete(medId) {
-        medIdValue = medId;
+    function confirmDelete(DelmedId) {
+        DelmedIdValue = DelmedId;
         delmodal.style.display = "block";
-        document.getElementById("medId").value = medId;
+        document.getElementById("DelmedId").value = DelmedId;
     }
 
     delspan.onclick = function () {
@@ -173,13 +159,13 @@ class SupplierUpdateMedicineController extends Controller
         mannameValue = manname;
         updatemodal.style.display = "block";
         // Set the values in the modal
+        document.getElementById("medId").value = medId;
         document.getElementById("medNam").value = medNam;
         document.getElementById("sciName").value = sciName;
         document.getElementById("weight").value = weight;
         document.getElementById("quantity").value = quantity;
         document.getElementById("unitPrice").value = unitPrice;
         document.getElementById("manname").value = manname;
-        document.getElementById("medId").value = medId;
     }
 
     updatespan.onclick = function () {

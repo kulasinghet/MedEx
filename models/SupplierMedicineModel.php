@@ -15,7 +15,7 @@ class SupplierMedicineModel extends Model
     public function getSupMed($medid, $supName)
     {
         $db = (new Database())->getConnection();
-        $sql = "SELECT * from supplier_medicine WHERE supplier_medicine.supName = '$supName' && verified='1'";
+        $sql = "SELECT * from supplier_medicine WHERE supplier_medicine.supName = '$supName' && verified='1' && supplier_medicine.medId = '$medid'";
         $result = $db->query($sql);
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
@@ -84,21 +84,10 @@ class SupplierMedicineModel extends Model
 
     }
 
-    public function UpdateUnitP($uname, $id, $unitPrice)
+    public function UpdateMed($uname, $id, $unitPrice, $quantity)
     {
         $db = (new Database())->getConnection();
-        $sql = "UPDATE supplier_medicine SET supplier_medicine.unitPrice = $unitPrice WHERE supplier_medicine.supName = '$uname' && supplier_medicine.medId = '$id'";
-        $result = $db->query($sql);
-        if ($result->num_rows > 0) {
-            return $result;
-        }
-        $db->close();
-    }
-
-    public function UpdateQty($uname, $id, $quantity)
-    {
-        $db = (new Database())->getConnection();
-        $sql = "UPDATE supplier_medicine SET supplier_medicine.quantity = $quantity WHERE supplier_medicine.supName = '$uname' && supplier_medicine.medId = '$id'";
+        $sql = "UPDATE supplier_medicine SET supplier_medicine.unitPrice = $unitPrice, supplier_medicine.quantity = $quantity WHERE supplier_medicine.supName = '$uname' && supplier_medicine.medId = '$id'";
         $result = $db->query($sql);
         if ($result->num_rows > 0) {
             return $result;

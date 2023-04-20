@@ -109,7 +109,7 @@ class PharmacyOrderModel extends Model
 
             if ($stmt->affected_rows == 1) {
                 $stmt->close();
-//                $pharmacyUsername, $order_total, $medicineIds, $order_date
+                //                $pharmacyUsername, $order_total, $medicineIds, $order_date
                 if ($this->updateMedicineQuantity($pharmacyUsername, $order_total, $medicineIds, $order_date)) {
                     return true;
                 }
@@ -202,5 +202,4 @@ class PharmacyOrderModel extends Model
 
         return $flag;
     }
-}
 }
