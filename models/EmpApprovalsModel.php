@@ -1,9 +1,13 @@
 <?php
 
 namespace app\models;
+
 use app\core\Database;
-use app\core\ExceptionHandler;
 use app\core\Logger;
+use app\models\InvalidEntity\InvalidDeliveryModel;
+use app\models\InvalidEntity\InvalidLabModel;
+use app\models\InvalidEntity\InvalidPharmacyModel;
+use app\models\InvalidEntity\InvalidSupplierModel;
 
 class EmpApprovalsModel extends Model
 {
@@ -12,9 +16,6 @@ class EmpApprovalsModel extends Model
     private array $invalid_delivery_guys_list;
     private array $invalid_lab_list;
 
-    public function getInvalids() {
-        //todo
-    }
 
     public function getInvalidPharmacies(): array
     {
@@ -52,11 +53,11 @@ class EmpApprovalsModel extends Model
     {
         //loading the database
         $db = new Database();
-        $conn = $db.getConnection();
+        $conn = $db->getConnection();
 
         try {
-            $sql = "SELECT * FROM pharmacy WHERE verified = 0";
-            $result = $db->query($sql);
+            $sql = "SELECT * FROM `pharmacy` WHERE verified = 0";
+            $result = $conn->query($sql);
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                     $tmp = new InvalidPharmacyModel(array(
@@ -78,7 +79,7 @@ class EmpApprovalsModel extends Model
                     $this->invalid_pharmacy_list[] = $tmp;
                 }
             }
-            $db->close();
+            $conn->close();
         } catch (\Exception $e) {
             Logger::logError($e->getMessage());
         }
@@ -88,11 +89,11 @@ class EmpApprovalsModel extends Model
     {
         //loading the database
         $db = new Database();
-        $conn = $db.getConnection();
+        $conn = $db->getConnection();
 
         try {
-            $sql = "SELECT * FROM supplier WHERE verified = 0";
-            $result = $db->query($sql);
+            $sql = "SELECT * FROM `supplier` WHERE verified = 0";
+            $result = $conn->query($sql);
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                     $tmp = new InvalidSupplierModel(array(
@@ -113,7 +114,7 @@ class EmpApprovalsModel extends Model
                     $this->invalid_supplier_list[] = $tmp;
                 }
             }
-            $db->close();
+            $conn->close();
         } catch (\Exception $e) {
             Logger::logError($e->getMessage());
         }
@@ -123,11 +124,11 @@ class EmpApprovalsModel extends Model
     {
         //loading the database
         $db = new Database();
-        $conn = $db.getConnection();
+        $conn = $db->getConnection();
 
         try {
-            $sql = "SELECT * FROM delivery_partner WHERE verified = 0";
-            $result = $db->query($sql);
+            $sql = "SELECT * FROM `delivery_partner` WHERE verified = 0";
+            $result = $conn->query($sql);
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                     $tmp = new InvalidDeliveryModel(array(
@@ -155,7 +156,7 @@ class EmpApprovalsModel extends Model
                     $this->invalid_delivery_guys_list[] = $tmp;
                 }
             }
-            $db->close();
+            $conn->close();
         } catch (\Exception $e) {
             Logger::logError($e->getMessage());
         }
@@ -165,11 +166,11 @@ class EmpApprovalsModel extends Model
     {
         //loading the database
         $db = new Database();
-        $conn = $db.getConnection();
+        $conn = $db->getConnection();
 
         try {
-            $sql = "SELECT * FROM laboratory WHERE verified = 0";
-            $result = $db->query($sql);
+            $sql = "SELECT * FROM `laboratory` WHERE verified = 0";
+            $result = $conn->query($sql);
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                     $tmp = new InvalidLabModel(array(
@@ -189,7 +190,7 @@ class EmpApprovalsModel extends Model
                     $this->invalid_lab_list[] = $tmp;
                 }
             }
-            $db->close();
+            $conn->close();
         } catch (\Exception $e) {
             Logger::logError($e->getMessage());
         }
