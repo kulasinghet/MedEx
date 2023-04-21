@@ -1,3 +1,8 @@
+<?php
+use \app\views\employee\EmployeeViewComponents;
+
+$components = new EmployeeViewComponents();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,79 +10,20 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>Admin - Dashboard</title>
 
-    <link href="scss/main.css" rel="stylesheet"/>
     <!-- Font awesome kit -->
     <script crossorigin="anonymous" src="https://kit.fontawesome.com/9b33f63a16.js"></script>
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- g28 style -->
+    <link rel="stylesheet" href="scss/main.css" />
+    <script src="js/g28-main.js"></script>
 </head>
 <body>
 <!-- Section: Fixed Components -->
-<div class="sidebar-collapsible">
-    <div class="sidebar-inner">
-        <nav class="sidebar-header">
-            <div class="sidebar-logo">
-                <a href="#">
-                    <img alt="MedEx logo" src="res/logo/logo-text_light.svg"/>
-                </a>
-            </div>
-        </nav>
-        <div class="sidebar-context">
-            <h6 class="sidebar-context-title">Menu</h6>
-            <ul class="main-buttons">
-                <li class="disabled">
-                    <a href="/dashboard"> <i class="fa-solid fa-house"></i> Home </a>
-                </li>
-                <li>
-                    <i class="fa-solid fa-check"></i>
-                    Approvals
-                    <ul class="hidden">
-                        <li><a href="/employee/approvals/pharmacy"> Pharmacy </a></li>
-                        <li><a href="/employee/approvals/supplier"> Supplier </a></li>
-                        <li><a href="/employee/approvals/lab"> Lab </a></li>
-                        <li><a href="/employee/approvals/delivery"> Delivery Partner </a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="/employee/reports"> <i class="fa-solid fa-newspaper"></i> Reports </a>
-                </li>
-                <li>
-                    <a href="#"> <i class="fa-solid fa-server"></i> Resources </a>
-                    <ul class="hidden">
-                        <li>Pharmacy</li>
-                        <li>Supplier</li>
-                        <li>Laboratory</li>
-                        <li>Delivery Partner</li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="/employee/configs"> <i class="fa-solid fa-wrench"></i> Configurations </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>
-<nav>
-    <div class="nav-search">
-        <form onsubmit="preventDefault();" role="search">
-            <label for="search">Search for stuff</label>
-            <input autofocus id="search" placeholder="Search..." required type="search"/>
-            <button type="submit">Go</button>
-        </form>
-    </div>
-    <div class="nav-inner">
-        <ul>
-            <li><a href="#"><i class="fa-solid fa-gear"></i></a></li>
-            <li><a href="#"><i class="fa-solid fa-bell"></i></a></li>
-            <li><a href="/logout"><i class="fa-solid fa-right-from-bracket"></i></a></li>
-        </ul>
-        <a class="nav-profile" href="#">
-            <div class="nav-profile-image">
-                <img alt="Profile image" src="res/avatar-empty.png"/>
-            </div>
-        </a>
-    </div>
-</nav>
+<?php
+echo $components->createSidebar('home');
+echo $components->createNavbar();
+?>
 <!-- Section: Fixed Components -->
 
 <!-- Section: Dashboard Layout -->
