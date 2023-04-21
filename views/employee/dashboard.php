@@ -5,11 +5,13 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>Admin - Dashboard</title>
 
-    <link href="scss/main.css" rel="stylesheet"/>
     <!-- Font awesome kit -->
     <script crossorigin="anonymous" src="https://kit.fontawesome.com/9b33f63a16.js"></script>
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- g28 style -->
+    <link rel="stylesheet" href="scss/main.css" />
+    <script src="js/g28-main.js"></script>
 </head>
 <body>
 <!-- Section: Fixed Components -->
@@ -26,23 +28,24 @@
             <h6 class="sidebar-context-title">Menu</h6>
             <ul class="main-buttons">
                 <li class="disabled">
-                    <a href="/dashboard"> <i class="fa-solid fa-house"></i> Home </a>
+                    <a href="/dashboard"> <i class="fa-solid fa-house"></i>Home</a>
                 </li>
                 <li>
                     <i class="fa-solid fa-check"></i>
                     Approvals
                     <ul class="hidden">
-                        <li><a href="/employee/approvals/pharmacy"> Pharmacy </a></li>
-                        <li><a href="/employee/approvals/supplier"> Supplier </a></li>
-                        <li><a href="/employee/approvals/lab"> Lab </a></li>
-                        <li><a href="/employee/approvals/delivery"> Delivery Partner </a></li>
+                        <li><a href="/employee/approvals">All</a></li>
+                        <li><a href="/employee/approvals">Pharmacy</a></li>
+                        <li><a href="/employee/approvals">Supplier</a></li>
+                        <li><a href="/employee/approvals">Lab</a></li>
+                        <li><a href="/employee/approvals">Delivery Partner</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="/employee/reports"> <i class="fa-solid fa-newspaper"></i> Reports </a>
+                    <a href="/employee/reports"> <i class="fa-solid fa-newspaper"></i>Reports</a>
                 </li>
                 <li>
-                    <a href="#"> <i class="fa-solid fa-server"></i> Resources </a>
+                    <a href="#"> <i class="fa-solid fa-server"></i>Resources</a>
                     <ul class="hidden">
                         <li>Pharmacy</li>
                         <li>Supplier</li>
@@ -51,7 +54,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="/employee/configs"> <i class="fa-solid fa-wrench"></i> Configurations </a>
+                    <a href="/employee/configs"> <i class="fa-solid fa-wrench"></i>Configurations</a>
                 </li>
             </ul>
         </div>
