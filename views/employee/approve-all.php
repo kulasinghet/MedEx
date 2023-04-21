@@ -20,22 +20,8 @@ $components = new EmployeeViewComponents();
 <!-- Section: Fixed Components -->
 <?php
 echo $components->createSidebar('approval');
+echo $components->createNavbar();
 ?>
-?>
-<nav>
-    <div class="nav-inner">
-        <ul>
-            <li><a href="#"><i class="fa-solid fa-gear"></i></a></li>
-            <li><a href="#"><i class="fa-solid fa-bell"></i></a></li>
-            <li><a href="/logout"><i class="fa-solid fa-right-from-bracket"></i></a></li>
-        </ul>
-        <a class="nav-profile" href="#">
-            <div class="nav-profile-image">
-                <img alt="Profile image" src="../../res/avatar-empty.png"/>
-            </div>
-        </a>
-    </div>
-</nav>
 <!-- Section: Fixed Components -->
 
 <!-- Section: Dashboard Layout -->

@@ -1,17 +1,21 @@
 <?php
 
 namespace app\views\employee;
+
 use app\controllers\employee\EmployeeApprovalsController;
+use app\stores\EmployeeStore;
 
 class EmployeeViewComponents
 {
-    private EmployeeApprovalsController $controller;
-    private mixed $filter;
+    //private EmployeeApprovalsController $controller;
+    private EmployeeStore $store;
+    private mixed $approval_flag;
 
     public function __construct()
     {
-        $this->controller = new EmployeeApprovalsController();
-        $this->filter = $_SESSION['approval_filter'];
+        //$this->controller = new EmployeeApprovalsController();
+        $this->store = EmployeeStore::getEmployeeStore();
+        $this->approval_flag = $this->store->approval_flag;
     }
 
     public function createSidebar($selection): string
@@ -27,21 +31,20 @@ class EmployeeViewComponents
             </div>
         </nav>
         <div class="sidebar-context">
-            <h6 class="sidebar-context-title">Menu</h6>
             <ul class="main-buttons">
                 <li>
-                    <a href="/dashboard"> <i class="fa-solid fa-house"></i>Home</a>
+                    <a '.($selection == 'home' ? "class='disabled'" : "").' href="/dashboard"> <i class="fa-solid fa-house"></i>Home</a>
                 </li>
                 <li>
                     <i class="fa-solid fa-check"></i>
                     Approvals
                     <ul class="hidden">
                     '.($selection == 'approval' ? '
-                        <li'.($this->filter == 'all' ? " class='disabled'" : "").'><a href="/employee/approvals">All</a></li>
-                        <li'.($this->filter == 'pharmacy' ? " class='disabled'" : "").'><a href="/employee/approvals?filter=pharmacy">Pharmacy</a></li>
-                        <li'.($this->filter == 'supplier' ? " class='disabled'" : "").'><a href="/employee/approvals?filter=supplier">Supplier</a></li>
-                        <li'.($this->filter == 'lab' ? " class='disabled'" : "").'><a href="/employee/approvals?filter=lab">Lab</a></li>
-                        <li'.($this->filter == 'delivery' ? " class='disabled'" : "").'><a href="/employee/approvals?filter=delivery">Delivery Partner</a></li>
+                        <li'.($this->approval_flag == 'all' ? " class='disabled'" : "").'><a href="/employee/approvals">All</a></li>
+                        <li'.($this->approval_flag == 'pharmacy' ? " class='disabled'" : "").'><a href="/employee/approvals?filter=pharmacy">Pharmacy</a></li>
+                        <li'.($this->approval_flag == 'supplier' ? " class='disabled'" : "").'><a href="/employee/approvals?filter=supplier">Supplier</a></li>
+                        <li'.($this->approval_flag == 'lab' ? " class='disabled'" : "").'><a href="/employee/approvals?filter=lab">Lab</a></li>
+                        <li'.($this->approval_flag == 'delivery' ? " class='disabled'" : "").'><a href="/employee/approvals?filter=delivery">Delivery Partner</a></li>
                     ' : '
                         <li><a href="/employee/approvals">All</a></li>
                         <li><a href="/employee/approvals?filter=pharmacy">Pharmacy</a></li>
@@ -70,6 +73,26 @@ class EmployeeViewComponents
         </div>
     </div>
 </div>
+        ');
+    }
+
+    public function createNavbar(): string
+    {
+        return ('
+<nav>
+    <div class="nav-inner">
+        <ul>
+            <li><a href="#"><i class="fa-solid fa-gear"></i></a></li>
+            <li><a href="#"><i class="fa-solid fa-bell"></i></a></li>
+            <li><a href="/logout"><i class="fa-solid fa-right-from-bracket"></i></a></li>
+        </ul>
+        <a class="nav-profile" href="#">
+            <div class="nav-profile-image">
+                <img alt="Profile image" src="../../res/avatar-empty.png"/>
+            </div>
+        </a>
+    </div>
+</nav>
         ');
     }
 }
