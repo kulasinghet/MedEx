@@ -11,7 +11,7 @@
 </head>
 <body>
 <!-- Section: Fixed Components -->
-<div class="sidebar-new">
+<div class="sidebar-collapsible">
     <div class="sidebar-inner">
         <nav class="sidebar-header">
             <div class="sidebar-logo">
@@ -79,31 +79,31 @@
                 <div class="card-body">
                     <h5 class="card-title">Staff Privileges</h5>
                     <form>
-                        <div class="form-check">
+                        <div class="form-selector">
                             <input type="checkbox" class="form-input" id="exampleCheck1">
                             <label class="form-check-label" for="exampleCheck1">View Analyzed Data</label>
                         </div>
-                        <div class="form-check">
+                        <div class="form-selector">
                             <input type="checkbox" class="form-input" id="exampleCheck1">
                             <label class="form-check-label" for="exampleCheck1">Approve Pharmacy</label>
                         </div>
-                        <div class="form-check">
+                        <div class="form-selector">
                             <input type="checkbox" class="form-input" id="exampleCheck1">
                             <label class="form-check-label" for="exampleCheck1">Approve Supplier</label>
                         </div>
-                        <div class="form-check">
+                        <div class="form-selector">
                             <input type="checkbox" class="form-input" id="exampleCheck1">
                             <label class="form-check-label" for="exampleCheck1">Approve Lab</label>
                         </div>
-                        <div class="form-check">
+                        <div class="form-selector">
                             <input type="checkbox" class="form-input" id="exampleCheck1">
                             <label class="form-check-label" for="exampleCheck1">Approve Delivery Partner</label>
                         </div>
-                        <div class="form-check">
+                        <div class="form-selector">
                             <input type="checkbox" class="form-input" id="exampleCheck1">
                             <label class="form-check-label" for="exampleCheck1">Resource Management</label>
                         </div>
-                        <div class="form-check">
+                        <div class="form-selector">
                             <input type="checkbox" class="form-input" id="exampleCheck1">
                             <label class="form-check-label" for="exampleCheck1">Configure Application</label>
                         </div>
@@ -123,31 +123,31 @@
                 <div class="card-body">
                     <h5 class="card-title">Manager Privileges</h5>
                     <form>
-                        <div class="form-check">
+                        <div class="form-selector">
                             <input type="checkbox" class="form-input" id="exampleCheck1">
                             <label class="form-check-label" for="exampleCheck1">View Analyzed Data</label>
                         </div>
-                        <div class="form-check">
+                        <div class="form-selector">
                             <input type="checkbox" class="form-input" id="exampleCheck1">
                             <label class="form-check-label" for="exampleCheck1">Approve Pharmacy</label>
                         </div>
-                        <div class="form-check">
+                        <div class="form-selector">
                             <input type="checkbox" class="form-input" id="exampleCheck1">
                             <label class="form-check-label" for="exampleCheck1">Approve Supplier</label>
                         </div>
-                        <div class="form-check">
+                        <div class="form-selector">
                             <input type="checkbox" class="form-input" id="exampleCheck1">
                             <label class="form-check-label" for="exampleCheck1">Approve Lab</label>
                         </div>
-                        <div class="form-check">
+                        <div class="form-selector">
                             <input type="checkbox" class="form-input" id="exampleCheck1">
                             <label class="form-check-label" for="exampleCheck1">Approve Delivery Partner</label>
                         </div>
-                        <div class="form-check">
+                        <div class="form-selector">
                             <input type="checkbox" class="form-input" id="exampleCheck1">
                             <label class="form-check-label" for="exampleCheck1">Resource Management</label>
                         </div>
-                        <div class="form-check">
+                        <div class="form-selector">
                             <input type="checkbox" class="form-input" id="exampleCheck1">
                             <label class="form-check-label" for="exampleCheck1">Configure Application</label>
                         </div>

@@ -1,7 +1,6 @@
 <?php
 
 namespace app\models;
-
 use app\core\Database;
 use app\core\Logger;
 
@@ -94,6 +93,55 @@ class LoginModel extends Model
         } catch (\Exception $e) {
             Logger::logError($e->getMessage());
             echo $e->getMessage();
+            return false;
+        }
+    }
+
+    public function getUserInfo($username)
+    {
+        $connection = (new Database())->getConnection();
+
+        try {
+            $sql = "SELECT * FROM login WHERE username = '$this->username';";
+            $result = $connection->query($sql);
+            $row = $result->fetch_array(MYSQLI_ASSOC);
+            $userType = "unassigned";
+
+            if ($result->num_rows == 1) {
+                $result->close();
+
+                for ($i = 2; $i < 7; $i++) {
+                    if ($row['isPharmacy'] == 1) {
+                        $userType = "pharmacy";
+                        $sql = "SELECT * FROM pharmacy WHERE username = '$username';";
+                        break;
+                    } elseif ($row['isStaff'] == 1) {
+                        $userType = "staff";
+                        $sql = "SELECT * FROM employee WHERE username = '$username';";
+                        break;
+                    } elseif ($row['isDelivery'] == 1) {
+                        $userType = "delivery";
+                        $sql = "SELECT * FROM delivery_partner WHERE username = '$username';";
+                        break;
+                    } elseif ($row['isLab'] == 1) {
+                        $userType = "lab";
+                        $sql = "SELECT * FROM laboratory WHERE username = '$username';";
+                        break;
+                    } elseif ($row['isSupplier'] == 1) {
+                        $userType = "supplier";
+                        $sql = "SELECT * FROM supplier WHERE username = '$username';";
+                        break;
+                    }
+                }
+
+                $result = $connection->query($sql);
+                $row = $result->fetch_array(MYSQLI_ASSOC);
+
+                $connection->close();
+                return $row;
+            }
+        } catch (\Exception $e) {
+            Logger::logError($e->getMessage());
             return false;
         }
     }

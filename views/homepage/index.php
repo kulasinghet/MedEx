@@ -1,178 +1,204 @@
-<!doctype html>
-<head>
-    <meta charset="utf-8">
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Medex | Revolutionize Medical Supply Chain Management </title>
-    <link rel="stylesheet" href="components/homepage/css/bootstrap.min.css">
-    <link rel="stylesheet" href="components/homepage/css/flexslider.css">
-    <link rel="stylesheet" href="components/homepage/css/jquery.fancybox.css">
-    <link rel="stylesheet" href="components/homepage/css/main.css">
-    <link rel="stylesheet" href="components/homepage/css/responsive.css">
-    <link rel="stylesheet" href="components/homepage/css/animate.min.css">
-    <link rel="stylesheet" href="scss/components/modals.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-</head>
-<body>
-<div class="modal-container" id="m1-o" style="--m-background: transparent;">
-    <div class="modal">
-        <h1 class="modal-title">Login As</h1>
-        <div class="modal-context">
-            <a href="/pharmacy/login">Pharmacy</a>
-            <a href="/supplier/login">Supplier</a>
-            <a href="/lab/login">Laboratary</a>
-            <a href="/delivery/login">Delivery Partner</a>
-        </div>
-        <a href="#m1-c" class="modal-close"></a>
-    </div>
-</div>
-	<section class="banner" role="banner">
-        <header id="header">
-            <div class="header-content clearfix">
-                <a class="logo" href="#"><img src="/res/logo/logo.svg" style="height: 3vh" alt=""></a>
-                <nav class="navigation" role="navigation">
-                    <ul class="primary-nav">
-                        <li><a href="#features">Features</a></li>
-                        <li><a href="#teams">Our Team</a></li>
-                        <li><a href="#m1-o" id="m1-c">Login</a></li>
-                    </ul>
-                </nav>
-                <a href="#" class="nav-toggle">Menu<span></span></a>
-            </div>
-        </header>
-        <div class="container">
-            <div class="col-md-10 col-md-offset-1">
-                <div class="banner-text text-center">
-                    <h1>Revolutionize Medical Supply Chain Management</h1>
-                    <p> Medex is a Supply Chain Management System introduced to overcome the medicine sortage in Sri Lanka in the long run.</p>
-                </div><!-- banner text -->
-            </div>
-        </div>
-    </section><!-- banner -->
-    <section id="features" class="features section">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 col-sm-6 feature text-center">
-                    <span class="icon icon-genius"></span>
-                    <div class="feature-content">
-                        <h5>Connecting Pharmacies, Suppliers, Laborataries and Delivery Partners together.</h5>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 feature text-center">
-                    <span class="icon icon-lightbulb"></span>
-                    <div class="feature-content">
-                        <h5>Analysing cutomer behavior and autmatics order suggestions for pharmacies.</h5>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 feature text-center">
-                    <span class="icon icon-desktop"></span>
-                    <div class="feature-content">
-                        <h5>Handling order processing fuctionalities with minimum human interaction.</h5>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 feature text-center">
-                    <span class="icon icon-tools"></span>
-                    <div class="feature-content">
-                        <h5> Provding administrator to overlook and manage processorss.</h5>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 feature text-center">
-                    <span class="icon icon-briefcase"></span>
-                    <div class="feature-content">
-                        <h5>Effective delivery management.</h5>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 feature text-center">
-                    <span class="icon icon-download"></span>
-                    <div class="feature-content">
-                        <h5>Avilable 24 hours.</h5>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section><!-- features -->
-  <section id="teams" class="section teams">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3 col-sm-6">
-                    <div class="person">
-                        <img src="components/homepage/images/team-1.jpg" alt="" class="img-responsive">
-                        <div class="person-content">
-                            <h4>Thevindu Kulasinghe​</h4>
-                            <h5 class="role">20000995​</h5>
-                        </div>
-                    </div><!-- person -->
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="person">
-                        <img src="components/homepage/images/team-2.jpg" alt="" class="img-responsive">
-                        <div class="person-content">
-                            <h4>Pawandi Wijegunawardane​</h4>
-                            <h5 class="role">20002157​</h5>
-                        </div>
-                    </div><!-- person -->
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="person">
-                        <img src="components/homepage/images/team-3.jpeg" alt="" class="img-responsive">
-                        <div class="person-content">
-                            <h4>Madhawa Samasarasinghe ​</h4>
-                            <h5 class="role">20001576​</h5>
-                        </div>
-                    </div><!-- person -->
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="person">
-                        <img src="components/homepage/images/team-4.png" alt="" class="img-responsive">
-                        <div class="person-content">
-                            <h4>Naveen Dharamathunga​</h4>
-                            <h5 class="role">20000405​</h5>
-                        </div>
-                    </div><!-- person -->
-                </div>
-            </div>
-        </div>
-    </section><!-- teams -->
-    <section id="download" class="section download">
-        <div class="container">
-            <div class="col-md-8 col-md-offset-2 text-center">
-                <h3>Ready to join the Medex Family?</h3>
-                <p>You are one step away</p>
-                <a href="/pharmacy/register" class="btn btn-large">Register As a Pharmacy</a>
-                <a href="/supplier/register" class="btn btn-large">Register As a Supplier</a>
-                <a href="/lab/register" class="btn btn-large">Register As a Laboratary</a>
-                <a href="/delivery/register" class="btn btn-large">Register As a Delivery Partner</a>
-            </div>
-        </div>
-    </section><!-- download -->
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8"/>-->
+<!--    <meta name="viewport"-->
+<!--          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>-->
+<!--    <title>MedEx</title>-->
+<!---->
+<!--    <link rel="stylesheet" href="../../public/scss/main.css"/>-->
+<!--    <script src="../../public/js/carousel.js"></script>-->
+<!--    <!-- Font awesome kit -->-->
+<!--    <script src="https://kit.fontawesome.com/9b33f63a16.js" crossorigin="anonymous"></script>-->
+<!--</head>-->
+<!--<body>-->
+<!--<section>-->
+<!--    <nav>-->
+<!--        <div class="navbar-logo">-->
+<!--            <a href="#">-->
+<!--                <img src="../../public/res/logo/Logo-text.png" alt="MedEx Logo with name"/>-->
+<!--            </a>-->
+<!--        </div>-->
+<!--        <div class="navbar-inner">-->
+<!--            <ul class="navbar-routes">-->
+<!--                <li><a href="#">Home</a></li>-->
+<!--                <li><a href="#">Account</a></li>-->
+<!--                <li><a href="#">Dashboard</a></li>-->
+<!--                <li><a href="#">About Us</a></li>-->
+<!--            </ul>-->
+<!--            <div class="navbar-separator"></div>-->
+<!--            <div class="navbar-account">-->
+<!--                <!-- User state: anonymous -->-->
+<!--                <a class="btn btn-info">Login</a>-->
+<!--                <a class="btn btn-warning">Register</a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </nav>-->
+<!--</section>-->
+<!--<div class="canvas">-->
+<!--    <header>-->
+<!--        <article>-->
+<!--            <!-- Carousel Component -->-->
+<!--            <div id="carousel">-->
+<!--                <div class="carousel-gallery">-->
+<!--                    <img class="carousel-image"-->
+<!--                         src="https://images.unsplash.com/photo-1607077715832-faeb06118d9b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"-->
+<!--                         alt="Carousel 1"/>-->
+<!--                    <img class="carousel-image"-->
+<!--                         src="https://images.unsplash.com/photo-1573883430060-1678c9cd4221?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"-->
+<!--                         alt="Carousel 2"/>-->
+<!--                    <img class="carousel-image"-->
+<!--                         src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2069&q=80"-->
+<!--                         alt="Carousel 3"/>-->
+<!--                </div>-->
+<!---->
+<!--                <div class="carousel-controls">-->
+<!--                    <a class="carousel-control carousel-prev"><i class="fa-solid fa-chevron-left"></i></a>-->
+<!--                    <a class="carousel-control carousel-next"><i class="fa-solid fa-chevron-right"></i></a>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <!-- Carousel Component -->-->
+<!---->
+<!--            <h4 class="topic-status">Through a highly motivated and empowered team of professionals who pursue-->
+<!--                excellence, we work to market a-->
+<!--                variety of pharmaceutical, healthcare, and biotech products with complete dedication to our-->
+<!--                customers.</h4>-->
+<!--        </article>-->
+<!--    </header>-->
+<!---->
+<!--    <article>-->
+<!---->
+<!--        <h3>Our Vision</h3>-->
+<!--        <p>To establish strategic alliances with the world's top pharmaceutical, healthcare, and biotechnology firms-->
+<!--            and to prioritize valuing all of our activities to be the leading importer and distributor of medicines and-->
+<!--            healthcare products into Sri Lanka.</p>-->
+<!---->
+<!--        <h3>Our Goal</h3>-->
+<!--        <p>Our system's primary objective is to enhance the supply chain management of Sri Lanka's medicine industry-->
+<!--            and in doing so, address the country's acute medication shortage. The technology will also put a strong-->
+<!--            emphasis-->
+<!--            on giving pharmacies a user-friendly interface so they can manage their orders manually as well as advise-->
+<!--            and-->
+<!--            place orders automatically by looking at consumer purchasing trends. The system's other objective is to give-->
+<!--            suppliers the ability to register and become authorized medicine suppliers. Additionally, it will-->
+<!--            concentrate-->
+<!--            on giving the corporate office a platform to effectively manage deliveries and drugstore locations.</p>-->
+<!--    </article>-->
+<!---->
+<!--    <footer>-->
+<!--        <div class="footer-inner">-->
+<!--            <section>-->
+<!--                <div class="footer-logo">-->
+<!--                    <a href="#">-->
+<!--                        <img alt="MedEx Logo with name" src="../../public/res/logo/logo-box_dark.svg"/>-->
+<!--                    </a>-->
+<!--                </div>-->
+<!---->
+<!--                <div class="footer-links">-->
+<!--                    <a class="link-1" href="#">Home</a>-->
+<!--                    <a href="#">About</a>-->
+<!--                    <a href="#">Contact</a>-->
+<!--                </div>-->
+<!--            </section>-->
+<!---->
+<!--            <section>-->
+<!--                <h6>Team Members</h6>-->
+<!--                <ul>-->
+<!--                    <li>R.D.T.D. Kulasinghe</li>-->
+<!--                    <li>I.A.P.P. Wijegunawardana</li>-->
+<!--                    <li>W.D.D.N. Dharmathunga</li>-->
+<!--                    <li>M.C.W. Samarasinghe</li>-->
+<!--                </ul>-->
+<!--            </section>-->
+<!---->
+<!--            <section>-->
+<!--                <p>© 2022 Group 28, All Right reserved</p>-->
+<!--            </section>-->
+<!--        </div>-->
+<!--    </footer>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->
 
-    <footer class="footer">
-        <div class="footer-top">
-            <div class="container">
-                <div class="row">
-                    <div class="footer-col col-md-6">
-                        <h5>Group CS 28</h5>
-                        <ul class="footer-share">
-                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-col col-md-4">
-                        <h5>About Medex</h5>
-                        <p>Medex is a Supply Chain Management System introduced to overcome the medicine sortage in Sri Lanka in the long run.</p>
-                    </div>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Dashboard</title>
+
+
+    <link href="../scss2/vendor/demo.css" rel="stylesheet" />
+
+    <!-- Font awesome kit -->
+    <script crossorigin="anonymous" src="https://kit.fontawesome.com/9b33f63a16.js"></script>
+</head>
+
+<body>
+    <!-- Section: Fixed Components -->
+    <div class="sidebar">
+        <div class="sidebar-inner">
+            <nav class="sidebar-header">
+                <div class="sidebar-logo">
+                    <a href="#">
+                        <img alt="MedEx logo" src="../res/logo/logo-text_light.svg" />
+                    </a>
                 </div>
-            </div>
-        </div><!-- footer top -->
-        <div class="footer-bottom">
-            <div class="container">
-                <div class="col-md-12">
-                    <p>Copyright © 2022 Medex. All Rights Reserved</p>
-                </div>
+            </nav>
+            <div class="sidebar-context">
+                <h6 class="sidebar-context-title">Menu</h6>
+                <ul>
+                    <li>
+                        <a class="btn" href="#"> <i class="fa-solid fa-house"></i> Menu Item </a>
+                    </li>
+                    <li>
+                        <a class="btn" href="#"> <i class="fa-solid fa-house"></i> Menu Item </a>
+                    </li>
+                    <li>
+                        <a class="btn" href="#"> <i class="fa-solid fa-house"></i> Menu Item </a>
+                    </li>
+                    <li>
+                        <a class="btn" href="#"> <i class="fa-solid fa-house"></i> Menu Item </a>
+                    </li>
+                </ul>
             </div>
         </div>
-    </footer><!-- footer -->
+    </div>
+    <nav>
+        <div class="nav-search">
+            <form onsubmit="preventDefault();" role="search">
+                <label for="search">Search for stuff</label>
+                <input autofocus id="search" placeholder="Search..." required type="search" />
+                <button type="submit">Go</button>
+            </form>
+        </div>
+        <div class="nav-inner">
+            <ul>
+                <li><a href="#"><i class="fa-solid fa-circle-question"></i></a></li>
+                <li><a href="#"><i class="fa-solid fa-gear"></i></a></li>
+                <li><a href="#"><i class="fa-solid fa-bell"></i></a></li>
+            </ul>
+            <a class="nav-profile" href="#">
+                <div class="nav-profile-image">
+                    <img alt="Profile image" src="../res/avatar-empty.png" />
+                </div>
+            </a>
+        </div>
+    </nav>
+    <!-- Section: Fixed Components -->
+
+    <!-- Section: Dashboard Layout -->
+    <div class="canvas nav-cutoff sidebar-cutoff">
+        <div class="canvas-inner grid">
+            <article>
+                <p>Hello world!</p>
+            </article>
+        </div>
+    </div>
+    <!-- Section: Dashboard Layout -->
+
 </body>
+
 </html>

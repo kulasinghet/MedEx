@@ -9,97 +9,75 @@ use app\core\Logger;
 class PharmacyOrderModel extends Model
 {
     private $id;
-    private $pharmacyId;
-    private $order_date;
-    private $order_status;
-    private $order_total;
+    private $pharmacyUsername;
+    private $medId;
+    private $quantity;
+    private $status;
+    private $supName;
     private $delivery_date;
+    private $order_status;
+    private $order_date;
+    private $order_total;
 
 
-    /**
-     * @return mixed
-     */
-    public function getId()
+    public function getOrder($id)
     {
-        return $this->id;
+        $db = (new Database())->getConnection();
+        $sql = "SELECT * from pharmacyorder WHERE pharmacyorder.id = '$id'";
+        $result = $db->query($sql);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $this->id = $row["id"];
+                $this->pharmacyName = $row['pharmacyName'];
+                $this->medId = $row['medId'];
+                $this->quantity = $row['quantity'];
+
+            }
+        }
+        $db->close();
     }
 
-    /**
-     * @param mixed $id
-     */
-    public function setId($id): void
+    public function getPendingOrders()
     {
-        $this->id = $id;
+        $db = (new Database())->getConnection();
+        $sql = "SELECT id from pharmacyorder WHERE pharmacyorder.status = '0'";
+        $result = $db->query($sql);
+        if ($result->num_rows > 0) {
+            return $result;
+        }
+        $db->close();
     }
 
-    /**
-     * @return mixed
-     */
-    public function getPharmacyId()
+    public function getSupOrders($name)
     {
-        return $this->pharmacyId;
+        $db = (new Database())->getConnection();
+        $sql = "SELECT id from pharmacyorder WHERE pharmacyorder.status = '1' && pharmacyorder.supName = '$name'";
+        $result = $db->query($sql);
+        if ($result->num_rows > 0) {
+            return $result;
+        }
+        $db->close();
     }
 
-    /**
-     * @param mixed $pharmacyId
-     */
-    public function setPharmacyId($pharmacyId): void
+    public function getMedId($id)
     {
-        $this->pharmacyId = $pharmacyId;
+        $this->getOrder($id);
+        return $this->medId;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getOrderDate()
+    public function getMedQuantiy($id)
     {
-        return $this->order_date;
+        $this->getOrder($id);
+        return $this->quantity;
     }
 
-    /**
-     * @param mixed $order_date
-     */
-    public function setOrderDate($order_date): void
+    public function getOrderPharm($id)
     {
-        $this->order_date = $order_date;
+        $this->getOrder($id);
+        return $this->pharmacyName;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getOrderStatus()
-    {
-        return $this->order_status;
-    }
-
-    /**
-     * @param mixed $order_status
-     */
-    public function setOrderStatus($order_status): void
-    {
-        $this->order_status = $order_status;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getOrderTotal()
-    {
-        return $this->order_total;
-    }
-
-    /**
-     * @param mixed $order_total
-     */
-    public function setOrderTotal($order_total): void
-    {
-        $this->order_total = $order_total;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getDeliveryDate()
+    public function acceptOrder($supName, $id)
     {
         return $this->delivery_date;
     }
@@ -113,67 +91,72 @@ class PharmacyOrderModel extends Model
     }
 
 
-
-
-    public function createOrder($pharmacyId, $order_total): bool
+    public function createOrder($pharmacyUsername, $order_total, $medicineIds): bool
     {
         // generate random order id with time stamp and pharmacy id
 
-        $this->setId($this->createRandomID($pharmacyId));
+        $this->setId($this->createRandomID($pharmacyUsername));
         $order_date = date("Y-m-d");
 
-        $sql = "INSERT INTO pharmacy_order (id, pharmacyId, order_date, order_status, order_total) VALUES
-                ('$this->getId()', '$pharmacyId', '$order_date', 0, '$order_total');";
+        $sql = "INSERT INTO pharmacyorder (id, pharmacyUsername, status, supName, order_date, delivery_date, order_total) VALUES ('$this->id', '$pharmacyUsername', '0', null, '$order_date', null, '$order_total')";
+
+        Logger::logDebug($sql);
+
+        $db = (new Database())->getConnection();
         try {
-
-            $db = new Database();
-
             $stmt = $db->prepare($sql);
             $stmt->execute();
 
-            if ($stmt->get_result()) {
-                return true;
-            } else {
-                return false;
-            }
+            if ($stmt->affected_rows == 1) {
+                $stmt->close();
+                //                $pharmacyUsername, $order_total, $medicineIds, $order_date
+                if ($this->updateMedicineQuantity($pharmacyUsername, $order_total, $medicineIds, $order_date)) {
+                    return true;
+                }
 
+            }
         } catch (\Exception $e) {
+            Logger::logError($e->getMessage());
+            return false;
+        }
+
+        return false;
+    }
+
+    public function getOrdersByUsername($username): false|array
+    {
+        try {
+            $conn = (new Database())->getConnection();
+            $sql = "SELECT * FROM pharmacyorder WHERE pharmacyUsername = '$username' ORDER BY order_status ASC;";
+            $result = $conn->query($sql);
+            return $result->fetch_all(MYSQLI_ASSOC);
+
+            $stmt->close();
+        } catch (\Exception $e) {
+            ErrorLog::logError($e->getMessage());
+            echo $e->getMessage();
             return false;
         }
     }
 
-    public function getOrdersByPharmacyId($pharmacyId): false|array
+    public function getNotAcceptedOrders()
     {
-//        Logger::logError("Pharmacy order history fetched");
-        $sql = "SELECT * FROM pharmacy_order WHERE pharmacyId = '$pharmacyId' ORDER BY order_date DESC;";
-
-        try {
-            $db = new Database();
-            $stmt = $db->prepare($sql);
-            $stmt->execute();
-            $result = $stmt->get_result();
-
-            $result = $result->fetch_all(MYSQLI_ASSOC);
-
-//            if (@$result['order_status'] == 0) {
-//                $result['order_status'] = "Pending";
-//            } else if ($result['order_status'] == 1) {
-//                $result['order_status'] = "Approved";
-//            } else if ($result['order_status'] == 2) {
-//                $result['order_status'] = "Rejected";
-//            } else if ($result['order_status'] == 3) {
-//                $result['order_status'] = "Delivered";
-//            } else {
-//                $result['order_status'] = "Unknown";
-//            }
-//
-//            if (@$result['delivery_date'] == null) {
-//                $result['delivery_date'] = "Pending";
-//            }
-
+        $db = (new Database())->getConnection();
+        $sql = "SELECT id  from medicine";
+        $result = $db->query($sql);
+        if ($result->num_rows > 0) {
             return $result;
+        }
 
+    }
 
+    public function getOrdersByUsernameForDashboard(mixed $username)
+    {
+        try {
+            $conn = (new Database())->getConnection();
+            $sql = "SELECT * FROM pharmacyorder WHERE pharmacyUsername = '$username' AND order_status <= 1 ORDER BY order_status ASC;";
+            $result = $conn->query($sql);
+            return $result->fetch_all(MYSQLI_ASSOC);
         } catch (\Exception $e) {
             Logger::logError($e->getMessage());
             echo (new ExceptionHandler)->somethingWentWrong();
@@ -182,4 +165,41 @@ class PharmacyOrderModel extends Model
     }
 
 
+    private function setId(string $createRandomID)
+    {
+        $this->id = $createRandomID;
+    }
+
+    private function updateMedicineQuantity($pharmacyUsername, $order_total, $medicineIds, $order_date): bool
+    {
+        $db = (new Database())->getConnection();
+
+        $flag = true;
+
+        foreach ($medicineIds as $medicine) {
+
+            $medicineID = $medicine->getMedicineId();
+            $quantity = $medicine->getQuantity();
+
+            $sql = "INSERT INTO pharmacyordermedicine (orderid, pharmacyUsername, medId, quantity, status, supName, order_date, delivery_date, order_total) VALUES ('$this->id', '$pharmacyUsername', '$medicineID', '$quantity', '0', null, '$order_date', null, '$order_total')";
+
+            Logger::logDebug($sql);
+
+            try {
+                $stmt = $db->prepare($sql);
+                $stmt->execute();
+
+                if ($stmt->affected_rows == 1) {
+                    $stmt->close();
+                } else {
+                    $flag = false;
+                }
+            } catch (\Exception $e) {
+                Logger::logError($e->getMessage());
+                return false;
+            }
+        }
+
+        return $flag;
+    }
 }
