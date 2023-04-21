@@ -4,18 +4,21 @@ namespace app\views\employee;
 
 use app\controllers\employee\EmployeeApprovalsController;
 use app\stores\EmployeeStore;
+use Exception;
 
 class EmployeeViewComponents
 {
     //private EmployeeApprovalsController $controller;
     private EmployeeStore $store;
     private mixed $approval_flag;
+    private string $username;
 
     public function __construct()
     {
         //$this->controller = new EmployeeApprovalsController();
         $this->store = EmployeeStore::getEmployeeStore();
         $this->approval_flag = $this->store->approval_flag;
+        $this->username = $this->store->username;
     }
 
     public function createSidebar($selection): string
@@ -76,9 +79,37 @@ class EmployeeViewComponents
         ');
     }
 
+    /**
+     * @throws Exception
+     */
     public function createNavbar(): string
     {
-        return ('
+        $user = $this->store->getUser();
+        if (isset($user)) {
+            //$user->profile_pic = base64_encode($user->profile_pic);
+
+            return ('
+<nav>
+    <div class="nav-inner">
+        <ul>
+            <li><a href="/employee/settings"><i class="fa-solid fa-gear"></i></a></li>
+            <li><a href="#"><i class="fa-solid fa-bell"></i></a></li>
+            <li><a href="/logout"><i class="fa-solid fa-right-from-bracket"></i></a></li>
+        </ul>
+        <a class="nav-profile" href="/employee">
+            <div class="nav-profile-text">
+                <h6>'.$user->username.'</h6>
+                <span>'.($user->is_manager? "Manager" : "Staff").'</span>
+            </div>
+            <div class="nav-profile-image">
+                <img alt="Profile image" src="'.($user->profile_pic ?? "../res/avatar-empty.png").'"/>
+            </div>
+        </a>
+    </div>
+</nav>
+        ');
+        } else {
+            return ('
 <nav>
     <div class="nav-inner">
         <ul>
@@ -86,13 +117,18 @@ class EmployeeViewComponents
             <li><a href="#"><i class="fa-solid fa-bell"></i></a></li>
             <li><a href="/logout"><i class="fa-solid fa-right-from-bracket"></i></a></li>
         </ul>
-        <a class="nav-profile" href="#">
+        <a class="nav-profile" href="/employee">
+            <div class="nav-profile-text">
+                <h6>Guest</h6>
+                <span>Unknown</span>
+            </div>
             <div class="nav-profile-image">
-                <img alt="Profile image" src="../../res/avatar-empty.png"/>
+                <img alt="Profile image" src="../res/avatar-empty.png"/>
             </div>
         </a>
     </div>
 </nav>
         ');
+        }
     }
 }
