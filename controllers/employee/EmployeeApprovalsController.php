@@ -4,6 +4,7 @@ namespace app\controllers\employee;
 
 use app\core\Controller;
 use app\core\Request;
+use app\models\EmpApprovalsModel;
 use app\stores\EmployeeStore;
 
 class EmployeeApprovalsController extends Controller
@@ -31,7 +32,7 @@ class EmployeeApprovalsController extends Controller
         $this->store->approval_flag = $this->getFilter($request);
 
         if (in_array($this->store->approval_flag, self::approval_flags)) {
-            $this -> render("employee/approve-all.php");
+            $this -> render("employee/approvals.php");
         } else {
             header('Location: /employee');
         }
@@ -49,5 +50,15 @@ class EmployeeApprovalsController extends Controller
         }
 
         return null;
+    }
+
+    public function getAllApprovals(): array
+    {
+        $model = new EmpApprovalsModel();
+        // creating an array of all approvals
+        $list = $model->getAll();
+        shuffle($list);
+
+        return $list;
     }
 }

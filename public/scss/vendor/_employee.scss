@@ -1,3 +1,5 @@
+@use "../abstracts/variables" as *;
+
 .scroll {
   min-height: 2rem;
   overflow-y: scroll;
@@ -81,4 +83,13 @@
   p {
     margin: 0;
   }
+}
+
+// Styles for approvals page
+#filter-by-type {
+  min-width: 180px;
+}
+
+#filter-by-search {
+  --color-light: #{$light};
 }

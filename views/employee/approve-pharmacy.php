@@ -1,125 +1,40 @@
+<?php
+
+use app\stores\EmployeeStore;
+use app\views\employee\EmployeeViewComponents;
+use app\controllers\employee\EmployeeApprovalsController;
+
+$components = new EmployeeViewComponents();
+$store = EmployeeStore::getEmployeeStore();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Admin - Approvals - Pharmacy</title>
+    <title>Admin | Approve: </title>
 
-    <link href="../../scss/main.css" rel="stylesheet"/>
     <!-- Font awesome kit -->
     <script crossorigin="anonymous" src="https://kit.fontawesome.com/9b33f63a16.js"></script>
+    <!-- Simplebar -->
+    <link rel="stylesheet" href="https://unpkg.com/simplebar@latest/dist/simplebar.css"/>
+    <script src="https://unpkg.com/simplebar@latest/dist/simplebar.min.js"></script>
+    <!-- g28 style -->
+    <link rel="stylesheet" href="../scss/main.css" />
+    <script src="../js/g28-main.js"></script>
 </head>
 <body>
 <!-- Section: Fixed Components -->
-<div class="sidebar-collapsible">
-    <div class="sidebar-inner">
-        <nav class="sidebar-header">
-            <div class="sidebar-logo">
-                <a href="#">
-                    <img alt="MedEx logo" src="../../res/logo/logo-text_light.svg"/>
-                </a>
-            </div>
-        </nav>
-        <div class="sidebar-context">
-            <h6 class="sidebar-context-title">Menu</h6>
-            <ul class="main-buttons">
-                <li>
-                    <a href="/dashboard"> <i class="fa-solid fa-house"></i> Home </a>
-                </li>
-                <li>
-                    <i class="fa-solid fa-check"></i>
-                    Approvals
-                    <ul class="hidden">
-                        <li class="disabled"><a href="/employee/approvals/pharmacy"> Pharmacy </a></li>
-                        <li><a href="/employee/approvals/supplier"> Supplier </a></li>
-                        <li><a href="/employee/approvals/lab"> Lab </a></li>
-                        <li><a href="/employee/approvals/delivery"> Delivery Partner </a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="/employee/reports"> <i class="fa-solid fa-newspaper"></i> Reports </a>
-                </li>
-                <li>
-                    <a href="#"> <i class="fa-solid fa-server"></i> Resources </a>
-                    <ul class="hidden">
-                        <li>Pharmacy</li>
-                        <li>Supplier</li>
-                        <li>Laboratory</li>
-                        <li>Delivery Partner</li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="/employee/configs"> <i class="fa-solid fa-wrench"></i> Configurations </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>
-<nav>
-    <div class="nav-inner">
-        <ul>
-            <li><a href="#"><i class="fa-solid fa-gear"></i></a></li>
-            <li><a href="#"><i class="fa-solid fa-bell"></i></a></li>
-            <li><a href="/logout"><i class="fa-solid fa-right-from-bracket"></i></a></li>
-        </ul>
-        <a class="nav-profile" href="#">
-            <div class="nav-profile-image">
-                <img alt="Profile image" src="../../res/avatar-empty.png"/>
-            </div>
-        </a>
-    </div>
-</nav>
+<?php
+echo $components->createSidebar('approval');
+echo $components->createNavbar();
+?>
 <!-- Section: Fixed Components -->
 
 <!-- Section: Dashboard Layout -->
 <div class="canvas nav-cutoff sidebar-cutoff">
     <div class="canvas-inner">
-        <div class="row search-box margin-bottom">
-            <div class="nav-search col">
-                <form onsubmit="preventDefault();" role="search">
-                    <label for="search">Search for stuff</label>
-                    <input autofocus id="search" placeholder="Search..." required type="search"/>
-                    <button type="submit">Go</button>
-                </form>
-            </div>
-        </div>
-        <div class="row margin-bottom">
-            <div class="col">
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Pharmacy Reg No.</th>
-                        <th>City</th>
-                        <th>Owner</th>
-                        <th class="c" style="max-width: 100px">Action</th>
-                    </tr>
-                    <thead>
-                    <tbody>
-                    <tr>
-                        <td>Thilakarathna Pharmacy</td>
-                        <td>PH200789</td>
-                        <td>Kurunegala</td>
-                        <td>Thilakarathna</td>
-                        <td>
-                            <div class="row action-buttons">
-                                <div class="col">
-                                    <a class="btn btn--success">
-                                        <i class="fa-solid fa-circle-check"></i>
-                                    </a>
-                                </div>
-                                <div class="col">
-                                    <a class="btn btn--danger">
-                                        <i class="fa-solid fa-circle-xmark"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+        <!-- DataBox -->
         <div class="row">
             <div class="col card">
                 <div class="card-body">
@@ -186,8 +101,24 @@
                 </div>
             </div>
         </div>
+        <!-- DataBox -->
     </div>
 </div>
 <!-- Section: Dashboard Layout -->
+
+<!-- g28 styling framework -->
+<script type="application/javascript">
+    // you can configure variables in here.
+    configs.stage = 'dev';
+    configs.customFormElmPath = '../scss/components/forms';
+
+    //logging
+    logger("Logging g28 initial state before loading specialized JS files...");
+    for (let property in configs) {
+        logger(`> ${property}: ${configs[property]}`);
+    }
+</script>
+<script src="../js/g28-forms.js"></script>
+<!-- g28 styling framework -->
 </body>
 </html>

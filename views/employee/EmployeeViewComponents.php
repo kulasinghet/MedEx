@@ -3,6 +3,7 @@
 namespace app\views\employee;
 
 use app\controllers\employee\EmployeeApprovalsController;
+use app\models\InvalidEntity\InvalidEntityModel;
 use app\stores\EmployeeStore;
 use Exception;
 
@@ -130,5 +131,31 @@ class EmployeeViewComponents
 </nav>
         ');
         }
+    }
+
+    public function createApprovalItem($approval): string
+    {
+        return ('
+<tr>
+    <td>Type</td>
+    <td>'.$approval->name.'</td>
+    <td>'.$approval->email.'</td>
+    <td>'.$approval->mobile.'</td>
+    <td>
+        <div class="row action-buttons">
+            <div class="col">
+                <a class="btn btn--success">
+                    <i class="fa-solid fa-circle-check"></i>
+                </a>
+            </div>
+            <div class="col">
+                <a class="btn btn--danger">
+                    <i class="fa-solid fa-circle-xmark"></i>
+                </a>
+            </div>
+        </div>
+    </td>
+</tr>
+        ');
     }
 }

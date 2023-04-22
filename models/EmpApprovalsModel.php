@@ -8,54 +8,66 @@ use app\models\InvalidEntity\InvalidDeliveryModel;
 use app\models\InvalidEntity\InvalidLabModel;
 use app\models\InvalidEntity\InvalidPharmacyModel;
 use app\models\InvalidEntity\InvalidSupplierModel;
+use mysqli;
 
 class EmpApprovalsModel extends Model
 {
-    private array $invalid_pharmacy_list;
-    private array $invalid_supplier_list;
-    private array $invalid_delivery_guys_list;
-    private array $invalid_lab_list;
-
+    public function getAll(): array
+    {
+        $conn = $this->createConnection();
+        $output = array_merge(
+            $this->queryInvalidPharmacies($conn),
+            $this->queryInvalidSuppliers($conn),
+            //$this->queryInvalidDeliveryGuys($conn),
+            //$this->queryInvalidLabs($conn)
+            );
+        $conn->close();
+        return $output;
+    }
 
     public function getInvalidPharmacies(): array
     {
-        if ($this->invalid_pharmacy_list == null || $this->invalid_pharmacy_list == []) {
-            $this->queryInvalidPharmacies();
-        }
-        return $this->invalid_pharmacy_list;
+        $conn = $this->createConnection();
+        $output = $this->queryInvalidPharmacies($conn);
+        $conn->close();
+        return $output;
     }
 
     public function getInvalidSuppliers(): array
     {
-        if ($this->invalid_supplier_list == null || $this->invalid_supplier_list == []) {
-            $this->queryInvalidSuppliers();
-        }
-        return $this->invalid_supplier_list;
+        $conn = $this->createConnection();
+        $output = $this->queryInvalidSuppliers($conn);
+        $conn->close();
+        return $output;
     }
 
     public function getInvalidDeliveryGuys(): array
     {
-        if ($this->invalid_delivery_guys_list == null || $this->invalid_delivery_guys_list == []) {
-            $this->queryInvalidDeliveryGuys();
-        }
-        return $this->invalid_delivery_guys_list;
+        $conn = $this->createConnection();
+        $output = $this->queryInvalidDeliveryGuys($conn);
+        $conn->close();
+        return $output;
     }
 
     public function getInvalidLabs(): array
     {
-        if ($this->invalid_lab_list == null || $this->invalid_lab_list == []) {
-            $this->queryInvalidLabs();
-        }
-        return $this->invalid_lab_list;
+        $conn = $this->createConnection();
+        $output = $this->queryInvalidLabs($conn);
+        $conn->close();
+        return $output;
     }
 
-    public function queryInvalidPharmacies(): void
+    public function createConnection(): ?\mysqli
     {
         //loading the database
         $db = new Database();
-        $conn = $db->getConnection();
+        return $db->getConnection();
+    }
 
+    public function queryInvalidPharmacies(mysqli $conn): array
+    {
         try {
+            $output = array();
             $sql = "SELECT * FROM `pharmacy` WHERE verified = 0";
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
@@ -76,22 +88,21 @@ class EmpApprovalsModel extends Model
                     ));
 
                     // pushing tmp into the array
-                    $this->invalid_pharmacy_list[] = $tmp;
+                    $output[] = $tmp;
                 }
             }
-            $conn->close();
         } catch (\Exception $e) {
             Logger::logError($e->getMessage());
+            $conn->close();
         }
+
+        return $output;
     }
 
-    public function queryInvalidSuppliers(): void
+    public function queryInvalidSuppliers(mysqli $conn): array
     {
-        //loading the database
-        $db = new Database();
-        $conn = $db->getConnection();
-
         try {
+            $output = array();
             $sql = "SELECT * FROM `supplier` WHERE verified = 0";
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
@@ -111,22 +122,21 @@ class EmpApprovalsModel extends Model
                     ));
 
                     // pushing tmp into the array
-                    $this->invalid_supplier_list[] = $tmp;
+                    $output[] = $tmp;
                 }
             }
-            $conn->close();
         } catch (\Exception $e) {
             Logger::logError($e->getMessage());
+            $conn->close();
         }
+
+        return $output;
     }
 
-    public function queryInvalidDeliveryGuys(): void
+    public function queryInvalidDeliveryGuys(mysqli $conn): array
     {
-        //loading the database
-        $db = new Database();
-        $conn = $db->getConnection();
-
         try {
+            $output = array();
             $sql = "SELECT * FROM `delivery_partner` WHERE verified = 0";
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
@@ -153,22 +163,21 @@ class EmpApprovalsModel extends Model
                     ));
 
                     // pushing tmp into the array
-                    $this->invalid_delivery_guys_list[] = $tmp;
+                    $output[] = $tmp;
                 }
             }
-            $conn->close();
         } catch (\Exception $e) {
             Logger::logError($e->getMessage());
+            $conn->close();
         }
+
+        return $output;
     }
 
-    public function queryInvalidLabs(): void
+    public function queryInvalidLabs(mysqli $conn): array
     {
-        //loading the database
-        $db = new Database();
-        $conn = $db->getConnection();
-
         try {
+            $output = array();
             $sql = "SELECT * FROM `laboratory` WHERE verified = 0";
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
@@ -187,12 +196,14 @@ class EmpApprovalsModel extends Model
                     ));
 
                     // pushing tmp into the array
-                    $this->invalid_lab_list[] = $tmp;
+                    $output[] = $tmp;
                 }
             }
-            $conn->close();
         } catch (\Exception $e) {
             Logger::logError($e->getMessage());
+            $conn->close();
         }
+
+        return $output;
     }
 }

@@ -3232,6 +3232,40 @@ textarea.form-input {
     background: radial-gradient(circle at 10% 20%, rgb(59, 149, 237) 0%, rgb(7, 91, 173) 90%);
   }
 }
+.toolbox {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+  padding: 0 1.5rem;
+  background: linear-gradient(180deg, #e0c3fc 0%, #8ec5fc 100%);
+  border-radius: 6px;
+  border: 1px solid #1e69fe;
+}
+.toolbox .row {
+  flex-wrap: nowrap;
+}
+.toolbox .row .col {
+  flex: 0 0 auto;
+  width: auto;
+  display: flex;
+  align-items: center;
+}
+.toolbox .block {
+  padding: 0.5rem 0;
+}
+.toolbox .separator {
+  width: 1px;
+  height: 50px;
+  background: rgba(32, 32, 86, 0.37);
+}
+.toolbox span, .toolbox label {
+  font-size: 0.9rem;
+  line-height: 1.2rem;
+  color: #071232;
+}
+
 form {
   width: 500px;
 }

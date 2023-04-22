@@ -9,6 +9,7 @@ class EmployeeStore
 {
     public string $approval_flag;
     public string $username;
+    public $controller;
 
     /**
      * @throws Exception
