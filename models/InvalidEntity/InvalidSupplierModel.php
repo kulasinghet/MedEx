@@ -20,6 +20,39 @@ class InvalidSupplierModel extends InvalidEntityModel
         }
     }
 
+    public static function getByUsername(string $username): ?self
+    {
+        //loading the database
+        $db = new Database();
+        $conn = $db->getConnection();
+
+        try {
+            $sql = "SELECT * FROM `supplier` WHERE `username` = '$username'";
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+                return new InvalidSupplierModel(array(
+                    'username' => $row["username"],
+                    'name' => $row["name"],
+                    'supp_reg_no' => $row["supplierRegNo"],
+                    'business_reg_id' => $row["BusinessRegId"],
+                    'supp_cert_id' => $row["supplierCertId"],
+                    'business_cert_name' => $row["BusinessRegCertName"],
+                    'supp_cert_name' => $row["supplierCertName"],
+                    'reg_date' => $row["regDate"],
+                    'email' => $row["email"],
+                    'address' => $row["address"],
+                    'mobile' => $row["mobile"],
+                ));
+            }
+        } catch (\Exception $e) {
+            Logger::logError($e->getMessage());
+            $conn->close();
+        }
+
+        return null;
+    }
+
     public function verify(): bool
     {
         //loading the database

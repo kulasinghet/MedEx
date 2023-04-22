@@ -2,7 +2,7 @@
 
 use app\stores\EmployeeStore;
 use app\views\employee\EmployeeViewComponents;
-use app\controllers\employee\EmployeeApprovalsController;
+use app\controllers\employee\EmployeeApprovalListController;
 
 const no_of_approvals = 9;
 
@@ -24,8 +24,8 @@ $store->flag_aprv_st = 0; // resetting the set number in the store
     <link rel="stylesheet" href="https://unpkg.com/simplebar@latest/dist/simplebar.css"/>
     <script src="https://unpkg.com/simplebar@latest/dist/simplebar.min.js"></script>
     <!-- g28 style -->
-    <link rel="stylesheet" href="../scss/main.css" />
-    <script src="../js/g28-main.js"></script>
+    <link rel="stylesheet" href="/scss/main.css" />
+    <script src="/js/g28-main.js"></script>
 </head>
 <body>
 <!-- Section: Fixed Components -->
@@ -81,7 +81,7 @@ echo $components->createNavbar();
                     <tbody>
                     <?php
                     try {
-                        $controller = new EmployeeApprovalsController();
+                        $controller = new EmployeeApprovalListController();
                         $approvals = $controller->getAllApprovals(no_of_approvals, $set);
                         if (!empty($approvals)) {
 //                            foreach ($approvals as $approval) {
@@ -118,7 +118,7 @@ echo $components->createNavbar();
 <script type="application/javascript">
     // you can configure variables in here.
     configs.stage = 'dev';
-    configs.customFormElmPath = '../scss/components/forms';
+    configs.customFormElmPath = '/scss/components/forms';
 
     //logging
     logger("Logging g28 initial state before loading specialized JS files...");
@@ -126,7 +126,8 @@ echo $components->createNavbar();
         logger(`> ${property}: ${configs[property]}`);
     }
 </script>
-<script src="../js/g28-forms.js"></script>
+<script src="/js/g28-forms.js"></script>
+<script src="/js/employee/approval-list.js"></script>
 <!-- g28 styling framework -->
 </body>
 </html>

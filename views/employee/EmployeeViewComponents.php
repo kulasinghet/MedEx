@@ -2,25 +2,17 @@
 
 namespace app\views\employee;
 
-use app\controllers\employee\EmployeeApprovalsController;
-use app\models\InvalidEntity\InvalidEntityModel;
 use app\stores\EmployeeStore;
 use Exception;
 use ReflectionClass;
 
 class EmployeeViewComponents
 {
-    //private EmployeeApprovalsController $controller;
     private EmployeeStore $store;
-    private mixed $approval_flag;
-    private string $username;
 
     public function __construct()
     {
-        //$this->controller = new EmployeeApprovalsController();
         $this->store = EmployeeStore::getEmployeeStore();
-        $this->approval_flag = $this->store->flag_aprv_t;
-        $this->username = $this->store->username;
     }
 
     /**
@@ -46,7 +38,7 @@ class EmployeeViewComponents
         <nav class="sidebar-header">
             <div class="sidebar-logo">
                 <a href="#">
-                    <img alt="MedEx logo" src="../../res/logo/logo-text_light.svg"/>
+                    <img alt="MedEx logo" src="/res/logo/logo-text_light.svg"/>
                 </a>
             </div>
         </nav>
@@ -60,17 +52,17 @@ class EmployeeViewComponents
                     Approvals
                     <ul class="hidden">
                     '.($selection == 'approval' ? '
-                        <li'.($this->approval_flag == 'all' ? " class='disabled'" : "").'><a href="/employee/approvals">All</a></li>
-                        <li'.($this->approval_flag == 'pharmacy' ? " class='disabled'" : "").'><a href="/employee/approvals?f=pharmacy">Pharmacy</a></li>
-                        <li'.($this->approval_flag == 'supplier' ? " class='disabled'" : "").'><a href="/employee/approvals?f=supplier">Supplier</a></li>
-                        <li'.($this->approval_flag == 'lab' ? " class='disabled'" : "").'><a href="/employee/approvals?f=lab">Lab</a></li>
-                        <li'.($this->approval_flag == 'delivery' ? " class='disabled'" : "").'><a href="/employee/approvals?f=delivery">Delivery Partner</a></li>
+                        <li'.($this->store->flag_aprv_t == 'all' ? " class='disabled'" : "").'><a href="/employee/approve">All</a></li>
+                        <li'.($this->store->flag_aprv_t == 'pharmacy' ? " class='disabled'" : "").'><a href="/employee/approve?f=pharmacy">Pharmacy</a></li>
+                        <li'.($this->store->flag_aprv_t == 'supplier' ? " class='disabled'" : "").'><a href="/employee/approve?f=supplier">Supplier</a></li>
+                        <li'.($this->store->flag_aprv_t == 'lab' ? " class='disabled'" : "").'><a href="/employee/approve?f=lab">Lab</a></li>
+                        <li'.($this->store->flag_aprv_t == 'delivery' ? " class='disabled'" : "").'><a href="/employee/approve?f=delivery">Delivery Partner</a></li>
                     ' : '
-                        <li><a href="/employee/approvals">All</a></li>
-                        <li><a href="/employee/approvals?filter=pharmacy">Pharmacy</a></li>
-                        <li><a href="/employee/approvals?filter=supplier">Supplier</a></li>
-                        <li><a href="/employee/approvals?filter=lab">Lab</a></li>
-                        <li><a href="/employee/approvals?filter=delivery">Delivery Partner</a></li>
+                        <li><a href="/employee/approve">All</a></li>
+                        <li><a href="/employee/approve?filter=pharmacy">Pharmacy</a></li>
+                        <li><a href="/employee/approve?filter=supplier">Supplier</a></li>
+                        <li><a href="/employee/approve?filter=lab">Lab</a></li>
+                        <li><a href="/employee/approve?filter=delivery">Delivery Partner</a></li>
                     ').'
                     </ul>
                 </li>
@@ -115,11 +107,11 @@ class EmployeeViewComponents
         </ul>
         <a class="nav-profile" href="/employee">
             <div class="nav-profile-text">
-                <h6>'.$user->username.'</h6>
+                <h6>'.$this->store->username.'</h6>
                 <span>'.($user->is_manager? "Manager" : "Staff").'</span>
             </div>
             <div class="nav-profile-image">
-                <img alt="Profile image" src="'.($user->profile_pic ?? "../res/avatar-empty.png").'"/>
+                <img alt="Profile image" src="'.($user->profile_pic ?? "/res/avatar-empty.png").'"/>
             </div>
         </a>
     </div>
@@ -155,7 +147,7 @@ class EmployeeViewComponents
     public function createApprovalItem($approval): string
     {
         return ('
-<tr>
+<tr data-usr="'.$approval->username.'" data-tp="'.$this->getTypeOf($approval).'">
     <td class="approval-type">
         <a>
             <i class="'.match ($this->getTypeOf($approval)) {
@@ -172,12 +164,12 @@ class EmployeeViewComponents
     <td>
         <div class="row action-buttons">
             <div class="col">
-                <a class="btn btn--success" href="/employee/approvals/'.$this->getTypeOf($approval).'/'.$approval->username.'?action=approve">
+                <a class="btn btn--success" href="/employee/approve/'.$this->getTypeOf($approval).'?et='.$approval->username.'&a=approve">
                     <i class="fa-solid fa-circle-check"></i>
                 </a>
             </div>
             <div class="col">
-                <a class="btn btn--danger" href="/employee/approvals/'.$this->getTypeOf($approval).'/'.$approval->username.'?action=ignore">
+                <a class="btn btn--danger" href="/employee/approve/'.$this->getTypeOf($approval).'?et='.$approval->username.'&a=ignore">
                     <i class="fa-solid fa-circle-xmark"></i>
                 </a>
             </div>

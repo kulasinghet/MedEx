@@ -19,6 +19,38 @@ class InvalidLabModel extends InvalidEntityModel
         }
     }
 
+    public static function getByUsername(string $username): ?self
+    {
+        //loading the database
+        $db = new Database();
+        $conn = $db->getConnection();
+
+        try {
+            $sql = "SELECT * FROM `laboratory` WHERE `username` = '$username'";
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+                return new InvalidLabModel(array(
+                    'username' => $row["username"],
+                    'name' => $row["laboratory_name"],
+                    'business_reg_id' => $row["business_registration_id"],
+                    'lab_cert_id' => $row["laboratory_certificate_id"],
+                    'business_cert_name' => $row["BusinessRegCertName"],
+                    'lab_cert_name' => $row["LabCertName"],
+                    'reg_date' => $row["reg_date"],
+                    'email' => $row["email"],
+                    'address' => $row["address"],
+                    'mobile' => $row["mobile"],
+                ));
+            }
+        } catch (\Exception $e) {
+            Logger::logError($e->getMessage());
+            $conn->close();
+        }
+
+        return null;
+    }
+
     public function verify(): bool
     {
         //loading the database

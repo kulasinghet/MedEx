@@ -7,7 +7,7 @@ use app\core\Request;
 use app\models\EmpApprovalsModel;
 use app\stores\EmployeeStore;
 
-class EmployeeApprovalsController extends Controller
+class EmployeeApprovalListController extends Controller
 {
     const login = 'Location: /login';
     const approval_flags = ['all', 'pharmacy', 'supplier', 'lab', 'delivery'];
@@ -27,17 +27,17 @@ class EmployeeApprovalsController extends Controller
 
         // retrieving the employee store
         $store = EmployeeStore::getEmployeeStore();
-        $store->flag_aprv_t = $this->getFilter($request);
-        $store->flag_aprv_st = $this->getSetNo($request);
+        $store->flag_aprv_t = $this->getFilterFlag($request);
+        $store->flag_aprv_st = $this->getSetNoFlag($request);
 
         if (in_array($store->flag_aprv_t, self::approval_flags)) {
-            $this -> render("employee/approvals.php");
+            $this -> render("employee/approvals/list.php");
         } else {
             header('Location: /employee');
         }
     }
 
-    public function getFilter(Request $request): ?string
+    public function getFilterFlag(Request $request): string
     {
         if ($request->isGet()) {
             $params = $request->getBody();
@@ -49,22 +49,20 @@ class EmployeeApprovalsController extends Controller
             }
         }
 
-        return null;
+        return '';
     }
 
-    public function getSetNo(Request $request): ?int
+    public function getSetNoFlag(Request $request): int
     {
         if ($request->isGet()) {
             $params = $request->getBody();
 
             if (array_key_exists('st', $params)) {
                 return (int)$params['st'];
-            } else {
-                return 0;
             }
         }
 
-        return null;
+        return 0;
     }
 
     public function getAllApprovals(int $set_size, $set_number = 0): array
@@ -72,16 +70,16 @@ class EmployeeApprovalsController extends Controller
         // retrieving the employee store
         $store = EmployeeStore::getEmployeeStore();
 
-        if ($set_number > 0 && $store->approval_list != []) {
+        if ($set_number > 0 && $store->aprv_list != []) {
             // retrieve the list from the store
-            $list = $store->approval_list;
+            $list = $store->aprv_list;
         } else {
             $model = new EmpApprovalsModel();
             // creating an array of all approvals
             $list = $model->getAll();
             shuffle($list);
             // storing the list in the store
-            $store->approval_list = $list;
+            $store->aprv_list = $list;
         }
 
         // slicing the list to the set size

@@ -22,6 +22,40 @@ class InvalidPharmacyModel extends InvalidEntityModel
         }
     }
 
+    public static function getByUsername(string $username): ?self
+    {
+        //loading the database
+        $db = new Database();
+        $conn = $db->getConnection();
+
+        try {
+            $sql = "SELECT * FROM `pharmacy` WHERE `username` = '$username'";
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+                return new InvalidPharmacyModel(array(
+                    'username' => $row["username"],
+                    'name' => $row["name"],
+                    'ownerName' => $row["ownerName"],
+                    'city' => $row["city"],
+                    'phar_reg_no' => $row["pharmacyRegNo"],
+                    'business_reg_id' => $row["BusinessRegId"],
+                    'phar_cert_id' => $row["pharmacyCertId"],
+                    'business_cert_name' => $row["BusinessRegCertName"],
+                    'delivery_time' => $row["deliveryTime"],
+                    'email' => $row["email"],
+                    'address' => $row["address"],
+                    'mobile' => $row["mobile"],
+                ));
+            }
+        } catch (\Exception $e) {
+            Logger::logError($e->getMessage());
+            $conn->close();
+        }
+
+        return null;
+    }
+
     public function verify(): bool
     {
         //loading the database

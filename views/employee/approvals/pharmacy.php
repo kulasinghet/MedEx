@@ -2,17 +2,16 @@
 
 use app\stores\EmployeeStore;
 use app\views\employee\EmployeeViewComponents;
-use app\controllers\employee\EmployeeApprovalsController;
 
 $components = new EmployeeViewComponents();
-$store = EmployeeStore::getEmployeeStore();
+// $store = EmployeeStore::getEmployeeStore();
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Admin | Approve: </title>
+    <title>Admin | Approve: Pharmacy</title>
 
     <!-- Font awesome kit -->
     <script crossorigin="anonymous" src="https://kit.fontawesome.com/9b33f63a16.js"></script>
@@ -20,8 +19,8 @@ $store = EmployeeStore::getEmployeeStore();
     <link rel="stylesheet" href="https://unpkg.com/simplebar@latest/dist/simplebar.css"/>
     <script src="https://unpkg.com/simplebar@latest/dist/simplebar.min.js"></script>
     <!-- g28 style -->
-    <link rel="stylesheet" href="../scss/main.css" />
-    <script src="../js/g28-main.js"></script>
+    <link rel="stylesheet" href="/scss/main.css" />
+    <script src="/js/g28-main.js"></script>
 </head>
 <body>
 <!-- Section: Fixed Components -->
@@ -110,7 +109,7 @@ echo $components->createNavbar();
 <script type="application/javascript">
     // you can configure variables in here.
     configs.stage = 'dev';
-    configs.customFormElmPath = '../scss/components/forms';
+    configs.customFormElmPath = '/scss/components/forms';
 
     //logging
     logger("Logging g28 initial state before loading specialized JS files...");
@@ -118,7 +117,7 @@ echo $components->createNavbar();
         logger(`> ${property}: ${configs[property]}`);
     }
 </script>
-<script src="../js/g28-forms.js"></script>
+<script src="/js/g28-forms.js"></script>
 <!-- g28 styling framework -->
 </body>
 </html>
