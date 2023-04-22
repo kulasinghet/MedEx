@@ -1,8 +1,15 @@
 <?php
+
+use app\stores\EmployeeStore;
 use app\views\employee\EmployeeViewComponents;
 use app\controllers\employee\EmployeeApprovalsController;
 
+const no_of_approvals = 9;
+
 $components = new EmployeeViewComponents();
+$store = EmployeeStore::getEmployeeStore();
+$set = $store->flag_aprv_st; // getting the number of set
+$store->flag_aprv_st = 0; // resetting the set number in the store
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -61,7 +68,7 @@ echo $components->createNavbar();
         <!-- Content -->
         <div class="row margin-bottom">
             <div class="col">
-                <table class="table">
+                <table class="table approval-table">
                     <thead>
                     <tr>
                         <th>Type</th>
@@ -75,14 +82,23 @@ echo $components->createNavbar();
                     <?php
                     try {
                         $controller = new EmployeeApprovalsController();
-                        $approvals = $controller->getAllApprovals();
+                        $approvals = $controller->getAllApprovals(no_of_approvals, $set);
                         if (!empty($approvals)) {
-                            foreach ($approvals as $approval) {
-                                echo $components->createApprovalItem($approval);
+//                            foreach ($approvals as $approval) {
+//                                echo $components->createApprovalItem($approval);
+//                            }
+                            for ($i = 0; $i < no_of_approvals; $i++) {
+                                if (array_key_exists($i, $approvals)) {
+                                    echo $components->createApprovalItem($approvals[$i]);
+                                } else {
+                                    echo "<tr class='empty'>";
+                                    echo "<td colspan='5'></td>";
+                                    echo "</tr>";
+                                }
                             }
                         } else {
                             echo "<tr>";
-                            echo "<td colspan='5' style='text-align: center'>There is no approval to check!</td>";
+                            echo "<td class='no-data' colspan='5'>There is no approval to check!</td>";
                             echo "</tr>";
                         }
                     } catch (Exception $e) {
@@ -94,73 +110,6 @@ echo $components->createNavbar();
             </div>
         </div>
         <!-- Content -->
-
-        <div class="row">
-            <div class="col card">
-                <div class="card-body">
-                    <h5 class="card-title">Pharmacy Details</h5>
-                    <div class="row">
-                        <div class="col">
-                            <table class="status-table">
-                                <tbody>
-                                <tr>
-                                    <th>Username</th>
-                                    <td>Test 1</td>
-                                </tr>
-                                <tr>
-                                    <th>Email</th>
-                                    <td>Test 1</td>
-                                </tr>
-                                <tr>
-                                    <th>Pharmacy Reg No.</th>
-                                    <td>Test 1</td>
-                                </tr>
-                                <tr>
-                                    <th>Pharmacy Certification</th>
-                                    <td>Test 1</td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="col">
-                            <table class="status-table">
-                                <tbody>
-                                <tr>
-                                    <th>Name</th>
-                                    <td>Test 1</td>
-                                </tr>
-                                <tr>
-                                    <th>Phone</th>
-                                    <td>Test 1</td>
-                                </tr>
-                                <tr>
-                                    <th>Business Reg No.</th>
-                                    <td>Test 1</td>
-                                </tr>
-                                <tr>
-                                    <th>Business Certification</th>
-                                    <td>Test 1</td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                    <div class="row action-buttons">
-                        <div class="col">
-                            <a class="btn btn--success">
-                                <i class="fa-solid fa-circle-check"></i>
-                            </a>
-                        </div>
-                        <div class="col">
-                            <a class="btn btn--danger">
-                                <i class="fa-solid fa-circle-xmark"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 <!-- Section: Dashboard Layout -->

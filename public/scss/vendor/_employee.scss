@@ -93,3 +93,40 @@
 #filter-by-search {
   --color-light: #{$light};
 }
+
+.approval-table {
+  th {
+    text-align: center;
+
+    &:not(:last-child) {
+      border-right: 1px solid rgba(224, 179, 1, 0.5);
+    }
+  }
+
+  td {
+    &:not(:last-child) {
+      border-right: 1px solid $gray-1;
+    }
+  }
+
+  th, td {
+    padding: 0 8px;
+  }
+
+  tbody {
+    tr:not(.empty) {
+      &:hover {
+        background-color: $gray-1;
+        cursor: pointer;
+      }
+    }
+
+    .empty {
+      border: none;
+    }
+  }
+
+  .approval-type {
+    text-align: center;
+  }
+}

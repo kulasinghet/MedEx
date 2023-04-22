@@ -6,6 +6,7 @@ use app\controllers\employee\EmployeeApprovalsController;
 use app\models\InvalidEntity\InvalidEntityModel;
 use app\stores\EmployeeStore;
 use Exception;
+use ReflectionClass;
 
 class EmployeeViewComponents
 {
@@ -18,8 +19,23 @@ class EmployeeViewComponents
     {
         //$this->controller = new EmployeeApprovalsController();
         $this->store = EmployeeStore::getEmployeeStore();
-        $this->approval_flag = $this->store->approval_flag;
+        $this->approval_flag = $this->store->flag_aprv_t;
         $this->username = $this->store->username;
+    }
+
+    /**
+     * @throws \ReflectionException
+     */
+    private function getTypeOf($obj): string
+    {
+        $reflect = new ReflectionClass($obj);
+        return match ($reflect->getShortName()) {
+            'InvalidPharmacyModel' => 'pharmacy',
+            'InvalidSupplierModel' => 'supplier',
+            'InvalidLabModel' => 'lab',
+            'InvalidDeliveryModel' => 'delivery',
+            default => 'Unknown',
+        };
     }
 
     public function createSidebar($selection): string
@@ -45,10 +61,10 @@ class EmployeeViewComponents
                     <ul class="hidden">
                     '.($selection == 'approval' ? '
                         <li'.($this->approval_flag == 'all' ? " class='disabled'" : "").'><a href="/employee/approvals">All</a></li>
-                        <li'.($this->approval_flag == 'pharmacy' ? " class='disabled'" : "").'><a href="/employee/approvals?filter=pharmacy">Pharmacy</a></li>
-                        <li'.($this->approval_flag == 'supplier' ? " class='disabled'" : "").'><a href="/employee/approvals?filter=supplier">Supplier</a></li>
-                        <li'.($this->approval_flag == 'lab' ? " class='disabled'" : "").'><a href="/employee/approvals?filter=lab">Lab</a></li>
-                        <li'.($this->approval_flag == 'delivery' ? " class='disabled'" : "").'><a href="/employee/approvals?filter=delivery">Delivery Partner</a></li>
+                        <li'.($this->approval_flag == 'pharmacy' ? " class='disabled'" : "").'><a href="/employee/approvals?f=pharmacy">Pharmacy</a></li>
+                        <li'.($this->approval_flag == 'supplier' ? " class='disabled'" : "").'><a href="/employee/approvals?f=supplier">Supplier</a></li>
+                        <li'.($this->approval_flag == 'lab' ? " class='disabled'" : "").'><a href="/employee/approvals?f=lab">Lab</a></li>
+                        <li'.($this->approval_flag == 'delivery' ? " class='disabled'" : "").'><a href="/employee/approvals?f=delivery">Delivery Partner</a></li>
                     ' : '
                         <li><a href="/employee/approvals">All</a></li>
                         <li><a href="/employee/approvals?filter=pharmacy">Pharmacy</a></li>
@@ -133,23 +149,35 @@ class EmployeeViewComponents
         }
     }
 
+    /**
+     * @throws \ReflectionException
+     */
     public function createApprovalItem($approval): string
     {
         return ('
 <tr>
-    <td>Type</td>
+    <td class="approval-type">
+        <a>
+            <i class="'.match ($this->getTypeOf($approval)) {
+                'pharmacy' => 'fa-solid fa-suitcase-medical',
+                'supplier' => 'fa-solid fa-truck-medical',
+                'lab' => 'fa-solid fa-flask',
+                'delivery' => 'fa-solid fa-cart-flatbed-boxes',
+                default => 'fa-solid fa-question',}.'"></i>
+        </a>
+    </td>
     <td>'.$approval->name.'</td>
     <td>'.$approval->email.'</td>
     <td>'.$approval->mobile.'</td>
     <td>
         <div class="row action-buttons">
             <div class="col">
-                <a class="btn btn--success">
+                <a class="btn btn--success" href="/employee/approvals/'.$this->getTypeOf($approval).'/'.$approval->username.'?action=approve">
                     <i class="fa-solid fa-circle-check"></i>
                 </a>
             </div>
             <div class="col">
-                <a class="btn btn--danger">
+                <a class="btn btn--danger" href="/employee/approvals/'.$this->getTypeOf($approval).'/'.$approval->username.'?action=ignore">
                     <i class="fa-solid fa-circle-xmark"></i>
                 </a>
             </div>

@@ -2988,6 +2988,11 @@ when users will click/enter button(link) browser will add a #id in a url and whe
 .table td.r, .table th.r {
   text-align: center;
 }
+.table .no-data {
+  text-align: center;
+  vertical-align: center;
+  padding: 20px 0;
+}
 
 @media screen and (max-width: 35.5em) {
   table {
@@ -3432,6 +3437,29 @@ textarea.form-input {
 
 #filter-by-search {
   --color-light: #f6f9ff;
+}
+
+.approval-table th {
+  text-align: center;
+}
+.approval-table th:not(:last-child) {
+  border-right: 1px solid rgba(224, 179, 1, 0.5);
+}
+.approval-table td:not(:last-child) {
+  border-right: 1px solid #f6f9ff;
+}
+.approval-table th, .approval-table td {
+  padding: 0 8px;
+}
+.approval-table tbody tr:not(.empty):hover {
+  background-color: #f6f9ff;
+  cursor: pointer;
+}
+.approval-table tbody .empty {
+  border: none;
+}
+.approval-table .approval-type {
+  text-align: center;
 }
 
 /*# sourceMappingURL=main.css.map */

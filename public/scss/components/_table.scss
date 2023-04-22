@@ -60,6 +60,12 @@ $gl-lg         : "screen and (max-width: 80em)";   // max 1280px
       text-align:center;
     }
   }
+
+  .no-data {
+    text-align:center;
+    vertical-align: center;
+    padding:20px 0;
+  }
 }
 
 

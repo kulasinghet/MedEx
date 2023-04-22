@@ -7,16 +7,21 @@ use Exception;
 
 class EmployeeStore
 {
-    public string $approval_flag;
     public string $username;
-    public $controller;
+    public $controller; // TODO: remove this
+    // approval page variables
+    public array $approval_list;
+    public string $flag_aprv_t;
+    public int $flag_aprv_st;
 
     /**
      * @throws Exception
      */
     private final function __construct()
     {
-        $this->approval_flag = '';
+        $this->approval_list = [];
+        $this->flag_aprv_t = '';
+        $this->flag_aprv_st = 0;
 
         // retrieve user details from session
         if (isset($_SESSION['username'])) {

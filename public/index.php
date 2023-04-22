@@ -69,14 +69,6 @@ $app->router->get('/employee/register', [EmployeeAuthController::class, 'employe
 $app->router->post('/employee/register', [EmployeeAuthController::class, 'employeeRegister']);
 $app->router->get('/employee/reports', [EmployeeDashboardController::class, 'showReports']);
 $app->router->post('/employee/reports', [EmployeeDashboardController::class, 'showReports']);
-//$app->router->get('/employee/approvals/pharmacy', [EmployeeDashboardController::class, 'approvePharmacy']);
-//$app->router->post('/employee/approvals/pharmacy', [EmployeeDashboardController::class, 'approvePharmacy']);
-//$app->router->get('/employee/approvals/supplier', [EmployeeDashboardController::class, 'approveSupplier']);
-//$app->router->post('/employee/approvals/supplier', [EmployeeDashboardController::class, 'approveSupplier']);
-//$app->router->get('/employee/approvals/lab', [EmployeeDashboardController::class, 'approveLab']);
-//$app->router->post('/employee/approvals/lab', [EmployeeDashboardController::class, 'approveLab']);
-//$app->router->get('/employee/approvals/delivery', [EmployeeDashboardController::class, 'approveDelivery']);
-//$app->router->post('/employee/approvals/delivery', [EmployeeDashboardController::class, 'approveDelivery']);
 $app->router->get('/employee/approvals', [EmployeeApprovalsController::class, 'load']);
 $app->router->post('/employee/approvals', [EmployeeApprovalsController::class, 'load']);
 $app->router->get('/employee/configs', [EmployeeDashboardController::class, 'configs']);
