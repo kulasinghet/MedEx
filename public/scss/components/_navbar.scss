@@ -5,7 +5,7 @@
 $z-index: $max-z-index - 20 !default;
 $width: calc(100% - $sidebar-width) !default;
 $margin-bottom: 1rem !default;
-$padding: 0 2rem !default;
+$padding: 0 1.5rem !default;
 $cutoff: $navbar-height !default;
 $box-shadow: 0 0 3px $gray-3 !default;
 
@@ -160,19 +160,47 @@ nav {
   }
 }
 
-.nav-profile-image {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: $gray-3;
-  overflow: hidden;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+.nav-profile {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
 
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  .nav-profile-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    align-items: end;
+    justify-content: center;
+
+    h6 {
+      font-weight: 600;
+      line-height: 1rem;
+      margin: 0;
+      color: $dark;
+    }
+
+    span {
+      font-size: 0.75rem;
+      line-height: 0.75rem;
+      color: $gray-3;
+    }
+  }
+
+  .nav-profile-image {
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
+    background: $gray-3;
+    overflow: hidden;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
   }
 }
 

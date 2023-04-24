@@ -14,12 +14,12 @@ class Request
         return substr($path, 0, $position);
     }
 
-    public function getMethod()
+    public function getMethod(): string
     {
         return strtolower($_SERVER['REQUEST_METHOD']);
     }
 
-    public function getBody()
+    public function getBody(): array
     {
         $body = [];
         if ($this->getMethod() === 'get') {
@@ -36,14 +36,13 @@ class Request
         return $body;
     }
 
-    public function isGet()
+    public function isGet(): bool
     {
         return $this->getMethod() === 'get';
     }
 
-    public function isPost()
+    public function isPost(): bool
     {
         return $this->getMethod() === 'post';
     }
-
 }

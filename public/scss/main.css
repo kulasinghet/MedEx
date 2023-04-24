@@ -2386,7 +2386,7 @@ nav {
   justify-content: space-between;
   width: var(--g28-nav-width);
   height: 3.5rem;
-  padding: 0 2rem;
+  padding: 0 1.5rem;
   margin-bottom: 1rem;
   background: var(--g28-nav-bg);
   box-shadow: 0 0 3px #b5bccf;
@@ -2504,7 +2504,31 @@ nav .nav-inner ul li a:active:not(.disabled) {
   overflow: hidden;
 }
 
-.nav-profile-image {
+.nav-profile {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+}
+.nav-profile .nav-profile-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  align-items: end;
+  justify-content: center;
+}
+.nav-profile .nav-profile-text h6 {
+  font-weight: 600;
+  line-height: 1rem;
+  margin: 0;
+  color: #071232;
+}
+.nav-profile .nav-profile-text span {
+  font-size: 0.75rem;
+  line-height: 0.75rem;
+  color: #b5bccf;
+}
+.nav-profile .nav-profile-image {
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -2512,7 +2536,7 @@ nav .nav-inner ul li a:active:not(.disabled) {
   overflow: hidden;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
 }
-.nav-profile-image img {
+.nav-profile .nav-profile-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
