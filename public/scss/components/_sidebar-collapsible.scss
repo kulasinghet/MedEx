@@ -1,0 +1,161 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+@use "../abstracts/button" as btn;
+@use "navbar" as nav;
+
+
+$bg: $white !default;
+$z-index: $max-z-index - 10 !default;
+$box-shadow: 1px 0 3px rgba(0, 0, 0, 0.15) !default;
+$cutoff: $sidebar-width !default;
+$border: 1px solid rgba($gray-2, 0.4) !default;
+$width-compressed: 52px;
+
+$nav-z-index: $z-index + 5 !default;
+
+$font-family: $font-family-base !default;
+$font-size: $font-size-sm !default;
+$font-weight: $font-weight-semibold !default;
+
+$context-padding: calc(#{nav.$cutoff} + 1rem) 0 1rem 0 !default;
+
+
+.sidebar-collapsible {
+  --#{$prefix}sidebar-itm-color: #{$dark};
+
+  position: fixed;
+  z-index: $z-index;
+
+  height: 100vh;
+  width: $sidebar-width;
+  background: $bg;
+  box-shadow: $box-shadow;
+
+  .sidebar-inner {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    div {
+      height: inherit;
+      width: inherit;
+    }
+
+    .sidebar-header {
+      --#{$prefix}nav-position: absolute;
+      --#{$prefix}nav-z-index: #{$nav-z-index};
+      --#{$prefix}nav-width: 100%;
+      --#{$prefix}nav-bg: #fbfbfb;
+
+      .sidebar-logo {
+        @include company-logo(160px);
+      }
+    }
+
+    .sidebar-context {
+      position: inherit;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+
+      padding: $context-padding;
+
+      ul {
+        list-style-type: none;
+        margin-bottom: 64px;
+        padding: 0;
+
+        li {
+          display: inline-flex;
+          align-items: center;
+
+          width: 100%;
+          letter-spacing: 2px;
+          font-family: $font-family;
+          font-size: $font-size;
+          font-weight: $font-weight;
+          cursor: pointer;
+
+          a {
+            width: inherit;
+            height: inherit;
+            text-decoration: none;
+            color: var(--#{$prefix}sidebar-itm-color);
+
+            &:visited {
+              color: var(--#{$prefix}sidebar-itm-color);
+            }
+
+            &.disabled {
+              --#{$prefix}sidebar-itm-color: #{$light};
+            }
+          }
+
+          &.disabled {
+            --#{$prefix}sidebar-itm-color: #{$light};
+          }
+        }
+      }
+
+      .main-buttons{
+        & > li {
+          padding: 16px $width-compressed;
+
+          i {
+            position: absolute;
+            left: 16px;
+          }
+
+          &:hover, &:active, &:focus{
+            background-color: $primary;
+
+            i {
+              --#{$prefix}i-color: rgba(255, 255, 255, 0.6);
+            }
+
+            & > a {
+              --#{$prefix}sidebar-itm-color: #{$light};
+            }
+
+            .hidden{
+              left: $width-compressed;
+              box-shadow: -1px 0 3px rgba(0, 0, 0, 0.15);
+            }
+          }
+        }
+      }
+
+      .hidden{
+        width: $sidebar-width - $width-compressed;
+        height: 100%;
+        padding: $context-padding;
+
+        position: absolute;
+        top: 0;
+        left: $sidebar-width;
+
+        overflow: hidden;
+
+        background: darken($primary, 18);
+        color: $light;
+        transition: .4s ease-out .1s;
+
+        li{
+          --#{$prefix}sidebar-itm-color: #{$light};
+          padding: 16px 24px;
+
+          &:hover {
+            background: lighten($primary, 4);
+          }
+
+          &:active, &:focus{
+            background: darken($primary, 30);
+          }
+        }
+      }
+    }
+  }
+}

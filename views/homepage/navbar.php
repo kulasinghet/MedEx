@@ -7,7 +7,7 @@
     <body>
         <div class="navBar">
             <div class="navBar__logo">
-                <a href="index.php"><img src="public/res/logo/Logo-text.png" alt="logo" height="40px" width="auto"></a>
+                <a href="index.php"><img src="/res/logo/Logo-text.png" alt="logo" height="40px" width="auto"></a>
             </div>
 
 <!--             register popup for the Are you a page?-->

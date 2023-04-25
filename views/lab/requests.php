@@ -17,17 +17,45 @@ use app\controllers\lab\LabRequestsController;
 
 <body>
 
-    <nav>
-        <div class="nav-search">
-            <form onsubmit="preventDefault();" role="search">
-                <label for="search">Search for stuff</label>
-                <input autofocus id="search" placeholder="Search..." required type="search" />
-                <button type="submit">Go</button>
-            </form>
+    <!-- Section: Fixed Components -->
+    <div class="sidebar-collapsible">
+        <div class="sidebar-inner">
+            <nav class="sidebar-header">
+                <div class="sidebar-logo">
+                    <a href="#">
+                        <img alt="MedEx logo" src="../res/logo/logo-text_light.svg" />
+                    </a>
+                </div>
+            </nav>
+            <div class="sidebar-context">
+                <ul class="main-buttons">
+                    <li>
+                        <a href="#"> <i class="fa fa-file-text-o"></i>Lab Requests</a>
+                        <ul class="hidden">
+                            <li class="disabled"><a href="/lab/requests">Accept Lab Requests</a></li>
+                            <li><a href="#">View Accepted Requests</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"> <i class="fa fa-list-alt"></i> Lab Reports</a>
+                        <ul class="hidden">
+                            <li><a href="/lab/reports"> Generate Lab Reports</a></li>
+                            <li><a href="#">View Past Lab Reports </a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/lab/contact-us"> <i class="fa fa-phone"></i> Contact Us </a>
+                    </li>
+                </ul>
+            </div>
         </div>
+    </div>
+    <nav>
         <div class="nav-inner">
             <ul>
-                <li><a href="/login"><i class="fa fa-sign-out"></i></a></li>
+                <li><a class="link" href="#"><i class="fa-solid fa-gear"></i></a></li>
+                <li><a class="link" href="login"><i class="fa-solid fa-right-from-bracket"></i></a></li>
+                <li><a class="link" href="#"><i class="fa-solid fa-bell"></i></a></li>
             </ul>
             <a class="nav-profile" href="#">
                 <div class="nav-profile-image">
@@ -36,34 +64,7 @@ use app\controllers\lab\LabRequestsController;
             </a>
         </div>
     </nav>
-
-    <div class="sidebar">
-        <div class="sidebar-inner">
-            <nav class="sidebar-header">
-                <div class="sidebar-logo">
-                    <a href="/dashboard">
-                        <img alt="MedEx logo" src="../res/logo/logo-text_light.svg" />
-                    </a>
-                </div>
-            </nav>
-            <div class="sidebar-context">
-                <h6 class="sidebar-context-title">Menu</h6>
-                <ul>
-                    <li>
-                        <a class="btn disabled" href="/lab/requests"> <i class="fa fa-check"></i> Accept Lab Requests
-                        </a>
-                    </li>
-                    <li>
-                        <a class="btn" href="lab/reports"> <i class="fa fa-file-text-o"></i> Provide Lab Reports </a>
-                    </li>
-
-                    <li>
-                        <a class="btn" href="/supplier/contact-us"> <i class="fa fa-phone"></i> Contact Us </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
+    <!-- Section: Fixed Components -->
 
 
     <div class="canvas nav-cutoff sidebar-cutoff">
@@ -95,7 +96,7 @@ use app\controllers\lab\LabRequestsController;
                                     </tr>
                                     <?php
                                     $req = new LabRequestsController;
-                                    $req->viewRequests();
+                                    $req->AcceptReq();
                                     ?>
                                 </table>
                             </div>
