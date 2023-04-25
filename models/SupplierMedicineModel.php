@@ -69,7 +69,6 @@ class SupplierMedicineModel extends Model
         }
         $db->close();
 
-
     }
     public function DeleteMed($uname, $id)
     {

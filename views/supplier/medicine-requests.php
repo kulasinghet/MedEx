@@ -18,26 +18,6 @@ use app\controllers\supplier\SupplierMedicineController;
 
 <body>
 
-    <nav>
-        <div class="nav-search">
-            <form onsubmit="preventDefault();" role="search">
-                <label for="search">Search for stuff</label>
-                <input autofocus id="search" placeholder="Search..." required type="search" />
-                <button type="submit">Go</button>
-            </form>
-        </div>
-        <div class="nav-inner">
-            <ul>
-                <li><a href="/login"><i class="fa fa-sign-out"></i></a></li>
-            </ul>
-            <a class="nav-profile" href="#">
-                <div class="nav-profile-image">
-                    <img alt="Profile image" src="../res/avatar-empty.png" />
-                </div>
-            </a>
-        </div>
-    </nav>
-
     <div class="sidebar">
         <div class="sidebar-inner">
             <nav class="sidebar-header">

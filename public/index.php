@@ -23,6 +23,7 @@ use app\controllers\LoginAuthController;
 use app\controllers\SiteController;
 use app\controllers\supplier\SupplierAddMedicineController;
 use app\controllers\lab\LabAcceptReqController;
+use app\controllers\lab\LabReportController;
 
 $app = new Application();
 
@@ -60,7 +61,12 @@ $app->router->get('/lab/requests', [LabDashboardController::class, 'viewRequest'
 $app->router->post('/lab/requests', [LabDashboardController::class, 'viewRequest']);
 $app->router->get('/lab/reports', [LabDashboardController::class, 'addLabReport']);
 $app->router->post('/lab/reports', [LabDashboardController::class, 'addLabReport']);
+$app->router->post('/lab/past-reports', [LabDashboardController::class, 'PastReports']);
+$app->router->get('/lab/past-reports', [LabDashboardController::class, 'PastReports']);
+$app->router->post('/lab/past-requests', [LabDashboardController::class, 'PastReq']);
+$app->router->get('/lab/past-requests', [LabDashboardController::class, 'PastReq']);
 $app->router->post('/lab/accept-req', [LabAcceptReqController::class, 'acceptRequest']);
+$app->router->post('/lab/generate-report', [LabReportController::class, 'genrateReport']);
 
 // Employee Routes
 //$app -> router -> get('/employee/login', [LoginAuthController::class, 'employeeLogin']);
