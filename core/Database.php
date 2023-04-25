@@ -26,14 +26,4 @@ class Database
 
         return $this->db;
     }
-
-    private function parse_env(string $string)
-    {
-        $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-        $dotenv->load();
-
-        return $_ENV[$string];
-    }
-
-
 }

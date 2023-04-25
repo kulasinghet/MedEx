@@ -82,9 +82,10 @@ $app->router->post('/employee/approvals', [EmployeeApprovalsController::class, '
 $app->router->get('/employee/configs', [EmployeeDashboardController::class, 'configs']);
 $app->router->post('/employee/configs', [EmployeeDashboardController::class, 'configs']);
 
+//#########################################################################################
 // pharmacy Routes
-//$app -> router -> get('/pharmacy/login', [LoginAuthController::class, 'pharmacyLogin']);
-//$app -> router -> post('/pharmacy/login', [LoginAuthController::class, 'pharmacyLogin']);
+
+//General Routes
 $app->router->get('/pharmacy/register', [PharmacyAuthController::class, 'pharmacyRegister']);
 $app->router->post('/pharmacy/register', [PharmacyAuthController::class, 'pharmacyRegister']);
 $app->router->get('/pharmacy/sell-medicine', [PharmacyDashboardController::class, 'sellMedicine']);
@@ -101,6 +102,16 @@ $app->router->get('/pharmacy/profile', [PharmacyDashboardController::class, 'pro
 $app->router->post('/pharmacy/profile', [PharmacyDashboardController::class, 'profile']);
 $app->router->get('/pharmacy/settings', [PharmacyDashboardController::class, 'settings']);
 $app->router->post('/pharmacy/settings', [PharmacyDashboardController::class, 'settings']);
+
+//REST API
+$app->router->get('/pharmacy/api/order-details', [PharmacyOrderMedicineController::class, 'orderDetails']);
+$app->router->get('/pharmacy/api/order-medicine-details', [PharmacyOrderMedicineController::class, 'orderMedicineDetails']);
+$app->router->get('/pharmacy/api/cancel-order', [PharmacyOrderMedicineController::class, 'cancelOrder']);
+
+
+
+
+// #############################################################################################
 
 
 // Supplier Routes

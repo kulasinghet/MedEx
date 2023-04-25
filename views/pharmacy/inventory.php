@@ -19,33 +19,58 @@ echo $components->sideBar('inventory');
 
 
                 <div class="nav-search">
-                    <form onsubmit="preventDefault();" role="search">
-                        <label for="search">Search for stuff</label>
-                        <input id="search" placeholder="Search Inventory . . ." required type="search" />
-                        <button type="submit">Go</button>
+                    <form onclick= "() => {
+						event.preventDefault();
+						showMedicineRowOnSearch(event);
+                          }">
+                        <label for="search-medicine">Search for stuff</label>
+                        <input id="search-medicine" placeholder="Search Medicine . . ." required type="search" onchange="showMedicineRowOnSearch(event)">
+                        <button type="submit" onclick="showMedicineRowOnSearch(event)">Go</button>
                     </form>
                 </div>
 
+                <script>
+                    function showMedicineRowOnSearch(event) {
 
-                <!-- <div class="filter-group">
+                        // prevent default form submit
+                        event.preventDefault();
 
-                    <div class="filter-group">
+                        // get search value
+                        let search = document.getElementById('search-medicine').value;
+                        let orderMedicineRows = document.getElementsByClassName('order-medicine-row');
 
-                        <button class="btn btn-primary" id="pending">Pending</button>
+                        for (let i = 0; i < orderMedicineRows.length; i++) {
+                            orderMedicineRows[i].classList.remove('order-medicine-row-after');
+                            orderMedicineRows[i].classList.add('order-medicine-row-before');
+                        }
+                        if (search === "") {
+                            for (let i = 0; i < orderMedicineRows.length; i++) {
+                                orderMedicineRows[i].classList.remove('order-medicine-row-before');
+                                orderMedicineRows[i].classList.add('order-medicine-row-after');
+                            }
+                        }
 
-                        <button class="btn btn-primary" id="accepted">Accepted</button>
-
-                        <button class="btn btn-primary" id="rejected">Rejected</button>
-
-                        <button class="btn btn-primary" id="delivered">Delivered</button>
-
-                        <button class="btn btn-primary" id="cancelled">Cancelled</button>
-
-                        <i class="fa-solid fa-filter-circle-xmark" style="color: #999999; font-size: 1.5rem; margin-left: 1rem; cursor: pointer;" id="clear-filter"></i>
-
-                    </div>
-
-                </div> -->
+                        let flag = false;
+                        if (search !== "") {
+                            for (let i = 0; i < orderMedicineRows.length; i++) {
+                                let medicineId = orderMedicineRows[i].getAttribute('data-id');
+                                if (medicineId.toLowerCase().includes(search.toLowerCase())) {
+                                    // change class name
+                                    orderMedicineRows[i].classList.remove('order-medicine-row-before');
+                                    orderMedicineRows[i].classList.add('order-medicine-row-after');
+                                    // document.getElementById('clear-filter').classList.remove('clear-filter-icon-hidden');
+                                    flag = true;
+                                } else {
+                                    orderMedicineRows[i].classList.remove('order-medicine-row-after');
+                                    orderMedicineRows[i].classList.add('order-medicine-row-before');
+                                }
+                            }
+                            if (flag === false) {
+                                swal("No medicine found", "Please try again", "error");
+                            }
+                        }
+                    }
+                </script>
 
                 <!--                order table-->
                 <div class=" orders">
@@ -54,6 +79,7 @@ echo $components->sideBar('inventory');
                             <tr>
                                 <th>Medicine ID</th>
                                 <th>Medicine Name</th>
+                                <th>Medicine Scientific Name</th>
                                 <th>Remaining Quantity</th>
                                 <th>Buying Price</th>
                                 <th>Selling Price</th>
@@ -72,14 +98,15 @@ echo $components->sideBar('inventory');
                                     $stocks = $pharmacyInventoryController->getInventoryByUsername($username);
                                     if ($stocks) {
                                         foreach ($stocks as $stock) {
-                                            echo "<tr" . " class='" . $pharmacyInventoryController->remainingDays($stock['remaining_days']) . "'>" . "</a>";
+                                            echo "<tr" . " class='" . $pharmacyInventoryController->remainingDays($stock['remaining_days']) . " order-medicine-row order-medicine-row-after' data-id='" . $stock['medId'] . $stock['sciName'] . $stock['medName'] . "'>";
                                             echo "<td>" . $stock['medId'] . "</td>";
                                             echo "<td>" . $pharmacyInventoryController->transformMedicineName($stock['medId']) . "</td>";
+                                            echo "<td>" . $stock['sciName'] . "</td>";
                                             echo "<td>" . $stock['remQty'] . "</td>";
                                             echo "<td>" . $stock['buying_price'] . "</td>";
                                             echo "<td>" . $stock['sellingPrice'] . "</td>";
                                             echo "<td>" . $stock['remaining_days'] . "</td>";
-                                            echo "<td>" . "<a href='' id='" . $stock['id'] . "'>" . "<i class='fa-solid fa-circle-arrow-right view-order-details' style='color:#333333'></i>" . "</a>" . "</td>";
+                                            echo "<td>" . "<a class='view-stock' id='" . $stock['id'] ."'>" . "<i class='fa-solid fa-circle-arrow-right view-order-details' style='color:#333333'></i>" . "</a>" . "</td>";
                                             echo "</a>";
                                             echo "</tr>";
                                         }
@@ -124,7 +151,21 @@ echo $components->sideBar('inventory');
 
     </div>
 
+<script>
+    function handleViewStockDetailsClick(id) {
+        console.log(id);
+    }
 
+    document.addEventListener('DOMContentLoaded', function() {
+        var viewOrderButtons = document.getElementsByClassName('view-stock');
+        for (var i = 0; i < viewOrderButtons.length; i++) {
+            viewOrderButtons[i].addEventListener('click', function() {
+                // pass id of the anchor tag to the function
+                handleViewStockDetailsClick(this.id);
+            });
+        }
+    });
+</script>
 
 
 </div>

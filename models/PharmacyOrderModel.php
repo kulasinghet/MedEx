@@ -95,7 +95,7 @@ class PharmacyOrderModel extends Model
     {
         // generate random order id with time stamp and pharmacy id
 
-        $this->setId($this->createRandomID($pharmacyUsername));
+        $this->setId($this->createRandomID('pharmacyorder'));
         $order_date = date("Y-m-d");
 
         $sql = "INSERT INTO pharmacyorder (id, pharmacyUsername, status, supName, order_date, delivery_date, order_total) VALUES ('$this->id', '$pharmacyUsername', '0', null, '$order_date', null, '$order_total')";
@@ -127,7 +127,7 @@ class PharmacyOrderModel extends Model
     {
         try {
             $conn = (new Database())->getConnection();
-            $sql = "SELECT * FROM pharmacyorder WHERE pharmacyUsername = '$username' ORDER BY order_status ASC;";
+            $sql = "SELECT * FROM pharmacyorder WHERE pharmacyUsername = '$username' ORDER BY order_status ASC, order_date DESC;";
             $result = $conn->query($sql);
             return $result->fetch_all(MYSQLI_ASSOC);
 
@@ -202,4 +202,90 @@ class PharmacyOrderModel extends Model
 
         return $flag;
     }
+
+    public function getOrderDetails($id)
+    {
+        $db = (new Database())->getConnection();
+        $sql = "SELECT * from pharmacyorder WHERE pharmacyorder.id = '$id'";
+
+        try {
+
+        $result = $db->query($sql);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $this->id = $row["id"];
+                $this->pharmacyUsername = $row['pharmacyUsername'];
+                $this->status = $row['status'];
+                $this->supName = $row['supName'];
+                $this->order_date = $row['order_date'];
+                $this->delivery_date = $row['delivery_date'];
+                $this->order_total = $row['order_total'];
+                $this->order_status = $row['order_status'];
+
+//                Logger::logDebug($this->id . " " . $this->pharmacyUsername . " " . $this->status . " " . $this->supName . " " . $this->order_date . " " . $this->delivery_date . " " . $this->order_total . " " . $this->order_status);
+            }
+        }
+        $db->close();
+
+        // create an associative array using the data
+        $order = array(
+            "id" => $this->id,
+            "pharmacyUsername" => $this->pharmacyUsername,
+            "status" => $this->status,
+            "supName" => $this->supName,
+            "order_date" => $this->order_date,
+            "delivery_date" => $this->delivery_date,
+            "order_total" => $this->order_total,
+            "order_status" => $this->order_status
+        );
+
+        return $order;
+
+        } catch (\Exception $e) {
+            Logger::logError($e->getMessage());
+            echo (new ExceptionHandler)->somethingWentWrong();
+            return false;
+        }
+    }
+
+    public function getMedicineByOrderID(mixed $orderId)
+    {
+        $conn = (new Database())->getConnection();
+
+        $sql = "SELECT pharmacyordermedicine.medId, pharmacyordermedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, supplier_medicine.unitPrice FROM pharmacyordermedicine LEFT JOIN medicine ON pharmacyordermedicine.medid = medicine.id LEFT JOIN supplier_medicine ON medicine.id = supplier_medicine.medid WHERE orderid = '$orderId'";
+
+        try {
+            $result = $conn->query($sql);
+            return $result->fetch_all(MYSQLI_ASSOC);
+        } catch (\Exception $e) {
+            Logger::logError($e->getMessage());
+            echo (new ExceptionHandler)->somethingWentWrong();
+            return false;
+        }
+    }
+
+    public function cancelOrder(mixed $orderId)
+    {
+        $conn = (new Database())->getConnection();
+//        $deliveryDate == '1900-02-07'
+//        $orderTotal == "77777777"
+        $sql = "UPDATE pharmacyorder SET order_status = 4, delivery_date = '1900-02-07', order_total = 77777777 WHERE id = '$orderId'";
+
+        try {
+            $result = $conn->query($sql);
+
+            if ($result) {
+                return true;
+            } else {
+                return false;
+            }
+
+        } catch (\Exception $e) {
+            Logger::logError($e->getMessage());
+            echo (new ExceptionHandler)->somethingWentWrong();
+            return false;
+        }
+    }
+}
+
 }

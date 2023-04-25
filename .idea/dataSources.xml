@@ -8,5 +8,19 @@
       <jdbc-url>jdbc:mysql://medex-do-user-10529241-0.b.db.ondigitalocean.com:25060/medex?ssl-mode=REQUIRED</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="iotasql28@localhost" uuid="3ded523c-44d6-4e1a-a19a-a9b6081cafb4">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/iotasql28</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="iotasql28new@localhost" uuid="a2729d61-f2ee-4936-9130-d21cc9668c67">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/iotasql28new</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>

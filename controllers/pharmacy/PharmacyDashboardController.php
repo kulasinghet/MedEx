@@ -3,6 +3,7 @@
 namespace app\controllers\pharmacy;
 
 use app\core\Controller;
+use app\core\NotificationHandler;
 use app\core\Request;
 
 class PharmacyDashboardController extends Controller
@@ -78,7 +79,17 @@ class PharmacyDashboardController extends Controller
             if ($request -> isGet()) {
                 $this -> render("pharmacy/contact-us.php");
             } else if ($request -> isPost()) {
-                $this -> render("pharmacy/contact-us.php");
+
+                $pharmacyContactUs = new PharmacyContactUsController();
+                $flag = $pharmacyContactUs -> contactUs($request);
+
+                if ($flag) {
+                    echo (new NotificationHandler()) ->contactUsCreatedSuccessfully($_SESSION['username']);
+                    $this -> render("pharmacy/contact-us.php");
+                } else {
+                    echo (new NotificationHandler()) ->somethingWentWrong();
+                    $this -> render("pharmacy/contact-us.php");
+                }
             } else {
                 return header(self::login);
             }
