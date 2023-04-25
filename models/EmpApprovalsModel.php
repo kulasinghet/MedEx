@@ -4,10 +4,10 @@ namespace app\models;
 
 use app\core\Database;
 use app\core\Logger;
-use app\models\InvalidEntity\InvalidDeliveryModel;
-use app\models\InvalidEntity\InvalidLabModel;
-use app\models\InvalidEntity\InvalidPharmacyModel;
-use app\models\InvalidEntity\InvalidSupplierModel;
+use app\models\HyperEntities\HyperDeliveryModel;
+use app\models\HyperEntities\HyperLabModel;
+use app\models\HyperEntities\HyperPharmacyModel;
+use app\models\HyperEntities\HyperSupplierModel;
 use mysqli;
 
 class EmpApprovalsModel extends Model
@@ -72,7 +72,7 @@ class EmpApprovalsModel extends Model
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
-                    $tmp = new InvalidPharmacyModel(array(
+                    $tmp = new HyperPharmacyModel(array(
                         'username' => $row["username"],
                         'name' => $row["name"],
                         'email' => $row["email"],
@@ -100,7 +100,7 @@ class EmpApprovalsModel extends Model
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
-                    $tmp = new InvalidSupplierModel(array(
+                    $tmp = new HyperSupplierModel(array(
                         'username' => $row["username"],
                         'name' => $row["name"],
                         'email' => $row["email"],
@@ -128,7 +128,7 @@ class EmpApprovalsModel extends Model
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
-                    $tmp = new InvalidDeliveryModel(array(
+                    $tmp = new HyperDeliveryModel(array(
                         'username' => $row["username"],
                         'name' => $row["name"],
                         'email' => $row["email"],
@@ -156,7 +156,7 @@ class EmpApprovalsModel extends Model
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
-                    $tmp = new InvalidLabModel(array(
+                    $tmp = new HyperLabModel(array(
                         'username' => $row["username"],
                         'name' => $row["laboratory_name"],
                         'email' => $row["email"],

@@ -4,10 +4,10 @@ namespace app\controllers\employee;
 
 use app\core\Controller;
 use app\core\Request;
-use app\models\InvalidEntity\InvalidDeliveryModel;
-use app\models\InvalidEntity\InvalidLabModel;
-use app\models\InvalidEntity\InvalidPharmacyModel;
-use app\models\InvalidEntity\InvalidSupplierModel;
+use app\models\HyperEntities\HyperDeliveryModel;
+use app\models\HyperEntities\HyperLabModel;
+use app\models\HyperEntities\HyperPharmacyModel;
+use app\models\HyperEntities\HyperSupplierModel;
 use app\stores\EmployeeStore;
 
 class EmployeeApprovalController extends Controller
@@ -57,7 +57,7 @@ class EmployeeApprovalController extends Controller
         $store->flag_aprv_one_usr = $this->getEntityFlag($request);
         $store->flag_aprv_one_act = $this->getActionFlag($request);
 
-        $obj = InvalidPharmacyModel::getByUsername($store->flag_aprv_one_usr);
+        $obj = HyperPharmacyModel::getByUsername($store->flag_aprv_one_usr);
         if ($obj) {
             $store->aprv_one_obj = $obj;
             $this -> render("employee/approvals/pharmacy.php");
@@ -75,7 +75,7 @@ class EmployeeApprovalController extends Controller
         $store->flag_aprv_one_usr = $this->getEntityFlag($request);
         $store->flag_aprv_one_act = $this->getActionFlag($request);
 
-        $obj = InvalidSupplierModel::getByUsername($store->flag_aprv_one_usr);
+        $obj = HyperSupplierModel::getByUsername($store->flag_aprv_one_usr);
         if ($obj) {
             $store->aprv_one_obj = $obj;
             $this -> render("employee/approvals/supplier.php");
@@ -93,7 +93,7 @@ class EmployeeApprovalController extends Controller
         $store->flag_aprv_one_usr = $this->getEntityFlag($request);
         $store->flag_aprv_one_act = $this->getActionFlag($request);
 
-        $obj = InvalidDeliveryModel::getByUsername($store->flag_aprv_one_usr);
+        $obj = HyperDeliveryModel::getByUsername($store->flag_aprv_one_usr);
         if ($obj) {
             $store->aprv_one_obj = $obj;
             $this -> render("employee/approvals/delivery.php");
@@ -111,7 +111,7 @@ class EmployeeApprovalController extends Controller
         $store->flag_aprv_one_usr = $this->getEntityFlag($request);
         $store->flag_aprv_one_act = $this->getActionFlag($request);
 
-        $obj = InvalidLabModel::getByUsername($store->flag_aprv_one_usr);
+        $obj = HyperLabModel::getByUsername($store->flag_aprv_one_usr);
         if ($obj) {
             $store->aprv_one_obj = $obj;
             $this -> render("employee/approvals/lab.php");

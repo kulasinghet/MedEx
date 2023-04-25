@@ -22,10 +22,10 @@ class EmployeeViewComponents
     {
         $reflect = new ReflectionClass($obj);
         return match ($reflect->getShortName()) {
-            'InvalidPharmacyModel' => 'pharmacy',
-            'InvalidSupplierModel' => 'supplier',
-            'InvalidLabModel' => 'lab',
-            'InvalidDeliveryModel' => 'delivery',
+            'HyperPharmacyModel' => 'pharmacy',
+            'HyperSupplierModel' => 'supplier',
+            'HyperLabModel' => 'lab',
+            'HyperDeliveryModel' => 'delivery',
             default => 'Unknown',
         };
     }

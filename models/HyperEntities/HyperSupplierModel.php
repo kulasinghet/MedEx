@@ -1,20 +1,18 @@
 <?php
 
-namespace app\models\InvalidEntity;
+namespace app\models\HyperEntities;
 
 use app\core\Database;
 use app\core\Logger;
 
-class InvalidPharmacyModel extends InvalidEntityModel
+class HyperSupplierModel extends HyperEntityModel
 {
-    public string $ownerName;
-    public string $city;
-    public string $phar_reg_no;
+    public string $supp_reg_no;
     public string $business_reg_id;
     public string $business_cert_name;
-    public string $phar_cert_id;
-    public string $phar_cert_name;
-    public string $delivery_time;
+    public string $supp_cert_id;
+    public string $supp_cert_name;
+    public string $reg_date;
 
     public function __construct($params = array()) {
         foreach ($params as $key => $value) {
@@ -29,20 +27,19 @@ class InvalidPharmacyModel extends InvalidEntityModel
         $conn = $db->getConnection();
 
         try {
-            $sql = "SELECT * FROM `pharmacy` WHERE `username` = '$username'";
+            $sql = "SELECT * FROM `supplier` WHERE `username` = '$username'";
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
                 $row = $result->fetch_assoc();
-                return new InvalidPharmacyModel(array(
+                return new HyperSupplierModel(array(
                     'username' => $row["username"],
                     'name' => $row["name"],
-                    'ownerName' => $row["ownerName"],
-                    'city' => $row["city"],
-                    'phar_reg_no' => $row["pharmacyRegNo"],
+                    'supp_reg_no' => $row["supplierRegNo"],
                     'business_reg_id' => $row["BusinessRegId"],
-                    'phar_cert_id' => $row["pharmacyCertId"],
+                    'supp_cert_id' => $row["supplierCertId"],
                     'business_cert_name' => $row["BusinessRegCertName"],
-                    'delivery_time' => $row["deliveryTime"],
+                    'supp_cert_name' => $row["supplierCertName"],
+                    'reg_date' => $row["regDate"],
                     'email' => $row["email"],
                     'address' => $row["address"],
                     'mobile' => $row["mobile"],
@@ -63,7 +60,7 @@ class InvalidPharmacyModel extends InvalidEntityModel
         $conn = $db->getConnection();
 
         try {
-            $sql = "INSERT INTO `pharmacy` (verified) VALUES ('1');";
+            $sql = "INSERT INTO `supplier` (verified) VALUES ('1');";
 
             $stmt = $conn->prepare($sql);
             $stmt->execute();

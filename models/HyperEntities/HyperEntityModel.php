@@ -1,10 +1,10 @@
 <?php
 
-namespace app\models\InvalidEntity;
+namespace app\models\HyperEntities;
 
 use app\models\Model;
 
-abstract class InvalidEntityModel extends Model
+abstract class HyperEntityModel extends Model
 {
     public string $username;
     public string $name;

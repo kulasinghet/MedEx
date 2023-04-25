@@ -118,9 +118,6 @@ article {
   max-width: 100%;
   padding: 0 calc(var(--g28-gap) * 0.5);
 }
-.row.justify-content-center {
-  justify-content: center;
-}
 .row .col {
   flex: 1 0 0;
 }
@@ -3394,7 +3391,18 @@ textarea.form-input {
   margin: 0;
 }
 
-.status-table {
+.report-description {
+  margin: 1.8rem 1rem 1rem;
+}
+.report-description p {
+  margin: 0;
+}
+
+.data-box .card-title {
+  font-size: 1.5rem;
+  margin: 0.5rem 0 2rem 0;
+}
+.data-box .status-table {
   border-spacing: 1px;
   border-collapse: collapse;
   background: rgba(234, 234, 234, 0.3);
@@ -3402,33 +3410,26 @@ textarea.form-input {
   border-radius: 6px;
   overflow: hidden;
   width: 100%;
-  margin: 0 auto;
   position: relative;
+  margin: 0 auto 2rem;
 }
-.status-table th {
+.data-box .status-table th {
   text-transform: uppercase;
 }
-.status-table td, .status-table th {
-  padding: 0.4rem 1rem;
+.data-box .status-table td, .data-box .status-table th {
+  padding: 1rem;
 }
-.status-table tbody tr {
+.data-box .status-table tbody tr {
   border-bottom: 1px solid #E3F1D5;
 }
-.status-table tbody tr:last-child {
+.data-box .status-table tbody tr:last-child {
   border: 0;
 }
-.status-table th {
+.data-box .status-table th {
   text-align: left;
 }
-.status-table td {
+.data-box .status-table td {
   text-align: right;
-}
-
-.report-description {
-  margin: 1.8rem 1rem 1rem;
-}
-.report-description p {
-  margin: 0;
 }
 
 #filter-by-type {

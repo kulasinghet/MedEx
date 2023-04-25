@@ -1,11 +1,11 @@
 <?php
 
-namespace app\models\InvalidEntity;
+namespace app\models\HyperEntities;
 
 use app\core\Database;
 use app\core\Logger;
 
-class InvalidLabModel extends InvalidEntityModel
+class HyperLabModel extends HyperEntityModel
 {
     public string $business_reg_id;
     public string $business_cert_name;
@@ -30,7 +30,7 @@ class InvalidLabModel extends InvalidEntityModel
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
                 $row = $result->fetch_assoc();
-                return new InvalidLabModel(array(
+                return new HyperLabModel(array(
                     'username' => $row["username"],
                     'name' => $row["laboratory_name"],
                     'business_reg_id' => $row["business_registration_id"],

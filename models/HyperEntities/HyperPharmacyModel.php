@@ -1,26 +1,20 @@
 <?php
 
-namespace app\models\InvalidEntity;
+namespace app\models\HyperEntities;
 
 use app\core\Database;
 use app\core\Logger;
 
-class InvalidDeliveryModel extends InvalidEntityModel
+class HyperPharmacyModel extends HyperEntityModel
 {
+    public string $ownerName;
     public string $city;
-    public int $age;
-    public string $license_id;
-    public string $license_name;
-    public string $license_photo;
-    public string $vehicle_no;
-    public string $vehicle_type;
-    public string $vehicle_reg_photo;
-    public string $vehicle_photo;
-    public string $delivery_location;
-    public int $max_load;
-    public string $reg_date;
-    public bool $refrigerators;
-
+    public string $phar_reg_no;
+    public string $business_reg_id;
+    public string $business_cert_name;
+    public string $phar_cert_id;
+    public string $phar_cert_name;
+    public string $delivery_time;
 
     public function __construct($params = array()) {
         foreach ($params as $key => $value) {
@@ -35,26 +29,20 @@ class InvalidDeliveryModel extends InvalidEntityModel
         $conn = $db->getConnection();
 
         try {
-            $sql = "SELECT * FROM `delivery_partner` WHERE `username` = '$username'";
+            $sql = "SELECT * FROM `pharmacy` WHERE `username` = '$username'";
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
                 $row = $result->fetch_assoc();
-                return new InvalidDeliveryModel(array(
+                return new HyperPharmacyModel(array(
                     'username' => $row["username"],
                     'name' => $row["name"],
+                    'ownerName' => $row["ownerName"],
                     'city' => $row["city"],
-                    'age' => $row["age"],
-                    'licence_id' => $row["licence_id"],
-                    'licence_name' => $row["driver_license_name"],
-                    'vehicle_no' => $row["vehicle_no"],
-                    'vehicle_type' => $row["vehicle_type"],
-                    'delivery_location' => $row["delivery_location"],
-                    'max_load' => $row["max_load"],
-                    'reg_date' => $row["reg_date"],
-                    'refrigerators' => $row["refrigerators"],
-                    'license_photo' => $row["license_photo"],
-                    'vehicle_reg_photo' => $row["vehicle_reg_photo"],
-                    'vehicle_photo' => $row["vehicle_photo"],
+                    'phar_reg_no' => $row["pharmacyRegNo"],
+                    'business_reg_id' => $row["BusinessRegId"],
+                    'phar_cert_id' => $row["pharmacyCertId"],
+                    'business_cert_name' => $row["BusinessRegCertName"],
+                    'delivery_time' => $row["deliveryTime"],
                     'email' => $row["email"],
                     'address' => $row["address"],
                     'mobile' => $row["mobile"],
@@ -75,7 +63,7 @@ class InvalidDeliveryModel extends InvalidEntityModel
         $conn = $db->getConnection();
 
         try {
-            $sql = "INSERT INTO `delivery_partner` (verified) VALUES ('1');";
+            $sql = "INSERT INTO `pharmacy` (verified) VALUES ('1');";
 
             $stmt = $conn->prepare($sql);
             $stmt->execute();

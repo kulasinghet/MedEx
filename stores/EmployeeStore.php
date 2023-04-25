@@ -3,13 +3,13 @@
 namespace app\stores;
 
 use app\models\EmployeeModel;
-use app\models\InvalidEntity\InvalidEntityModel;
+use app\models\HyperEntities\HyperEntityModel;
 use Exception;
 
 class EmployeeStore
 {
     public string $username;
-    public $controller; // TODO: remove this
+    //public $controller; // TODO: remove this
     // approval page variables
     public string $flag_aprv_t;
     public int $flag_aprv_st;
@@ -17,7 +17,7 @@ class EmployeeStore
     // approve-one page variables
     public string $flag_aprv_one_usr;
     public string $flag_aprv_one_act;
-    public ?InvalidEntityModel $aprv_one_obj;
+    public ?HyperEntityModel $aprv_one_obj;
 
     /**
      * @throws Exception
