@@ -5,13 +5,14 @@ $list-item-padding-vertical: .5rem;
 $list-item-padding: $list-item-padding-vertical $input-padding;
 $list-item-separator-width: .8px;
 $selectbox-padding: .6rem $input-padding;
-$selectbox-list-max-height: calc((24px + #{$list-item-padding-vertical}*2 + #{$list-item-separator-width})*#{$selectbox-list-max-visible-items});
+$selectbox-list-max-height: calc((24px + #{$list-item-padding-vertical}*2 + #{$list-item-separator-width})*#{$selectbox-list-max-visible-items} - #{$list-item-separator-width});
 $selectbox-list-box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.38);
 
 :host(g28-selectbox) {
   display: block;
   position: relative;
   width: 100%;
+  min-width: 5rem;
   min-height: $input-min-height;
 
   font-size: $input-font-size;
@@ -76,6 +77,7 @@ $selectbox-list-box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.38);
           margin: 0;
           padding: $list-item-padding;
           border-bottom: $list-item-separator-width solid #ccc;
+          cursor: pointer;
           -webkit-user-select: none;
           -moz-user-select: none;
 

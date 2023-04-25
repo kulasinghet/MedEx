@@ -118,9 +118,6 @@ article {
   max-width: 100%;
   padding: 0 calc(var(--g28-gap) * 0.5);
 }
-.row.justify-content-center {
-  justify-content: center;
-}
 .row .col {
   flex: 1 0 0;
 }
@@ -2988,6 +2985,11 @@ when users will click/enter button(link) browser will add a #id in a url and whe
 .table td.r, .table th.r {
   text-align: center;
 }
+.table .no-data {
+  text-align: center;
+  vertical-align: center;
+  padding: 20px 0;
+}
 
 @media screen and (max-width: 35.5em) {
   table {
@@ -3321,6 +3323,40 @@ textarea.form-input {
     background: radial-gradient(circle at 10% 20%, rgb(59, 149, 237) 0%, rgb(7, 91, 173) 90%);
   }
 }
+.toolbox {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+  padding: 0 1.5rem;
+  background: linear-gradient(180deg, #e0c3fc 0%, #8ec5fc 100%);
+  border-radius: 6px;
+  border: 1px solid #1e69fe;
+}
+.toolbox .row {
+  flex-wrap: nowrap;
+}
+.toolbox .row .col {
+  flex: 0 0 auto;
+  width: auto;
+  display: flex;
+  align-items: center;
+}
+.toolbox .block {
+  padding: 0.5rem 0;
+}
+.toolbox .separator {
+  width: 1px;
+  height: 50px;
+  background: rgba(32, 32, 86, 0.37);
+}
+.toolbox span, .toolbox label {
+  font-size: 0.9rem;
+  line-height: 1.2rem;
+  color: #071232;
+}
+
 .scroll {
   min-height: 2rem;
   overflow-y: scroll;
@@ -3355,7 +3391,18 @@ textarea.form-input {
   margin: 0;
 }
 
-.status-table {
+.report-description {
+  margin: 1.8rem 1rem 1rem;
+}
+.report-description p {
+  margin: 0;
+}
+
+.data-box .card-title {
+  font-size: 1.5rem;
+  margin: 0.5rem 0 2rem 0;
+}
+.data-box .status-table {
   border-spacing: 1px;
   border-collapse: collapse;
   background: rgba(234, 234, 234, 0.3);
@@ -3363,33 +3410,57 @@ textarea.form-input {
   border-radius: 6px;
   overflow: hidden;
   width: 100%;
-  margin: 0 auto;
   position: relative;
+  margin: 0 auto 2rem;
 }
-.status-table th {
+.data-box .status-table th {
   text-transform: uppercase;
 }
-.status-table td, .status-table th {
-  padding: 0.4rem 1rem;
+.data-box .status-table td, .data-box .status-table th {
+  padding: 1rem;
 }
-.status-table tbody tr {
+.data-box .status-table tbody tr {
   border-bottom: 1px solid #E3F1D5;
 }
-.status-table tbody tr:last-child {
+.data-box .status-table tbody tr:last-child {
   border: 0;
 }
-.status-table th {
+.data-box .status-table th {
   text-align: left;
 }
-.status-table td {
+.data-box .status-table td {
   text-align: right;
 }
 
-.report-description {
-  margin: 1.8rem 1rem 1rem;
+#filter-by-type {
+  min-width: 180px;
 }
-.report-description p {
-  margin: 0;
+
+#filter-by-search {
+  --color-light: #f6f9ff;
+}
+
+.approval-table th {
+  text-align: center;
+}
+.approval-table th:not(:last-child) {
+  border-right: 1px solid rgba(224, 179, 1, 0.5);
+}
+.approval-table td:not(:last-child) {
+  border-right: 1px solid #f6f9ff;
+}
+.approval-table th, .approval-table td {
+  padding: 0 8px;
+}
+.approval-table tbody tr:not(.empty):hover {
+  background-color: #f6f9ff;
+  cursor: pointer;
+}
+.approval-table tbody .empty {
+  border: none;
+}
+.approval-table .approval-type {
+  text-align: center;
 }
 
 /*# sourceMappingURL=main.css.map */

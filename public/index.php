@@ -5,6 +5,7 @@ require_once '../vendor/autoload.php';
 use app\controllers\DashboardController;
 use app\controllers\delivery\DeliveryContactusController;
 use app\controllers\delivery\DeliveryDashboardController;
+use app\controllers\employee\EmployeeApprovalController;
 use app\controllers\employee\EmployeeDashboardController;
 use app\controllers\lab\LabAuthController;
 use app\controllers\lab\LabContactusController;
@@ -18,7 +19,7 @@ use app\controllers\supplier\SupplierUpdateMedicineController;
 use app\core\Application;
 use app\controllers\delivery\DeliveryAuthController;
 use app\controllers\employee\EmployeeAuthController;
-use app\controllers\employee\EmployeeApprovalsController;
+use app\controllers\employee\EmployeeApprovalListController;
 use app\controllers\LoginAuthController;
 use app\controllers\SiteController;
 use app\controllers\supplier\SupplierAddMedicineController;
@@ -69,16 +70,16 @@ $app->router->get('/employee/register', [EmployeeAuthController::class, 'employe
 $app->router->post('/employee/register', [EmployeeAuthController::class, 'employeeRegister']);
 $app->router->get('/employee/reports', [EmployeeDashboardController::class, 'showReports']);
 $app->router->post('/employee/reports', [EmployeeDashboardController::class, 'showReports']);
-//$app->router->get('/employee/approvals/pharmacy', [EmployeeDashboardController::class, 'approvePharmacy']);
-//$app->router->post('/employee/approvals/pharmacy', [EmployeeDashboardController::class, 'approvePharmacy']);
-//$app->router->get('/employee/approvals/supplier', [EmployeeDashboardController::class, 'approveSupplier']);
-//$app->router->post('/employee/approvals/supplier', [EmployeeDashboardController::class, 'approveSupplier']);
-//$app->router->get('/employee/approvals/lab', [EmployeeDashboardController::class, 'approveLab']);
-//$app->router->post('/employee/approvals/lab', [EmployeeDashboardController::class, 'approveLab']);
-//$app->router->get('/employee/approvals/delivery', [EmployeeDashboardController::class, 'approveDelivery']);
-//$app->router->post('/employee/approvals/delivery', [EmployeeDashboardController::class, 'approveDelivery']);
-$app->router->get('/employee/approvals', [EmployeeApprovalsController::class, 'load']);
-$app->router->post('/employee/approvals', [EmployeeApprovalsController::class, 'load']);
+$app->router->get('/employee/approve', [EmployeeApprovalListController::class, 'load']);
+$app->router->post('/employee/approve', [EmployeeApprovalListController::class, 'load']);
+$app->router->get('/employee/approve/pharmacy', [EmployeeApprovalController::class, 'loadPharmacy']);
+$app->router->post('/employee/approve/pharmacy', [EmployeeApprovalController::class, 'loadPharmacy']);
+$app->router->get('/employee/approve/supplier', [EmployeeApprovalController::class, 'loadSupplier']);
+$app->router->post('/employee/approve/supplier', [EmployeeApprovalController::class, 'loadSupplier']);
+$app->router->get('/employee/approve/delivery', [EmployeeApprovalController::class, 'loadDelivery']);
+$app->router->post('/employee/approve/delivery', [EmployeeApprovalController::class, 'loadDelivery']);
+$app->router->get('/employee/approve/lab', [EmployeeApprovalController::class, 'loadLab']);
+$app->router->post('/employee/approve/lab', [EmployeeApprovalController::class, 'loadLab']);
 $app->router->get('/employee/configs', [EmployeeDashboardController::class, 'configs']);
 $app->router->post('/employee/configs', [EmployeeDashboardController::class, 'configs']);
 
@@ -136,7 +137,7 @@ $app->router->get('/supplier/contact-us', [SupplierDashboardController::class, '
 $app->router->post('/supplier/contact-us', [SupplierDashboardController::class, 'contactUs']);
 $app->router->get('/supplier/medicine-requests', [SupplierDashboardController::class, 'medicineRequests']);
 $app->router->post('/supplier/medicine-requests', [SupplierDashboardController::class, 'medicineRequests']);
-$app->router->post('/supplier/accept', [AcceptOrdersController::class, 'AcceptOrder']);
+// $app->router->post('/supplier/accept', [AcceptOrdersController::class, 'AcceptOrder']);
 
 
 
