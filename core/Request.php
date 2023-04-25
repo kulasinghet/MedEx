@@ -45,4 +45,20 @@ class Request
     {
         return $this->getMethod() === 'post';
     }
+
+    public function getParams(): array
+    {
+        $params = [];
+        $path = $this->getPath();
+        $path = explode('/', $path);
+        foreach ($path as $key => $value) {
+            if ($key > 0) {
+                $params[] = $value;
+            }
+        }
+        parse_str($_SERVER['QUERY_STRING'], $query_params);
+
+        return array_merge($params, $query_params);
+    }
+
 }
