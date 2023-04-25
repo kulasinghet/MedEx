@@ -23,16 +23,10 @@ class PharmacyOrderModel extends Model
     public function getOrder($id)
     {
         $db = (new Database())->getConnection();
-        $sql = "SELECT * from pharmacyorder WHERE pharmacyorder.id = '$id'";
+        $sql = "SELECT pharmacyName,medId,quantity from pharmacyorder WHERE pharmacyorder.id = '$id'";
         $result = $db->query($sql);
         if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $this->id = $row["id"];
-                $this->pharmacyName = $row['pharmacyName'];
-                $this->medId = $row['medId'];
-                $this->quantity = $row['quantity'];
-
-            }
+            return $result;
         }
         $db->close();
     }
@@ -74,7 +68,7 @@ class PharmacyOrderModel extends Model
     public function getOrderPharm($id)
     {
         $this->getOrder($id);
-        return $this->pharmacyName;
+        return $this->pharmacyUsername;
     }
 
     public function acceptOrder($supName, $id)
@@ -210,36 +204,36 @@ class PharmacyOrderModel extends Model
 
         try {
 
-        $result = $db->query($sql);
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $this->id = $row["id"];
-                $this->pharmacyUsername = $row['pharmacyUsername'];
-                $this->status = $row['status'];
-                $this->supName = $row['supName'];
-                $this->order_date = $row['order_date'];
-                $this->delivery_date = $row['delivery_date'];
-                $this->order_total = $row['order_total'];
-                $this->order_status = $row['order_status'];
+            $result = $db->query($sql);
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    $this->id = $row["id"];
+                    $this->pharmacyUsername = $row['pharmacyUsername'];
+                    $this->status = $row['status'];
+                    $this->supName = $row['supName'];
+                    $this->order_date = $row['order_date'];
+                    $this->delivery_date = $row['delivery_date'];
+                    $this->order_total = $row['order_total'];
+                    $this->order_status = $row['order_status'];
 
-//                Logger::logDebug($this->id . " " . $this->pharmacyUsername . " " . $this->status . " " . $this->supName . " " . $this->order_date . " " . $this->delivery_date . " " . $this->order_total . " " . $this->order_status);
+                    //                Logger::logDebug($this->id . " " . $this->pharmacyUsername . " " . $this->status . " " . $this->supName . " " . $this->order_date . " " . $this->delivery_date . " " . $this->order_total . " " . $this->order_status);
+                }
             }
-        }
-        $db->close();
+            $db->close();
 
-        // create an associative array using the data
-        $order = array(
-            "id" => $this->id,
-            "pharmacyUsername" => $this->pharmacyUsername,
-            "status" => $this->status,
-            "supName" => $this->supName,
-            "order_date" => $this->order_date,
-            "delivery_date" => $this->delivery_date,
-            "order_total" => $this->order_total,
-            "order_status" => $this->order_status
-        );
+            // create an associative array using the data
+            $order = array(
+                "id" => $this->id,
+                "pharmacyUsername" => $this->pharmacyUsername,
+                "status" => $this->status,
+                "supName" => $this->supName,
+                "order_date" => $this->order_date,
+                "delivery_date" => $this->delivery_date,
+                "order_total" => $this->order_total,
+                "order_status" => $this->order_status
+            );
 
-        return $order;
+            return $order;
 
         } catch (\Exception $e) {
             Logger::logError($e->getMessage());
@@ -267,7 +261,7 @@ class PharmacyOrderModel extends Model
     public function cancelOrder(mixed $orderId)
     {
         $conn = (new Database())->getConnection();
-//        $deliveryDate == '1900-02-07'
+        //        $deliveryDate == '1900-02-07'
 //        $orderTotal == "77777777"
         $sql = "UPDATE pharmacyorder SET order_status = 4, delivery_date = '1900-02-07', order_total = 77777777 WHERE id = '$orderId'";
 
@@ -286,6 +280,4 @@ class PharmacyOrderModel extends Model
             return false;
         }
     }
-}
-
 }
