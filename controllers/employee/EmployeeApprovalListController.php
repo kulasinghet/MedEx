@@ -85,4 +85,84 @@ class EmployeeApprovalListController extends Controller
         // slicing the list to the set size
         return array_slice($list, $set_number * 9, $set_size);
     }
+
+    public function getPharmacyApprovals(int $set_size, $set_number = 0): array
+    {
+        // retrieving the employee store
+        $store = EmployeeStore::getEmployeeStore();
+
+        if ($set_number > 0 && $store->aprv_list != []) {
+            // retrieve the list from the store
+            $list = $store->aprv_list;
+        } else {
+            $model = new EmpApprovalsModel();
+            // creating an array of all approvals
+            $list = $model->getInvalidPharmacies();
+            // storing the list in the store
+            $store->aprv_list = $list;
+        }
+
+        // slicing the list to the set size
+        return array_slice($list, $set_number * 9, $set_size);
+    }
+
+    public function getSupplierApprovals(int $set_size, $set_number = 0): array
+    {
+        // retrieving the employee store
+        $store = EmployeeStore::getEmployeeStore();
+
+        if ($set_number > 0 && $store->aprv_list != []) {
+            // retrieve the list from the store
+            $list = $store->aprv_list;
+        } else {
+            $model = new EmpApprovalsModel();
+            // creating an array of all approvals
+            $list = $model->getInvalidSuppliers();
+            // storing the list in the store
+            $store->aprv_list = $list;
+        }
+
+        // slicing the list to the set size
+        return array_slice($list, $set_number * 9, $set_size);
+    }
+
+    public function getDeliveryApprovals(int $set_size, $set_number = 0): array
+    {
+        // retrieving the employee store
+        $store = EmployeeStore::getEmployeeStore();
+
+        if ($set_number > 0 && $store->aprv_list != []) {
+            // retrieve the list from the store
+            $list = $store->aprv_list;
+        } else {
+            $model = new EmpApprovalsModel();
+            // creating an array of all approvals
+            $list = $model->getInvalidDeliveryGuys();
+            // storing the list in the store
+            $store->aprv_list = $list;
+        }
+
+        // slicing the list to the set size
+        return array_slice($list, $set_number * 9, $set_size);
+    }
+
+    public function getLabApprovals(int $set_size, $set_number = 0): array
+    {
+        // retrieving the employee store
+        $store = EmployeeStore::getEmployeeStore();
+
+        if ($set_number > 0 && $store->aprv_list != []) {
+            // retrieve the list from the store
+            $list = $store->aprv_list;
+        } else {
+            $model = new EmpApprovalsModel();
+            // creating an array of all approvals
+            $list = $model->getInvalidLabs();
+            // storing the list in the store
+            $store->aprv_list = $list;
+        }
+
+        // slicing the list to the set size
+        return array_slice($list, $set_number * 9, $set_size);
+    }
 }

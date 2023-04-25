@@ -18,8 +18,8 @@ class EmpApprovalsModel extends Model
         $output = array_merge(
             $this->queryInvalidPharmacies($conn),
             $this->queryInvalidSuppliers($conn),
-            //$this->queryInvalidDeliveryGuys($conn),
-            //$this->queryInvalidLabs($conn)
+            $this->queryInvalidDeliveryGuys($conn),
+            $this->queryInvalidLabs($conn)
             );
         $conn->close();
         return $output;

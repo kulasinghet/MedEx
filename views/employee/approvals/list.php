@@ -8,6 +8,7 @@ const no_of_approvals = 9;
 
 $components = new EmployeeViewComponents();
 $store = EmployeeStore::getEmployeeStore();
+$filter = $store->flag_aprv_t; // getting the filter
 $set = $store->flag_aprv_st; // getting the number of set
 $store->flag_aprv_st = 0; // resetting the set number in the store
 ?>
@@ -57,7 +58,17 @@ echo $components->createNavbar();
                     <label for="filter-by-type">Group by: </label>
                 </div>
                 <div class="col">
-                    <g28-selectbox id="filter-by-type" placeholder="All">
+                    <g28-selectbox id="filter-by-type" placeholder="All" <?php
+                    if ($filter != 'all') {
+                        echo 'value="' . match ($filter) {
+                                'pharmacy' => 'Pharmacy',
+                                'supplier' => 'Supplier',
+                                'lab' => 'Laboratory',
+                                'delivery' => 'Delivery Partner',
+                                default => 'All'
+                            } . '"';
+                    }
+                    ?>>
                         All, Pharmacy, Supplier, Laboratory, Delivery Partner
                     </g28-selectbox>
                 </div>
@@ -82,11 +93,27 @@ echo $components->createNavbar();
                     <?php
                     try {
                         $controller = new EmployeeApprovalListController();
-                        $approvals = $controller->getAllApprovals(no_of_approvals, $set);
+                        $approvals = [];
+                        switch ($filter) {
+                            case 'all':
+                                $approvals = $controller->getAllApprovals(no_of_approvals, $set);
+                                break;
+                            case 'pharmacy':
+                                $approvals = $controller->getPharmacyApprovals(no_of_approvals, $set);
+                                break;
+                            case 'supplier':
+                                $approvals = $controller->getSupplierApprovals(no_of_approvals, $set);
+                                break;
+                            case 'lab':
+                                $approvals = $controller->getLabApprovals(no_of_approvals, $set);
+                                break;
+                            case 'delivery':
+                                $approvals = $controller->getDeliveryApprovals(no_of_approvals, $set);
+                                break;
+                            default:
+                                throw new Exception("Invalid filter!");
+                        }
                         if (!empty($approvals)) {
-//                            foreach ($approvals as $approval) {
-//                                echo $components->createApprovalItem($approval);
-//                            }
                             for ($i = 0; $i < no_of_approvals; $i++) {
                                 if (array_key_exists($i, $approvals)) {
                                     echo $components->createApprovalItem($approvals[$i]);
@@ -98,7 +125,7 @@ echo $components->createNavbar();
                             }
                         } else {
                             echo "<tr>";
-                            echo "<td class='no-data' colspan='5'>There is no approval to check!</td>";
+                            echo "<td class='no-data' colspan='5' rowspan='".no_of_approvals."'>There is no approval to check!</td>";
                             echo "</tr>";
                         }
                     } catch (Exception $e) {

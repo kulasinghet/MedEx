@@ -9,11 +9,12 @@ use Exception;
 class EmployeeStore
 {
     public string $username;
-    //public $controller; // TODO: remove this
+
     // approval page variables
     public string $flag_aprv_t;
     public int $flag_aprv_st;
     public array $aprv_list;
+
     // approve-one page variables
     public string $flag_aprv_one_usr;
     public string $flag_aprv_one_act;
