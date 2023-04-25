@@ -91,4 +91,119 @@ class PharmacyOrderMedicineController extends Controller
         return $medicineIds;
     }
 
+    public function orderDetails(Request $request)
+    {
+
+        if ($request->isGet()) {
+
+            $orderId = $request->getParams()['orderId'];
+
+            $order = (new \app\models\PharmacyOrderModel())->getOrderDetails($orderId);
+
+            $returnJSONObj = [
+                'orderId' => $order['id'],
+                'pharmacyId' => $order['pharmacyUsername'],
+                'orderDate' => $order['order_date'],
+                'totalPrice' => $this->orderTotalToFrontEnd($order['order_total']),
+                'orderStatus' => $this->orderStatusToFrontEnd($order['order_status']),
+                'deliveryDate' => $this->deliveryDateToFrontEnd($order['delivery_date']),
+            ];
+
+            header('Content-Type: application/json');
+
+            // Echo the JSON-encoded response
+            echo json_encode($returnJSONObj);
+
+
+        } else {
+            echo (new ExceptionHandler)->somethingWentWrong();
+            return header('Location: /pharmacy/orders');
+        }
+    }
+
+    public function orderMedicineDetails(Request $request)
+    {
+
+        if ($request->isGet()) {
+
+            $orderId = $request->getParams()['orderId'];
+
+            $order = (new \app\models\PharmacyOrderModel())->getMedicineByOrderID($orderId);
+
+            header('Content-Type: application/json');
+            // Echo the JSON-encoded response
+            echo json_encode($order);
+
+
+        } else {
+            echo (new ExceptionHandler)->somethingWentWrong();
+            return header('Location: /pharmacy/orders');
+        }
+    }
+
+    public function deliveryDateToFrontEnd($deliveryDate) {
+        if ($deliveryDate == "0000-00-00") {
+            return 'Pending';
+        } elseif ($deliveryDate == null) {
+            return 'Pending';
+        } else if ($deliveryDate == '1900-02-07') {
+            return 'Cancelled';
+        } else if ($deliveryDate == '1900-02-08') {
+            return 'Rejected';
+        } else {
+            return $deliveryDate;
+        }
+    }
+
+    public function orderStatusToFrontEnd($orderStatus) {
+        if ($orderStatus == "0") {
+            return 'Pending';
+        } elseif ($orderStatus == '1') {
+            return 'Accepted';
+        } elseif ($orderStatus == '3') {
+            return 'Rejected';
+        } elseif ($orderStatus == '2') {
+            return 'Delivered';
+        } elseif ($orderStatus == '4') {
+            return 'Cancelled';
+        }
+    }
+
+    public function orderTotalToFrontEnd($orderTotal): string
+    {
+        if ($orderTotal == "0") {
+            return 'Finalizing Order';
+        } else if ($orderTotal == "99999999") {
+            return 'Rejected';
+        } else if ($orderTotal == "77777777") {
+            return 'Cancelled';
+        } else {
+            return $orderTotal;
+        }
+    }
+
+    public function cancelOrder(Request $request) {
+
+        if ($request->isGet()) {
+
+            $orderId = $request->getParams()['orderId'];
+
+            $order = (new \app\models\PharmacyOrderModel())->cancelOrder($orderId);
+
+            if ($order) {
+                // reply data == 'Order Cancelled'
+                header ('Content-Type: application/json');
+                return json_encode('Order Cancelled');
+            } else {
+                header('Content-Type: application/json');
+                return json_encode('Something went wrong');
+            }
+
+        } else {
+            echo (new ExceptionHandler)->somethingWentWrong();
+            return header('Location: /pharmacy/orders');
+        }
+
+    }
+
 }

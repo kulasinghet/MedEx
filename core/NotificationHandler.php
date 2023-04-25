@@ -88,4 +88,17 @@ class NotificationHandler extends Logger
         return $message;
     }
 
+    public function contactUsCreatedSuccessfully(String $pharmacyID)
+    {
+//        Logger::contactUsLog($pharmacyID." pharmacy contact us created");
+
+        $scriptClass  = "<head><script src='/js/pharmacy/login-error.js' defer></script><link href='/css/error-model.css' rel='stylesheet'></head>";
+        $alertClass = "<div class='loginError alert alert-success' id='loginError' role='alert'>";
+        $spanClass = "<span class='closebtn' id='closebtn' style='padding-bottom: 0' onclick='this.parentElement.style.display='none';'>&times;</span>";
+        $closeClass = "</div>";
+
+        $message = $scriptClass.$alertClass.$spanClass."Your message sent successfully".$closeClass;
+        return $message;
+    }
+
 }

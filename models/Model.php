@@ -2,6 +2,9 @@
 
 namespace app\models;
 
+use app\core\Database;
+use app\core\Logger;
+
 class Model
 {
 
@@ -32,17 +35,47 @@ class Model
         return json_encode($array);
     }
 
-    public function createRandomID($entity): string
+    public function createRandomID($tableName): string
     {
-        //TODO: create ID generation function
-        $time = time();
-        $time = str_replace(" ", "", $time);
-        $time = str_replace(":", "", $time);
-        $time = str_replace("-", "", $time);
-        // take only the last 6 digits
-        $time = substr($time, -6);
-//        $time = substr($time ,0 ,2);
-        return $time . $entity  . rand(0, 1000);
+        $tag = "";
+
+        switch ($tableName) {
+            case "pharmacy":
+                $tag = "PH";
+                break;
+            case "contact_us":
+                $tag = "INQ";
+                break;
+            case "pharmacyorder":
+                $tag = "ORD";
+                break;
+            default:
+                $tag = "ID";
+                break;
+        }
+
+
+        try {
+            $db = (new Database())->getConnection();
+
+            $sql = "SELECT count(*) FROM $tableName;";
+            $stmt = $db->prepare($sql);
+
+            $stmt->execute();
+
+            $max = $stmt->get_result()->fetch_assoc()['count(*)'];
+            Logger::logDebug("Max: $max" . " Tag: $tag");
+            $max = $max + 1;
+
+            $stmt->close();
+            return $tag . $max;
+
+        } catch (\Exception $e) {
+            Logger::logError($e->getMessage());
+        }
+
+        $stmt->close();
+        return "";
     }
 
 
