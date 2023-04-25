@@ -19,27 +19,24 @@ class SupplierOrdersController extends Controller
         $order = new PharmacyOrderModel;
         $med = new MedicineModel;
         $manu = new ManufactureModel;
-        $supmed = new SupplierMedicineModel;
-        $result = $order->getSupOrders($_SESSION['username']);
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $id = $row['id'];
-                $pharname = $order->getOrderPharm($id);
-                $medid = $order->getMedId($id);
-                $medname = $med->getName($medid);
-                $weight = $med->getWeight($medid);
-                $manid = $med->getManufacture($id);
-                $manname = $manu->getManufactureName($manid);
-                $qauntity = $order->getMedQuantiy($id);
-                if ($supmed->getQuantity($medid) > $qauntity) {
-                    echo "<form method='post' action='/supplier/accept'>";
-                    echo " <input type='hidden' value='$medid' name='medid'/>";
-                    echo " <input type='hidden' value='$qauntity' name='qauntity'/>";
-                    echo " <input type='hidden' value='$id' name='orderid'/>";
-                    echo "<tr><td>" . $id . "</td><td>" . $pharname . "</td><td>" . $medname . "</td><td>" . $weight . "</td><td>" . $manname . "</td><td>" . $qauntity . "</td><td>Pending</td></tr></form>";
+        $result1 = $order->getSupOrders($_SESSION['username']);
+        if ($result1->num_rows > 0) {
+            while ($row1 = $result1->fetch_assoc()) {
+                $id = $row1['id'];
+                $result2 = $order->getOrder($id);
+                if ($result2->num_rows > 0) {
+                    while ($row2 = $result2->fetch_assoc()) {
+                        $pharname = $row2['pharmacyName'];
+                        $medid = $row2['medId'];
+                        $medname = $med->getName($medid);
+                        $weight = $med->getWeight($medid);
+                        $manid = $med->getManufacture($id);
+                        $manname = $manu->getManufactureName($manid);
+                        $qauntity = $row2['quantity'];
+                        echo "<tr><td>" . $id . "</td><td>" . $pharname . "</td><td>" . $medname . "</td><td>" . $weight . "</td><td>" . $manname . "</td><td>" . $qauntity . "</td></tr>";
 
+                    }
                 }
-
             }
         } else {
             echo "<tr><td colspan=7>No Orders Accepted yet</td></tr>";

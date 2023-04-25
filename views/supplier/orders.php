@@ -140,7 +140,6 @@ use app\controllers\supplier\SupplierOrdersController;
                                         <th>Weight</th>
                                         <th>Mannufacture</th>
                                         <th>Quantity</th>
-                                        <th>Status</th>
                                     </tr>
 
                                     <?php
