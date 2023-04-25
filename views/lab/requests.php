@@ -16,45 +16,47 @@ use app\controllers\lab\LabRequestsController;
 </head>
 
 <body>
-
     <!-- Section: Fixed Components -->
-    <div class="sidebar-collapsible">
+    <div class="sidebar">
         <div class="sidebar-inner">
             <nav class="sidebar-header">
                 <div class="sidebar-logo">
-                    <a href="#">
+                    <a href="/dashboard">
                         <img alt="MedEx logo" src="../res/logo/logo-text_light.svg" />
                     </a>
                 </div>
             </nav>
             <div class="sidebar-context">
-                <ul class="main-buttons">
+                <ul>
                     <li>
-                        <a href="#"> <i class="fa fa-file-text-o"></i>Lab Requests</a>
-                        <ul class="hidden">
-                            <li class="disabled"><a href="/lab/requests">Accept Lab Requests</a></li>
-                            <li><a href="#">View Accepted Requests</a></li>
-                        </ul>
+                        <a class="btn" href="/dashboard"> <i class="fa-solid fa-house"></i>Dashboard
+                        </a>
                     </li>
-                    <li>
-                        <a href="#"> <i class="fa fa-list-alt"></i> Lab Reports</a>
-                        <ul class="hidden">
-                            <li><a href="/lab/reports"> Generate Lab Reports</a></li>
-                            <li><a href="#">View Past Lab Reports </a></li>
-                        </ul>
+                    <li><a class="btn disabled" href="/lab/requests"><i class="fa fa-check-circle"></i>Accept
+                            Requests</a>
                     </li>
-                    <li>
-                        <a href="/lab/contact-us"> <i class="fa fa-phone"></i> Contact Us </a>
+                    <li><a class="btn" href="/lab/past-requests"><i class="fa fa-file-text-o"></i>View Past Requests</a>
                     </li>
+                    <li><a class="btn" href="/lab/reports"> <i class="fa fa-flask"></i> Generate Reports</a></li>
+                    <li><a class="btn" href="/lab/past-reports"> <i class="fa fa-list-alt"></i> View Past Reports </a>
+                    </li>
+                    <li> <a class="btn" href="/lab/contact-us"> <i class="fa fa-phone"></i> Contact Us </a></li>
                 </ul>
             </div>
         </div>
     </div>
     <nav>
+        <div class="nav-search">
+            <form onsubmit="preventDefault();" role="search">
+                <label for="search">Search for stuff</label>
+                <input autofocus id="search" placeholder="Search..." required type="search" />
+                <button type="submit">Go</button>
+            </form>
+        </div>
         <div class="nav-inner">
             <ul>
                 <li><a class="link" href="#"><i class="fa-solid fa-gear"></i></a></li>
-                <li><a class="link" href="login"><i class="fa-solid fa-right-from-bracket"></i></a></li>
+                <li><a class="link" href="/login"><i class="fa-solid fa-right-from-bracket"></i></a></li>
                 <li><a class="link" href="#"><i class="fa-solid fa-bell"></i></a></li>
             </ul>
             <a class="nav-profile" href="#">
@@ -72,7 +74,7 @@ use app\controllers\lab\LabRequestsController;
             <div class="row">
                 <div class="col" style="display: flex; flex-direction: column;">
                     <div class="card g-col-2 g-row-2-start-3"
-                        style=" box-shadow: 0 3px 10px rgb(0 0 0 / 0.2); border-radius: 20px; width:80%">
+                        style=" box-shadow: 0 3px 10px rgb(0 0 0 / 0.2); border-radius: 20px; width:90%">
                         <div class="card-body">
                             <div style="padding: 2%;">
                                 <h3>Pending Requests</h3>
@@ -96,7 +98,7 @@ use app\controllers\lab\LabRequestsController;
                                     </tr>
                                     <?php
                                     $req = new LabRequestsController;
-                                    $req->AcceptReq();
+                                    $req->AcceptRequests();
                                     ?>
                                 </table>
                             </div>

@@ -1,6 +1,7 @@
 <?php
 
 namespace app\models;
+
 use app\core\Database;
 use DateTime;
 use DateTimeZone;
@@ -14,6 +15,7 @@ class LabRequestModel extends Model
     public $SupName;
     public $recivedDate;
     public $status;
+    public $labUsername;
 
     // Add Supplier Lab Requests
     public function addRequest()
@@ -24,7 +26,7 @@ class LabRequestModel extends Model
         $recivedDate->setTimezone(new DateTimeZone('Asia/Colombo'));
         $recivedDate = $recivedDate->format('Y/m/d');
         try {
-            $sql = "INSERT INTO labreq (id, medId, SupName, recivedDate, status) VALUES ('$this->id','$this->medId','$this->SupName','$recivedDate','0')";
+            $sql = "INSERT INTO labreq (id, medId, SupName, recivedDate, labUsername,status) VALUES ('$this->id','$this->medId','$this->SupName','$recivedDate',Null,'0')";
             $stmt = $db->prepare($sql);
             $stmt->execute();
 
@@ -73,12 +75,20 @@ class LabRequestModel extends Model
         $db->close();
         return $result;
     }
+    public function getAcceptedReq($labname)
+    {
+        $db = (new Database())->getConnection();
+        $sql = "SELECT * from labreq WHERE  labreq.status = '1' && labreq.labUsername='$labname'";
+        $result = $db->query($sql);
+        $db->close();
+        return $result;
+    }
 
-    public function acceptReq($id)
+    public function acceptReq($id, $labname)
     {
         $db = (new Database())->getConnection();
         try {
-            $sql = "UPDATE  labreq SET labreq.status = '1' WHERE labreq.id='$id' ";
+            $sql = "UPDATE  labreq SET labreq.status = '1' , labUsername='$labname' WHERE labreq.id='$id' ";
             $stmt = $db->prepare($sql);
             $stmt->execute();
 
@@ -88,11 +98,7 @@ class LabRequestModel extends Model
             }
 
             $stmt->close();
-
-            return true;
         } catch (\Exception $e) {
-            ErrorLog::logError($e->getMessage());
-            echo $e->getMessage();
             return false;
         }
     }
