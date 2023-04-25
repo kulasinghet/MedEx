@@ -51,14 +51,14 @@ class HyperLabModel extends HyperEntityModel
         return null;
     }
 
-    public function verify(): bool
+    public function verify(?bool $action): bool
     {
         //loading the database
         $db = new Database();
         $conn = $db->getConnection();
 
         try {
-            $sql = "INSERT INTO `laboratory` (verified) VALUES ('1');";
+            $sql = "UPDATE `laboratory` SET `verified` = ".($action?? "NULL")." WHERE `username`='$this->username';";
 
             $stmt = $conn->prepare($sql);
             $stmt->execute();
@@ -73,10 +73,5 @@ class HyperLabModel extends HyperEntityModel
             Logger::logError($e->getMessage());
             return false;
         }
-    }
-
-    public function destroy()
-    {
-        // TODO: Implement destroy() method.
     }
 }

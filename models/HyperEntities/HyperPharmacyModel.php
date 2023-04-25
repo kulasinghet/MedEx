@@ -56,14 +56,15 @@ class HyperPharmacyModel extends HyperEntityModel
         return null;
     }
 
-    public function verify(): bool
+    public function verify(?bool $action): bool
     {
         //loading the database
         $db = new Database();
         $conn = $db->getConnection();
 
         try {
-            $sql = "INSERT INTO `pharmacy` (verified) VALUES ('1');";
+            $sql = "UPDATE `pharmacy` SET `verified` = ".($action?? "NULL")." WHERE `username`='$this->username';";
+            echo $sql;
 
             $stmt = $conn->prepare($sql);
             $stmt->execute();
@@ -78,10 +79,5 @@ class HyperPharmacyModel extends HyperEntityModel
             Logger::logError($e->getMessage());
             return false;
         }
-    }
-
-    public function destroy()
-    {
-        // TODO: Implement destroy() method.
     }
 }

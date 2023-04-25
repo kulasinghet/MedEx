@@ -59,8 +59,22 @@ class EmployeeApprovalController extends Controller
 
         $obj = HyperPharmacyModel::getByUsername($store->flag_aprv_one_usr);
         if ($obj) {
-            $store->aprv_one_obj = $obj;
-            $this -> render("employee/approvals/pharmacy.php");
+            // checking whether there is a direct action to be performed
+            switch ($store->flag_aprv_one_act) {
+                case 'approve':
+                    $obj->verify(true);
+                    header('Location: /employee/approve');
+                    break;
+                case 'ignore':
+                    $obj->verify(null);
+                    header('Location: /employee/approve');
+                    break;
+                default:
+                    // loading the approval details page
+                    $store->aprv_one_obj = $obj;
+                    $this -> render("employee/approvals/pharmacy.php");
+                    break;
+            }
         } else {
             header('Location: /employee/approve');
         }
@@ -77,8 +91,22 @@ class EmployeeApprovalController extends Controller
 
         $obj = HyperSupplierModel::getByUsername($store->flag_aprv_one_usr);
         if ($obj) {
-            $store->aprv_one_obj = $obj;
-            $this -> render("employee/approvals/supplier.php");
+            // checking whether there is a direct action to be performed
+            switch ($store->flag_aprv_one_act) {
+                case 'approve':
+                    $obj->verify(true);
+                    header('Location: /employee/approve');
+                    break;
+                case 'ignore':
+                    $obj->verify(null);
+                    header('Location: /employee/approve');
+                    break;
+                default:
+                    // loading the approval details page
+                    $store->aprv_one_obj = $obj;
+                    $this -> render("employee/approvals/supplier.php");
+                    break;
+            }
         } else {
             header('Location: /employee/approve');
         }
@@ -95,8 +123,22 @@ class EmployeeApprovalController extends Controller
 
         $obj = HyperDeliveryModel::getByUsername($store->flag_aprv_one_usr);
         if ($obj) {
-            $store->aprv_one_obj = $obj;
-            $this -> render("employee/approvals/delivery.php");
+            // checking whether there is a direct action to be performed
+            switch ($store->flag_aprv_one_act) {
+                case 'approve':
+                    $obj->verify(true);
+                    header('Location: /employee/approve');
+                    break;
+                case 'ignore':
+                    $obj->verify(null);
+                    header('Location: /employee/approve');
+                    break;
+                default:
+                    // loading the approval details page
+                    $store->aprv_one_obj = $obj;
+                    $this -> render("employee/approvals/delivery.php");
+                    break;
+            }
         } else {
             header('Location: /employee/approve');
         }
@@ -113,8 +155,22 @@ class EmployeeApprovalController extends Controller
 
         $obj = HyperLabModel::getByUsername($store->flag_aprv_one_usr);
         if ($obj) {
-            $store->aprv_one_obj = $obj;
-            $this -> render("employee/approvals/lab.php");
+            // checking whether there is a direct action to be performed
+            switch ($store->flag_aprv_one_act) {
+                case 'approve':
+                    $obj->verify(true);
+                    header('Location: /employee/approve');
+                    break;
+                case 'ignore':
+                    $obj->verify(null);
+                    header('Location: /employee/approve');
+                    break;
+                default:
+                    // loading the approval details page
+                    $store->aprv_one_obj = $obj;
+                    $this -> render("employee/approvals/lab.php");
+                    break;
+            }
         } else {
             header('Location: /employee/approve');
         }

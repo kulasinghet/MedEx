@@ -13,6 +13,5 @@ abstract class HyperEntityModel extends Model
     public string $mobile;
 
     abstract public static function getByUsername(string $username) : ?self;
-    abstract public function verify() : bool;
-    abstract public function destroy();
+    abstract public function verify(?bool $action) : bool;
 }
