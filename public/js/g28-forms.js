@@ -63,6 +63,15 @@ class G28Selectbox extends HTMLElement {
     if (this.isDisabled()) {
       this.sb.classList.add('disabled');
     }
+
+    // initializing the value of the selectbox
+    if (this.hasAttribute('value')) {
+      // removing placeholder class from the display text
+      this.toggleClass(this.sbDisplayText, 'placeholder', false);
+
+      setTimeout(() => this.sbDisplayText.innerText = this.getAttribute('value'));
+      this.valueChanged = true;
+    }
     // --------------------- RENDERING THE ELEMENT ---------------------
 
     // --------------------- EVENT LISTENERS ---------------------
@@ -91,6 +100,15 @@ class G28Selectbox extends HTMLElement {
       listItm.addEventListener('click', (e) => {
         e.preventDefault();
         this.setAttribute('value', listItm.innerText);
+        // creating a custom event triggered when the value is changed
+        this.valueChanged = true;
+        this.dispatchEvent(
+            new CustomEvent('change',
+                {
+                  detail: {value: listItm.innerText}
+                }
+                )
+        );
 
         setTimeout(() => {
           this.toggleAttribute('opened', false);
@@ -125,8 +143,7 @@ class G28Selectbox extends HTMLElement {
         this.toggleClass(this.sb, 'opened', false);
         this.opened = false;
       }
-    } else if (name === 'value') {
-      this.valueChanged = true;
+    } else if (name === 'value' && this.valueChanged) {
       // removing placeholder class from the display text
       this.toggleClass(this.sbDisplayText, 'placeholder', false);
 
@@ -163,7 +180,7 @@ class G28Selectbox extends HTMLElement {
   }
 
   toggleClass(elm, className, force = null) {
-    if (elm !== null) {
+    if (elm) {
       if (elm.classList.contains(className) && force !== true) {
         elm.classList.remove(className);
 

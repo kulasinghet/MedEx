@@ -27,7 +27,7 @@ class EmployeeDashboardController extends Controller
     {
         if ($request->isGet()) {
             if ($_SESSION['userType'] == 'staff') {
-                $this -> render("employee/approve-pharmacy.php");
+                $this -> render("employee/pharmacy.php");
             } else {
                 return header(self::login);
             }
@@ -40,7 +40,7 @@ class EmployeeDashboardController extends Controller
     {
         if ($request->isGet()) {
             if ($_SESSION['userType'] == 'staff') {
-                $this -> render("employee/approve-supplier.php");
+                $this -> render("employee/supplier.php");
             } else {
                 return header(self::login);
             }
@@ -53,7 +53,7 @@ class EmployeeDashboardController extends Controller
     {
         if ($request->isGet()) {
             if ($_SESSION['userType'] == 'staff') {
-                $this -> render("employee/approve-lab.php");
+                $this -> render("employee/lab.php");
             } else {
                 return header(self::login);
             }
@@ -66,7 +66,7 @@ class EmployeeDashboardController extends Controller
     {
         if ($request->isGet()) {
             if ($_SESSION['userType'] == 'staff') {
-                $this -> render("employee/approve-delivery.php");
+                $this -> render("employee/delivery.php");
             } else {
                 return header(self::login);
             }
