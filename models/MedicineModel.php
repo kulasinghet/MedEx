@@ -1,7 +1,6 @@
 <?php
 
 namespace app\models;
-
 use app\core\Database;
 use app\core\Logger;
 
@@ -72,6 +71,14 @@ class MedicineModel extends Model
     {
         $this->getMedicine($id);
         return $this->weight;
+    }
+
+    public function getManufacture($id)
+    {
+        $this->getMedicine($id);
+        return $this->manId;
+
+
     }
 
     // Get all medicine
