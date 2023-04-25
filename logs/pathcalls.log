@@ -377,3 +377,10 @@
 2023/04/19 18:06:24 /pharmacy/inventory
 2023/04/19 18:06:48 /pharmacy/inventory
 2023/04/19 18:07:43 /pharmacy/inventory
+2023/04/25 10:51:28 /pharmacy/order-medicine
+2023/04/25 10:51:43 /pharmacy/orders
+2023/04/25 10:52:33 /pharmacy/api/order-details
+2023/04/25 10:52:38 /pharmacy/api/order-medicine-details
+2023/04/25 10:52:46 /pharmacy/api/cancel-order
+2023/04/25 10:52:47 /pharmacy/orders
+2023/04/25 10:53:02 /pharmacy/inventory

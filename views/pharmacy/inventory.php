@@ -153,11 +153,8 @@ echo $components->sideBar('inventory');
 
 <script>
     function handleViewStockDetailsClick(id) {
-        if (id == '') {
-            swal("Something went wrong", "Please try again", "error");
-        } else {
-
-        }
+        console.log(id);
+    }
 
     document.addEventListener('DOMContentLoaded', function() {
         var viewOrderButtons = document.getElementsByClassName('view-stock');
