@@ -11,6 +11,8 @@ class Components
             $additionalCSS = "<link href='../css/pharmacy/order-medicine.css' rel='stylesheet'>";
         } else if ($title == "Order History") {
             $additionalCSS = "<link href='../css/pharmacy/orders.css' rel='stylesheet'>";
+        } else if ($title == "Inventory") {
+            $additionalCSS = "<link href='../css/pharmacy/inventory.css' rel='stylesheet'>";
         }
 
         return <<<HTML
@@ -46,11 +48,7 @@ class Components
             return ('
         <nav>
             <div class="nav-search">
-                <form onsubmit="preventDefault();" role="search">
-                    <label for="search">Search for stuff</label>
-                    <input id="search" placeholder="Type anything to search . . ." required type="search"/>
-                    <button type="submit">Go</button>
-                </form>
+               
             </div>
             <div class="nav-inner">
                 <ul>
