@@ -20,7 +20,7 @@ class NotificationHandler extends Logger
     // user exists
     public function userExists($exceptionMessage)
     {
-        $scriptClass  = "<head><script src='/js/pharmacy/login-error.js' defer></script><link href='/css/error-model' rel='stylesheet'></head>";
+        $scriptClass  = "<head><script src='/js/pharmacy/login-error.js' defer></script><link href='/css/error-model.css' rel='stylesheet'></head>";
         $alertClass = "<div class='loginError alert alert-danger' id='loginError' role='alert'>";
         $spanClass = "<span class='closebtn' id='closebtn' style='padding-bottom: 0' onclick='this.parentElement.style.display='none';'>&times;</span>";
         $closeClass = "</div>";
@@ -33,7 +33,7 @@ class NotificationHandler extends Logger
     // password does not match
     public function passwordDoesNotMatch()
     {
-        $scriptClass  = "<head><script src='/js/pharmacy/login-error.js' defer></script><link href='/css/error-model' rel='stylesheet'></head>";
+        $scriptClass  = "<head><script src='/js/pharmacy/login-error.js' defer></script><link href='/css/error-model.css' rel='stylesheet'></head>";
         $alertClass = "<div class='loginError alert alert-danger' id='loginError' role='alert'>";
         $spanClass = "<span class='closebtn' id='closebtn' style='padding-bottom: 0' onclick='this.parentElement.style.display='none';'>&times;</span>";
         $closeClass = "</div>";
@@ -44,7 +44,7 @@ class NotificationHandler extends Logger
 
     public function emptyFields()
     {
-        $scriptClass  = "<head><script src='/js/pharmacy/login-error.js' defer></script><link href='/css/error-model' rel='stylesheet'></head>";
+        $scriptClass  = "<head><script src='/js/pharmacy/login-error.js' defer></script><link href='/css/error-model.css' rel='stylesheet'></head>";
         $alertClass = "<div class='loginError alert alert-danger' id='loginError' role='alert'>";
         $spanClass = "<span class='closebtn' id='closebtn' style='padding-bottom: 0' onclick='this.parentElement.style.display='none';'>&times;</span>";
         $closeClass = "</div>";
@@ -55,7 +55,7 @@ class NotificationHandler extends Logger
 
     public function somethingWentWrong(): string
     {
-        $scriptClass  = "<head><script src='/js/pharmacy/login-error.js' defer></script><link href='/css/error-model' rel='stylesheet'></head>";
+        $scriptClass  = "<head><script src='/js/pharmacy/login-error.js' defer></script><link href='/css/error-model.css' rel='stylesheet'></head>";
         $alertClass = "<div class='loginError alert alert-danger' id='loginError' role='alert'>";
         $spanClass = "<span class='closebtn' id='closebtn' style='padding-bottom: 0' onclick='this.parentElement.style.display='none';'>&times;</span>";
         $closeClass = "</div>";
@@ -66,7 +66,7 @@ class NotificationHandler extends Logger
 
     public function userCreated()
     {
-        $scriptClass  = "<head><script src='/js/pharmacy/login-error.js' defer></script><link href='/css/error-model' rel='stylesheet'></head>";
+        $scriptClass  = "<head><script src='/js/pharmacy/login-error.js' defer></script><link href='/css/error-model.css' rel='stylesheet'></head>";
         $alertClass = "<div class='loginError alert alert-success' id='loginError' role='alert'>";
         $spanClass = "<span class='closebtn' id='closebtn' style='padding-bottom: 0' onclick='this.parentElement.style.display='none';'>&times;</span>";
         $closeClass = "</div>";
@@ -79,12 +79,25 @@ class NotificationHandler extends Logger
     {
         Logger::orderLog($pharmacyID." pharmacy order created");
 
-        $scriptClass  = "<head><script src='/js/pharmacy/login-error.js' defer></script><link href='/css/error-model' rel='stylesheet'></head>";
+        $scriptClass  = "<head><script src='/js/pharmacy/login-error.js' defer></script><link href='/css/error-model.css' rel='stylesheet'></head>";
         $alertClass = "<div class='loginError alert alert-success' id='loginError' role='alert'>";
         $spanClass = "<span class='closebtn' id='closebtn' style='padding-bottom: 0' onclick='this.parentElement.style.display='none';'>&times;</span>";
         $closeClass = "</div>";
 
         $message = $scriptClass.$alertClass.$spanClass."Order created successfully".$closeClass;
+        return $message;
+    }
+
+    public function contactUsCreatedSuccessfully(String $pharmacyID)
+    {
+//        Logger::contactUsLog($pharmacyID." pharmacy contact us created");
+
+        $scriptClass  = "<head><script src='/js/pharmacy/login-error.js' defer></script><link href='/css/error-model.css' rel='stylesheet'></head>";
+        $alertClass = "<div class='loginError alert alert-success' id='loginError' role='alert'>";
+        $spanClass = "<span class='closebtn' id='closebtn' style='padding-bottom: 0' onclick='this.parentElement.style.display='none';'>&times;</span>";
+        $closeClass = "</div>";
+
+        $message = $scriptClass.$alertClass.$spanClass."Your message sent successfully".$closeClass;
         return $message;
     }
 

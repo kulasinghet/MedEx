@@ -1,78 +1,57 @@
-table {
-    border-spacing: 0;
-    border-radius: 0.5rem;
-    display: block;
-    overflow-x: auto;
-    text-align: left;
+#order-new-medicine {
+    /*style='position: fixed; bottom: 0; right: 0; margin: 1rem;'>";*/
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin: 1rem;
+}
+
+.hide {
+    display: none;
+}
+
+select {
+    width: 100%;
+    padding: 0.5rem;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+}
+
+.swal-modal .swal-text {
+    text-align: center;
+}
+
+.swal-modal {
+    width: auto;
+}
+
+.order-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1rem;
+}
+
+.order-details-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     width: 100%;
 }
 
-table td {
-    border-bottom: .1rem solid #e1e1e1 !important;
-    background-color: #fff;
-    padding: 1.2rem 1.5rem;
+.order-details-row > h4 {
+    width: 50%;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #000000a6;
 }
 
-table td th{
-    border-bottom: .1rem solid #e1e1e1 !important;
-    padding: 1.2rem 1.5rem;
-    background-color: #fff;
+.swal-button--confirm {
+    /*// danger*/
+    background-color: #d9534f;
 }
 
-table th {
-    border-bottom: .1rem solid #e1e1e1 !important;
-    padding: 1.2rem 1.5rem;
-    background-color: #fff;
-}
-
-
-  /*&:first-child padding-left: 0*/
-
-
-
-/*&:last-child*/
- /*padding-right: 0*/
-
-@media (min-width: 40.0rem) {
-
-    table {
-        display: table;
-        overflow-x: initial;
-    }
-
-}
-
-.loginError {
-    position: fixed;
-    z-index: 100;
-    top: 5px;
-    left: 77%;
-    padding: 20px;
-    background-color: #f44336; /* Red */
-    color: white;
-    margin-bottom: 15px;
-    /*add box shadow*/
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
-}
-
-
-.closebtn {
-    margin-left: 15px;
-    color: white;
-    font-weight: bold;
-    float: right;
-    font-size: 22px;
-    line-height: 20px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-/* When moving the mouse over the close button */
-.closebtn:hover {
-    color: black;
-}
-
-.view-order-details i:hover {
-    color: #f44336 !important;
-    cursor: pointer;
+.swal-button--confirm button:hover {
+    background-color: #c9302c;
 }

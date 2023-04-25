@@ -9,4 +9,20 @@ class Controller
         return Application::$app->router->renderView($view, $params);
     }
 
+    public function print_r($data)
+    {
+        echo '<pre>';
+        print_r($data);
+        echo '</pre>';
+    }
+
+    public function print_request_body_to_log($requestBody)
+    {
+        $str = '';
+        foreach ($requestBody as $key => $value) {
+            $str .= $key . ' => ' . $value . ', ';
+        }
+        Logger::logError($str);
+    }
+
 }

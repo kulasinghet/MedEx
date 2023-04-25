@@ -6,6 +6,15 @@ class Components
 {
     public function viewHeader($title): string
     {
+        $additionalCSS = "";
+        if ($title == "Order Medicine") {
+            $additionalCSS = "<link href='../css/pharmacy/order-medicine.css' rel='stylesheet'>";
+        } else if ($title == "Order History") {
+            $additionalCSS = "<link href='../css/pharmacy/orders.css' rel='stylesheet'>";
+        } else if ($title == "Inventory") {
+            $additionalCSS = "<link href='../css/pharmacy/inventory.css' rel='stylesheet'>";
+        }
+
         return <<<HTML
         <html lang="en">
         <head>
@@ -16,10 +25,12 @@ class Components
             <link href="../scss/vendor/demo.css" rel="stylesheet"/>
             <link href="../css/table.css" rel="stylesheet"/>
             <link href="../css/pharmacy/dashboard.css" rel="stylesheet"/>
+            $additionalCSS
             <link rel="icon" href="../res/logo/logo-box_light.jpg" type="image/svg+xml">
             <!-- Font awesome kit -->
             <script crossorigin="anonymous" src="https://kit.fontawesome.com/9b33f63a16.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.0/dist/chart.umd.min.js"></script>
+            <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         </head>
         <body>
         HTML;
@@ -37,11 +48,7 @@ class Components
             return ('
         <nav>
             <div class="nav-search">
-                <form onsubmit="preventDefault();" role="search">
-                    <label for="search">Search for stuff</label>
-                    <input id="search" placeholder="Type anything to search . . ." required type="search"/>
-                    <button type="submit">Go</button>
-                </form>
+               
             </div>
             <div class="nav-inner">
                 <ul>

@@ -149,7 +149,7 @@ class Stock extends Model {
     public function getStock($pharmacyName){
 
         $conn = (new Database())->getConnection();
-        $sql = "SELECT * FROM stock WHERE pharmacyName = '$pharmacyName' ORDER BY remaining_days ASC;";
+        $sql = "SELECT stock.id, stock.medId, stock.remaining_days, medicine.medName, medicine.sciName, stock.remQty, stock.buying_price, stock.receivedDate, stock.sellingPrice FROM stock LEFT JOIN medicine ON stock.medID = medicine.id WHERE pharmacyName = '$pharmacyName' ORDER BY remaining_days ASC;";
 
         try {
             $result = $conn->query($sql);
