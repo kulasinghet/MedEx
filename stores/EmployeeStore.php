@@ -10,10 +10,10 @@ class EmployeeStore
 {
     public string $username;
 
-    // approval page variables
-    public string $flag_aprv_t;
-    public int $flag_aprv_st;
-    public array $aprv_list;
+    // general page variables
+    public string $flag_g_t;
+    public int $flag_g_st;
+    public array $list_g;
 
     // approve-one page variables
     public string $flag_aprv_one_usr;
@@ -25,9 +25,9 @@ class EmployeeStore
      */
     private final function __construct()
     {
-        $this->aprv_list = [];
-        $this->flag_aprv_t = '';
-        $this->flag_aprv_st = 0;
+        $this->list_g = [];
+        $this->flag_g_t = '';
+        $this->flag_g_st = 0;
         $this->flag_aprv_one_usr = '';
         $this->flag_aprv_one_act = '';
         $this->aprv_one_obj = null;

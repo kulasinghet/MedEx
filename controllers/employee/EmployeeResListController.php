@@ -6,7 +6,7 @@ use app\core\Request;
 use app\models\EmpResourcesModel;
 use app\stores\EmployeeStore;
 
-class EmployeeApprovalListController extends AbstractListController
+class EmployeeResListController extends AbstractListController
 {
     public function load(Request $request): void
     {
@@ -18,13 +18,13 @@ class EmployeeApprovalListController extends AbstractListController
         $store->flag_g_st = $this->getSetNoFlag($request);
 
         if (in_array($store->flag_g_t, self::approval_flags)) {
-            $this -> render("employee/approvals/list.php");
+            $this -> render("employee/res/list.php");
         } else {
             header('Location: /employee');
         }
     }
 
-    public function getAllApprovals(int $set_size, $set_number = 0): array
+    public function getPharmacyList(int $set_size, $set_number = 0): array
     {
         // retrieving the employee store
         $store = EmployeeStore::getEmployeeStore();
@@ -34,9 +34,8 @@ class EmployeeApprovalListController extends AbstractListController
             $list = $store->list_g;
         } else {
             $model = new EmpResourcesModel();
-            // creating an array of all approvals
-            $list = $model->getAll(false);
-            shuffle($list);
+            // creating an array of all resources
+            $list = $model->getPharmacyList(true);
             // storing the list in the store
             $store->list_g = $list;
         }
@@ -45,7 +44,7 @@ class EmployeeApprovalListController extends AbstractListController
         return array_slice($list, $set_number * 9, $set_size);
     }
 
-    public function getPharmacyApprovals(int $set_size, $set_number = 0): array
+    public function getSupplierList(int $set_size, $set_number = 0): array
     {
         // retrieving the employee store
         $store = EmployeeStore::getEmployeeStore();
@@ -55,8 +54,8 @@ class EmployeeApprovalListController extends AbstractListController
             $list = $store->list_g;
         } else {
             $model = new EmpResourcesModel();
-            // creating an array of all approvals
-            $list = $model->getPharmacyList(false);
+            // creating an array of all resources
+            $list = $model->getSupplierList(true);
             // storing the list in the store
             $store->list_g = $list;
         }
@@ -65,7 +64,7 @@ class EmployeeApprovalListController extends AbstractListController
         return array_slice($list, $set_number * 9, $set_size);
     }
 
-    public function getSupplierApprovals(int $set_size, $set_number = 0): array
+    public function getLabList(int $set_size, $set_number = 0): array
     {
         // retrieving the employee store
         $store = EmployeeStore::getEmployeeStore();
@@ -75,8 +74,8 @@ class EmployeeApprovalListController extends AbstractListController
             $list = $store->list_g;
         } else {
             $model = new EmpResourcesModel();
-            // creating an array of all approvals
-            $list = $model->getSupplierList(false);
+            // creating an array of all resources
+            $list = $model->getLabList(true);
             // storing the list in the store
             $store->list_g = $list;
         }
@@ -85,7 +84,7 @@ class EmployeeApprovalListController extends AbstractListController
         return array_slice($list, $set_number * 9, $set_size);
     }
 
-    public function getDeliveryApprovals(int $set_size, $set_number = 0): array
+    public function getDeliveryList(int $set_size, $set_number = 0): array
     {
         // retrieving the employee store
         $store = EmployeeStore::getEmployeeStore();
@@ -95,28 +94,8 @@ class EmployeeApprovalListController extends AbstractListController
             $list = $store->list_g;
         } else {
             $model = new EmpResourcesModel();
-            // creating an array of all approvals
-            $list = $model->getDeliveryGuysList(false);
-            // storing the list in the store
-            $store->list_g = $list;
-        }
-
-        // slicing the list to the set size
-        return array_slice($list, $set_number * 9, $set_size);
-    }
-
-    public function getLabApprovals(int $set_size, $set_number = 0): array
-    {
-        // retrieving the employee store
-        $store = EmployeeStore::getEmployeeStore();
-
-        if ($set_number > 0 && $store->list_g != []) {
-            // retrieve the list from the store
-            $list = $store->list_g;
-        } else {
-            $model = new EmpResourcesModel();
-            // creating an array of all approvals
-            $list = $model->getLabList(false);
+            // creating an array of all resources
+            $list = $model->getDeliveryGuysList(true);
             // storing the list in the store
             $store->list_g = $list;
         }

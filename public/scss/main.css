@@ -3456,7 +3456,7 @@ textarea.form-input {
   background-color: #f6f9ff;
   cursor: pointer;
 }
-.approval-table tbody .empty {
+.approval-table tbody .empty, .approval-table tbody .no-data {
   border: none;
 }
 .approval-table .approval-type {

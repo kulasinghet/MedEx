@@ -52,17 +52,17 @@ class EmployeeViewComponents
                     Approvals
                     <ul class="hidden">
                     '.($selection == 'approval' ? '
-                        <li'.($this->store->flag_aprv_t == 'all' ? " class='disabled'" : "").'><a href="/employee/approve">All</a></li>
-                        <li'.($this->store->flag_aprv_t == 'pharmacy' ? " class='disabled'" : "").'><a href="/employee/approve?f=pharmacy">Pharmacy</a></li>
-                        <li'.($this->store->flag_aprv_t == 'supplier' ? " class='disabled'" : "").'><a href="/employee/approve?f=supplier">Supplier</a></li>
-                        <li'.($this->store->flag_aprv_t == 'lab' ? " class='disabled'" : "").'><a href="/employee/approve?f=lab">Lab</a></li>
-                        <li'.($this->store->flag_aprv_t == 'delivery' ? " class='disabled'" : "").'><a href="/employee/approve?f=delivery">Delivery Partner</a></li>
+                        <li'.($this->store->flag_g_t == 'all' ? " class='disabled'" : "").'><a href="/employee/approve">All</a></li>
+                        <li'.($this->store->flag_g_t == 'pharmacy' ? " class='disabled'" : "").'><a href="/employee/approve?f=pharmacy">Pharmacy</a></li>
+                        <li'.($this->store->flag_g_t == 'supplier' ? " class='disabled'" : "").'><a href="/employee/approve?f=supplier">Supplier</a></li>
+                        <li'.($this->store->flag_g_t == 'lab' ? " class='disabled'" : "").'><a href="/employee/approve?f=lab">Laboratory</a></li>
+                        <li'.($this->store->flag_g_t == 'delivery' ? " class='disabled'" : "").'><a href="/employee/approve?f=delivery">Delivery Partner</a></li>
                     ' : '
                         <li><a href="/employee/approve">All</a></li>
-                        <li><a href="/employee/approve?filter=pharmacy">Pharmacy</a></li>
-                        <li><a href="/employee/approve?filter=supplier">Supplier</a></li>
-                        <li><a href="/employee/approve?filter=lab">Lab</a></li>
-                        <li><a href="/employee/approve?filter=delivery">Delivery Partner</a></li>
+                        <li><a href="/employee/approve?f=pharmacy">Pharmacy</a></li>
+                        <li><a href="/employee/approve?f=supplier">Supplier</a></li>
+                        <li><a href="/employee/approve?f=lab">Laboratory</a></li>
+                        <li><a href="/employee/approve?f=delivery">Delivery Partner</a></li>
                     ').'
                     </ul>
                 </li>
@@ -72,10 +72,17 @@ class EmployeeViewComponents
                 <li>
                     <a href="#"> <i class="fa-solid fa-server"></i>Resources</a>
                     <ul class="hidden">
-                        <li>Pharmacy</li>
-                        <li>Supplier</li>
-                        <li>Laboratory</li>
-                        <li>Delivery Partner</li>
+                    '.($selection == 'res' ? '
+                        <li'.($this->store->flag_g_t == 'pharmacy' ? " class='disabled'" : "").'><a href="/employee/res?f=pharmacy">Pharmacy</a></li>
+                        <li'.($this->store->flag_g_t == 'supplier' ? " class='disabled'" : "").'><a href="/employee/res?f=supplier">Supplier</a></li>
+                        <li'.($this->store->flag_g_t == 'lab' ? " class='disabled'" : "").'><a href="/employee/res?f=lab">Laboratory</a></li>
+                        <li'.($this->store->flag_g_t == 'delivery' ? " class='disabled'" : "").'><a href="/employee/res?f=delivery">Delivery Partner</a></li>
+                    ' : '
+                        <li><a href="/employee/res?f=pharmacy">Pharmacy</a></li>
+                        <li><a href="/employee/res?f=supplier">Supplier</a></li>
+                        <li><a href="/employee/res?f=lab">Laboratory</a></li>
+                        <li><a href="/employee/res?f=delivery">Delivery Partner</a></li>
+                    ').'
                     </ul>
                 </li>
                 <li>

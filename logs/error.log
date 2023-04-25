@@ -1288,3 +1288,6 @@
 2023/04/25 15:49:21 /employee/approve
 2023/04/25 15:49:27 /employee/approve
 2023/04/25 15:49:32 /employee/approve
+2023/04/25 21:54:18 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+2023/04/25 21:56:38 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+2023/04/25 21:56:56 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1

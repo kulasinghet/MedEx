@@ -1,8 +1,8 @@
 <?php
 
+use app\controllers\employee\EmployeeResListController;
 use app\stores\EmployeeStore;
 use app\views\employee\EmployeeViewComponents;
-use app\controllers\employee\EmployeeApprovalListController;
 
 const no_of_approvals = 10;
 
@@ -17,7 +17,7 @@ $store->flag_g_st = 0; // resetting the set number in the store
 <head>
     <meta charset="UTF-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Admin | Approvals</title>
+    <title>Admin | Resources</title>
 
     <!-- Font awesome kit -->
     <script crossorigin="anonymous" src="https://kit.fontawesome.com/9b33f63a16.js"></script>
@@ -31,7 +31,7 @@ $store->flag_g_st = 0; // resetting the set number in the store
 <body>
 <!-- Section: Fixed Components -->
 <?php
-echo $components->createSidebar('approval');
+echo $components->createSidebar('res');
 echo $components->createNavbar();
 ?>
 <!-- Section: Fixed Components -->
@@ -82,7 +82,7 @@ echo $components->createNavbar();
                 <table class="table approval-table">
                     <thead>
                     <tr>
-                        <th>Type</th>
+                        <th>Username</th>
                         <th>Name</th>
                         <th>Email</th>
                         <th>Mobile</th>
@@ -92,13 +92,12 @@ echo $components->createNavbar();
                     <tbody>
                     <?php
                     try {
-                        $controller = new EmployeeApprovalListController();
+                        $controller = new EmployeeResListController();
                         $approvals = match ($filter) {
-                            'all' => $controller->getAllApprovals(no_of_approvals, $set),
-                            'pharmacy' => $controller->getPharmacyApprovals(no_of_approvals, $set),
-                            'supplier' => $controller->getSupplierApprovals(no_of_approvals, $set),
-                            'lab' => $controller->getLabApprovals(no_of_approvals, $set),
-                            'delivery' => $controller->getDeliveryApprovals(no_of_approvals, $set),
+                            'pharmacy' => $controller->getPharmacyList(no_of_approvals, $set),
+                            'supplier' => $controller->getSupplierList(no_of_approvals, $set),
+                            'lab' => $controller->getLabList(no_of_approvals, $set),
+                            'delivery' => $controller->getDeliveryList(no_of_approvals, $set),
                             default => throw new Exception("Invalid filter!"),
                         };
                         if (!empty($approvals)) {
