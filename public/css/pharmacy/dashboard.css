@@ -207,7 +207,8 @@
   height: auto;
   padding: 2vh;
   margin-bottom: 2vh;
-  position: absolute;
+  position: fixed;
+    right: 0;
   bottom: -1vw;
 
 }

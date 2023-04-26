@@ -23,6 +23,7 @@ select {
 
 .swal-modal {
     width: auto;
+    min-width: 50vw;
 }
 
 .order-details {

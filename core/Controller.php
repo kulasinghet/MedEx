@@ -18,11 +18,12 @@ class Controller
 
     public function print_request_body_to_log($requestBody)
     {
+        Logger::logDebug('Request Body:');
         $str = '';
         foreach ($requestBody as $key => $value) {
             $str .= $key . ' => ' . $value . ', ';
         }
-        Logger::logError($str);
+        Logger::logDebug($str);
     }
 
 }

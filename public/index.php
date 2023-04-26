@@ -10,6 +10,7 @@ use app\controllers\lab\LabContactusController;
 use app\controllers\lab\LabDashboardController;
 use app\controllers\pharmacy\PharmacyAuthController;
 use app\controllers\pharmacy\PharmacyDashboardController;
+use app\controllers\pharmacy\PharmacyInventoryController;
 use app\controllers\pharmacy\PharmacyOrderMedicineController;
 use app\controllers\supplier\SupplierAuthController;
 use app\controllers\supplier\SupplierDashboardController;
@@ -90,6 +91,8 @@ $app->router->post('/pharmacy/settings', [PharmacyDashboardController::class, 's
 $app->router->get('/pharmacy/api/order-details', [PharmacyOrderMedicineController::class, 'orderDetails']);
 $app->router->get('/pharmacy/api/order-medicine-details', [PharmacyOrderMedicineController::class, 'orderMedicineDetails']);
 $app->router->get('/pharmacy/api/cancel-order', [PharmacyOrderMedicineController::class, 'cancelOrder']);
+$app->router->get('/pharmacy/api/medicine-details', [PharmacyInventoryController::class, 'medicineDetails']);
+$app->router->post('/pharmacy/api/update-medicine', [PharmacyInventoryController::class, 'updateMedicine']);
 
 
 

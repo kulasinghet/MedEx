@@ -321,13 +321,37 @@ echo $components->sideBar('orders');
 
         try {
 
+            swal({
+                title: 'Loading',
+                text: 'Please wait...',
+                buttons: false,
+                closeOnClickOutside: false,
+                closeOnEsc: false,
+                content: {
+                    element: "img",
+                    attributes: {
+                        // add loading gitf from internet
+                        src: "https://i.gifer.com/ZZ5H.gif",
+                        style: "width:25px; margin-bottom:20px;"
+                    },
+                }
+            })
+
             const response = await fetch(`/pharmacy/api/order-details?orderId=${$orderId}`);
             const orderData = await response.json();
             // console.log(orderData.totalPrice);
             // {"orderId":"411205testPharmacy977","pharmacyId":"testPharmacy","orderDate":"2023-04-13","totalPrice":"230","orderStatus":"0","deliveryDate":null}
 
             const response2 = await fetch(`/pharmacy/api/order-medicine-details?orderId=${$orderId}`);
+            // const orderedMedicines = await response2.json();
+
+            // while response2 is loading show loading spinner
+
+
             const orderedMedicines = await response2.json();
+
+            swal.close();
+
 
             console.log(orderedMedicines);
             console.log(orderData);
@@ -386,28 +410,64 @@ echo $components->sideBar('orders');
                         case true:
                             swal("Are you sure? This action cannot be undone!", {
                                 buttons: {
-                                    cancel: "No",
-                                    confirm: "Yes",
+                                    cancel: {
+                                        text: "No",
+                                        value: 'no',
+                                        visible: true,
+                                        className: "",
+                                        closeModal: true,
+                                    },
+                                    confirm: {
+                                        text: "Yes",
+                                        value: 'yes',
+                                        visible: true,
+                                        className: "",
+                                        closeModal: true
+                                    }
                                 },
                             }).then((value) => {
                                 switch (value) {
-                                    case true:
+                                    case 'yes':
+
+                                        swal({
+                                            title: 'Loading',
+                                            text: 'Please wait...',
+                                            buttons: false,
+                                            closeOnClickOutside: false,
+                                            closeOnEsc: false,
+                                            content: {
+                                                element: "img",
+                                                attributes: {
+                                                    // add loading gitf from internet
+                                                    src: "https://i.gifer.com/ZZ5H.gif",
+                                                    style: "width:25px; margin-bottom:20px;"
+                                                },
+                                            }
+                                        });
+
                                         fetch(`/pharmacy/api/cancel-order?orderId=${$orderId}`)
                                             .then(response => response.json())
                                             .then(data => {
+                                                swal.close();
                                                 console.log(data);
                                                 if (data == 'Order Cancelled') {
-                                                    swal("Order Cancelled!", "Contact the administrator!", "error");
-                                                    location.reload();
+                                                    swal("Order Cancelled!",'', "error");
+                                                    setTimeout(function() {
+                                                        location.reload();
+                                                    }, 4000);
                                                 } else {
                                                     swal("Something went wrong!", "Contact the administrator!", "error");
                                                 }
                                             });
                                         break;
-                                    default:
-                                        swal("Order Details", "Contact the administrator!", "error");
+                                    case 'no':
+                                        // close the modal
+                                        break;
                                 }
                             });
+                            break;
+                        case null:
+                            // close the modal
                             break;
                         default:
                             swal("Order Details", "Contact the administrator!", "error");

@@ -33,7 +33,18 @@ class PharmacyOrderMedicineController extends Controller
 
                 $flag = true;
 
-                if ($order->createOrder($_SESSION['username'], $this->totalPrice, $medicineIds)) {
+                $result = $order->createOrder($_SESSION['username'], $this->totalPrice, $medicineIds);
+                if ($result) {
+
+                    $qr = new \app\core\QR();
+                    $api = 'http://localhost:8080/delivery/api/update-medicine-details?orderId=' . $result;
+                    $qr->generateQRFromJSON($api, $result, 10, 'L');
+
+                    $pdf = new \app\core\PDF();
+                    $medicineIdsforPDF = (new \app\models\PharmacyOrderModel())->getMedicineByOrderID($result);
+                    $html = $pdf->formBodyToHTML($result, date("Y-m-d"), $this->totalPrice, $medicineIdsforPDF, $_SESSION['username']);
+                    $pdf->generatePDF($html, $result);
+
                     $flag = true;
                 } else {
                     $flag = false;

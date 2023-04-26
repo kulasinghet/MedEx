@@ -80,7 +80,7 @@ class PharmacyOrderModel extends Model
     }
 
 
-    public function createOrder($pharmacyUsername, $order_total, $medicineIds): bool
+    public function createOrder($pharmacyUsername, $order_total, $medicineIds): bool | string
     {
         // generate random order id with time stamp and pharmacy id
 
@@ -100,7 +100,7 @@ class PharmacyOrderModel extends Model
                 $stmt->close();
 //                $pharmacyUsername, $order_total, $medicineIds, $order_date
                 if ($this->updateMedicineQuantity($pharmacyUsername, $order_total, $medicineIds, $order_date)) {
-                    return true;
+                    return $this->id;
                 }
 
             }

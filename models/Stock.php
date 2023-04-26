@@ -198,5 +198,81 @@ class Stock extends Model {
         }
     }
 
+    public function getMedicineStock(mixed $medicineID, mixed $username)
+    {
+        $conn = (new Database())->getConnection();
+        $sql = "SELECT * FROM stock LEFT JOIN medicine ON stock.medId = medicine.id WHERE medId = '$medicineID' AND pharmacyName = '$username';";
+
+        try {
+            $result = $conn->query($sql);
+            $conn->close();
+            return $result->fetch_assoc();
+        } catch (\Exception $e) {
+            $conn->close();
+            Logger::logError($e->getMessage());
+            echo (new ExceptionHandler())->somethingWentWrong();
+            return null;
+        }
+    }
+
+    public function updateMedicine(mixed $pharmacyName, mixed $medicineID, mixed $medName, mixed $sciName, mixed $remQty, mixed $buyingPrice, mixed $sellingPrice, mixed $remainingDays, mixed $consumption, mixed $recievedDate): bool
+    {
+        $conn = (new Database())->getConnection();
+        $sql = "UPDATE stock SET remQty = '$remQty', buying_price = '$buyingPrice', sellingPrice = '$sellingPrice', remaining_days = '$remainingDays', consumption_rate = '$consumption', receivedDate = '$recievedDate' WHERE medId = '$medicineID' AND pharmacyName = '$pharmacyName';";
+
+        try {
+            $conn->query($sql);
+            $conn->close();
+
+            if ($conn->affected_rows > 0) {
+                Logger::logDebug("Medicine updated successfully " . $sql);
+                return true;
+            } else {
+                Logger::logDebug("Medicine not updated " . $sql);
+                return false;
+            }
+
+        } catch (\Exception $e) {
+            $conn->close();
+            Logger::logError($e->getMessage());
+            echo (new ExceptionHandler())->somethingWentWrong();
+            return false;
+        }
+    }
+
+    public function getRemainingDaysByMedicineID(mixed $medicineID, mixed $pharmacyName)
+    {
+        $conn = (new Database())->getConnection();
+        $sql = "SELECT remaining_days FROM stock WHERE medId = '$medicineID' AND pharmacyName = '$pharmacyName';";
+
+        try {
+            $result = $conn->query($sql);
+            $conn->close();
+            return $result->fetch_assoc();
+        } catch (\Exception $e) {
+            $conn->close();
+            Logger::logError($e->getMessage());
+            echo (new ExceptionHandler())->somethingWentWrong();
+            return null;
+        }
+    }
+
+    public function getConsumptionByMedicineID(mixed $medicineID, mixed $pharmacyName)
+    {
+        $conn = (new Database())->getConnection();
+        $sql = "SELECT consumption_rate FROM stock WHERE medId = '$medicineID' AND pharmacyName = '$pharmacyName';";
+
+        try {
+            $result = $conn->query($sql);
+            $conn->close();
+            return $result->fetch_assoc();
+        } catch (\Exception $e) {
+            $conn->close();
+            Logger::logError($e->getMessage());
+            echo (new ExceptionHandler())->somethingWentWrong();
+            return null;
+        }
+    }
+
 
 }
