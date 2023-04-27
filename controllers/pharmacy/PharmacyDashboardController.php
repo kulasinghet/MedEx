@@ -126,7 +126,19 @@ class PharmacyDashboardController extends Controller
         }
     }
 
-
+    public function invoices(Request $request) {
+        if ($_SESSION['userType'] == 'pharmacy') {
+            if ($request -> isGet()) {
+                $this -> render("pharmacy/invoices.php");
+            } else if ($request -> isPost()) {
+                $this -> render("pharmacy/invoices.php");
+            } else {
+                return header('/login');
+            }
+        } else {
+            return header('/login');
+        }
+    }
 
 
 }

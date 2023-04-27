@@ -13,6 +13,10 @@ class Components
             $additionalCSS = "<link href='../css/pharmacy/orders.css' rel='stylesheet'>";
         } else if ($title == "Inventory") {
             $additionalCSS = "<link href='../css/pharmacy/inventory.css' rel='stylesheet'>";
+        } else if ($title == "Sell Medicine") {
+            $additionalCSS = "<link href='../css/pharmacy/sell-medicine.css' rel='stylesheet'>";
+        } else if ($title == "Invoices") {
+            $additionalCSS = "<link href='../css/pharmacy/invoices.css' rel='stylesheet'>";
         }
 
         return <<<HTML
@@ -95,6 +99,9 @@ class Components
                     <a class="btn ' . ($selectedPage == 'sell-medicine' ? 'disabled' : '') . '" href="/pharmacy/sell-medicine">
                         <i class="fa-solid fa-cash-register"></i> Sell Medicine </a>
                         </li>
+                <li>
+                    <a class="btn ' . ($selectedPage == 'invoices' ? 'disabled' : '') . '" href="/pharmacy/invoices"> <i class="fa-solid fa-file-invoice-dollar"></i> Invoices </a>
+                </li>
                 <li>
                     <a class="btn ' . ($selectedPage == 'order-medicine' ? 'disabled' : '') . '" href="/pharmacy/order-medicine"> <i class="fa-solid fa-truck-moving"></i> Order Medicine </a>
                     </li>

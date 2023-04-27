@@ -9,20 +9,19 @@ use app\core\NotificationHandler;
 use app\core\Request;
 use app\models\MedicineOrderModel;
 use Dotenv\Dotenv;
-
 $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
-class PharmacyOrderMedicineController extends Controller
+class PharmacySellMedicineController extends Controller
 {
     private $totalPrice = 0;
     private $medicineIds = [];
 
-    public function createOrder(Request $request)
+    public function sellMedicine(Request $request)
     {
         if ($request->isPost()) {
 
-            $order = new \app\models\PharmacyOrderModel();
+            $order = new \app\models\PharmacySellModel();
 
             if (isset($_SESSION['username'])) {
 
@@ -37,20 +36,25 @@ class PharmacyOrderMedicineController extends Controller
 
                 $flag = true;
 
-                $result = $order->createOrder($_SESSION['username'], $this->totalPrice, $medicineIds);
+                $result = $order->createSellOrder($_SESSION['username'], $this->totalPrice, $medicineIds);
+
+                Logger::logDebug($result);
+
                 if ($result) {
 
                     $qr = new \app\core\QR();
-//                    $api = $_ENV '/delivery/api/update-medicine-details?orderId=' . $result;
-                    $api = $_ENV['BASE_URL'] . '/delivery/api/update-medicine-details?orderId=' . $result;
+                    $api = $_ENV['BASE_URL'] . '/pdf/' . $result . '.pdf';
                     $qr->generateQRFromJSON($api, $result, 10, 'L');
 
                     $pdf = new \app\core\PDF();
-                    $medicineIdsforPDF = (new \app\models\PharmacyOrderModel())->getMedicineByOrderID($result);
-                    $html = $pdf->formBodyToHTML($result, date("Y-m-d"), $this->totalPrice, $medicineIdsforPDF, $_SESSION['username']);
-                    $pdf->generatePDF($html, $result);
+                    $medicineIdsforPDF = (new \app\models\PharmacySellModel())->getMedicineSellsByOrderID($result);
+                    $html = $pdf->invoiceToHTML($result, date("Y-m-d"), $this->totalPrice, $medicineIdsforPDF, $_SESSION['username']);
 
-                    $flag = true;
+                    if ($pdf->generatePDF($html, $result)) {
+                        $flag = true;
+                    } else {
+                        $flag = false;
+                    }
                 } else {
                     $flag = false;
                 }
@@ -58,10 +62,11 @@ class PharmacyOrderMedicineController extends Controller
 
                 if ($flag) {
                     echo (new NotificationHandler())->orderCreatedSuccessfully($_SESSION['username']);
-                    return header('Location: /pharmacy/orders');
+                    return header('Location: /pharmacy/invoices');
                 } else {
                     echo (new ExceptionHandler)->somethingWentWrong();
-                    return header('Location: /pharmacy/order-medicine');
+                    Logger::logError('Something went wrong while creating order ' . $_SESSION['username']);
+                    return header('Location: /pharmacy/sell-medicine');
                 }
 
             } else {
@@ -71,7 +76,7 @@ class PharmacyOrderMedicineController extends Controller
 
         } else {
             echo (new ExceptionHandler)->somethingWentWrong();
-            return header('Location: /pharmacy/order-medicine');
+            return header('Location: /pharmacy/sell-medicine');
         }
     }
 
@@ -84,6 +89,18 @@ class PharmacyOrderMedicineController extends Controller
         } else {
             return 0;
         }
+    }
+
+    public function getPharmacySellOrders(mixed $username)
+    {
+        $orders = (new \app\models\PharmacySellModel())->getPharmacySellOrders($username);
+
+        if (count($orders) > 0) {
+            return $orders;
+        } else {
+            return [];
+        }
+
     }
 
     private function array_to_string(mixed $v)
@@ -220,6 +237,34 @@ class PharmacyOrderMedicineController extends Controller
             return header('Location: /pharmacy/orders');
         }
 
+    }
+
+    public function salesOrder(Request $request) {
+
+        $invoiceId = $request->getParams()['invoiceId'];
+        $order = new \app\models\PharmacySellModel();
+        $result = $order->getPharmacySellOrdersByInvoiceId($invoiceId);
+
+        $returnJSONObj = [
+            'invoiceId' => $result[0]['invoice_id'],
+            'pharmacyUsername' => $result[0]['pharmacyUsername'],
+            'invoiceDate' => $result[0]['invoice_date'],
+            'billTotal' => $result[0]['bill_total'],
+        ];
+
+        header('Content-Type: application/json');
+        echo json_encode($returnJSONObj);
+
+    }
+
+    public function salesOrderMedicines(Request $request) {
+
+        $invoiceId = $request->getParams()['invoiceId'];
+        $order = new \app\models\PharmacySellModel();
+        $result = $order->getPharmacySellOrdersMedicinesByInvoiceId($invoiceId);
+
+        header('Content-Type: application/json');
+        echo json_encode($result);
     }
 
 }

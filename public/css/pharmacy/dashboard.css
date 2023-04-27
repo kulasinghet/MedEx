@@ -333,3 +333,34 @@ tr.Cancelled {
 #sell-medicine-table {
   margin-top: 3vh;
 }
+
+
+/* Disable animation for the modal */
+.swal-modal {
+  animation: none !important;
+}
+
+/* Disable animation for the backdrop */
+.swal-overlay {
+  animation: none !important;
+}
+
+/* Disable animation for the icon */
+.swal-icon {
+  animation: none !important;
+}
+
+/* Disable animation for the icon's line */
+.swal-icon--line {
+  animation: none !important;
+}
+
+/* Disable animation for the title */
+.swal-title {
+  animation: none !important;
+}
+
+/* Disable animation for the text */
+.swal-text {
+  animation: none !important;
+}

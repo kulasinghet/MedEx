@@ -195,7 +195,6 @@ echo $components->sideBar('order-medicine');
                                 if (value) {
                                     document.getElementById('order-medicine-form').submit();
                                     swal("Order Confirmed", "Your order has been placed", "success");
-
                                 }
                             });
 						} else {
