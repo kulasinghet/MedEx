@@ -67,6 +67,16 @@ class LabRequestModel extends Model
 
     }
 
+    public function getSup_Medid($reqid)
+    {
+        $db = (new Database())->getConnection();
+        $sql = "SELECT  medId,SupName from labreq WHERE  labreq.id = '$reqid' ;";
+        $result = $db->query($sql);
+        $db->close();
+        return $result;
+
+    }
+
     public function getNotAcceptedReq()
     {
         $db = (new Database())->getConnection();
@@ -101,6 +111,7 @@ class LabRequestModel extends Model
         } catch (\Exception $e) {
             return false;
         }
+
     }
 
 }
