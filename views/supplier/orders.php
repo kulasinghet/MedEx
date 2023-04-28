@@ -8,7 +8,7 @@ use app\controllers\supplier\SupplierOrdersController;
 <head>
     <meta charset="UTF-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Supplie - Accepted Orders</title>
+    <title>supplier - Accepted Orders</title>
     <link href="../scss/vendor/demo.css" rel="stylesheet" />
     <!-- Font awesome kit -->
     <script crossorigin="anonymous" src="https://kit.fontawesome.com/9b33f63a16.js"></script>
@@ -117,7 +117,7 @@ use app\controllers\supplier\SupplierOrdersController;
                                         <th>Order ID</th>
                                         <th>Pharmacy Name</th>
                                         <th>Medicine</th>
-                                        <th>Weight</th>
+                                        <th>Weight/Volume</th>
                                         <th>Mannufacture</th>
                                         <th>Quantity</th>
                                     </tr>

@@ -69,3 +69,7 @@
 2023/04/17 20:27:45 INSERT INTO contact_us (contact_us.inqury_id, contact_us.username, contact_us.subject, contact_us.message) VALUES ('INQ2', 'testPharmacy', 'jwkgrjwerg', 'czxncvmzxbcdsmnsdflsdk')
 2023/04/17 20:28:25 Max: 2 Tag: INQ
 2023/04/17 20:28:26 INSERT INTO contact_us (contact_us.inqury_id, contact_us.username, contact_us.subject, contact_us.message) VALUES ('INQ3', 'testPharmacy', 'Fuck you', 'This shit is a pain in the ass')
+2023/04/28 12:30:30 Max: 0 Tag: INQ
+2023/04/28 12:30:30 INSERT INTO contact_us (contact_us.inqury_id, contact_us.username, contact_us.subject, contact_us.message) VALUES ('INQ1', 'Tsup', 'Test', 'Test')
+2023/04/28 12:32:49 Max: 1 Tag: INQ
+2023/04/28 12:32:49 INSERT INTO contact_us (contact_us.inqury_id, contact_us.username, contact_us.subject, contact_us.message) VALUES ('INQ2', 'Tsup', 'Test', 'Test')

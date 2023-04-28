@@ -93,7 +93,7 @@ use app\controllers\lab\LabRequestsController;
                                         <th>Supplier Name</th>
                                         <th>Medicine Name</th>
                                         <th>Scientific Name</th>
-                                        <th>Weight</th>
+                                        <th>Weight/Volume</th>
                                         <th></th>
                                     </tr>
                                     <?php

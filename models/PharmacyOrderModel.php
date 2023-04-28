@@ -53,6 +53,17 @@ class PharmacyOrderModel extends Model
         $db->close();
     }
 
+    public function getSupOrderCount($name)
+    {
+        $db = (new Database())->getConnection();
+        $sql = "SELECT COUNT(id) from pharmacyorder WHERE pharmacyorder.status = '1' && pharmacyorder.supName = '$name'";
+        $result = $db->query($sql);
+        if ($result->num_rows > 0) {
+            return $result;
+        }
+        $db->close();
+    }
+
     public function getMedId($id)
     {
         $this->getOrder($id);

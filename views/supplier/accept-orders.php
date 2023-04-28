@@ -125,7 +125,7 @@ use app\controllers\supplier\AcceptOrdersController;
                                 </br>
                                 <div class="nav-search">
                                     <form onsubmit="preventDefault();" role="search">
-                                        <label for="search">Accpet Order</label>
+                                        <label for="search">Accept Order</label>
                                         <input autofocus id="search" placeholder="Filter Medicine" required
                                             type="search" />
                                         <button type="submit">Go</button>
