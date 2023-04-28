@@ -118,16 +118,15 @@
                     <div class="contact-us">
                         <h1>Contact Us</h1>
 
-                        <form>
+                        <form method="post" action="/contact-us">
                             <div class="form-group">
                                 <label for="exampleFormControlInput1">Subject</label>
-                                <input type="email" class="form-input" id="exampleFormControlInput1"
-                                    placeholder="Subject">
+                                <input type="text" class="form-input" id="subject" placeholder="Subject" name="subject">
                             </div>
 
                             <div class="form-group">
                                 <label for="exampleFormControlTextarea1">Message</label>
-                                <textarea class="form-input" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                <textarea class="form-input" id="message" name="message" rows="3"></textarea>
                             </div>
                             <button type="submit" class="btn btn-primary">Send Message</button>
                         </form>
