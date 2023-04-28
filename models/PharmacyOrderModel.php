@@ -9,7 +9,7 @@ use app\core\Logger;
 class PharmacyOrderModel extends Model
 {
     private $id;
-    private $pharmacyUsername;
+    private $pharmacyName;
     private $medId;
     private $quantity;
     private $status;
@@ -26,7 +26,11 @@ class PharmacyOrderModel extends Model
         $sql = "SELECT pharmacyName,medId,quantity from pharmacyorder WHERE pharmacyorder.id = '$id'";
         $result = $db->query($sql);
         if ($result->num_rows > 0) {
-            return $result;
+            while ($row = $result->fetch_assoc()) {
+                $this->pharmacyName = $row['pharmacyName'];
+                $this->medId = $row['medId'];
+                $this->quantity = $row['quantity'];
+            }
         }
         $db->close();
     }
@@ -79,7 +83,7 @@ class PharmacyOrderModel extends Model
     public function getOrderPharm($id)
     {
         $this->getOrder($id);
-        return $this->pharmacyUsername;
+        return $this->pharmacyName;
     }
 
     public function acceptOrder($supName, $id)
