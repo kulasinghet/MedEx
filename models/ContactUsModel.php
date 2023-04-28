@@ -7,10 +7,10 @@ use app\core\Logger;
 
 class ContactUsModel extends Model
 {
-    private string $inquiry_id;
-    private string $username;
-    private string $subject;
-    private string $message;
+    public string $inquiry_id;
+    public string $username;
+    public string $subject;
+    public string $message;
 
     /**
      * @return string
@@ -80,7 +80,8 @@ class ContactUsModel extends Model
     {
         $this->setInquiryId($this->createRandomID('contact_us'));
 
-        $db = (new Database())->getConnection();;
+        $db = (new Database())->getConnection();
+        ;
         $sql = "INSERT INTO contact_us (contact_us.inqury_id, contact_us.username, contact_us.subject, contact_us.message) VALUES ('$this->inquiry_id', '$this->username', '$this->subject', '$this->message')";
 
         Logger::logDebug($sql);
@@ -89,15 +90,15 @@ class ContactUsModel extends Model
 
         try {
 
-        $stmt->execute();
+            $stmt->execute();
 
-        if ($stmt->affected_rows == 1) {
-            $stmt->close();
-            return true;
-        } else {
-            $stmt->close();
-            return false;
-        }
+            if ($stmt->affected_rows == 1) {
+                $stmt->close();
+                return true;
+            } else {
+                $stmt->close();
+                return false;
+            }
 
         } catch (\Exception $e) {
             Logger::logError($e->getMessage());

@@ -25,6 +25,7 @@ use app\controllers\SiteController;
 use app\controllers\supplier\SupplierAddMedicineController;
 use app\controllers\lab\LabAcceptReqController;
 use app\controllers\lab\LabReportController;
+use app\controllers\ContactUsController;
 
 $app = new Application();
 
@@ -38,6 +39,7 @@ $app->router->get('/404', [SiteController::class, '_404']);
 $app->router->get('/logout', [SiteController::class, 'logout']);
 $app->router->get('/login', [LoginAuthController::class, 'login']);
 $app->router->post('/login', [LoginAuthController::class, 'login']);
+$app->router->post('/contact-us', [ContactUsController::class, 'contactUs']);
 
 // delivery Routes
 //$app -> router -> get('/delivery/login', [LoginAuthController::class, 'deliveryLogin']);
