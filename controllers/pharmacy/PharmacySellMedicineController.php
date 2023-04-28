@@ -267,4 +267,30 @@ class PharmacySellMedicineController extends Controller
         echo json_encode($result);
     }
 
+    public function salesByDay(Request $request) {
+
+        $pharmacyUsername = $request->getParams()['pharmacyUsername'];
+        $order = new \app\models\PharmacySellModel();
+        $result = $order->getSalesOrdersPerDayLimitWeek($pharmacyUsername);
+
+        header('Content-Type: application/json');
+        echo json_encode($result);
+    }
+
+    public function salesAndCostForCurrentMonth(Request $request) {
+
+        $pharmacyUsername = $request->getParams()['pharmacyUsername'];
+        $order = new \app\models\PharmacySellModel();
+        $sales = $order->getTotalSalesLimitMonth($pharmacyUsername);
+        $cost = $order->getTotalCostLimitMonth($pharmacyUsername);
+
+        $result = [
+            'sales' => $sales,
+            'cost' => $cost,
+        ];
+
+        header('Content-Type: application/json');
+        echo json_encode($result);
+    }
+
 }

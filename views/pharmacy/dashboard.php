@@ -11,10 +11,122 @@ echo $components->sideBar('dashboard');
 
 ?>
 
+
+
 <div class="canvas nav-cutoff sidebar-cutoff">
     <div class="canvas-inner">
-        <div class="row" id="inventory-page-row"
-            <div class="col" id="inventory-page-col"
+
+        <div class="dashboard-row">
+            <div class="card g-col-4 g-row-1-start-1">
+                <div class="card-body">
+                    <h5 class="card-title">Sales in the Week</h5>
+                    <p class="card-text">
+                        <canvas id="myChart"  style="width: 20vw; height: 20vh;"></canvas>
+
+                        <script>
+                            const username = document.getElementsByClassName('nav-profile-name')[0].innerHTML;
+                            const api_call = "http://localhost:8080/pharmacy/api/sales-by-day?pharmacyUsername=" + username;
+
+                            fetch(api_call)
+                                .then(response => response.json())
+                                .then(data => {
+                                    // Sort the data by invoice date in ascending order
+                                    data.sort((a, b) => new Date(a.invoice_date) - new Date(b.invoice_date));
+
+                                    const labels = data.map(item => item.invoice_date);
+                                    const values = data.map(item => item.total);
+
+                                    // Create the chart
+                                    const ctx = document.getElementById('myChart').getContext('2d');
+                                    const myChart = new Chart(ctx, {
+                                        type: 'line',
+                                        data: {
+                                            labels: labels,
+                                            datasets: [{
+                                                label: 'Total Sales',
+                                                data: values,
+                                                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                                                borderColor: 'rgba(54, 162, 235, 1)',
+                                                borderWidth: 1
+                                            }]
+                                        },
+                                        options: {
+                                            scales: {
+                                                yAxes: [{
+                                                    ticks: {
+                                                        beginAtZero: true
+                                                    }
+                                                }]
+                                            }
+                                        }
+                                    });
+                                });
+
+
+                        </script>
+
+
+                    </p>
+                </div>
+            </div>
+
+            <div class="card g-col-4 g-row-1-start-1">
+                <div class="card-body">
+                    <h5 class="card-title">Sales and Cost</h5>
+                    <p class="card-text">
+                        <canvas id="sales-and-cost"  style="width: 20vw; max-height: 20vh;"></canvas>
+
+                        <script>
+                            const salescost = "http://localhost:8080/pharmacy/api/sales-and-cost-for-current-month?pharmacyUsername=" + username;
+
+                            // Fetch the data and create the chart
+                            fetch(salescost)
+                                .then(response => response.json())
+                                .then(data => {
+
+                                    console.log(data);
+                                    // Get the sales and cost data from the response
+                                    const sales = data.sales;
+                                    const cost = data.cost;
+
+                                    // Create the chart
+                                    const ctx = document.getElementById('sales-and-cost').getContext('2d');
+                                    const myChart = new Chart(ctx, {
+                                        type: 'doughnut',
+                                        data: {
+                                            labels: ['Sales', 'Cost'],
+                                            datasets: [{
+                                                label: 'Sales vs. Cost',
+                                                data: [sales, cost],
+                                                backgroundColor: ['rgba(54, 162, 235, 0.2)', 'rgba(255, 99, 132, 0.2)'],
+                                                borderColor: ['rgba(54, 162, 235, 1)', 'rgba(255, 99, 132, 1)'],
+                                                borderWidth: 1
+                                            }]
+                                        },
+                                        options: {
+                                            legend: {
+                                                display: true,
+                                                position: 'bottom'
+                                            }
+                                        }
+                                    });
+                                });
+                        </script>
+
+
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+
+        </div>
+
+
+
+        <div class="row" id="inventory-page-row">
+            <div class="col" id="inventory-page-col">
 
         <div class=" orders">
             <table id="orders-table">

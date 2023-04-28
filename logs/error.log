@@ -163,3 +163,10 @@
 2023/04/27 22:22:52 Something went wrong while creating order testPharmacy
 2023/04/27 22:23:52 Something went wrong while creating order testPharmacy
 2023/04/27 22:26:23 Something went wrong while creating order testPharmacy
+2023/04/28 10:30:22 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'LEFT JOIN pharmacysellmedicine ON pharmacysell.invoice_id = pharmacysellmedicine' at line 1
+2023/04/28 10:31:14 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'LEFT JOIN pharmacysellmedicine ON pharmacysell.invoice_id = pharmacysellmedicine' at line 1
+2023/04/28 10:32:49 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'LEFT JOIN pharmacysellmedicine ON pharmacysell.invoice_id = pharmacysellmedicine' at line 1
+2023/04/28 10:34:36 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'LEFT JOIN pharmacysellmedicine ON pharmacysell.invoice_id = pharmacysellmedicine' at line 1
+2023/04/28 10:34:57 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'LEFT JOIN pharmacysellmedicine ON pharmacysell.invoice_id = pharmacysellmedicine' at line 1
+2023/04/28 10:36:57 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'LEFT JOIN pharmacysellmedicine ON pharmacysell.invoice_id = pharmacysellmedicine' at line 1
+2023/04/28 10:39:14 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'LEFT JOIN pharmacysellmedicine ON pharmacysell.invoice_id = pharmacysellmedicine' at line 1

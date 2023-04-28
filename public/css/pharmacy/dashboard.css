@@ -364,3 +364,15 @@ tr.Cancelled {
 .swal-text {
   animation: none !important;
 }
+
+
+.dashboard-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    padding: 2vh;
+    margin-bottom: 2vh;
+}

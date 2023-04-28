@@ -98,7 +98,9 @@ $app->router->get('/pharmacy/api/medicine-details', [PharmacyInventoryController
 $app->router->post('/pharmacy/api/update-medicine', [PharmacyInventoryController::class, 'updateMedicine']);
 $app->router->get('/pharmacy/api/sales-order', [PharmacySellMedicineController::class, 'salesOrder']);
 $app->router->get('/pharmacy/api/sales-order-medicines', [PharmacySellMedicineController::class, 'salesOrderMedicines']);
-
+$app->router->get('/pharmacy/api/sales-by-day', [PharmacySellMedicineController::class, 'salesByDay']);
+//salesAndCostForCurrentMonth
+$app->router->get('/pharmacy/api/sales-and-cost-for-current-month', [PharmacySellMedicineController::class, 'salesAndCostForCurrentMonth']);
 
 // #############################################################################################
 

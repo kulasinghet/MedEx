@@ -304,5 +304,59 @@ class PharmacySellModel extends Model
         }
     }
 
+    public function getSalesOrdersPerDayLimitWeek(mixed $pharmacyUsername)
+    {
+        $sql = "SELECT invoice_date, SUM(bill_total) AS total FROM pharmacysell WHERE pharmacyUsername = '$pharmacyUsername' AND invoice_date >= DATE_SUB(CURDATE(), INTERVAL 7 DAY) GROUP BY invoice_date ORDER BY invoice_date DESC LIMIT 7";
+
+        Logger::logDebug($sql);
+
+        $db = (new Database())->getConnection();
+        try {
+            $result = $db->query($sql);
+            $result = $result->fetch_all(MYSQLI_ASSOC);
+            $db->close();
+            return $result;
+        } catch (\Exception $e) {
+            Logger::logError($e->getMessage());
+            return false;
+        }
+    }
+
+    public function getTotalSalesLimitMonth(mixed $pharmacyUsername)
+    {
+        $sql = "SELECT SUM(bill_total) AS total FROM pharmacysell WHERE pharmacyUsername = '$pharmacyUsername' AND MONTH(invoice_date) = MONTH(CURRENT_DATE()) AND YEAR(invoice_date) = YEAR(CURRENT_DATE())";
+
+        Logger::logDebug($sql);
+
+        $db = (new Database())->getConnection();
+        try {
+            $result = $db->query($sql);
+            $result = $result->fetch_assoc();
+            $db->close();
+            return $result['total'];
+        } catch (\Exception $e) {
+            Logger::logError($e->getMessage());
+            return false;
+        }
+    }
+
+    public function getTotalCostLimitMonth(mixed $pharmacyUsername)
+    {
+        $sql = "SELECT SUM(quantity * stock.buying_price) AS total  FROM pharmacysellmedicine LEFT JOIN stock ON pharmacysellmedicine.medId = stock.medId WHERE pharmacysellmedicine.invoice_id IN (SELECT invoice_id FROM pharmacysell WHERE pharmacyUsername = '$pharmacyUsername' AND MONTH(invoice_date) = MONTH(CURRENT_DATE()) AND YEAR(invoice_date) = YEAR(CURRENT_DATE()))";
+
+        Logger::logDebug($sql);
+
+        $db = (new Database())->getConnection();
+        try {
+            $result = $db->query($sql);
+            $result = $result->fetch_assoc();
+            $db->close();
+            return $result['total'];
+        } catch (\Exception $e) {
+            Logger::logError($e->getMessage());
+            return false;
+        }
+    }
+
 
 }
