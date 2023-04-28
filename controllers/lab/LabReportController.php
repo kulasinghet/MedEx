@@ -5,6 +5,8 @@ namespace app\controllers\lab;
 use app\core\Controller;
 use app\core\Request;
 use app\models\LabReportModel;
+use app\models\LabRequestModel;
+use app\models\SupplierMedicineModel;
 
 
 class LabReportController extends Controller
@@ -13,10 +15,19 @@ class LabReportController extends Controller
     {
         if ($request->isPost()) {
             $labreport = new LabReportModel;
+            $labreq = new LabRequestModel;
+            $supMed = new SupplierMedicineModel;
             $reqid = $_POST['reqid'];
             $verfied = $_POST['status'];
             $comment = $_POST['comment'];
-            if ($labreport->issueReport($reqid, $verfied, $comment)) {
+            $result1 = $labreq->getSup_Medid($reqid);
+            if ($result1->num_rows > 0) {
+                while ($row1 = $result1->fetch_assoc()) {
+                    $medId = $row1['medId'];
+                    $supName = $row1['SupName'];
+                }
+            }
+            if ($labreport->issueReport($reqid, $verfied, $comment) && $supMed->UpdateLabReport($supName, $medId, $verfied)) {
                 echo (new \app\core\ExceptionHandler)->LabReportIssued();
                 return $this->render("/lab/past-reports.php");
             }

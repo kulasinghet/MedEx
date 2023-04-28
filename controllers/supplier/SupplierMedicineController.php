@@ -59,9 +59,9 @@ class SupplierMedicineController extends Controller
                         $labreqid = $row2["id"];
                         $status = $row2["status"];
                         if ($status == '0') {
-                            $accpeted = 'Accepted';
-                        } else {
                             $accpeted = 'Pending';
+                        } else {
+                            $accpeted = 'Accepted';
                         }
 
                         echo "<tr style = 'padding:1%; border-bottom: 1pt solid black;'><td>" . $medNam . "</td><td>" . $sciName . "</td><td>" . $weight . " mg</td><td>" . $manname . "</td><td>" . $accpeted . "</td><td>" . $labreqid . "</td></tr>";
