@@ -25,12 +25,16 @@ class SupplierMedicineController extends Controller
                 $medNam = $med->getName($medid);
                 $sciName = $med->getSciname($medid);
                 $weight = $med->getWeight($medid);
+                $volume = $med->getVolume($medid);
                 $quantity = $row["quantity"];
                 $unitPrice = $row["unitPrice"];
                 $manid = $med->getManufacture($medid);
                 $manname = $man->getManufactureName($manid);
-
-                echo "<tr><td>" . $medNam . "</td><td>" . $sciName . "</td><td>" . $weight . " mg</td><td>" . $manname . "</td><td>" . $quantity . "</td><td>" . $unitPrice . "</td></tr>";
+                if ($weight > 0) {
+                    echo "<tr><td>" . $medNam . "</td><td>" . $sciName . "</td><td>" . $weight . " mg</td><td>" . $manname . "</td><td>" . $quantity . "</td><td>" . $unitPrice . "</td></tr>";
+                } else {
+                    echo "<tr><td>" . $medNam . "</td><td>" . $sciName . "</td><td>" . $volume . " ml</td><td>" . $manname . "</td><td>" . $quantity . "</td><td>" . $unitPrice . "</td></tr>";
+                }
             }
         } else {
             echo "<tr><td colspan='5' style='padding:2%;'> No Medicine Added</td>";
@@ -51,6 +55,7 @@ class SupplierMedicineController extends Controller
                 $medNam = $med->getName($medid);
                 $sciName = $med->getSciname($medid);
                 $weight = $med->getWeight($medid);
+                $volume = $med->getVolume($medid);
                 $result2 = $labreq->getSupMedReq($medid, $_SESSION['username']);
                 $manid = $med->getManufacture($medid);
                 $manname = $man->getManufactureName($manid);
@@ -63,8 +68,11 @@ class SupplierMedicineController extends Controller
                         } else {
                             $accpeted = 'Accepted';
                         }
-
-                        echo "<tr style = 'padding:1%; border-bottom: 1pt solid black;'><td>" . $medNam . "</td><td>" . $sciName . "</td><td>" . $weight . " mg</td><td>" . $manname . "</td><td>" . $accpeted . "</td><td>" . $labreqid . "</td></tr>";
+                        if ($weight > 0) {
+                            echo "<tr style = 'padding:1%; border-bottom: 1pt solid black;'><td>" . $medNam . "</td><td>" . $sciName . "</td><td>" . $weight . " mg</td><td>" . $manname . "</td><td>" . $accpeted . "</td><td>" . $labreqid . "</td></tr>";
+                        } else {
+                            echo "<tr style = 'padding:1%; border-bottom: 1pt solid black;'><td>" . $medNam . "</td><td>" . $sciName . "</td><td>" . $volume . " ml</td><td>" . $manname . "</td><td>" . $accpeted . "</td><td>" . $labreqid . "</td></tr>";
+                        }
                     }
                 }
             }
@@ -95,7 +103,7 @@ class SupplierMedicineController extends Controller
 
         echo "<div style='height: 300px;'>
         <table style = 'width: 100%; text-align:center; padding-top:5%;>
-        <thead style='position:fixed;'><tr style = 'padding:1%; border-bottom: 1pt solid black;'><th>Medicine Name</th><th>Scientific Name</th><th>Weight</th><th>Mannufacture</th><th></th></tr></thead>
+        <thead style='position:fixed;'><tr style = 'padding:1%; border-bottom: 1pt solid black;'><th>Medicine Name</th><th>Scientific Name</th><th>Weight/Volume</th><th>Mannufacture</th><th> Add Medicine</th></tr></thead>
         </table>
         <div style='height: 100%; overflow: auto;'>
         <table style = 'width: 100%; text-align:center; padding-bottom:5%;>
@@ -104,11 +112,19 @@ class SupplierMedicineController extends Controller
             $name = $med->getName($value);
             $sciname = $med->getSciname($value);
             $weight = $med->getWeight($value);
+            $volume = $med->getVolume($value);
             $manid = $med->getManufacture($value);
             $manname = $man->getManufactureName($manid);
-            echo "<form method='post' action='/supplier/add-existing-medicine'>";
-            echo " <input type='hidden' value='$value' name='id'/>";
-            echo "<tr style = 'padding:1%; border-bottom: 1pt solid black;' ><td>" . $name . "</td><td>" . $sciname . "</td><td>" . $weight . " mg</td><td>" . $manname . "</td><td><input type='submit' value='+' class='btn btn--primary'></td></tr></form>";
+            if ($weight > 0) {
+                echo "<form method='post' action='/supplier/add-existing-medicine'>";
+                echo " <input type='hidden' value='$value' name='id'/>";
+                echo "<tr style = 'padding:1%; border-bottom: 1pt solid black;' ><td>" . $name . "</td><td>" . $sciname . "</td><td>" . $weight . " mg</td><td>" . $manname . "</td><td><input type='submit' value='+' class='btn btn--primary'></td></tr></form>";
+            } else {
+                echo "<form method='post' action='/supplier/add-existing-medicine'>";
+                echo " <input type='hidden' value='$value' name='id'/>";
+                echo "<tr style = 'padding:1%; border-bottom: 1pt solid black;' ><td>" . $name . "</td><td>" . $sciname . "</td><td>" . $volume . " ml</td><td>" . $manname . "</td><td><input type='submit' value='+' class='btn btn--primary'></td></tr></form>";
+            }
+
         }
         echo "</tbody></table></div></div>";
     }

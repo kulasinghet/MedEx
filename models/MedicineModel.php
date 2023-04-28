@@ -10,6 +10,7 @@ class MedicineModel extends Model
     public $id;
     public $medName;
     public $weight;
+    public $volume;
     public $sciName;
     public $manId;
 
@@ -18,7 +19,7 @@ class MedicineModel extends Model
     {
         $db = (new Database())->getConnection();
         try {
-            $sql = "INSERT INTO medicine (id, medName, weight, sciName, manId)  VALUES ('$this->id', '$this->medName','$this->weight','$this->sciName','$this->manId')";
+            $sql = "INSERT INTO medicine (id, medName, weight,volume, sciName, manId)  VALUES ('$this->id', '$this->medName','$this->weight','$this->volume','$this->sciName','$this->manId')";
             $stmt = $db->prepare($sql);
             $stmt->execute();
             if ($stmt->affected_rows == 1) {
@@ -47,6 +48,7 @@ class MedicineModel extends Model
                 $this->id = $row["id"];
                 $this->medName = $row["medName"];
                 $this->weight = $row["weight"];
+                $this->volume = $row['volume'];
                 $this->sciName = $row["sciName"];
                 $this->manId = $row["manId"];
             }
@@ -75,6 +77,13 @@ class MedicineModel extends Model
     {
         $this->getMedicine($id);
         return $this->weight;
+
+    }
+
+    public function getVolume($id)
+    {
+        $this->getMedicine($id);
+        return $this->volume;
 
     }
 

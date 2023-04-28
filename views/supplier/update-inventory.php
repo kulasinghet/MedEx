@@ -135,7 +135,7 @@ use app\controllers\supplier\SupplierUpdateMedicineController;
                                     <tr>
                                         <th>Medicine Name</th>
                                         <th>Scientific Name</th>
-                                        <th>Weight</th>
+                                        <th>Weight/Volume</th>
                                         <th>Mannufacture</th>
                                         <th>Quantity</th>
                                         <th>Unit Price</th>

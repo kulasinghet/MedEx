@@ -1,6 +1,8 @@
 <?php
 use app\controllers\supplier\SupplierDashboardController;
 use app\models\SupplierModel;
+use app\models\PharmacyOrderModel;
+use app\models\SupplierMedicineModel;
 
 ?>
 <!DOCTYPE html>
@@ -123,20 +125,28 @@ use app\models\SupplierModel;
                         <div class="card-body">
                             <div style="padding: 2%;">
                                 <div style="display: flex; flex-direction: row;">
-                                    <h3 style="padding-right:60%">Supplier Profile</h3><a href='#'
-                                        style="padding-top:5%"><i class='fa fa-pencil'></i></a>
+                                    <h3 style="padding-right:60%">Welcome Back !</h3>
                                 </div>
                                 <?php
                                 $sup = new SupplierModel;
-                                $sup->getStatus($_SESSION['username']);
+                                $order = new PharmacyOrderModel;
+                                $supmed = new SupplierMedicineModel;
                                 $sup->getName($_SESSION['username']);
-                                echo " <h5> </br> Supplier Username: " . $_SESSION['username'] . "</br></br>";
-                                echo " Supplier Name: " . $_SESSION['name'] . "</br></br> Supplier Status: ";
-                                if ($_SESSION['stat']) {
-                                    echo "<font color='#17A600'>Verfied </font></h5>";
-                                } else {
-                                    echo "<font color='#FF5854'>Unverfied </font></h5>";
+                                $result1 = $order->getSupOrderCount($_SESSION['username']);
+                                if ($result1->num_rows > 0) {
+                                    while ($row1 = $result1->fetch_assoc()) {
+                                        $ordercount = $row1['COUNT(id)'];
+                                    }
                                 }
+                                $result2 = $supmed->getSupMedCount($_SESSION['username']);
+                                if ($result2->num_rows > 0) {
+                                    while ($row2 = $result2->fetch_assoc()) {
+                                        $medcount = $row2['COUNT(medId)'];
+                                    }
+                                }
+                                echo " <h3>" . $_SESSION['name'] . "<br/><br/>To date you have,</h3>
+                                <h5><br/>Accepted <b>" . $ordercount . " </b>Orders</h5>" .
+                                    "<h5><br/>Supply <b>" . $medcount . " </b>Medicine</h5>";
                                 ?>
                             </div>
                         </div>

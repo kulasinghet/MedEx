@@ -153,7 +153,7 @@ use app\controllers\supplier\SupplierMedicineController;
                     </div>
 
                     <div class="card g-col-2 g-row-2-start-3"
-                        style=" box-shadow: 0 3px 10px rgb(0 0 0 / 0.2); border-radius: 20px; width:70%; height: 55%;">
+                        style=" box-shadow: 0 3px 10px rgb(0 0 0 / 0.2); border-radius: 20px; width:70%; height: 60%;">
                         <div class="card-body">
                             <div style="padding: 2%;">
                                 <h3>Add New Medicine</h3>
@@ -164,7 +164,8 @@ use app\controllers\supplier\SupplierMedicineController;
                                 if ($_SESSION['stat']) {
                                     echo "<form action='/supplier/add-medicine' method='post' enctype='multipart/form-data' style='padding-top: 2%; padding-left: 5%; width:70%; height:50%'>
                                     Medicine Name: <input type='text' name='name' class='form-input' placeholder='Enter Medicine Name' required><br>
-                                    Weight (mg): <input type='text' name='weight' class='form-input' placeholder='Enter Weight in mg' required><br>
+                                    Weight (mg): <input type='text' name='weight' class='form-input' placeholder='Enter Weight in mg'><br>
+                                    Volume (ml): <input type='text' name='volume' class='form-input' placeholder='Enter Volume in ml'><br>
                                     Scietific Name: <select name='sciname' value='' class='form-input' required>Manufacture Name";
                                     $sciname = new ScietificNameModel;
                                     $sciname->SciNameDropdown();

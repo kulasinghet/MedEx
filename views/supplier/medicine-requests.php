@@ -118,7 +118,7 @@ use app\controllers\supplier\SupplierMedicineController;
                                     <tr style='padding:1%; border-bottom: 1pt solid black;'>
                                         <th>Medicine Name</th>
                                         <th>Scientific Name</th>
-                                        <th>Weight</th>
+                                        <th>Weight/Volume</th>
                                         <th>Mannufacture</th>
                                         <th>Status</th>
                                         <th>Request ID</th>

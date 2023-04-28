@@ -30,10 +30,16 @@ class SupplierOrdersController extends Controller
                         $medid = $row2['medId'];
                         $medname = $med->getName($medid);
                         $weight = $med->getWeight($medid);
+                        $volume = $med->getVolume($medid);
                         $manid = $med->getManufacture($id);
                         $manname = $manu->getManufactureName($manid);
                         $qauntity = $row2['quantity'];
-                        echo "<tr><td>" . $id . "</td><td>" . $pharname . "</td><td>" . $medname . "</td><td>" . $weight . "</td><td>" . $manname . "</td><td>" . $qauntity . "</td></tr>";
+                        if ($weight > 0) {
+                            echo "<tr><td>" . $id . "</td><td>" . $pharname . "</td><td>" . $medname . "</td><td>" . $weight . "mg</td><td>" . $manname . "</td><td>" . $qauntity . "</td></tr>";
+                        } else {
+                            echo "<tr><td>" . $id . "</td><td>" . $pharname . "</td><td>" . $medname . "</td><td>" . $volume . "ml</td><td>" . $manname . "</td><td>" . $qauntity . "</td></tr>";
+                        }
+
 
                     }
                 }

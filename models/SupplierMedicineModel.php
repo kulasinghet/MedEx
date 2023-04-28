@@ -45,6 +45,18 @@ class SupplierMedicineModel extends Model
 
     }
 
+    public function getSupMedCount($uname)
+    {
+        $db = (new Database())->getConnection();
+        $sql = "SELECT COUNT(medId) from supplier_medicine  WHERE supplier_medicine.supName = '$uname' && verified='1'";
+        $result = $db->query($sql);
+        if ($result->num_rows > 0) {
+            return $result;
+        }
+        $db->close();
+
+    }
+
     public function getPendingMedicine($uname)
     {
         $db = (new Database())->getConnection();
@@ -190,13 +202,13 @@ class SupplierMedicineModel extends Model
         }
     }
 
-    public function UpdateLabReport($uname,$medId,$status)
+    public function UpdateLabReport($uname, $medId, $status)
     {
 
         $db = (new Database())->getConnection();
 
         try {
-          $sql = "UPDATE supplier_medicine SET supplier_medicine.verified = '$status' WHERE supplier_medicine.supName = '$uname' AND supplier_medicine.medId = '$medId'";
+            $sql = "UPDATE supplier_medicine SET supplier_medicine.verified = '$status' WHERE supplier_medicine.supName = '$uname' AND supplier_medicine.medId = '$medId'";
             $stmt = $db->prepare($sql);
             $stmt->execute();
 
