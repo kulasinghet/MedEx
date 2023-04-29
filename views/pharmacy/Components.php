@@ -70,7 +70,7 @@ class Components
                 </ul>
                 <a class="nav-profile" href="/pharmacy/profile">
                     <div class="nav-profile-image">
-                        <img alt="Profile image" src="../res/avatar-empty.png"/>
+                        <img alt="Profile image" src="' . $profileURL . '"/>
                     </div>
                 </a>
             </div>

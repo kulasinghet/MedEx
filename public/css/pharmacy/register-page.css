@@ -15,15 +15,14 @@ body {
     /*width: 100%;*/
     /*max-width: 85vw;*/
     padding: 3vh 3vw;
-    margin: auto;
-    margin-top: 5vh;
-    margin-bottom: 5vh;
+    margin: 5vh auto;
     background-color: #fff;
     border-radius: 1vh;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     color: #333;
     width: 100%;
     max-width: 85vw;
@@ -49,16 +48,16 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    max-width: 83vw;
 }
 
 .form-container {
     display: flex;
     flex-direction: row;
-    /*justify-content: space-between;*/
     width: auto;
     align-items: center;
     justify-content: center;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
 }
 
 
@@ -100,28 +99,23 @@ label {
     padding-bottom: 1vh;
     border: none;
     cursor: pointer;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: 400;
     border-radius: 1vh;
     width: 30%;
-    margin: auto;
     align-self: center;
     cursor: pointer;
-    margin-top: 2vh;
-    margin-bottom: 2vh;
 }
 
 .file-upload {
-
-    height: 30px;
-    width: 30px;
-    border-radius: 100px;
+    height: 35px;
+    width: 35px;
+    border-radius: 70px;
     position: relative;
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
-
     border: 4px solid #FFFFFF;
     overflow: hidden;
     background-image: linear-gradient(to bottom, #2590EB 50%, #FFFFFF 50%);
@@ -167,9 +161,9 @@ i:hover {
 }
 
 .login-now p {
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 300;
-    /*margin-bottom: 0;*/
+    margin-bottom: 0;
 }
 
 .login-now a {
@@ -218,12 +212,24 @@ i:hover {
 
 
 .side {
-    width: 100%;
-    max-width: 20vw;
     margin: auto;
     margin-top: 0;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    padding-left: 5vw;
+    padding-left: 1vw;
+    padding-right: 1vw;
+}
+
+select {
+    padding: 1vh;
+    margin-bottom: 3vh;
+    border: 1px solid #ccc;
+    border-radius: 1vh;
+    height: 6vh;
+    font-size: 1rem;
+    font-weight: 300;
+    outline: none;
+    width: 25vw;
+    color: #333;
 }

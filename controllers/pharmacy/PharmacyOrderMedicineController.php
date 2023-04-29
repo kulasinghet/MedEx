@@ -42,8 +42,14 @@ class PharmacyOrderMedicineController extends Controller
 
                     $qr = new \app\core\QR();
 //                    $api = $_ENV '/delivery/api/update-medicine-details?orderId=' . $result;
-                    $api = $_ENV['BASE_URL'] . '/delivery/api/update-medicine-details?orderId=' . $result;
-                    $qr->generateQRFromJSON($api, $result, 10, 'L');
+
+                    $qr_JSON = [
+                        'orderId' => $result,
+                        'username' => $_SESSION['username'],
+                        'totalPrice' => $this->totalPrice,
+                        'qrtype' => 'order'
+                    ];
+                    $qr->generateQRFromJSON(json_encode($qr_JSON), $result, 10, 'L');
 
                     $pdf = new \app\core\PDF();
                     $medicineIdsforPDF = (new \app\models\PharmacyOrderModel())->getMedicineByOrderID($result);

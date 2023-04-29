@@ -7,6 +7,6 @@ class Pharmacy
 
     public static function getPharmacyProfilePicture(mixed $username): string
     {
-        return "../res/avatar-empty.png";
+        return "uploads/profilePicture/" . $username . "_profilePicture.jpg";
     }
 }

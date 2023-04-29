@@ -112,4 +112,60 @@ class ExceptionHandler extends Logger
         $spanClass = "<span class='closebtn' id='closebtn' onclick='this.parentElement.style.display='none';'>&times;</span>";
         return "<head><script src='/js/pharmacy/login-error.js' defer></script><link href='/css/error-model.css' rel='stylesheet'></head>" . "<div class='loginError alert alert-danger' id='loginError' role='alert' style='background-color: green;'>" . $spanClass . " Lab Request Accepted !" . "</div>";
     }
+
+    public function fileAlreadyExists()
+    {
+        $scriptClass = "<head><script src='/js/pharmacy/login-error.js' defer></script><link href='/css/error-model' rel='stylesheet'></head>";
+        $alertClass = "<div class='loginError alert alert-danger' id='loginError' role='alert'>";
+        $spanClass = "<span class='closebtn' id='closebtn' style='padding-bottom: 0' onclick='this.parentElement.style.display='none';'>&times;</span>";
+        $closeClass = "</div>";
+
+        $message = $scriptClass . $alertClass . $spanClass . "File already exists" . $closeClass;
+        return $message;
+    }
+
+    public function fileTooLarge()
+    {
+        $scriptClass = "<head><script src='/js/pharmacy/login-error.js' defer></script><link href='/css/error-model' rel='stylesheet'></head>";
+        $alertClass = "<div class='loginError alert alert-danger' id='loginError' role='alert'>";
+        $spanClass = "<span class='closebtn' id='closebtn' style='padding-bottom: 0' onclick='this.parentElement.style.display='none';'>&times;</span>";
+        $closeClass = "</div>";
+
+        $message = $scriptClass . $alertClass . $spanClass . "File too large" . $closeClass;
+        return $message;
+    }
+
+    public function invalidFileFormat()
+    {
+        $scriptClass = "<head><script src='/js/pharmacy/login-error.js' defer></script><link href='/css/error-model' rel='stylesheet'></head>";
+        $alertClass = "<div class='loginError alert alert-danger' id='loginError' role='alert'>";
+        $spanClass = "<span class='closebtn' id='closebtn' style='padding-bottom: 0' onclick='this.parentElement.style.display='none';'>&times;</span>";
+        $closeClass = "</div>";
+
+        $message = $scriptClass . $alertClass . $spanClass . "Invalid file format" . $closeClass;
+        return $message;
+    }
+
+    public function fileUploadError()
+    {
+        $scriptClass = "<head><script src='/js/pharmacy/login-error.js' defer></script><link href='/css/error-model' rel='stylesheet'></head>";
+        $alertClass = "<div class='loginError alert alert-danger' id='loginError' role='alert'>";
+        $spanClass = "<span class='closebtn' id='closebtn' style='padding-bottom: 0' onclick='this.parentElement.style.display='none';'>&times;</span>";
+        $closeClass = "</div>";
+
+        $message = $scriptClass . $alertClass . $spanClass . "File upload error" . $closeClass;
+        return $message;
+    }
+
+    public function pharmacyRegistrationSuccess()
+    {
+        $spanClass = "<span class='closebtn' id='closebtn' onclick='this.parentElement.style.display='none';'>&times;</span>";
+        return "<head><script src='/js/pharmacy/login-error.js' defer></script><link href='/css/error-model.css' rel='stylesheet'></head>" . "<div class='loginError alert alert-danger' id='loginError' role='alert' style='background-color: green;'>" . $spanClass . "Pharmacy Registration Success!" . "</div>";
+    }
+
+    public function pharmacyRegistrationFailed()
+    {
+        $spanClass = "<span class='closebtn' id='closebtn' onclick='this.parentElement.style.display='none';'>&times;</span>";
+        return "<head><script src='/js/pharmacy/login-error.js' defer></script><link href='/css/error-model.css' rel='stylesheet'></head>" . "<div class='loginError alert alert-danger' id='loginError' role='alert' style='background-color: red;'>" . $spanClass . "Pharmacy Registration Failed!" . "</div>";
+    }
 }

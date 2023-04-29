@@ -1,7 +1,7 @@
 <html lang="en">
 <head>
     <title>Pharmacy Register - MedEx</title>
-<!--        <link rel="stylesheet" href="/css/registerPage/pharmacy/phr_register.css">-->
+    <!--        <link rel="stylesheet" href="/css/registerPage/pharmacy/phr_register.css">-->
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
     <link rel="stylesheet" href="/css/pharmacy/register-page.css">
     <link href="../scss/vendor/demo.css" rel="stylesheet"/>
@@ -14,74 +14,93 @@
 
     <h1>Create Pharmacy Account</h1>
     <form action="/pharmacy/register" method="post" enctype="multipart/form-data">
-    <div class="form-container">
+        <div class="form-container">
 
-        <div class="side">
-            <input type="text" name="username" id="username" required placeholder="Username"/>
-            <input type="text" name="email" id="email" required placeholder="Email"/>
-            <input type="text" name="password" id="password" required placeholder="Password"/>
-            <input type="text" name="confirmPassword" id="confirmPassword" required placeholder="Re-type password"/>
-
-
-
-        </div>
             <div class="side">
-                <input type="text" name="name" id="name" required placeholder="Pharmacy Name"/>
-                <input type="text" name="address" id="address" required placeholder="Address"/>
-                <input type="text" name="city" id="city" required placeholder="City"/>
-                <input type="text" name="ownerName" id="ownerName" required placeholder="Owner Name"/>
-                <input type="text" name="contactnumber" id="contactnumber" required placeholder="Contact Number"/>
+                <input type="text" name="username" id="username" required placeholder="Username"/>
+                <input type="text" name="email" id="email" required placeholder="Email"/>
+                <input type="text" name="password" id="password" required placeholder="Password"/>
+                <input type="text" name="confirmPassword" id="confirmPassword" required placeholder="Re-type password"/>
+                <input type="text" name="pharmacyname" id="name" required placeholder="Pharmacy Name"/>
+
+                <!--                <input type="text" name="city" id="city" required placeholder="City"/>-->
+
             </div>
             <div class="side">
+                <input type="text" name="address" id="address" required placeholder="Address"/>
+                <select name="city">
+                    <option value="" disabled selected>Select City</option>
+                    <option value="Ampara">Ampara</option>
+                    <option value="Anuradhapura">Anuradhapura</option>
+                    <option value="Badulla">Badulla</option>
+                    <option value="Batticaloa">Batticaloa</option>
+                    <option value="Colombo">Colombo</option>
+                    <option value="Galle">Galle</option>
+                    <option value="Gampaha">Gampaha</option>
+                    <option value="Hambantota">Hambantota</option>
+                    <option value="Jaffna">Jaffna</option>
+                    <option value="Kalutara">Kalutara</option>
+                    <option value="Kandy">Kandy</option>
+                    <option value="Kegalle">Kegalle</option>
+                    <option value="Kilinochchi">Kilinochchi</option>
+                    <option value="Kurunegala">Kurunegala</option>
+                    <option value="Mannar">Mannar</option>
+                    <option value="Matale">Matale</option>
+                    <option value="Matara">Matara</option>
+                    <option value="Monaragala">Monaragala</option>
+                    <option value="Mullaitivu">Mullaitivu</option>
+                    <option value="Nuwara Eliya">Nuwara Eliya</option>
+                    <option value="Polonnaruwa">Polonnaruwa</option>
+                    <option value="Puttalam">Puttalam</option>
+                    <option value="Ratnapura">Ratnapura</option>
+                    <option value="Trincomalee">Trincomalee</option>
+                    <option value="Vavuniya">Vavuniya</option>
+                </select>
+                <input type="text" name="ownerName" id="ownerName" required placeholder="Owner Name"/>
+                <input type="number" name="contactnumber" id="contactnumber" required placeholder="Contact Number"/>
+                <input type="text" name="pharmacyRegNo" id="pharmacyRegNo" required
+                       placeholder="Pharmacy Registration Number"/>
 
-
-            <input type="text" name="pharmacyRegNo" id="pharmacyRegNo" required placeholder="Pharmacy Registration Number"/>
-
-            <input type="text" name="BusinessRegId" id="BusinessRegId" required placeholder="Business Registration ID"
-
-            <input type="text" name="BusinessRegCertName" id="BusinessRegCertName" required placeholder="Business Registration Certificate Name"
-
-            <input type="text" name="pharmacyCertId" id="pharmacyCertId" required placeholder="Pharmacy Certificate ID"
-
-            <input type="text" name="pharmacyCertName" id="pharmacyCertName" required placeholder="Pharmacy Certificate Name"
-
-<!---->
-<!---->
-<!--            <label for="uploadbusinesscerti">Upload Business Registration Certificate</label>-->
-<!--            <input type="file" name="uploadbusinesscerti" id="uploadbusinesscerti" accept="image/png,image/jpeg" />-->
-<!--            <label for="uploadpharceti">Upload Pharmacy Certificate</label>-->
-<!--            <input type="file" name="uploadpharceti" id="uploadpharceti" accept="image/png,image/jpeg" />-->
+            </div>
+            <div class="side">
+                <input type="text" name="BusinessRegId" id="BusinessRegId" required
+                       placeholder="Business Registration ID" />
+                <input type="text" name="pharmacyCertId" id="pharmacyCertId" required
+                       placeholder="Pharmacy Certificate ID" />
                 <span>
                     <label for="uploadbusinesscerti">Upload Business Registration Certificate</label>
                     <div class="file-upload">
-                        <input type="file" name="uploadbusinesscerti" id="uploadbusinesscerti" accept="image/png,image/jpeg" required/>
-                        <i class="fa fa-arrow-up" ></i>
+                        <input type="file" name="uploadbusinesscerti" id="uploadbusinesscerti"
+                               accept="image/png,image/jpeg" required/>
+                        <i class="fa fa-upload" aria-hidden="true"></i>
                     </div>
                 </span>
                 <span>
                     <label for="uploadpharceti">Upload Pharmacy Certificate</label>
                     <div class="file-upload">
-                        <input type="file" name="uploadpharceti" id="uploadpharceti" accept="image/png,image/jpeg" required/>
-                        <i class="fa fa-arrow-up"></i>
+                        <input type="file" name="uploadpharceti" id="uploadpharceti" accept="image/png,image/jpeg"
+                               required/>
+                        <i class="fa fa-upload" aria-hidden="true"></i>
                     </div>
                 </span>
                 <span>
-                    <label for="uploadpharceti">Choose a profile picture</label>
+                    <label for="uploadprofilepic">Choose a profile picture</label>
                     <div class="file-upload">
-                        <input type="file" name="uploadpharceti" id="uploadpharceti" accept="image/png,image/jpeg" required/>
-                        <i class="fa fa-arrow-up"></i>
+                        <input type="file" name="uploadprofilepic" id="uploadprofilepic" accept="image/png,image/jpeg"
+                               required/>
+                        <i class="fa fa-upload" aria-hidden="true"></i>
                     </div>
                 </span>
             </div>
-    </div>
+        </div>
 
-            <input type="submit" value="Register" id="loginButton" />
-        </form>
+        <input type="submit" value="Register" id="loginButton"/>
+    </form>
 
     <div class="login-now">
-        <p>Already have an account? <a href="/pharmacy/login">Login Now</a></p>
+        <p>Already have an account? <a href="/login">Login Now</a></p>
     </div>
 
 </div>
-    </body>
+</body>
 </html>
