@@ -8,33 +8,13 @@ use app\controllers\supplier\SupplierOrdersController;
 <head>
     <meta charset="UTF-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Supplie - Accepted Orders</title>
+    <title>supplier - Accepted Orders</title>
     <link href="../scss/vendor/demo.css" rel="stylesheet" />
     <!-- Font awesome kit -->
     <script crossorigin="anonymous" src="https://kit.fontawesome.com/9b33f63a16.js"></script>
 </head>
 
 <body>
-
-    <nav>
-        <div class="nav-search">
-            <form onsubmit="preventDefault();" role="search">
-                <label for="search">Search for stuff</label>
-                <input autofocus id="search" placeholder="Search..." required type="search" />
-                <button type="submit">Go</button>
-            </form>
-        </div>
-        <div class="nav-inner">
-            <ul>
-                <li><a href="/login"><i class="fa fa-sign-out"></i></a></li>
-            </ul>
-            <a class="nav-profile" href="#">
-                <div class="nav-profile-image">
-                    <img alt="Profile image" src="../res/avatar-empty.png" />
-                </div>
-            </a>
-        </div>
-    </nav>
 
     <div class="sidebar">
         <div class="sidebar-inner">
@@ -137,7 +117,7 @@ use app\controllers\supplier\SupplierOrdersController;
                                         <th>Order ID</th>
                                         <th>Pharmacy Name</th>
                                         <th>Medicine</th>
-                                        <th>Weight</th>
+                                        <th>Weight/Volume</th>
                                         <th>Mannufacture</th>
                                         <th>Quantity</th>
                                     </tr>

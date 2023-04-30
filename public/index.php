@@ -26,6 +26,8 @@ use app\controllers\LoginAuthController;
 use app\controllers\SiteController;
 use app\controllers\supplier\SupplierAddMedicineController;
 use app\controllers\lab\LabAcceptReqController;
+use app\controllers\lab\LabReportController;
+use app\controllers\ContactUsController;
 
 $app = new Application();
 
@@ -39,6 +41,7 @@ $app->router->get('/404', [SiteController::class, '_404']);
 $app->router->get('/logout', [SiteController::class, 'logout']);
 $app->router->get('/login', [LoginAuthController::class, 'login']);
 $app->router->post('/login', [LoginAuthController::class, 'login']);
+$app->router->post('/contact-us', [ContactUsController::class, 'contactUs']);
 
 // delivery Routes
 //$app -> router -> get('/delivery/login', [LoginAuthController::class, 'deliveryLogin']);
@@ -63,7 +66,12 @@ $app->router->get('/lab/requests', [LabDashboardController::class, 'viewRequest'
 $app->router->post('/lab/requests', [LabDashboardController::class, 'viewRequest']);
 $app->router->get('/lab/reports', [LabDashboardController::class, 'addLabReport']);
 $app->router->post('/lab/reports', [LabDashboardController::class, 'addLabReport']);
+$app->router->post('/lab/past-reports', [LabDashboardController::class, 'PastReports']);
+$app->router->get('/lab/past-reports', [LabDashboardController::class, 'PastReports']);
+$app->router->post('/lab/past-requests', [LabDashboardController::class, 'PastReq']);
+$app->router->get('/lab/past-requests', [LabDashboardController::class, 'PastReq']);
 $app->router->post('/lab/accept-req', [LabAcceptReqController::class, 'acceptRequest']);
+$app->router->post('/lab/generate-report', [LabReportController::class, 'genrateReport']);
 
 
 // Employee Routes

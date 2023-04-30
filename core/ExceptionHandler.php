@@ -68,7 +68,7 @@ class ExceptionHandler extends Logger
     public function inValidWeight()
     {
         $spanClass = "<span class='closebtn' id='closebtn' onclick='this.parentElement.style.display='none';'>&times;</span>";
-        return $this->scriptClass . $this->alertClass . $spanClass . "Invalid Weight" . $this->closeClass;
+        return $this->scriptClass . $this->alertClass . $spanClass . "Invalid Weight or Volume" . $this->closeClass;
     }
     public function inValidQty()
     {
@@ -86,6 +86,12 @@ class ExceptionHandler extends Logger
 
         $spanClass = "<span class='closebtn' id='closebtn' onclick='this.parentElement.style.display='none';'>&times;</span>";
         return "<head><script src='/js/pharmacy/login-error.js' defer></script><link href='/css/error-model.css' rel='stylesheet'></head>" . "<div class='loginError alert alert-danger' id='loginError' role='alert' style='background-color: green;'>" . $spanClass . "New Medicine Request Sent!" . "</div>";
+    }
+    public function InquirySent()
+    {
+
+        $spanClass = "<span class='closebtn' id='closebtn' onclick='this.parentElement.style.display='none';'>&times;</span>";
+        return "<head><script src='/js/pharmacy/login-error.js' defer></script><link href='/css/error-model.css' rel='stylesheet'></head>" . "<div class='loginError alert alert-danger' id='loginError' role='alert' style='background-color: green;'>" . $spanClass . "Inquiry Sent!" . "</div>";
     }
     public function DeleteCompleted()
     {
@@ -133,5 +139,12 @@ class ExceptionHandler extends Logger
 
         $spanClass = "<span class='closebtn' id='closebtn' onclick='this.parentElement.style.display='none';'>&times;</span>";
         return "<head><script src='/js/pharmacy/login-error.js' defer></script><link href='/css/error-model.css' rel='stylesheet'></head>" . "<div class='loginError alert alert-danger' id='loginError' role='alert' style='background-color: green;'>" . $spanClass . " Lab Request Accepted !" . "</div>";
+    }
+
+    public function LabReportIssued()
+    {
+
+        $spanClass = "<span class='closebtn' id='closebtn' onclick='this.parentElement.style.display='none';'>&times;</span>";
+        return "<head><script src='/js/pharmacy/login-error.js' defer></script><link href='/css/error-model.css' rel='stylesheet'></head>" . "<div class='loginError alert alert-danger' id='loginError' role='alert' style='background-color: green;'>" . $spanClass . " Lab Report Issued !" . "</div>";
     }
 }

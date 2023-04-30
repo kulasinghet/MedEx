@@ -33,32 +33,6 @@ class SupplierMedicineModel extends Model
         return $this->quantity;
 
     }
-    public function addMedicine()
-    {
-
-        $db = (new Database())->getConnection();
-
-        try {
-            $sql = "INSERT INTO supplier_medicine(supName, medId, verified, quantity, unitPrice) VALUES ('$this->supName','$this->medId','0','$this->quantity','$this->unitPrice')";
-
-            $stmt = $db->prepare($sql);
-            $stmt->execute();
-
-            if ($stmt->affected_rows == 1) {
-                $stmt->close();
-                return true;
-            }
-
-            $stmt->close();
-
-            return true;
-        } catch (\Exception $e) {
-            ErrorLog::logError($e->getMessage());
-            echo $e->getMessage();
-            return false;
-        }
-    }
-
     public function getSupMedicine($uname)
     {
         $db = (new Database())->getConnection();
@@ -69,32 +43,19 @@ class SupplierMedicineModel extends Model
         }
         $db->close();
 
-
     }
-    public function DeleteMed($uname, $id)
+
+    public function getSupMedCount($uname)
     {
         $db = (new Database())->getConnection();
-        $sql = "DELETE from  supplier_medicine WHERE supplier_medicine.supName = '$uname' && supplier_medicine.medId = '$id'";
+        $sql = "SELECT COUNT(medId) from supplier_medicine  WHERE supplier_medicine.supName = '$uname' && verified='1'";
         $result = $db->query($sql);
         if ($result->num_rows > 0) {
             return $result;
         }
         $db->close();
 
-
     }
-
-    public function UpdateMed($uname, $id, $unitPrice, $quantity)
-    {
-        $db = (new Database())->getConnection();
-        $sql = "UPDATE supplier_medicine SET supplier_medicine.unitPrice = $unitPrice, supplier_medicine.quantity = $quantity WHERE supplier_medicine.supName = '$uname' && supplier_medicine.medId = '$id'";
-        $result = $db->query($sql);
-        if ($result->num_rows > 0) {
-            return $result;
-        }
-        $db->close();
-    }
-
 
     public function getPendingMedicine($uname)
     {
@@ -150,8 +111,75 @@ class SupplierMedicineModel extends Model
 
     }
 
+    public function addMedicine()
+    {
 
+        $db = (new Database())->getConnection();
 
+        try {
+            $sql = "INSERT INTO supplier_medicine(supName, medId, verified, quantity, unitPrice) VALUES ('$this->supName','$this->medId','0','$this->quantity','$this->unitPrice')";
+
+            $stmt = $db->prepare($sql);
+            $stmt->execute();
+
+            if ($stmt->affected_rows == 1) {
+                $stmt->close();
+                return true;
+            }
+
+            $stmt->close();
+
+            return true;
+        } catch (\Exception $e) {
+            ErrorLog::logError($e->getMessage());
+            echo $e->getMessage();
+            return false;
+        }
+    }
+
+    public function DeleteMed($uname, $id)
+    {
+        $db = (new Database())->getConnection();
+        try {
+            $sql = "DELETE from  supplier_medicine WHERE supplier_medicine.supName = '$uname' && supplier_medicine.medId = '$id'";
+            $stmt = $db->prepare($sql);
+            $stmt->execute();
+
+            if ($stmt->affected_rows == 1) {
+                $stmt->close();
+                return true;
+            }
+
+            $stmt->close();
+        } catch (\Exception $e) {
+            ErrorLog::logError($e->getMessage());
+            echo $e->getMessage();
+            return false;
+        }
+    }
+
+    public function UpdateMed($uname, $id, $unitPrice, $quantity)
+    { {
+            $db = (new Database())->getConnection();
+            try {
+                $sql = "UPDATE supplier_medicine SET supplier_medicine.unitPrice = $unitPrice, supplier_medicine.quantity = $quantity WHERE supplier_medicine.supName = '$uname' && supplier_medicine.medId = '$id'";
+                $stmt = $db->prepare($sql);
+                $stmt->execute();
+
+                if ($stmt->affected_rows == 1) {
+                    $stmt->close();
+                    return true;
+                }
+
+                $stmt->close();
+            } catch (\Exception $e) {
+                ErrorLog::logError($e->getMessage());
+                echo $e->getMessage();
+                return false;
+            }
+        }
+
+    }
 
     public function acceptOrder($qauntity, $id, $uname)
     {
@@ -167,6 +195,31 @@ class SupplierMedicineModel extends Model
             }
 
             $stmt->close();
+        } catch (\Exception $e) {
+            ErrorLog::logError($e->getMessage());
+            echo $e->getMessage();
+            return false;
+        }
+    }
+
+    public function UpdateLabReport($uname, $medId, $status)
+    {
+
+        $db = (new Database())->getConnection();
+
+        try {
+            $sql = "UPDATE supplier_medicine SET supplier_medicine.verified = '$status' WHERE supplier_medicine.supName = '$uname' AND supplier_medicine.medId = '$medId'";
+            $stmt = $db->prepare($sql);
+            $stmt->execute();
+
+            if ($stmt->affected_rows == 1) {
+                $stmt->close();
+                return true;
+            }
+
+            $stmt->close();
+
+            return true;
         } catch (\Exception $e) {
             ErrorLog::logError($e->getMessage());
             echo $e->getMessage();

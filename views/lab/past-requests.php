@@ -1,23 +1,22 @@
 <?php
-use app\controllers\supplier\SupplierDashboardController;
-use app\models\SupplierMedicineModel;
-use app\controllers\supplier\SupplierMedicineController;
+use app\controllers\lab\LabDashboardController;
+use app\controllers\lab\LabRequestsController;
 
 ?>
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Supplier Inventory</title>
+    <title>Laboratory Requests</title>
     <link href="../scss/vendor/demo.css" rel="stylesheet" />
+    <link href="../css/supplier/formcss.css" rel="stylesheet" />
     <!-- Font awesome kit -->
     <script crossorigin="anonymous" src="https://kit.fontawesome.com/9b33f63a16.js"></script>
 </head>
 
 <body>
-
+    <!-- Section: Fixed Components -->
     <div class="sidebar">
         <div class="sidebar-inner">
             <nav class="sidebar-header">
@@ -33,40 +32,16 @@ use app\controllers\supplier\SupplierMedicineController;
                         <a class="btn" href="/dashboard"> <i class="fa-solid fa-house"></i>Dashboard
                         </a>
                     </li>
-                    <li>
-                        <a class="btn" href="/supplier/add-medicine"> <i class="fa fa-medkit"></i> Add New
-                            Medicine
-                        </a>
+                    <li><a class="btn" href="/lab/requests"><i class="fa fa-check-circle"></i>Accept
+                            Requests</a>
                     </li>
-                    <li>
-                        <a class="btn" href="/supplier/inventory"> <i class="fa fa-dropbox"></i> Inventory </a>
+                    <li><a class="btn disabled" href="/lab/past-requests"><i class="fa fa-file-text-o"></i>View Past
+                            Requests</a>
                     </li>
-                    <li>
-                        <a class="btn" href="/supplier/update-inventory"> <i class="fa fa-plus-square"></i>
-                            Update
-                            Inventory
-                        </a>
+                    <li><a class="btn" href="/lab/reports"> <i class="fa fa-flask"></i> Generate Reports</a></li>
+                    <li><a class="btn" href="/lab/past-reports"> <i class="fa fa-list-alt"></i> View Past Reports </a>
                     </li>
-                    <li>
-                        <a class="btn" href="/supplier/accept-orders"> <i class="fa fa-check-circle"></i>
-                            Accept Orders
-                        </a>
-                    </li>
-                    <li>
-                        <a class="btn" href="/supplier/orders"> <i class="fa fa-list-alt"></i> View
-                            Accepted
-                            Orders
-                        </a>
-                    </li>
-                    <li>
-                        <a class="btn disabled" href="/supplier/medicine-requests"> <i class="fa fa-hourglass-half"></i>
-                            Medicine
-                            Requests </a>
-                    </li>
-
-                    <li>
-                        <a class="btn" href="/supplier/contact-us"> <i class="fa fa-phone"></i> Contact Us </a>
-                    </li>
+                    <li> <a class="btn" href="/lab/contact-us"> <i class="fa fa-phone"></i> Contact Us </a></li>
                 </ul>
             </div>
         </div>
@@ -94,17 +69,16 @@ use app\controllers\supplier\SupplierMedicineController;
     </nav>
     <!-- Section: Fixed Components -->
 
-    <!-- Section: Dashboard Layout -->
 
     <div class="canvas nav-cutoff sidebar-cutoff">
         <div class="canvas-inner">
             <div class="row">
                 <div class="col" style="display: flex; flex-direction: column;">
                     <div class="card g-col-2 g-row-2-start-3"
-                        style=" box-shadow: 0 3px 10px rgb(0 0 0 / 0.2); border-radius: 20px; width:100% padding: 1%;">
+                        style=" box-shadow: 0 3px 10px rgb(0 0 0 / 0.2); border-radius: 20px; width:90%">
                         <div class="card-body">
                             <div style="padding: 2%;">
-                                <h3>Pending Requests</h3>
+                                <h3>Accepted Requests</h3>
                                 </br>
                                 <div class="nav-search">
                                     <form onsubmit="preventDefault();" role="search">
@@ -116,19 +90,17 @@ use app\controllers\supplier\SupplierMedicineController;
                                 </div>
                                 <table style='width: 100%; text-align:center; padding-top:5%' class='scrollable'>
                                     <tr style='padding:1%; border-bottom: 1pt solid black;'>
+                                        <th>Request ID</th>
+                                        <th>Supplier Name</th>
                                         <th>Medicine Name</th>
                                         <th>Scientific Name</th>
-                                        <th>Weight/Volume</th>
-                                        <th>Mannufacture</th>
-                                        <th>Status</th>
-                                        <th>Request ID</th>
+                                        <th>Weight</th>
+                                        <th></th>
                                     </tr>
-
-                                    <?php $supmed = new SupplierMedicineController;
-                                    $supmed->viewPendig($_SESSION['username']);
+                                    <?php
+                                    $req = new LabRequestsController;
+                                    $req->viewRequests();
                                     ?>
-
-
                                 </table>
                             </div>
                         </div>
@@ -138,7 +110,8 @@ use app\controllers\supplier\SupplierMedicineController;
             </div>
         </div>
     </div>
-    <!-- Section: Dashboard Layout -->
+    </div>
+
 </body>
 
 </html>

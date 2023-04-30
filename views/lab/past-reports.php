@@ -1,6 +1,6 @@
 <?php
 use app\controllers\lab\LabDashboardController;
-use app\models\LabModel;
+use app\controllers\lab\LabReportController;
 
 ?>
 
@@ -11,6 +11,7 @@ use app\models\LabModel;
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Laboratory Dashboard</title>
     <link href="../scss/vendor/demo.css" rel="stylesheet" />
+    <link href="../css/supplier/formcss.css" rel="stylesheet" />
     <!-- Font awesome kit -->
     <script crossorigin="anonymous" src="https://kit.fontawesome.com/9b33f63a16.js"></script>
 </head>
@@ -29,15 +30,18 @@ use app\models\LabModel;
             <div class="sidebar-context">
                 <ul>
                     <li>
-                        <a class="btn disabled" href="/dashboard"> <i class="fa-solid fa-house"></i>Dashboard
+                        <a class="btn" href="/dashboard"> <i class="fa-solid fa-house"></i>Dashboard
                         </a>
                     </li>
-                    <li><a class="btn" href="/lab/requests"><i class="fa fa-check-circle"></i>Accept Requests</a>
+                    <li><a class="btn" href="/lab/requests"><i class="fa fa-check-circle"></i>Accept
+                            Requests</a>
                     </li>
                     <li><a class="btn" href="/lab/past-requests"><i class="fa fa-file-text-o"></i>View Past Requests</a>
                     </li>
-                    <li><a class="btn" href="/lab/reports"> <i class="fa fa-flask"></i> Generate Reports</a></li>
-                    <li><a class="btn" href="/lab/past-reports"> <i class="fa fa-list-alt"></i> View Past Reports </a>
+                    <li><a class="btn" href="/lab/reports"> <i class="fa fa-flask"></i> Generate Reports</a>
+                    </li>
+                    <li><a class="btn disabled" href="/lab/past-reports"> <i class="fa fa-list-alt"></i> View Past
+                            Reports </a>
                     </li>
                     <li> <a class="btn" href="/lab/contact-us"> <i class="fa fa-phone"></i> Contact Us </a></li>
                 </ul>
@@ -73,29 +77,29 @@ use app\models\LabModel;
             <div class="row">
                 <div class="col" style="display: flex; flex-direction: row;">
                     <div class="card g-col-2 g-row-2-start-3"
-                        style=" box-shadow: 0 3px 10px rgb(0 0 0 / 0.2); border-radius: 20px; width:50%">
+                        style=" box-shadow: 0 3px 10px rgb(0 0 0 / 0.2); border-radius: 20px; width:90%">
                         <div class="card-body">
                             <div style="padding: 2%;">
-                                <div style="display: flex; flex-direction: row;">
-                                    <h3 style="padding-right:60%">Laboratory Profile</h3><a href='#'
-                                        style="padding-top:5%"><i class='fa fa-pencil'></i></a>
-                                </div>
-                                <?php
-                                echo '<br><h5>Laboratory Username: ' . $_SESSION['username'];
-                                $lab = new LabModel;
-                                $lab->getName($_SESSION['username']);
-                                $lab->getLab($_SESSION['username']);
-                                echo '<br><br> Laboratory Name: ' . $_SESSION['username'] . '<br><br>Registerd Date: ' . $lab->reg_date;
+                                <h3>Past Lab Report</h3>
+                                <table style='width: 100%; text-align:center; padding-top:5%'>
+                                    <tr style='padding:1%; border-bottom: 1pt solid black;'>
+                                        <th>Request Id</th>
+                                        <th>Verfied</th>
+                                        <th>Comment</th>
+                                    </tr>
+                                    <?php
+                                    $labrep = new LabReportController;
+                                    $labrep->getIssuedReports();
+                                    ?>
 
-                                ?>
+                                </table>
                             </div>
-                        </div>
 
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
 
 </body>

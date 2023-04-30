@@ -34,10 +34,10 @@ class AcceptOrdersController extends Controller
                 if (in_array($medid, $supmedids)) {
                     $medname = $med->getName($medid);
                     $weight = $med->getWeight($medid);
+                    $volume = $med->getVolume($medid);
                     $manid = $med->getManufacture($id);
                     $manname = $manu->getManufactureName($manid);
                     $qauntity = $order->getMedQuantiy($id);
-                    $supmedq = $supMed->getQuantity($medid);
                     if ($supMed->getQuantity($medid) > $qauntity) {
                         echo "<form method='post' action='/supplier/accept'>";
                         echo " <input type='hidden' value='$medid' name='medid'/>";
