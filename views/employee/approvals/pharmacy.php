@@ -49,7 +49,7 @@ echo $components->createNavbar();
                                 </tr>
                                 <tr>
                                     <th>Owner Name</th>
-                                    <td><?php echo $store->aprv_one_obj->ownerName?? "N/A" ?></td>
+                                    <td><?php echo $store->aprv_one_obj->owner_name?? "N/A" ?></td>
                                 </tr>
                                 <tr>
                                     <th>Email</th>

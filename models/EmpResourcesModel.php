@@ -10,49 +10,49 @@ use app\models\HyperEntities\HyperPharmacyModel;
 use app\models\HyperEntities\HyperSupplierModel;
 use mysqli;
 
-class EmpApprovalsModel extends Model
+class EmpResourcesModel extends Model
 {
-    public function getAll(): array
+    public function getAll(bool $is_verified): array
     {
         $conn = $this->createConnection();
         $output = array_merge(
-            $this->queryInvalidPharmacies($conn),
-            $this->queryInvalidSuppliers($conn),
-            $this->queryInvalidDeliveryGuys($conn),
-            $this->queryInvalidLabs($conn)
+            $this->queryPharmacies($conn, $is_verified),
+            $this->querySuppliers($conn, $is_verified),
+            $this->queryDeliveryGuys($conn, $is_verified),
+            $this->queryLabs($conn, $is_verified)
             );
         $conn->close();
         return $output;
     }
 
-    public function getInvalidPharmacies(): array
+    public function getPharmacyList(bool $is_verified): array
     {
         $conn = $this->createConnection();
-        $output = $this->queryInvalidPharmacies($conn);
+        $output = $this->queryPharmacies($conn, $is_verified);
         $conn->close();
         return $output;
     }
 
-    public function getInvalidSuppliers(): array
+    public function getSupplierList(bool $is_verified): array
     {
         $conn = $this->createConnection();
-        $output = $this->queryInvalidSuppliers($conn);
+        $output = $this->querySuppliers($conn, $is_verified);
         $conn->close();
         return $output;
     }
 
-    public function getInvalidDeliveryGuys(): array
+    public function getDeliveryGuysList(bool $is_verified): array
     {
         $conn = $this->createConnection();
-        $output = $this->queryInvalidDeliveryGuys($conn);
+        $output = $this->queryDeliveryGuys($conn, $is_verified);
         $conn->close();
         return $output;
     }
 
-    public function getInvalidLabs(): array
+    public function getLabList(bool $is_verified): array
     {
         $conn = $this->createConnection();
-        $output = $this->queryInvalidLabs($conn);
+        $output = $this->queryLabs($conn, $is_verified);
         $conn->close();
         return $output;
     }
@@ -64,11 +64,11 @@ class EmpApprovalsModel extends Model
         return $db->getConnection();
     }
 
-    public function queryInvalidPharmacies(mysqli $conn): array
+    public function queryPharmacies(mysqli $conn, bool $is_verified): array
     {
         try {
             $output = array();
-            $sql = "SELECT `username`,`name`,`email`,`address`,`mobile` FROM `pharmacy` WHERE verified = 0";
+            $sql = "SELECT `username`,`name`,`email`,`address`,`mobile` FROM `pharmacy` WHERE verified = ".($is_verified? "1" : "0").";";
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
@@ -92,11 +92,11 @@ class EmpApprovalsModel extends Model
         return $output;
     }
 
-    public function queryInvalidSuppliers(mysqli $conn): array
+    public function querySuppliers(mysqli $conn, bool $is_verified): array
     {
         try {
             $output = array();
-            $sql = "SELECT `username`,`name`,`email`,`address`,`mobile` FROM `supplier` WHERE verified = 0";
+            $sql = "SELECT `username`,`name`,`email`,`address`,`mobile` FROM `supplier` WHERE verified = ".($is_verified? "1" : "0").";";
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
@@ -120,11 +120,11 @@ class EmpApprovalsModel extends Model
         return $output;
     }
 
-    public function queryInvalidDeliveryGuys(mysqli $conn): array
+    public function queryDeliveryGuys(mysqli $conn, bool $is_verified): array
     {
         try {
             $output = array();
-            $sql = "SELECT `username`,`name`,`email`,`address`,`mobile` FROM `delivery_partner` WHERE verified = 0";
+            $sql = "SELECT `username`,`name`,`email`,`address`,`mobile` FROM `delivery_partner` WHERE verified = ".($is_verified? "1" : "0").";";
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
@@ -148,11 +148,11 @@ class EmpApprovalsModel extends Model
         return $output;
     }
 
-    public function queryInvalidLabs(mysqli $conn): array
+    public function queryLabs(mysqli $conn, bool $is_verified): array
     {
         try {
             $output = array();
-            $sql = "SELECT `username`,`laboratory_name`,`email`,`address`,`mobile` FROM `laboratory` WHERE verified = 0";
+            $sql = "SELECT `username`,`laboratory_name`,`email`,`address`,`mobile` FROM `laboratory` WHERE verified = ".($is_verified? "1" : "0").";";
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {

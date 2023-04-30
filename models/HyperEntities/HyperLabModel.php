@@ -74,4 +74,106 @@ class HyperLabModel extends HyperEntityModel
             return false;
         }
     }
+
+    public function push(): bool
+    {
+        //loading the database
+        $db = new Database();
+        $conn = $db->getConnection();
+
+        try {
+            $sql = "INSERT INTO `laboratory` (
+                          `username`, 
+                          `laboratory_name`, 
+                          `business_registration_id`, 
+                          `laboratory_certificate_id`, 
+                          `BusinessRegCertName`, 
+                          `LabCertName`, 
+                          `email`, 
+                          `address`, 
+                          `mobile`,
+                          `verified`) 
+            VALUES (
+                    '$this->username', 
+                    '$this->name', 
+                    '$this->business_reg_id', 
+                    '$this->lab_cert_id', 
+                    '$this->business_cert_name', 
+                    '$this->lab_cert_name', 
+                    '$this->email', 
+                    '$this->address', 
+                    '$this->mobile',
+                    '0');";
+
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+
+            if ($stmt->affected_rows == 1) {
+                return true;
+            } else {
+                Logger::logError($stmt->error);
+                return false;
+            }
+        } catch (\Exception $e) {
+            Logger::logError($e->getMessage());
+            return false;
+        }
+    }
+
+    public function update(): bool
+    {
+        //loading the database
+        $db = new Database();
+        $conn = $db->getConnection();
+
+        try {
+            $sql = "UPDATE `laboratory` 
+            SET `laboratory_name`='$this->name',
+                `business_registration_id`='$this->business_reg_id',
+                `laboratory_certificate_id`='$this->lab_cert_id',
+                `BusinessRegCertName`='$this->business_cert_name',
+                `LabCertName`='$this->lab_cert_name',
+                `email`='$this->email',
+                `address`='$this->address',
+                `mobile`='$this->mobile'
+            WHERE `username`='$this->username';";
+
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+
+            if ($stmt->affected_rows == 1) {
+                return true;
+            } else {
+                Logger::logError($stmt->error);
+                return false;
+            }
+        } catch (\Exception $e) {
+            Logger::logError($e->getMessage());
+            return false;
+        }
+    }
+
+    public function delete(): bool
+    {
+        //loading the database
+        $db = new Database();
+        $conn = $db->getConnection();
+
+        try {
+            $sql = "DELETE FROM `laboratory` WHERE `username`='$this->username';";
+
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+
+            if ($stmt->affected_rows == 1) {
+                return true;
+            } else {
+                Logger::logError($stmt->error);
+                return false;
+            }
+        } catch (\Exception $e) {
+            Logger::logError($e->getMessage());
+            return false;
+        }
+    }
 }

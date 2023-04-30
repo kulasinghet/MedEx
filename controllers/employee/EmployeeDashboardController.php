@@ -10,7 +10,7 @@ class EmployeeDashboardController extends Controller
 {
     const login = 'Location: /login';
 
-    public function showReports(Request $request)
+    public function loadReports(Request $request)
     {
         if ($request->isGet()) {
             if ($_SESSION['userType'] == 'staff') {
@@ -23,59 +23,7 @@ class EmployeeDashboardController extends Controller
         }
     }
 
-    public function approvePharmacy(Request $request)
-    {
-        if ($request->isGet()) {
-            if ($_SESSION['userType'] == 'staff') {
-                $this -> render("employee/pharmacy.php");
-            } else {
-                return header(self::login);
-            }
-        } else {
-            return header(self::login);
-        }
-    }
-
-    public function approveSupplier(Request $request)
-    {
-        if ($request->isGet()) {
-            if ($_SESSION['userType'] == 'staff') {
-                $this -> render("employee/supplier.php");
-            } else {
-                return header(self::login);
-            }
-        } else {
-            return header(self::login);
-        }
-    }
-
-    public function approveLab(Request $request)
-    {
-        if ($request->isGet()) {
-            if ($_SESSION['userType'] == 'staff') {
-                $this -> render("employee/lab.php");
-            } else {
-                return header(self::login);
-            }
-        } else {
-            return header(self::login);
-        }
-    }
-
-    public function approveDelivery(Request $request)
-    {
-        if ($request->isGet()) {
-            if ($_SESSION['userType'] == 'staff') {
-                $this -> render("employee/delivery.php");
-            } else {
-                return header(self::login);
-            }
-        } else {
-            return header(self::login);
-        }
-    }
-
-    public function configs(Request $request)
+    public function loadConfigs(Request $request)
     {
         if ($request->isGet()) {
             if ($_SESSION['userType'] == 'staff') {

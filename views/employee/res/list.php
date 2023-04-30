@@ -1,8 +1,8 @@
 <?php
 
+use app\controllers\employee\EmployeeResListController;
 use app\stores\EmployeeStore;
 use app\views\employee\EmployeeViewComponents;
-use app\controllers\employee\EmployeeApprovalListController;
 
 const no_of_approvals = 10;
 
@@ -17,7 +17,7 @@ $store->flag_g_st = 0; // resetting the set number in the store
 <head>
     <meta charset="UTF-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Admin | Approvals</title>
+    <title>Admin | Resources</title>
 
     <!-- Font awesome kit -->
     <script crossorigin="anonymous" src="https://kit.fontawesome.com/9b33f63a16.js"></script>
@@ -31,7 +31,7 @@ $store->flag_g_st = 0; // resetting the set number in the store
 <body>
 <!-- Section: Fixed Components -->
 <?php
-echo $components->createSidebar('approval');
+echo $components->createSidebar('res');
 echo $components->createNavbar();
 ?>
 <!-- Section: Fixed Components -->
@@ -55,21 +55,11 @@ echo $components->createNavbar();
             <div class="separator"></div>
             <form class="block row" method="POST" action="">
                 <div class="col">
-                    <label for="filter-by-type">Group by: </label>
+                    <label for="sort-by">Sort by: </label>
                 </div>
                 <div class="col">
-                    <g28-selectbox id="filter-by-type" placeholder="All" <?php
-                    if ($filter != 'all') {
-                        echo 'value="' . match ($filter) {
-                                'pharmacy' => 'Pharmacy',
-                                'supplier' => 'Supplier',
-                                'lab' => 'Laboratory',
-                                'delivery' => 'Delivery Partner',
-                                default => 'All'
-                            } . '"';
-                    }
-                    ?>>
-                        All, Pharmacy, Supplier, Laboratory, Delivery Partner
+                    <g28-selectbox id="sort-by" placeholder="Default">
+                        Default, Name, Reg Date
                     </g28-selectbox>
                 </div>
             </form>
@@ -82,7 +72,7 @@ echo $components->createNavbar();
                 <table class="table approval-table">
                     <thead>
                     <tr>
-                        <th>Type</th>
+                        <th>Username</th>
                         <th>Name</th>
                         <th>Email</th>
                         <th>Mobile</th>
@@ -92,19 +82,18 @@ echo $components->createNavbar();
                     <tbody>
                     <?php
                     try {
-                        $controller = new EmployeeApprovalListController();
+                        $controller = new EmployeeResListController();
                         $approvals = match ($filter) {
-                            'all' => $controller->getAllApprovals(no_of_approvals, $set),
-                            'pharmacy' => $controller->getPharmacyApprovals(no_of_approvals, $set),
-                            'supplier' => $controller->getSupplierApprovals(no_of_approvals, $set),
-                            'lab' => $controller->getLabApprovals(no_of_approvals, $set),
-                            'delivery' => $controller->getDeliveryApprovals(no_of_approvals, $set),
+                            'pharmacy' => $controller->getPharmacyList(no_of_approvals, $set),
+                            'supplier' => $controller->getSupplierList(no_of_approvals, $set),
+                            'lab' => $controller->getLabList(no_of_approvals, $set),
+                            'delivery' => $controller->getDeliveryList(no_of_approvals, $set),
                             default => throw new Exception("Invalid filter!"),
                         };
                         if (!empty($approvals)) {
                             for ($i = 0; $i < no_of_approvals; $i++) {
                                 if (array_key_exists($i, $approvals)) {
-                                    echo $components->createApprovalItem($approvals[$i]);
+                                    echo $components->createResItem($approvals[$i]);
                                 } else {
                                     echo "<tr class='empty'>";
                                     echo "<td colspan='5'></td>";
@@ -150,20 +139,9 @@ echo $components->createNavbar();
             if (e.target.tagName === 'TD') {
                 let entity = row.getAttribute('data-usr');
                 let type = row.getAttribute('data-tp');
-                window.location.href = '/employee/approve/' + type + '?et=' + entity;
+                window.location.href = '/employee/res/' + type + '?et=' + entity;
             }
         });
-    });
-
-    document.querySelector('g28-selectbox#filter-by-type').addEventListener('change', (e) => {
-        let type = e.detail.value;
-        if (type === 'All') {
-            window.location.href = '/employee/approve';
-        } else if (type === 'Laboratory') {
-            window.location.href = '/employee/approve?f=lab';
-        } else {
-            window.location.href = '/employee/approve?f=' + type.toLowerCase();
-        }
     });
 </script>
 <script src="/js/g28-forms.js"></script>
