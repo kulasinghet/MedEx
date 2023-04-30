@@ -3,7 +3,11 @@
 namespace app\stores;
 
 use app\models\EmployeeModel;
+use app\models\HyperEntities\HyperDeliveryModel;
 use app\models\HyperEntities\HyperEntityModel;
+use app\models\HyperEntities\HyperLabModel;
+use app\models\HyperEntities\HyperPharmacyModel;
+use app\models\HyperEntities\HyperSupplierModel;
 use Exception;
 
 class EmployeeStore
@@ -18,7 +22,7 @@ class EmployeeStore
     // approve-one page variables
     public string $flag_aprv_one_usr;
     public string $flag_aprv_one_act;
-    public ?HyperEntityModel $aprv_one_obj;
+    public HyperPharmacyModel|HyperDeliveryModel|HyperLabModel|HyperSupplierModel|null $aprv_one_obj;
 
     /**
      * @throws Exception

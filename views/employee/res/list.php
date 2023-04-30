@@ -142,9 +142,19 @@ echo $components->createNavbar();
     for (let property in configs) {
         logger(`> ${property}: ${configs[property]}`);
     }
+
+    document.querySelectorAll('.approval-table tbody tr:not(.empty)').forEach((row) => {
+        row.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (e.target.tagName === 'TD') {
+                let entity = row.getAttribute('data-usr');
+                let type = row.getAttribute('data-tp');
+                window.location.href = '/employee/res/' + type + '?et=' + entity;
+            }
+        });
+    });
 </script>
 <script src="/js/g28-forms.js"></script>
-<script src="/js/employee/approval-list.js"></script>
 <!-- g28 styling framework -->
 </body>
 </html>

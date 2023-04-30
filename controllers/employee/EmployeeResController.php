@@ -9,7 +9,7 @@ use app\models\HyperEntities\HyperPharmacyModel;
 use app\models\HyperEntities\HyperSupplierModel;
 use app\stores\EmployeeStore;
 
-class EmployeeApprovalController extends AbstractCRUDController
+class EmployeeResController extends AbstractCRUDController
 {
     public function loadPharmacy(Request $request): void
     {
@@ -24,22 +24,18 @@ class EmployeeApprovalController extends AbstractCRUDController
         if ($obj) {
             // checking whether there is a direct action to be performed
             switch ($store->flag_aprv_one_act) {
-                case 'approve':
+                case 'delete':
                     $obj->verify(true);
-                    header('Location: /employee/approve');
-                    break;
-                case 'ignore':
-                    $obj->verify(null);
-                    header('Location: /employee/approve');
+                    header('Location: /employee/res?f=pharmacy');
                     break;
                 default:
                     // loading the approval details page
                     $store->aprv_one_obj = $obj;
-                    $this -> render("employee/approvals/pharmacy.php");
+                    $this -> render("employee/res/pharmacy.php");
                     break;
             }
         } else {
-            header('Location: /employee/approve');
+            header('Location: /employee/res?f=pharmacy');
         }
     }
 
@@ -56,22 +52,18 @@ class EmployeeApprovalController extends AbstractCRUDController
         if ($obj) {
             // checking whether there is a direct action to be performed
             switch ($store->flag_aprv_one_act) {
-                case 'approve':
+                case 'delete':
                     $obj->verify(true);
-                    header('Location: /employee/approve');
-                    break;
-                case 'ignore':
-                    $obj->verify(null);
-                    header('Location: /employee/approve');
+                    header('Location: /employee/res?f=supplier');
                     break;
                 default:
                     // loading the approval details page
                     $store->aprv_one_obj = $obj;
-                    $this -> render("employee/approvals/supplier.php");
+                    $this -> render("employee/res/supplier.php");
                     break;
             }
         } else {
-            header('Location: /employee/approve');
+            header('Location: /employee/res?f=supplier');
         }
     }
 
@@ -88,22 +80,18 @@ class EmployeeApprovalController extends AbstractCRUDController
         if ($obj) {
             // checking whether there is a direct action to be performed
             switch ($store->flag_aprv_one_act) {
-                case 'approve':
+                case 'delete':
                     $obj->verify(true);
-                    header('Location: /employee/approve');
-                    break;
-                case 'ignore':
-                    $obj->verify(null);
-                    header('Location: /employee/approve');
+                    header('Location: /employee/res?f=delivery');
                     break;
                 default:
                     // loading the approval details page
                     $store->aprv_one_obj = $obj;
-                    $this -> render("employee/approvals/delivery.php");
+                    $this -> render("employee/res/delivery.php");
                     break;
             }
         } else {
-            header('Location: /employee/approve');
+            header('Location: /employee/res?f=delivery');
         }
     }
 
@@ -120,22 +108,18 @@ class EmployeeApprovalController extends AbstractCRUDController
         if ($obj) {
             // checking whether there is a direct action to be performed
             switch ($store->flag_aprv_one_act) {
-                case 'approve':
+                case 'delete':
                     $obj->verify(true);
-                    header('Location: /employee/approve');
-                    break;
-                case 'ignore':
-                    $obj->verify(null);
-                    header('Location: /employee/approve');
+                    header('Location: /employee/res?f=lab');
                     break;
                 default:
                     // loading the approval details page
                     $store->aprv_one_obj = $obj;
-                    $this -> render("employee/approvals/lab.php");
+                    $this -> render("employee/res/lab.php");
                     break;
             }
         } else {
-            header('Location: /employee/approve');
+            header('Location: /employee/res?f=lab');
         }
     }
 }

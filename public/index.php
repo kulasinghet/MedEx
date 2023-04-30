@@ -9,6 +9,7 @@ use app\controllers\employee\EmployeeAuthController;
 use app\controllers\employee\EmployeeApprovalListController;
 use app\controllers\employee\EmployeeApprovalController;
 use app\controllers\employee\EmployeeDashboardController;
+use app\controllers\employee\EmployeeResController;
 use app\controllers\employee\EmployeeResListController;
 use app\controllers\lab\LabAuthController;
 use app\controllers\lab\LabContactusController;
@@ -83,6 +84,14 @@ $app->router->get('/employee/approve/lab', [EmployeeApprovalController::class, '
 $app->router->post('/employee/approve/lab', [EmployeeApprovalController::class, 'loadLab']);
 $app->router->get('/employee/res', [EmployeeResListController::class, 'load']);
 $app->router->post('/employee/res', [EmployeeApprovalController::class, 'load']);
+$app->router->get('/employee/res/pharmacy', [EmployeeResController::class, 'loadPharmacy']);
+$app->router->post('/employee/res/pharmacy', [EmployeeResController::class, 'loadPharmacy']);
+$app->router->get('/employee/res/supplier', [EmployeeResController::class, 'loadSupplier']);
+$app->router->post('/employee/res/supplier', [EmployeeResController::class, 'loadSupplier']);
+$app->router->get('/employee/res/delivery', [EmployeeResController::class, 'loadDelivery']);
+$app->router->post('/employee/res/delivery', [EmployeeResController::class, 'loadDelivery']);
+$app->router->get('/employee/res/lab', [EmployeeResController::class, 'loadLab']);
+$app->router->post('/employee/res/lab', [EmployeeResController::class, 'loadLab']);
 $app->router->get('/employee/configs', [EmployeeDashboardController::class, 'configs']);
 $app->router->post('/employee/configs', [EmployeeDashboardController::class, 'configs']);
 
