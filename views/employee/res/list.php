@@ -55,21 +55,11 @@ echo $components->createNavbar();
             <div class="separator"></div>
             <form class="block row" method="POST" action="">
                 <div class="col">
-                    <label for="filter-by-type">Group by: </label>
+                    <label for="sort-by">Sort by: </label>
                 </div>
                 <div class="col">
-                    <g28-selectbox id="filter-by-type" placeholder="All" <?php
-                    if ($filter != 'all') {
-                        echo 'value="' . match ($filter) {
-                                'pharmacy' => 'Pharmacy',
-                                'supplier' => 'Supplier',
-                                'lab' => 'Laboratory',
-                                'delivery' => 'Delivery Partner',
-                                default => 'All'
-                            } . '"';
-                    }
-                    ?>>
-                        All, Pharmacy, Supplier, Laboratory, Delivery Partner
+                    <g28-selectbox id="sort-by" placeholder="Default">
+                        Default, Name, Reg Date
                     </g28-selectbox>
                 </div>
             </form>
@@ -103,7 +93,7 @@ echo $components->createNavbar();
                         if (!empty($approvals)) {
                             for ($i = 0; $i < no_of_approvals; $i++) {
                                 if (array_key_exists($i, $approvals)) {
-                                    echo $components->createApprovalItem($approvals[$i]);
+                                    echo $components->createResItem($approvals[$i]);
                                 } else {
                                     echo "<tr class='empty'>";
                                     echo "<td colspan='5'></td>";

@@ -39,57 +39,57 @@ echo $components->createNavbar();
             <div class="col card data-box">
                 <div class="card-body">
                     <h5 class="card-title">Pharmacy Details</h5>
-                    <form method="POST" action="">
+                    <form method="POST" action="/employee/res/delivery/push">
                         <?php if ($pharmacy != null) { ?>
                             <div class="row margin-bottom">
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="entity-username">Username</label>
-                                        <input type="text" class="form-input" id="entity-username" value="<?php echo $pharmacy->username ?>">
+                                        <label for="username">Username</label>
+                                        <input type="text" class="form-input disabled" id="username" value="<?php echo $pharmacy->username ?>" disabled>
                                     </div>
                                     <div class="form-group">
-                                        <label for="entity-email">Email address</label>
-                                        <input type="email" class="form-input" id="entity-email" value="<?php echo $pharmacy->email ?>">
+                                        <label for="email">Email address</label>
+                                        <input type="email" class="form-input" id="email" value="<?php echo $pharmacy->email ?>">
                                     </div>
                                     <div class="form-group">
-                                        <label for="entity-address">Address</label>
-                                        <textarea class="form-input" id="entity-address" rows="3">
+                                        <label for="address">Address</label>
+                                        <textarea class="form-input" id="address" rows="3">
                                             <?php echo $pharmacy->address ?>
                                         </textarea>
                                     </div>
                                     <div class="form-group">
-                                        <label for="entity-phar_reg_no">Pharmacy Registration No.</label>
-                                        <input type="text" class="form-input" id="entity-phar_reg_no" value="<?php echo $pharmacy->phar_reg_no ?>">
+                                        <label for="phar_reg_no">Pharmacy Registration No.</label>
+                                        <input type="text" class="form-input" id="phar_reg_no" value="<?php echo $pharmacy->phar_reg_no ?>">
                                     </div>
                                     <div class="form-group">
-                                        <label for="entity-bis_reg_cert">Business Registration Certificate</label>
-                                        <input class="form-input" type="file" id="entity-bis_reg_cert" accept="image/*" value="<?php echo $pharmacy->business_cert_name ?>">
+                                        <label for="business_cert_name">Business Registration Certificate</label>
+                                        <input class="form-input" type="file" id="business_cert_name" accept="image/*" value="<?php echo $pharmacy->business_cert_name ?>">
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="entity-name">Name</label>
-                                        <input type="text" class="form-input" id="entity-name" value="<?php echo $pharmacy->name ?>">
+                                        <label for="name">Name</label>
+                                        <input type="text" class="form-input" id="name" value="<?php echo $pharmacy->name ?>">
                                     </div>
                                     <div class="form-group">
-                                        <label for="entity-phone">Phone Number</label>
-                                        <input type="text" class="form-input" id="entity-phone" value="<?php echo $pharmacy->mobile ?>">
+                                        <label for="mobile">Phone Number</label>
+                                        <input type="text" class="form-input" id="mobile" value="<?php echo $pharmacy->mobile ?>">
                                     </div>
                                     <div class="form-group">
-                                        <label for="entity-city">City</label>
-                                        <input type="text" class="form-input" id="entity-city" value="<?php echo $pharmacy->city ?>">
+                                        <label for="city">City</label>
+                                        <input type="text" class="form-input" id="city" value="<?php echo $pharmacy->city ?>">
                                     </div>
                                     <div class="form-group">
-                                        <label for="entity-bis_reg_id">Business Registration Id</label>
-                                        <input type="text" class="form-input" id="entity-bis_reg_id" value="<?php echo $pharmacy->business_reg_id ?>">
+                                        <label for="business_reg_id">Business Registration Id</label>
+                                        <input type="text" class="form-input" id="business_reg_id" value="<?php echo $pharmacy->business_reg_id ?>">
                                     </div>
                                     <div class="form-group">
-                                        <label for="entity-phar_cert_id">Pharmacy Certificate Id</label>
-                                        <input type="text" class="form-input" id="entity-phar_cert_id" value="<?php echo $pharmacy->phar_cert_id ?>">
+                                        <label for="phar_cert_id">Pharmacy Certificate Id</label>
+                                        <input type="text" class="form-input" id="phar_cert_id" value="<?php echo $pharmacy->phar_cert_id ?>">
                                     </div>
                                     <div class="form-group">
-                                        <label for="entity-phar_cert">Pharmacy Certificate</label>
-                                        <input class="form-input" type="file" id="entity-phar_cert" accept="image/*" value="<?php echo $pharmacy->phar_cert_name ?>">
+                                        <label for="phar_cert_name">Pharmacy Certificate</label>
+                                        <input class="form-input" type="file" id="phar_cert_name" accept="image/*" value="<?php echo $pharmacy->phar_cert_name ?>">
                                     </div>
                                 </div>
                             </div>
@@ -97,54 +97,50 @@ echo $components->createNavbar();
                             <div class="row margin-bottom">
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="entity-username">Username</label>
-                                        <input type="text" class="form-input" id="entity-username">
+                                        <label for="username">Username</label>
+                                        <input type="text" class="form-input" id="username">
                                     </div>
                                     <div class="form-group">
-                                        <label for="entity-email">Email address</label>
-                                        <input type="email" class="form-input" id="entity-email" placeholder="name@example.com">
+                                        <label for="email">Email address</label>
+                                        <input type="email" class="form-input" id="email">
                                     </div>
                                     <div class="form-group">
-                                        <label for="entity-address">Address</label>
-                                        <textarea class="form-input" id="entity-address" rows="3"></textarea>
+                                        <label for="address">Address</label>
+                                        <textarea class="form-input" id="address" rows="3"></textarea>
                                     </div>
                                     <div class="form-group">
-                                        <label for="entity-phar_reg_no">Pharmacy Registration No.</label>
-                                        <input type="text" class="form-input" id="entity-phar_reg_no">
+                                        <label for="phar_reg_no">Pharmacy Registration No.</label>
+                                        <input type="text" class="form-input" id="phar_reg_no">
                                     </div>
                                     <div class="form-group">
-                                        <label for="entity-phar_cert_name">Pharmacy Certificate Name</label>
-                                        <input type="text" class="form-input" id="entity-phar_cert_name">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="entity-bis_reg_cert">Business Registration Certificate</label>
-                                        <input class="form-input" type="file" id="entity-bis_reg_cert" accept="image/*">
+                                        <label for="business_cert_name">Business Registration Certificate</label>
+                                        <input class="form-input" type="file" id="business_cert_name" accept="image/*">
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="entity-name">Name</label>
-                                        <input type="text" class="form-input" id="entity-name">
+                                        <label for="name">Name</label>
+                                        <input type="text" class="form-input" id="name">
                                     </div>
                                     <div class="form-group">
-                                        <label for="entity-phone">Phone Number</label>
-                                        <input type="text" class="form-input" id="entity-phone">
+                                        <label for="mobile">Phone Number</label>
+                                        <input type="text" class="form-input" id="mobile">
                                     </div>
                                     <div class="form-group">
-                                        <label for="entity-city">City</label>
-                                        <input type="text" class="form-input" id="entity-city">
+                                        <label for="city">City</label>
+                                        <input type="text" class="form-input" id="city">
                                     </div>
                                     <div class="form-group">
-                                        <label for="entity-bis_reg_id">Business Registration Id</label>
-                                        <input type="text" class="form-input" id="entity-bis_reg_id">
+                                        <label for="business_reg_id">Business Registration Id</label>
+                                        <input type="text" class="form-input" id="business_reg_id">
                                     </div>
                                     <div class="form-group">
-                                        <label for="entity-phar_cert_id">Pharmacy Certificate Id</label>
-                                        <input type="text" class="form-input" id="entity-phar_cert_id">
+                                        <label for="phar_cert_id">Pharmacy Certificate Id</label>
+                                        <input type="text" class="form-input" id="phar_cert_id">
                                     </div>
                                     <div class="form-group">
-                                        <label for="entity-phar_cert">Pharmacy Certificate</label>
-                                        <input class="form-input" type="file" id="entity-phar_cert" accept="image/*">
+                                        <label for="phar_cert_name">Pharmacy Certificate</label>
+                                        <input class="form-input" type="file" id="phar_cert_name" accept="image/*">
                                     </div>
                                 </div>
                             </div>

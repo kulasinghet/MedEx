@@ -14,4 +14,7 @@ abstract class HyperEntityModel extends Model
 
     abstract public static function getByUsername(string $username) : ?self;
     abstract public function verify(?bool $action) : bool;
+    abstract public function push() : bool;
+    abstract public function update() : bool;
+    abstract public function delete() : bool;
 }

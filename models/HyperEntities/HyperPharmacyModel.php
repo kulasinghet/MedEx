@@ -7,7 +7,7 @@ use app\core\Logger;
 
 class HyperPharmacyModel extends HyperEntityModel
 {
-    public string $ownerName;
+    public string $owner_name;
     public string $city;
     public string $phar_reg_no;
     public string $business_reg_id;
@@ -64,6 +64,122 @@ class HyperPharmacyModel extends HyperEntityModel
 
         try {
             $sql = "UPDATE `pharmacy` SET `verified` = ".($action?? "NULL")." WHERE `username`='$this->username';";
+            echo $sql;
+
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+
+            if ($stmt->affected_rows == 1) {
+                return true;
+            } else {
+                Logger::logError($stmt->error);
+                return false;
+            }
+        } catch (\Exception $e) {
+            Logger::logError($e->getMessage());
+            return false;
+        }
+    }
+
+    public function push(): bool
+    {
+        //loading the database
+        $db = new Database();
+        $conn = $db->getConnection();
+
+        try {
+            $sql = "INSERT INTO `pharmacy` (
+                        `username`, 
+                        `name`, 
+                        `ownerName`, 
+                        `city`, 
+                        `pharmacyRegNo`, 
+                        `BusinessRegId`, 
+                        `pharmacyCertId`, 
+                        `BusinessRegCertName`, 
+                        `pharmacyCertName`,
+                        `verified`,
+                        `deliveryTime`, 
+                        `email`, 
+                        `address`, 
+                        `mobile`) 
+            VALUES (
+                    '$this->username', 
+                    '$this->name', 
+                    '$this->owner_name', 
+                    '$this->city', 
+                    '$this->phar_reg_no', 
+                    '$this->business_reg_id',
+                    '$this->phar_cert_id', 
+                    '$this->business_cert_name', 
+                    '$this->phar_cert_name',
+                    '0',
+                    '$this->delivery_time', 
+                    '$this->email', 
+                    '$this->address', 
+                    '$this->mobile');";
+
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+
+            if ($stmt->affected_rows == 1) {
+                return true;
+            } else {
+                Logger::logError($stmt->error);
+                return false;
+            }
+        } catch (\Exception $e) {
+            Logger::logError($e->getMessage());
+            return false;
+        }
+    }
+
+    public function update(): bool
+    {
+        //loading the database
+        $db = new Database();
+        $conn = $db->getConnection();
+
+        try {
+            $sql = "UPDATE `pharmacy`
+            SET `name`='$this->name',
+                `ownerName`='$this->owner_name',
+                `city`='$this->city',
+                `pharmacyRegNo`='$this->phar_reg_no',
+                `BusinessRegId`='$this->business_reg_id',
+                `pharmacyCertId`='$this->phar_cert_id',
+                `BusinessRegCertName`='$this->business_cert_name',
+                `pharmacyCertName`='$this->phar_cert_name',
+                `deliveryTime`='$this->delivery_time',
+                `email`='$this->email',
+                `address`='$this->address',
+                `mobile`='$this->mobile',
+            WHERE `username`='$this->username';";
+            echo $sql;
+
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+
+            if ($stmt->affected_rows == 1) {
+                return true;
+            } else {
+                Logger::logError($stmt->error);
+                return false;
+            }
+        } catch (\Exception $e) {
+            Logger::logError($e->getMessage());
+            return false;
+        }
+    }
+
+    public function delete(): bool
+    {
+        //loading the database
+        $db = new Database();
+        $conn = $db->getConnection();
+
+        try {
+            $sql = "DELETE FROM `pharmacy` WHERE `username`='$this->username';";
             echo $sql;
 
             $stmt = $conn->prepare($sql);

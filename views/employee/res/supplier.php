@@ -39,53 +39,53 @@ echo $components->createNavbar();
             <div class="col card data-box">
                 <div class="card-body">
                     <h5 class="card-title">Supplier Details</h5>
-                    <form method="POST" action="">
+                    <form action="/employee/res/supplier/push" method="post">
                         <?php if ($supplier != null) { ?>
                             <div class="row margin-bottom">
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="entity-username">Username</label>
-                                        <input type="text" class="form-input" id="entity-username" value="<?php echo $supplier->username ?>">
+                                        <label for="username">Username</label>
+                                        <input type="text" class="form-input disabled" id="username" value=<?php echo $supplier->username ?> disabled>
                                     </div>
                                     <div class="form-group">
-                                        <label for="entity-email">Email address</label>
-                                        <input type="email" class="form-input" id="entity-email" value="<?php echo $supplier->email ?>">
+                                        <label for="email">Email address</label>
+                                        <input type="email" class="form-input" id="email" value=<?php echo $supplier->email ?>>
                                     </div>
                                     <div class="form-group">
-                                        <label for="entity-address">Address</label>
-                                        <textarea class="form-input" id="entity-address" rows="3">
+                                        <label for="address">Address</label>
+                                        <textarea class="form-input" id="address" rows="3">
                                             <?php echo $supplier->address ?>
                                         </textarea>
                                     </div>
                                     <div class="form-group">
-                                        <label for="entity-supp_reg_no">Supplier Registration No.</label>
-                                        <input type="text" class="form-input" id="entity-supp_reg_no" value="<?php echo $supplier->supp_reg_no ?>">
+                                        <label for="supp_reg_no">Supplier Registration No.</label>
+                                        <input type="text" class="form-input" id="supp_reg_no" value=<?php echo $supplier->supp_reg_no ?>>
                                     </div>
                                     <div class="form-group">
-                                        <label for="entity-bis_reg_cert">Business Registration Certificate</label>
-                                        <input class="form-input" type="file" id="entity-bis_reg_cert" accept="image/*" value="<?php echo $supplier->business_cert_name ?>">
+                                        <label for="business_cert_name">Business Registration Certificate</label>
+                                        <input class="form-input" type="file" id="business_cert_name" accept="image/*" value=<?php echo $supplier->business_cert_name ?>>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="entity-name">Name</label>
-                                        <input type="text" class="form-input" id="entity-name" value="<?php echo $supplier->name ?>">
+                                        <label for="name">Name</label>
+                                        <input type="text" class="form-input" id="name" value=<?php echo $supplier->name ?>>
                                     </div>
                                     <div class="form-group">
-                                        <label for="entity-phone">Phone Number</label>
-                                        <input type="text" class="form-input" id="entity-phone" value="<?php echo $supplier->mobile ?>">
+                                        <label for="mobile">Phone Number</label>
+                                        <input type="text" class="form-input" id="mobile" value=<?php echo $supplier->mobile ?>>
                                     </div>
                                     <div class="form-group">
-                                        <label for="entity-bis_reg_id">Business Registration Id</label>
-                                        <input type="text" class="form-input" id="entity-bis_reg_id" value="<?php echo $supplier->business_reg_id ?>">
+                                        <label for="business_reg_id">Business Registration Id</label>
+                                        <input type="text" class="form-input" id="business_reg_id" value=<?php echo $supplier->business_reg_id ?>>
                                     </div>
                                     <div class="form-group">
-                                        <label for="entity-supp_cert_id">Supplier Certificate Id</label>
-                                        <input type="text" class="form-input" id="entity-supp_cert_id" value="<?php echo $supplier->supp_cert_id ?>">
+                                        <label for="supp_cert_id">Supplier Certificate Id</label>
+                                        <input type="text" class="form-input" id="supp_cert_id" value=<?php echo $supplier->supp_cert_id ?>>
                                     </div>
                                     <div class="form-group">
-                                        <label for="entity-supp_cert">Supplier Certificate</label>
-                                        <input class="form-input" type="file" id="entity-supp_cert" accept="image/*" value="<?php echo $supplier->supp_cert_name ?>">
+                                        <label for="supp_cert_name">Supplier Certificate</label>
+                                        <input class="form-input" type="file" id="supp_cert_name" accept="image/*" value=<?php echo $supplier->supp_cert_name ?>>
                                     </div>
                                 </div>
                             </div>
@@ -93,46 +93,46 @@ echo $components->createNavbar();
                             <div class="row margin-bottom">
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="entity-username">Username</label>
-                                        <input type="text" class="form-input" id="entity-username">
+                                        <label for="username">Username</label>
+                                        <input type="text" class="form-input" id="username">
                                     </div>
                                     <div class="form-group">
-                                        <label for="entity-email">Email address</label>
-                                        <input type="email" class="form-input" id="entity-email">
+                                        <label for="email">Email address</label>
+                                        <input type="email" class="form-input" id="email">
                                     </div>
                                     <div class="form-group">
-                                        <label for="entity-address">Address</label>
-                                        <textarea class="form-input" id="entity-address" rows="3"></textarea>
+                                        <label for="address">Address</label>
+                                        <textarea class="form-input" id="address" rows="3"></textarea>
                                     </div>
                                     <div class="form-group">
-                                        <label for="entity-supp_reg_no">Supplier Registration No.</label>
-                                        <input type="text" class="form-input" id="entity-supp_reg_no">
+                                        <label for="supp_reg_no">Supplier Registration No.</label>
+                                        <input type="text" class="form-input" id="supp_reg_no">
                                     </div>
                                     <div class="form-group">
-                                        <label for="entity-bis_reg_cert">Business Registration Certificate</label>
-                                        <input class="form-input" type="file" id="entity-bis_reg_cert" accept="image/*">
+                                        <label for="business_cert_name">Business Registration Certificate</label>
+                                        <input class="form-input" type="file" id="business_cert_name" accept="image/*">
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="entity-name">Name</label>
-                                        <input type="text" class="form-input" id="entity-name">
+                                        <label for="name">Name</label>
+                                        <input type="text" class="form-input" id="name">
                                     </div>
                                     <div class="form-group">
-                                        <label for="entity-phone">Phone Number</label>
-                                        <input type="text" class="form-input" id="entity-phone">
+                                        <label for="mobile">Phone Number</label>
+                                        <input type="text" class="form-input" id="mobile">
                                     </div>
                                     <div class="form-group">
-                                        <label for="entity-bis_reg_id">Business Registration Id</label>
-                                        <input type="text" class="form-input" id="entity-bis_reg_id">
+                                        <label for="business_reg_id">Business Registration Id</label>
+                                        <input type="text" class="form-input" id="business_reg_id">
                                     </div>
                                     <div class="form-group">
-                                        <label for="entity-supp_cert_id">Supplier Certificate Id</label>
-                                        <input type="text" class="form-input" id="entity-supp_cert_id">
+                                        <label for="supp_cert_id">Supplier Certificate Id</label>
+                                        <input type="text" class="form-input" id="supp_cert_id">
                                     </div>
                                     <div class="form-group">
-                                        <label for="entity-supp_cert">Supplier Certificate</label>
-                                        <input class="form-input" type="file" id="entity-supp_cert" accept="image/*">
+                                        <label for="supp_cert_name">Supplier Certificate</label>
+                                        <input class="form-input" type="file" id="supp_cert_name" accept="image/*">
                                     </div>
                                 </div>
                             </div>

@@ -185,4 +185,42 @@ class EmployeeViewComponents
 </tr>
         ');
     }
+
+    /**
+     * @throws \ReflectionException
+     */
+    public function createResItem($res): string
+    {
+        return ('
+<tr data-usr="'.$res->username.'" data-tp="'.$this->getTypeOf($res).'">
+    <td class="approval-type">
+        <a>
+            <i class="'.match ($this->getTypeOf($res)) {
+                'pharmacy' => 'fa-solid fa-suitcase-medical',
+                'supplier' => 'fa-solid fa-truck-medical',
+                'lab' => 'fa-solid fa-flask',
+                'delivery' => 'fa-solid fa-cart-flatbed-boxes',
+                default => 'fa-solid fa-question',}.'"></i>
+        </a>
+    </td>
+    <td>'.$res->name.'</td>
+    <td>'.$res->email.'</td>
+    <td>'.$res->mobile.'</td>
+    <td>
+        <div class="row action-buttons">
+            <div class="col">
+                <a class="btn btn--info" href="/employee/res/'.$this->getTypeOf($res).'?et='.$res->username.'">
+                    <i class="fa-solid fa-pen"></i>
+                </a>
+            </div>
+            <div class="col">
+                <a class="btn btn--danger" href="/employee/res/'.$this->getTypeOf($res).'?et='.$res->username.'&a=delete">
+                    <i class="fa-solid fa-trash"></i>
+                </a>
+            </div>
+        </div>
+    </td>
+</tr>
+        ');
+    }
 }

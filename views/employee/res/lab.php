@@ -39,45 +39,45 @@ echo $components->createNavbar();
             <div class="col card data-box">
                 <div class="card-body">
                     <h5 class="card-title">Laboratory Details</h5>
-                    <form method="POST" action="">
+                    <form method="POST" action="/employee/res/delivery/push">
                         <?php if ($lab != null) { ?>
                             <div class="row margin-bottom">
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="entity-username">Username</label>
-                                        <input type="text" class="form-input" id="entity-username" value="<?php echo $lab->username ?>">
+                                        <label for="username">Username</label>
+                                        <input type="text" class="form-input disabled" id="username" value="<?php echo $lab->username ?>" disabled>
                                     </div>
                                     <div class="form-group">
-                                        <label for="entity-email">Email address</label>
-                                        <input type="email" class="form-input" id="entity-email" value="<?php echo $lab->email ?>">
+                                        <label for="email">Email address</label>
+                                        <input type="email" class="form-input" id="email" value="<?php echo $lab->email ?>">
                                     </div>
                                     <div class="form-group">
-                                        <label for="entity-address">Address</label>
-                                        <textarea class="form-input" id="entity-address" rows="3">
+                                        <label for="address">Address</label>
+                                        <textarea class="form-input" id="address" rows="3">
                                             <?php echo $lab->address ?>
                                         </textarea>
                                     </div>
                                     <div class="form-group">
-                                        <label for="entity-bis_reg_cert">Business Registration Certificate</label>
-                                        <input class="form-input" type="file" id="entity-bis_reg_cert" accept="image/*" value="<?php echo $lab->business_cert_name ?>">
+                                        <label for="business_cert_name">Business Registration Certificate</label>
+                                        <input class="form-input" type="file" id="business_cert_name" accept="image/*" value="<?php echo $lab->business_cert_name ?>">
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="entity-name">Name</label>
-                                        <input type="text" class="form-input" id="entity-name" value="<?php echo $lab->name ?>">
+                                        <label for="name">Name</label>
+                                        <input type="text" class="form-input" id="name" value="<?php echo $lab->name ?>">
                                     </div>
                                     <div class="form-group">
-                                        <label for="entity-phone">Phone Number</label>
-                                        <input type="text" class="form-input" id="entity-phone" value="<?php echo $lab->mobile ?>">
+                                        <label for="mobile">Phone Number</label>
+                                        <input type="text" class="form-input" id="mobile" value="<?php echo $lab->mobile ?>">
                                     </div>
                                     <div class="form-group">
-                                        <label for="entity-bis_reg_id">Business Registration Id</label>
-                                        <input type="text" class="form-input" id="entity-bis_reg_id" value="<?php echo $lab->business_reg_id ?>">
+                                        <label for="business_reg_id">Business Registration Id</label>
+                                        <input type="text" class="form-input" id="business_reg_id" value="<?php echo $lab->business_reg_id ?>">
                                     </div>
                                     <div class="form-group">
-                                        <label for="entity-phar_cert">Laboratory Certificate</label>
-                                        <input class="form-input" type="file" id="entity-phar_cert" accept="image/*" value="<?php echo $lab->lab_cert_name ?>">
+                                        <label for="lab_cert_name">Laboratory Certificate</label>
+                                        <input class="form-input" type="file" id="lab_cert_name" accept="image/*" value="<?php echo $lab->lab_cert_name ?>">
                                     </div>
                                 </div>
                             </div>
@@ -85,38 +85,38 @@ echo $components->createNavbar();
                             <div class="row margin-bottom">
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="entity-username">Username</label>
-                                        <input type="text" class="form-input" id="entity-username">
+                                        <label for="username">Username</label>
+                                        <input type="text" class="form-input" id="username">
                                     </div>
                                     <div class="form-group">
-                                        <label for="entity-email">Email address</label>
-                                        <input type="email" class="form-input" id="entity-email">
+                                        <label for="email">Email address</label>
+                                        <input type="email" class="form-input" id="email">
                                     </div>
                                     <div class="form-group">
-                                        <label for="entity-address">Address</label>
-                                        <textarea class="form-input" id="entity-address" rows="3"></textarea>
+                                        <label for="address">Address</label>
+                                        <textarea class="form-input" id="address" rows="3"></textarea>
                                     </div>
                                     <div class="form-group">
-                                        <label for="entity-bis_reg_cert">Business Registration Certificate</label>
-                                        <input class="form-input" type="file" id="entity-bis_reg_cert" accept="image/*">
+                                        <label for="business_cert_name">Business Registration Certificate</label>
+                                        <input class="form-input" type="file" id="business_cert_name" accept="image/*">
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="entity-name">Name</label>
-                                        <input type="text" class="form-input" id="entity-name">
+                                        <label for="name">Name</label>
+                                        <input type="text" class="form-input" id="name">
                                     </div>
                                     <div class="form-group">
-                                        <label for="entity-phone">Phone Number</label>
-                                        <input type="text" class="form-input" id="entity-phone">
+                                        <label for="mobile">Phone Number</label>
+                                        <input type="text" class="form-input" id="mobile">
                                     </div>
                                     <div class="form-group">
-                                        <label for="entity-bis_reg_id">Business Registration Id</label>
-                                        <input type="text" class="form-input" id="entity-bis_reg_id">
+                                        <label for="business_reg_id">Business Registration Id</label>
+                                        <input type="text" class="form-input" id="business_reg_id">
                                     </div>
                                     <div class="form-group">
-                                        <label for="entity-phar_cert">Laboratory Certificate</label>
-                                        <input class="form-input" type="file" id="entity-phar_cert" accept="image/*">
+                                        <label for="lab_cert_name">Laboratory Certificate</label>
+                                        <input class="form-input" type="file" id="lab_cert_name" accept="image/*">
                                     </div>
                                 </div>
                             </div>

@@ -43,6 +43,18 @@ abstract class AbstractCRUDController extends Controller
         return '';
     }
 
+    public function getRequestBody(array $body): array
+    {
+        $params = [];
+
+        foreach ($body as $key => $value) {
+            $params[$key] = preg_replace('/(^"(\s+)?|(\s+)?"$)/m', '', $value);
+            //$params[$key] = filter_input(INPUT_POST, $key, FILTER_SANITIZE_SPECIAL_CHARS);
+        }
+
+        return $params;
+    }
+
     abstract public function loadPharmacy(Request $request): void;
     abstract public function loadSupplier(Request $request): void;
     abstract public function loadDelivery(Request $request): void;
