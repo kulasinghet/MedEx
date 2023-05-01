@@ -3466,4 +3466,83 @@ textarea.form-input {
   text-align: center;
 }
 
+.report-list {
+  height: 100vh;
+  padding: 0.5rem;
+  margin: 0 0.5rem 0.5rem 0.5rem;
+}
+.report-list .list-content {
+  width: 100%;
+  height: 100%;
+  padding: 0.3rem;
+  background: #b5bccf;
+  border-radius: 6px;
+}
+.report-list .list-content > *:last-child {
+  margin-bottom: 0;
+}
+
+.report-itm {
+  width: 100%;
+  margin-bottom: 0.8rem;
+  border: 2px solid #ffffff;
+  border-radius: 6px;
+  background-color: #ffffff;
+  overflow: hidden;
+  box-shadow: 0 1px 3px 0 rgba(211, 211, 211, 0.8), 0 1px 2px -1px rgba(211, 211, 211, 0.8);
+}
+.report-itm .report-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.report-itm .report-inner .header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+.report-itm .report-inner .header .header-icon {
+  flex: 0 0 auto;
+  width: 64px;
+  height: 64px;
+  background: #e6ebf4;
+}
+.report-itm .report-inner .header .header-icon a {
+  padding: 0.5rem;
+  background: #ffffff;
+  width: 100%;
+  height: 100%;
+  border-radius: 0 0 6px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.report-itm .report-inner .header .header-icon a i {
+  font-size: 1.5rem;
+}
+.report-itm .report-inner .header .header-data {
+  width: 100%;
+  height: 64px;
+  padding-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.report-itm .report-inner .header .header-data > * {
+  padding-left: 1rem;
+  margin: 0;
+}
+.report-itm .report-inner .header .header-data .header-subject {
+  background: #e6ebf4;
+  padding: 0.25rem 1rem;
+  border-radius: 6px 6px 0 0;
+}
+.report-itm .report-inner .report-body {
+  width: 100%;
+  padding: 0.5rem;
+  background: #e6ebf4;
+  border-radius: 6px 0 6px 6px;
+}
+
 /*# sourceMappingURL=main.css.map */
