@@ -58,7 +58,7 @@ echo $components->createNavbar();
                     <label for="filter-by-type">Group by: </label>
                 </div>
                 <div class="col">
-                    <g28-selectbox id="filter-by-type" placeholder="All" <?php
+                    <g28-selectbox id="filter-by-type" class="filtering-selectbox" placeholder="All" <?php
                     if ($filter != 'all') {
                         echo 'value="' . match ($filter) {
                                 'pharmacy' => 'Pharmacy',

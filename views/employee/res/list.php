@@ -58,15 +58,14 @@ echo $components->createNavbar();
                     <label for="sort-by">Sort by: </label>
                 </div>
                 <div class="col">
-                    <g28-selectbox id="sort-by" placeholder="Default">
+                    <g28-selectbox id="sort-by" class="filtering-selectbox" placeholder="Default">
                         Default, Name, Reg Date
                     </g28-selectbox>
                 </div>
             </form>
             <div class="placeholder"></div>
-            <a class="btn btn--warning">
+            <a class="btn" href="/employee/res/<?php echo $filter ?>">
                 <i class="fa-solid fa-plus"></i>
-                Add
             </a>
         </div>
         <!-- Toolbox -->
@@ -88,17 +87,17 @@ echo $components->createNavbar();
                     <?php
                     try {
                         $controller = new EmployeeResListController();
-                        $approvals = match ($filter) {
+                        $res_list = match ($filter) {
                             'pharmacy' => $controller->getPharmacyList(no_of_approvals, $set),
                             'supplier' => $controller->getSupplierList(no_of_approvals, $set),
                             'lab' => $controller->getLabList(no_of_approvals, $set),
                             'delivery' => $controller->getDeliveryList(no_of_approvals, $set),
                             default => throw new Exception("Invalid filter!"),
                         };
-                        if (!empty($approvals)) {
+                        if (!empty($res_list)) {
                             for ($i = 0; $i < no_of_approvals; $i++) {
-                                if (array_key_exists($i, $approvals)) {
-                                    echo $components->createResItem($approvals[$i]);
+                                if (array_key_exists($i, $res_list)) {
+                                    echo $components->createResItem($res_list[$i]);
                                 } else {
                                     echo "<tr class='empty'>";
                                     echo "<td colspan='5'></td>";
