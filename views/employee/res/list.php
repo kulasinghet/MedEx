@@ -63,6 +63,11 @@ echo $components->createNavbar();
                     </g28-selectbox>
                 </div>
             </form>
+            <div class="placeholder"></div>
+            <a class="btn btn--warning">
+                <i class="fa-solid fa-plus"></i>
+                Add
+            </a>
         </div>
         <!-- Toolbox -->
 
