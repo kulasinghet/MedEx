@@ -47,12 +47,7 @@ use app\controllers\lab\LabRequestsController;
         </div>
     </div>
     <nav>
-        <div class="nav-search">
-            <form onsubmit="preventDefault();" role="search">
-                <label for="search">Search for stuff</label>
-                <input autofocus id="search" placeholder="Search..." required type="search" />
-                <button type="submit">Go</button>
-            </form>
+       
         </div>
         <div class="nav-inner">
             <ul>

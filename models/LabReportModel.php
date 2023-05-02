@@ -82,4 +82,16 @@ class LabReportModel extends Model
 
     }
 
+    public function getLabReportCount($uname)
+    {
+        $db = (new Database())->getConnection();
+        $sql = "SELECT COUNT(reqId) from labreport WHERE labreport.labName = '$uname'&& issued  = '1' ";
+        $result = $db->query($sql);
+        if ($result->num_rows > 0) {
+            return $result;
+        }
+        $db->close();
+
+    }
+
 }
