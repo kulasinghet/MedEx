@@ -4,6 +4,20 @@ namespace app\core;
 
 class Controller
 {
+    public $layout;
+
+    public function setLayout($layout)
+    {
+        $this->layout = $layout;
+    }
+
+    public function getLayout()
+    {
+        return $this->layout;
+    }
+
+
+
     public function render($view, $params = [])
     {
         return Application::$app->router->renderView($view, $params);

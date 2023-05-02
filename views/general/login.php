@@ -85,6 +85,7 @@
             .then((value) => {
                 switch (value) {
                     case "pharmacy":
+                        // get the base url and redirect to the pharmacy register page
                         window.location.href = '/pharmacy/register';
                         break;
                     case "manufacturer":

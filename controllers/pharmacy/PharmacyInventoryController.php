@@ -32,7 +32,7 @@ class PharmacyInventoryController extends Controller
         $medicine = $stock->getMedicine($medID);
 
         if ($medicine) {
-            return $medicine['medName'] . " <br> " . $medicine['weight'] . " mg ";
+            return $medicine['medName'] . " " . $medicine['weight'] . " mg ";
         } else {
             return "";
         }
@@ -61,18 +61,19 @@ class PharmacyInventoryController extends Controller
         }
     }
 
-    public function medicineDetails(Request $request) {
+    public function medicineDetails(Request $request)
+    {
         if ($_SESSION['userType'] == 'pharmacy') {
-            if ($request -> isGet()) {
+            if ($request->isGet()) {
 
-                $medicineID = $request -> getParams()['medicine-id'];
-                $stock = (new Stock() )->getMedicineStock($medicineID, $_SESSION['username']);
+                $medicineID = $request->getParams()['medicine-id'];
+                $stock = (new Stock())->getMedicineStock($medicineID, $_SESSION['username']);
 
                 header('Content-Type: application/json');
                 return json_encode($stock);
 
 
-            } else if ($request -> isPost()) {
+            } else if ($request->isPost()) {
                 return header('/pharmacy/inventory');
             } else {
                 return header('/login');
@@ -82,7 +83,8 @@ class PharmacyInventoryController extends Controller
         }
     }
 
-    public function updateMedicine(Request $request) {
+    public function updateMedicine(Request $request)
+    {
 
         if ($request->isPost()) {
 
@@ -99,52 +101,9 @@ class PharmacyInventoryController extends Controller
                 $remQty = $request->getBody()['remQty'];
                 $buyingPrice = $request->getBody()['buyingPrice'];
                 $sellingPrice = $request->getBody()['sellingPrice'];
-                $remainingDays = $request->getBody()['remainingDays'];
                 $consumption = $request->getBody()['consumption'];
 
-                $oldRemainigDays = $stock->getRemainingDaysByMedicineID($medicineID, $pharmacyName);
-                $oldConsumption = $stock->getConsumptionByMedicineID($medicineID, $pharmacyName);
-
-                $newRemainingDaysPerConsumption = (int)((int)($remainingDays) / (double)($consumption));
-
-//                if ($oldConsumption != $consumption) {
-//                    if ($oldRemainigDays != $remainingDays) {
-//                        // remaining days has changed
-//                        // consumption has changed
-//                        // check if the new remaining days is less than $newRemainingDaysPerConsumption
-//                        // if it is less, then update remaining days
-//                        if ($remainingDays > $newRemainingDaysPerConsumption) {
-//                            $remainingDays = $newRemainingDaysPerConsumption;
-//                        }
-//
-//                    } else {
-//                        // remaining days stays the same
-//                        //  consumption has changed
-//                        // check if the new remaining days is less than $newRemainingDaysPerConsumption
-//                        // if it is less, then update remaining days
-//                        if ($remainingDays > $newRemainingDaysPerConsumption) {
-//                            $remainingDays = $newRemainingDaysPerConsumption;
-//                        }
-//
-//                    }
-//                } else {
-//                    // new consumption is the same as the old consumption
-//                    if ($oldRemainigDays != $remainingDays) {
-//                        // remaining days has changed
-//                        // consumption is the same
-//                        // check if the new remaining days is less than $newRemainingDaysPerConsumption
-//                        // if it is less, then update remaining days
-//
-//                        if ($remainingDays > $newRemainingDaysPerConsumption) {
-//                            $remainingDays = $newRemainingDaysPerConsumption;
-//                        }
-//
-//                    } else {
-//                        // consumption and remaining days are the same
-//                        // this means that neither consumption nor remaining days has changed
-//                        // no need to update remaining days or consumption
-//                    }
-//                }
+                $remainingDays = (int)$remQty / (int)$consumption;
 
                 $response = $stock->updateMedicine($pharmacyName, $medicineID, $medName, $sciName, $remQty, $buyingPrice, $sellingPrice, $remainingDays, $consumption, $recievedDate);
 

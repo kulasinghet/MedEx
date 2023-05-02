@@ -50,7 +50,7 @@ class Model
                 $tag = "ORD";
                 break;
             case "pharmacysell":
-                $tag = "INV";
+                $tag = "BILL";
                 break;
             default:
                 $tag = "ID";

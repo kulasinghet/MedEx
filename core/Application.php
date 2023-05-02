@@ -20,6 +20,7 @@ class Application
         $this->request = new Request();
         $this->router = new Router($this->request);
         $this->response = new Response();
+        $this->controller = new Controller();
 
     }
 

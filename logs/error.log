@@ -170,3 +170,27 @@
 2023/04/28 10:34:57 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'LEFT JOIN pharmacysellmedicine ON pharmacysell.invoice_id = pharmacysellmedicine' at line 1
 2023/04/28 10:36:57 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'LEFT JOIN pharmacysellmedicine ON pharmacysell.invoice_id = pharmacysellmedicine' at line 1
 2023/04/28 10:39:14 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'LEFT JOIN pharmacysellmedicine ON pharmacysell.invoice_id = pharmacysellmedicine' at line 1
+2023/04/28 13:39:00 php_network_getaddresses: getaddrinfo for medex-do-user-10529241-0.b.db.ondigitalocean.com failed: No such host is known. 
+2023/04/28 13:40:23 php_network_getaddresses: getaddrinfo for medex-do-user-10529241-0.b.db.ondigitalocean.com failed: No such host is known. 
+2023/04/28 14:24:31 Something went wrong while creating order testPharmacy
+2023/04/29 14:45:23 Invalid file format
+2023/04/29 14:47:51 Invalid file format
+2023/04/29 14:48:55 Invalid file format
+2023/04/29 14:49:43 File too large1785999
+2023/04/29 16:45:36 Invalid file formatuploads/pharmacy/pharmacyCert/testPharmacy2_pharmacyCert. testPharmacy2_pharmacyCert
+2023/04/29 16:48:26 Invalid file formatuploads/pharmacy/pharmacyCert/testPharmacy2_pharmacyCert. testPharmacy2_pharmacyCert
+2023/04/29 16:52:15 Invalid file formatuploads/pharmacy/businessRegCert/testPharmacy2_businessRegCert. testPharmacy2_businessRegCert
+2023/04/29 16:53:39 File already existsuploads/pharmacy/pharmacyCert/testPharmacy2_pharmacyCert.jpg testPharmacy2_pharmacyCert
+2023/04/29 16:53:59 Cannot add or update a child row: a foreign key constraint fails ("medex"."pharmacy", CONSTRAINT "pharmacy_ibfk_1" FOREIGN KEY ("username") REFERENCES "login" ("username"))
+2023/04/30 14:30:28 Something went wrong while creating order testPharmacy
+2023/04/30 15:35:12 Data too long for column 'mobile' at row 1
+2023/04/30 15:35:51 Data too long for column 'mobile' at row 1
+2023/04/30 15:51:16 File upload erroruploads/profilePicture/thevindu_profilePicture.jpg thevindu_profilePicture.jpg
+2023/04/30 15:55:18 File already existsuploads/pharmacy/pharmacyCert/thevindu_pharmacyCert.png thevindu_pharmacyCert
+2023/04/30 15:55:50 File upload erroruploads/pharmacy/pharmacyCert/thevindu_pharmacyCert.jpg thevindu_pharmacyCert
+2023/04/30 15:56:49 File too large880607
+2023/04/30 15:56:49 File too largeuploads/profilePicture/thevindu_profilePicture.jpg thevindu_profilePicture.jpg
+2023/04/30 15:58:20 File already existsuploads/pharmacy/pharmacyCert/thevindu_pharmacyCert.jpg thevindu_pharmacyCert
+2023/04/30 16:03:47 File upload erroruploads/pharmacy/businessRegCert/thevindu2_businessRegCert.jpg thevindu2_businessRegCert
+2023/04/30 16:04:08 Invalid file formatuploads/pharmacy/pharmacyCert/thevindu2_pharmacyCert.jfif thevindu2_pharmacyCert
+2023/04/30 16:05:37 File upload erroruploads/pharmacy/pharmacyCert/thevindu2_pharmacyCert.jpg thevindu2_pharmacyCert

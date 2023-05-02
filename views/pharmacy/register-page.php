@@ -71,7 +71,7 @@
                     <label for="uploadbusinesscerti">Upload Business Registration Certificate</label>
                     <div class="file-upload">
                         <input type="file" name="uploadbusinesscerti" id="uploadbusinesscerti"
-                               accept="image/png,image/jpeg" required/>
+                               accept="image/png,image/jpeg" required onchange="handleFileUpload('0')"/>
                         <i class="fa fa-upload" aria-hidden="true"></i>
                     </div>
                 </span>
@@ -79,7 +79,7 @@
                     <label for="uploadpharceti">Upload Pharmacy Certificate</label>
                     <div class="file-upload">
                         <input type="file" name="uploadpharceti" id="uploadpharceti" accept="image/png,image/jpeg"
-                               required/>
+                               required onchange="handleFileUpload('1')"/>
                         <i class="fa fa-upload" aria-hidden="true"></i>
                     </div>
                 </span>
@@ -87,7 +87,7 @@
                     <label for="uploadprofilepic">Choose a profile picture</label>
                     <div class="file-upload">
                         <input type="file" name="uploadprofilepic" id="uploadprofilepic" accept="image/png,image/jpeg"
-                               required/>
+                               required onchange="handleFileUpload('2')"/>
                         <i class="fa fa-upload" aria-hidden="true"></i>
                     </div>
                 </span>
@@ -100,6 +100,28 @@
     <div class="login-now">
         <p>Already have an account? <a href="/login">Login Now</a></p>
     </div>
+
+    <script>
+        function handleFileUpload(id) {
+            // change the file-upload class to file-upload--selected
+            // so that the user can see what they selected
+            console.log("id: " + id);
+            var fileUpload = document.getElementsByClassName('file-upload')[id];
+
+            // check if the user has selected a file
+            if (fileUpload.children[0].files.length > 0) {
+                // check if the file-upload--selected class is already there
+                if (fileUpload.className.includes("file-upload--selected")) {
+                    // remove the file-upload--selected class
+                    fileUpload.className = fileUpload.className.replace(" file-upload--selected", "");
+                }
+                fileUpload.className += " file-upload--selected";
+            } else {
+                // remove the file-upload--selected class
+                fileUpload.className = fileUpload.className.replace(" file-upload--selected", "");
+            }
+        }
+    </script>
 
 </div>
 </body>

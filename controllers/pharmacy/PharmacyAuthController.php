@@ -20,7 +20,7 @@ class PharmacyAuthController extends Controller
                 return $this->render('pharmacy/register-page.php');
             }
 
-            if ($pharmacy->validatePharmacy($request->getBody())) {
+            if (!$pharmacy->validatePharmacy($request->getBody())) {
                 return $this->render('pharmacy/register-page.php');
             }
 
@@ -33,13 +33,27 @@ class PharmacyAuthController extends Controller
 
 
             if (!$this->handleFileUploads($request, $pharmacyname)) {
+                echo (new \app\core\ExceptionHandler)->fileUploadError();
                 return $this->render('pharmacy/register-page.php');
             }
 
 
             if ($pharmacy->registerPharmacy($request->getBody())) {
-                echo (new \app\core\ExceptionHandler)->pharmacyRegistrationSuccess();
-                return header("Location: /login");
+
+                $qr = new \app\core\QR();
+                $qr_JSON = [
+                    "username" => $pharmacyname,
+                    "qrtype" => "pharmacy"
+                ];
+                $qr_name = $pharmacyname . "_qr";
+                if ($qr->generateQRForPersonal(json_encode($qr_JSON), $qr_name, 10, 'L')) {
+                    Logger::logDebug("QR generated for " . $_SESSION['username']);
+                    return header("Location: /login");
+                } else {
+                    Logger::logError("QR generation failed for " . $_SESSION['username']);
+                    echo (new \app\core\ExceptionHandler)->qrGenerationFailed();
+                    return $this->render('pharmacy/register-page.php');
+                }
             } else {
                 echo (new \app\core\ExceptionHandler)->pharmacyRegistrationFailed();
                 return $this->render('pharmacy/register-page.php');
@@ -47,7 +61,7 @@ class PharmacyAuthController extends Controller
 
             return $this->render('pharmacy/register-page.php');
         }
-        return header("Location: /pharmacy/register");
+        return $this->render('pharmacy/register-page.php');
     }
 
     private function handleFileUploads(Request $request, string $pharmacy)
@@ -83,8 +97,7 @@ class PharmacyAuthController extends Controller
 
         // Check if file already exists
         if (file_exists($target_file)) {
-            echo (new \app\core\ExceptionHandler)->fileAlreadyExists();
-            $uploadOk = 0;
+            unlink($target_file);
             Logger::logError("File already exists"  . $target_file . " " . $businessRegCertName);
         }
 
@@ -128,8 +141,7 @@ class PharmacyAuthController extends Controller
 
         // Check if file already exists
         if (file_exists($target_file)) {
-            echo (new \app\core\ExceptionHandler)->fileAlreadyExists();
-            $uploadOk = 0;
+            unlink($target_file);
             Logger::logError("File already exists"  . $target_file . " " . $pharmacyCertName);
         }
 
@@ -173,13 +185,13 @@ class PharmacyAuthController extends Controller
 
         // Check if file already exists
         if (file_exists($target_file)) {
-            echo (new \app\core\ExceptionHandler)->fileAlreadyExists();
-            $uploadOk = 0;
+            // delete the file
+            unlink($target_file);
             Logger::logError("File already exists"  . $target_file . " " . $profilePictureName);
         }
 
         // Check file size
-        if ($_FILES["uploadprofilepic"]["size"] > 500000) {
+        if ($_FILES["uploadprofilepic"]["size"] > 10000000) {
             Logger::logError('File too large' . $_FILES["uploadprofilepic"]["size"]);
             echo (new \app\core\ExceptionHandler)->fileTooLarge();
             $uploadOk = 0;

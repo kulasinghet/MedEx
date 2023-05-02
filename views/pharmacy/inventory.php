@@ -255,7 +255,7 @@ echo $components->sideBar('inventory');
                         </div>
                         <div class="medicine-details-col-6">
                             <div class="form-group">
-                                <input type="number" class="form-input" id="remainingDays" value='${data.remaining_days}' min="1" disabled name="remainingDays">
+                                <h3 id="remaining-days">${data.remaining_days}</h3>
                             </div>
                         </div>
                     </div>
@@ -382,7 +382,7 @@ echo $components->sideBar('inventory');
                     </div>
                     <div class="medicine-details-col-6">
                         <div class="form-group">
-                            <input type="number" class="form-input" id="remainingDays" value='${data.remaining_days}' min="1" name="remainingDays">
+                            <h3 id="remaining-days">${data.remaining_days}</h3>
                         </div>
                     </div>
                 </div>
@@ -426,7 +426,7 @@ echo $components->sideBar('inventory');
                                     const remQty = document.getElementById('remQty').value;
                                     const recievedDate = document.getElementById('recievedDate').value;
                                     const sellingPrice = document.getElementById('sellingPrice').value;
-                                    const remainingDays = document.getElementById('remainingDays').value;
+                                    const remainingDays = document.getElementById('remaining-days').innerText;
                                     const medId = document.getElementById('medicine-id').innerText;
                                     const buyingPrice = document.getElementById('buying-price').innerText;
                                     const medName = document.getElementById('medicine-name').innerText;
@@ -478,7 +478,7 @@ echo $components->sideBar('inventory');
                                             swal("Medicine Updated Successfully", "", "success");
                                             setTimeout(function () {
                                                 location.reload();
-                                            }, 4000);
+                                            }, 1000);
                                         } else {
                                             console.log(response);
                                             swal("Something went wrong", "Please try again", "error");

@@ -83,6 +83,8 @@ class PharmacyModel extends Model
                 $db->close();
             }
         } else {
+
+            $this->deletePharmacyFromLogin($username);
             return false;
         }
     }
@@ -171,12 +173,19 @@ class PharmacyModel extends Model
             return false;
         }
 
-        // pharmacy name cannot have special characters and numbers
-        if (!preg_match("/^[a-zA-Z-' ]*$/", $pharmacyname)) {
-            echo (new \app\core\ExceptionHandler)->invalidPharmacyName();
+
+        // phone number must be valid
+        if (!preg_match("/^[0-9]*$/", $contactnumber)) {
+            echo (new \app\core\ExceptionHandler)->invalidPhoneNumber();
             return false;
         }
 
+        if (strlen($contactnumber) != 10) {
+            echo (new \app\core\ExceptionHandler)->invalidPhoneNumber();
+            return false;
+        }
+
+        return true;
     }
 
     public function registerPharmacyInLogin($username, $hashedpassword)
@@ -185,6 +194,27 @@ class PharmacyModel extends Model
 
         try {
             $sql = "INSERT INTO login (username, password, isDelivery, isPharmacy, isLab, isStaff, isSupplier) VALUES ('$username', '$hashedpassword', '0', '1', '0', '0', '0')";
+            $stmt = $db->prepare($sql);
+            $stmt->execute();
+
+            if ($stmt->affected_rows == 1) {
+                return true;
+            } else {
+                Logger::logError(print_r($stmt->error_list, true) . " " . $stmt->error);
+                return false;
+            }
+        } catch (\Exception $e) {
+            Logger::logError($e->getMessage());
+            return false;
+        }
+    }
+
+    private function deletePharmacyFromLogin($username)
+    {
+        $db = (new Database())->getConnection();
+
+        try {
+            $sql = "DELETE FROM login WHERE username = '$username'";
             $stmt = $db->prepare($sql);
             $stmt->execute();
 

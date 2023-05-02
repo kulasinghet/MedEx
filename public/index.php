@@ -101,6 +101,7 @@ $app->router->get('/pharmacy/api/sales-order-medicines', [PharmacySellMedicineCo
 $app->router->get('/pharmacy/api/sales-by-day', [PharmacySellMedicineController::class, 'salesByDay']);
 //salesAndCostForCurrentMonth
 $app->router->get('/pharmacy/api/sales-and-cost-for-current-month', [PharmacySellMedicineController::class, 'salesAndCostForCurrentMonth']);
+$app->router->get('/pharmacy/api/get-location', [PharmacyOrderMedicineController::class, 'getLocation']);
 
 // #############################################################################################
 

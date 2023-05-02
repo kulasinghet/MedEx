@@ -116,6 +116,7 @@ form {
     font-weight: 500;
     color: #3A3B3C;
     margin-bottom: 0;
+    text-align: justify;
 }
 
 .medicine-details h2 {
@@ -147,4 +148,9 @@ form {
 .btn-success:hover {
     background-color: #218838 !important;
     border-color: #1e7e34;
+}
+
+.orders {
+    margin-top: 5vh;
+    width: 100%;
 }

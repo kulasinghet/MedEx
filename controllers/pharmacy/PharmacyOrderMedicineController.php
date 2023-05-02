@@ -44,10 +44,10 @@ class PharmacyOrderMedicineController extends Controller
 //                    $api = $_ENV '/delivery/api/update-medicine-details?orderId=' . $result;
 
                     $qr_JSON = [
-                        'orderId' => $result,
-                        'username' => $_SESSION['username'],
-                        'totalPrice' => $this->totalPrice,
-                        'qrtype' => 'order'
+                        "orderId" => $result,
+                        "username" => $_SESSION['username'],
+                        "totalPrice" => $this->totalPrice,
+                        "qrtype" => "order"
                     ];
                     $qr->generateQRFromJSON(json_encode($qr_JSON), $result, 10, 'L');
 
@@ -188,6 +188,10 @@ class PharmacyOrderMedicineController extends Controller
             return 'Delivered';
         } elseif ($orderStatus == '4') {
             return 'Cancelled';
+        } elseif ($orderStatus == '5') {
+            return 'Delivering';
+        } else {
+            return $orderStatus;
         }
     }
 
@@ -225,6 +229,30 @@ class PharmacyOrderMedicineController extends Controller
             echo (new ExceptionHandler)->somethingWentWrong();
             return header('Location: /pharmacy/orders');
         }
+
+    }
+
+    public function getLocation(Request $request) {
+
+            if ($request->isGet()) {
+
+                $orderId = $request->getParams()['orderId'];
+
+                $order = (new \app\models\PharmacyOrderModel())->getLocation($orderId);
+
+                if ($order) {
+                    // reply data == 'Order Cancelled'
+                    header ('Content-Type: application/json');
+                    return json_encode($order);
+                } else {
+                    header('Content-Type: application/json');
+                    return json_encode('Order Not Found');
+                }
+
+            } else {
+                echo (new ExceptionHandler)->somethingWentWrong();
+                return header('Location: /pharmacy/orders');
+            }
 
     }
 

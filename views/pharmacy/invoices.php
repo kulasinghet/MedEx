@@ -16,46 +16,17 @@ echo $components->sideBar('invoices');
         <div class="row" id="orders-page-row">
             <div class="col" id="orders-page-col">
 
-                <!--                <div class="nav-search">-->
-                <!--                    <form onsubmit="preventDefault();" role="search">-->
-                <!--                        <label for="search">Search for stuff</label>-->
-                <!--                        <input id="search-orders" placeholder="Search Orders ..." required type="search" onchange="handleSearchButtonClick(event)" />-->
-                <!--                        <button type="submit" onclick="handleSearchButtonClick()">-->
-                <!--                            <i class="fa-solid fa-search"></i>-->
-                <!--                    </form>-->
-                <!--                </div>-->
-
-
                 <div class="filter-group">
-
-
 
                     <div class="filter-group">
 
-                        <!--                        <button class="btn btn-primary filter-button" id="pending" onclick="handleFilterButtonClick('Pending')">Pending</button>-->
-                        <!---->
-                        <!--                        <button class="btn btn-primary filter-button" id="accepted" onclick="handleFilterButtonClick('Accepted')">Accepted</button>-->
-                        <!---->
-                        <!--                        <button class="btn btn-primary filter-button" id="rejected" onclick="handleFilterButtonClick('Rejected')">Rejected</button>-->
-                        <!---->
-                        <!--                        <button class="btn btn-primary filter-button" id="delivered" onclick="handleFilterButtonClick('Delivered')">Delivered</button>-->
-                        <!---->
-                        <!--                        <button class="btn btn-primary filter-button" id="cancelled" onclick="handleFilterButtonClick('Cancelled')">Cancelled</button>-->
-                        <!---->
-                        <!--                        <i class="fa-solid fa-filter-circle-xmark" style="color: #999999; font-size: 1.5rem; margin-left: 1rem; cursor: pointer;" id="clear-filter" onclick="handleFilterButtonClick('Clear')"></i>-->
-
                         <div class="filter-by-date">
-                            <label for="filter-by-date">Filter by bill date</label>
-                            <select name="filter-by-date" id="filter-by-date" onchange="handleFiltering()">
-                                <option value="Clear" selected>All</option>
-                                <option value="Today">Today</option>
-                                <option value="This Week">This Week</option>
-                                <option value="This Month">This Month</option>
-                                <option value="This Year">This Year</option>
-                            </select>
+                            <label for="start-date">Start Date:</label>
+                            <input type="date" name="start-date" id="start-date" onchange="handleFiltering()" value="<?php echo date('Y-m-d'); ?>">
+                            <label for="end-date">End Date:</label>
+                            <input type="date" name="end-date" id="end-date" onchange="handleFiltering()" value="<?php echo date('Y-m-d'); ?>">
+                            <button class="date-filter" onclick="handleFiltering()">Filter</button>
                         </div>
-
-
 
                     </div>
                 </div>
@@ -65,7 +36,7 @@ echo $components->sideBar('invoices');
                     <table id="orders-table">
                         <thead>
                         <tr>
-                            <th>Invoice ID</th>
+                            <th>Bill ID</th>
                             <th>Bill Date</th>
                             <th>Bill Total</th>
                             <th></th>
@@ -117,8 +88,7 @@ echo $components->sideBar('invoices');
 
 
             <div id="order-new-medicine">
-                <a class="btn ' . ($selectedPage == 'order-medicine' ? 'disabled' : '') . '" href="/pharmacy/order-medicine">
-<!--                    sell medicine-->
+                <a class="btn ' . ($selectedPage == 'order-medicine' ? 'disabled' : '') . '" href="/pharmacy/sell-medicine">
                     <i class="fa-solid fa-circle-plus"></i> Sell Medicine</a>
             </div>
 
@@ -128,22 +98,53 @@ echo $components->sideBar('invoices');
 
 <script>
     function handleFiltering() {
-        $dateFilter = document.getElementById('filter-by-date').value;
+        const startDate = new Date(document.getElementById('start-date').value);
+        const endDate = new Date(document.getElementById('end-date').value);
 
-        $allRows = document.getElementById('orders-table').rows;
-        $allRows = Array.prototype.slice.call($allRows, 1);
-
-        for (let i = 0; i < $allRows.length; i++) {
-            $allRows[i].style.display = 'table-row';
+        // check if the start date is greater than the end date
+        if (startDate > endDate) {
+            swal({
+                title: "Error",
+                text: "Start date cannot be greater than the end date",
+                icon: "error",
+                button: "OK",
+            })
+            return;
         }
 
-        for (let i = 0; i < $allRows.length; i++) {
-            $dateInRow = $allRows[i].cells[1].innerHTML;
-            if (checkDeliveryDateInFilter($dateInRow, $dateFilter)) {
-                $allRows[i].style.display = 'none';
+        const allRows = Array.from(document.getElementById('orders-table').rows).slice(1);
+
+        allRows.forEach(row => {
+            const deliveryDate = new Date(row.cells[1].innerHTML);
+            if (deliveryDate >= startDate && deliveryDate <= endDate) {
+                row.style.display = 'table-row';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+
+        // change the filter button color
+        const filterButtons = document.getElementsByClassName('date-filter');
+        for (let i = 0; i < filterButtons.length; i++) {
+            // add a red color to the button
+            filterButtons[i].style.backgroundColor = '#ff0000';
+            filterButtons[i].innerHTML = 'Clear Filter';
+            filterButtons[i].onclick = function () {
+                // clear the filter
+                allRows.forEach(row => {
+                    row.style.display = 'table-row';
+                });
+                // change the value of the date inputs
+                document.getElementById('start-date').value = new Date().toISOString().slice(0, 10);
+                document.getElementById('end-date').value = new Date().toISOString().slice(0, 10);
+                filterButtons[i].style.backgroundColor = '#fff';
+                filterButtons[i].innerHTML = 'Filter';
+                filterButtons[i].onclick = handleFiltering;
             }
         }
+
     }
+
 
     function checkDeliveryDateInFilter($orderDate ,$filter) {
 
@@ -242,21 +243,8 @@ echo $components->sideBar('invoices');
             let orderInformationForSwal = '';
             if (orderData != undefined || orderData.length > 0) {
                 orderInformationForSwal += '<div class="order-details">';
-                orderInformationForSwal += '<div class="order-details-row">';
-                orderInformationForSwal += '<h4>Invoice ID</h4>';
-                orderInformationForSwal += '<h4>' + orderData.invoiceId + '</h4>';
-                orderInformationForSwal += '</div>';
-                orderInformationForSwal += '<div class="order-details-row">';
-                orderInformationForSwal += '<h4>Pharmacy ID</h4>';
-                orderInformationForSwal += '<h4>' + orderData.pharmacyUsername + '</h4>';
-                orderInformationForSwal += '</div>';
-                orderInformationForSwal += '<div class="order-details-row">';
-                orderInformationForSwal += '<h4>Invoiced Date</h4>';
-                orderInformationForSwal += '<h4>' + orderData.invoiceDate + '</h4>';
-                orderInformationForSwal += '</div>';
-                orderInformationForSwal += '<div class="order-details-row">';
-                orderInformationForSwal += '<h4>Total Price</h4>';
-                orderInformationForSwal += '<h4>' + orderData.billTotal + '</h4>';
+                orderInformationForSwal += '<div class="order-details-row" style="width: 100%; justify-content: flex-end;">';
+                orderInformationForSwal += '<h4 style="white-space: nowrap; text-align: end">' + orderData.invoiceDate + '</h4>';
                 orderInformationForSwal += '</div>';
                 orderInformationForSwal += '</div>';
             }
@@ -299,7 +287,7 @@ echo $components->sideBar('invoices');
             if (orderData.billTotal > 0) {
                     console.log("Order Summary" + '\t' + $orderId);
                 swal({
-                    title: "Order Summary" + '\t' + $orderId,
+                    title: "Bill Summary" + '\t' + $orderId,
                     content: {
                         element: "div",
                         attributes: {

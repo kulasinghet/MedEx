@@ -46,9 +46,25 @@ class Router
 
     }
 
-    public function renderView($view)
+//    public function renderView($view, $params = []): void
+//    {
+//        //todo: can add layout as a variable https://youtu.be/GTESlsYTUns?t=2274
+//        include_once "../views/$view";
+//    }
+
+    public function renderView($view, $params = [])
     {
-        //todo: can add layout as a variable https://youtu.be/GTESlsYTUns?t=2274
+        $viewContent = $this->renderOnlyView($view, $params);
+        echo $viewContent;
+    }
+
+    private function renderOnlyView($view, $params)
+    {
+        foreach ($params as $key => $value) {
+            $$key = $value;
+        }
+        ob_start();
         include_once "../views/$view";
+        return ob_get_clean();
     }
 }

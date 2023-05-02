@@ -168,4 +168,21 @@ class ExceptionHandler extends Logger
         $spanClass = "<span class='closebtn' id='closebtn' onclick='this.parentElement.style.display='none';'>&times;</span>";
         return "<head><script src='/js/pharmacy/login-error.js' defer></script><link href='/css/error-model.css' rel='stylesheet'></head>" . "<div class='loginError alert alert-danger' id='loginError' role='alert' style='background-color: red;'>" . $spanClass . "Pharmacy Registration Failed!" . "</div>";
     }
+
+    public function invalidEmail()
+    {
+        $scriptClass = "<head><script src='/js/pharmacy/login-error.js' defer></script><link href='/css/error-model' rel='stylesheet'></head>";
+        $alertClass = "<div class='loginError alert alert-danger' id='loginError' role='alert'>";
+        $spanClass = "<span class='closebtn' id='closebtn' style='padding-bottom: 0' onclick='this.parentElement.style.display='none';'>&times;</span>";
+        $closeClass = "</div>";
+
+        $message = $scriptClass . $alertClass . $spanClass . "Invalid Email" . $closeClass;
+        return $message;
+    }
+
+    public function qrGenerationFailed()
+    {
+        $spanClass = "<span class='closebtn' id='closebtn' onclick='this.parentElement.style.display='none';'>&times;</span>";
+        return "<head><script src='/js/pharmacy/login-error.js' defer></script><link href='/css/error-model.css' rel='stylesheet'></head>" . "<div class='loginError alert alert-danger' id='loginError' role='alert' style='background-color: red;'>" . $spanClass . "QR Generation Failed!" . "</div>";
+    }
 }

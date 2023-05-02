@@ -202,7 +202,7 @@ class PharmacySellModel extends Model
 
     public function getPharmacySellOrders(mixed $username)
     {
-        $sql = "SELECT * FROM pharmacysell WHERE pharmacyUsername = '$username'";
+        $sql = "SELECT * FROM pharmacysell WHERE pharmacyUsername = '$username' ORDER BY invoice_date DESC";
 
         Logger::logDebug($sql);
 

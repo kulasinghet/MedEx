@@ -31,10 +31,13 @@ class Components
             <link href="../css/pharmacy/dashboard.css" rel="stylesheet"/>
             $additionalCSS
             <link rel="icon" href="../res/logo/logo-box_light.jpg" type="image/svg+xml">
+            <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
+            <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
             <!-- Font awesome kit -->
             <script crossorigin="anonymous" src="https://kit.fontawesome.com/9b33f63a16.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.0/dist/chart.umd.min.js"></script>
             <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+            
         </head>
         <body>
         HTML;
@@ -42,7 +45,7 @@ class Components
 
     public function navBar($username): string
     {
-        $profileURL = "../res/avatar-empty.png";
+        $profileURL = "res/avatar-empty.png";
         if (isset($_SESSION['username'])) {
             $pharmacy = new \app\controllers\entity\Pharmacy($_SESSION['username']);
             if ($pharmacy->getPharmacyProfilePicture($_SESSION['username']) != null) {
@@ -58,8 +61,6 @@ class Components
                 <ul>
                     <li><a href="/logout"><i class="fa-solid fa-right-from-bracket"></i></a></li>
               <!--      <li><a href="#"><i class="fa-solid fa-circle-question"></i></a></li> -->
-                    <li><a href="/pharmacy/settings"><i class="fa-solid fa-gear"></i></a></li>
-         <!--           <li><a href="#"><i class="fa-solid fa-bell"></i></a></li>  -->
                     
                     <div class="nav-profile-inner">
                     <a href="/pharmacy/profile" style="text-decoration: none; color: #071232;">
@@ -100,7 +101,7 @@ class Components
                         <i class="fa-solid fa-cash-register"></i> Sell Medicine </a>
                         </li>
                 <li>
-                    <a class="btn ' . ($selectedPage == 'invoices' ? 'disabled' : '') . '" href="/pharmacy/invoices"> <i class="fa-solid fa-file-invoice-dollar"></i> Invoices </a>
+                    <a class="btn ' . ($selectedPage == 'invoices' ? 'disabled' : '') . '" href="/pharmacy/invoices"> <i class="fa-solid fa-file-invoice-dollar"></i> Bills </a>
                 </li>
                 <li>
                     <a class="btn ' . ($selectedPage == 'order-medicine' ? 'disabled' : '') . '" href="/pharmacy/order-medicine"> <i class="fa-solid fa-truck-moving"></i> Order Medicine </a>
