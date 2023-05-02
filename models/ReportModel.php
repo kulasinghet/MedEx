@@ -7,18 +7,33 @@ use app\core\Logger;
 
 class ReportModel extends Model
 {
-    public ?string $inquiry_id;
-    public ?string $username;
-    public ?string $user_type; // nullable for now
+    public string $inquiry_id;
+    public string $username;
+    public string $user_type;
     public ?string $subject;
     public ?string $message;
-    public ?bool $is_resolved;
+    public bool $is_resolved;
     public bool $is_employee_noticed;
 
 
     public function __construct($params = array()) {
         foreach ($params as $key => $value) {
             $this->{$key} = $value;
+        }
+    }
+
+    public static function getUserType(array $query_row): string
+    {
+        if ($query_row["isPharmacy"] == 1) {
+            return "pharmacy";
+        } else if ($query_row["isSupplier"] == 1) {
+            return "supplier";
+        } else if ($query_row["isDelivery"] == 1) {
+            return "delivery";
+        } else if ($query_row["isLab"] == 1) {
+            return "lab";
+        } else {
+            return "";
         }
     }
 
@@ -29,14 +44,20 @@ class ReportModel extends Model
         $conn = $db->getConnection();
 
         try {
-            $sql = "SELECT * FROM `report` WHERE `inquiry_id` = '$id'";
+            $sql = "SELECT `r`.*, `l`.`isPharmacy`, `l`.`isSupplier`, `l`.`isDelivery`, `l`.`isLab`
+                FROM `report` `r`
+                INNER JOIN `login` `l` 
+                on `r`.`username` = `l`.`username`
+                WHERE `r`.`inquiry_id` = '$id';";
+
+
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
                 $row = $result->fetch_assoc();
                 return new ReportModel(array(
                     'inquiry_id' => $row["inquiry_id"],
                     'username' => $row["username"],
-                    'user_type' => $row["user_type"],
+                    'user_type' => ReportModel::getUserType($row),
                     'subject' => $row["subject"],
                     'message' => $row["message"],
                     'is_resolved' => $row["is_resolved"]

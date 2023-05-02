@@ -9,7 +9,7 @@ use mysqli;
 
 class ReportListModel extends Model
 {
-    public function createConnection(): ?\mysqli
+    private function createConnection(): ?\mysqli
     {
         //loading the database
         $db = new Database();
@@ -32,11 +32,15 @@ class ReportListModel extends Model
         // retrieving the employee store
         $store = EmployeeStore::getEmployeeStore();
         $output = array();
-        $sql = "SELECT `r`.*
+        $sql = "SELECT `r`.*, `l`.`isPharmacy`, `l`.`isSupplier`, `l`.`isDelivery`, `l`.`isLab`
                 FROM `report` `r`
+                INNER JOIN `login` `l` 
+                on `r`.`username` = `l`.`username`
                 LEFT JOIN `report_seen_by` `rsb`
                 ON `r`.`inquiry_id` = `rsb`.`inquiry_id`
-                WHERE `r`.`is_resolved` = '0' AND (`rsb`.`emp_username` != '$store->username' OR `rsb`.`emp_username` IS NULL);";
+                WHERE `r`.`is_resolved` = '0' 
+                  AND (`rsb`.`emp_username` != '$store->username' OR `rsb`.`emp_username` IS NULL) 
+                  AND `l`.`isStaff` = 0;";
 
         try {
             $result = $conn->query($sql);
@@ -45,7 +49,7 @@ class ReportListModel extends Model
                     $tmp = new ReportModel(array(
                         'inquiry_id' => $row["inquiry_id"],
                         'username' => $row["username"],
-                        'user_type' => $row["user_type"],
+                        'user_type' => ReportModel::getUserType($row),
                         'subject' => $row["subject"],
                         'message' => $row["message"],
                         'is_resolved' => $row["is_resolved"],
@@ -69,11 +73,15 @@ class ReportListModel extends Model
         // retrieving the employee store
         $store = EmployeeStore::getEmployeeStore();
         $output = array();
-        $sql = "SELECT `r`.*
+        $sql = "SELECT `r`.*, `l`.`isPharmacy`, `l`.`isSupplier`, `l`.`isDelivery`, `l`.`isLab`
                 FROM `report` `r`
+                INNER JOIN `login` `l` 
+                on `r`.`username` = `l`.`username`
                 LEFT JOIN `report_seen_by` `rsb`
                 ON `r`.`inquiry_id` = `rsb`.`inquiry_id`
-                WHERE `r`.`is_resolved` = '0' AND `rsb`.`emp_username` = '$store->username';";
+                WHERE `r`.`is_resolved` = '0' 
+                  AND `rsb`.`emp_username` = '$store->username' 
+                  AND `l`.`isStaff` = 0;";
 
         try {
             $result = $conn->query($sql);
@@ -82,7 +90,7 @@ class ReportListModel extends Model
                     $tmp = new ReportModel(array(
                         'inquiry_id' => $row["inquiry_id"],
                         'username' => $row["username"],
-                        'user_type' => $row["user_type"],
+                        'user_type' => ReportModel::getUserType($row),
                         'subject' => $row["subject"],
                         'message' => $row["message"],
                         'is_resolved' => $row["is_resolved"],
