@@ -40,7 +40,7 @@ class PharmacyOrderModel extends Model
     public function getPendingOrders()
     {
         $db = (new Database())->getConnection();
-        $sql = "SELECT id from pharmacyorder WHERE pharmacyorder.status = '0'";
+        $sql = "SELECT id from pharmacyorder WHERE pharmacyorder.order_status = '0'";
         $result = $db->query($sql);
         if ($result->num_rows > 0) {
             return $result;
@@ -51,7 +51,7 @@ class PharmacyOrderModel extends Model
     public function getPendingOrderCount()
     {
         $db = (new Database())->getConnection();
-        $sql = "SELECT COUNT(id) from pharmacyorder WHERE pharmacyorder.status = '0'";
+        $sql = "SELECT COUNT(id) from pharmacyorder WHERE pharmacyorder.order_status = '0'";
         $result = $db->query($sql);
         if ($result->num_rows > 0) {
             return $result;
@@ -62,7 +62,7 @@ class PharmacyOrderModel extends Model
     public function getSupOrders($name)
     {
         $db = (new Database())->getConnection();
-        $sql = "SELECT id from pharmacyorder WHERE pharmacyorder.status = '1' && pharmacyorder.supName = '$name'";
+        $sql = "SELECT id from pharmacyorder WHERE pharmacyorder.order_status = '1' && pharmacyorder.supName = '$name'";
         $result = $db->query($sql);
         if ($result->num_rows > 0) {
             return $result;
@@ -73,7 +73,7 @@ class PharmacyOrderModel extends Model
     public function getSupOrderCount($name)
     {
         $db = (new Database())->getConnection();
-        $sql = "SELECT COUNT(id) from pharmacyorder WHERE pharmacyorder.status = '1' && pharmacyorder.supName = '$name'";
+        $sql = "SELECT COUNT(id) from pharmacyorder WHERE pharmacyorder.order_status = '1' && pharmacyorder.supName = '$name'";
         $result = $db->query($sql);
         if ($result->num_rows > 0) {
             return $result;
@@ -103,7 +103,7 @@ class PharmacyOrderModel extends Model
     {
         $db = (new Database())->getConnection();
         try {
-            $sql = "UPDATE pharmacyorder SET pharmacyorder.status = '1', pharmacyorder.supName = '$supName' , pharmacyorder.batchNo='$bnumber', pharmacyorder.expDate ='$expdate' WHERE pharmacyorder.id = '$id'";
+            $sql = "UPDATE pharmacyorder SET pharmacyorder.order_status = '1', pharmacyorder.supName = '$supName' , pharmacyorder.batchNo='$bnumber', pharmacyorder.expDate ='$expdate' WHERE pharmacyorder.id = '$id'";
             $stmt = $db->prepare($sql);
             $stmt->execute();
 
