@@ -13,6 +13,10 @@ class Components
             $additionalCSS = "<link href='../css/pharmacy/orders.css' rel='stylesheet'>";
         } else if ($title == "Inventory") {
             $additionalCSS = "<link href='../css/pharmacy/inventory.css' rel='stylesheet'>";
+        } else if ($title == "Sell Medicine") {
+            $additionalCSS = "<link href='../css/pharmacy/sell-medicine.css' rel='stylesheet'>";
+        } else if ($title == "Invoices") {
+            $additionalCSS = "<link href='../css/pharmacy/invoices.css' rel='stylesheet'>";
         }
 
         return <<<HTML
@@ -28,17 +32,19 @@ class Components
 
             $additionalCSS
             <link rel="icon" href="../res/logo/logo-box_light.jpg" type="image/svg+xml">
+            <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
+            <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
             <!-- Font awesome kit -->
             <script crossorigin="anonymous" src="https://kit.fontawesome.com/9b33f63a16.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.0/dist/chart.umd.min.js"></script>
             <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
             <link href="../css/model.css" rel="stylesheet"/>
             <link rel="icon" href="../res/logo/logo-box_light.jpg" type="image/svg+xml">
             <!-- Font awesome kit -->
             <script crossorigin="anonymous" src="https://kit.fontawesome.com/9b33f63a16.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js"></script>
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.min.css">
-
         </head>
         <body>
         HTML;
@@ -46,7 +52,7 @@ class Components
 
     public function navBar($username): string
     {
-        $profileURL = "../res/avatar-empty.png";
+        $profileURL = "res/avatar-empty.png";
         if (isset($_SESSION['username'])) {
             $pharmacy = new \app\controllers\entity\Pharmacy($_SESSION['username']);
             if ($pharmacy->getPharmacyProfilePicture($_SESSION['username']) != null) {
@@ -62,8 +68,6 @@ class Components
                 <ul>
                     <li><a href="/logout"><i class="fa-solid fa-right-from-bracket"></i></a></li>
               <!--      <li><a href="#"><i class="fa-solid fa-circle-question"></i></a></li> -->
-                    <li><a href="/pharmacy/settings"><i class="fa-solid fa-gear"></i></a></li>
-         <!--           <li><a href="#"><i class="fa-solid fa-bell"></i></a></li>  -->
                     
                     <div class="nav-profile-inner">
                     <a href="/pharmacy/profile" style="text-decoration: none; color: #071232;">
@@ -74,7 +78,7 @@ class Components
                 </ul>
                 <a class="nav-profile" href="/pharmacy/profile">
                     <div class="nav-profile-image">
-                        <img alt="Profile image" src="../res/avatar-empty.png"/>
+                        <img alt="Profile image" src="' . $profileURL . '"/>
                     </div>
                 </a>
             </div>
@@ -103,6 +107,9 @@ class Components
                     <a class="btn ' . ($selectedPage == 'sell-medicine' ? 'disabled' : '') . '" href="/pharmacy/sell-medicine">
                         <i class="fa-solid fa-cash-register"></i> Sell Medicine </a>
                         </li>
+                <li>
+                    <a class="btn ' . ($selectedPage == 'invoices' ? 'disabled' : '') . '" href="/pharmacy/invoices"> <i class="fa-solid fa-file-invoice-dollar"></i> Bills </a>
+                </li>
                 <li>
                     <a class="btn ' . ($selectedPage == 'order-medicine' ? 'disabled' : '') . '" href="/pharmacy/order-medicine"> <i class="fa-solid fa-truck-moving"></i> Order Medicine </a>
                     </li>

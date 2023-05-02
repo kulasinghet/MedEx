@@ -98,9 +98,9 @@ class MedicineModel extends Model
     // Get all medicine
     public function getAllMedicines()
     {
-        $db = new Database();
-        $sql = "SELECT * FROM medicine";
 
+        $conn = (new Database())->getConnection();
+        $sql = "SELECT medicine.*, COALESCE(stock.remQty, 0) AS remQty FROM medicine LEFT JOIN stock ON medicine.id = stock.medId;";
         try {
             $stmt = $db->prepare($sql);
             $stmt->execute();

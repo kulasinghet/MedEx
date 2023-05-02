@@ -36,9 +36,10 @@ select {
 .order-details-row {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 50%;
+    text-align: left;
 }
 
 .order-details-row > h4 {
@@ -57,8 +58,12 @@ select {
     background-color: #c9302c;
 }
 
+.sale-row {
+    background-color: #fff;
+}
+
 .orders {
-    margin-top: 5vh;
+    margin: 5vh !important;
 }
 
 input[type="date"] {
@@ -87,5 +92,3 @@ input[type="date"] {
     /*color: #ffffff;*/
     border: 1px solid #00144e;
 }
-
-.Deliveryi

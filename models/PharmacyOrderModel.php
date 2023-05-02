@@ -129,7 +129,7 @@ class PharmacyOrderModel extends Model
     }
 
 
-    public function createOrder($pharmacyUsername, $order_total, $medicineIds): bool
+    public function createOrder($pharmacyUsername, $order_total, $medicineIds): bool | string
     {
         // generate random order id with time stamp and pharmacy id
 
@@ -149,7 +149,7 @@ class PharmacyOrderModel extends Model
                 $stmt->close();
                 //                $pharmacyUsername, $order_total, $medicineIds, $order_date
                 if ($this->updateMedicineQuantity($pharmacyUsername, $order_total, $medicineIds, $order_date)) {
-                    return true;
+                    return $this->id;
                 }
 
             }
@@ -324,4 +324,138 @@ class PharmacyOrderModel extends Model
             return false;
         }
     }
+
+
+    public function getPendingOrdersCount(mixed $username)
+    {
+        $conn = (new Database())->getConnection();
+        // order status 0 = pending for current month
+        $sql = "SELECT COUNT(*) AS count FROM pharmacyorder WHERE pharmacyUsername = '$username' AND order_status = 0 AND MONTH(order_date) = MONTH(CURRENT_DATE()) AND YEAR(order_date) = YEAR(CURRENT_DATE());";
+
+        try {
+            $result = $conn->query($sql);
+            $row = $result->fetch_assoc();
+            return $row['count'];
+        } catch (\Exception $e) {
+            Logger::logError($e->getMessage());
+            echo (new ExceptionHandler)->somethingWentWrong();
+            return false;
+        }
+    }
+
+
+    //if ($orderStatus == "0") {
+//return 'Pending';
+//} elseif ($orderStatus == '1') {
+//            return 'Accepted';
+//        } elseif ($orderStatus == '3') {
+//            return 'Rejected';
+//        } elseif ($orderStatus == '2') {
+//            return 'Delivered';
+//        } elseif ($orderStatus == '4') {
+//            return 'Cancelled';
+//        }
+//    }
+
+    public function getAcceptedOrdersCount(mixed $username)
+    {
+        $conn = (new Database())->getConnection();
+        // order status 1 = accepted for current month
+        $sql = "SELECT COUNT(*) AS count FROM pharmacyorder WHERE pharmacyUsername = '$username' AND order_status = 1 AND MONTH(order_date) = MONTH(CURRENT_DATE()) AND YEAR(order_date) = YEAR(CURRENT_DATE());";
+
+        try {
+            $result = $conn->query($sql);
+            $row = $result->fetch_assoc();
+            return $row['count'];
+        } catch (\Exception $e) {
+            Logger::logError($e->getMessage());
+            echo (new ExceptionHandler)->somethingWentWrong();
+            return false;
+        }
+    }
+
+    public function getRejectedOrdersCount(mixed $username)
+    {
+        $conn = (new Database())->getConnection();
+        // order status 2 = rejected for current month
+        $sql = "SELECT COUNT(*) AS count FROM pharmacyorder WHERE pharmacyUsername = '$username' AND order_status = 3 AND MONTH(order_date) = MONTH(CURRENT_DATE()) AND YEAR(order_date) = YEAR(CURRENT_DATE());";
+
+        try {
+            $result = $conn->query($sql);
+            $row = $result->fetch_assoc();
+            return $row['count'];
+        } catch (\Exception $e) {
+            Logger::logError($e->getMessage());
+            echo (new ExceptionHandler)->somethingWentWrong();
+            return false;
+        }
+    }
+
+    public function getDeliveredOrdersCount(mixed $username)
+    {
+        $conn = (new Database())->getConnection();
+        // order status 3 = delivered for current month
+        $sql = "SELECT COUNT(*) AS count FROM pharmacyorder WHERE pharmacyUsername = '$username' AND order_status = 2 AND MONTH(order_date) = MONTH(CURRENT_DATE()) AND YEAR(order_date) = YEAR(CURRENT_DATE());";
+
+        try {
+            $result = $conn->query($sql);
+            $row = $result->fetch_assoc();
+            return $row['count'];
+        } catch (\Exception $e) {
+            Logger::logError($e->getMessage());
+            echo (new ExceptionHandler)->somethingWentWrong();
+            return false;
+        }
+    }
+
+    public function getCancelledOrdersCount(mixed $username)
+    {
+        $conn = (new Database())->getConnection();
+        // order status 4 = cancelled for current month
+        $sql = "SELECT COUNT(*) AS count FROM pharmacyorder WHERE pharmacyUsername = '$username' AND order_status = 4 AND MONTH(order_date) = MONTH(CURRENT_DATE()) AND YEAR(order_date) = YEAR(CURRENT_DATE());";
+
+        try {
+            $result = $conn->query($sql);
+            $row = $result->fetch_assoc();
+            return $row['count'];
+        } catch (\Exception $e) {
+            Logger::logError($e->getMessage());
+            echo (new ExceptionHandler)->somethingWentWrong();
+            return false;
+        }
+    }
+
+    public function getTotalOrdersCount(mixed $username)
+    {
+        $conn = (new Database())->getConnection();
+        // order status 4 = cancelled for current month
+        $sql = "SELECT COUNT(*) AS count FROM pharmacyorder WHERE pharmacyUsername = '$username' AND MONTH(order_date) = MONTH(CURRENT_DATE()) AND YEAR(order_date) = YEAR(CURRENT_DATE());";
+
+        try {
+            $result = $conn->query($sql);
+            $row = $result->fetch_assoc();
+            return $row['count'];
+        } catch (\Exception $e) {
+            Logger::logError($e->getMessage());
+            echo (new ExceptionHandler)->somethingWentWrong();
+            return false;
+        }
+    }
+
+    public function getLocation(mixed $orderId)
+    {
+        $conn = (new Database())->getConnection();
+        $sql = "SELECT delivery_partner.longitude, delivery_partner.latitude FROM pharmacyorder LEFT JOIN delivery_partner ON pharmacyorder.delivary_partner_id = delivery_partner.username WHERE pharmacyorder.id = '$orderId'";
+
+        try {
+            $result = $conn->query($sql);
+            $row = $result->fetch_assoc();
+            return $row;
+        } catch (\Exception $e) {
+            Logger::logError($e->getMessage());
+            echo (new ExceptionHandler)->somethingWentWrong();
+            return false;
+        }
+    }
 }
+

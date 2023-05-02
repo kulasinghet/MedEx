@@ -22,6 +22,7 @@ class Request
     public function getBody(): array
     {
         $body = [];
+
         if ($this->getMethod() === 'get') {
             foreach ($_GET as $key => $value) {
                 $body[$key] = filter_input(INPUT_GET, $key, FILTER_SANITIZE_SPECIAL_CHARS);
@@ -29,10 +30,20 @@ class Request
         }
 
         if ($this->getMethod() === 'post') {
-            foreach ($_POST as $key => $value) {
-                $body[$key] = filter_input(INPUT_POST, $key, FILTER_SANITIZE_SPECIAL_CHARS);
+            $content_type = isset($_SERVER['CONTENT_TYPE']) ? $_SERVER['CONTENT_TYPE'] : '';
+
+            if (stripos($content_type, 'application/json') !== false) {
+                // JSON data
+                $input = file_get_contents('php://input');
+                $body = json_decode($input, true);
+            } else {
+                // Form data
+                foreach ($_POST as $key => $value) {
+                    $body[$key] = filter_input(INPUT_POST, $key, FILTER_SANITIZE_SPECIAL_CHARS);
+                }
             }
         }
+
         return $body;
     }
 

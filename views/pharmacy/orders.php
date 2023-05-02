@@ -16,66 +16,32 @@ echo $components->sideBar('orders');
         <div class="row" id="orders-page-row">
             <div class="col" id="orders-page-col">
 
-<!--                <div class="nav-search">-->
-<!--                    <form onsubmit="preventDefault();" role="search">-->
-<!--                        <label for="search">Search for stuff</label>-->
-<!--                        <input id="search-orders" placeholder="Search Orders ..." required type="search" onchange="handleSearchButtonClick(event)" />-->
-<!--                        <button type="submit" onclick="handleSearchButtonClick()">-->
-<!--                            <i class="fa-solid fa-search"></i>-->
-<!--                    </form>-->
-<!--                </div>-->
-
-
                 <div class="filter-group">
-
 
 
                     <div class="filter-group">
 
-<!--                        <button class="btn btn-primary filter-button" id="pending" onclick="handleFilterButtonClick('Pending')">Pending</button>-->
-<!---->
-<!--                        <button class="btn btn-primary filter-button" id="accepted" onclick="handleFilterButtonClick('Accepted')">Accepted</button>-->
-<!---->
-<!--                        <button class="btn btn-primary filter-button" id="rejected" onclick="handleFilterButtonClick('Rejected')">Rejected</button>-->
-<!---->
-<!--                        <button class="btn btn-primary filter-button" id="delivered" onclick="handleFilterButtonClick('Delivered')">Delivered</button>-->
-<!---->
-<!--                        <button class="btn btn-primary filter-button" id="cancelled" onclick="handleFilterButtonClick('Cancelled')">Cancelled</button>-->
-<!---->
-<!--                        <i class="fa-solid fa-filter-circle-xmark" style="color: #999999; font-size: 1.5rem; margin-left: 1rem; cursor: pointer;" id="clear-filter" onclick="handleFilterButtonClick('Clear')"></i>-->
-
                         <div class="filter-by-status">
                             <label for="filter-by-status">Filter by status</label>
-                            <select name="filter-by-status" id="filter-by-status" onchange="handleFiltering() " >
-                                <option value="Clear" selected >All</option>
+                            <select name="filter-by-status" id="filter-by-status" onchange="handleFilteringByStatus() ">
+                                <option value="Clear" selected>All</option>
                                 <option value="Pending">Pending</option>
                                 <option value="Accepted">Accepted</option>
                                 <option value="Rejected">Rejected</option>
+                                <option value="Delivering">On the way</option>
                                 <option value="Delivered">Delivered</option>
                                 <option value="Cancelled">Cancelled</option>
                             </select>
                         </div>
 
                         <div class="filter-by-date">
-                            <label for="filter-by-date">Filter by order date</label>
-                            <select name="filter-by-date" id="filter-by-date" onchange="handleFiltering()">
-                                <option value="Clear" selected>All</option>
-                                <option value="Today">Today</option>
-                                <option value="This Week">This Week</option>
-                                <option value="This Month">This Month</option>
-                                <option value="This Year">This Year</option>
-                            </select>
-                        </div>
-
-                        <div class="filter-by-delivery-date">
-                            <label for="filter-by-delivery-date">Filter by delivery date</label>
-                            <select name="filter-by-delivery-date" id="filter-by-delivery-date" onchange="handleFiltering()">
-                                <option value="Clear" selected>All</option>
-                                <option value="Today">Today</option>
-                                <option value="This Week">This Week</option>
-                                <option value="This Month">This Month</option>
-                                <option value="This Year">This Year</option>
-                            </select>
+                            <label for="start-date">Start Date:</label>
+                            <input type="date" name="start-date" id="start-date" onchange="handleFiltering()"
+                                   value="<?php echo date('Y-m-d'); ?>">
+                            <label for="end-date">End Date:</label>
+                            <input type="date" name="end-date" id="end-date" onchange="handleFiltering()"
+                                   value="<?php echo date('Y-m-d'); ?>">
+                            <button class="date-filter" onclick="handleFiltering()">Filter</button>
                         </div>
 
 
@@ -86,54 +52,54 @@ echo $components->sideBar('orders');
                 <div class=" orders">
                     <table id="orders-table">
                         <thead>
-                            <tr>
-                                <th>Order ID</th>
-                                <th>Order Date</th>
-                                <th>Order Status</th>
-                                <th>Order Total</th>
-                                <th>Delivery Date</th>
-                                <th></th>
-                            </tr>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Order Date</th>
+                            <th>Order Status</th>
+                            <th>Order Total</th>
+                            <th>Delivery Date</th>
+                            <th></th>
+                        </tr>
                         </thead>
                         <tbody>
 
-                            <?php
+                        <?php
 
-                            if (isset($_SESSION['userType']) && $_SESSION['userType'] == 'pharmacy') {
-                                try {
-                                    $username = $_SESSION['username'];
-                                    $pharmacyOrderHistoryController = new PharmacyOrderHistoryController();
-                                    $orders = $pharmacyOrderHistoryController->getOrdersByUsername($username);
-                                    if ($orders) {
-                                        foreach ($orders as $order) {
-                                            echo "<tr" . " class='" . $pharmacyOrderHistoryController->transformOrderStatus($order['order_status']) . "' tag='" . $pharmacyOrderHistoryController->transformOrderStatus($order['order_status']) . "'>";
-                                            echo "<td>" . $order['id'] . "</td>";
-                                            echo "<td>" . $order['order_date'] . "</td>";
-                                            echo "<td>" . $pharmacyOrderHistoryController->transformOrderStatus($order['order_status']) . "</td>";
-                                            echo "<td>" . $pharmacyOrderHistoryController->transformOrderTotal($order['order_total']) . "</td>";
-                                            echo "<td>" . $pharmacyOrderHistoryController->transformDeliveryDate($order['delivery_date']) . "</td>";
-                                            echo "<td>" . "<a class='view-order' id='" . $order['id'] . "'>" . "<i class='fa-solid fa-circle-arrow-right view-order-details' style='color:#333333'></i>" . "</a>" . "</td>";
+                        if (isset($_SESSION['userType']) && $_SESSION['userType'] == 'pharmacy') {
+                            try {
+                                $username = $_SESSION['username'];
+                                $pharmacyOrderHistoryController = new PharmacyOrderHistoryController();
+                                $orders = $pharmacyOrderHistoryController->getOrdersByUsername($username);
+                                if ($orders) {
+                                    foreach ($orders as $order) {
+                                        echo "<tr" . " class='" . $pharmacyOrderHistoryController->transformOrderStatus($order['order_status']) . "' tag='" . $pharmacyOrderHistoryController->transformOrderStatus($order['order_status']) . "'>";
+                                        echo "<td>" . $order['id'] . "</td>";
+                                        echo "<td>" . $order['order_date'] . "</td>";
+                                        echo "<td>" . $pharmacyOrderHistoryController->transformOrderStatus($order['order_status']) . "</td>";
+                                        echo "<td>" . $pharmacyOrderHistoryController->transformOrderTotal($order['order_total']) . "</td>";
+                                        echo "<td>" . $pharmacyOrderHistoryController->transformDeliveryDate($order['delivery_date']) . "</td>";
+                                        echo "<td>" . "<a class='view-order' id='" . $order['id'] . "'>" . "<i class='fa-solid fa-circle-arrow-right view-order-details' style='color:#333333'></i>" . "</a>" . "</td>";
 //                                            echo "<td>" . "<a onclick='handleViewOrderDetailsClick(" . $order['id'] . ")'>" . "<i class='fa-solid fa-circle-arrow-right view-order-details' style='color:#333333'></i>" . "</a>" . "</td>";
-                                            echo "</a>";
-                                            echo "</tr>";
-                                        }
-                                    } else {
-                                        echo "<tr>";
-                                        echo "<td colspan='6' style='text-align: center'>You don't have any orders</td>";
+                                        echo "</a>";
                                         echo "</tr>";
                                     }
-                                } catch (Exception $e) {
-                                    echo (new ExceptionHandler)->somethingWentWrong();
+                                } else {
+                                    echo "<tr>";
+                                    echo "<td colspan='6' style='text-align: center'>You don't have any orders</td>";
+                                    echo "</tr>";
                                 }
-                            } else {
-                                echo "<tr>";
-                                echo "<td colspan='6' style='text-align: center'>You don't have any orders</td>";
-                                echo "</tr>";
+                            } catch (Exception $e) {
                                 echo (new ExceptionHandler)->somethingWentWrong();
                             }
+                        } else {
+                            echo "<tr>";
+                            echo "<td colspan='6' style='text-align: center'>You don't have any orders</td>";
+                            echo "</tr>";
+                            echo (new ExceptionHandler)->somethingWentWrong();
+                        }
 
 
-                            ?>
+                        ?>
                         </tbody>
                     </table>
                 </div>
@@ -142,9 +108,9 @@ echo $components->sideBar('orders');
             </div>
 
 
-
             <div id="order-new-medicine">
-                <a class="btn ' . ($selectedPage == 'order-medicine' ? 'disabled' : '') . '" href="/pharmacy/order-medicine"> <i class="fa-solid fa-truck-moving"></i> Order Medicine </a>
+                <a class="btn ' . ($selectedPage == 'order-medicine' ? 'disabled' : '') . '"
+                   href="/pharmacy/order-medicine"> <i class="fa-solid fa-truck-moving"></i> Order Medicine </a>
             </div>
 
         </div>
@@ -152,153 +118,100 @@ echo $components->sideBar('orders');
 </div>
 
 <script>
+
     function handleFiltering() {
-        $statusFilter = document.getElementById('filter-by-status').value;
-        $dateFilter = document.getElementById('filter-by-date').value;
-        $deliveryDateFilter = document.getElementById('filter-by-delivery-date').value;
+        const filterByStatus = document.getElementById('filter-by-status').value;
+        const startDate = new Date(document.getElementById('start-date').value);
+        const endDate = new Date(document.getElementById('end-date').value);
 
-        $allRows = document.getElementById('orders-table').rows;
-        $allRows = Array.prototype.slice.call($allRows, 1);
-
-        for (let i = 0; i < $allRows.length; i++) {
-            $allRows[i].style.display = 'table-row';
-        }
-
-        if ($statusFilter == 'Clear' && $dateFilter == 'Clear' && $deliveryDateFilter == 'Clear') {
+        // check if the start date is greater than the end date
+        if (startDate > endDate) {
+            swal({
+                title: "Error",
+                text: "Start date cannot be greater than the end date",
+                icon: "error",
+                button: "OK",
+            });
             return;
         }
 
-        for (let i = 0; i < $allRows.length; i++) {
+        const allRows = Array.from(document.getElementById('orders-table').rows).slice(1);
+        const filteredRows = [];
 
-            $row = $allRows[i];
-
-            if ($statusFilter != $row.cells[2].innerHTML && $statusFilter != 'Clear') {
-                $row.style.display = 'none';
+        allRows.forEach(row => {
+            const deliveryDate = new Date(row.cells[1].innerHTML);
+            if ((filterByStatus === 'Clear' || row.classList.contains(filterByStatus))
+                && deliveryDate >= startDate && deliveryDate <= endDate) {
+                filteredRows.push(row);
             }
+        });
 
-            if (checkOrderDateInFilter($row.cells[1].innerHTML, $dateFilter) ) {
-                $row.style.display = 'none';
-            }
+        // hide all rows and then show filtered rows
+        allRows.forEach(row => {
+            row.style.display = 'none';
+        });
+        filteredRows.forEach(row => {
+            row.style.display = 'table-row';
+        });
 
-            if (checkDeliveryDateInFilter($row.cells[4].innerHTML, $deliveryDateFilter) ) {
-                $row.style.display = 'none';
-            }
+        // change the filter button color and text
+        const filterButtons = document.getElementsByClassName('date-filter');
+        for (let i = 0; i < filterButtons.length; i++) {
+            filterButtons[i].style.backgroundColor = filteredRows.length > 0 ? '#ff0000' : '#fff';
+            filterButtons[i].innerHTML = filteredRows.length > 0 ? 'Clear Filter' : 'Filter';
+            filterButtons[i].onclick = filteredRows.length > 0 ? function () {
+                // clear the filter
+                allRows.forEach(row => {
+                    row.style.display = 'table-row';
+                });
+                // change the value of the date inputs
+                document.getElementById('start-date').value = new Date().toISOString().slice(0, 10);
+                document.getElementById('end-date').value = new Date().toISOString().slice(0, 10);
+                filterButtons[i].style.backgroundColor = '#fff';
+                filterButtons[i].innerHTML = 'Filter';
+                filterButtons[i].onclick = handleFiltering;
+            } : handleFiltering;
         }
-
-
     }
 
-    function checkDeliveryDateInFilter($dateInRow, $filter) {
+    function handleFilteringByStatus() {
+        const filterByStatus = document.getElementById('filter-by-status').value;
+        const startDate = new Date(document.getElementById('start-date').value);
+        const endDate = new Date(document.getElementById('end-date').value);
+        const today = new Date().toISOString().slice(0, 10);
+        const allRows = Array.from(document.getElementById('orders-table').rows).slice(1);
 
-            $dateInRow = new Date($dateInRow);
-            $dateNow = new Date();
-
-            if ($dateInRow) {
-                if ($filter == 'Today') {
-                    if ($dateInRow.getDate() != $dateNow.getDate()) {
-                        return true;
-                    }
-                } else if ($filter == 'This Week') {
-                    if (getWeekNumber($dateInRow) != getWeekNumber($dateNow)) {
-                        console.log($dateInRow.getDate() + ' ' + $dateNow.getDate());
-                        return true;
-                    }
-                } else if ($filter == 'This Month') {
-                    if ($dateInRow.getMonth() != $dateNow.getMonth()) {
-                        return true;
-                    }
-                } else if ($filter == 'This Year') {
-                    if ($dateInRow.getFullYear() != $dateNow.getFullYear()) {
-                        return true;
-                    }
+        if (filterByStatus === 'All' && startDate.toISOString().slice(0, 10) === today && endDate.toISOString().slice(0, 10) === today) {
+            // Show all orders without any filtering if status is "All" and date range is set to today
+            allRows.forEach(row => {
+                row.style.display = 'table-row';
+            });
+            // change the filter by status button value to "Clear"
+            document.getElementById('filter-by-status').value = 'Clear';
+        } else {
+            allRows.forEach(row => {
+                console.log(filterByStatus + ' ' + row.classList + ' ' + row.classList.contains(filterByStatus));
+                if (filterByStatus === 'Clear') {
+                    row.style.display = 'table-row';
+                } else if (row.classList.contains(filterByStatus)) {
+                    row.style.display = 'table-row';
+                } else {
+                    row.style.display = 'none';
                 }
-            }
-
-            return false;
+            });
         }
 
-
-    function handleSearchButtonClick(event) {
-
-        event.preventDefault();
-
-        $searchInput = document.getElementById('search-orders').value;
-
-        $allRows = document.getElementById('orders-table').rows;
-        // drop first row
-        $allRows = Array.prototype.slice.call($allRows, 1);
-
-        for (let i = 0; i < $allRows.length; i++) {
-            $allRows[i].style.display = 'none';
+        // change the filter button color
+        const filterButtons = document.getElementsByClassName('date-filter');
+        for (let i = 0; i < filterButtons.length; i++) {
+            // add a red color to the button
+            filterButtons[i].style.backgroundColor = '#ff0000';
         }
 
-        for (let i = 0; i < $allRows.length; i++) {
-            $row = $allRows[i];
-            console.log($row);
-            if ($allRows[i].innerHTML.toLowerCase().indexOf($searchInput.toLowerCase()) > -1) {
-                $allRows[i].style.display = 'table-row';
-            }
-        }
+        // after filtering by status, the date filter button should be disabled
+        handleFiltering();
     }
 
-    function handleFilterButtonClick($filter) {
-        $allRows = document.getElementById('orders-table').rows;
-        $allButtons = document.getElementsByClassName('btn-primary');
-        // drop first row
-        $allRows = Array.prototype.slice.call($allRows, 1);
-        console.log($allRows);
-
-        for (let i = 0; i < $allRows.length; i++) {
-            $allRows[i].style.display = 'table-row';
-        }
-
-        if ($filter == 'Clear') {
-            return;
-        }
-
-        for (let i = 0; i < $allRows.length; i++) {
-            if ($allRows[i].getAttribute('tag') != $filter) {
-                $allRows[i].style.display = 'none';
-            }
-        }
-    }
-
-    function checkOrderDateInFilter($orderDate ,$filter) {
-
-            $dateInRow = new Date($orderDate);
-            $dateNow = new Date();
-
-            if ($dateInRow) {
-                if ($filter == 'Today') {
-                    if ($dateInRow.getDate() != $dateNow.getDate()) {
-                        return true;
-                    }
-                } else if ($filter == 'This Week') {
-                    if (getWeekNumber($dateInRow) != getWeekNumber($dateNow)) {
-                        console.log($dateInRow.getDate() + ' ' + $dateNow.getDate());
-                        return true;
-                    }
-                } else if ($filter == 'This Month') {
-                    if ($dateInRow.getMonth() != $dateNow.getMonth()) {
-                        return true;
-                    }
-                } else if ($filter == 'This Year') {
-                    if ($dateInRow.getFullYear() != $dateNow.getFullYear()) {
-                        return true;
-                    }
-                }
-            }
-        return false;
-        }
-
-
-    function getWeekNumber(d) {
-        d = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
-        d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay()||7));
-        var yearStart = new Date(Date.UTC(d.getUTCFullYear(),0,1));
-        var weekNo = Math.ceil(( ( (d - yearStart) / 86400000) + 1)/7);
-        return weekNo;
-    }
 
 </script>
 
@@ -307,10 +220,10 @@ echo $components->sideBar('orders');
     //
     // if document is ready add event listener to all class view-order
 
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         var viewOrderButtons = document.getElementsByClassName('view-order');
         for (var i = 0; i < viewOrderButtons.length; i++) {
-            viewOrderButtons[i].addEventListener('click', function() {
+            viewOrderButtons[i].addEventListener('click', function () {
                 // pass id of the anchor tag to the function
                 handleViewOrderDetailsClick(this.id);
             });
@@ -321,13 +234,37 @@ echo $components->sideBar('orders');
 
         try {
 
+            swal({
+                title: 'Loading',
+                text: 'Please wait...',
+                buttons: false,
+                closeOnClickOutside: false,
+                closeOnEsc: false,
+                content: {
+                    element: "img",
+                    attributes: {
+                        // add loading gitf from internet
+                        src: "https://i.gifer.com/ZZ5H.gif",
+                        style: "width:25px; margin-bottom:20px;"
+                    },
+                }
+            })
+
             const response = await fetch(`/pharmacy/api/order-details?orderId=${$orderId}`);
             const orderData = await response.json();
             // console.log(orderData.totalPrice);
             // {"orderId":"411205testPharmacy977","pharmacyId":"testPharmacy","orderDate":"2023-04-13","totalPrice":"230","orderStatus":"0","deliveryDate":null}
 
             const response2 = await fetch(`/pharmacy/api/order-medicine-details?orderId=${$orderId}`);
+            // const orderedMedicines = await response2.json();
+
+            // while response2 is loading show loading spinner
+
+
             const orderedMedicines = await response2.json();
+
+            swal.close();
+
 
             console.log(orderedMedicines);
             console.log(orderData);
@@ -368,7 +305,8 @@ echo $components->sideBar('orders');
                 medicineInformationForSwal = '<h4>No Medicine Ordered</h4>';
             }
 
-            if (orderData.totalPrice > 0) {
+            if (orderData.orderStatus == 'Pending')
+            {
                 swal({
                     title: "Order Summary" + '\t' + $orderId,
                     content: {
@@ -386,48 +324,161 @@ echo $components->sideBar('orders');
                         case true:
                             swal("Are you sure? This action cannot be undone!", {
                                 buttons: {
-                                    cancel: "No",
-                                    confirm: "Yes",
+                                    cancel: {
+                                        text: "No",
+                                        value: 'no',
+                                        visible: true,
+                                        className: "",
+                                        closeModal: true,
+                                    },
+                                    confirm: {
+                                        text: "Yes",
+                                        value: 'yes',
+                                        visible: true,
+                                        className: "",
+                                        closeModal: true
+                                    }
                                 },
                             }).then((value) => {
                                 switch (value) {
-                                    case true:
+                                    case 'yes':
+
+                                        swal({
+                                            title: 'Loading',
+                                            text: 'Please wait...',
+                                            buttons: false,
+                                            closeOnClickOutside: false,
+                                            closeOnEsc: false,
+                                            content: {
+                                                element: "img",
+                                                attributes: {
+                                                    // add loading gitf from internet
+                                                    src: "https://i.gifer.com/ZZ5H.gif",
+                                                    style: "width:25px; margin-bottom:20px;"
+                                                },
+                                            }
+                                        });
+
                                         fetch(`/pharmacy/api/cancel-order?orderId=${$orderId}`)
                                             .then(response => response.json())
                                             .then(data => {
+                                                swal.close();
                                                 console.log(data);
                                                 if (data == 'Order Cancelled') {
-                                                    swal("Order Cancelled!", "Contact the administrator!", "error");
-                                                    location.reload();
+                                                    swal("Order Cancelled!", '', "error");
+                                                    setTimeout(function () {
+                                                        location.reload();
+                                                    }, 4000);
                                                 } else {
                                                     swal("Something went wrong!", "Contact the administrator!", "error");
                                                 }
                                             });
                                         break;
-                                    default:
-                                        swal("Order Details", "Contact the administrator!", "error");
+                                    case 'no':
+                                        // close the modal
+                                        break;
                                 }
                             });
+                            break;
+                        case null:
+                            // close the modal
                             break;
                         default:
                             swal("Order Details", "Contact the administrator!", "error");
                     }
                 });
-            } else if  (orderData.totalPrice == 'Rejected') {
+            }
+            else if (orderData.orderStatus == 'Rejected')
+            {
                 swal("Order Rejected!", "Contact the administrator!", "error");
-            } else if (orderData.totalPrice == 'Cancelled') {
+            } else if (orderData.orderStatus == 'Cancelled')
+            {
                 swal("Order Cancelled!", "Contact the administrator!", "error");
-            } else {
+            } else if (orderData.orderStatus == 'Accepted')
+            {
+                swal("Order Accepted!", "Contact the administrator!", "error");
+            } else if (orderData.orderStatus == 'Delivering')
+            {
+                console.log('delivering');
+                swal({
+                    title: "Order Summary" + '\t' + $orderId,
+                    content: {
+                        element: "div",
+                        attributes: {
+                            innerHTML: orderInformationForSwal + medicineInformationForSwal,
+                        }
+                    },
+                    buttons: {
+                        cancel: "Close",
+                        confirm: "Track Order",
+                    },
+                }).then((value) => {
+                    if (value) {
+
+                        let location = fetch('/pharmacy/api/get-location?orderId=' + $orderId)
+                            .then(response => response.json())
+                            .then(data => {
+                                console.log(data);
+                                if (data == 'Order Not Found') {
+                                    swal("Something went wrong!", "Contact the administrator!", "error");
+                                } else {
+                                    swal({
+                                        title: "Order Tracking",
+                                        content: {
+                                            element: "div",
+                                            attributes: {
+                                                innerHTML: '<div id="map" style="width: 100%; height: 400px"></div>',
+                                            }
+                                        },
+                                        buttons: {
+                                            cancel: "Close",
+                                        },
+                                    }).then((value) => {
+                                        if (value) {
+                                            // close the modal
+
+                                        }
+                                    });
+
+                                    let map;
+                                    let marker;
+                                    let lat = parseFloat(data.latitude);
+                                    let lng = parseFloat(data.longitude);
+                                    let myLatLng = [lat, lng];
+
+                                    function initMap() {
+                                        map = L.map('map').setView(myLatLng, 15);
+
+                                        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                                            maxZoom: 19,
+                                            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
+                                        }).addTo(map);
+
+                                        marker = L.marker(myLatLng).addTo(map)
+                                            .bindPopup('Order Location')
+                                            .openPopup();
+                                    }
+
+                                    initMap();
+
+                                }
+                            });
+                    }
+                });
+
+            } else
+            {
                 swal("Something went wrong!", "Contact the administrator!", "error");
             }
-
         } catch (e) {
-            console.log("Error: " + e);
-            swal("Something went wrong! ", "Contact the administrator!" + '\n' + e, "error");
+            console.log(e);
+            swal("Something went wrong!", "Contact the administrator!", "error");
         }
     }
+
+    // end the page
+    // end the page
 </script>
 
 </body>
-
 </html>

@@ -5,6 +5,9 @@ namespace app\controllers\pharmacy;
 
 use app\core\Controller;
 use app\core\ExceptionHandler;
+use app\core\Logger;
+use app\core\NotificationHandler;
+use app\core\Request;
 use app\models\PharmacyOrderModel;
 use app\models\Stock;
 use Composer\Util\ErrorHandler;
@@ -29,7 +32,7 @@ class PharmacyInventoryController extends Controller
         $medicine = $stock->getMedicine($medID);
 
         if ($medicine) {
-            return $medicine['medName'] . " <br> " . $medicine['weight'] . " mg ";
+            return $medicine['medName'] . " " . $medicine['weight'] . " mg ";
         } else {
             return "";
         }
@@ -56,5 +59,72 @@ class PharmacyInventoryController extends Controller
         } else {
             return false;
         }
+    }
+
+    public function medicineDetails(Request $request)
+    {
+        if ($_SESSION['userType'] == 'pharmacy') {
+            if ($request->isGet()) {
+
+                $medicineID = $request->getParams()['medicine-id'];
+                $stock = (new Stock())->getMedicineStock($medicineID, $_SESSION['username']);
+
+                header('Content-Type: application/json');
+                return json_encode($stock);
+
+
+            } else if ($request->isPost()) {
+                return header('/pharmacy/inventory');
+            } else {
+                return header('/login');
+            }
+        } else {
+            return header('/login');
+        }
+    }
+
+    public function updateMedicine(Request $request)
+    {
+
+        if ($request->isPost()) {
+
+            // I want to see the request body
+
+            if ($request->getBody()['pharmacyName'] == $_SESSION['username']) {
+                $stock = new Stock();
+
+                $pharmacyName = $request->getBody()['pharmacyName'];
+                $medicineID = $request->getBody()['medId'];
+                $medName = $request->getBody()['medName'];
+                $sciName = $request->getBody()['sciName'];
+                $recievedDate = $request->getBody()['recievedDate'];
+                $remQty = $request->getBody()['remQty'];
+                $buyingPrice = $request->getBody()['buyingPrice'];
+                $sellingPrice = $request->getBody()['sellingPrice'];
+                $consumption = $request->getBody()['consumption'];
+
+                $remainingDays = (int)$remQty / (int)$consumption;
+
+                $response = $stock->updateMedicine($pharmacyName, $medicineID, $medName, $sciName, $remQty, $buyingPrice, $sellingPrice, $remainingDays, $consumption, $recievedDate);
+
+                Logger::logDebug("Update medicine response: " . $response);
+
+                if ($response) {
+                    http_response_code(200);
+                    return header('Location: /pharmacy/inventory');
+                } else {
+                    http_response_code(500);
+                    return header('Location: /pharmacy/inventory');
+                }
+
+            } else {
+                return header('Location: /login');
+            }
+        } else {
+            //send response code 405
+            http_response_code(405);
+            return header('Location: /pharmacy/inventory');
+        }
+
     }
 }
