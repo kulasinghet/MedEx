@@ -203,7 +203,7 @@ echo $components->sideBar('invoices');
     async function handleViewOrderDetailsClick($orderId) {
 
         try {
-
+            console.log($orderId);
             swal({
                 title: 'Loading',
                 text: 'Please wait...',
