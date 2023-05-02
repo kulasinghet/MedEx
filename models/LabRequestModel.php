@@ -85,6 +85,15 @@ class LabRequestModel extends Model
         $db->close();
         return $result;
     }
+
+    public function getNotAcceptedReqCount()
+    {
+        $db = (new Database())->getConnection();
+        $sql = "SELECT COUNT(id) from labreq WHERE  labreq.status = '0'";
+        $result = $db->query($sql);
+        $db->close();
+        return $result;
+    }
     public function getAcceptedReq($labname)
     {
         $db = (new Database())->getConnection();
@@ -94,6 +103,14 @@ class LabRequestModel extends Model
         return $result;
     }
 
+    public function getAcceptedReqCount($labname)
+    {
+        $db = (new Database())->getConnection();
+        $sql = "SELECT COUNT(id) from labreq WHERE  labreq.status = '1' && labreq.labUsername='$labname'";
+        $result = $db->query($sql);
+        $db->close();
+        return $result;
+    }
     public function acceptReq($id, $labname)
     {
         $db = (new Database())->getConnection();
