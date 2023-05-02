@@ -41,14 +41,17 @@ class AcceptOrdersController extends Controller
                     if ($supMed->getQuantity($medid) > $qauntity) {
                         if ($weight > 0) {
                             $mass = $weight;
-                            echo "<tr><td>" . $id . "</td><td>" . $pharname . "</td><td>" . $medname . "</td><td>" . $weight . "</td><td>" . $manname . "</td><td>" . $qauntity . "</td><td><input type='submit' value='Accept' class='btn btn--primary' onclick='event.preventDefault(); confirmAccept(\"" . $id . "\", \"" . $medname . "\", \"" . $mass . "\", \"" . $manname . "\", \"" . $qauntity . "\", \"" . $medid . "\")'></td></tr></form>";
+                            echo "<tr><td>" . $id . "</td><td>" . $pharname . "</td><td>" . $medname . "</td><td>" . $weight . "mg</td><td>" . $manname . "</td><td>" . $qauntity . "</td><td><input type='submit' value='Accept' class='btn btn--primary' onclick='event.preventDefault(); confirmAccept(\"" . $id . "\", \"" . $medname . "\", \"" . $mass . "\", \"" . $manname . "\", \"" . $qauntity . "\", \"" . $medid . "\")'></td></tr></form>";
                         } else {
                             $mass = $volume;
-                            echo "<tr><td>" . $id . "</td><td>" . $pharname . "</td><td>" . $medname . "</td><td>" . $volume . "</td><td>" . $manname . "</td><td>" . $qauntity . "</td><td><input type='submit' value='Accept' class='btn btn--primary' onclick='event.preventDefault(); confirmAccept(\"" . $id . "\",  \"" . $medname . "\", \"" . $mass . "\", \"" . $manname . "\", \"" . $qauntity . "\", \"" . $medid . "\")'></td></tr></form>";
+                            echo "<tr><td>" . $id . "</td><td>" . $pharname . "</td><td>" . $medname . "</td><td>" . $volume . "ml</td><td>" . $manname . "</td><td>" . $qauntity . "</td><td><input type='submit' value='Accept' class='btn btn--primary' onclick='event.preventDefault(); confirmAccept(\"" . $id . "\",  \"" . $medname . "\", \"" . $mass . "\", \"" . $manname . "\", \"" . $qauntity . "\", \"" . $medid . "\")'></td></tr></form>";
                         }
-                    } else {
+                    } else if ($weight > 0) {
                         echo "<tr><td>" . $id . "</td><td>" . $pharname . "</td><td>" . $medname . "</td><td>" . $weight . "</td><td>" . $manname . "</td><td>" . $qauntity . "</td><td><h6><font color='#FF5854'>Insufficient Inventory</font></h6> </td></tr>";
 
+                    } else {
+
+                        echo "<tr><td>" . $id . "</td><td>" . $pharname . "</td><td>" . $medname . "</td><td>" . $volume . "ml</td><td>" . $manname . "</td><td>" . $qauntity . "</td><td><h6><font color='#FF5854'>Insufficient Inventory</font></h6> </td></tr>";
                     }
 
                 }
