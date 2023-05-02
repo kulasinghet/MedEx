@@ -103,4 +103,20 @@ class SupplierDashboardController extends Controller
         }
     }
 
+    public function Orders(Request $request)
+    {
+        if ($_SESSION['userType'] == 'supplier') {
+
+            if ($request->isGet()) {
+                $this->render("supplier/orders.php");
+            } else if ($request->isPost()) {
+                $this->render("supplier/orders.php");
+            } else {
+                return header(self::login);
+            }
+        } else {
+            return header(self::login);
+        }
+    }
+
 }

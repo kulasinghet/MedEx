@@ -494,6 +494,10 @@ echo $components->sideBar('inventory');
                         console.log(error);
                     });
 
+<script>
+    function handleViewStockDetailsClick(id) {
+        console.log(id);
+    }
 
                 } catch (e) {
                     console.log(e);

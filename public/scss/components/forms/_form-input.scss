@@ -1,15 +1,11 @@
 @use "../../abstracts/variables" as *;
 
 
-$input-min-height: 2.3rem;
-$input-padding: .75rem;
-$input-background-color: #f7f7f7;
-$input-font-color: #495057;
-$input-font-size: $h6-font-size;
-$input-placeholder-color: #92a7be;
-$input-border-color: rgba(106, 148, 210, 0.53);
-$input-border-color-active: #80bdff;
-$input-border-radius: .4rem;
+//$input-min-height: 2.3rem;
+//$input-background-color: #fff;
+//$input-font-color: #495057;
+//$input-border-color: rgba(106, 148, 210, 0.53);
+//$input-border-color-active: #80bdff;
 
 button {
   border-style: none;
@@ -68,6 +64,16 @@ button {
     color: $input-placeholder-color;
     // Override Firefox's unusual default opacity; see https://github.com/twbs/bootstrap/pull/11526.
     opacity: 1;
+  }
+
+  &.disabled {
+    color: #c0c0c0 !important;
+    background: #efefef !important;
+    border: 1px solid $gray-3;
+
+    &::placeholder {
+      color: #c0c0c0 !important;
+    }
   }
 }
 

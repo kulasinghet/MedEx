@@ -1,0 +1,47 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+
+$toolbox-padding-horizontal: 1.5rem !default;
+$toolbox-padding-vertical: .5rem !default;
+
+.toolbox {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+  padding: 0 $toolbox-padding-horizontal;
+  //background: linear-gradient(0deg, rgb(32, 38, 57) 11.4%, rgb(63, 76, 119) 70.2%);
+  background: linear-gradient(180deg, #e0c3fc 0%, #8ec5fc 100%);
+  border-radius: 6px;
+  border: 1px solid $primary;
+
+  .row {
+    flex-wrap: nowrap;
+
+    .col {
+      flex: 0 0 auto;
+      width: auto;
+
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .block {
+    padding: $toolbox-padding-vertical 0;
+  }
+
+  .separator {
+    width: 1px;
+    height: 50px;
+    background: rgba(32, 32, 86, 0.37);
+  }
+
+  span, label {
+    font-size: .9rem;
+    line-height: 1.2rem;
+    color: $dark;
+  }
+}
