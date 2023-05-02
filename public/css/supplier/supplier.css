@@ -75,7 +75,7 @@ textarea{
 .modal {
   display: none;
   position: fixed;
-  padding: 2%;
+  padding: 3%;
   z-index: 1;
   left: 0;
   top: 0;
@@ -100,7 +100,7 @@ textarea{
   transform: translateY(-50%);
 }
 
-.delclose,.updateclose {
+.delclose,.updateclose,.acceptclose {
   color: red;
   position: absolute;
   top: 10px;
