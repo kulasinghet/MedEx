@@ -85,17 +85,17 @@ echo $components->createNavbar();
                     </thead>
                     <tbody>
                     <?php
+                    $controller = new EmployeeResListController();
                     try {
-                        $controller = new EmployeeResListController();
                         $res_list = match ($filter) {
-                            'pharmacy' => $controller->getPharmacyList(no_of_approvals, $set),
-                            'supplier' => $controller->getSupplierList(no_of_approvals, $set),
-                            'lab' => $controller->getLabList(no_of_approvals, $set),
-                            'delivery' => $controller->getDeliveryList(no_of_approvals, $set),
+                            'pharmacy' => $controller->getPharmacyList(no_of_reports, $set),
+                            'supplier' => $controller->getSupplierList(no_of_reports, $set),
+                            'lab' => $controller->getLabList(no_of_reports, $set),
+                            'delivery' => $controller->getDeliveryList(no_of_reports, $set),
                             default => throw new Exception("Invalid filter!"),
                         };
                         if (!empty($res_list)) {
-                            for ($i = 0; $i < no_of_approvals; $i++) {
+                            for ($i = 0; $i < no_of_reports; $i++) {
                                 if (array_key_exists($i, $res_list)) {
                                     echo $components->createResItem($res_list[$i]);
                                 } else {
@@ -106,14 +106,14 @@ echo $components->createNavbar();
                             }
                         } else {
                             echo "<tr class='empty'>";
-                            echo "<td class='no-data' colspan='5' rowspan='".no_of_approvals."'>No records found!</td>";
+                            echo "<td class='no-data' colspan='5' rowspan='".no_of_reports."'>No records found!</td>";
                             echo "</tr>";
-                            for ($i = 0; $i < no_of_approvals - 1; $i++) {
+                            for ($i = 0; $i < no_of_reports - 1; $i++) {
                                 echo "<tr></tr>";
                             }
                         }
                     } catch (Exception $e) {
-                        echo "Something went wrong!";
+                        echo "Something went wrong! $e";
                     }
                     ?>
                     </tbody>

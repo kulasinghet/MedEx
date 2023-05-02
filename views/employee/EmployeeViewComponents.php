@@ -2,12 +2,19 @@
 
 namespace app\views\employee;
 
+use app\models\ReportModel;
 use app\stores\EmployeeStore;
 use Exception;
 use ReflectionClass;
 
 class EmployeeViewComponents
 {
+    const para_placeholder = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
+
     private EmployeeStore $store;
 
     public function __construct()
@@ -212,6 +219,35 @@ class EmployeeViewComponents
         </div>
     </td>
 </tr>
+        ');
+    }
+
+    public function createReportItem(ReportModel $report): string
+    {
+        return ('
+        <div class="report-itm">
+            <div class="report-inner">
+                <div class="header">
+                    <div class="header-icon">
+                        <a>
+                            <i class="'.match ($report->user_type) {
+                                'pharmacy' => 'fa-solid fa-suitcase-medical',
+                                'supplier' => 'fa-solid fa-truck-medical',
+                                'lab' => 'fa-solid fa-flask',
+                                'delivery' => 'fa-solid fa-cart-flatbed-boxes',
+                                default => 'fa-solid fa-question',}.'"></i>
+                        </a>
+                    </div>
+                    <div class="header-data">
+                        <h6 class="header-username">'.($report->username?? "N/A").'</h6>
+                        <h5 class="header-subject">'.($report->subject?? "N/A").'</h5>
+                    </div>
+                </div>
+                <div class="report-body">
+                    <p>'.($report->message?? self::para_placeholder).'</p>
+                </div>
+            </div>
+        </div>
         ');
     }
 }

@@ -94,15 +94,15 @@ echo $components->createNavbar();
                     try {
                         $controller = new EmployeeApprovalListController();
                         $approvals = match ($filter) {
-                            'all' => $controller->getAllApprovals(no_of_approvals, $set),
-                            'pharmacy' => $controller->getPharmacyApprovals(no_of_approvals, $set),
-                            'supplier' => $controller->getSupplierApprovals(no_of_approvals, $set),
-                            'lab' => $controller->getLabApprovals(no_of_approvals, $set),
-                            'delivery' => $controller->getDeliveryApprovals(no_of_approvals, $set),
+                            'all' => $controller->getAllApprovals(no_of_reports, $set),
+                            'pharmacy' => $controller->getPharmacyApprovals(no_of_reports, $set),
+                            'supplier' => $controller->getSupplierApprovals(no_of_reports, $set),
+                            'lab' => $controller->getLabApprovals(no_of_reports, $set),
+                            'delivery' => $controller->getDeliveryApprovals(no_of_reports, $set),
                             default => throw new Exception("Invalid filter!"),
                         };
                         if (!empty($approvals)) {
-                            for ($i = 0; $i < no_of_approvals; $i++) {
+                            for ($i = 0; $i < no_of_reports; $i++) {
                                 if (array_key_exists($i, $approvals)) {
                                     echo $components->createApprovalItem($approvals[$i]);
                                 } else {
@@ -113,9 +113,9 @@ echo $components->createNavbar();
                             }
                         } else {
                             echo "<tr class='empty'>";
-                            echo "<td class='no-data' colspan='5' rowspan='".no_of_approvals."'>No records found!</td>";
+                            echo "<td class='no-data' colspan='5' rowspan='".no_of_reports."'>No records found!</td>";
                             echo "</tr>";
-                            for ($i = 0; $i < no_of_approvals - 1; $i++) {
+                            for ($i = 0; $i < no_of_reports - 1; $i++) {
                                 echo "<tr></tr>";
                             }
                         }

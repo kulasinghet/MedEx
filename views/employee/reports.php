@@ -1,14 +1,13 @@
 <?php
 
-use app\controllers\employee\EmployeeResListController;
+use \app\controllers\employee\EmployeeReportListController;
 use app\stores\EmployeeStore;
 use app\views\employee\EmployeeViewComponents;
 
-const no_of_approvals = 10;
+const no_of_reports = 10;
 
 $components = new EmployeeViewComponents();
 $store = EmployeeStore::getEmployeeStore();
-$filter = $store->flag_g_t; // getting the filter
 $set = $store->flag_g_st; // getting the number of set
 $store->flag_g_st = 0; // resetting the set number in the store
 ?>
@@ -43,24 +42,21 @@ echo $components->createNavbar();
         <div class="row margin-bottom">
             <div class="col card report-list">
                 <div class="card-body list-content">
-                    <div class="report-itm">
-                        <div class="report-inner">
-                            <div class="header">
-                                <div class="header-icon">
-                                    <a>
-                                        <i class="fa-solid fa-suitcase-medical"></i>
-                                    </a>
-                                </div>
-                                <div class="header-data">
-                                    <h6 class="header-username">Username</h6>
-                                    <h5 class="header-subject">Subject</h5>
-                                </div>
-                            </div>
-                            <div class="report-body">
-                                <p>Message</p>
-                            </div>
-                        </div>
-                    </div>
+                    <?php
+                    $controller = new EmployeeReportListController();
+                    try {
+                        $report_list = $controller->getAllReports();
+                        if (!empty($report_list)) {
+                            foreach ($report_list as $report) {
+                                echo $components->createReportItem($report);
+                            }
+                        } else {
+                            echo "<h3 class='text-center'>No reports found!</h3>";
+                        }
+                    } catch (Exception $e) {
+                        echo "Something went wrong! $e";
+                    }
+                    ?>
                 </div>
             </div>
         </div>
