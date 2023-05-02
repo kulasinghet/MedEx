@@ -91,4 +91,130 @@ class HyperDeliveryModel extends HyperEntityModel
             return false;
         }
     }
+
+    public function push(): bool
+    {
+        //loading the database
+        $db = new Database();
+        $conn = $db->getConnection();
+
+        try {
+            $sql = "INSERT INTO `delivery_partner` (
+                                `username`, 
+                                `name`, 
+                                `city`, 
+                                `age`, 
+                                `license_id`, 
+                                `driver_license_name`, 
+                                `vehicle_no`, 
+                                `vehicle_type`, 
+                                `delivery_location`, 
+                                `max_load`, 
+                                `refrigerators`, 
+                                `license_photo`, 
+                                `vehicle_reg_photo`, 
+                                `vehicle_photo`, 
+                                `email`, 
+                                `address`, 
+                                `mobile`,
+                                `verified`) 
+        VALUES (
+                '$this->username', 
+                '$this->name', 
+                '$this->city', 
+                '$this->age', 
+                '$this->license_id', 
+                '$this->license_name', 
+                '$this->vehicle_no', 
+                '$this->vehicle_type', 
+                '$this->delivery_location', 
+                '$this->max_load', 
+                '$this->refrigerators', 
+                '$this->license_photo', 
+                '$this->vehicle_reg_photo', 
+                '$this->vehicle_photo', 
+                '$this->email', 
+                '$this->address', 
+                '$this->mobile',
+                '0');";
+
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+
+            if ($stmt->affected_rows == 1) {
+                return true;
+            } else {
+                Logger::logError($stmt->error);
+                return false;
+            }
+        } catch (\Exception $e) {
+            Logger::logError($e->getMessage());
+            return false;
+        }
+    }
+
+    public function update(): bool
+    {
+        //loading the database
+        $db = new Database();
+        $conn = $db->getConnection();
+
+        try {
+            $sql = "UPDATE `delivery_partner`
+            SET `name`='$this->name',
+                `city`='$this->city',
+                `age`='$this->age',
+                `license_id`='$this->license_id',
+                `driver_license_name`='$this->license_name',
+                `vehicle_no`='$this->vehicle_no',
+                `vehicle_type`='$this->vehicle_type',
+                `delivery_location`='$this->delivery_location',
+                `max_load`='$this->max_load',
+                `refrigerators`='$this->refrigerators',
+                `license_photo`='$this->license_photo',
+                `vehicle_reg_photo`='$this->vehicle_reg_photo',
+                `vehicle_photo`='$this->vehicle_photo',
+                `email`='$this->email',
+                `address`='$this->address',
+                `mobile`='$this->mobile'
+            WHERE `username`='$this->username';";
+
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+
+            if ($stmt->affected_rows == 1) {
+                return true;
+            } else {
+                Logger::logError($stmt->error);
+                return false;
+            }
+        } catch (\Exception $e) {
+            Logger::logError($e->getMessage());
+            return false;
+        }
+    }
+
+    public function delete(): bool
+    {
+        //loading the database
+        $db = new Database();
+        $conn = $db->getConnection();
+
+        try {
+            $sql = "DELETE FROM `delivery_partner` WHERE `username`='$this->username';";
+
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+
+            if ($stmt->affected_rows == 1) {
+                return true;
+            } else {
+                Logger::logError($stmt->error);
+                return false;
+            }
+        } catch (\Exception $e) {
+            Logger::logError($e->getMessage());
+            return false;
+        }
+    }
 }

@@ -2,7 +2,6 @@
 
 namespace app\controllers\employee;
 
-use app\core\Controller;
 use app\core\Request;
 use app\models\HyperEntities\HyperDeliveryModel;
 use app\models\HyperEntities\HyperLabModel;
@@ -10,44 +9,8 @@ use app\models\HyperEntities\HyperPharmacyModel;
 use app\models\HyperEntities\HyperSupplierModel;
 use app\stores\EmployeeStore;
 
-class EmployeeApprovalController extends Controller
+class EmployeeApprovalController extends AbstractCRUDController
 {
-    const login = 'Location: /login';
-
-    private function validate(): void
-    {
-        // checking whether the user is logged into the server
-        if ($_SESSION['userType'] != 'staff') {
-            header(self::login);
-        }
-    }
-
-    public function getEntityFlag(Request $request): string
-    {
-        if ($request->isGet()) {
-            $params = $request->getBody();
-
-            if (array_key_exists('et', $params)) {
-                return (string)$params['et'];
-            }
-        }
-
-        return '';
-    }
-
-    public function getActionFlag(Request $request): string
-    {
-        if ($request->isGet()) {
-            $params = $request->getBody();
-
-            if (array_key_exists('a', $params)) {
-                return (string)$params['a'];
-            }
-        }
-
-        return '';
-    }
-
     public function loadPharmacy(Request $request): void
     {
         $this->validate();

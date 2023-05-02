@@ -1,142 +1,150 @@
+<?php
+
+use app\controllers\employee\EmployeeResListController;
+use app\stores\EmployeeStore;
+use app\views\employee\EmployeeViewComponents;
+
+const no_of_approvals = 10;
+
+$components = new EmployeeViewComponents();
+$store = EmployeeStore::getEmployeeStore();
+$filter = $store->flag_g_t; // getting the filter
+$set = $store->flag_g_st; // getting the number of set
+$store->flag_g_st = 0; // resetting the set number in the store
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Admin - Reports</title>
+    <title>Admin | Reports</title>
 
-    <link href="../scss/main.css" rel="stylesheet"/>
     <!-- Font awesome kit -->
     <script crossorigin="anonymous" src="https://kit.fontawesome.com/9b33f63a16.js"></script>
+    <!-- Simplebar -->
+    <link rel="stylesheet" href="https://unpkg.com/simplebar@latest/dist/simplebar.css"/>
+    <script src="https://unpkg.com/simplebar@latest/dist/simplebar.min.js"></script>
+    <!-- g28 style -->
+    <link rel="stylesheet" href="/scss/main.css" />
+    <script src="/js/g28-main.js"></script>
 </head>
 <body>
 <!-- Section: Fixed Components -->
-<div class="sidebar-collapsible">
-    <div class="sidebar-inner">
-        <nav class="sidebar-header">
-            <div class="sidebar-logo">
-                <a href="#">
-                    <img alt="MedEx logo" src="../res/logo/logo-text_light.svg"/>
-                </a>
-            </div>
-        </nav>
-        <div class="sidebar-context">
-            <h6 class="sidebar-context-title">Menu</h6>
-            <ul class="main-buttons">
-                <li>
-                    <a href="/dashboard"> <i class="fa-solid fa-house"></i> Home </a>
-                </li>
-                <li>
-                    <i class="fa-solid fa-check"></i>
-                    Approvals
-                    <ul class="hidden">
-                        <li><a href="/employee/approvals/pharmacy"> Pharmacy </a></li>
-                        <li><a href="/employee/approvals/supplier"> Supplier </a></li>
-                        <li><a href="/employee/approvals/lab"> Lab </a></li>
-                        <li><a href="/employee/approvals/delivery"> Delivery Partner </a></li>
-                    </ul>
-                </li>
-                <li class="disabled">
-                    <a href="/employee/reports"> <i class="fa-solid fa-newspaper"></i> Reports </a>
-                </li>
-                <li>
-                    <a href="#"> <i class="fa-solid fa-server"></i> Resources </a>
-                    <ul class="hidden">
-                        <li>Pharmacy</li>
-                        <li>Supplier</li>
-                        <li>Laboratory</li>
-                        <li>Delivery Partner</li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="/employee/configs"> <i class="fa-solid fa-wrench"></i> Configurations </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>
-<nav>
-    <div class="nav-inner">
-        <ul>
-            <li><a href="#"><i class="fa-solid fa-gear"></i></a></li>
-            <li><a href="#"><i class="fa-solid fa-bell"></i></a></li>
-            <li><a href="/logout"><i class="fa-solid fa-right-from-bracket"></i></a></li>
-        </ul>
-        <a class="nav-profile" href="#">
-            <div class="nav-profile-image">
-                <img alt="Profile image" src="../res/avatar-empty.png"/>
-            </div>
-        </a>
-    </div>
-</nav>
+<?php
+echo $components->createSidebar('res');
+echo $components->createNavbar();
+?>
 <!-- Section: Fixed Components -->
 
 <!-- Section: Dashboard Layout -->
 <div class="canvas nav-cutoff sidebar-cutoff">
     <div class="canvas-inner">
-        <div class="row search-box margin-bottom">
-            <div class="nav-search col">
-                <form onsubmit="preventDefault();" role="search">
-                    <label for="search">Search for stuff</label>
-                    <input autofocus id="search" placeholder="Search..." required type="search"/>
-                    <button type="submit">Go</button>
-                </form>
+        <!-- Toolbox -->
+        <div class="toolbox">
+            <div class="block row">
+                <div class="col">
+                    <div class="nav-search">
+                        <form onsubmit="preventDefault();" role="search">
+                            <label for="filter-by-search">Search for stuff</label>
+                            <input autofocus id="filter-by-search" placeholder="Search..." required type="search"/>
+                            <button type="submit">Go</button>
+                        </form>
+                    </div>
+                </div>
             </div>
+            <div class="separator"></div>
+            <form class="block row" method="POST" action="">
+                <div class="col">
+                    <label for="sort-by">Sort by: </label>
+                </div>
+                <div class="col">
+                    <g28-selectbox id="sort-by" placeholder="Default">
+                        Default, Name, Reg Date
+                    </g28-selectbox>
+                </div>
+            </form>
         </div>
+        <!-- Toolbox -->
+
+        <!-- Content -->
         <div class="row margin-bottom">
             <div class="col">
-                <table class="table">
+                <table class="table approval-table">
                     <thead>
                     <tr>
-                        <th>Inquiry ID</th>
                         <th>Username</th>
-                        <th>Subject</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Mobile</th>
+                        <th class="c" style="max-width: 100px">Action</th>
                     </tr>
-                    <thead>
+                    </thead>
                     <tbody>
-                    <tr>
-                        <td>ID2001</td>
-                        <td>Thevindu</td>
-                        <td>Contact us is not working</td>
-                    </tr>
+                    <?php
+                    try {
+                        $controller = new EmployeeResListController();
+                        $approvals = match ($filter) {
+                            'pharmacy' => $controller->getPharmacyList(no_of_approvals, $set),
+                            'supplier' => $controller->getSupplierList(no_of_approvals, $set),
+                            'lab' => $controller->getLabList(no_of_approvals, $set),
+                            'delivery' => $controller->getDeliveryList(no_of_approvals, $set),
+                            default => throw new Exception("Invalid filter!"),
+                        };
+                        if (!empty($approvals)) {
+                            for ($i = 0; $i < no_of_approvals; $i++) {
+                                if (array_key_exists($i, $approvals)) {
+                                    echo $components->createResItem($approvals[$i]);
+                                } else {
+                                    echo "<tr class='empty'>";
+                                    echo "<td colspan='5'></td>";
+                                    echo "</tr>";
+                                }
+                            }
+                        } else {
+                            echo "<tr class='empty'>";
+                            echo "<td class='no-data' colspan='5' rowspan='".no_of_approvals."'>No records found!</td>";
+                            echo "</tr>";
+                            for ($i = 0; $i < no_of_approvals - 1; $i++) {
+                                echo "<tr></tr>";
+                            }
+                        }
+                    } catch (Exception $e) {
+                        echo "Something went wrong!";
+                    }
+                    ?>
                     </tbody>
                 </table>
             </div>
         </div>
-        <div class="row">
-            <div class="col card">
-                <div class="card-body">
-                    <h5 class="card-title">Report in Details</h5>
-                    <div class="row">
-                        <div class="col">
-                            <table class="status-table">
-                                <tbody>
-                                <tr>
-                                    <th>Username</th>
-                                    <td>Test 1</td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="col">
-                            <table class="status-table">
-                                <tbody>
-                                <tr>
-                                    <th>Subject</th>
-                                    <td>Test 1</td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="report-description">
-                        <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <!-- Content -->
     </div>
 </div>
 <!-- Section: Dashboard Layout -->
+
+<!-- g28 styling framework -->
+<script type="application/javascript">
+    // you can configure variables in here.
+    configs.stage = 'dev';
+    configs.customFormElmPath = '/scss/components/forms';
+
+    //logging
+    logger("Logging g28 initial state before loading specialized JS files...");
+    for (let property in configs) {
+        logger(`> ${property}: ${configs[property]}`);
+    }
+
+    document.querySelectorAll('.approval-table tbody tr:not(.empty)').forEach((row) => {
+        row.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (e.target.tagName === 'TD') {
+                let entity = row.getAttribute('data-usr');
+                let type = row.getAttribute('data-tp');
+                window.location.href = '/employee/res/' + type + '?et=' + entity;
+            }
+        });
+    });
+</script>
+<script src="/js/g28-forms.js"></script>
+<!-- g28 styling framework -->
 </body>
 </html>

@@ -4,6 +4,7 @@ namespace app\models\HyperEntities;
 
 use app\core\Database;
 use app\core\Logger;
+use Exception;
 
 class HyperSupplierModel extends HyperEntityModel
 {
@@ -46,7 +47,7 @@ class HyperSupplierModel extends HyperEntityModel
                     'mobile' => $row["mobile"],
                 ));
             }
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             Logger::logError($e->getMessage());
             $conn->close();
         }
@@ -61,7 +62,7 @@ class HyperSupplierModel extends HyperEntityModel
         $conn = $db->getConnection();
 
         try {
-            $sql = "UPDATE `supplier` SET `verified` = ".($action?? "NULL")." WHERE `username`='$this->username';";
+            $sql = "UPDATE `supplier` SET `verified` = " . ($action ?? "NULL") . " WHERE `username`='$this->username';";
 
             $stmt = $conn->prepare($sql);
             $stmt->execute();
@@ -72,7 +73,112 @@ class HyperSupplierModel extends HyperEntityModel
                 Logger::logError($stmt->error);
                 return false;
             }
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
+            Logger::logError($e->getMessage());
+            return false;
+        }
+    }
+
+    public function push(): bool
+    {
+        //loading the database
+        $db = new Database();
+        $conn = $db->getConnection();
+
+        try {
+            $sql = "INSERT INTO `supplier` (
+                        username, 
+                        name, 
+                        supplierRegNo, 
+                        BusinessRegId, 
+                        supplierCertId, 
+                        BusinessRegCertName, 
+                        supplierCertName, 
+                        verified, 
+                        email, 
+                        address, 
+                        mobile)
+            VALUES (
+                    '$this->username', 
+                    '$this->name', 
+                    '$this->supp_reg_no', 
+                    '$this->business_reg_id', 
+                    '$this->supp_cert_id', 
+                    '$this->business_cert_name', 
+                    '$this->supp_cert_name', 
+                    '0', 
+                    '$this->email', 
+                    '$this->address', 
+                    '$this->mobile)';";
+
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+
+            if ($stmt->affected_rows == 1) {
+                return true;
+            } else {
+                Logger::logError($stmt->error);
+                return false;
+            }
+        } catch (Exception $e) {
+            Logger::logError($e->getMessage());
+            return false;
+        }
+    }
+
+    public function update(): bool
+    {
+        //loading the database
+        $db = new Database();
+        $conn = $db->getConnection();
+
+        try {
+            $sql = "UPDATE `supplier`
+            SET `name` = '$this->name',
+                `supplierRegNo` = '$this->supp_reg_no',
+                `BusinessRegId` = '$this->business_reg_id',
+                `supplierCertId` = '$this->supp_cert_id',
+                `BusinessRegCertName` = '$this->business_cert_name',
+                `supplierCertName` = '$this->supp_cert_name',
+                `email` = '$this->email',
+                `address` = '$this->address',
+                `mobile` = '$this->mobile'
+            WHERE `username`='$this->username';";
+
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+
+            if ($stmt->affected_rows == 1) {
+                return true;
+            } else {
+                Logger::logError($stmt->error);
+                return false;
+            }
+        } catch (Exception $e) {
+            Logger::logError($e->getMessage());
+            return false;
+        }
+    }
+
+    public function delete(): bool
+    {
+        //loading the database
+        $db = new Database();
+        $conn = $db->getConnection();
+
+        try {
+            $sql = "DELETE FROM `supplier` WHERE `username`='$this->username';";
+
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+
+            if ($stmt->affected_rows == 1) {
+                return true;
+            } else {
+                Logger::logError($stmt->error);
+                return false;
+            }
+        } catch (Exception $e) {
             Logger::logError($e->getMessage());
             return false;
         }
