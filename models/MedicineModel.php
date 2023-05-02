@@ -10,6 +10,7 @@ class MedicineModel extends Model
     public $id;
     public $medName;
     public $weight;
+    public $volume;
     public $sciName;
     public $manId;
 
@@ -18,7 +19,7 @@ class MedicineModel extends Model
     {
         $db = (new Database())->getConnection();
         try {
-            $sql = "INSERT INTO medicine (id, medName, weight, sciName, manId)  VALUES ('$this->id', '$this->medName','$this->weight','$this->sciName','$this->manId')";
+            $sql = "INSERT INTO medicine (id, medName, weight,volume, sciName, manId)  VALUES ('$this->id', '$this->medName','$this->weight','$this->volume','$this->sciName','$this->manId')";
             $stmt = $db->prepare($sql);
             $stmt->execute();
             if ($stmt->affected_rows == 1) {
@@ -47,11 +48,13 @@ class MedicineModel extends Model
                 $this->id = $row["id"];
                 $this->medName = $row["medName"];
                 $this->weight = $row["weight"];
+                $this->volume = $row['volume'];
                 $this->sciName = $row["sciName"];
                 $this->manId = $row["manId"];
             }
         }
         $db->close();
+
     }
 
     // Get Medicine Name
@@ -59,12 +62,14 @@ class MedicineModel extends Model
     {
         $this->getMedicine($id);
         return $this->medName;
+
     }
     // Get Scientific Name
     public function getSciname($id)
     {
         $this->getMedicine($id);
         return $this->sciName;
+
     }
 
     // Get Weight
@@ -72,22 +77,35 @@ class MedicineModel extends Model
     {
         $this->getMedicine($id);
         return $this->weight;
+
+    }
+
+    public function getVolume($id)
+    {
+        $this->getMedicine($id);
+        return $this->volume;
+
+    }
+
+    public function getManufacture($id)
+    {
+        $this->getMedicine($id);
+        return $this->manId;
+
+
     }
 
     // Get all medicine
     public function getAllMedicines()
     {
+
         $conn = (new Database())->getConnection();
         $sql = "SELECT medicine.*, COALESCE(stock.remQty, 0) AS remQty FROM medicine LEFT JOIN stock ON medicine.id = stock.medId;";
-
         try {
-
-            $result = $conn->query($sql);
-            if ($result->num_rows > 0) {
-                return $result;
-            } else {
-                return null;
-            }
+            $stmt = $db->prepare($sql);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result;
         } catch (\Exception $e) {
             Logger::logError($e->getMessage());
             return false;
@@ -119,16 +137,4 @@ class MedicineModel extends Model
         $db->close();
     }
 
-    public function getMedicinePrice(mixed $id)
-    {
-        $db = (new Database())->getConnection();
-        $sql = "SELECT min(unitPrice) as price from supplier_medicine WHERE medId = '$id'";
-        $result = $db->query($sql);
-        if ($result->num_rows > 0) {
-            $db->close();
-            return $result->fetch_assoc();
-        }
-        $db->close();
-        return 0;
-    }
 }

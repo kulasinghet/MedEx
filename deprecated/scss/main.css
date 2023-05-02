@@ -1145,7 +1145,7 @@ textarea.form-input {
     --s: .5;
   }
 }
-.form-check {
+.form-selector {
   margin: 16px 0;
   position: relative;
 }

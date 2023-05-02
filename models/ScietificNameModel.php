@@ -1,7 +1,6 @@
 <?php
 
 namespace app\models;
-
 use app\core\Database;
 
 class ScietificNameModel extends Model

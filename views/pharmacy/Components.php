@@ -29,6 +29,7 @@ class Components
             <link href="../scss/vendor/demo.css" rel="stylesheet"/>
             <link href="../css/table.css" rel="stylesheet"/>
             <link href="../css/pharmacy/dashboard.css" rel="stylesheet"/>
+
             $additionalCSS
             <link rel="icon" href="../res/logo/logo-box_light.jpg" type="image/svg+xml">
             <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
@@ -37,7 +38,13 @@ class Components
             <script crossorigin="anonymous" src="https://kit.fontawesome.com/9b33f63a16.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.0/dist/chart.umd.min.js"></script>
             <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-            
+
+            <link href="../css/model.css" rel="stylesheet"/>
+            <link rel="icon" href="../res/logo/logo-box_light.jpg" type="image/svg+xml">
+            <!-- Font awesome kit -->
+            <script crossorigin="anonymous" src="https://kit.fontawesome.com/9b33f63a16.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js"></script>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.min.css">
         </head>
         <body>
         HTML;

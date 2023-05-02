@@ -5,6 +5,12 @@ require_once '../vendor/autoload.php';
 use app\controllers\DashboardController;
 use app\controllers\delivery\DeliveryContactusController;
 use app\controllers\delivery\DeliveryDashboardController;
+use app\controllers\employee\EmployeeAuthController;
+use app\controllers\employee\EmployeeApprovalListController;
+use app\controllers\employee\EmployeeApprovalController;
+use app\controllers\employee\EmployeeDashboardController;
+use app\controllers\employee\EmployeeResController;
+use app\controllers\employee\EmployeeResListController;
 use app\controllers\lab\LabAuthController;
 use app\controllers\lab\LabContactusController;
 use app\controllers\lab\LabDashboardController;
@@ -12,16 +18,22 @@ use app\controllers\pharmacy\PharmacyAuthController;
 use app\controllers\pharmacy\PharmacyDashboardController;
 use app\controllers\pharmacy\PharmacyInventoryController;
 use app\controllers\pharmacy\PharmacyOrderMedicineController;
+
 use app\controllers\pharmacy\PharmacySellMedicineController;
+
+use app\controllers\supplier\AcceptOrdersController;
+
 use app\controllers\supplier\SupplierAuthController;
 use app\controllers\supplier\SupplierDashboardController;
+use app\controllers\supplier\SupplierUpdateMedicineController;
 use app\core\Application;
 use app\controllers\delivery\DeliveryAuthController;
-use app\controllers\employee\EmployeeAuthController;
 use app\controllers\LoginAuthController;
 use app\controllers\SiteController;
 use app\controllers\supplier\SupplierAddMedicineController;
 use app\controllers\lab\LabAcceptReqController;
+use app\controllers\lab\LabReportController;
+use app\controllers\ContactUsController;
 
 $app = new Application();
 
@@ -35,6 +47,7 @@ $app->router->get('/404', [SiteController::class, '_404']);
 $app->router->get('/logout', [SiteController::class, 'logout']);
 $app->router->get('/login', [LoginAuthController::class, 'login']);
 $app->router->post('/login', [LoginAuthController::class, 'login']);
+$app->router->post('/contact-us', [ContactUsController::class, 'contactUs']);
 
 // delivery Routes
 //$app -> router -> get('/delivery/login', [LoginAuthController::class, 'deliveryLogin']);
@@ -59,7 +72,13 @@ $app->router->get('/lab/requests', [LabDashboardController::class, 'viewRequest'
 $app->router->post('/lab/requests', [LabDashboardController::class, 'viewRequest']);
 $app->router->get('/lab/reports', [LabDashboardController::class, 'addLabReport']);
 $app->router->post('/lab/reports', [LabDashboardController::class, 'addLabReport']);
+$app->router->post('/lab/past-reports', [LabDashboardController::class, 'PastReports']);
+$app->router->get('/lab/past-reports', [LabDashboardController::class, 'PastReports']);
+$app->router->post('/lab/past-requests', [LabDashboardController::class, 'PastReq']);
+$app->router->get('/lab/past-requests', [LabDashboardController::class, 'PastReq']);
 $app->router->post('/lab/accept-req', [LabAcceptReqController::class, 'acceptRequest']);
+$app->router->post('/lab/generate-report', [LabReportController::class, 'genrateReport']);
+
 
 // Employee Routes
 //$app -> router -> get('/employee/login', [LoginAuthController::class, 'employeeLogin']);
@@ -67,7 +86,41 @@ $app->router->post('/lab/accept-req', [LabAcceptReqController::class, 'acceptReq
 $app->router->get('/employee/register', [EmployeeAuthController::class, 'employeeRegister']);
 $app->router->post('/employee/register', [EmployeeAuthController::class, 'employeeRegister']);
 
+$app->router->get('/employee/approve', [EmployeeApprovalListController::class, 'load']);
+$app->router->post('/employee/approve', [EmployeeApprovalListController::class, 'load']);
+$app->router->get('/employee/approve/pharmacy', [EmployeeApprovalController::class, 'loadPharmacy']);
+$app->router->post('/employee/approve/pharmacy', [EmployeeApprovalController::class, 'loadPharmacy']);
+$app->router->get('/employee/approve/supplier', [EmployeeApprovalController::class, 'loadSupplier']);
+$app->router->post('/employee/approve/supplier', [EmployeeApprovalController::class, 'loadSupplier']);
+$app->router->get('/employee/approve/delivery', [EmployeeApprovalController::class, 'loadDelivery']);
+$app->router->post('/employee/approve/delivery', [EmployeeApprovalController::class, 'loadDelivery']);
+$app->router->get('/employee/approve/lab', [EmployeeApprovalController::class, 'loadLab']);
+$app->router->post('/employee/approve/lab', [EmployeeApprovalController::class, 'loadLab']);
+
+$app->router->get('/employee/res', [EmployeeResListController::class, 'load']);
+$app->router->post('/employee/res', [EmployeeApprovalController::class, 'load']);
+$app->router->get('/employee/res/pharmacy', [EmployeeResController::class, 'loadPharmacy']);
+$app->router->post('/employee/res/pharmacy', [EmployeeResController::class, 'loadPharmacy']);
+$app->router->get('/employee/res/supplier', [EmployeeResController::class, 'loadSupplier']);
+$app->router->post('/employee/res/supplier', [EmployeeResController::class, 'loadSupplier']);
+$app->router->get('/employee/res/delivery', [EmployeeResController::class, 'loadDelivery']);
+$app->router->post('/employee/res/delivery', [EmployeeResController::class, 'loadDelivery']);
+$app->router->get('/employee/res/lab', [EmployeeResController::class, 'loadLab']);
+$app->router->post('/employee/res/lab', [EmployeeResController::class, 'loadLab']);
+
+$app->router->post('/employee/res/pharmacy/push', [EmployeeResController::class, 'pushPharmacy']);
+$app->router->post('/employee/res/supplier/push', [EmployeeResController::class, 'pushSupplier']);
+$app->router->post('/employee/res/delivery/push', [EmployeeResController::class, 'pushDelivery']);
+$app->router->post('/employee/res/lab/push', [EmployeeResController::class, 'pushLab']);
+
+$app->router->get('/employee/reports', [EmployeeDashboardController::class, 'loadReports']);
+$app->router->post('/employee/reports', [EmployeeDashboardController::class, 'loadReports']);
+
+$app->router->get('/employee/configs', [EmployeeDashboardController::class, 'loadConfigs']);
+$app->router->post('/employee/configs', [EmployeeDashboardController::class, 'loadConfigs']);
 //#########################################################################################
+
+
 // pharmacy Routes
 
 //General Routes
@@ -115,15 +168,20 @@ $app->router->get('/supplier/add-medicine', [SupplierDashboardController::class,
 $app->router->post('/supplier/add-medicine', [SupplierAddMedicineController::class, 'addMedicine']);
 $app->router->post('/supplier/add-existing-medicine', [SupplierAddMedicineController::class, 'addExsisting']);
 $app->router->get('/supplier/update-inventory', [SupplierDashboardController::class, 'updateInventory']);
+$app->router->post('/supplier/delete-medicine', [SupplierUpdateMedicineController::class, 'deleteMed']);
+$app->router->post('/supplier/update-medicine', [SupplierUpdateMedicineController::class, 'updateMed']);
 $app->router->post('/supplier/update-inventory', [SupplierDashboardController::class, 'updateInventory']);
 $app->router->get('/supplier/accept-orders', [SupplierDashboardController::class, 'acceptOrders']);
 $app->router->post('/supplier/accept-orders', [SupplierDashboardController::class, 'acceptOrders']);
+$app->router->get('/supplier/orders', [SupplierDashboardController::class, 'Orders']);
+$app->router->post('/supplier/orders', [SupplierDashboardController::class, 'Orders']);
 $app->router->get('/supplier/inventory', [SupplierDashboardController::class, 'inventory']);
 $app->router->post('/supplier/inventory', [SupplierDashboardController::class, 'inventory']);
 $app->router->get('/supplier/contact-us', [SupplierDashboardController::class, 'contactUs']);
 $app->router->post('/supplier/contact-us', [SupplierDashboardController::class, 'contactUs']);
 $app->router->get('/supplier/medicine-requests', [SupplierDashboardController::class, 'medicineRequests']);
 $app->router->post('/supplier/medicine-requests', [SupplierDashboardController::class, 'medicineRequests']);
+$app->router->post('/supplier/accept', [AcceptOrdersController::class, 'AcceptOrder']);
 
 
 

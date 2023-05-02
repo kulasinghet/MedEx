@@ -4,6 +4,7 @@ use app\models\SupplierMedicineModel;
 use app\controllers\supplier\SupplierMedicineController;
 
 ?>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -47,8 +48,11 @@ use app\controllers\supplier\SupplierMedicineController;
                 </div>
             </nav>
             <div class="sidebar-context">
-                <h6 class="sidebar-context-title">Menu</h6>
                 <ul>
+                    <li>
+                        <a class="btn" href="/dashboard"> <i class="fa-solid fa-house"></i>Dashboard
+                        </a>
+                    </li>
                     <li>
                         <a class="btn" href="/supplier/add-medicine"> <i class="fa fa-medkit"></i> Add New
                             Medicine
@@ -64,7 +68,14 @@ use app\controllers\supplier\SupplierMedicineController;
                         </a>
                     </li>
                     <li>
-                        <a class="btn" href="/supplier/accept-orders"> <i class="fa fa-check-circle"></i> Accept Orders
+                        <a class="btn" href="/supplier/accept-orders"> <i class="fa fa-check-circle"></i>
+                            Accept Orders
+                        </a>
+                    </li>
+                    <li>
+                        <a class="btn" href="/supplier/orders"> <i class="fa fa-list-alt"></i> View
+                            Accepted
+                            Orders
                         </a>
                     </li>
                     <li>
@@ -80,8 +91,30 @@ use app\controllers\supplier\SupplierMedicineController;
             </div>
         </div>
     </div>
+    <nav>
+        <div class="nav-search">
+            <form onsubmit="preventDefault();" role="search">
+                <label for="search">Search for stuff</label>
+                <input autofocus id="search" placeholder="Search..." required type="search" />
+                <button type="submit">Go</button>
+            </form>
+        </div>
+        <div class="nav-inner">
+            <ul>
+                <li><a class="link" href="#"><i class="fa-solid fa-gear"></i></a></li>
+                <li><a class="link" href="/login"><i class="fa-solid fa-right-from-bracket"></i></a></li>
+                <li><a class="link" href="#"><i class="fa-solid fa-bell"></i></a></li>
+            </ul>
+            <a class="nav-profile" href="#">
+                <div class="nav-profile-image">
+                    <img alt="Profile image" src="../res/avatar-empty.png" />
+                </div>
+            </a>
+        </div>
+    </nav>
+    <!-- Section: Fixed Components -->
 
-
+    <!-- Section: Dashboard Layout -->
     <div class="canvas nav-cutoff sidebar-cutoff">
         <div class="canvas-inner">
             <div class="row">
@@ -105,15 +138,14 @@ use app\controllers\supplier\SupplierMedicineController;
                                     <tr>
                                         <th>Medicine Name</th>
                                         <th>Scientific Name</th>
-                                        <th>Weight</th>
+                                        <th>Weight/Volume</th>
+                                        <th>Mannufacture</th>
                                         <th>Quantity</th>
                                         <th>Unit Price</th>
                                     </tr>
-
                                     <?php $supmed = new SupplierMedicineController;
                                     $supmed->viewallMed($_SESSION['username']);
                                     ?>
-
 
                                 </table>
                             </div>
@@ -125,7 +157,7 @@ use app\controllers\supplier\SupplierMedicineController;
         </div>
     </div>
     </div>
-
+    <!-- Section: Dashboard Layout -->
 </body>
 
 </html>

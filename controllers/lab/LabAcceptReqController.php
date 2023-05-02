@@ -16,9 +16,8 @@ class LabAcceptReqController extends Controller
             $labreq = new LabRequestModel;
             $labreport = new LabReportModel;
             $reqid = $_POST['id'];
-            $labreport->labName = $_SESSION['username'];
-            $labreport->reqId = $reqid;
-            if ($labreport->acceptReport() && $labreq->acceptReq($reqid)) {
+            $labname = $_SESSION['username'];
+            if ($labreport->acceptReport($reqid, $labname) && $labreq->acceptReq($reqid, $labname)) {
                 echo (new \app\core\ExceptionHandler)->RequestAccepted();
                 return $this->render("/lab/requests.php");
             }
