@@ -45,6 +45,18 @@ class SupplierMedicineModel extends Model
 
     }
 
+    public function getLowSupMedicine($uname)
+    {
+        $db = (new Database())->getConnection();
+        $sql = "SELECT medId,quantity from supplier_medicine WHERE supplier_medicine.supName = '$uname' && verified='1' && quantity<50";
+        $result = $db->query($sql);
+        if ($result->num_rows > 0) {
+            return $result;
+        }
+        $db->close();
+
+    }
+
     public function getSupMedCount($uname)
     {
         $db = (new Database())->getConnection();

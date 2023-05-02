@@ -48,6 +48,17 @@ class PharmacyOrderModel extends Model
         $db->close();
     }
 
+    public function getPendingOrderCount()
+    {
+        $db = (new Database())->getConnection();
+        $sql = "SELECT COUNT(id) from pharmacyorder WHERE pharmacyorder.status = '0'";
+        $result = $db->query($sql);
+        if ($result->num_rows > 0) {
+            return $result;
+        }
+        $db->close();
+    }
+
     public function getSupOrders($name)
     {
         $db = (new Database())->getConnection();
