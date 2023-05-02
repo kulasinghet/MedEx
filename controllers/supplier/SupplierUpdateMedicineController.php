@@ -149,10 +149,10 @@ class SupplierUpdateMedicineController extends Controller
     var updatespan = document.getElementsByClassName("updateclose")[0];
     var updatecancelBtn = document.getElementById("updatecancelBtn");
     var updateconfirmBtn = document.getElementById("updateconfirmBtn");
-    var medId;
+    var medIdValue;
     var medNamValue;
     var sciNameValue;
-    var weightValue;
+    var massValue;
     var quantityValue;
     var unitPriceValue;
     var mannameValue;
@@ -161,7 +161,7 @@ class SupplierUpdateMedicineController extends Controller
         medIdValue = medId;
         medNamValue = medNam;
         sciNameValue = sciName;
-        masstValue = mass;
+        massValue = mass;
         quantityValue = quantity;
         unitPriceValue = unitPrice;
         mannameValue = manname;

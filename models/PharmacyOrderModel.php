@@ -14,6 +14,8 @@ class PharmacyOrderModel extends Model
     private $quantity;
     private $status;
     private $supName;
+    private $batchNo;
+    private $expDate;
     private $delivery_date;
     private $order_status;
     private $order_date;
@@ -86,9 +88,25 @@ class PharmacyOrderModel extends Model
         return $this->pharmacyName;
     }
 
-    public function acceptOrder($supName, $id)
+    public function acceptOrder($supName, $id, $bnumber, $expdate)
     {
-        return $this->delivery_date;
+        $db = (new Database())->getConnection();
+        try {
+            $sql = "UPDATE pharmacyorder SET pharmacyorder.status = '1', pharmacyorder.supName = '$supName' , pharmacyorder.batchNo='$bnumber', pharmacyorder.expDate ='$expdate' WHERE pharmacyorder.id = '$id'";
+            $stmt = $db->prepare($sql);
+            $stmt->execute();
+
+            if ($stmt->affected_rows == 1) {
+                $stmt->close();
+                return true;
+            }
+
+            $stmt->close();
+        } catch (\Exception $e) {
+            ErrorLog::logError($e->getMessage());
+            echo $e->getMessage();
+            return false;
+        }
     }
 
     /**

@@ -13,6 +13,7 @@ use app\controllers\lab\LabDashboardController;
 use app\controllers\pharmacy\PharmacyAuthController;
 use app\controllers\pharmacy\PharmacyDashboardController;
 use app\controllers\pharmacy\PharmacyOrderMedicineController;
+use app\controllers\supplier\AcceptOrdersController;
 use app\controllers\supplier\SupplierAuthController;
 use app\controllers\supplier\SupplierDashboardController;
 use app\controllers\supplier\SupplierUpdateMedicineController;
@@ -145,7 +146,7 @@ $app->router->get('/supplier/contact-us', [SupplierDashboardController::class, '
 $app->router->post('/supplier/contact-us', [SupplierDashboardController::class, 'contactUs']);
 $app->router->get('/supplier/medicine-requests', [SupplierDashboardController::class, 'medicineRequests']);
 $app->router->post('/supplier/medicine-requests', [SupplierDashboardController::class, 'medicineRequests']);
-// $app->router->post('/supplier/accept', [AcceptOrdersController::class, 'AcceptOrder']);
+$app->router->post('/supplier/accept', [AcceptOrdersController::class, 'AcceptOrder']);
 
 
 
