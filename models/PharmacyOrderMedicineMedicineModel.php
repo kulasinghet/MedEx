@@ -6,9 +6,9 @@ use app\core\Database;
 use app\core\ExceptionHandler;
 use app\core\Logger;
 
-class PharmacyOrderModel extends Model
+class PharmacyOrderMedicineMedicineModel extends Model
 {
-    public $id;
+    public $orderid;
     public $pharmacyUsername;
     public $medId;
     public $quantity;
@@ -19,13 +19,13 @@ class PharmacyOrderModel extends Model
     public $delivery_date;
     public $order_status;
     public $order_date;
-    public $order_total;
+    private $order_total;
 
 
     public function getOrder($id)
     {
         $db = (new Database())->getConnection();
-        $sql = "SELECT pharmacyUsername,medId,quantity from pharmacyorder WHERE pharmacyorder.id = '$id'";
+        $sql = "SELECT pharmacyUsername,medId,quantity from pharmacyordermedicine WHERE pharmacyordermedicine.orderid = '$id'";
         $result = $db->query($sql);
         Logger::logDebug($sql);
         if ($result->num_rows > 0) {
@@ -41,7 +41,7 @@ class PharmacyOrderModel extends Model
     public function getPendingOrders()
     {
         $db = (new Database())->getConnection();
-        $sql = "SELECT id from pharmacyorder WHERE pharmacyorder.order_status = '0'";
+        $sql = "SELECT orderid from pharmacyordermedicine WHERE pharmacyordermedicine.order_status = '0'";
         Logger::logDebug($sql);
         $result = $db->query($sql);
         if ($result->num_rows > 0) {
@@ -49,10 +49,46 @@ class PharmacyOrderModel extends Model
         }
         $db->close();
     }
+
+    public function getPendingOrderFullDetails()
+    {
+        $db = (new Database())->getConnection();
+        $sql = "SELECT orderid,pharmacyUsername,pharmacyordermedicine.medId AS ordermedId,medicine.weight,medicine.volume,medicine.manId,quantity, medicine.medName from pharmacyordermedicine JOIN medicine WHERE pharmacyordermedicine.order_status = '0' AND medicine.id = pharmacyordermedicine.medId ORDER BY orderid DESC";
+        Logger::logDebug($sql);
+        $result = $db->query($sql);
+        if ($result->num_rows > 0) {
+            return $result;
+        }
+        $db->close();
+    }
+
+    public function getPendingOrderCount($uname)
+    {
+        $db = (new Database())->getConnection();
+        $sql = "SELECT count(orderid) from pharmacyordermedicine JOIN  supplier_medicine WHERE pharmacyordermedicine.order_status = '0' AND supplier_medicine.medId= pharmacyordermedicine.medId  AND supplier_medicine.verified = 1 AND supplier_medicine.supName='$uname'";
+        $result = $db->query($sql);
+        if ($result->num_rows > 0) {
+            return $result;
+        }
+        $db->close();
+    }
+
+
     public function getSupOrders($name)
     {
         $db = (new Database())->getConnection();
-        $sql = "SELECT id from pharmacyorder WHERE pharmacyorder.order_status = '1' && pharmacyorder.supName = '$name'";
+        $sql = "SELECT orderid from pharmacyordermedicine WHERE pharmacyordermedicine.order_status = '1' && pharmacyordermedicine.supName = '$name'";
+        $result = $db->query($sql);
+        if ($result->num_rows > 0) {
+            return $result;
+        }
+        $db->close();
+    }
+
+    public function getSupOrderCount($name)
+    {
+        $db = (new Database())->getConnection();
+        $sql = "SELECT COUNT(orderid) from pharmacyordermedicine WHERE pharmacyordermedicine.order_status = '1' && pharmacyordermedicine.supName = '$name'";
         $result = $db->query($sql);
         if ($result->num_rows > 0) {
             return $result;
@@ -78,11 +114,11 @@ class PharmacyOrderModel extends Model
         return $this->pharmacyUsername;
     }
 
-    public function acceptOrder($id)
+    public function acceptOrder($supName, $id, $bnumber, $expdate)
     {
         $db = (new Database())->getConnection();
         try {
-            $sql = "UPDATE pharmacyorder SET pharmacyorder.order_status = '1' WHERE pharmacyorder.id = '$id'";
+            $sql = "UPDATE pharmacyordermedicine SET pharmacyordermedicine.order_status = '1', pharmacyordermedicine.supName = '$supName' , pharmacyordermedicine.batchNo='$bnumber', pharmacyordermedicine.expDate ='$expdate' WHERE pharmacyordermedicine.orderid = '$id'";
             $stmt = $db->prepare($sql);
             $stmt->execute();
 
@@ -112,10 +148,10 @@ class PharmacyOrderModel extends Model
     {
         // generate random order id with time stamp and pharmacy id
 
-        $this->setId($this->createRandomID('pharmacyorder'));
+        $this->setId($this->createRandomID('pharmacyordermedicine'));
         $order_date = date("Y-m-d");
 
-        $sql = "INSERT INTO pharmacyorder (id, pharmacyUsername, status, supName, order_date, delivery_date, order_total) VALUES ('$this->id', '$pharmacyUsername', '0', null, '$order_date', null, '$order_total')";
+        $sql = "INSERT INTO pharmacyordermedicine (orderid, pharmacyUsername, status, supName, order_date, delivery_date, order_total) VALUES ('$this->id', '$pharmacyUsername', '0', null, '$order_date', null, '$order_total')";
 
         Logger::logDebug($sql);
 
@@ -144,7 +180,7 @@ class PharmacyOrderModel extends Model
     {
         try {
             $conn = (new Database())->getConnection();
-            $sql = "SELECT * FROM pharmacyorder WHERE pharmacyUsername = '$username' ORDER BY order_status ASC, order_date DESC;";
+            $sql = "SELECT * FROM pharmacyordermedicine WHERE pharmacyUsername = '$username' ORDER BY order_status ASC, order_date DESC;";
             $result = $conn->query($sql);
             return $result->fetch_all(MYSQLI_ASSOC);
 
@@ -171,7 +207,7 @@ class PharmacyOrderModel extends Model
     {
         try {
             $conn = (new Database())->getConnection();
-            $sql = "SELECT * FROM pharmacyorder WHERE pharmacyUsername = '$username' AND order_status <= 1 ORDER BY order_status ASC;";
+            $sql = "SELECT * FROM pharmacyordermedicine WHERE pharmacyUsername = '$username' AND order_status <= 1 ORDER BY order_status ASC;";
             $result = $conn->query($sql);
             return $result->fetch_all(MYSQLI_ASSOC);
         } catch (\Exception $e) {
@@ -198,7 +234,7 @@ class PharmacyOrderModel extends Model
             $medicineID = $medicine->getMedicineId();
             $quantity = $medicine->getQuantity();
 
-            $sql = "INSERT INTO pharmacyordermedicine (orderid, pharmacyUsername, medId, quantity, status, supName, order_date, delivery_date, order_total) VALUES ('$this->id', '$pharmacyUsername', '$medicineID', '$quantity', '0', null, '$order_date', null, '$order_total')";
+            $sql = "INSERT INTO pharmacyordermedicinemedicine (orderid, pharmacyUsername, medId, quantity, status, supName, order_date, delivery_date, order_total) VALUES ('$this->id', '$pharmacyUsername', '$medicineID', '$quantity', '0', null, '$order_date', null, '$order_total')";
 
             Logger::logDebug($sql);
 
@@ -223,14 +259,14 @@ class PharmacyOrderModel extends Model
     public function getOrderDetails($id)
     {
         $db = (new Database())->getConnection();
-        $sql = "SELECT * from pharmacyorder WHERE pharmacyorder.id = '$id'";
+        $sql = "SELECT * from pharmacyordermedicine WHERE pharmacyordermedicine.orderid = '$id'";
 
         try {
 
             $result = $db->query($sql);
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
-                    $this->id = $row["id"];
+                    $this->orderid = $row["orderid"];
                     $this->pharmacyUsername = $row['pharmacyUsername'];
                     $this->status = $row['status'];
                     $this->supName = $row['supName'];
@@ -269,7 +305,7 @@ class PharmacyOrderModel extends Model
     {
         $conn = (new Database())->getConnection();
 
-        $sql = "SELECT pharmacyordermedicine.medId, pharmacyordermedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, supplier_medicine.unitPrice FROM pharmacyordermedicine LEFT JOIN medicine ON pharmacyordermedicine.medid = medicine.id LEFT JOIN supplier_medicine ON medicine.id = supplier_medicine.medid WHERE orderid = '$orderId'";
+        $sql = "SELECT pharmacyordermedicinemedicine.medId, pharmacyordermedicinemedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, supplier_medicine.unitPrice FROM pharmacyordermedicinemedicine LEFT JOIN medicine ON pharmacyordermedicinemedicine.medid = medicine.id LEFT JOIN supplier_medicine ON medicine.id = supplier_medicine.medid WHERE orderid = '$orderId'";
 
         try {
             $result = $conn->query($sql);
@@ -286,7 +322,7 @@ class PharmacyOrderModel extends Model
         $conn = (new Database())->getConnection();
         //        $deliveryDate == '1900-02-07'
 //        $orderTotal == "77777777"
-        $sql = "UPDATE pharmacyorder SET order_status = 4, delivery_date = '1900-02-07', order_total = 77777777 WHERE id = '$orderId'";
+        $sql = "UPDATE pharmacyordermedicine SET order_status = 4, delivery_date = '1900-02-07', order_total = 77777777 WHERE id = '$orderId'";
 
         try {
             $result = $conn->query($sql);
@@ -309,7 +345,7 @@ class PharmacyOrderModel extends Model
     {
         $conn = (new Database())->getConnection();
         // order status 0 = pending for current month
-        $sql = "SELECT COUNT(*) AS count FROM pharmacyorder WHERE pharmacyUsername = '$username' AND order_status = 0 AND MONTH(order_date) = MONTH(CURRENT_DATE()) AND YEAR(order_date) = YEAR(CURRENT_DATE());";
+        $sql = "SELECT COUNT(*) AS count FROM pharmacyordermedicine WHERE pharmacyUsername = '$username' AND order_status = 0 AND MONTH(order_date) = MONTH(CURRENT_DATE()) AND YEAR(order_date) = YEAR(CURRENT_DATE());";
 
         try {
             $result = $conn->query($sql);
@@ -340,7 +376,7 @@ class PharmacyOrderModel extends Model
     {
         $conn = (new Database())->getConnection();
         // order status 1 = accepted for current month
-        $sql = "SELECT COUNT(*) AS count FROM pharmacyorder WHERE pharmacyUsername = '$username' AND order_status = 1 AND MONTH(order_date) = MONTH(CURRENT_DATE()) AND YEAR(order_date) = YEAR(CURRENT_DATE());";
+        $sql = "SELECT COUNT(*) AS count FROM pharmacyordermedicine WHERE pharmacyUsername = '$username' AND order_status = 1 AND MONTH(order_date) = MONTH(CURRENT_DATE()) AND YEAR(order_date) = YEAR(CURRENT_DATE());";
 
         try {
             $result = $conn->query($sql);
@@ -357,7 +393,7 @@ class PharmacyOrderModel extends Model
     {
         $conn = (new Database())->getConnection();
         // order status 2 = rejected for current month
-        $sql = "SELECT COUNT(*) AS count FROM pharmacyorder WHERE pharmacyUsername = '$username' AND order_status = 3 AND MONTH(order_date) = MONTH(CURRENT_DATE()) AND YEAR(order_date) = YEAR(CURRENT_DATE());";
+        $sql = "SELECT COUNT(*) AS count FROM pharmacyordermedicine WHERE pharmacyUsername = '$username' AND order_status = 3 AND MONTH(order_date) = MONTH(CURRENT_DATE()) AND YEAR(order_date) = YEAR(CURRENT_DATE());";
 
         try {
             $result = $conn->query($sql);
@@ -374,7 +410,7 @@ class PharmacyOrderModel extends Model
     {
         $conn = (new Database())->getConnection();
         // order status 3 = delivered for current month
-        $sql = "SELECT COUNT(*) AS count FROM pharmacyorder WHERE pharmacyUsername = '$username' AND order_status = 2 AND MONTH(order_date) = MONTH(CURRENT_DATE()) AND YEAR(order_date) = YEAR(CURRENT_DATE());";
+        $sql = "SELECT COUNT(*) AS count FROM pharmacyordermedicine WHERE pharmacyUsername = '$username' AND order_status = 2 AND MONTH(order_date) = MONTH(CURRENT_DATE()) AND YEAR(order_date) = YEAR(CURRENT_DATE());";
 
         try {
             $result = $conn->query($sql);
@@ -391,7 +427,7 @@ class PharmacyOrderModel extends Model
     {
         $conn = (new Database())->getConnection();
         // order status 4 = cancelled for current month
-        $sql = "SELECT COUNT(*) AS count FROM pharmacyorder WHERE pharmacyUsername = '$username' AND order_status = 4 AND MONTH(order_date) = MONTH(CURRENT_DATE()) AND YEAR(order_date) = YEAR(CURRENT_DATE());";
+        $sql = "SELECT COUNT(*) AS count FROM pharmacyordermedicine WHERE pharmacyUsername = '$username' AND order_status = 4 AND MONTH(order_date) = MONTH(CURRENT_DATE()) AND YEAR(order_date) = YEAR(CURRENT_DATE());";
 
         try {
             $result = $conn->query($sql);
@@ -408,7 +444,7 @@ class PharmacyOrderModel extends Model
     {
         $conn = (new Database())->getConnection();
         // order status 4 = cancelled for current month
-        $sql = "SELECT COUNT(*) AS count FROM pharmacyorder WHERE pharmacyUsername = '$username' AND MONTH(order_date) = MONTH(CURRENT_DATE()) AND YEAR(order_date) = YEAR(CURRENT_DATE());";
+        $sql = "SELECT COUNT(*) AS count FROM pharmacyordermedicine WHERE pharmacyUsername = '$username' AND MONTH(order_date) = MONTH(CURRENT_DATE()) AND YEAR(order_date) = YEAR(CURRENT_DATE());";
 
         try {
             $result = $conn->query($sql);
@@ -424,7 +460,7 @@ class PharmacyOrderModel extends Model
     public function getLocation(mixed $orderId)
     {
         $conn = (new Database())->getConnection();
-        $sql = "SELECT delivery_partner.longitude, delivery_partner.latitude FROM pharmacyorder LEFT JOIN delivery_partner ON pharmacyorder.delivary_partner_id = delivery_partner.username WHERE pharmacyorder.id = '$orderId'";
+        $sql = "SELECT delivery_partner.longitude, delivery_partner.latitude FROM pharmacyordermedicine LEFT JOIN delivery_partner ON pharmacyordermedicine.delivary_partner_id = delivery_partner.username WHERE pharmacyordermedicine.id = '$orderId'";
 
         try {
             $result = $conn->query($sql);

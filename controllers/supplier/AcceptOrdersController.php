@@ -4,10 +4,12 @@ namespace app\controllers\supplier;
 
 use app\core\Controller;
 use app\core\Request;
+use app\models\SupplierMedicineModel;
 use app\models\ManufactureModel;
 use app\models\MedicineModel;
-use app\models\SupplierMedicineModel;
 use app\models\PharmacyOrderModel;
+use app\models\PharmacyOrderMedicineMedicineModel;
+
 
 
 
@@ -16,28 +18,28 @@ class AcceptOrdersController extends Controller
 
     public function ViewPendingOrders()
     {
-        $order = new PharmacyOrderModel;
+        $supMed = new SupplierMedicineModel;
         $med = new MedicineModel;
         $manu = new ManufactureModel;
-        $supMed = new SupplierMedicineModel;
         $supmedids = array();
         $supids = $supMed->getSupMedIds($_SESSION['username']);
         while ($row1 = $supids->fetch_assoc()) {
             array_push($supmedids, $row1['medId']);
         }
-        $result = $order->getPendingOrders();
+        $order = new PharmacyOrderMedicineMedicineModel;
+        $result = $order->getPendingOrderFullDetails();
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                $id = $row['id'];
-                $pharname = $order->getOrderPharm($id);
-                $medid = $order->getMedId($id);
+                $id = $row['orderid'];
+                $pharname = $row['pharmacyUsername'];
+                $medid = $row['ordermedId'];
                 if (in_array($medid, $supmedids)) {
-                    $medname = $med->getName($medid);
-                    $weight = $med->getWeight($medid);
-                    $volume = $med->getVolume($medid);
-                    $manid = $med->getManufacture($id);
+                    $medname = $row['medName'];
+                    $weight = $row['weight'];
+                    $volume = $row['volume'];
+                    $manid = $row['manId'];
                     $manname = $manu->getManufactureName($manid);
-                    $qauntity = $order->getMedQuantiy($id);
+                    $qauntity = $row['quantity'];
                     if ($supMed->getQuantity($medid) > $qauntity) {
                         if ($weight > 0) {
                             $mass = $weight;
@@ -63,10 +65,12 @@ class AcceptOrdersController extends Controller
 
 
     }
+
     public function AcceptOrder(Request $request)
     { {
             if ($request->isPost()) {
-                $order = new PharmacyOrderModel;
+                $pharmorder = new PharmacyOrderModel;
+                $order = new PharmacyOrderMedicineMedicineModel;
                 $orderid = $_POST['orderId'];
                 $supmed = new SupplierMedicineModel;
                 $medid = $_POST['medId'];
@@ -75,7 +79,7 @@ class AcceptOrdersController extends Controller
                 $newq = $oldq - $quantity;
                 $bnumber = $_POST['batch'];
                 $expdate = $_POST['expdate'];
-                if ($order->acceptOrder($_SESSION['username'], $orderid, $bnumber, $expdate) && $supmed->acceptOrder($newq, $medid, $_SESSION['username'])) {
+                if ($pharmorder->acceptOrder($orderid) && $order->acceptOrder($_SESSION['username'], $orderid, $bnumber, $expdate) && $supmed->acceptOrder($newq, $medid, $_SESSION['username'])) {
                     echo (new \app\core\ExceptionHandler)->OrderAccepted();
                     return $this->render("/supplier/accept-orders.php");
                 } else {
@@ -98,14 +102,15 @@ class AcceptOrdersController extends Controller
         <form id="acceptOrder" method='post' action='/supplier/accept'>
             <input type="hidden" id="medId" name="medId" value="">
             <input type="hidden" id="orderId" name="orderId" value="">
+            <input type="hidden" id="quantity" name="quantity" value="">
             <label for="medName" style="display: block; padding: 0.5%; text-align: left;">Medicine Name:</label>
             <input type="text" id="medName" name="medName" value="" disabled class='form-input' style='width:60%;'>
             <label for="mass" style="display: block; padding: 0.5%; text-align: left;">Weight(mg)/Volume(ml):</label>
             <input type="number" id="mass" name="mass" value="" disabled class='form-input' style='width:60%;'>
             <label for="manname" style="display: block; padding: 0.5%; text-align: left;">Manufacturer Name:</label>
             <input type="text" id="manname" name="manname" value="" disabled class='form-input' style='width:60%;'>
-            <label for="quantity" style="display: block; padding: 0.5%; text-align: left;">Quantity:</label>
-            <input type="text" id="quantity" name="quantity" value="" disabled class='form-input' style='width:60%;'>
+            <label for="quantity2" style="display: block; padding: 0.5%; text-align: left;">Quantity:</label>
+            <input type="text" id="quantity2" name="quantity2" value="" disabled class='form-input' style='width:60%;'>
             <label for="batch" style="display: block; padding: 0.5%; text-align: left;">Batch Number:</label>
             <input type="text" id="batch" name="batch" value="" class='form-input' style='width:60%;' required>
             <label for="expdate" style="display: block; padding: 0.5%; text-align: left;">Expiration date:</label>
@@ -141,6 +146,7 @@ class AcceptOrdersController extends Controller
         document.getElementById("medName").value = medName;
         document.getElementById("mass").value = mass;
         document.getElementById("quantity").value = quantity;
+        document.getElementById("quantity2").value = quantity;
         document.getElementById("manname").value = manname;
         document.getElementById("medId").value = medId;
         const dateInput = document.getElementById("expdate");

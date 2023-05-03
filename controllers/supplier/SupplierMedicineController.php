@@ -4,6 +4,7 @@ namespace app\controllers\supplier;
 
 use app\core\Controller;
 use app\core\ExceptionHandler;
+use app\core\Logger;
 use app\models\LabRequestModel;
 use app\models\MedicineModel;
 use app\models\SupplierMedicineModel;
@@ -100,6 +101,7 @@ class SupplierMedicineController extends Controller
             array_push($allmedids, $row2['id']);
         }
         $otherids = array_diff($allmedids, $supmedids);
+
 
         echo "<div style='height: 300px;'>
         <table style = 'width: 100%; text-align:center; padding-top:5%;>
