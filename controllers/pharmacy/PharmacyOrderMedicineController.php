@@ -8,6 +8,10 @@ use app\core\Logger;
 use app\core\NotificationHandler;
 use app\core\Request;
 use app\models\MedicineOrderModel;
+use Dotenv\Dotenv;
+
+$dotenv = Dotenv::createImmutable(__DIR__);
+$dotenv->load();
 
 class PharmacyOrderMedicineController extends Controller
 {
@@ -33,7 +37,25 @@ class PharmacyOrderMedicineController extends Controller
 
                 $flag = true;
 
-                if ($order->createOrder($_SESSION['username'], $this->totalPrice, $medicineIds)) {
+                $result = $order->createOrder($_SESSION['username'], $this->totalPrice, $medicineIds);
+                if ($result) {
+
+                    $qr = new \app\core\QR();
+//                    $api = $_ENV '/delivery/api/update-medicine-details?orderId=' . $result;
+
+                    $qr_JSON = [
+                        "orderId" => $result,
+                        "username" => $_SESSION['username'],
+                        "totalPrice" => $this->totalPrice,
+                        "qrtype" => "order"
+                    ];
+                    $qr->generateQRFromJSON(json_encode($qr_JSON), $result, 10, 'L');
+
+                    $pdf = new \app\core\PDF();
+                    $medicineIdsforPDF = (new \app\models\PharmacyOrderModel())->getMedicineByOrderID($result);
+                    $html = $pdf->formBodyToHTML($result, date("Y-m-d"), $this->totalPrice, $medicineIdsforPDF, $_SESSION['username']);
+                    $pdf->generatePDF($html, $result);
+
                     $flag = true;
                 } else {
                     $flag = false;
@@ -166,6 +188,10 @@ class PharmacyOrderMedicineController extends Controller
             return 'Delivered';
         } elseif ($orderStatus == '4') {
             return 'Cancelled';
+        } elseif ($orderStatus == '5') {
+            return 'Delivering';
+        } else {
+            return $orderStatus;
         }
     }
 
@@ -203,6 +229,30 @@ class PharmacyOrderMedicineController extends Controller
             echo (new ExceptionHandler)->somethingWentWrong();
             return header('Location: /pharmacy/orders');
         }
+
+    }
+
+    public function getLocation(Request $request) {
+
+            if ($request->isGet()) {
+
+                $orderId = $request->getParams()['orderId'];
+
+                $order = (new \app\models\PharmacyOrderModel())->getLocation($orderId);
+
+                if ($order) {
+                    // reply data == 'Order Cancelled'
+                    header ('Content-Type: application/json');
+                    return json_encode($order);
+                } else {
+                    header('Content-Type: application/json');
+                    return json_encode('Order Not Found');
+                }
+
+            } else {
+                echo (new ExceptionHandler)->somethingWentWrong();
+                return header('Location: /pharmacy/orders');
+            }
 
     }
 

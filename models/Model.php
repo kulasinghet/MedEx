@@ -49,6 +49,9 @@ class Model
             case "pharmacyorder":
                 $tag = "ORD";
                 break;
+            case "pharmacysell":
+                $tag = "BILL";
+                break;
             default:
                 $tag = "ID";
                 break;

@@ -39,6 +39,7 @@ echo $components->sideBar('order-medicine');
                         let search = document.getElementById('search-medicine').value;
                         let orderMedicineRows = document.getElementsByClassName('order-medicine-row-before');
 						let flag = false;
+                        document.getElementById('search-medicine').value = "";
 						if (search !== "") {
 							for (let i = 0; i < orderMedicineRows.length; i++) {
 								let medicineId = orderMedicineRows[i].getAttribute('data-id');
@@ -72,6 +73,27 @@ echo $components->sideBar('order-medicine');
 
                     }
 
+                    function hideRow(medId) {
+                        let row = document.getElementById('order-medicine-row-' + medId);
+                        row.className = 'order-medicine-row-before';
+
+                        // get the form element order-medicine-quantity-Med0001
+                        let formElement = document.getElementById('order-medicine-quantity-' + medId);
+                        // reset the value
+                        formElement.value = 0;
+                        // reset the total price
+                        document.getElementById('total-price-' + medId).innerHTML = '0';
+
+                        // reset the total order value
+                        let totalOrderValue = 0;
+                        let totalPrices = document.getElementsByClassName('total-price-column');
+                        for (let i = 0; i < totalPrices.length; i++) {
+                            totalOrderValue += parseInt(totalPrices[i].innerHTML);
+                        }
+                        document.getElementById('total-order-value').innerHTML = totalOrderValue.toString();
+
+                    }
+
                 </script>
 
 
@@ -84,10 +106,11 @@ echo $components->sideBar('order-medicine');
                         <th>Medicine ID</th>
                         <th>Medicine</th>
                         <th style='text-align: center'>Medicine Scientific Name</th>
-                        <th style='text-align: center'>Weight</th>
-                        <th style='text-align: center'>Price</th>
+                        <th style='text-align: center'>Remaining Quantity</th>
+                        <th style='text-align: center'>Unit Price (LKR)</th>
                         <th style='text-align: center'>Quantity</th>
-                        <th style='text-align: center'>Total Price</th>
+                        <th style='text-align: center'>Total Price (LKR)</th>
+                        <th style='text-align: center; width: 1%;'></th>
                     </tr>
 
 
@@ -103,11 +126,14 @@ echo $components->sideBar('order-medicine');
                             echo "<td>" . $medicine['id'] . "</td>";
                             echo "<td>" . $medicine['medName'] . "</td>";
                             echo "<td style='text-align: center'>" . $medicine['sciName'] . "</td>";
-                            echo "<td style='text-align: center'>" . $medicine['weight'] . " (mg) " . "</td>";
+                            echo "<td style='text-align: center'>" . $medicine['remQty'] . "</td>";
                             echo "<td style='text-align: center'>" . $pharmacyOrderMedicineController->getPrice($medicine['id']) . "</td>";
                             echo "<td  style='text-align: center'><input type='number' name='" . $medicine['id'] . "' min='0' max='100' placeholder='0' class='order-medicine-quantity' required onchange='handleQtyChange(name)' id='order-medicine-quantity-" . $medicine['id'] . "'></td>";
 //                            <input type='number' name='quantity' id='quantity' placeholder='1 2 3 . . .'>
                             echo "<td style='text-align: center' id='total-price-" . $medicine['id'] . "' class='total-price-column'>0</td>";
+                            echo "<td style='text-align: center; padding: 0;'><a class='btn' onclick='hideRow(\"" . $medicine['id'] . "\")' style='padding: 0; background-color: transparent; border: none; margin: 0; outline: none; box-shadow: none;'>";
+                            echo "<i class='fa fa-times close-row' aria-hidden='true' style='color: red;'></i>";
+                            echo "</a></td>";
                             echo "</tr>";
 
                         }
@@ -115,6 +141,7 @@ echo $components->sideBar('order-medicine');
                         echo "<td colspan='2'> Total Order Value </td>";
                         echo "<td colspan='4'></td>";
                         echo "<td id='total-order-value' style='text-align: center'>0</td>";
+                        echo "<td></td>";
                         echo "</tr>";
                     } else {
                         echo "<tr>";
@@ -163,19 +190,18 @@ echo $components->sideBar('order-medicine');
                             total += parseInt(orderedMedicines[key].totalPrice);
                         }
 
-                        let medicineInformationForSwal = '<table><th>Medicine ID</th><th>Medicine</th> <th>Medicine Scientific Name</th><th>Weight</th><th>Price</th><th>Quantity</th><th>Total Price</th>';
+                        let medicineInformationForSwal = '<table><th>Medicine ID</th><th>Medicine</th> <th>Medicine Scientific Name</th><th>Price</th><th>Quantity</th><th>Total Price</th>';
                         for (let key in orderedMedicines) {
                             medicineInformationForSwal += '<tr>';
                             medicineInformationForSwal += '<td>' + orderedMedicines[key].medicineId + '</td>';
                             medicineInformationForSwal += '<td>' + orderedMedicines[key].medicineName + '</td>';
                             medicineInformationForSwal += '<td style="text-align: center">' + orderedMedicines[key].medicineScientificName + '</td>';
-                            medicineInformationForSwal += '<td style="text-align: center">' + orderedMedicines[key].medicineWeight + '</td>';
                             medicineInformationForSwal += '<td style="text-align: center">' + orderedMedicines[key].medicinePrice + '</td>';
                             medicineInformationForSwal += '<td style="text-align: center">' + orderedMedicines[key].medicineQuantity + '</td>';
                             medicineInformationForSwal += '<td style="text-align: center">' + orderedMedicines[key].totalPrice + '</td>';
                             medicineInformationForSwal += '</tr>';
                         }
-                        medicineInformationForSwal += '<tr style="color: #071232; font-size: 1rem; font-weight: bold"><td>Total</td><td colspan="5"></td><td style="text-align: center">' + total + '</td></tr>';
+                        medicineInformationForSwal += '<tr style="color: #071232; font-size: 1rem; font-weight: bold"><td>Total</td><td colspan="4"></td><td style="text-align: center">' + total + '</td></tr>';
 
 						if (total > 0) {
 							swal({
@@ -187,7 +213,7 @@ echo $components->sideBar('order-medicine');
 									}
 								},
 								buttons: {
-									cancel: "Cancel",
+									cancel: "Edit Order",
 									confirm: "Confirm Order"
 								},
 							}).then((value) =>
@@ -195,7 +221,6 @@ echo $components->sideBar('order-medicine');
                                 if (value) {
                                     document.getElementById('order-medicine-form').submit();
                                     swal("Order Confirmed", "Your order has been placed", "success");
-
                                 }
                             });
 						} else {

@@ -42,6 +42,7 @@ class MedicineModel extends Model
     {
         $db = (new Database())->getConnection();
         $sql = "SELECT * from medicine WHERE medicine.id = '$id'";
+        Logger::logDebug($sql);
         $result = $db->query($sql);
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
@@ -98,11 +99,11 @@ class MedicineModel extends Model
     // Get all medicine
     public function getAllMedicines()
     {
-        $db = new Database();
-        $sql = "SELECT * FROM medicine";
 
+        $conn = (new Database())->getConnection();
+        $sql = "SELECT medicine.*, COALESCE(stock.remQty, 0) AS remQty FROM medicine LEFT JOIN stock ON medicine.id = stock.medId;";
         try {
-            $stmt = $db->prepare($sql);
+            $stmt = $conn->prepare($sql);
             $stmt->execute();
             $result = $stmt->get_result();
             return $result;
@@ -129,6 +130,7 @@ class MedicineModel extends Model
     {
         $db = (new Database())->getConnection();
         $sql = "SELECT id  from medicine";
+        Logger::logDebug($sql);
         $result = $db->query($sql);
         if ($result->num_rows > 0) {
             return $result;
