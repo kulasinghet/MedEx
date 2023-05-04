@@ -123,7 +123,6 @@ echo $components->sideBar('invoices');
             }
         });
 
-        // change the filter button color
         const filterButtons = document.getElementsByClassName('date-filter');
         for (let i = 0; i < filterButtons.length; i++) {
             // add a red color to the button
@@ -187,9 +186,6 @@ echo $components->sideBar('invoices');
 
 <script>
 
-    //
-    // if document is ready add event listener to all class view-order
-
     document.addEventListener('DOMContentLoaded', function() {
         var viewOrderButtons = document.getElementsByClassName('view-order');
         for (var i = 0; i < viewOrderButtons.length; i++) {
@@ -203,7 +199,7 @@ echo $components->sideBar('invoices');
     async function handleViewOrderDetailsClick($orderId) {
 
         try {
-
+            console.log($orderId);
             swal({
                 title: 'Loading',
                 text: 'Please wait...',
@@ -214,7 +210,6 @@ echo $components->sideBar('invoices');
                 content: {
                     element: "img",
                     attributes: {
-                        // add loading gitf from internet
                         src: "https://i.gifer.com/ZZ5H.gif",
                         style: "width:25px; margin-bottom:20px;"
                     },
@@ -224,21 +219,12 @@ echo $components->sideBar('invoices');
             const response = await fetch(`/pharmacy/api/sales-order?invoiceId=${$orderId}`);
             const orderData = await response.json();
             console.log(orderData);
-            // {"orderId":"411205testPharmacy977","pharmacyId":"testPharmacy","orderDate":"2023-04-13","totalPrice":"230","orderStatus":"0","deliveryDate":null}
 
             const response2 = await fetch(`/pharmacy/api/sales-order-medicines?invoiceId=${$orderId}`);
             const orderedMedicines = await response2.json();
             console.log(orderedMedicines);
 
             swal.close();
-
-            // {
-            //     "invoiceId": "ID1",
-            //     "pharmacyUsername": "testPharmacy",
-            //     "invoiceDate": "2023-04-27",
-            //     "billTotal": "450"
-            // }
-
 
             let orderInformationForSwal = '';
             if (orderData != undefined || orderData.length > 0) {
@@ -252,15 +238,6 @@ echo $components->sideBar('invoices');
             console.log(orderInformationForSwal);
 
             let medicineInformationForSwal = '';
-
-            // {
-            //     "medId": "Med0001",
-            //     "quantity": "3",
-            //     "medName": "Panadol",
-            //     "sciName": "Paracetamol",
-            //     "weight": "500",
-            //     "unitPrice": "10"
-            // }
 
             if (orderedMedicines != undefined || orderedMedicines.length > 0) {
                 medicineInformationForSwal = '<table><th>Medicine ID</th><th>Medicine</th> <th>Medicine Scientific Name</th><th>Weight</th><th>Price</th><th>Quantity</th><th>Total Price</th>';
@@ -276,6 +253,9 @@ echo $components->sideBar('invoices');
                     medicineInformationForSwal += '</tr>';
                 }
                 medicineInformationForSwal += '<tr style="color: #071232; font-size: 1rem; font-weight: bold"><td>Total</td><td colspan="5"></td><td style="text-align: center">' + orderData.billTotal + '</td></tr>';
+                medicineInformationForSwal += '<tr style="color: #071232; font-size: 1rem; font-weight: "><td>Payment</td><td colspan="5"></td><td style="text-align: center">' + orderData.customer_money + '</td></tr>';
+                let balance = parseInt(orderData.customer_money) - parseInt(orderData.billTotal);
+                medicineInformationForSwal += '<tr style="color: #071232; font-size: 1rem; font-weight: bold"><td>Balance</td><td colspan="5"></td><td style="text-align: center">' + balance + '</td></tr>';
                 medicineInformationForSwal += '</table>';
             } else {
                 medicineInformationForSwal = '<h4>No Medicine Ordered</h4>';

@@ -1,0 +1,211 @@
+2023/05/04 23:43:56 *****************************
+2023/05/04 23:43:59 Medicine ID Med0001 Quantity 3 Price 14
+2023/05/04 23:43:59 Total price 42
+2023/05/04 23:44:00 Max: 25 Tag: BILL
+2023/05/04 23:44:00 createSellOrder SQL: INSERT INTO pharmacysell (invoice_id, pharmacyUsername, invoice_date, bill_total) VALUES ('BILL26', 'testPharmacy', '2023-05-04', '42');
+2023/05/04 23:44:01 updateSellMedicineQuantity SQL: INSERT INTO pharmacysellmedicine (invoice_id, pharmacyUsername, medId, quantity) VALUES ('BILL26', 'testPharmacy', 'Med0001', '3');
+2023/05/04 23:44:02 UPDATE stock SET remQty = remQty - '3' WHERE medId = 'Med0001' AND pharmacyName = 'testPharmacy'
+2023/05/04 23:44:03 UPDATE stock SET remaining_days = remQty / consumption_rate WHERE medId = 'Med0001' AND pharmacyName = 'testPharmacy'
+2023/05/04 23:44:03 Remaining days updated
+2023/05/04 23:44:05 UPDATE stock SET consumption_rate = (SELECT AVG(consumption_rate) FROM (SELECT consumption_rate FROM stock WHERE medId = 'Med0001' AND pharmacyName = 'testPharmacy' ORDER BY id DESC LIMIT 7) AS t) WHERE medId = 'Med0001' AND pharmacyName = 'testPharmacy'
+2023/05/04 23:44:05 0
+2023/05/04 23:44:05 Consumption rate updated
+2023/05/04 23:44:05 Order ID BILL26
+2023/05/04 23:44:05 SELECT pharmacysellmedicine.medId, pharmacysellmedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, supplier_medicine.unitPrice FROM pharmacysellmedicine LEFT JOIN medicine ON pharmacysellmedicine.medid = medicine.id LEFT JOIN supplier_medicine ON medicine.id = supplier_medicine.medid WHERE invoice_id = 'BILL26'
+2023/05/04 23:44:06 medicines: Array
+2023/05/04 23:44:06 medicines: Med0001 Panadol Paracetamol 500 3 10
+2023/05/04 23:44:07 SELECT * FROM pharmacysell WHERE pharmacyUsername = 'testPharmacy' ORDER BY invoice_date DESC
+2023/05/04 23:44:19 SELECT pharmacysellmedicine.medId, pharmacysellmedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, supplier_medicine.unitPrice FROM pharmacysellmedicine LEFT JOIN medicine ON pharmacysellmedicine.medid = medicine.id LEFT JOIN supplier_medicine ON medicine.id = supplier_medicine.medid WHERE invoice_id = 'BILL24'
+2023/05/04 23:44:40 SELECT pharmacysellmedicine.medId, pharmacysellmedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, supplier_medicine.unitPrice FROM pharmacysellmedicine LEFT JOIN medicine ON pharmacysellmedicine.medid = medicine.id LEFT JOIN supplier_medicine ON medicine.id = supplier_medicine.medid WHERE invoice_id = 'BILL26'
+2023/05/04 23:47:36 SELECT * FROM pharmacysell WHERE pharmacyUsername = 'testPharmacy' ORDER BY invoice_date DESC
+2023/05/04 23:47:40 SELECT pharmacysellmedicine.medId, pharmacysellmedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, supplier_medicine.unitPrice FROM pharmacysellmedicine LEFT JOIN medicine ON pharmacysellmedicine.medid = medicine.id LEFT JOIN supplier_medicine ON medicine.id = supplier_medicine.medid WHERE invoice_id = 'BILL26'
+2023/05/04 23:54:01 SELECT * FROM pharmacysell WHERE pharmacyUsername = 'testPharmacy' ORDER BY invoice_date DESC
+2023/05/04 23:54:04 SELECT pharmacysellmedicine.medId, pharmacysellmedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, supplier_medicine.unitPrice FROM pharmacysellmedicine LEFT JOIN medicine ON pharmacysellmedicine.medid = medicine.id LEFT JOIN supplier_medicine ON medicine.id = supplier_medicine.medid WHERE invoice_id = 'BILL24'
+2023/05/04 23:55:59 SELECT * FROM pharmacysell WHERE pharmacyUsername = 'testPharmacy' ORDER BY invoice_date DESC
+2023/05/04 23:56:02 SELECT pharmacysellmedicine.medId, pharmacysellmedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, supplier_medicine.unitPrice FROM pharmacysellmedicine LEFT JOIN medicine ON pharmacysellmedicine.medid = medicine.id LEFT JOIN supplier_medicine ON medicine.id = supplier_medicine.medid WHERE invoice_id = 'BILL26'
+2023/05/04 23:57:50 SELECT * FROM pharmacysell WHERE pharmacyUsername = 'testPharmacy' ORDER BY invoice_date DESC, invoice_id DESC
+2023/05/04 23:57:55 SELECT pharmacysellmedicine.medId, pharmacysellmedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, supplier_medicine.unitPrice FROM pharmacysellmedicine LEFT JOIN medicine ON pharmacysellmedicine.medid = medicine.id LEFT JOIN supplier_medicine ON medicine.id = supplier_medicine.medid WHERE invoice_id = 'BILL26'
+2023/05/04 23:59:22 SELECT * FROM pharmacysell WHERE pharmacyUsername = 'testPharmacy' ORDER BY invoice_date DESC, invoice_id DESC
+2023/05/04 23:59:27 SELECT pharmacysellmedicine.medId, pharmacysellmedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, stock.sellingPrice as unitPrice FROM pharmacysellmedicine LEFT JOIN medicine ON pharmacysellmedicine.medid = medicine.id LEFT JOIN stock ON medicine.id = stock.medId WHERE invoice_id = 'BILL26'
+2023/05/05 00:00:22 SELECT invoice_date, SUM(bill_total) AS total FROM pharmacysell WHERE pharmacyUsername = 'testPharmacy' AND invoice_date >= DATE_SUB(CURDATE(), INTERVAL 7 DAY) GROUP BY invoice_date ORDER BY invoice_date DESC LIMIT 7
+2023/05/05 00:00:23 SELECT SUM(bill_total) AS total FROM pharmacysell WHERE pharmacyUsername = 'testPharmacy' AND MONTH(invoice_date) = MONTH(CURRENT_DATE()) AND YEAR(invoice_date) = YEAR(CURRENT_DATE())
+2023/05/05 00:00:24 SELECT SUM(quantity * stock.buying_price) AS total  FROM pharmacysellmedicine LEFT JOIN stock ON pharmacysellmedicine.medId = stock.medId WHERE pharmacysellmedicine.invoice_id IN (SELECT invoice_id FROM pharmacysell WHERE pharmacyUsername = 'testPharmacy' AND MONTH(invoice_date) = MONTH(CURRENT_DATE()) AND YEAR(invoice_date) = YEAR(CURRENT_DATE()))
+2023/05/05 00:02:54 *****************************
+2023/05/05 00:02:55 Medicine ID Med0005 Quantity 20 Price 50
+2023/05/05 00:02:56 Total price 1000
+2023/05/05 00:02:57 Max: 26 Tag: BILL
+2023/05/05 00:02:57 createSellOrder SQL: INSERT INTO pharmacysell (invoice_id, pharmacyUsername, invoice_date, bill_total) VALUES ('BILL27', 'testPharmacy', '2023-05-04', '1000');
+2023/05/05 00:02:58 updateSellMedicineQuantity SQL: INSERT INTO pharmacysellmedicine (invoice_id, pharmacyUsername, medId, quantity) VALUES ('BILL27', 'testPharmacy', 'Med0005', '20');
+2023/05/05 00:02:59 UPDATE stock SET remQty = remQty - '20' WHERE medId = 'Med0005' AND pharmacyName = 'testPharmacy'
+2023/05/05 00:03:00 UPDATE stock SET remaining_days = remQty / consumption_rate WHERE medId = 'Med0005' AND pharmacyName = 'testPharmacy'
+2023/05/05 00:03:00 Remaining days updated
+2023/05/05 00:03:01 UPDATE stock SET consumption_rate = (SELECT AVG(consumption_rate) FROM (SELECT consumption_rate FROM stock WHERE medId = 'Med0005' AND pharmacyName = 'testPharmacy' ORDER BY id DESC LIMIT 7) AS t) WHERE medId = 'Med0005' AND pharmacyName = 'testPharmacy'
+2023/05/05 00:03:01 0
+2023/05/05 00:03:01 Consumption rate updated
+2023/05/05 00:03:01 Order ID BILL27
+2023/05/05 00:03:01 SELECT pharmacysellmedicine.medId, pharmacysellmedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, stock.sellingPrice FROM pharmacysellmedicine LEFT JOIN medicine ON pharmacysellmedicine.medid = medicine.id LEFT JOIN stock ON medicine.id = stock.medId WHERE invoice_id = 'BILL27'
+2023/05/05 00:03:02 medicines: Array
+2023/05/05 00:03:02 medicines: Med0005 Piriton Chlorphenamine 4 20 
+2023/05/05 00:03:02 SELECT * FROM pharmacysell WHERE pharmacyUsername = 'testPharmacy' ORDER BY invoice_date DESC, invoice_id DESC
+2023/05/05 00:03:07 SELECT pharmacysellmedicine.medId, pharmacysellmedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, stock.sellingPrice as unitPrice FROM pharmacysellmedicine LEFT JOIN medicine ON pharmacysellmedicine.medid = medicine.id LEFT JOIN stock ON medicine.id = stock.medId WHERE invoice_id = 'BILL27'
+2023/05/05 00:12:19 SELECT pharmacysellmedicine.medId, pharmacysellmedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, stock.sellingPrice as unitPrice FROM pharmacysellmedicine LEFT JOIN medicine ON pharmacysellmedicine.medid = medicine.id LEFT JOIN stock ON medicine.id = stock.medId WHERE invoice_id = 'BILL27'
+2023/05/05 00:13:23 *****************************
+2023/05/05 00:13:24 Medicine ID Med0003 Quantity 5 Price 50
+2023/05/05 00:13:26 Medicine ID customer_money Quantity 300 Price 0
+2023/05/05 00:13:26 Total price 250
+2023/05/05 00:13:27 Max: 27 Tag: BILL
+2023/05/05 00:13:27 createSellOrder SQL: INSERT INTO pharmacysell (invoice_id, pharmacyUsername, invoice_date, bill_total, customer_money) VALUES ('BILL28', 'testPharmacy', '2023-05-04', '250', '');
+2023/05/05 00:13:27 Order ID 
+2023/05/05 00:13:51 *****************************
+2023/05/05 00:13:52 Medicine ID Med0003 Quantity 5 Price 50
+2023/05/05 00:13:54 Medicine ID customer_money Quantity 300 Price 0
+2023/05/05 00:13:54 Total price 250
+2023/05/05 00:13:55 Max: 27 Tag: BILL
+2023/05/05 00:13:55 createSellOrder SQL: INSERT INTO pharmacysell (invoice_id, pharmacyUsername, invoice_date, bill_total, customer_money) VALUES ('BILL28', 'testPharmacy', '2023-05-04', '250', '300');
+2023/05/05 00:13:58 updateSellMedicineQuantity SQL: INSERT INTO pharmacysellmedicine (invoice_id, pharmacyUsername, medId, quantity) VALUES ('BILL28', 'testPharmacy', 'Med0003', '5');
+2023/05/05 00:13:58 UPDATE stock SET remQty = remQty - '5' WHERE medId = 'Med0003' AND pharmacyName = 'testPharmacy'
+2023/05/05 00:13:59 UPDATE stock SET remaining_days = remQty / consumption_rate WHERE medId = 'Med0003' AND pharmacyName = 'testPharmacy'
+2023/05/05 00:14:00 Remaining days updated
+2023/05/05 00:14:00 UPDATE stock SET consumption_rate = (SELECT AVG(consumption_rate) FROM (SELECT consumption_rate FROM stock WHERE medId = 'Med0003' AND pharmacyName = 'testPharmacy' ORDER BY id DESC LIMIT 7) AS t) WHERE medId = 'Med0003' AND pharmacyName = 'testPharmacy'
+2023/05/05 00:14:01 0
+2023/05/05 00:14:01 Consumption rate updated
+2023/05/05 00:14:01 updateSellMedicineQuantity SQL: INSERT INTO pharmacysellmedicine (invoice_id, pharmacyUsername, medId, quantity) VALUES ('BILL28', 'testPharmacy', 'customer_money', '300');
+2023/05/05 00:14:01 Order ID 
+2023/05/05 00:14:01 *****************************
+2023/05/05 00:14:03 Medicine ID Med0003 Quantity 5 Price 50
+2023/05/05 00:14:04 Medicine ID customer_money Quantity 300 Price 0
+2023/05/05 00:14:04 Total price 250
+2023/05/05 00:14:05 Max: 28 Tag: BILL
+2023/05/05 00:14:05 createSellOrder SQL: INSERT INTO pharmacysell (invoice_id, pharmacyUsername, invoice_date, bill_total, customer_money) VALUES ('BILL29', 'testPharmacy', '2023-05-04', '250', '300');
+2023/05/05 00:14:06 updateSellMedicineQuantity SQL: INSERT INTO pharmacysellmedicine (invoice_id, pharmacyUsername, medId, quantity) VALUES ('BILL29', 'testPharmacy', 'Med0003', '5');
+2023/05/05 00:14:07 UPDATE stock SET remQty = remQty - '5' WHERE medId = 'Med0003' AND pharmacyName = 'testPharmacy'
+2023/05/05 00:14:08 UPDATE stock SET remaining_days = remQty / consumption_rate WHERE medId = 'Med0003' AND pharmacyName = 'testPharmacy'
+2023/05/05 00:14:09 Order ID 
+2023/05/05 00:14:33 *****************************
+2023/05/05 00:14:36 Medicine ID Med0003 Quantity 5 Price 50
+2023/05/05 00:14:37 Medicine ID customer_money Quantity 300 Price 0
+2023/05/05 00:14:37 Total price 250
+2023/05/05 00:14:38 Max: 29 Tag: BILL
+2023/05/05 00:14:38 createSellOrder SQL: INSERT INTO pharmacysell (invoice_id, pharmacyUsername, invoice_date, bill_total, customer_money) VALUES ('BILL30', 'testPharmacy', '2023-05-04', '250', '300');
+2023/05/05 00:14:40 updateSellMedicineQuantity SQL: INSERT INTO pharmacysellmedicine (invoice_id, pharmacyUsername, medId, quantity) VALUES ('BILL30', 'testPharmacy', 'Med0003', '5');
+2023/05/05 00:14:40 UPDATE stock SET remQty = remQty - '5' WHERE medId = 'Med0003' AND pharmacyName = 'testPharmacy'
+2023/05/05 00:14:41 UPDATE stock SET remaining_days = remQty / consumption_rate WHERE medId = 'Med0003' AND pharmacyName = 'testPharmacy'
+2023/05/05 00:14:42 Remaining days updated
+2023/05/05 00:14:42 UPDATE stock SET consumption_rate = (SELECT AVG(consumption_rate) FROM (SELECT consumption_rate FROM stock WHERE medId = 'Med0003' AND pharmacyName = 'testPharmacy' ORDER BY id DESC LIMIT 7) AS t) WHERE medId = 'Med0003' AND pharmacyName = 'testPharmacy'
+2023/05/05 00:14:43 0
+2023/05/05 00:14:43 Consumption rate updated
+2023/05/05 00:14:43 updateSellMedicineQuantity SQL: INSERT INTO pharmacysellmedicine (invoice_id, pharmacyUsername, medId, quantity) VALUES ('BILL30', 'testPharmacy', 'customer_money', '300');
+2023/05/05 00:14:43 Order ID 
+2023/05/05 00:15:22 *****************************
+2023/05/05 00:15:23 Medicine ID Med0003 Quantity 5 Price 50
+2023/05/05 00:15:25 Medicine ID customer_money Quantity 300 Price 0
+2023/05/05 00:15:25 Total price 250
+2023/05/05 00:15:27 Max: 30 Tag: BILL
+2023/05/05 00:15:27 createSellOrder SQL: INSERT INTO pharmacysell (invoice_id, pharmacyUsername, invoice_date, bill_total, customer_money) VALUES ('BILL31', 'testPharmacy', '2023-05-04', '250', '300');
+2023/05/05 00:15:28 updateSellMedicineQuantity SQL: INSERT INTO pharmacysellmedicine (invoice_id, pharmacyUsername, medId, quantity) VALUES ('BILL31', 'testPharmacy', 'Med0003', '5');
+2023/05/05 00:15:29 UPDATE stock SET remQty = remQty - '5' WHERE medId = 'Med0003' AND pharmacyName = 'testPharmacy'
+2023/05/05 00:15:30 UPDATE stock SET remaining_days = remQty / consumption_rate WHERE medId = 'Med0003' AND pharmacyName = 'testPharmacy'
+2023/05/05 00:15:30 Remaining days updated
+2023/05/05 00:15:31 UPDATE stock SET consumption_rate = (SELECT AVG(consumption_rate) FROM (SELECT consumption_rate FROM stock WHERE medId = 'Med0003' AND pharmacyName = 'testPharmacy' ORDER BY id DESC LIMIT 7) AS t) WHERE medId = 'Med0003' AND pharmacyName = 'testPharmacy'
+2023/05/05 00:15:31 0
+2023/05/05 00:15:31 Consumption rate updated
+2023/05/05 00:15:31 updateSellMedicineQuantity SQL: INSERT INTO pharmacysellmedicine (invoice_id, pharmacyUsername, medId, quantity) VALUES ('BILL31', 'testPharmacy', 'customer_money', '300');
+2023/05/05 00:15:31 Order ID 
+2023/05/05 00:16:29 *****************************
+2023/05/05 00:16:32 Medicine ID Med0002 Quantity 4 Price 30
+2023/05/05 00:16:33 Medicine ID customer_money Quantity 200 Price 0
+2023/05/05 00:16:33 Total price 120
+2023/05/05 00:16:34 Max: 31 Tag: BILL
+2023/05/05 00:16:34 createSellOrder SQL: INSERT INTO pharmacysell (invoice_id, pharmacyUsername, invoice_date, bill_total, customer_money) VALUES ('BILL32', 'testPharmacy', '2023-05-04', '120', '200');
+2023/05/05 00:16:36 updateSellMedicineQuantity SQL: INSERT INTO pharmacysellmedicine (invoice_id, pharmacyUsername, medId, quantity) VALUES ('BILL32', 'testPharmacy', 'Med0002', '4');
+2023/05/05 00:16:38 UPDATE stock SET remQty = remQty - '4' WHERE medId = 'Med0002' AND pharmacyName = 'testPharmacy'
+2023/05/05 00:16:39 UPDATE stock SET remaining_days = remQty / consumption_rate WHERE medId = 'Med0002' AND pharmacyName = 'testPharmacy'
+2023/05/05 00:16:39 Remaining days updated
+2023/05/05 00:16:40 UPDATE stock SET consumption_rate = (SELECT AVG(consumption_rate) FROM (SELECT consumption_rate FROM stock WHERE medId = 'Med0002' AND pharmacyName = 'testPharmacy' ORDER BY id DESC LIMIT 7) AS t) WHERE medId = 'Med0002' AND pharmacyName = 'testPharmacy'
+2023/05/05 00:16:40 0
+2023/05/05 00:16:40 Consumption rate updated
+2023/05/05 00:16:40 updateSellMedicineQuantity SQL: INSERT INTO pharmacysellmedicine (invoice_id, pharmacyUsername, medId, quantity) VALUES ('BILL32', 'testPharmacy', 'customer_money', '200');
+2023/05/05 00:16:41 Order ID 
+2023/05/05 00:25:49 *****************************
+2023/05/05 00:25:50 Medicine ID Med0003 Quantity 3 Price 50
+2023/05/05 00:25:52 Medicine ID customer_money Quantity 200 Price 0
+2023/05/05 00:25:52 Total price 150
+2023/05/05 00:25:53 Max: 32 Tag: BILL
+2023/05/05 00:25:53 createSellOrder SQL: INSERT INTO pharmacysell (invoice_id, pharmacyUsername, invoice_date, bill_total, customer_money) VALUES ('BILL33', 'testPharmacy', '2023-05-04', '150', '200');
+2023/05/05 00:25:54 updateSellMedicineQuantity SQL: INSERT INTO pharmacysellmedicine (invoice_id, pharmacyUsername, medId, quantity) VALUES ('BILL33', 'testPharmacy', 'Med0003', '3');
+2023/05/05 00:25:55 UPDATE stock SET remQty = remQty - '3' WHERE medId = 'Med0003' AND pharmacyName = 'testPharmacy'
+2023/05/05 00:25:56 UPDATE stock SET remaining_days = remQty / consumption_rate WHERE medId = 'Med0003' AND pharmacyName = 'testPharmacy'
+2023/05/05 00:25:57 Order ID 
+2023/05/05 00:27:47 *****************************
+2023/05/05 00:27:47 Array
+(
+    [Med0001] => 
+    [Med0003] => 3
+    [Med0002] => 
+    [Med0006] => 
+    [Med0005] => 
+    [customer_money] => 200
+)
+
+2023/05/05 00:27:49 Medicine ID Med0003 Quantity 3 Price 50
+2023/05/05 00:27:50 Medicine ID customer_money Quantity 200 Price 0
+2023/05/05 00:27:50 Total price 150
+2023/05/05 00:27:51 Max: 33 Tag: BILL
+2023/05/05 00:27:51 createSellOrder SQL: INSERT INTO pharmacysell (invoice_id, pharmacyUsername, invoice_date, bill_total, customer_money) VALUES ('BILL34', 'testPharmacy', '2023-05-04', '150', '200');
+2023/05/05 00:27:52 updateSellMedicineQuantity SQL: INSERT INTO pharmacysellmedicine (invoice_id, pharmacyUsername, medId, quantity) VALUES ('BILL34', 'testPharmacy', 'Med0003', '3');
+2023/05/05 00:27:53 UPDATE stock SET remQty = remQty - '3' WHERE medId = 'Med0003' AND pharmacyName = 'testPharmacy'
+2023/05/05 00:27:54 UPDATE stock SET remaining_days = remQty / consumption_rate WHERE medId = 'Med0003' AND pharmacyName = 'testPharmacy'
+2023/05/05 00:27:55 Order ID 
+2023/05/05 00:31:27 *****************************
+2023/05/05 00:31:27 Array
+(
+    [Med0001] => 
+    [Med0003] => 3
+    [Med0002] => 
+    [Med0006] => 
+    [Med0005] => 
+    [customer_money] => 200
+)
+
+2023/05/05 00:31:28 Medicine ID Med0003 Quantity 3 Price 50
+2023/05/05 00:31:28 Total price 150
+2023/05/05 00:31:29 Max: 34 Tag: BILL
+2023/05/05 00:31:29 createSellOrder SQL: INSERT INTO pharmacysell (invoice_id, pharmacyUsername, invoice_date, bill_total, customer_money) VALUES ('BILL35', 'testPharmacy', '2023-05-04', '150', '200');
+2023/05/05 00:31:31 updateSellMedicineQuantity SQL: INSERT INTO pharmacysellmedicine (invoice_id, pharmacyUsername, medId, quantity) VALUES ('BILL35', 'testPharmacy', 'Med0003', '3');
+2023/05/05 00:31:32 UPDATE stock SET remQty = remQty - '3' WHERE medId = 'Med0003' AND pharmacyName = 'testPharmacy'
+2023/05/05 00:31:33 UPDATE stock SET remaining_days = remQty / consumption_rate WHERE medId = 'Med0003' AND pharmacyName = 'testPharmacy'
+2023/05/05 00:31:33 Order ID 
+2023/05/05 00:32:18 *****************************
+2023/05/05 00:32:18 Array
+(
+    [Med0001] => 
+    [Med0003] => 2
+    [Med0002] => 
+    [Med0006] => 
+    [Med0005] => 
+    [customer_money] => 200
+)
+
+2023/05/05 00:32:19 Medicine ID Med0003 Quantity 2 Price 50
+2023/05/05 00:32:19 Total price 100
+2023/05/05 00:32:20 Max: 35 Tag: BILL
+2023/05/05 00:32:20 createSellOrder SQL: INSERT INTO pharmacysell (invoice_id, pharmacyUsername, invoice_date, bill_total, customer_money) VALUES ('BILL36', 'testPharmacy', '2023-05-04', '100', '200');
+2023/05/05 00:32:22 updateSellMedicineQuantity SQL: INSERT INTO pharmacysellmedicine (invoice_id, pharmacyUsername, medId, quantity) VALUES ('BILL36', 'testPharmacy', 'Med0003', '2');
+2023/05/05 00:32:23 UPDATE stock SET remQty = remQty - '2' WHERE medId = 'Med0003' AND pharmacyName = 'testPharmacy'
+2023/05/05 00:32:24 UPDATE stock SET remaining_days = remQty / consumption_rate WHERE medId = 'Med0003' AND pharmacyName = 'testPharmacy'
+2023/05/05 00:32:24 Remaining days updated
+2023/05/05 00:32:25 UPDATE stock SET consumption_rate = (SELECT AVG(consumption_rate) FROM (SELECT consumption_rate FROM stock WHERE medId = 'Med0003' AND pharmacyName = 'testPharmacy' ORDER BY id DESC LIMIT 7) AS t) WHERE medId = 'Med0003' AND pharmacyName = 'testPharmacy'
+2023/05/05 00:32:26 0
+2023/05/05 00:32:26 Consumption rate updated
+2023/05/05 00:32:26 Order ID BILL36
+2023/05/05 00:32:26 SELECT pharmacysellmedicine.medId, pharmacysellmedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, stock.sellingPrice as unitPrice FROM pharmacysellmedicine LEFT JOIN medicine ON pharmacysellmedicine.medid = medicine.id LEFT JOIN stock ON medicine.id = stock.medId WHERE invoice_id = 'BILL36'
+2023/05/05 00:32:26 medicines: Array
+2023/05/05 00:32:26 medicines: Med0003 Vamol Paracetamol 650 2 50
+2023/05/05 00:32:27 SELECT * FROM pharmacysell WHERE pharmacyUsername = 'testPharmacy' ORDER BY invoice_date DESC, invoice_id DESC
+2023/05/05 00:32:37 SELECT pharmacysellmedicine.medId, pharmacysellmedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, stock.sellingPrice as unitPrice FROM pharmacysellmedicine LEFT JOIN medicine ON pharmacysellmedicine.medid = medicine.id LEFT JOIN stock ON medicine.id = stock.medId WHERE invoice_id = 'BILL36'
+2023/05/05 00:36:42 SELECT * FROM pharmacysell WHERE pharmacyUsername = 'testPharmacy' ORDER BY invoice_date DESC, invoice_id DESC
+2023/05/05 00:36:45 SELECT pharmacysellmedicine.medId, pharmacysellmedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, stock.sellingPrice as unitPrice FROM pharmacysellmedicine LEFT JOIN medicine ON pharmacysellmedicine.medid = medicine.id LEFT JOIN stock ON medicine.id = stock.medId WHERE invoice_id = 'BILL36'
+2023/05/05 00:37:18 SELECT * FROM pharmacysell WHERE pharmacyUsername = 'testPharmacy' ORDER BY invoice_date DESC, invoice_id DESC
+2023/05/05 00:37:22 SELECT pharmacysellmedicine.medId, pharmacysellmedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, stock.sellingPrice as unitPrice FROM pharmacysellmedicine LEFT JOIN medicine ON pharmacysellmedicine.medid = medicine.id LEFT JOIN stock ON medicine.id = stock.medId WHERE invoice_id = 'BILL36'
+2023/05/05 00:37:43 SELECT * FROM pharmacysell WHERE pharmacyUsername = 'testPharmacy' ORDER BY invoice_date DESC, invoice_id DESC
+2023/05/05 00:37:46 SELECT pharmacysellmedicine.medId, pharmacysellmedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, stock.sellingPrice as unitPrice FROM pharmacysellmedicine LEFT JOIN medicine ON pharmacysellmedicine.medid = medicine.id LEFT JOIN stock ON medicine.id = stock.medId WHERE invoice_id = 'BILL36'

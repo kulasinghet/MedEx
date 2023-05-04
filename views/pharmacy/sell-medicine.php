@@ -150,6 +150,7 @@ echo $components->sideBar('sell-medicine');
                         echo "<td colspan='7' style='text-align: center'>No medicines available</td>";
                         echo "</tr>";
                     }
+                    echo "<input type='hidden' name='customer_money' id='customer_money' value='0'>";
                     echo "</form>";
                     ?>
 
@@ -279,6 +280,8 @@ echo $components->sideBar('sell-medicine');
                                                 swal("Invalid payment", "Please enter a valid payment", "error");
                                                 return;
                                             }
+                                            // $customer_money input field should be customerChange
+                                            document.getElementById('customer_money').value = customerPayment;
                                             swal({
                                                 title: "Customer Change",
                                                 text: "Customer change is Rs. " + customerChange,

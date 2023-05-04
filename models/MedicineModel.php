@@ -134,6 +134,19 @@ class MedicineModel extends Model
         $result = $db->query($sql);
         if ($result->num_rows > 0) {
             return $result;
+        } else {
+            return false;
+        }
+    }
+
+    public function getMedicinePrice(mixed $id)
+    {
+        $db = (new Database())->getConnection();
+        $sql = "SELECT sellingPrice AS price FROM stock WHERE medId = '$id' ORDER BY id DESC LIMIT 1";
+        $result = $db->query($sql);
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            return $row['price'];
         }
 
         $db->close();

@@ -1,0 +1,10 @@
+2023/05/05 00:13:27 Incorrect integer value: '' for column 'customer_money' at row 1
+2023/05/05 00:14:01 Cannot add or update a child row: a foreign key constraint fails ("medex"."pharmacysellmedicine", CONSTRAINT "pharmacysellmedicine_ibfk_1" FOREIGN KEY ("medId") REFERENCES "medicine" ("id"))
+2023/05/05 00:14:43 Cannot add or update a child row: a foreign key constraint fails ("medex"."pharmacysellmedicine", CONSTRAINT "pharmacysellmedicine_ibfk_1" FOREIGN KEY ("medId") REFERENCES "medicine" ("id"))
+2023/05/05 00:15:31 Cannot add or update a child row: a foreign key constraint fails ("medex"."pharmacysellmedicine", CONSTRAINT "pharmacysellmedicine_ibfk_1" FOREIGN KEY ("medId") REFERENCES "medicine" ("id"))
+2023/05/05 00:15:31 Something went wrong while creating order testPharmacy
+2023/05/05 00:16:41 Cannot add or update a child row: a foreign key constraint fails ("medex"."pharmacysellmedicine", CONSTRAINT "pharmacysellmedicine_ibfk_1" FOREIGN KEY ("medId") REFERENCES "medicine" ("id"))
+2023/05/05 00:16:41 Something went wrong while creating order testPharmacy
+2023/05/05 00:25:57 Something went wrong while creating order testPharmacy
+2023/05/05 00:27:55 Something went wrong while creating order testPharmacy
+2023/05/05 00:31:33 Something went wrong while creating order testPharmacy
