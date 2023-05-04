@@ -76,14 +76,14 @@ class PharmacySellModel extends Model
         $this->bill_total = $bill_total;
     }
 
-    public function createSellOrder($pharmacyUsername, $totalPrice, $medicinIDArray): bool | string
+    public function createSellOrder($pharmacyUsername, $totalPrice, $medicinIDArray, $customer_money): bool | string
     {
         $this->setInvoiceId($this->createRandomID('pharmacysell'));
         $order_date = date("Y-m-d");
 
-        $sql = "INSERT INTO pharmacysell (invoice_id, pharmacyUsername, invoice_date, bill_total) VALUES ('$this->invoice_id', '$pharmacyUsername', '$order_date', '$totalPrice');";
+        $sql = "INSERT INTO pharmacysell (invoice_id, pharmacyUsername, invoice_date, bill_total, customer_money) VALUES ('$this->invoice_id', '$pharmacyUsername', '$order_date', '$totalPrice', '$customer_money');";
 
-        Logger::logDebug($sql);
+        Logger::logDebug('createSellOrder SQL: ' . $sql);
 
         $db = (new Database())->getConnection();
         try {
@@ -119,7 +119,7 @@ class PharmacySellModel extends Model
 
             $sql = "INSERT INTO pharmacysellmedicine (invoice_id, pharmacyUsername, medId, quantity) VALUES ('$this->invoice_id', '$pharmacyUsername', '$medicineID', '$quantity');";
 
-            Logger::logDebug($sql);
+            Logger::logDebug('updateSellMedicineQuantity SQL: ' . $sql);
 
             try {
                 $stmt = $db->prepare($sql);
@@ -153,7 +153,7 @@ class PharmacySellModel extends Model
     public function getMedicineSellsByOrderID(bool|string $invoice_id )
     {
 //        SELECT pharmacyordermedicine.medId, pharmacyordermedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, supplier_medicine.unitPrice FROM pharmacyordermedicine LEFT JOIN medicine ON pharmacyordermedicine.medid = medicine.id LEFT JOIN supplier_medicine ON medicine.id = supplier_medicine.medid WHERE orderid = '$orderId'";
-        $sql = "SELECT pharmacysellmedicine.medId, pharmacysellmedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, supplier_medicine.unitPrice FROM pharmacysellmedicine LEFT JOIN medicine ON pharmacysellmedicine.medid = medicine.id LEFT JOIN supplier_medicine ON medicine.id = supplier_medicine.medid WHERE invoice_id = '$invoice_id'";
+        $sql = "SELECT pharmacysellmedicine.medId, pharmacysellmedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, stock.sellingPrice as unitPrice FROM pharmacysellmedicine LEFT JOIN medicine ON pharmacysellmedicine.medid = medicine.id LEFT JOIN stock ON medicine.id = stock.medId WHERE invoice_id = '$invoice_id'";
 
         Logger::logDebug($sql);
 
@@ -202,7 +202,8 @@ class PharmacySellModel extends Model
 
     public function getPharmacySellOrders(mixed $username)
     {
-        $sql = "SELECT * FROM pharmacysell WHERE pharmacyUsername = '$username' ORDER BY invoice_date DESC";
+        // order by invoice_date desc and invoice_id desc
+        $sql = "SELECT * FROM pharmacysell WHERE pharmacyUsername = '$username' ORDER BY invoice_date DESC, invoice_id DESC";
 
         Logger::logDebug($sql);
 
@@ -235,7 +236,7 @@ class PharmacySellModel extends Model
 
     public function getPharmacySellOrdersMedicinesByInvoiceId(mixed $invoiceId)
     {
-        $sql = "SELECT pharmacysellmedicine.medId, pharmacysellmedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, supplier_medicine.unitPrice FROM pharmacysellmedicine LEFT JOIN medicine ON pharmacysellmedicine.medid = medicine.id LEFT JOIN supplier_medicine ON medicine.id = supplier_medicine.medid WHERE invoice_id = '$invoiceId'";
+        $sql = "SELECT pharmacysellmedicine.medId, pharmacysellmedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, stock.sellingPrice as unitPrice FROM pharmacysellmedicine LEFT JOIN medicine ON pharmacysellmedicine.medid = medicine.id LEFT JOIN stock ON medicine.id = stock.medId WHERE invoice_id = '$invoiceId'";
 
         Logger::logDebug($sql);
 

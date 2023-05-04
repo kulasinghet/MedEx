@@ -294,6 +294,7 @@ class PharmacyOrderModel extends Model
 
         try {
             $result = $conn->query($sql);
+            Logger::logDebug($sql);
             return $result->fetch_all(MYSQLI_ASSOC);
         } catch (\Exception $e) {
             Logger::logError($e->getMessage());
@@ -458,4 +459,3 @@ class PharmacyOrderModel extends Model
         }
     }
 }
-
