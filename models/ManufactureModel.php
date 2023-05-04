@@ -1,6 +1,7 @@
 <?php
 
 namespace app\models;
+
 use app\core\Database;
 
 class ManufactureModel extends Model
@@ -38,7 +39,7 @@ class ManufactureModel extends Model
     public function getManufacture($id)
     {
         $db = (new Database())->getConnection();
-        $sql = "SELECT * from manufacture WHERE manufacture.id = '$id'";
+        $sql = "SELECT id,name from manufacture WHERE manufacture.id = '$id'";
         $result = $db->query($sql);
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {

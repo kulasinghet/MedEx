@@ -3,6 +3,7 @@
 namespace app\models;
 
 use app\core\Database;
+use app\core\Logger;
 
 class SupplierMedicineModel extends Model
 {
@@ -15,12 +16,12 @@ class SupplierMedicineModel extends Model
     public function getSupMed($medid, $supName)
     {
         $db = (new Database())->getConnection();
-        $sql = "SELECT * from supplier_medicine WHERE supplier_medicine.supName = '$supName' && verified='1' && supplier_medicine.medId = '$medid'";
+        $sql = "SELECT quantity,unitPrice from supplier_medicine WHERE supplier_medicine.supName = '$supName' && verified='1' && supplier_medicine.medId = '$medid'";
         $result = $db->query($sql);
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 $this->quantity = $row['quantity'];
-                $this->unitPrice = $row['$unitPrice'];
+                $this->unitPrice = $row['unitPrice'];
 
             }
         }
@@ -84,8 +85,10 @@ class SupplierMedicineModel extends Model
 
     public function getSupMedIds($uname)
     {
+        Logger::logDebug("cALLED");
         $db = (new Database())->getConnection();
-        $sql = "SELECT medId from supplier_medicine WHERE supplier_medicine.supName = '$uname'";
+        $sql = "SELECT medId from supplier_medicine WHERE supplier_medicine.supName = '$uname' && verified='1' ";
+        Logger::logDebug($sql);
         $result = $db->query($sql);
         if ($result->num_rows > 0) {
             return $result;

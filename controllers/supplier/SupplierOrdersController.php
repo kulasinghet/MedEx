@@ -7,7 +7,7 @@ use app\core\Request;
 use app\models\ManufactureModel;
 use app\models\MedicineModel;
 use app\models\SupplierMedicineModel;
-use app\models\PharmacyOrderModel;
+use app\models\PharmacyOrderMedicineMedicineModel;
 
 
 
@@ -16,13 +16,13 @@ class SupplierOrdersController extends Controller
 
     public function ViewAcceptedOrders()
     {
-        $order = new PharmacyOrderModel;
+        $order = new PharmacyOrderMedicineMedicineModel;
         $med = new MedicineModel;
         $manu = new ManufactureModel;
         $result1 = $order->getSupOrders($_SESSION['username']);
         if ($result1->num_rows > 0) {
             while ($row1 = $result1->fetch_assoc()) {
-                $id = $row1['id'];
+                $id = $row1['orderid'];
                 $pharname = $order->getOrderPharm($id);
                 $medid = $order->getMedId($id);
                 $medname = $med->getName($medid);
