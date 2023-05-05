@@ -26,9 +26,9 @@ class PharmacyOrderHistoryController extends Controller
             return 'Pending';
         } elseif ($orderStatus == '1') {
             return 'Accepted';
-        } elseif ($orderStatus == '3') {
+        } elseif ($orderStatus == '6') {
             return 'Rejected';
-        } elseif ($orderStatus == '2') {
+        } elseif ($orderStatus == '7') {
             return 'Delivered';
         } elseif ($orderStatus == '4') {
             return 'Cancelled';
