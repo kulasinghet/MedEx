@@ -58,11 +58,15 @@ echo $components->createNavbar();
                     <label for="sort-by">Sort by: </label>
                 </div>
                 <div class="col">
-                    <g28-selectbox id="sort-by" placeholder="Default">
+                    <g28-selectbox id="sort-by" class="filtering-selectbox" placeholder="Default">
                         Default, Name, Reg Date
                     </g28-selectbox>
                 </div>
             </form>
+            <div class="placeholder"></div>
+            <a class="btn" href="/employee/res/<?php echo $filter ?>">
+                <i class="fa-solid fa-plus"></i>
+            </a>
         </div>
         <!-- Toolbox -->
 
@@ -81,19 +85,19 @@ echo $components->createNavbar();
                     </thead>
                     <tbody>
                     <?php
+                    $controller = new EmployeeResListController();
                     try {
-                        $controller = new EmployeeResListController();
-                        $approvals = match ($filter) {
-                            'pharmacy' => $controller->getPharmacyList(no_of_approvals, $set),
-                            'supplier' => $controller->getSupplierList(no_of_approvals, $set),
-                            'lab' => $controller->getLabList(no_of_approvals, $set),
-                            'delivery' => $controller->getDeliveryList(no_of_approvals, $set),
+                        $res_list = match ($filter) {
+                            'pharmacy' => $controller->getPharmacyList(no_of_reports, $set),
+                            'supplier' => $controller->getSupplierList(no_of_reports, $set),
+                            'lab' => $controller->getLabList(no_of_reports, $set),
+                            'delivery' => $controller->getDeliveryList(no_of_reports, $set),
                             default => throw new Exception("Invalid filter!"),
                         };
-                        if (!empty($approvals)) {
-                            for ($i = 0; $i < no_of_approvals; $i++) {
-                                if (array_key_exists($i, $approvals)) {
-                                    echo $components->createResItem($approvals[$i]);
+                        if (!empty($res_list)) {
+                            for ($i = 0; $i < no_of_reports; $i++) {
+                                if (array_key_exists($i, $res_list)) {
+                                    echo $components->createResItem($res_list[$i]);
                                 } else {
                                     echo "<tr class='empty'>";
                                     echo "<td colspan='5'></td>";
@@ -102,14 +106,14 @@ echo $components->createNavbar();
                             }
                         } else {
                             echo "<tr class='empty'>";
-                            echo "<td class='no-data' colspan='5' rowspan='".no_of_approvals."'>No records found!</td>";
+                            echo "<td class='no-data' colspan='5' rowspan='".no_of_reports."'>No records found!</td>";
                             echo "</tr>";
-                            for ($i = 0; $i < no_of_approvals - 1; $i++) {
+                            for ($i = 0; $i < no_of_reports - 1; $i++) {
                                 echo "<tr></tr>";
                             }
                         }
                     } catch (Exception $e) {
-                        echo "Something went wrong!";
+                        echo "Something went wrong! $e";
                     }
                     ?>
                     </tbody>
