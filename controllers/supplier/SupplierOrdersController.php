@@ -24,7 +24,7 @@ class SupplierOrdersController extends Controller
             while ($row1 = $result1->fetch_assoc()) {
                 $id = $row1['orderid'];
                 $pharname = $order->getOrderPharm($id);
-                $medid = $order->getMedId($id);
+                $medid = $row1['medId'];
                 $medname = $med->getName($medid);
                 $weight = $med->getWeight($medid);
                 $volume = $med->getVolume($medid);
@@ -55,7 +55,7 @@ class SupplierOrdersController extends Controller
             while ($row1 = $result1->fetch_assoc()) {
                 $id = $row1['orderid'];
                 $pharname = $order->getOrderPharm($id);
-                $medid = $order->getMedId($id);
+                $medid = $row1['medId'];
                 $medname = $med->getName($medid);
                 $weight = $med->getWeight($medid);
                 $volume = $med->getVolume($medid);
