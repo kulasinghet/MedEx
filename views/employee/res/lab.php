@@ -39,7 +39,7 @@ echo $components->createNavbar();
             <div class="col card data-box">
                 <div class="card-body">
                     <h5 class="card-title">Laboratory Details</h5>
-                    <form method="POST" action="/employee/res/delivery/push">
+                    <form action="/employee/res/delivery/push" method="post">
                         <?php if ($lab != null) { ?>
                             <div class="row margin-bottom">
                                 <div class="col">

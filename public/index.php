@@ -11,6 +11,7 @@ use app\controllers\employee\EmployeeApprovalController;
 use app\controllers\employee\EmployeeDashboardController;
 use app\controllers\employee\EmployeeResController;
 use app\controllers\employee\EmployeeResListController;
+use app\controllers\employee\EmployeeReportListController;
 use app\controllers\lab\LabAuthController;
 use app\controllers\lab\LabContactusController;
 use app\controllers\lab\LabDashboardController;
@@ -114,8 +115,8 @@ $app->router->post('/employee/res/supplier/push', [EmployeeResController::class,
 $app->router->post('/employee/res/delivery/push', [EmployeeResController::class, 'pushDelivery']);
 $app->router->post('/employee/res/lab/push', [EmployeeResController::class, 'pushLab']);
 
-$app->router->get('/employee/reports', [EmployeeDashboardController::class, 'loadReports']);
-$app->router->post('/employee/reports', [EmployeeDashboardController::class, 'loadReports']);
+$app->router->get('/employee/reports', [EmployeeReportListController::class, 'load']);
+$app->router->post('/employee/reports', [EmployeeReportListController::class, 'load']);
 
 $app->router->get('/employee/configs', [EmployeeDashboardController::class, 'loadConfigs']);
 $app->router->post('/employee/configs', [EmployeeDashboardController::class, 'loadConfigs']);

@@ -225,13 +225,13 @@ document.querySelectorAll('form').forEach(frm => {
     frmElements.forEach(elem => {
       // Adding the value of the custom input element to the form data
       if (elem.nodeName === 'G28-SELECTBOX') {
-        formData.append(elem.id, JSON.stringify(elem.getValue()));
+        formData.append(elem.id, elem.getValue());
       } else if (elem.getAttribute('type') === 'radio' ||
           elem.getAttribute('type') === 'checkbox') {
-        formData.append(elem.id, JSON.stringify(elem.checked));
+        formData.append(elem.id, elem.checked);
       }
       else {
-        formData.append(elem.id, JSON.stringify(elem.value));
+        formData.append(elem.id, elem.value);
       }
     })
 
@@ -244,6 +244,9 @@ document.querySelectorAll('form').forEach(frm => {
       for (const pair of formData.entries()) {
         logger(pair[0]+ ': ' + pair[1]);
       }
+
+      // redirect to the URL in the response
+      window.location.href = r.url;
     });
 
     e.preventDefault();
