@@ -101,7 +101,8 @@ class PharmacyDashboardController extends Controller
     public function profile(Request $request) {
         if ($_SESSION['userType'] == 'pharmacy') {
             if ($request -> isGet()) {
-                $this -> render("pharmacy/profile.php");
+                $user = $this -> getPharmacyProfile();
+                $this -> render("pharmacy/profile.php", ['user' => $user]);
             } else if ($request -> isPost()) {
                 $this -> render("pharmacy/profile.php");
             } else {
@@ -137,6 +138,15 @@ class PharmacyDashboardController extends Controller
             }
         } else {
             return header('/login');
+        }
+    }
+
+    public function getPharmacyProfile() {
+        if (isset($_SESSION['username'])) {
+            $user = new \app\models\PharmacyModel();
+            return $user->getPharmacyProfile($_SESSION['username']);
+        } else {
+            return header(self::login);
         }
     }
 

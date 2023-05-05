@@ -89,7 +89,7 @@ class PDF
         return $html;
     }
 
-    public function invoiceToHTML($orderid, $order_date, $total_price, $medicineIds, $pharmacyName)
+    public function invoiceToHTML($orderid, $order_date, $total_price, $medicineIds, $pharmacyName, $customer_money)
     {
         $image_path = 'qr/' . $orderid . '.png';
         $image_data = file_get_contents($image_path); // Read the image file contents
@@ -105,21 +105,21 @@ class PDF
             th, td { border: 1px solid black; padding: 5px; }
             hr { border: 1px solid black; margin-bottom: 20px; margin-top: 20px; }
         </style>';
-        $html .= '<h1>Bill Details</h1>';
+        $html .= '<h1>Bill Details ' . $orderid . '</h1>';
         $html .= '<hr>';
         $html .= '<h3>Pharmacy Name: ' . $pharmacyName . '</h3>';
-        $html .= '<h3>Invoice ID: ' . $orderid . '</h3>';
         $html .= '<h3>Bill Date: ' . $order_date . '</h3>';
         $html .= '<h3>Total Price: ' . $total_price . '</h3>';
+        $html .= '<h3>Customer Paid: ' . $customer_money . '</h3>';
+        $html .= '<h3>Change: ' . $customer_money - $total_price . '</h3>';
         $html .= '<h3>Medicine Details</h3>';
         $html .= '<table style="width:100%">
             <tr>
                 <th>Medicine ID</th>
                 <th>Medicine Name</th>
                 <th>Scientific Name</th>
-                <th>Weight</th>
                 <th>Quantity</th>
-                <th>Price</th>
+                <th>Unit Price <br> LKR</th>
             </tr>';
         foreach ($medicineIds as $medicineId) {
 
@@ -129,19 +129,20 @@ class PDF
                 <td>' . $medicineId['medId'] . '</td>
                 <td>' . $medicineId['medName'] . '</td>
                 <td>' . $medicineId['sciName'] . '</td>
-                <td>' . $medicineId['weight'] . '</td>
                 <td>' . $medicineId['quantity'] . '</td>
                 <td>' . $medicineId['unitPrice'] . '</td>
             </tr>';
         }
+        // final row for total
+        $html .= '<tr>
+                <td colspan="4">Total</td>
+                <td>' . $total_price . '</td>
+            </tr>';
         $html .= '</table>';
-        $html .= '<h3>Scan the QR code to get an E-Bill</h3>';
-        $html .= '<h5>This QR code will be used by the customer to get an E-Bill</h5>';
+        $html .= '<h3>Scan the QR code to report the bill</h3>';
         $html .= '<img src="data:image/png;base64,' . $image_base64 . '" alt="QR Code" width="200" height="200">';
-        $html .= '<br>';
         $html .= '<hr>';
-        $html .= '<p>This is an automatically generated document. No signature is required.</p>';
-        $html .= '<p>Thank you for using our service.</p>';
+        $html .= '<p>This is an automatically generated document. No signature is required. Thank you for using our service.</p>';
         $html .= '<p>MedEx Team</p>';
 
         return $html;

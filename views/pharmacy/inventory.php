@@ -180,7 +180,7 @@ echo $components->sideBar('inventory');
                     const htmlcontentForSwal = `
     <div class="medicine-details" id="medicine-details">
         <form>
-            <div class="medicine-details-row">
+            <div class="medicine-details-row" style="align-items: flex-start">
                 <div class="medicine-details-col">
                     <div class="medicine-details-row">
                         <div class="medicine-details-col-4">
@@ -493,11 +493,6 @@ echo $components->sideBar('inventory');
                     }).catch((error) => {
                         console.log(error);
                     });
-
-<script>
-    function handleViewStockDetailsClick(id) {
-        console.log(id);
-    }
 
                 } catch (e) {
                     console.log(e);

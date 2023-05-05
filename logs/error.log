@@ -8,3 +8,7 @@
 2023/05/05 00:25:57 Something went wrong while creating order testPharmacy
 2023/05/05 00:27:55 Something went wrong while creating order testPharmacy
 2023/05/05 00:31:33 Something went wrong while creating order testPharmacy
+2023/05/05 10:38:59 Table 'medex.contact_us' doesn't exist
+2023/05/05 10:42:13 Duplicate entry 'INQ13' for key 'report.PRIMARY'
+2023/05/05 10:42:27 Duplicate entry 'INQ13' for key 'report.PRIMARY'
+2023/05/05 10:43:26 Duplicate entry 'INQ12' for key 'report.PRIMARY'
