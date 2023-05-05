@@ -50,9 +50,7 @@ use app\models\LabReportModel;
         </div>
         <div class="nav-inner">
             <ul>
-                <li><a class="link" href="#"><i class="fa-solid fa-gear"></i></a></li>
                 <li><a class="link" href="/login"><i class="fa-solid fa-right-from-bracket"></i></a></li>
-                <li><a class="link" href="#"><i class="fa-solid fa-bell"></i></a></li>
             </ul>
             <a class="nav-profile" href="#">
                 <div class="nav-profile-image">

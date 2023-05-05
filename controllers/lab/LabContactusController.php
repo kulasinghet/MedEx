@@ -4,27 +4,25 @@ namespace app\controllers\lab;
 
 use app\core\Controller;
 use app\core\Request;
-use app\models\DeliveryContactusModel;
-use app\models\DeliveryModel;
-use app\models\LabContactusModel;
+use app\models\ReportModel;
 
-class LabContactusController extends Controller
+class LabContactUsController extends Controller
 {
-    public function lab_contact_us(Request $request)
+    public function contactUs(Request $request)
     {
         if ($request->isPost()) {
-
-            $labcontactus = new LabContactusModel();
-            $labcontactus -> loadData($request->getBody());
-
-            if ($labcontactus->validate() && $labcontactus->lab_contact_us()) {
-                header("Location:/dashboard");
+            $inqury = new ReportModel;
+            $inqury->subject = $_POST["subject"];
+            $inqury->message = $_POST["message"];
+            $inqury->username = $_SESSION['username'];
+            if ($inqury->insertInquiry()) {
+                echo (new \app\core\ExceptionHandler)->InquirySent();
+                return $this->render("/lab/dashboard.php");
             }
 
 
-            return $this->render('lab/contact_us.php');
         }
-        return $this->render('lab/contact_us.php');
-    }
 
+        return $this->render('/lab/dashboard.php');
+    }
 }

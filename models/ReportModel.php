@@ -5,12 +5,13 @@ namespace app\models;
 use app\core\Database;
 use app\core\Logger;
 
-class ContactUsModel extends Model
+class ReportModel extends Model
 {
     public string $inquiry_id;
     public string $username;
     public string $subject;
     public string $message;
+    public string $is_resolved;
 
     /**
      * @return string
@@ -78,11 +79,9 @@ class ContactUsModel extends Model
 
     public function insertInquiry(): bool
     {
-        $this->setInquiryId($this->createRandomID('contact_us'));
-
+        $this->setInquiryId($this->createRandomID('report'));
         $db = (new Database())->getConnection();
-        ;
-        $sql = "INSERT INTO contact_us (contact_us.inqury_id, contact_us.username, contact_us.subject, contact_us.message) VALUES ('$this->inquiry_id', '$this->username', '$this->subject', '$this->message')";
+        $sql = "INSERT INTO report VALUES ('$this->inquiry_id', '$this->username', '$this->subject', '$this->message','0')";
 
         Logger::logDebug($sql);
 

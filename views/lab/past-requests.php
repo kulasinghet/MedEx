@@ -47,13 +47,11 @@ use app\controllers\lab\LabRequestsController;
         </div>
     </div>
     <nav>
-       
+
         </div>
         <div class="nav-inner">
             <ul>
-                <li><a class="link" href="#"><i class="fa-solid fa-gear"></i></a></li>
                 <li><a class="link" href="/login"><i class="fa-solid fa-right-from-bracket"></i></a></li>
-                <li><a class="link" href="#"><i class="fa-solid fa-bell"></i></a></li>
             </ul>
             <a class="nav-profile" href="#">
                 <div class="nav-profile-image">
@@ -76,9 +74,9 @@ use app\controllers\lab\LabRequestsController;
                                 <h3>Accepted Requests</h3>
                                 </br>
                                 <div class="nav-search">
-                                    <form onsubmit="preventDefault();" role="search">
+                                    <form action="" method="get" onsubmit="preventDefault();" role="search">
                                         <label for="search">Filter Medicine</label>
-                                        <input autofocus id="search" placeholder="Filter Medicine" required
+                                        <input autofocus id="search" name="search" placeholder="Filter By Medicine Name"
                                             type="search" />
                                         <button type="submit">Go</button>
                                     </form>
@@ -94,7 +92,12 @@ use app\controllers\lab\LabRequestsController;
                                     </tr>
                                     <?php
                                     $req = new LabRequestsController;
-                                    $req->viewRequests();
+                                    if (isset($_GET['search'])) {
+                                        $searchTerm = $_GET['search'];
+                                        $req->viewRequestsFiltered($searchTerm);
+                                    } else {
+                                        $req->viewRequests();
+                                    }
                                     ?>
                                 </table>
                             </div>
