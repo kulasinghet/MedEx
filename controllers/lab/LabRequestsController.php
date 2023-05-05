@@ -86,7 +86,13 @@ class LabRequestsController extends Controller
                 $medweight = $med->getWeight($medid);
                 $medsci = $med->getSciname($medid);
                 $supname = $sup->getName($supuname);
-                echo "<tr><td>" . $id . "</td><td>" . $supname . "</td><td>" . $medname . "</td><td>" . $medsci . "</td><td>" . $medweight . "</td></tr>";
+                $medvolume = $med->getVolume($medid);
+                if ($medweight > 0) {
+                    echo "<tr><td>" . $id . "</td><td>" . $supname . "</td><td>" . $medname . "</td><td>" . $medsci . "</td><td>" . $medweight . "mg</td></tr>";
+                } else {
+                    echo "<tr><td>" . $id . "</td><td>" . $supname . "</td><td>" . $medname . "</td><td>" . $medsci . "</td><td>" . $medvolume . "ml</td></tr>";
+
+                }
 
             }
 
@@ -108,7 +114,13 @@ class LabRequestsController extends Controller
                 $medweight = $med->getWeight($medid);
                 $medsci = $med->getSciname($medid);
                 $supname = $sup->getName($supuname);
-                echo "<tr><td>" . $id . "</td><td>" . $supname . "</td><td>" . $medname . "</td><td>" . $medsci . "</td><td>" . $medweight . "</td></tr>";
+                $medvolume = $med->getVolume($medid);
+                if ($medweight > 0) {
+                    echo "<tr><td>" . $id . "</td><td>" . $supname . "</td><td>" . $medname . "</td><td>" . $medsci . "</td><td>" . $medweight . "mg</td></tr>";
+                } else {
+                    echo "<tr><td>" . $id . "</td><td>" . $supname . "</td><td>" . $medname . "</td><td>" . $medsci . "</td><td>" . $medvolume . "ml</td></tr>";
+
+                }
 
             }
 
