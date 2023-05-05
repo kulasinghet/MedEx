@@ -35,7 +35,7 @@ class PharmacySellMedicineController extends Controller
 
                 if (count($medicineIds) > 0) {
                     foreach ($medicineIds as $medicineId) {
-                        $this->totalPrice += $this->getPrice($medicineId->getMedicineId()) * $medicineId->getQuantity();
+                        $this->totalPrice += (int)($this->getPrice($medicineId->getMedicineId())) * (int)($medicineId->getQuantity());
                         Logger::logDebug('Medicine ID ' . $medicineId->getMedicineId() . ' Quantity ' . $medicineId->getQuantity() . ' Price ' . $this->getPrice($medicineId->getMedicineId()));
                     }
                 }

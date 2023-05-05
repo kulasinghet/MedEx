@@ -19,8 +19,8 @@
             <div class="side">
                 <input type="text" name="username" id="username" required placeholder="Username"/>
                 <input type="text" name="email" id="email" required placeholder="Email"/>
-                <input type="text" name="password" id="password" required placeholder="Password"/>
-                <input type="text" name="confirmPassword" id="confirmPassword" required placeholder="Re-type password"/>
+                <input type="password" name="password" id="password" required placeholder="Password"/>
+                <input type="password" name="confirmPassword" id="confirmPassword" required placeholder="Re-type password"/>
                 <input type="text" name="pharmacyname" id="name" required placeholder="Pharmacy Name"/>
 
                 <!--                <input type="text" name="city" id="city" required placeholder="City"/>-->

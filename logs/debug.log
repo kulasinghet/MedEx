@@ -627,3 +627,189 @@
 2023/05/05 10:43:26 INSERT INTO report (inquiry_id, username, subject, message) VALUES ('INQ12', 'testPharmacy', 'request-new-medicine', 'sdfhjjdhfbsdnsmhfiusf')
 2023/05/05 10:44:33 Max: 5 Tag: INQ
 2023/05/05 10:44:33 INSERT INTO report (inquiry_id, username, subject, message) VALUES ('INQ6', 'testPharmacy', 'request-new-medicine', 'sdfhjjdhfbsdnsmhfiusf')
+2023/05/05 22:07:21 getAcceptedOrdersCount() returned: 1
+2023/05/05 22:07:26 getTotalOrdersCount() returned: 1
+2023/05/05 22:07:31 SELECT invoice_date, SUM(bill_total) AS total FROM pharmacysell WHERE pharmacyUsername = 'testPharmacy' AND invoice_date >= DATE_SUB(CURDATE(), INTERVAL 7 DAY) GROUP BY invoice_date ORDER BY invoice_date DESC LIMIT 7
+2023/05/05 22:07:32 SELECT SUM(bill_total) AS total FROM pharmacysell WHERE pharmacyUsername = 'testPharmacy' AND MONTH(invoice_date) = MONTH(CURRENT_DATE()) AND YEAR(invoice_date) = YEAR(CURRENT_DATE())
+2023/05/05 22:07:33 SELECT SUM(quantity * stock.buying_price) AS total  FROM pharmacysellmedicine LEFT JOIN stock ON pharmacysellmedicine.medId = stock.medId WHERE pharmacysellmedicine.invoice_id IN (SELECT invoice_id FROM pharmacysell WHERE pharmacyUsername = 'testPharmacy' AND MONTH(invoice_date) = MONTH(CURRENT_DATE()) AND YEAR(invoice_date) = YEAR(CURRENT_DATE()))
+2023/05/05 22:10:51 getAcceptedOrdersCount() returned: 1
+2023/05/05 22:10:57 getTotalOrdersCount() returned: 1
+2023/05/05 22:11:00 SELECT invoice_date, SUM(bill_total) AS total FROM pharmacysell WHERE pharmacyUsername = 'testPharmacy' AND invoice_date >= DATE_SUB(CURDATE(), INTERVAL 7 DAY) GROUP BY invoice_date ORDER BY invoice_date DESC LIMIT 7
+2023/05/05 22:11:01 SELECT SUM(bill_total) AS total FROM pharmacysell WHERE pharmacyUsername = 'testPharmacy' AND MONTH(invoice_date) = MONTH(CURRENT_DATE()) AND YEAR(invoice_date) = YEAR(CURRENT_DATE())
+2023/05/05 22:11:03 SELECT SUM(quantity * stock.buying_price) AS total  FROM pharmacysellmedicine LEFT JOIN stock ON pharmacysellmedicine.medId = stock.medId WHERE pharmacysellmedicine.invoice_id IN (SELECT invoice_id FROM pharmacysell WHERE pharmacyUsername = 'testPharmacy' AND MONTH(invoice_date) = MONTH(CURRENT_DATE()) AND YEAR(invoice_date) = YEAR(CURRENT_DATE()))
+2023/05/05 22:12:22 Max: 11 Tag: INQ
+2023/05/05 22:12:23 INSERT INTO report (inquiry_id, username, subject, message) VALUES ('INQ12', 'testPharmacy', 'request-new-medicine', 'Test Contact us message')
+2023/05/05 22:15:04 SELECT pharmacyordermedicine.medId, pharmacyordermedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, supplier_medicine.unitPrice FROM pharmacyordermedicine LEFT JOIN medicine ON pharmacyordermedicine.medid = medicine.id LEFT JOIN supplier_medicine ON medicine.id = supplier_medicine.medid WHERE orderid = 'ORD63'
+2023/05/05 22:15:19 SELECT pharmacyordermedicine.medId, pharmacyordermedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, supplier_medicine.unitPrice FROM pharmacyordermedicine LEFT JOIN medicine ON pharmacyordermedicine.medid = medicine.id LEFT JOIN supplier_medicine ON medicine.id = supplier_medicine.medid WHERE orderid = 'ORD63'
+2023/05/05 22:15:34 SELECT pharmacyordermedicine.medId, pharmacyordermedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, supplier_medicine.unitPrice FROM pharmacyordermedicine LEFT JOIN medicine ON pharmacyordermedicine.medid = medicine.id LEFT JOIN supplier_medicine ON medicine.id = supplier_medicine.medid WHERE orderid = 'ORD58'
+2023/05/05 22:15:39 SELECT pharmacyordermedicine.medId, pharmacyordermedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, supplier_medicine.unitPrice FROM pharmacyordermedicine LEFT JOIN medicine ON pharmacyordermedicine.medid = medicine.id LEFT JOIN supplier_medicine ON medicine.id = supplier_medicine.medid WHERE orderid = 'ORD61'
+2023/05/05 22:15:52 SELECT pharmacyordermedicine.medId, pharmacyordermedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, supplier_medicine.unitPrice FROM pharmacyordermedicine LEFT JOIN medicine ON pharmacyordermedicine.medid = medicine.id LEFT JOIN supplier_medicine ON medicine.id = supplier_medicine.medid WHERE orderid = 'ORD62'
+2023/05/05 22:16:56 SELECT pharmacyordermedicine.medId, pharmacyordermedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, supplier_medicine.unitPrice FROM pharmacyordermedicine LEFT JOIN medicine ON pharmacyordermedicine.medid = medicine.id LEFT JOIN supplier_medicine ON medicine.id = supplier_medicine.medid WHERE orderid = 'ORD34'
+2023/05/05 22:17:16 sql: SELECT m.id, m.medName, m.sciName, COALESCE(s.remQty, 0) AS remQty, sm.unitPrice AS price FROM medex.medicine m LEFT JOIN medex.stock s ON m.id = s.medId JOIN medex.supplier_medicine sm ON m.id = sm.medId WHERE m.id IN (SELECT medId FROM medex.supplier_medicine) ORDER BY m.id;
+2023/05/05 22:17:16 MedicineModel::getAllMedicines()mysqli_result Object
+(
+    [current_field] => 0
+    [field_count] => 5
+    [lengths] => 
+    [num_rows] => 5
+    [type] => 0
+)
+
+2023/05/05 22:17:16 mysqli_result Object
+(
+    [current_field] => 0
+    [field_count] => 5
+    [lengths] => 
+    [num_rows] => 5
+    [type] => 0
+)
+
+2023/05/05 22:17:17 sql: SELECT m.id, m.medName, m.sciName, COALESCE(s.remQty, 0) AS remQty, sm.unitPrice AS price FROM medex.medicine m LEFT JOIN medex.stock s ON m.id = s.medId JOIN medex.supplier_medicine sm ON m.id = sm.medId WHERE m.id IN (SELECT medId FROM medex.supplier_medicine) ORDER BY m.id;
+2023/05/05 22:17:17 MedicineModel::getAllMedicines()mysqli_result Object
+(
+    [current_field] => 0
+    [field_count] => 5
+    [lengths] => 
+    [num_rows] => 5
+    [type] => 0
+)
+
+2023/05/05 22:17:17 MedicineModel::getMedicinePrice()Med0001
+2023/05/05 22:17:18 Med0001 price: 10
+2023/05/05 22:17:18 MedicineModel::getMedicinePrice()Med0002
+2023/05/05 22:17:20 Med0002 price: 21
+2023/05/05 22:17:20 MedicineModel::getMedicinePrice()Med0003
+2023/05/05 22:17:21 Med0003 price: 0
+2023/05/05 22:17:21 MedicineModel::getMedicinePrice()Med0004
+2023/05/05 22:17:22 Med0004 price: 60
+2023/05/05 22:17:22 MedicineModel::getMedicinePrice()Med0009
+2023/05/05 22:17:23 Med0009 price: 0
+2023/05/05 22:18:29 MedicineModel::getMedicinePrice()Med0001
+2023/05/05 22:18:30 Med0001 price: 10
+2023/05/05 22:18:30 MedicineModel::getMedicinePrice()Med0002
+2023/05/05 22:18:32 Med0002 price: 21
+2023/05/05 22:18:33 Max: 63 Tag: ORD
+2023/05/05 22:18:33 INSERT INTO pharmacyorder (id, pharmacyUsername, status, supName, order_date, delivery_date, order_total) VALUES ('ORD64', 'testPharmacy', '0', null, '2023-05-05', null, '226')
+2023/05/05 22:18:36 INSERT INTO pharmacyordermedicine (orderid, pharmacyUsername, medId, quantity, status, supName, order_date, delivery_date, order_total) VALUES ('ORD64', 'testPharmacy', 'Med0001', '10', '0', null, '2023-05-05', null, '226')
+2023/05/05 22:18:37 INSERT INTO pharmacyordermedicine (orderid, pharmacyUsername, medId, quantity, status, supName, order_date, delivery_date, order_total) VALUES ('ORD64', 'testPharmacy', 'Med0002', '6', '0', null, '2023-05-05', null, '226')
+2023/05/05 22:18:39 SELECT pharmacyordermedicine.medId, pharmacyordermedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, supplier_medicine.unitPrice FROM pharmacyordermedicine LEFT JOIN medicine ON pharmacyordermedicine.medid = medicine.id LEFT JOIN supplier_medicine ON medicine.id = supplier_medicine.medid WHERE orderid = 'ORD64'
+2023/05/05 22:18:48 SELECT pharmacyordermedicine.medId, pharmacyordermedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, supplier_medicine.unitPrice FROM pharmacyordermedicine LEFT JOIN medicine ON pharmacyordermedicine.medid = medicine.id LEFT JOIN supplier_medicine ON medicine.id = supplier_medicine.medid WHERE orderid = 'ORD64'
+2023/05/05 22:19:32 sql: SELECT m.id, m.medName, m.sciName, COALESCE(s.remQty, 0) AS remQty, sm.unitPrice AS price FROM medex.medicine m LEFT JOIN medex.stock s ON m.id = s.medId JOIN medex.supplier_medicine sm ON m.id = sm.medId WHERE m.id IN (SELECT medId FROM medex.supplier_medicine) ORDER BY m.id;
+2023/05/05 22:19:32 MedicineModel::getAllMedicines()mysqli_result Object
+(
+    [current_field] => 0
+    [field_count] => 5
+    [lengths] => 
+    [num_rows] => 5
+    [type] => 0
+)
+
+2023/05/05 22:19:32 mysqli_result Object
+(
+    [current_field] => 0
+    [field_count] => 5
+    [lengths] => 
+    [num_rows] => 5
+    [type] => 0
+)
+
+2023/05/05 22:19:33 sql: SELECT m.id, m.medName, m.sciName, COALESCE(s.remQty, 0) AS remQty, sm.unitPrice AS price FROM medex.medicine m LEFT JOIN medex.stock s ON m.id = s.medId JOIN medex.supplier_medicine sm ON m.id = sm.medId WHERE m.id IN (SELECT medId FROM medex.supplier_medicine) ORDER BY m.id;
+2023/05/05 22:19:35 MedicineModel::getAllMedicines()mysqli_result Object
+(
+    [current_field] => 0
+    [field_count] => 5
+    [lengths] => 
+    [num_rows] => 5
+    [type] => 0
+)
+
+2023/05/05 22:19:35 MedicineModel::getMedicinePrice()Med0001
+2023/05/05 22:19:36 Med0001 price: 10
+2023/05/05 22:19:36 MedicineModel::getMedicinePrice()Med0002
+2023/05/05 22:19:37 Med0002 price: 21
+2023/05/05 22:19:37 MedicineModel::getMedicinePrice()Med0003
+2023/05/05 22:19:39 Med0003 price: 0
+2023/05/05 22:19:39 MedicineModel::getMedicinePrice()Med0004
+2023/05/05 22:19:40 Med0004 price: 60
+2023/05/05 22:19:40 MedicineModel::getMedicinePrice()Med0009
+2023/05/05 22:19:41 Med0009 price: 0
+2023/05/05 22:20:03 SELECT * FROM pharmacysell WHERE pharmacyUsername = 'testPharmacy' ORDER BY invoice_date DESC, invoice_id DESC
+2023/05/05 22:20:52 *****************************
+2023/05/05 22:20:52 Array
+(
+    [Med0003] => 3
+    [Med0002] => 4
+    [Med0006] => 
+    [Med0005] => 
+    [Med0001] => 
+    [customer_money] => 200
+)
+
+2023/05/05 22:20:52 MedicineModel::getMedicinePrice()Med0003
+2023/05/05 22:20:54 Med0003 price: 0
+2023/05/05 22:22:37 *****************************
+2023/05/05 22:22:37 Array
+(
+    [Med0003] => 3
+    [Med0002] => 4
+    [Med0006] => 
+    [Med0005] => 
+    [Med0001] => 
+    [customer_money] => 200
+)
+
+2023/05/05 22:22:37 MedicineModel::getMedicinePrice()Med0003
+2023/05/05 22:22:38 Med0003 price: 0
+2023/05/05 22:22:38 MedicineModel::getMedicinePrice()Med0003
+2023/05/05 22:22:40 Med0003 price: 0
+2023/05/05 22:22:40 Medicine ID Med0003 Quantity 3 Price Array
+2023/05/05 22:22:40 MedicineModel::getMedicinePrice()Med0002
+2023/05/05 22:22:41 Med0002 price: 21
+2023/05/05 22:22:41 MedicineModel::getMedicinePrice()Med0002
+2023/05/05 22:22:42 Med0002 price: 21
+2023/05/05 22:22:42 Medicine ID Med0002 Quantity 4 Price Array
+2023/05/05 22:22:42 Total price 7
+2023/05/05 22:22:44 Max: 38 Tag: BILL
+2023/05/05 22:22:44 createSellOrder SQL: INSERT INTO pharmacysell (invoice_id, pharmacyUsername, invoice_date, bill_total, customer_money) VALUES ('BILL39', 'testPharmacy', '2023-05-05 16:52:44', '7', '200');
+2023/05/05 22:22:46 updateSellMedicineQuantity SQL: INSERT INTO pharmacysellmedicine (invoice_id, pharmacyUsername, medId, quantity) VALUES ('BILL39', 'testPharmacy', 'Med0003', '3');
+2023/05/05 22:22:48 UPDATE stock SET remQty = remQty - '3' WHERE medId = 'Med0003' AND pharmacyName = 'testPharmacy'
+2023/05/05 22:22:49 UPDATE stock SET remaining_days = remQty / consumption_rate WHERE medId = 'Med0003' AND pharmacyName = 'testPharmacy'
+2023/05/05 22:22:50 Order ID 
+2023/05/05 22:23:55 *****************************
+2023/05/05 22:23:55 Array
+(
+    [Med0003] => 
+    [Med0002] => 3
+    [Med0006] => 
+    [Med0005] => 
+    [Med0001] => 
+    [customer_money] => 100
+)
+
+2023/05/05 22:23:55 MedicineModel::getMedicinePrice()Med0002
+2023/05/05 22:23:56 Med0002 price: 21
+2023/05/05 22:23:56 MedicineModel::getMedicinePrice()Med0002
+2023/05/05 22:23:57 Med0002 price: 21
+2023/05/05 22:23:57 Medicine ID Med0002 Quantity 3 Price Array
+2023/05/05 22:23:57 Total price 3
+2023/05/05 22:23:59 Max: 39 Tag: BILL
+2023/05/05 22:23:59 createSellOrder SQL: INSERT INTO pharmacysell (invoice_id, pharmacyUsername, invoice_date, bill_total, customer_money) VALUES ('BILL40', 'testPharmacy', '2023-05-05 16:53:59', '3', '100');
+2023/05/05 22:24:01 updateSellMedicineQuantity SQL: INSERT INTO pharmacysellmedicine (invoice_id, pharmacyUsername, medId, quantity) VALUES ('BILL40', 'testPharmacy', 'Med0002', '3');
+2023/05/05 22:24:03 UPDATE stock SET remQty = remQty - '3' WHERE medId = 'Med0002' AND pharmacyName = 'testPharmacy'
+2023/05/05 22:24:05 UPDATE stock SET remaining_days = remQty / consumption_rate WHERE medId = 'Med0002' AND pharmacyName = 'testPharmacy'
+2023/05/05 22:24:05 Remaining days updated
+2023/05/05 22:24:06 UPDATE stock SET consumption_rate = (SELECT AVG(consumption_rate) FROM (SELECT consumption_rate FROM stock WHERE medId = 'Med0002' AND pharmacyName = 'testPharmacy' ORDER BY id DESC LIMIT 7) AS t) WHERE medId = 'Med0002' AND pharmacyName = 'testPharmacy'
+2023/05/05 22:24:07 0
+2023/05/05 22:24:07 Consumption rate updated
+2023/05/05 22:24:07 Order ID BILL40
+2023/05/05 22:24:07 SELECT pharmacysellmedicine.medId, pharmacysellmedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, stock.sellingPrice as unitPrice FROM pharmacysellmedicine LEFT JOIN medicine ON pharmacysellmedicine.medid = medicine.id LEFT JOIN stock ON medicine.id = stock.medId WHERE invoice_id = 'BILL40'
+2023/05/05 22:24:08 medicines: Array
+2023/05/05 22:24:08 medicines: Med0002 Tylenol Paracetamol 500 3 30
+2023/05/05 22:24:08 SELECT * FROM pharmacysell WHERE pharmacyUsername = 'testPharmacy' ORDER BY invoice_date DESC, invoice_id DESC
+2023/05/05 22:24:16 SELECT pharmacysellmedicine.medId, pharmacysellmedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, stock.sellingPrice as unitPrice FROM pharmacysellmedicine LEFT JOIN medicine ON pharmacysellmedicine.medid = medicine.id LEFT JOIN stock ON medicine.id = stock.medId WHERE invoice_id = 'BILL40'
+2023/05/05 22:28:02 getPendingOrdersCount() returned: 1
+2023/05/05 22:28:04 getAcceptedOrdersCount() returned: 1
+2023/05/05 22:28:09 getTotalOrdersCount() returned: 2
+2023/05/05 22:28:12 SELECT invoice_date, SUM(bill_total) AS total FROM pharmacysell WHERE pharmacyUsername = 'testPharmacy' AND invoice_date >= DATE_SUB(CURDATE(), INTERVAL 7 DAY) GROUP BY invoice_date ORDER BY invoice_date DESC LIMIT 7
+2023/05/05 22:28:13 SELECT SUM(bill_total) AS total FROM pharmacysell WHERE pharmacyUsername = 'testPharmacy' AND MONTH(invoice_date) = MONTH(CURRENT_DATE()) AND YEAR(invoice_date) = YEAR(CURRENT_DATE())
+2023/05/05 22:28:15 SELECT SUM(quantity * stock.buying_price) AS total  FROM pharmacysellmedicine LEFT JOIN stock ON pharmacysellmedicine.medId = stock.medId WHERE pharmacysellmedicine.invoice_id IN (SELECT invoice_id FROM pharmacysell WHERE pharmacyUsername = 'testPharmacy' AND MONTH(invoice_date) = MONTH(CURRENT_DATE()) AND YEAR(invoice_date) = YEAR(CURRENT_DATE()))
