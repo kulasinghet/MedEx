@@ -4,7 +4,7 @@ use app\stores\EmployeeStore;
 use app\views\employee\EmployeeViewComponents;
 use app\controllers\employee\EmployeeApprovalListController;
 
-const no_of_approvals = 10;
+const no_of_reports = 10;
 
 $components = new EmployeeViewComponents();
 $store = EmployeeStore::getEmployeeStore();
