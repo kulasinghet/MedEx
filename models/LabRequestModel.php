@@ -86,6 +86,15 @@ class LabRequestModel extends Model
         return $result;
     }
 
+    public function getNotAcceptedReqFilter($searchTerm)
+    {
+        $db = (new Database())->getConnection();
+        $sql = "SELECT labreq.id as id, labreq.medId as medId, labreq.SupName as SupName from labreq JOIN  medicine WHERE labreq.medId=medicine.id AND labreq.status = '0' AND medName like '%$searchTerm%'";
+        $result = $db->query($sql);
+        $db->close();
+        return $result;
+    }
+
     public function getNotAcceptedReqCount()
     {
         $db = (new Database())->getConnection();
@@ -98,6 +107,15 @@ class LabRequestModel extends Model
     {
         $db = (new Database())->getConnection();
         $sql = "SELECT * from labreq WHERE  labreq.status = '1' && labreq.labUsername='$labname'";
+        $result = $db->query($sql);
+        $db->close();
+        return $result;
+    }
+
+    public function getAcceptedReqFiltered($labname, $searchTerm)
+    {
+        $db = (new Database())->getConnection();
+        $sql = "SELECT labreq.id AS id, labreq.medId AS medId, labreq.SupName AS SupName from labreq JOIN  medicine WHERE labreq.medId=medicine.id AND labreq.status = '1' AND labreq.labUsername='$labname' AND medName like '%$searchTerm%'";
         $result = $db->query($sql);
         $db->close();
         return $result;

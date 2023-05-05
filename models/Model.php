@@ -43,7 +43,7 @@ class Model
             case "pharmacy":
                 $tag = "PH";
                 break;
-            case "contact_us":
+            case "report":
                 $tag = "INQ";
                 break;
             case "pharmacyorder":

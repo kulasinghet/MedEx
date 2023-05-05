@@ -89,7 +89,7 @@
                     <div class="contact-us">
                         <h1>Contact Us</h1>
 
-                        <form method="post" action="/contact-us">
+                        <form method="post" action="/supplier/contact-us">
                             <div class="form-group">
                                 <label for="exampleFormControlInput1">Subject</label>
                                 <input type="text" class="form-input" id="subject" placeholder="Subject" name="subject">

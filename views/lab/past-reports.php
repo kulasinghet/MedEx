@@ -49,13 +49,11 @@ use app\controllers\lab\LabReportController;
         </div>
     </div>
     <nav>
-       
+
         </div>
         <div class="nav-inner">
             <ul>
-                <li><a class="link" href="#"><i class="fa-solid fa-gear"></i></a></li>
                 <li><a class="link" href="/login"><i class="fa-solid fa-right-from-bracket"></i></a></li>
-                <li><a class="link" href="#"><i class="fa-solid fa-bell"></i></a></li>
             </ul>
             <a class="nav-profile" href="#">
                 <div class="nav-profile-image">
@@ -76,6 +74,7 @@ use app\controllers\lab\LabReportController;
                         <div class="card-body">
                             <div style="padding: 2%;">
                                 <h3>Past Lab Report</h3>
+                                </br>
                                 <table style='width: 100%; text-align:center; padding-top:5%'>
                                     <tr style='padding:1%; border-bottom: 1pt solid black;'>
                                         <th>Request Id</th>
@@ -83,8 +82,8 @@ use app\controllers\lab\LabReportController;
                                         <th>Comment</th>
                                     </tr>
                                     <?php
-                                    $labrep = new LabReportController;
-                                    $labrep->getIssuedReports();
+                                    $labreq = new LabReportController;
+                                    $labreq->getIssuedReports();
                                     ?>
 
                                 </table>
