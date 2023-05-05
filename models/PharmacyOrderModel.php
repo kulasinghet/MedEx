@@ -93,7 +93,7 @@ class PharmacyOrderModel extends Model
 
             $stmt->close();
         } catch (\Exception $e) {
-            ErrorLog::logError($e->getMessage());
+            Logger::logError($e->getMessage());
             echo $e->getMessage();
             return false;
         }
@@ -438,4 +438,3 @@ class PharmacyOrderModel extends Model
         }
     }
 }
-
