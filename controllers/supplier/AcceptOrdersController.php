@@ -66,6 +66,56 @@ class AcceptOrdersController extends Controller
 
     }
 
+    public function ViewPendingOrdersFiltered($searchTerm)
+    {
+        $supMed = new SupplierMedicineModel;
+        $med = new MedicineModel;
+        $manu = new ManufactureModel;
+        $supmedids = array();
+        $supids = $supMed->getSupMedIds($_SESSION['username']);
+        while ($row1 = $supids->fetch_assoc()) {
+            array_push($supmedids, $row1['medId']);
+        }
+        $order = new PharmacyOrderMedicineMedicineModel;
+        $result = $order->getPendingOrderFullDetailsFilterd($searchTerm);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $id = $row['orderid'];
+                $pharname = $row['pharmacyUsername'];
+                $medid = $row['ordermedId'];
+                if (in_array($medid, $supmedids)) {
+                    $medname = $row['medName'];
+                    $weight = $row['weight'];
+                    $volume = $row['volume'];
+                    $manid = $row['manId'];
+                    $manname = $manu->getManufactureName($manid);
+                    $qauntity = $row['quantity'];
+                    if ($supMed->getQuantity($medid) > $qauntity) {
+                        if ($weight > 0) {
+                            $mass = $weight;
+                            echo "<tr><td>" . $id . "</td><td>" . $pharname . "</td><td>" . $medname . "</td><td>" . $weight . "mg</td><td>" . $manname . "</td><td>" . $qauntity . "</td><td><input type='submit' value='Accept' class='btn btn--primary' onclick='event.preventDefault(); confirmAccept(\"" . $id . "\", \"" . $medname . "\", \"" . $mass . "\", \"" . $manname . "\", \"" . $qauntity . "\", \"" . $medid . "\")'></td></tr></form>";
+                        } else {
+                            $mass = $volume;
+                            echo "<tr><td>" . $id . "</td><td>" . $pharname . "</td><td>" . $medname . "</td><td>" . $volume . "ml</td><td>" . $manname . "</td><td>" . $qauntity . "</td><td><input type='submit' value='Accept' class='btn btn--primary' onclick='event.preventDefault(); confirmAccept(\"" . $id . "\",  \"" . $medname . "\", \"" . $mass . "\", \"" . $manname . "\", \"" . $qauntity . "\", \"" . $medid . "\")'></td></tr></form>";
+                        }
+                    } else if ($weight > 0) {
+                        echo "<tr><td>" . $id . "</td><td>" . $pharname . "</td><td>" . $medname . "</td><td>" . $weight . "</td><td>" . $manname . "</td><td>" . $qauntity . "</td><td><h6><font color='#FF5854'>Insufficient Inventory</font></h6> </td></tr>";
+
+                    } else {
+
+                        echo "<tr><td>" . $id . "</td><td>" . $pharname . "</td><td>" . $medname . "</td><td>" . $volume . "ml</td><td>" . $manname . "</td><td>" . $qauntity . "</td><td><h6><font color='#FF5854'>Insufficient Inventory</font></h6> </td></tr>";
+                    }
+
+                }
+
+            }
+        } else {
+            echo "<tr><td colspan=7>No Orders to accept</td></tr>";
+        }
+
+
+    }
+
     public function AcceptOrder(Request $request)
     { {
             if ($request->isPost()) {

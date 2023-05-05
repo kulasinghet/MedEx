@@ -97,18 +97,9 @@ use app\controllers\supplier\SupplierUpdateMedicineController;
         </div>
     </div>
     <nav>
-        <div class="nav-search">
-            <form onsubmit="preventDefault();" role="search">
-                <label for="search">Search for stuff</label>
-                <input autofocus id="search" placeholder="Search..." required type="search" />
-                <button type="submit">Go</button>
-            </form>
-        </div>
         <div class="nav-inner">
             <ul>
-                <li><a class="link" href="#"><i class="fa-solid fa-gear"></i></a></li>
                 <li><a class="link" href="/login"><i class="fa-solid fa-right-from-bracket"></i></a></li>
-                <li><a class="link" href="#"><i class="fa-solid fa-bell"></i></a></li>
             </ul>
             <a class="nav-profile" href="#">
                 <div class="nav-profile-image">
@@ -128,8 +119,17 @@ use app\controllers\supplier\SupplierUpdateMedicineController;
                         style=" box-shadow: 0 3px 10px rgb(0 0 0 / 0.2); border-radius: 20px; width:100% padding: 1%;">
                         <div class="card-body">
                             <div style="padding: 2%;">
-                                <h3>Inventory</h3>
+                                <h3>Update Inventory</h3>
                                 </br>
+                                <div class="nav-search">
+                                    <form action="" method="get" onsubmit="preventDefault();" role="search">
+                                        <label for="search">Filter Medicine</label>
+                                        <input autofocus id="search" name="search" placeholder="Filter By Medicine Name"
+                                            type="search" />
+                                        <button type="submit">Go</button>
+                                    </form>
+                                </div>
+
                                 </br></br>
                                 <table style="width: 100%; text-align:center;">
                                     <tr>
@@ -140,10 +140,14 @@ use app\controllers\supplier\SupplierUpdateMedicineController;
                                         <th>Quantity</th>
                                         <th>Unit Price</th>
                                     </tr>
-
                                     <?php
                                     $supmed = new SupplierUpdateMedicineController;
-                                    $supmed->updateInventory($_SESSION['username']);
+                                    if (isset($_GET['search'])) {
+                                        $searchTerm = $_GET['search'];
+                                        $supmed->updateInventoryFilter($_SESSION['username'], $searchTerm);
+                                    } else {
+                                        $supmed->updateInventory($_SESSION['username']);
+                                    }
                                     ?>
                                 </table>
                             </div>

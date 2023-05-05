@@ -76,6 +76,37 @@ class SupplierUpdateMedicineController extends Controller
         }
     }
 
+    public function updateInventoryFilter($supName, $searchTerm)
+    {
+        $med = new MedicineModel;
+        $supMed = new SupplierMedicineModel;
+        $man = new ManufactureModel;
+        $result = $supMed->getSupMedicineFilter($_SESSION['username'], $searchTerm);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $medid = $row["medId"];
+                $medNam = $med->getName($medid);
+                $sciName = $med->getSciname($medid);
+                $weight = $med->getWeight($medid);
+                $volume = $med->getVolume($medid);
+                $quantity = $row["quantity"];
+                $unitPrice = $row["unitPrice"];
+                $manid = $med->getManufacture($medid);
+                $manname = $man->getManufactureName($manid);
+                if ($weight > 0) {
+                    $mass = $weight;
+                    echo "<tr><td>" . $medNam . "</td><td>" . $sciName . "</td><td>" . $weight . " mg</td><td>" . $manname . "</td><td>" . $quantity . "</td><td>" . $unitPrice . "</td><td><a href='#' onclick='event.preventDefault(); confirmUpdate(\"" . $medid . "\", \"" . $medNam . "\", \"" . $sciName . "\", \"" . $mass . "\", \"" . $quantity . "\", \"" . $unitPrice . "\", \"" . $manname . "\")'><i class='fa fa-pencil'></i></a></td><td><a href='#' onclick=' event.preventDefault();confirmDelete(\"" . $medid . "\")'><i class='fa fa-trash'></i></a></td></tr>";
+                } else {
+                    $mass = $volume;
+                    echo "<tr><td>" . $medNam . "</td><td>" . $sciName . "</td><td>" . $volume . " ml</td><td>" . $manname . "</td><td>" . $quantity . "</td><td>" . $unitPrice . "</td><td><a href='#' onclick='event.preventDefault(); confirmUpdate(\"" . $medid . "\", \"" . $medNam . "\", \"" . $sciName . "\", \"" . $mass . "\", \"" . $quantity . "\", \"" . $unitPrice . "\", \"" . $manname . "\")'><i class='fa fa-pencil'></i></a></td><td><a href='#' onclick=' event.preventDefault();confirmDelete(\"" . $medid . "\")'><i class='fa fa-trash'></i></a></td></tr>";
+                }
+
+            }
+        } else {
+            echo "<tr><td colspan='5' style='padding:2%;'> No Medicine Added</td>";
+        }
+    }
+
 
 }
 ?>

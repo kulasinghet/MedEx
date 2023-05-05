@@ -96,18 +96,9 @@ use app\models\PharmacyOrderMedicineMedicineModel;
         </div>
     </div>
     <nav>
-        <div class="nav-search">
-            <form onsubmit="preventDefault();" role="search">
-                <label for="search">Search for stuff</label>
-                <input autofocus id="search" placeholder="Search..." required type="search" />
-                <button type="submit">Go</button>
-            </form>
-        </div>
         <div class="nav-inner">
             <ul>
-                <li><a class="link" href="#"><i class="fa-solid fa-gear"></i></a></li>
                 <li><a class="link" href="login"><i class="fa-solid fa-right-from-bracket"></i></a></li>
-                <li><a class="link" href="#"><i class="fa-solid fa-bell"></i></a></li>
             </ul>
             <a class="nav-profile" href="#">
                 <div class="nav-profile-image">
