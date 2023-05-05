@@ -3,6 +3,7 @@
 namespace app\controllers\pharmacy;
 
 use app\core\Controller;
+use app\core\Logger;
 use app\models\PharmacyOrderModel;
 
 class PharmacyOrderHistoryController extends Controller
@@ -25,12 +26,16 @@ class PharmacyOrderHistoryController extends Controller
             return 'Pending';
         } elseif ($orderStatus == '1') {
             return 'Accepted';
-        } elseif ($orderStatus == '3') {
+        } elseif ($orderStatus == '6') {
             return 'Rejected';
-        } elseif ($orderStatus == '2') {
+        } elseif ($orderStatus == '7') {
             return 'Delivered';
         } elseif ($orderStatus == '4') {
             return 'Cancelled';
+        } elseif ($orderStatus == '5') {
+            return 'Delivering';
+        } else {
+            return $orderStatus;
         }
     }
 
@@ -70,7 +75,85 @@ class PharmacyOrderHistoryController extends Controller
         if ($results) {
             return $results;
         } else {
-            return false;
+            return 0;
+        }
+    }
+
+    public function     getPendingOrdersCount(mixed $username)
+    {
+        $pharmacyOrder = new PharmacyOrderModel();
+        $results = $pharmacyOrder->getPendingOrdersCount($username);
+
+        if ($results) {
+            Logger::logDebug("getPendingOrdersCount() returned: " . $results);
+            return $results;
+        } else {
+            return 0;
+        }
+    }
+
+    public function getAcceptedOrdersCount(mixed $username)
+    {
+        $pharmacyOrder = new PharmacyOrderModel();
+        $results = $pharmacyOrder->getAcceptedOrdersCount($username);
+
+        if ($results) {
+            Logger::logDebug("getAcceptedOrdersCount() returned: " . $results);
+            return $results;
+        } else {
+            return 0;
+        }
+    }
+
+    public function getRejectedOrdersCount(mixed $username)
+    {
+        $pharmacyOrder = new PharmacyOrderModel();
+        $results = $pharmacyOrder->getRejectedOrdersCount($username);
+
+        if ($results) {
+            Logger::logDebug("getRejectedOrdersCount() returned: " . $results);
+            return $results;
+        } else {
+            return 0;
+        }
+    }
+
+    public function getDeliveredOrdersCount(mixed $username)
+    {
+        $pharmacyOrder = new PharmacyOrderModel();
+        $results = $pharmacyOrder->getDeliveredOrdersCount($username);
+
+        if ($results) {
+            Logger::logDebug("getDeliveredOrdersCount() returned: " . $results);
+            return $results;
+        } else {
+            return 0;
+        }
+    }
+
+    public function getCancelledOrdersCount(mixed $username)
+    {
+        $pharmacyOrder = new PharmacyOrderModel();
+        $results = $pharmacyOrder->getCancelledOrdersCount($username);
+
+        if ($results) {
+            Logger::logDebug("getCancelledOrdersCount() returned: " . $results);
+            return $results;
+        } else {
+            return 0;
+        }
+    }
+
+    public function getTotalOrdersCount(mixed $username)
+    {
+        $pharmacyOrder = new PharmacyOrderModel();
+        $results = $pharmacyOrder->getTotalOrdersCount($username);
+
+        if ($results) {
+            Logger::logDebug("getTotalOrdersCount() returned: " . $results);
+            return $results;
+        } else {
+            return 0;
         }
     }
 }

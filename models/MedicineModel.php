@@ -10,6 +10,7 @@ class MedicineModel extends Model
     public $id;
     public $medName;
     public $weight;
+    public $volume;
     public $sciName;
     public $manId;
 
@@ -18,7 +19,7 @@ class MedicineModel extends Model
     {
         $db = (new Database())->getConnection();
         try {
-            $sql = "INSERT INTO medicine (id, medName, weight, sciName, manId)  VALUES ('$this->id', '$this->medName','$this->weight','$this->sciName','$this->manId')";
+            $sql = "INSERT INTO medicine (id, medName, weight,volume, sciName, manId)  VALUES ('$this->id', '$this->medName','$this->weight','$this->volume','$this->sciName','$this->manId')";
             $stmt = $db->prepare($sql);
             $stmt->execute();
             if ($stmt->affected_rows == 1) {
@@ -41,12 +42,14 @@ class MedicineModel extends Model
     {
         $db = (new Database())->getConnection();
         $sql = "SELECT * from medicine WHERE medicine.id = '$id'";
+        Logger::logDebug($sql);
         $result = $db->query($sql);
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 $this->id = $row["id"];
                 $this->medName = $row["medName"];
                 $this->weight = $row["weight"];
+                $this->volume = $row['volume'];
                 $this->sciName = $row["sciName"];
                 $this->manId = $row["manId"];
             }
@@ -78,6 +81,13 @@ class MedicineModel extends Model
 
     }
 
+    public function getVolume($id)
+    {
+        $this->getMedicine($id);
+        return $this->volume;
+
+    }
+
     public function getManufacture($id)
     {
         $this->getMedicine($id);
@@ -89,11 +99,11 @@ class MedicineModel extends Model
     // Get all medicine
     public function getAllMedicines()
     {
-        $db = new Database();
-        $sql = "SELECT * FROM medicine";
 
+        $conn = (new Database())->getConnection();
+        $sql = "SELECT medicine.*, COALESCE(stock.remQty, 0) AS remQty FROM medicine LEFT JOIN stock ON medicine.id = stock.medId;";
         try {
-            $stmt = $db->prepare($sql);
+            $stmt = $conn->prepare($sql);
             $stmt->execute();
             $result = $stmt->get_result();
             return $result;
@@ -120,9 +130,37 @@ class MedicineModel extends Model
     {
         $db = (new Database())->getConnection();
         $sql = "SELECT id  from medicine";
+        Logger::logDebug($sql);
         $result = $db->query($sql);
         if ($result->num_rows > 0) {
             return $result;
+        } else {
+            return false;
+        }
+    }
+
+    // Get ids of all Medicine (to compare unadded medicine for a supplier - filter)
+    public function getallMedidFilter($search)
+    {
+        $db = (new Database())->getConnection();
+        $sql = "SELECT id  from medicine WHERE medName like '%$search%'";
+        Logger::logDebug($sql);
+        $result = $db->query($sql);
+        if ($result->num_rows > 0) {
+            return $result;
+        }
+
+        $db->close();
+    }
+
+    public function getMedicinePrice(mixed $id)
+    {
+        $db = (new Database())->getConnection();
+        $sql = "SELECT sellingPrice AS price FROM stock WHERE medId = '$id' ORDER BY id DESC LIMIT 1";
+        $result = $db->query($sql);
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            return $row['price'];
         }
 
         $db->close();

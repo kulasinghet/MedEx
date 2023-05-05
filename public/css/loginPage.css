@@ -105,6 +105,24 @@ b {
     background-color: #2e7f1a;
 }
 
+#registerButtona {
+    /*style={{background-color: "#36a420"}}*/
+    background-color: rgba(30, 176, 0, 0);
+    color: #fff !important;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 600;
+    border-radius: 1vh;
+    width: 100%;
+}
+
+#registerButtona:hover {
+    background-color: rgba(46, 127, 26, 0);
+}
+
 hr {
     border: 1px solid #dadde1;
     margin-bottom: 5vh;
@@ -221,4 +239,3 @@ hr {
         font-size: 2rem;
     }
 }
-

@@ -57,11 +57,50 @@ class SupplierUpdateMedicineController extends Controller
                 $medNam = $med->getName($medid);
                 $sciName = $med->getSciname($medid);
                 $weight = $med->getWeight($medid);
+                $volume = $med->getVolume($medid);
                 $quantity = $row["quantity"];
                 $unitPrice = $row["unitPrice"];
                 $manid = $med->getManufacture($medid);
                 $manname = $man->getManufactureName($manid);
-                echo "<tr><td>" . $medNam . "</td><td>" . $sciName . "</td><td>" . $weight . " mg</td><td>" . $manname . "</td><td>" . $quantity . "</td><td>" . $unitPrice . "</td><td><a href='#' onclick='event.preventDefault(); confirmUpdate(\"" . $medid . "\", \"" . $medNam . "\", \"" . $sciName . "\", \"" . $weight . "\", \"" . $quantity . "\", \"" . $unitPrice . "\", \"" . $manname . "\")'><i class='fa fa-pencil'></i></a></td><td><a href='#' onclick=' event.preventDefault();confirmDelete(\"" . $medid . "\")'><i class='fa fa-trash'></i></a></td></tr>";
+                if ($weight > 0) {
+                    $mass = $weight;
+                    echo "<tr><td>" . $medNam . "</td><td>" . $sciName . "</td><td>" . $weight . " mg</td><td>" . $manname . "</td><td>" . $quantity . "</td><td>" . $unitPrice . "</td><td><a href='#' onclick='event.preventDefault(); confirmUpdate(\"" . $medid . "\", \"" . $medNam . "\", \"" . $sciName . "\", \"" . $mass . "\", \"" . $quantity . "\", \"" . $unitPrice . "\", \"" . $manname . "\")'><i class='fa fa-pencil'></i></a></td><td><a href='#' onclick=' event.preventDefault();confirmDelete(\"" . $medid . "\")'><i class='fa fa-trash'></i></a></td></tr>";
+                } else {
+                    $mass = $volume;
+                    echo "<tr><td>" . $medNam . "</td><td>" . $sciName . "</td><td>" . $volume . " ml</td><td>" . $manname . "</td><td>" . $quantity . "</td><td>" . $unitPrice . "</td><td><a href='#' onclick='event.preventDefault(); confirmUpdate(\"" . $medid . "\", \"" . $medNam . "\", \"" . $sciName . "\", \"" . $mass . "\", \"" . $quantity . "\", \"" . $unitPrice . "\", \"" . $manname . "\")'><i class='fa fa-pencil'></i></a></td><td><a href='#' onclick=' event.preventDefault();confirmDelete(\"" . $medid . "\")'><i class='fa fa-trash'></i></a></td></tr>";
+                }
+
+            }
+        } else {
+            echo "<tr><td colspan='5' style='padding:2%;'> No Medicine Added</td>";
+        }
+    }
+
+    public function updateInventoryFilter($supName, $searchTerm)
+    {
+        $med = new MedicineModel;
+        $supMed = new SupplierMedicineModel;
+        $man = new ManufactureModel;
+        $result = $supMed->getSupMedicineFilter($_SESSION['username'], $searchTerm);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $medid = $row["medId"];
+                $medNam = $med->getName($medid);
+                $sciName = $med->getSciname($medid);
+                $weight = $med->getWeight($medid);
+                $volume = $med->getVolume($medid);
+                $quantity = $row["quantity"];
+                $unitPrice = $row["unitPrice"];
+                $manid = $med->getManufacture($medid);
+                $manname = $man->getManufactureName($manid);
+                if ($weight > 0) {
+                    $mass = $weight;
+                    echo "<tr><td>" . $medNam . "</td><td>" . $sciName . "</td><td>" . $weight . " mg</td><td>" . $manname . "</td><td>" . $quantity . "</td><td>" . $unitPrice . "</td><td><a href='#' onclick='event.preventDefault(); confirmUpdate(\"" . $medid . "\", \"" . $medNam . "\", \"" . $sciName . "\", \"" . $mass . "\", \"" . $quantity . "\", \"" . $unitPrice . "\", \"" . $manname . "\")'><i class='fa fa-pencil'></i></a></td><td><a href='#' onclick=' event.preventDefault();confirmDelete(\"" . $medid . "\")'><i class='fa fa-trash'></i></a></td></tr>";
+                } else {
+                    $mass = $volume;
+                    echo "<tr><td>" . $medNam . "</td><td>" . $sciName . "</td><td>" . $volume . " ml</td><td>" . $manname . "</td><td>" . $quantity . "</td><td>" . $unitPrice . "</td><td><a href='#' onclick='event.preventDefault(); confirmUpdate(\"" . $medid . "\", \"" . $medNam . "\", \"" . $sciName . "\", \"" . $mass . "\", \"" . $quantity . "\", \"" . $unitPrice . "\", \"" . $manname . "\")'><i class='fa fa-pencil'></i></a></td><td><a href='#' onclick=' event.preventDefault();confirmDelete(\"" . $medid . "\")'><i class='fa fa-trash'></i></a></td></tr>";
+                }
+
             }
         } else {
             echo "<tr><td colspan='5' style='padding:2%;'> No Medicine Added</td>";
@@ -95,8 +134,8 @@ class SupplierUpdateMedicineController extends Controller
             <input type="text" id="medNam" name="medNam" value="" disabled class='form-input' style='width:60%;'>
             <label for="sciName" style="display: block; padding: 1%; text-align: left;">Scientific Name:</label>
             <input type="text" id="sciName" name="sciName" value="" disabled class='form-input' style='width:60%;'>
-            <label for="weight" style="display: block; padding: 1%; text-align: left;">Weight (mg):</label>
-            <input type="number" id="weight" name="weight" value="" disabled class='form-input' style='width:60%;'>
+            <label for="mass" style="display: block; padding: 1%; text-align: left;">Weight(mg)/Volume(ml):</label>
+            <input type="number" id="mass" name="mass" value="" disabled class='form-input' style='width:60%;'>
             <label for="manname" style="display: block; padding: 1%; text-align: left;">Manufacturer Name:</label>
             <input type="text" id="manname" name="manname" value="" disabled class='form-input' style='width:60%;'>
             <label for="quantity" style="display: block; padding: 1%; text-align: left;">Quantity:</label>
@@ -141,19 +180,19 @@ class SupplierUpdateMedicineController extends Controller
     var updatespan = document.getElementsByClassName("updateclose")[0];
     var updatecancelBtn = document.getElementById("updatecancelBtn");
     var updateconfirmBtn = document.getElementById("updateconfirmBtn");
-    var medId;
+    var medIdValue;
     var medNamValue;
     var sciNameValue;
-    var weightValue;
+    var massValue;
     var quantityValue;
     var unitPriceValue;
     var mannameValue;
 
-    function confirmUpdate(medId, medNam, sciName, weight, quantity, unitPrice, manname) {
+    function confirmUpdate(medId, medNam, sciName, mass, quantity, unitPrice, manname) {
         medIdValue = medId;
         medNamValue = medNam;
         sciNameValue = sciName;
-        weightValue = weight;
+        massValue = mass;
         quantityValue = quantity;
         unitPriceValue = unitPrice;
         mannameValue = manname;
@@ -162,7 +201,7 @@ class SupplierUpdateMedicineController extends Controller
         document.getElementById("medId").value = medId;
         document.getElementById("medNam").value = medNam;
         document.getElementById("sciName").value = sciName;
-        document.getElementById("weight").value = weight;
+        document.getElementById("mass").value = mass;
         document.getElementById("quantity").value = quantity;
         document.getElementById("unitPrice").value = unitPrice;
         document.getElementById("manname").value = manname;

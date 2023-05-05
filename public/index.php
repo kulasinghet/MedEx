@@ -17,7 +17,13 @@ use app\controllers\lab\LabContactusController;
 use app\controllers\lab\LabDashboardController;
 use app\controllers\pharmacy\PharmacyAuthController;
 use app\controllers\pharmacy\PharmacyDashboardController;
+use app\controllers\pharmacy\PharmacyInventoryController;
 use app\controllers\pharmacy\PharmacyOrderMedicineController;
+
+use app\controllers\pharmacy\PharmacySellMedicineController;
+
+use app\controllers\supplier\AcceptOrdersController;
+
 use app\controllers\supplier\SupplierAuthController;
 use app\controllers\supplier\SupplierDashboardController;
 use app\controllers\supplier\SupplierUpdateMedicineController;
@@ -27,6 +33,8 @@ use app\controllers\LoginAuthController;
 use app\controllers\SiteController;
 use app\controllers\supplier\SupplierAddMedicineController;
 use app\controllers\lab\LabAcceptReqController;
+use app\controllers\lab\LabReportController;
+use app\controllers\supplier\SupplierContactUsController;
 
 $app = new Application();
 
@@ -53,18 +61,25 @@ $app->router->post('/delivery/history', [DeliveryDashboardController::class, 'hi
 $app->router->get('/delivery/contact_us', [DeliveryDashboardController::class, 'contactUs']);
 $app->router->post('/delivery/contact_us', [DeliveryDashboardController::class, 'contactUs']);
 $app->router->post('/delivery/contact_us', [DeliveryContactusController::class, 'delivery_contact_us']);
+
+
 // Lab Routes
 //$app -> router -> get('/lab/login', [LoginAuthController::class, 'labLogin']);
 //$app -> router -> post('/lab/login', [LoginAuthController::class, 'labLogin']);
 $app->router->get('/lab/register', [LabAuthController::class, 'labRegister']);
 $app->router->post('/lab/register', [LabAuthController::class, 'labRegister']);
 $app->router->get('/lab/contact-us', [LabDashboardController::class, 'contactUs']);
-$app->router->post('/lab/contact-us', [LabDashboardController::class, 'contactUs']);
 $app->router->get('/lab/requests', [LabDashboardController::class, 'viewRequest']);
 $app->router->post('/lab/requests', [LabDashboardController::class, 'viewRequest']);
 $app->router->get('/lab/reports', [LabDashboardController::class, 'addLabReport']);
 $app->router->post('/lab/reports', [LabDashboardController::class, 'addLabReport']);
+$app->router->post('/lab/past-reports', [LabDashboardController::class, 'PastReports']);
+$app->router->get('/lab/past-reports', [LabDashboardController::class, 'PastReports']);
+$app->router->post('/lab/past-requests', [LabDashboardController::class, 'PastReq']);
+$app->router->get('/lab/past-requests', [LabDashboardController::class, 'PastReq']);
 $app->router->post('/lab/accept-req', [LabAcceptReqController::class, 'acceptRequest']);
+$app->router->post('/lab/generate-report', [LabReportController::class, 'genrateReport']);
+$app->router->post('/lab/contact-us', [LabContactUsController::class, 'contactUs']);
 
 
 // Employee Routes
@@ -114,7 +129,7 @@ $app->router->post('/employee/configs', [EmployeeDashboardController::class, 'lo
 $app->router->get('/pharmacy/register', [PharmacyAuthController::class, 'pharmacyRegister']);
 $app->router->post('/pharmacy/register', [PharmacyAuthController::class, 'pharmacyRegister']);
 $app->router->get('/pharmacy/sell-medicine', [PharmacyDashboardController::class, 'sellMedicine']);
-$app->router->post('/pharmacy/sell-medicine', [PharmacyDashboardController::class, 'sellMedicine']);
+$app->router->post('/pharmacy/sell-medicine', [PharmacySellMedicineController::class, 'sellMedicine']);
 $app->router->get('/pharmacy/order-medicine', [PharmacyDashboardController::class, 'orderMedicine']);
 $app->router->post('/pharmacy/order-medicine', [PharmacyOrderMedicineController::class, 'createOrder']);
 $app->router->get('/pharmacy/orders', [PharmacyDashboardController::class, 'orders']);
@@ -127,14 +142,21 @@ $app->router->get('/pharmacy/profile', [PharmacyDashboardController::class, 'pro
 $app->router->post('/pharmacy/profile', [PharmacyDashboardController::class, 'profile']);
 $app->router->get('/pharmacy/settings', [PharmacyDashboardController::class, 'settings']);
 $app->router->post('/pharmacy/settings', [PharmacyDashboardController::class, 'settings']);
+$app->router->get('/pharmacy/invoices', [PharmacyDashboardController::class, 'invoices']);
+$app->router->post('/pharmacy/invoices', [PharmacyDashboardController::class, 'invoices']);
 
 //REST API
 $app->router->get('/pharmacy/api/order-details', [PharmacyOrderMedicineController::class, 'orderDetails']);
 $app->router->get('/pharmacy/api/order-medicine-details', [PharmacyOrderMedicineController::class, 'orderMedicineDetails']);
 $app->router->get('/pharmacy/api/cancel-order', [PharmacyOrderMedicineController::class, 'cancelOrder']);
-
-
-
+$app->router->get('/pharmacy/api/medicine-details', [PharmacyInventoryController::class, 'medicineDetails']);
+$app->router->post('/pharmacy/api/update-medicine', [PharmacyInventoryController::class, 'updateMedicine']);
+$app->router->get('/pharmacy/api/sales-order', [PharmacySellMedicineController::class, 'salesOrder']);
+$app->router->get('/pharmacy/api/sales-order-medicines', [PharmacySellMedicineController::class, 'salesOrderMedicines']);
+$app->router->get('/pharmacy/api/sales-by-day', [PharmacySellMedicineController::class, 'salesByDay']);
+//salesAndCostForCurrentMonth
+$app->router->get('/pharmacy/api/sales-and-cost-for-current-month', [PharmacySellMedicineController::class, 'salesAndCostForCurrentMonth']);
+$app->router->get('/pharmacy/api/get-location', [PharmacyOrderMedicineController::class, 'getLocation']);
 
 // #############################################################################################
 
@@ -158,10 +180,11 @@ $app->router->post('/supplier/orders', [SupplierDashboardController::class, 'Ord
 $app->router->get('/supplier/inventory', [SupplierDashboardController::class, 'inventory']);
 $app->router->post('/supplier/inventory', [SupplierDashboardController::class, 'inventory']);
 $app->router->get('/supplier/contact-us', [SupplierDashboardController::class, 'contactUs']);
-$app->router->post('/supplier/contact-us', [SupplierDashboardController::class, 'contactUs']);
+$app->router->post('/supplier/contact-us', [SupplierContactUsController::class, 'contactUs']);
 $app->router->get('/supplier/medicine-requests', [SupplierDashboardController::class, 'medicineRequests']);
 $app->router->post('/supplier/medicine-requests', [SupplierDashboardController::class, 'medicineRequests']);
-// $app->router->post('/supplier/accept', [AcceptOrdersController::class, 'AcceptOrder']);
+$app->router->post('/supplier/accept', [AcceptOrdersController::class, 'AcceptOrder']);
+
 
 
 

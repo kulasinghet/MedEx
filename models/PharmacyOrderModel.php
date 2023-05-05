@@ -8,25 +8,32 @@ use app\core\Logger;
 
 class PharmacyOrderModel extends Model
 {
-    private $id;
-    private $pharmacyUsername;
-    private $medId;
-    private $quantity;
-    private $status;
-    private $supName;
-    private $delivery_date;
-    private $order_status;
-    private $order_date;
-    private $order_total;
+    public $id;
+    public $pharmacyUsername;
+    public $medId;
+    public $quantity;
+    public $status;
+    public $supName;
+    public $batchNo;
+    public $expDate;
+    public $delivery_date;
+    public $order_status;
+    public $order_date;
+    public $order_total;
 
 
     public function getOrder($id)
     {
         $db = (new Database())->getConnection();
-        $sql = "SELECT pharmacyName,medId,quantity from pharmacyorder WHERE pharmacyorder.id = '$id'";
+        $sql = "SELECT pharmacyUsername,medId,quantity from pharmacyorder WHERE pharmacyorder.id = '$id'";
         $result = $db->query($sql);
+        Logger::logDebug($sql);
         if ($result->num_rows > 0) {
-            return $result;
+            while ($row = $result->fetch_assoc()) {
+                $this->pharmacyUsername = $row['pharmacyUsername'];
+                $this->medId = $row['medId'];
+                $this->quantity = $row['quantity'];
+            }
         }
         $db->close();
     }
@@ -34,18 +41,18 @@ class PharmacyOrderModel extends Model
     public function getPendingOrders()
     {
         $db = (new Database())->getConnection();
-        $sql = "SELECT id from pharmacyorder WHERE pharmacyorder.status = '0'";
+        $sql = "SELECT id from pharmacyorder WHERE pharmacyorder.order_status = '0'";
+        Logger::logDebug($sql);
         $result = $db->query($sql);
         if ($result->num_rows > 0) {
             return $result;
         }
         $db->close();
     }
-
     public function getSupOrders($name)
     {
         $db = (new Database())->getConnection();
-        $sql = "SELECT id from pharmacyorder WHERE pharmacyorder.status = '1' && pharmacyorder.supName = '$name'";
+        $sql = "SELECT id from pharmacyorder WHERE pharmacyorder.order_status = '1' && pharmacyorder.supName = '$name'";
         $result = $db->query($sql);
         if ($result->num_rows > 0) {
             return $result;
@@ -71,9 +78,25 @@ class PharmacyOrderModel extends Model
         return $this->pharmacyUsername;
     }
 
-    public function acceptOrder($supName, $id)
+    public function acceptOrder($id)
     {
-        return $this->delivery_date;
+        $db = (new Database())->getConnection();
+        try {
+            $sql = "UPDATE pharmacyorder SET pharmacyorder.order_status = '1' WHERE pharmacyorder.id = '$id'";
+            $stmt = $db->prepare($sql);
+            $stmt->execute();
+
+            if ($stmt->affected_rows == 1) {
+                $stmt->close();
+                return true;
+            }
+
+            $stmt->close();
+        } catch (\Exception $e) {
+            ErrorLog::logError($e->getMessage());
+            echo $e->getMessage();
+            return false;
+        }
     }
 
     /**
@@ -85,7 +108,7 @@ class PharmacyOrderModel extends Model
     }
 
 
-    public function createOrder($pharmacyUsername, $order_total, $medicineIds): bool
+    public function createOrder($pharmacyUsername, $order_total, $medicineIds): bool|string
     {
         // generate random order id with time stamp and pharmacy id
 
@@ -105,7 +128,7 @@ class PharmacyOrderModel extends Model
                 $stmt->close();
                 //                $pharmacyUsername, $order_total, $medicineIds, $order_date
                 if ($this->updateMedicineQuantity($pharmacyUsername, $order_total, $medicineIds, $order_date)) {
-                    return true;
+                    return $this->id;
                 }
 
             }
@@ -250,6 +273,7 @@ class PharmacyOrderModel extends Model
 
         try {
             $result = $conn->query($sql);
+            Logger::logDebug($sql);
             return $result->fetch_all(MYSQLI_ASSOC);
         } catch (\Exception $e) {
             Logger::logError($e->getMessage());
@@ -280,4 +304,138 @@ class PharmacyOrderModel extends Model
             return false;
         }
     }
+
+
+    public function getPendingOrdersCount(mixed $username)
+    {
+        $conn = (new Database())->getConnection();
+        // order status 0 = pending for current month
+        $sql = "SELECT COUNT(*) AS count FROM pharmacyorder WHERE pharmacyUsername = '$username' AND order_status = 0 AND MONTH(order_date) = MONTH(CURRENT_DATE()) AND YEAR(order_date) = YEAR(CURRENT_DATE());";
+
+        try {
+            $result = $conn->query($sql);
+            $row = $result->fetch_assoc();
+            return $row['count'];
+        } catch (\Exception $e) {
+            Logger::logError($e->getMessage());
+            echo (new ExceptionHandler)->somethingWentWrong();
+            return false;
+        }
+    }
+
+
+    //if ($orderStatus == "0") {
+//return 'Pending';
+//} elseif ($orderStatus == '1') {
+//            return 'Accepted';
+//        } elseif ($orderStatus == '3') {
+//            return 'Rejected';
+//        } elseif ($orderStatus == '2') {
+//            return 'Delivered';
+//        } elseif ($orderStatus == '4') {
+//            return 'Cancelled';
+//        }
+//    }
+
+    public function getAcceptedOrdersCount(mixed $username)
+    {
+        $conn = (new Database())->getConnection();
+        // order status 1 = accepted for current month
+        $sql = "SELECT COUNT(*) AS count FROM pharmacyorder WHERE pharmacyUsername = '$username' AND order_status = 1 AND MONTH(order_date) = MONTH(CURRENT_DATE()) AND YEAR(order_date) = YEAR(CURRENT_DATE());";
+
+        try {
+            $result = $conn->query($sql);
+            $row = $result->fetch_assoc();
+            return $row['count'];
+        } catch (\Exception $e) {
+            Logger::logError($e->getMessage());
+            echo (new ExceptionHandler)->somethingWentWrong();
+            return false;
+        }
+    }
+
+    public function getRejectedOrdersCount(mixed $username)
+    {
+        $conn = (new Database())->getConnection();
+        // order status 2 = rejected for current month
+        $sql = "SELECT COUNT(*) AS count FROM pharmacyorder WHERE pharmacyUsername = '$username' AND order_status = 3 AND MONTH(order_date) = MONTH(CURRENT_DATE()) AND YEAR(order_date) = YEAR(CURRENT_DATE());";
+
+        try {
+            $result = $conn->query($sql);
+            $row = $result->fetch_assoc();
+            return $row['count'];
+        } catch (\Exception $e) {
+            Logger::logError($e->getMessage());
+            echo (new ExceptionHandler)->somethingWentWrong();
+            return false;
+        }
+    }
+
+    public function getDeliveredOrdersCount(mixed $username)
+    {
+        $conn = (new Database())->getConnection();
+        // order status 3 = delivered for current month
+        $sql = "SELECT COUNT(*) AS count FROM pharmacyorder WHERE pharmacyUsername = '$username' AND order_status = 2 AND MONTH(order_date) = MONTH(CURRENT_DATE()) AND YEAR(order_date) = YEAR(CURRENT_DATE());";
+
+        try {
+            $result = $conn->query($sql);
+            $row = $result->fetch_assoc();
+            return $row['count'];
+        } catch (\Exception $e) {
+            Logger::logError($e->getMessage());
+            echo (new ExceptionHandler)->somethingWentWrong();
+            return false;
+        }
+    }
+
+    public function getCancelledOrdersCount(mixed $username)
+    {
+        $conn = (new Database())->getConnection();
+        // order status 4 = cancelled for current month
+        $sql = "SELECT COUNT(*) AS count FROM pharmacyorder WHERE pharmacyUsername = '$username' AND order_status = 4 AND MONTH(order_date) = MONTH(CURRENT_DATE()) AND YEAR(order_date) = YEAR(CURRENT_DATE());";
+
+        try {
+            $result = $conn->query($sql);
+            $row = $result->fetch_assoc();
+            return $row['count'];
+        } catch (\Exception $e) {
+            Logger::logError($e->getMessage());
+            echo (new ExceptionHandler)->somethingWentWrong();
+            return false;
+        }
+    }
+
+    public function getTotalOrdersCount(mixed $username)
+    {
+        $conn = (new Database())->getConnection();
+        // order status 4 = cancelled for current month
+        $sql = "SELECT COUNT(*) AS count FROM pharmacyorder WHERE pharmacyUsername = '$username' AND MONTH(order_date) = MONTH(CURRENT_DATE()) AND YEAR(order_date) = YEAR(CURRENT_DATE());";
+
+        try {
+            $result = $conn->query($sql);
+            $row = $result->fetch_assoc();
+            return $row['count'];
+        } catch (\Exception $e) {
+            Logger::logError($e->getMessage());
+            echo (new ExceptionHandler)->somethingWentWrong();
+            return false;
+        }
+    }
+
+    public function getLocation(mixed $orderId)
+    {
+        $conn = (new Database())->getConnection();
+        $sql = "SELECT delivery_partner.longitude, delivery_partner.latitude FROM pharmacyorder LEFT JOIN delivery_partner ON pharmacyorder.delivary_partner_id = delivery_partner.username WHERE pharmacyorder.id = '$orderId'";
+
+        try {
+            $result = $conn->query($sql);
+            $row = $result->fetch_assoc();
+            return $row;
+        } catch (\Exception $e) {
+            Logger::logError($e->getMessage());
+            echo (new ExceptionHandler)->somethingWentWrong();
+            return false;
+        }
+    }
 }
+

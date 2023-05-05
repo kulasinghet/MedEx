@@ -1,6 +1,11 @@
 <?php
 use app\controllers\supplier\SupplierDashboardController;
 use app\models\SupplierModel;
+use app\models\PharmacyOrderModel;
+use app\models\SupplierMedicineModel;
+use app\models\ManufactureModel;
+use app\models\MedicineModel;
+use app\models\PharmacyOrderMedicineMedicineModel;
 
 ?>
 <!DOCTYPE html>
@@ -91,18 +96,9 @@ use app\models\SupplierModel;
         </div>
     </div>
     <nav>
-        <div class="nav-search">
-            <form onsubmit="preventDefault();" role="search">
-                <label for="search">Search for stuff</label>
-                <input autofocus id="search" placeholder="Search..." required type="search" />
-                <button type="submit">Go</button>
-            </form>
-        </div>
         <div class="nav-inner">
             <ul>
-                <li><a class="link" href="#"><i class="fa-solid fa-gear"></i></a></li>
                 <li><a class="link" href="login"><i class="fa-solid fa-right-from-bracket"></i></a></li>
-                <li><a class="link" href="#"><i class="fa-solid fa-bell"></i></a></li>
             </ul>
             <a class="nav-profile" href="#">
                 <div class="nav-profile-image">
@@ -123,20 +119,28 @@ use app\models\SupplierModel;
                         <div class="card-body">
                             <div style="padding: 2%;">
                                 <div style="display: flex; flex-direction: row;">
-                                    <h3 style="padding-right:60%">Supplier Profile</h3><a href='#'
-                                        style="padding-top:5%"><i class='fa fa-pencil'></i></a>
+                                    <h3 style="padding-right:60%">Welcome Back !</h3>
                                 </div>
                                 <?php
                                 $sup = new SupplierModel;
-                                $sup->getStatus($_SESSION['username']);
+                                $order = new PharmacyOrderMedicineMedicineModel;
+                                $supmed = new SupplierMedicineModel;
                                 $sup->getName($_SESSION['username']);
-                                echo " <h5> </br> Supplier Username: " . $_SESSION['username'] . "</br></br>";
-                                echo " Supplier Name: " . $_SESSION['name'] . "</br></br> Supplier Status: ";
-                                if ($_SESSION['stat']) {
-                                    echo "<font color='#17A600'>Verfied </font></h5>";
-                                } else {
-                                    echo "<font color='#FF5854'>Unverfied </font></h5>";
+                                $result1 = $order->getSupOrderCount($_SESSION['username']);
+                                if ($result1->num_rows > 0) {
+                                    while ($row1 = $result1->fetch_assoc()) {
+                                        $ordercount = $row1['COUNT(orderid)'];
+                                    }
                                 }
+                                $result2 = $supmed->getSupMedCount($_SESSION['username']);
+                                if ($result2->num_rows > 0) {
+                                    while ($row2 = $result2->fetch_assoc()) {
+                                        $medcount = $row2['COUNT(medId)'];
+                                    }
+                                }
+                                echo " <h3>" . $_SESSION['name'] . "<br/><br/>To date you have,</h3>
+                               <center> <h5><br/>Accepted <b>" . $ordercount . " </b>Orders</h5>" .
+                                    "<h5><br/>Supply <b>" . $medcount . " </b>Medicine</h5></center>";
                                 ?>
                             </div>
                         </div>
@@ -147,11 +151,65 @@ use app\models\SupplierModel;
                         style=" box-shadow: 0 3px 10px rgb(0 0 0 / 0.2); border-radius: 20px; width:50%">
                         <div class="card-body">
                             <div style="padding: 2%;">
-                                Graph to be added
+                                <?php
+                                $sup = new SupplierModel;
+                                $order = new PharmacyOrderMedicineMedicineModel;
+                                $supmed = new SupplierMedicineModel;
+                                $result1 = $order->getPendingOrderCount($_SESSION['username']);
+                                if ($result1->num_rows > 0) {
+                                    while ($row1 = $result1->fetch_assoc()) {
+                                        $ordercount = $row1['count(orderid)'];
+                                    }
+                                }
+                                echo "<center><br/><br/> <br/><h3> There are " . $ordercount . " New Orders</h3><br>
+                                <a href='/supplier/accept-orders' class='btn btn--primary'>View New Orders</a></center>";
+                                ?>
                             </div>
                         </div>
+                    </div>
 
-
+                </div>
+            </div>
+            <div class="card g-col-2 g-row-2-start-3"
+                style=" box-shadow: 0 3px 10px rgb(0 0 0 / 0.2); border-radius: 20px; width:90%">
+                <div class="card-body">
+                    <div style="padding: 2%;">
+                        <?php
+                        echo " <h3>Invenotry Running Low</h3>
+                          <table style='width: 100%; text-align:center;padding:1%;'>
+                                    <tr>
+                                        <th>Medicine Name</th>
+                                        <th>Scientific Name</th>
+                                        <th>Weight/Volume</th>
+                                        <th>Mannufacture</th>
+                                        <th>Quantity</th>
+                                    </tr>";
+                        $supmed = new SupplierMedicineModel;
+                        $med = new MedicineModel;
+                        $man = new ManufactureModel;
+                        $result = $supmed->getLowSupMedicine($_SESSION['username']);
+                        if ($result->num_rows > 0) {
+                            while ($row = $result->fetch_assoc()) {
+                                $medid = $row["medId"];
+                                $medNam = $med->getName($medid);
+                                $sciName = $med->getSciname($medid);
+                                $weight = $med->getWeight($medid);
+                                $volume = $med->getVolume($medid);
+                                $quantity = $row["quantity"];
+                                $manid = $med->getManufacture($medid);
+                                $manname = $man->getManufactureName($manid);
+                                if ($weight > 0) {
+                                    echo "<tr><td>" . $medNam . "</td><td>" . $sciName . "</td><td>" . $weight . " mg</td><td>" . $manname . "</td><td>" . $quantity . "</td></tr>";
+                                } else {
+                                    echo "<tr><td>" . $medNam . "</td><td>" . $sciName . "</td><td>" . $volume . " ml</td><td>" . $manname . "</td><td>" . $quantity . "</td></tr>";
+                                }
+                            }
+                            echo "<table>";
+                        } else {
+                            echo "<tr><td colspan='5' style='padding:2%;'> No Medicine Running Low </td></table>";
+                        }
+                        echo "<center><a href='/supplier/update-inventory' class='btn btn--primary'>Update Inventory</a></center>";
+                        ?>
                     </div>
                 </div>
             </div>

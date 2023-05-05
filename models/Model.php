@@ -43,11 +43,14 @@ class Model
             case "pharmacy":
                 $tag = "PH";
                 break;
-            case "contact_us":
+            case "report":
                 $tag = "INQ";
                 break;
             case "pharmacyorder":
                 $tag = "ORD";
+                break;
+            case "pharmacysell":
+                $tag = "BILL";
                 break;
             default:
                 $tag = "ID";

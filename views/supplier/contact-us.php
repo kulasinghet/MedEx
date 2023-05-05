@@ -13,26 +13,6 @@
 
 <body>
 
-    <nav>
-        <div class="nav-search">
-            <form onsubmit="preventDefault();" role="search">
-                <label for="search">Search for stuff</label>
-                <input autofocus id="search" placeholder="Search..." required type="search" />
-                <button type="submit">Go</button>
-            </form>
-        </div>
-        <div class="nav-inner">
-            <ul>
-                <li><a href="/login"><i class="fa fa-sign-out"></i></a></li>
-            </ul>
-            <a class="nav-profile" href="#">
-                <div class="nav-profile-image">
-                    <img alt="Profile image" src="../res/avatar-empty.png" />
-                </div>
-            </a>
-        </div>
-    </nav>
-
     <div class="sidebar">
         <div class="sidebar-inner">
             <nav class="sidebar-header">
@@ -87,18 +67,9 @@
         </div>
     </div>
     <nav>
-        <div class="nav-search">
-            <form onsubmit="preventDefault();" role="search">
-                <label for="search">Search for stuff</label>
-                <input autofocus id="search" placeholder="Search..." required type="search" />
-                <button type="submit">Go</button>
-            </form>
-        </div>
         <div class="nav-inner">
             <ul>
-                <li><a class="link" href="#"><i class="fa-solid fa-gear"></i></a></li>
                 <li><a class="link" href="/login"><i class="fa-solid fa-right-from-bracket"></i></a></li>
-                <li><a class="link" href="#"><i class="fa-solid fa-bell"></i></a></li>
             </ul>
             <a class="nav-profile" href="#">
                 <div class="nav-profile-image">
@@ -118,16 +89,15 @@
                     <div class="contact-us">
                         <h1>Contact Us</h1>
 
-                        <form>
+                        <form method="post" action="/supplier/contact-us">
                             <div class="form-group">
                                 <label for="exampleFormControlInput1">Subject</label>
-                                <input type="email" class="form-input" id="exampleFormControlInput1"
-                                    placeholder="Subject">
+                                <input type="text" class="form-input" id="subject" placeholder="Subject" name="subject">
                             </div>
 
                             <div class="form-group">
                                 <label for="exampleFormControlTextarea1">Message</label>
-                                <textarea class="form-input" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                <textarea class="form-input" id="message" name="message" rows="3"></textarea>
                             </div>
                             <button type="submit" class="btn btn-primary">Send Message</button>
                         </form>

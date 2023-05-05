@@ -4,6 +4,7 @@ namespace app\core;
 
 use mysqli;
 use Dotenv\Dotenv;
+
 $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
@@ -15,7 +16,7 @@ class Database
 
     public function getConnection()
     {
-//        $this->db = new mysqli($this->parse_env('DB_HOST'), $this->username, $this->password, $this->database, $this->port);
+        //        $this->db = new mysqli($this->parse_env('DB_HOST'), $this->username, $this->password, $this->database, $this->port);
         $this->db = new mysqli($_ENV['DB_HOST'], $_ENV['DB_USERNAME'], $_ENV['DB_PASSWORD'], $_ENV['DB_DATABASE'], $_ENV['DB_PORT']);
 
         if ($this->db->connect_error) {
@@ -26,4 +27,14 @@ class Database
 
         return $this->db;
     }
+
+    private function parse_env(string $string)
+    {
+        $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+        $dotenv->load();
+
+        return $_ENV[$string];
+    }
+
+
 }

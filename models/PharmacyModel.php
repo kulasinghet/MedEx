@@ -4,6 +4,7 @@ namespace app\models;
 use app\core\Database;
 use app\core\ExceptionHandler;
 use app\core\Logger;
+use app\core\Request;
 use DateTime;
 use DateTimeZone;
 
@@ -23,22 +24,30 @@ class PharmacyModel extends Model
     public string $verified;
     public string $deliveryTime;
 
-    public function registerPharmacy()
+    public function registerPharmacy($formbody)
     {
+        $username = $formbody['username'];
+        $password = $formbody['password'];
+        $email = $formbody['email'];
+        $pharmacyname = $formbody['pharmacyname'];
+        $address = $formbody['address'];
+        $city = $formbody['city'];
+        $ownerName = $formbody['ownerName'];
+        $contactnumber = $formbody['contactnumber'];
+        $pharmacyRegNo = $formbody['pharmacyRegNo'];
+        $BusinessRegId = $formbody['BusinessRegId'];
+        $pharmacyCertId = $formbody['pharmacyCertId'];
 
-        $db = new Database();
+        $deliveryTime = (new City())->getDeliveryTime($city);
+
+        $db = (new Database())->getConnection();
 
         $regDate = new DateTime("now");
         $regDate->setTimezone(new DateTimeZone('Asia/Colombo'));
         $regDate = $regDate->format('Y/m/d');
 
-        //todo: add verified function
-        //todo: add delivery time function
-
         try {
-            if ($this->userExists()) {
-                //                Logger::logErr("User already exists");
-                // throw new \Exception("User already exists");
+            if ($this->userExists($username)) {
                 throw new \Exception("User already exists");
             }
         } catch (\Exception $e) {
@@ -47,43 +56,57 @@ class PharmacyModel extends Model
 
             return false;
         }
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+        if ($this->registerPharmacyInLogin($username, $hashedPassword)) {
 
+            try {
 
-        try {
-            $this->password = password_hash($this->password, PASSWORD_DEFAULT);
+                $sql = "INSERT INTO pharmacy (username, name, ownerName, city, pharmacyRegNo, BusinessRegId, pharmacyCertId, verified, deliveryTime, email, address, mobile, reg_date) VALUES ('$username', '$pharmacyname', '$ownerName', '$city', '$pharmacyRegNo', '$BusinessRegId', '$pharmacyCertId', '0', '$deliveryTime', '$email', '$address', '$contactnumber', '$regDate')";
 
-            $this->id = $this->createRandomID("pharmacy");
+                $stmt = $db->prepare($sql);
+                $stmt->execute();
 
-            $sql = "INSERT INTO pharmacy (id, username, password, name, ownerName, city, pharmacyRegNo, BusinessRegId, pharmacyCertId, BusinessRegCertName, pharmacyCertName, verified, deliveryTime, regDate) VALUES ('$this->id', '$this->username', '$this->password', '$this->name', '$this->ownerName', '$this->city', '$this->pharmacyRegNo', '$this->BusinessRegId', '$this->pharmacyCertId', '$this->BusinessRegCertName', '$this->pharmacyCertName', '0', '10:00:00', '$regDate');";
+                if ($stmt->affected_rows == 1) {
+                    $stmt->close();
+                    return true;
+                } else {
+                    $stmt->close();
+                    Logger::logError("Pharmacy registration failed" . $db->error);
+                    return false;
+                }
 
-            $stmt = $db->prepare($sql);
-            $stmt->execute();
-
-            if ($stmt->affected_rows == 1) {
-                return true;
-            } else {
-                Logger::logError($stmt->error->__toString());
+            } catch (\Exception $e) {
+                Logger::logError($e->getMessage());
                 return false;
+            } finally {
+                $db->close();
             }
-        } catch (\Exception $e) {
-            Logger::logError($e->getMessage());
-            //            echo $e->getMessage();
+        } else {
+
+            $this->deletePharmacyFromLogin($username);
             return false;
         }
     }
 
-    public function userExists(): bool
+    public function userExists($username = null): bool
     {
-        $db = new Database();
+        $db = (new Database())->getConnection();
 
         try {
-            $sql = "SELECT * FROM pharmacy WHERE username = '$this->username'";
-            $stmt = $db->prepare($sql);
-            $stmt->execute();
-            $result = $stmt->get_result();
+            $sql = "SELECT * FROM pharmacy WHERE username = '$username'";
+            $result = $db->query($sql);
 
-            if ($result->num_rows == 1) {
-                return true;
+            if ($result->fetch_assoc()) {
+
+                $sql = "SELECT * FROM login WHERE username = '$username'";
+                $result = $db->query($sql);
+
+                if ($result->fetch_assoc()) {
+                    return true;
+                } else {
+                    return false;
+                }
+
             } else {
                 return false;
             }
@@ -95,13 +118,11 @@ class PharmacyModel extends Model
 
     public function getPharmacyByUsername($username): false|array
     {
-        $db = new Database();
+        $db = (new Database())->getConnection();
 
         try {
             $sql = "SELECT * FROM pharmacy WHERE username = '$username'";
-            $stmt = $db->prepare($sql);
-            $stmt->execute();
-            $result = $stmt->get_result();
+            $result = $db->query($sql);
 
             if ($result->num_rows == 1) {
                 return $result->fetch_assoc();
@@ -113,4 +134,100 @@ class PharmacyModel extends Model
             return false;
         }
     }
+
+    public function validatePharmacy($formbody)
+    {
+        $username = $formbody['username'];
+        $password = $formbody['password'];
+        $email = $formbody['email'];
+        $pharmacyname = $formbody['pharmacyname'];
+        $address = $formbody['address'];
+        $city = $formbody['city'];
+        $ownerName = $formbody['ownerName'];
+        $contactnumber = $formbody['contactnumber'];
+        $pharmacyRegNo = $formbody['pharmacyRegNo'];
+        $BusinessRegId = $formbody['BusinessRegId'];
+
+//        any of these fields are empty
+        if (empty($username) || empty($password) || empty($email) || empty($pharmacyname) || empty($address) || empty($city) || empty($ownerName) || empty($contactnumber) || empty($pharmacyRegNo) || empty($BusinessRegId)) {
+            echo (new \app\core\ExceptionHandler)->emptyFields();
+            return false;
+        }
+
+        // username cannot have spaces, special characters
+        if (!preg_match("/^[a-zA-Z0-9]*$/", $username)) {
+            echo (new \app\core\ExceptionHandler)->invalidUsername();
+            return false;
+        }
+
+        // password must be at least 8 characters long
+        if (strlen($password) < 8) {
+            echo (new \app\core\ExceptionHandler)->invalidPassword();
+            return false;
+        }
+
+        // email must be valid
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            echo (new \app\core\ExceptionHandler)->invalidEmail();
+            return false;
+        }
+
+
+        // phone number must be valid
+        if (!preg_match("/^[0-9]*$/", $contactnumber)) {
+            echo (new \app\core\ExceptionHandler)->invalidPhoneNumber();
+            return false;
+        }
+
+        if (strlen($contactnumber) != 10) {
+            echo (new \app\core\ExceptionHandler)->invalidPhoneNumber();
+            return false;
+        }
+
+        return true;
+    }
+
+    public function registerPharmacyInLogin($username, $hashedpassword)
+    {
+        $db = (new Database())->getConnection();
+
+        try {
+            $sql = "INSERT INTO login (username, password, isDelivery, isPharmacy, isLab, isStaff, isSupplier) VALUES ('$username', '$hashedpassword', '0', '1', '0', '0', '0')";
+            $stmt = $db->prepare($sql);
+            $stmt->execute();
+
+            if ($stmt->affected_rows == 1) {
+                return true;
+            } else {
+                Logger::logError(print_r($stmt->error_list, true) . " " . $stmt->error);
+                return false;
+            }
+        } catch (\Exception $e) {
+            Logger::logError($e->getMessage());
+            return false;
+        }
+    }
+
+    private function deletePharmacyFromLogin($username)
+    {
+        $db = (new Database())->getConnection();
+
+        try {
+            $sql = "DELETE FROM login WHERE username = '$username'";
+            $stmt = $db->prepare($sql);
+            $stmt->execute();
+
+            if ($stmt->affected_rows == 1) {
+                return true;
+            } else {
+                Logger::logError(print_r($stmt->error_list, true) . " " . $stmt->error);
+                return false;
+            }
+        } catch (\Exception $e) {
+            Logger::logError($e->getMessage());
+            return false;
+        }
+    }
+
+
 }

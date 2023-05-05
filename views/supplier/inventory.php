@@ -18,26 +18,6 @@ use app\controllers\supplier\SupplierMedicineController;
 
 <body>
 
-    <nav>
-        <div class="nav-search">
-            <form onsubmit="preventDefault();" role="search">
-                <label for="search">Search for stuff</label>
-                <input autofocus id="search" placeholder="Search..." required type="search" />
-                <button type="submit">Go</button>
-            </form>
-        </div>
-        <div class="nav-inner">
-            <ul>
-                <li><a href="/login"><i class="fa fa-sign-out"></i></a></li>
-            </ul>
-            <a class="nav-profile" href="#">
-                <div class="nav-profile-image">
-                    <img alt="Profile image" src="../res/avatar-empty.png" />
-                </div>
-            </a>
-        </div>
-    </nav>
-
     <div class="sidebar">
         <div class="sidebar-inner">
             <nav class="sidebar-header">
@@ -92,18 +72,9 @@ use app\controllers\supplier\SupplierMedicineController;
         </div>
     </div>
     <nav>
-        <div class="nav-search">
-            <form onsubmit="preventDefault();" role="search">
-                <label for="search">Search for stuff</label>
-                <input autofocus id="search" placeholder="Search..." required type="search" />
-                <button type="submit">Go</button>
-            </form>
-        </div>
         <div class="nav-inner">
             <ul>
-                <li><a class="link" href="#"><i class="fa-solid fa-gear"></i></a></li>
                 <li><a class="link" href="/login"><i class="fa-solid fa-right-from-bracket"></i></a></li>
-                <li><a class="link" href="#"><i class="fa-solid fa-bell"></i></a></li>
             </ul>
             <a class="nav-profile" href="#">
                 <div class="nav-profile-image">
@@ -126,26 +97,34 @@ use app\controllers\supplier\SupplierMedicineController;
                                 <h3>Inventory</h3>
                                 </br>
                                 <div class="nav-search">
-                                    <form onsubmit="preventDefault();" role="search">
+                                    <form action="" method="get" onsubmit="preventDefault();" role="search">
                                         <label for="search">Filter Medicine</label>
-                                        <input autofocus id="search" placeholder="Filter Medicine" required
+                                        <input autofocus id="search" name="search" placeholder="Filter By Medicine Name"
                                             type="search" />
                                         <button type="submit">Go</button>
                                     </form>
                                 </div>
+
                                 </br></br>
                                 <table style="width: 100%; text-align:center;">
                                     <tr>
                                         <th>Medicine Name</th>
                                         <th>Scientific Name</th>
-                                        <th>Weight</th>
+                                        <th>Weight/Volume</th>
                                         <th>Mannufacture</th>
                                         <th>Quantity</th>
                                         <th>Unit Price</th>
                                     </tr>
-                                    <?php $supmed = new SupplierMedicineController;
-                                    $supmed->viewallMed($_SESSION['username']);
+                                    <?php
+                                    $supmed = new SupplierMedicineController;
+                                    if (isset($_GET['search'])) {
+                                        $searchTerm = $_GET['search'];
+                                        $supmed->viewallMedFilter($_SESSION['username'], $searchTerm);
+                                    } else {
+                                        $supmed->viewallMed($_SESSION['username']);
+                                    }
                                     ?>
+
 
                                 </table>
                             </div>

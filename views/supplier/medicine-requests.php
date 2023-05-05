@@ -10,33 +10,13 @@ use app\controllers\supplier\SupplierMedicineController;
 <head>
     <meta charset="UTF-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Supplier Inventory</title>
+    <title>Supplier Pending Medicine Request</title>
     <link href="../scss/vendor/demo.css" rel="stylesheet" />
     <!-- Font awesome kit -->
     <script crossorigin="anonymous" src="https://kit.fontawesome.com/9b33f63a16.js"></script>
 </head>
 
 <body>
-
-    <nav>
-        <div class="nav-search">
-            <form onsubmit="preventDefault();" role="search">
-                <label for="search">Search for stuff</label>
-                <input autofocus id="search" placeholder="Search..." required type="search" />
-                <button type="submit">Go</button>
-            </form>
-        </div>
-        <div class="nav-inner">
-            <ul>
-                <li><a href="/login"><i class="fa fa-sign-out"></i></a></li>
-            </ul>
-            <a class="nav-profile" href="#">
-                <div class="nav-profile-image">
-                    <img alt="Profile image" src="../res/avatar-empty.png" />
-                </div>
-            </a>
-        </div>
-    </nav>
 
     <div class="sidebar">
         <div class="sidebar-inner">
@@ -92,18 +72,9 @@ use app\controllers\supplier\SupplierMedicineController;
         </div>
     </div>
     <nav>
-        <div class="nav-search">
-            <form onsubmit="preventDefault();" role="search">
-                <label for="search">Search for stuff</label>
-                <input autofocus id="search" placeholder="Search..." required type="search" />
-                <button type="submit">Go</button>
-            </form>
-        </div>
         <div class="nav-inner">
             <ul>
-                <li><a class="link" href="#"><i class="fa-solid fa-gear"></i></a></li>
                 <li><a class="link" href="/login"><i class="fa-solid fa-right-from-bracket"></i></a></li>
-                <li><a class="link" href="#"><i class="fa-solid fa-bell"></i></a></li>
             </ul>
             <a class="nav-profile" href="#">
                 <div class="nav-profile-image">
@@ -127,25 +98,32 @@ use app\controllers\supplier\SupplierMedicineController;
                                 <h3>Pending Requests</h3>
                                 </br>
                                 <div class="nav-search">
-                                    <form onsubmit="preventDefault();" role="search">
+                                    <form action="" method="get" onsubmit="preventDefault();" role="search">
                                         <label for="search">Filter Medicine</label>
-                                        <input autofocus id="search" placeholder="Filter Medicine" required
+                                        <input autofocus id="search" name="search" placeholder="Filter By Medicine Name"
                                             type="search" />
                                         <button type="submit">Go</button>
                                     </form>
                                 </div>
+                                </br></br>
                                 <table style='width: 100%; text-align:center; padding-top:5%' class='scrollable'>
                                     <tr style='padding:1%; border-bottom: 1pt solid black;'>
                                         <th>Medicine Name</th>
                                         <th>Scientific Name</th>
-                                        <th>Weight</th>
+                                        <th>Weight/Volume</th>
                                         <th>Mannufacture</th>
                                         <th>Status</th>
                                         <th>Request ID</th>
                                     </tr>
+                                    <?php
 
-                                    <?php $supmed = new SupplierMedicineController;
-                                    $supmed->viewPendig($_SESSION['username']);
+                                    $supmed = new SupplierMedicineController;
+                                    if (isset($_GET['search'])) {
+                                        $searchTerm = $_GET['search'];
+                                        $supmed->viewPendigFilter($supName, $searchTerm);
+                                    } else {
+                                        $supmed->viewPendig($_SESSION['username']);
+                                    }
                                     ?>
 
 
