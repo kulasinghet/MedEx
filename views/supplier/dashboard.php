@@ -5,6 +5,7 @@ use app\models\PharmacyOrderModel;
 use app\models\SupplierMedicineModel;
 use app\models\ManufactureModel;
 use app\models\MedicineModel;
+use app\models\PharmacyOrderMedicineMedicineModel;
 
 ?>
 <!DOCTYPE html>
@@ -131,13 +132,13 @@ use app\models\MedicineModel;
                                 </div>
                                 <?php
                                 $sup = new SupplierModel;
-                                $order = new PharmacyOrderModel;
+                                $order = new PharmacyOrderMedicineMedicineModel;
                                 $supmed = new SupplierMedicineModel;
                                 $sup->getName($_SESSION['username']);
                                 $result1 = $order->getSupOrderCount($_SESSION['username']);
                                 if ($result1->num_rows > 0) {
                                     while ($row1 = $result1->fetch_assoc()) {
-                                        $ordercount = $row1['COUNT(id)'];
+                                        $ordercount = $row1['COUNT(orderid)'];
                                     }
                                 }
                                 $result2 = $supmed->getSupMedCount($_SESSION['username']);
@@ -161,12 +162,12 @@ use app\models\MedicineModel;
                             <div style="padding: 2%;">
                                 <?php
                                 $sup = new SupplierModel;
-                                $order = new PharmacyOrderModel;
+                                $order = new PharmacyOrderMedicineMedicineModel;
                                 $supmed = new SupplierMedicineModel;
-                                $result1 = $order->getPendingOrderCount();
+                                $result1 = $order->getPendingOrderCount($_SESSION['username']);
                                 if ($result1->num_rows > 0) {
                                     while ($row1 = $result1->fetch_assoc()) {
-                                        $ordercount = $row1['COUNT(id)'];
+                                        $ordercount = $row1['count(orderid)'];
                                     }
                                 }
                                 echo "<center><br/><br/> <br/><h3> There are " . $ordercount . " New Orders</h3><br>

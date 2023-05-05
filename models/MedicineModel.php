@@ -42,6 +42,7 @@ class MedicineModel extends Model
     {
         $db = (new Database())->getConnection();
         $sql = "SELECT * from medicine WHERE medicine.id = '$id'";
+        Logger::logDebug($sql);
         $result = $db->query($sql);
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
@@ -132,6 +133,7 @@ class MedicineModel extends Model
     {
         $db = (new Database())->getConnection();
         $sql = "SELECT id  from medicine";
+        Logger::logDebug($sql);
         $result = $db->query($sql);
         if ($result->num_rows > 0) {
             return $result;
