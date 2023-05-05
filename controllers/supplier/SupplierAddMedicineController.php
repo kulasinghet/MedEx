@@ -32,6 +32,11 @@ class SupplierAddMedicineController extends Controller
             $supmed->quantity = 0;
             $supmed->supName = $_SESSION['username'];
             $supmed->unitPrice = 0;
+            if (empty($med->weight)) {
+                $med->weight = 0;
+            } else {
+                $med->volume = 0;
+            }
 
             if ($med->weight < 1 && $med->volume < 1) {
                 echo (new \app\core\ExceptionHandler)->inValidWeight();

@@ -31,7 +31,7 @@ class MedicineModel extends Model
 
             return true;
         } catch (\Exception $e) {
-            ErrorLog::logError($e->getMessage());
+            Logger::logError($e->getMessage());
             echo $e->getMessage();
             return false;
         }
