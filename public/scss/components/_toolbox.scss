@@ -9,7 +9,7 @@ $toolbox-padding-vertical: .5rem !default;
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  gap: 1.5rem;
+  gap: 1rem;
   margin-bottom: 1rem;
   padding: 0 $toolbox-padding-horizontal;
   //background: linear-gradient(0deg, rgb(32, 38, 57) 11.4%, rgb(63, 76, 119) 70.2%);
@@ -37,6 +37,10 @@ $toolbox-padding-vertical: .5rem !default;
     width: 1px;
     height: 50px;
     background: rgba(32, 32, 86, 0.37);
+  }
+
+  .placeholder {
+    width: 100%;
   }
 
   span, label {

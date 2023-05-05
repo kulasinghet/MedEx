@@ -20,22 +20,30 @@ class EmployeeResController extends AbstractCRUDController
         $store->flag_aprv_one_usr = $this->getEntityFlag($request);
         $store->flag_aprv_one_act = $this->getActionFlag($request);
 
-        $obj = HyperPharmacyModel::getByUsername($store->flag_aprv_one_usr);
-        if ($obj) {
-            // checking whether there is a direct action to be performed
-            switch ($store->flag_aprv_one_act) {
-                case 'delete':
-                    $obj->delete();
-                    header('Location: /employee/res?f=pharmacy');
-                    break;
-                default:
-                    // loading the approval details page
-                    $store->aprv_one_obj = $obj;
-                    $this -> render("employee/res/pharmacy.php");
-                    break;
-            }
+        //identifies the request is NEW or UPDATE
+        if ($store->flag_aprv_one_usr == '') {
+            // loading the new pharmacy page
+            $store->aprv_one_obj = null; // make sure there is no object in the store
+            $this -> render("employee/res/pharmacy.php");
         } else {
-            header('Location: /employee/res?f=pharmacy');
+            // loading the update pharmacy page
+            $obj = HyperPharmacyModel::getByUsername($store->flag_aprv_one_usr);
+            if ($obj) {
+                // checking whether there is a direct action to be performed
+                switch ($store->flag_aprv_one_act) {
+                    case 'delete':
+                        $obj->delete();
+                        header('Location: /employee/res?f=pharmacy');
+                        break;
+                    default:
+                        // loading the approval details page
+                        $store->aprv_one_obj = $obj;
+                        $this -> render("employee/res/pharmacy.php");
+                        break;
+                }
+            } else {
+                header('Location: /employee/res?f=pharmacy');
+            }
         }
     }
 
@@ -45,6 +53,10 @@ class EmployeeResController extends AbstractCRUDController
 
         // retrieving the employee store
         $store = EmployeeStore::getEmployeeStore();
+
+        // start output buffering
+        ob_start();
+
         // retrieving data from the request
         if ($request->isPost()) {
             $params = $this->getRequestBody($_POST);
@@ -88,6 +100,8 @@ class EmployeeResController extends AbstractCRUDController
             }
         }
 
+        // flush output buffer and send header
+        ob_end_flush();
         header('Location: /employee/res?f=pharmacy');
     }
 
@@ -100,22 +114,30 @@ class EmployeeResController extends AbstractCRUDController
         $store->flag_aprv_one_usr = $this->getEntityFlag($request);
         $store->flag_aprv_one_act = $this->getActionFlag($request);
 
-        $obj = HyperSupplierModel::getByUsername($store->flag_aprv_one_usr);
-        if ($obj) {
-            // checking whether there is a direct action to be performed
-            switch ($store->flag_aprv_one_act) {
-                case 'delete':
-                    $obj->delete();
-                    header('Location: /employee/res?f=supplier');
-                    break;
-                default:
-                    // loading the approval details page
-                    $store->aprv_one_obj = $obj;
-                    $this -> render("employee/res/supplier.php");
-                    break;
-            }
+        //identifies the request is NEW or UPDATE
+        if ($store->flag_aprv_one_usr == '') {
+            // loading the new supplier page
+            $store->aprv_one_obj = null; // make sure there is no object in the store
+            $this -> render("employee/res/supplier.php");
         } else {
-            header('Location: /employee/res?f=supplier');
+            // loading the update supplier page
+            $obj = HyperSupplierModel::getByUsername($store->flag_aprv_one_usr);
+            if ($obj) {
+                // checking whether there is a direct action to be performed
+                switch ($store->flag_aprv_one_act) {
+                    case 'delete':
+                        $obj->delete();
+                        header('Location: /employee/res?f=supplier');
+                        break;
+                    default:
+                        // loading the approval details page
+                        $store->aprv_one_obj = $obj;
+                        $this -> render("employee/res/supplier.php");
+                        break;
+                }
+            } else {
+                header('Location: /employee/res?f=supplier');
+            }
         }
     }
 
@@ -125,9 +147,14 @@ class EmployeeResController extends AbstractCRUDController
 
         // retrieving the employee store
         $store = EmployeeStore::getEmployeeStore();
+
+        // start output buffering
+        ob_start();
+
         // retrieving data from the request
         if ($request->isPost()) {
             $params = $this->getRequestBody($_POST);
+            //$params = $request->getBody();
             // checking whether the supplier exists in the store.
             //If not, it means this is s insert request
             if ($store->aprv_one_obj) {
@@ -162,6 +189,8 @@ class EmployeeResController extends AbstractCRUDController
             }
         }
 
+        // flush output buffer and send header
+        ob_end_flush();
         header('Location: /employee/res?f=supplier');
     }
 
@@ -174,22 +203,30 @@ class EmployeeResController extends AbstractCRUDController
         $store->flag_aprv_one_usr = $this->getEntityFlag($request);
         $store->flag_aprv_one_act = $this->getActionFlag($request);
 
-        $obj = HyperDeliveryModel::getByUsername($store->flag_aprv_one_usr);
-        if ($obj) {
-            // checking whether there is a direct action to be performed
-            switch ($store->flag_aprv_one_act) {
-                case 'delete':
-                    $obj->delete();
-                    header('Location: /employee/res?f=delivery');
-                    break;
-                default:
-                    // loading the approval details page
-                    $store->aprv_one_obj = $obj;
-                    $this -> render("employee/res/delivery.php");
-                    break;
-            }
+        //identifies the request is NEW or UPDATE
+        if ($store->flag_aprv_one_usr == '') {
+            // loading the new delivery page
+            $store->aprv_one_obj = null; // make sure there is no object in the store
+            $this -> render("employee/res/delivery.php");
         } else {
-            header('Location: /employee/res?f=delivery');
+            // loading the update delivery page
+            $obj = HyperDeliveryModel::getByUsername($store->flag_aprv_one_usr);
+            if ($obj) {
+                // checking whether there is a direct action to be performed
+                switch ($store->flag_aprv_one_act) {
+                    case 'delete':
+                        $obj->delete();
+                        header('Location: /employee/res?f=delivery');
+                        break;
+                    default:
+                        // loading the approval details page
+                        $store->aprv_one_obj = $obj;
+                        $this -> render("employee/res/delivery.php");
+                        break;
+                }
+            } else {
+                header('Location: /employee/res?f=delivery');
+            }
         }
     }
 
@@ -199,6 +236,10 @@ class EmployeeResController extends AbstractCRUDController
 
         // retrieving the employee store
         $store = EmployeeStore::getEmployeeStore();
+
+        // start output buffering
+        ob_start();
+
         // retrieving data from the request
         if ($request->isPost()) {
             $params = $this->getRequestBody($_POST);
@@ -250,6 +291,8 @@ class EmployeeResController extends AbstractCRUDController
             }
         }
 
+        // flush output buffer and send header
+        ob_end_flush();
         header('Location: /employee/res?f=delivery');
     }
 
@@ -262,22 +305,30 @@ class EmployeeResController extends AbstractCRUDController
         $store->flag_aprv_one_usr = $this->getEntityFlag($request);
         $store->flag_aprv_one_act = $this->getActionFlag($request);
 
-        $obj = HyperLabModel::getByUsername($store->flag_aprv_one_usr);
-        if ($obj) {
-            // checking whether there is a direct action to be performed
-            switch ($store->flag_aprv_one_act) {
-                case 'delete':
-                    $obj->delete();
-                    header('Location: /employee/res?f=lab');
-                    break;
-                default:
-                    // loading the approval details page
-                    $store->aprv_one_obj = $obj;
-                    $this -> render("employee/res/lab.php");
-                    break;
-            }
+        //identifies the request is NEW or UPDATE
+        if ($store->flag_aprv_one_usr == '') {
+            // loading the new lab page
+            $store->aprv_one_obj = null; // make sure there is no object in the store
+            $this -> render("employee/res/lab.php");
         } else {
-            header('Location: /employee/res?f=lab');
+            // loading the update lab page
+            $obj = HyperLabModel::getByUsername($store->flag_aprv_one_usr);
+            if ($obj) {
+                // checking whether there is a direct action to be performed
+                switch ($store->flag_aprv_one_act) {
+                    case 'delete':
+                        $obj->delete();
+                        header('Location: /employee/res?f=lab');
+                        break;
+                    default:
+                        // loading the approval details page
+                        $store->aprv_one_obj = $obj;
+                        $this -> render("employee/res/lab.php");
+                        break;
+                }
+            } else {
+                header('Location: /employee/res?f=lab');
+            }
         }
     }
 
@@ -287,6 +338,10 @@ class EmployeeResController extends AbstractCRUDController
 
         // retrieving the employee store
         $store = EmployeeStore::getEmployeeStore();
+
+        // start output buffering
+        ob_start();
+
         // retrieving data from the request
         if ($request->isPost()) {
             $params = $this->getRequestBody($_POST);
@@ -322,6 +377,8 @@ class EmployeeResController extends AbstractCRUDController
             }
         }
 
+        // flush output buffer and send header
+        ob_end_flush();
         header('Location: /employee/res?f=lab');
     }
 }
