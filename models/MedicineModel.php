@@ -125,11 +125,25 @@ class MedicineModel extends Model
     }
 
 
-    // Get ids of all Medicine (to compare unadded medicine for a supplier
+    // Get ids of all Medicine (to compare unadded medicine for a supplier)
     public function getallMedid()
     {
         $db = (new Database())->getConnection();
         $sql = "SELECT id  from medicine";
+        Logger::logDebug($sql);
+        $result = $db->query($sql);
+        if ($result->num_rows > 0) {
+            return $result;
+        } else {
+            return false;
+        }
+    }
+
+    // Get ids of all Medicine (to compare unadded medicine for a supplier - filter)
+    public function getallMedidFilter($search)
+    {
+        $db = (new Database())->getConnection();
+        $sql = "SELECT id  from medicine WHERE medName like '%$search%'";
         Logger::logDebug($sql);
         $result = $db->query($sql);
         if ($result->num_rows > 0) {
@@ -139,15 +153,14 @@ class MedicineModel extends Model
         $db->close();
     }
 
-    // Get ids of all Medicine (to compare unadded medicine for a supplier - filter
-    public function getallMedidFilter($search)
+    public function getMedicinePrice(mixed $id)
     {
         $db = (new Database())->getConnection();
-        $sql = "SELECT id  from medicine WHERE medName like '%$search%'";
-        Logger::logDebug($sql);
+        $sql = "SELECT sellingPrice AS price FROM stock WHERE medId = '$id' ORDER BY id DESC LIMIT 1";
         $result = $db->query($sql);
         if ($result->num_rows > 0) {
-            return $result;
+            $row = $result->fetch_assoc();
+            return $row['price'];
         }
 
         $db->close();
