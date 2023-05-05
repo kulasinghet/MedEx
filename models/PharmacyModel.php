@@ -229,5 +229,24 @@ class PharmacyModel extends Model
         }
     }
 
+    public function getPharmacyProfile(mixed $username)
+    {
+        $db = (new Database())->getConnection();
+
+        try {
+            $sql = "SELECT * FROM pharmacy WHERE username = '$username'";
+            $result = $db->query($sql);
+
+            if ($result->num_rows == 1) {
+                return $result->fetch_assoc();
+            } else {
+                return false;
+            }
+        } catch (\Exception $e) {
+            Logger::logError($e->getMessage());
+            return false;
+        }
+    }
+
 
 }

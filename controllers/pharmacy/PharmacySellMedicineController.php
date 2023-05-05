@@ -55,7 +55,7 @@ class PharmacySellMedicineController extends Controller
 
                     $pdf = new \app\core\PDF();
                     $medicineIdsforPDF = (new \app\models\PharmacySellModel())->getMedicineSellsByOrderID($result);
-                    $html = $pdf->invoiceToHTML($result, date("Y-m-d"), $this->totalPrice, $medicineIdsforPDF, $_SESSION['username']);
+                    $html = $pdf->invoiceToHTML($result, date("Y-m-d H:i:s"), $this->totalPrice, $medicineIdsforPDF, $_SESSION['username'], $customer_money);
 
                     if ($pdf->generatePDF($html, $result)) {
                         $flag = true;

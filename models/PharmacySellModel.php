@@ -79,7 +79,8 @@ class PharmacySellModel extends Model
     public function createSellOrder($pharmacyUsername, $totalPrice, $medicinIDArray, $customer_money): bool | string
     {
         $this->setInvoiceId($this->createRandomID('pharmacysell'));
-        $order_date = date("Y-m-d");
+        // sql date time format
+        $order_date = date("Y-m-d H:i:s");
 
         $sql = "INSERT INTO pharmacysell (invoice_id, pharmacyUsername, invoice_date, bill_total, customer_money) VALUES ('$this->invoice_id', '$pharmacyUsername', '$order_date', '$totalPrice', '$customer_money');";
 

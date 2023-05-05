@@ -22,9 +22,11 @@ echo $components->sideBar('invoices');
 
                         <div class="filter-by-date">
                             <label for="start-date">Start Date:</label>
-                            <input type="date" name="start-date" id="start-date" onchange="handleFiltering()" value="<?php echo date('Y-m-d'); ?>">
+                            <input type="date" name="start-date" id="start-date" onchange="handleFiltering()"
+                                   value="<?php echo date('Y-m-d'); ?>">
                             <label for="end-date">End Date:</label>
-                            <input type="date" name="end-date" id="end-date" onchange="handleFiltering()" value="<?php echo date('Y-m-d'); ?>">
+                            <input type="date" name="end-date" id="end-date" onchange="handleFiltering()"
+                                   value="<?php echo date('Y-m-d'); ?>">
                             <button class="date-filter" onclick="handleFiltering()">Filter</button>
                         </div>
 
@@ -86,9 +88,9 @@ echo $components->sideBar('invoices');
             </div>
 
 
-
             <div id="order-new-medicine">
-                <a class="btn ' . ($selectedPage == 'order-medicine' ? 'disabled' : '') . '" href="/pharmacy/sell-medicine">
+                <a class="btn ' . ($selectedPage == 'order-medicine' ? 'disabled' : '') . '"
+                   href="/pharmacy/sell-medicine">
                     <i class="fa-solid fa-circle-plus"></i> Sell Medicine</a>
             </div>
 
@@ -145,7 +147,7 @@ echo $components->sideBar('invoices');
     }
 
 
-    function checkDeliveryDateInFilter($orderDate ,$filter) {
+    function checkDeliveryDateInFilter($orderDate, $filter) {
 
         $dateInRow = new Date($orderDate);
         $dateNow = new Date();
@@ -176,9 +178,9 @@ echo $components->sideBar('invoices');
 
     function getWeekNumber(d) {
         d = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
-        d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay()||7));
-        var yearStart = new Date(Date.UTC(d.getUTCFullYear(),0,1));
-        var weekNo = Math.ceil(( ( (d - yearStart) / 86400000) + 1)/7);
+        d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay() || 7));
+        var yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+        var weekNo = Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
         return weekNo;
     }
 
@@ -186,10 +188,10 @@ echo $components->sideBar('invoices');
 
 <script>
 
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         var viewOrderButtons = document.getElementsByClassName('view-order');
         for (var i = 0; i < viewOrderButtons.length; i++) {
-            viewOrderButtons[i].addEventListener('click', function() {
+            viewOrderButtons[i].addEventListener('click', function () {
                 // pass id of the anchor tag to the function
                 handleViewOrderDetailsClick(this.id);
             });
@@ -245,7 +247,7 @@ echo $components->sideBar('invoices');
                     medicineInformationForSwal += '<tr>';
                     medicineInformationForSwal += '<td>' + orderedMedicines[key].medId + '</td>';
                     medicineInformationForSwal += '<td>' + orderedMedicines[key].medName + '</td>';
-                    medicineInformationForSwal += '<td style="text-align: center">' + orderedMedicines[key].sciName + '</td>';
+                    medicineInformationForSwal += '<td style="text-align: justify">' + orderedMedicines[key].sciName + '</td>';
                     medicineInformationForSwal += '<td style="text-align: center">' + orderedMedicines[key].weight + '</td>';
                     medicineInformationForSwal += '<td style="text-align: center">' + orderedMedicines[key].unitPrice + '</td>';
                     medicineInformationForSwal += '<td style="text-align: center">' + orderedMedicines[key].quantity + '</td>';
@@ -262,10 +264,8 @@ echo $components->sideBar('invoices');
             }
 
 
-
-
             if (orderData.billTotal > 0) {
-                    console.log("Order Summary" + '\t' + $orderId);
+                console.log("Order Summary" + '\t' + $orderId);
                 swal({
                     title: "Bill Summary" + '\t' + $orderId,
                     content: {
