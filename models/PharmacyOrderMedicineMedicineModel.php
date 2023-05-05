@@ -62,6 +62,18 @@ class PharmacyOrderMedicineMedicineModel extends Model
         $db->close();
     }
 
+    public function getPendingOrderFullDetailsFilterd($searchTerm)
+    {
+        $db = (new Database())->getConnection();
+        $sql = "SELECT orderid,pharmacyUsername,pharmacyordermedicine.medId AS ordermedId,medicine.weight,medicine.volume,medicine.manId,quantity, medicine.medName from pharmacyordermedicine JOIN medicine WHERE pharmacyordermedicine.order_status = '0' AND medicine.id = pharmacyordermedicine.medId AND medName like '%$searchTerm%' ORDER BY orderid DESC";
+        Logger::logDebug($sql);
+        $result = $db->query($sql);
+        if ($result->num_rows > 0) {
+            return $result;
+        }
+        $db->close();
+    }
+
     public function getPendingOrderCount($uname)
     {
         $db = (new Database())->getConnection();
@@ -78,6 +90,17 @@ class PharmacyOrderMedicineMedicineModel extends Model
     {
         $db = (new Database())->getConnection();
         $sql = "SELECT orderid from pharmacyordermedicine WHERE pharmacyordermedicine.order_status = '1' && pharmacyordermedicine.supName = '$name'";
+        $result = $db->query($sql);
+        if ($result->num_rows > 0) {
+            return $result;
+        }
+        $db->close();
+    }
+
+    public function getSupOrdersFilter($name, $searchTerm)
+    {
+        $db = (new Database())->getConnection();
+        $sql = "SELECT orderid from pharmacyordermedicine JOIN medicine on pharmacyordermedicine.medId = medicine.id WHERE pharmacyordermedicine.order_status = '1' && pharmacyordermedicine.supName = '$name' && medicine.medName like '%$searchTerm%'";
         $result = $db->query($sql);
         if ($result->num_rows > 0) {
             return $result;

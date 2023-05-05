@@ -139,6 +139,20 @@ class MedicineModel extends Model
         }
     }
 
+    // Get ids of all Medicine (to compare unadded medicine for a supplier - filter)
+    public function getallMedidFilter($search)
+    {
+        $db = (new Database())->getConnection();
+        $sql = "SELECT id  from medicine WHERE medName like '%$search%'";
+        Logger::logDebug($sql);
+        $result = $db->query($sql);
+        if ($result->num_rows > 0) {
+            return $result;
+        }
+
+        $db->close();
+    }
+
     public function getMedicinePrice(mixed $id)
     {
         $db = (new Database())->getConnection();
