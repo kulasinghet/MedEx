@@ -101,3 +101,4 @@ fabric.properties
 /core/.env
 /.idea/inspectionProfiles/Project_Default.xml
 /node_modules/
+/logs/
