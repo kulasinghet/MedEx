@@ -158,6 +158,9 @@
     border-radius: 6px;
     box-shadow: inset 2px 2px 5px 0 rgba(0, 0, 0, 0.2), inset -2px -2px 5px 0 rgba(0, 0, 0, 0.2);
 
+    overflow-x: hidden;
+    overflow-y: auto;
+
     > *:last-child {
       margin-bottom: 0;
     }
