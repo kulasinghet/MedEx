@@ -92,18 +92,9 @@ use app\controllers\supplier\AcceptOrdersController;
         </div>
     </div>
     <nav>
-        <div class="nav-search">
-            <form onsubmit="preventDefault();" role="search">
-                <label for="search">Search for stuff</label>
-                <input autofocus id="search" placeholder="Search..." required type="search" />
-                <button type="submit">Go</button>
-            </form>
-        </div>
         <div class="nav-inner">
             <ul>
-                <li><a class="link" href="#"><i class="fa-solid fa-gear"></i></a></li>
                 <li><a class="link" href="/login"><i class="fa-solid fa-right-from-bracket"></i></a></li>
-                <li><a class="link" href="#"><i class="fa-solid fa-bell"></i></a></li>
             </ul>
             <a class="nav-profile" href="#">
                 <div class="nav-profile-image">
@@ -126,9 +117,9 @@ use app\controllers\supplier\AcceptOrdersController;
                                 <h3>Accept Orders</h3>
                                 </br>
                                 <div class="nav-search">
-                                    <form onsubmit="preventDefault();" role="search">
-                                        <label for="search">Accept Order</label>
-                                        <input autofocus id="search" placeholder="Filter Medicine" required
+                                    <form action="" method="get" onsubmit="preventDefault();" role="search">
+                                        <label for="search">Filter Medicine</label>
+                                        <input autofocus id="search" name="search" placeholder="Filter By Medicine Name"
                                             type="search" />
                                         <button type="submit">Go</button>
                                     </form>
@@ -147,7 +138,12 @@ use app\controllers\supplier\AcceptOrdersController;
 
                                     <?php
                                     $order = new AcceptOrdersController;
-                                    $order->ViewPendingOrders();
+                                    if (isset($_GET['search'])) {
+                                        $searchTerm = $_GET['search'];
+                                        $order->ViewPendingOrdersFiltered($searchTerm);
+                                    } else {
+                                        $order->ViewPendingOrders();
+                                    }
                                     ?>
                                 </table>
                             </div>

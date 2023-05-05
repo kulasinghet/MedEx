@@ -46,6 +46,18 @@ class SupplierMedicineModel extends Model
 
     }
 
+    public function getSupMedicineFilter($uname, $search)
+    {
+        $db = (new Database())->getConnection();
+        $sql = "SELECT medId,medicine.medName as name,verified,quantity,unitPrice from supplier_medicine JOIN medicine WHERE supplier_medicine.medId=medicine.id && supplier_medicine.supName = 'Tsup' && verified='1' && medName like '%$search%'";
+        $result = $db->query($sql);
+        if ($result->num_rows > 0) {
+            return $result;
+        }
+        $db->close();
+
+    }
+
     public function getLowSupMedicine($uname)
     {
         $db = (new Database())->getConnection();
@@ -83,6 +95,18 @@ class SupplierMedicineModel extends Model
 
     }
 
+    public function getPendingMedicineFilter($uname, $searchTerm)
+    {
+        $db = (new Database())->getConnection();
+        $sql = "SELECT medId,medName,verified,quantity,unitPrice from supplier_medicine JOIN medicine WHERE medicine.id=supplier_medicine.medId AND supplier_medicine.supName = '$uname' && verified='0' AND medName like '%$searchTerm%'";
+        $result = $db->query($sql);
+        if ($result->num_rows > 0) {
+            return $result;
+        }
+        $db->close();
+
+
+    }
     public function getSupMedIds($uname)
     {
         Logger::logDebug("cALLED");
