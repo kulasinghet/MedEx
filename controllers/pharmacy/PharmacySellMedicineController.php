@@ -25,25 +25,32 @@ class PharmacySellMedicineController extends Controller
 
             if (isset($_SESSION['username'])) {
 
+                Logger::logDebug('*****************************');
+
                 $form = $request->getBody();
+
+                Logger::logDebug(print_r($form, true));
+
                 $medicineIds = $this->getMedicineIds($form);
 
                 if (count($medicineIds) > 0) {
                     foreach ($medicineIds as $medicineId) {
                         $this->totalPrice += $this->getPrice($medicineId->getMedicineId()) * $medicineId->getQuantity();
+                        Logger::logDebug('Medicine ID ' . $medicineId->getMedicineId() . ' Quantity ' . $medicineId->getQuantity() . ' Price ' . $this->getPrice($medicineId->getMedicineId()));
                     }
                 }
-
+                Logger::logDebug('Total price ' . $this->totalPrice);
                 $flag = true;
 
-                $result = $order->createSellOrder($_SESSION['username'], $this->totalPrice, $medicineIds);
+                $customer_money = $request->getBody()['customer_money'];
+                $result = $order->createSellOrder($_SESSION['username'], $this->totalPrice, $medicineIds, $customer_money);
 
-                Logger::logDebug($result);
+                Logger::logDebug('Order ID ' . $result);
 
                 if ($result) {
 
                     $qr = new \app\core\QR();
-                    $api = $_ENV['BASE_URL'] . '/pdf/' . $result . '.pdf';
+                    $api = $_ENV['BASE_URL'] . '/report/medicine-order?orderId=' . $result;
                     $qr->generateQRFromJSON($api, $result, 10, 'L');
 
                     $pdf = new \app\core\PDF();
@@ -84,8 +91,8 @@ class PharmacySellMedicineController extends Controller
     {
         $price =  (new \app\models\MedicineModel())->getMedicinePrice($id);
 
-        if ($price['price'] > 0) {
-            return $price['price'];
+        if ($price > 0) {
+            return $price;
         } else {
             return 0;
         }
@@ -117,8 +124,11 @@ class PharmacySellMedicineController extends Controller
         $medicineIds = [];
         foreach ($form as $key => $value) {
             if ($value > 0) {
-                $medicineOrder = new MedicineOrderModel($key, $value);
-                $medicineIds[] = $medicineOrder;
+                // remove $customer_money from array
+                if ($key != 'customer_money') {
+                    $medicineOrder = new MedicineOrderModel($key, $value);
+                    $medicineIds[] = $medicineOrder;
+                }
             }
         }
         return $medicineIds;
@@ -250,6 +260,7 @@ class PharmacySellMedicineController extends Controller
             'pharmacyUsername' => $result[0]['pharmacyUsername'],
             'invoiceDate' => $result[0]['invoice_date'],
             'billTotal' => $result[0]['bill_total'],
+            'customer_money' => $result[0]['customer_money'],
         ];
 
         header('Content-Type: application/json');
