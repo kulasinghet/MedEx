@@ -940,3 +940,10 @@
 2023/05/06 09:49:17 SELECT invoice_date, SUM(bill_total) AS total FROM pharmacysell WHERE pharmacyUsername = 'testPharmacy' AND invoice_date >= DATE_SUB(CURDATE(), INTERVAL 7 DAY) GROUP BY invoice_date ORDER BY invoice_date DESC LIMIT 7
 2023/05/06 09:49:18 SELECT SUM(bill_total) AS total FROM pharmacysell WHERE pharmacyUsername = 'testPharmacy' AND MONTH(invoice_date) = MONTH(CURRENT_DATE()) AND YEAR(invoice_date) = YEAR(CURRENT_DATE())
 2023/05/06 09:49:19 SELECT SUM(quantity * stock.buying_price) AS total  FROM pharmacysellmedicine LEFT JOIN stock ON pharmacysellmedicine.medId = stock.medId WHERE pharmacysellmedicine.invoice_id IN (SELECT invoice_id FROM pharmacysell WHERE pharmacyUsername = 'testPharmacy' AND MONTH(invoice_date) = MONTH(CURRENT_DATE()) AND YEAR(invoice_date) = YEAR(CURRENT_DATE()))
+2023/05/06 16:34:59 getAcceptedOrdersCount() returned: 2
+2023/05/06 16:35:05 getTotalOrdersCount() returned: 2
+2023/05/06 16:35:10 SELECT invoice_date, SUM(bill_total) AS total FROM pharmacysell WHERE pharmacyUsername = '' AND invoice_date >= DATE_SUB(CURDATE(), INTERVAL 7 DAY) GROUP BY invoice_date ORDER BY invoice_date DESC LIMIT 7
+2023/05/06 16:35:11 SELECT SUM(bill_total) AS total FROM pharmacysell WHERE pharmacyUsername = '' AND MONTH(invoice_date) = MONTH(CURRENT_DATE()) AND YEAR(invoice_date) = YEAR(CURRENT_DATE())
+2023/05/06 16:35:13 SELECT SUM(quantity * stock.buying_price) AS total  FROM pharmacysellmedicine LEFT JOIN stock ON pharmacysellmedicine.medId = stock.medId WHERE pharmacysellmedicine.invoice_id IN (SELECT invoice_id FROM pharmacysell WHERE pharmacyUsername = '' AND MONTH(invoice_date) = MONTH(CURRENT_DATE()) AND YEAR(invoice_date) = YEAR(CURRENT_DATE()))
+2023/05/06 16:55:16 SELECT * FROM pharmacysell WHERE pharmacyUsername = 'testPharmacy' ORDER BY invoice_date DESC, invoice_id DESC
+2023/05/06 16:55:21 SELECT pharmacysellmedicine.medId, pharmacysellmedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, stock.sellingPrice as unitPrice FROM pharmacysellmedicine LEFT JOIN medicine ON pharmacysellmedicine.medid = medicine.id LEFT JOIN stock ON medicine.id = stock.medId WHERE invoice_id = 'BILL40'

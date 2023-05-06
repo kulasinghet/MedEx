@@ -273,5 +273,32 @@ class PharmacyModel extends Model
         }
     }
 
+    public function reportPurchase(array $form)
+    {
+        $db = (new Database())->getConnection();
+
+        $orderID = $form['orderID'];
+        $rating = $form['rating'];
+        $comment = $form['comment'];
+        $reportTime = date("Y-m-d H:i:s");
+
+        try {
+            $sql = "INSERT INTO purchaseReport (orderID, rating, comment, reportTime) VALUES ('$orderID', '$rating', '$comment', '$reportTime')";
+            $stmt = $db->prepare($sql);
+            $stmt->execute();
+
+            if ($stmt->affected_rows == 1) {
+                return true;
+            } else {
+                Logger::logError(print_r($stmt->error_list, true) . " " . $stmt->error);
+                return false;
+            }
+        } catch (\Exception $e) {
+            Logger::logError($e->getMessage());
+            return false;
+        }
+
+    }
+
 
 }

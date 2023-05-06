@@ -57,8 +57,9 @@ class Request
         return $this->getMethod() === 'post';
     }
 
-    public function getParams(): array
+    public function getParams($paramName = null)
     {
+
         $params = [];
         $path = $this->getPath();
         $path = explode('/', $path);
@@ -67,9 +68,26 @@ class Request
                 $params[] = $value;
             }
         }
-        parse_str($_SERVER['QUERY_STRING'], $query_params);
 
-        return array_merge($params, $query_params);
+        $query_params = [];
+
+        if (isset($_SERVER['QUERY_STRING'])) {
+            parse_str($_SERVER['QUERY_STRING'], $query_params);
+        } else {
+            $query_params = [];
+        }
+
+        $fullaray =  array_merge($params, $query_params);
+        return $fullaray;
     }
+
+    function isParamPassed($paramName) {
+        if (isset($_GET[$paramName])) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 
 }
