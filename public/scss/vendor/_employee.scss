@@ -149,6 +149,7 @@ $report-itm-border-radius: 6px;
     --rpt-itm-color-base: #{$color-base};
     --rpt-itm-color-opaque-1: #{darken($color-base, 20%)};
     --rpt-itm-color-opaque-2: #{darken($color-base, 40%)};
+    --rpt-itm-color-light-1: #{lighten($color-base, 20%)};
   }
 }
 
@@ -182,8 +183,11 @@ $report-itm-border-radius: 6px;
   --rpt-itm-color-base: #{$white};
   --rpt-itm-color-opaque-1: #{darken($white, 20%)};
   --rpt-itm-color-opaque-2: #{darken($white, 40%)};
+  --rpt-itm-color-light-1: #{lighten($white, 20%)};
 
+  position: relative;
   width: 100%;
+
   margin-bottom: .8rem;
   border: 2px solid var(--rpt-itm-color-base);
   border-radius: $report-itm-border-radius;
@@ -193,9 +197,36 @@ $report-itm-border-radius: 6px;
   cursor: pointer;
 
   .report-inner {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+
+      background: var(--rpt-itm-color-opaque-2);
+      opacity: 0;
+    }
+
+    &:hover {
+      &:after {
+        background: var(--rpt-itm-color-light-1);
+        opacity: 0.2;
+      }
+    }
+
+    &:active {
+      &:after {
+        background: var(--rpt-itm-color-opaque-2);
+        opacity: 0.2;
+      }
+    }
 
     .header {
       width: 100%;
@@ -252,9 +283,148 @@ $report-itm-border-radius: 6px;
 
     .report-body {
       width: 100%;
+      max-height: 40px;
       padding: .5rem;
       background: var(--rpt-itm-color-opaque-1);
       border-radius: 6px 0 6px 6px;
+      overflow-y: hidden;
+      transition: 800ms max-height cubic-bezier(0.19, 1, 0.22, 1);
+
+      > * {
+        margin: 0;
+      }
+    }
+
+    .report-actions {
+      display: none;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 5;
+
+      .report-btn {
+        position: relative;
+        top: 0;
+        left: 0;
+        //width: 250px;
+        //height: 50px;
+        width: 180px;
+        height: 40px;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &::before {
+          content: "";
+          position: absolute;
+          left: 50%;
+          transform: translatex(-50%);
+          bottom: -5px;
+          width: 30px;
+          height: 10px;
+          background: #f00;
+          border-radius: 10px;
+          transition: 0.5s;
+          transition-delay: 0.5ms;
+        }
+
+        &::after {
+          content: "";
+          position: absolute;
+          left: 50%;
+          transform: translatex(-50%);
+          top: -5px;
+          width: 30px;
+          height: 10px;
+          background: #f00;
+          border-radius: 10px;
+          transition: 0.5s;
+          transition-delay: 0.5ms;
+        }
+
+        a {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background: rgba(255, 255, 255, 0.05);
+          box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3);
+          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+          border-top: 1px solid rgba(255, 255, 255, 0.1);
+          border-radius: 30px;
+          padding: 10px;
+          letter-spacing: 1px;
+          text-decoration: none;
+          overflow: hidden;
+          color: $dark;
+          font-weight: 400;
+          z-index: 1;
+          transition: 0.5s;
+          backdrop-filter: blur(15px);
+
+          &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to left, rgba(255, 255, 255, 0.15), transparent);
+            transform: skewX(45deg) translate(0);
+            transition: 0.5s;
+            filter: blur(0px);
+          }
+        }
+
+        &:hover {
+          &::before /* light-up button */{
+            bottom: 0;
+            height: 50%;
+            width: 80%;
+            border-radius: 30px;
+          }
+
+          &::after /* light-up button */{
+            top: 0;
+            height: 50%;
+            width: 80%;
+            border-radius: 30px;
+          }
+
+          a {
+            letter-spacing: 3px;
+
+            &::before {
+              transform: skewX(45deg) translate(200px);
+            }
+          }
+        }
+
+        &::before, &::after {
+          background: #1eff45;
+          box-shadow: 0 0 5px #1eff45, 0 0 15px #1eff45, 0 0 30px #1eff45, 0 0 60px #1eff45;
+        }
+      }
+    }
+  }
+
+  &:hover {
+    .report-actions {
+      display: block;
+    }
+  }
+
+  &.opened {
+    .report-inner {
+      .report-body {
+        max-height: 800px;
+        overflow-y: visible;
+      }
     }
   }
 

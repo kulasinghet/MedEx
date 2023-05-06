@@ -69,47 +69,9 @@ echo $components->createNavbar();
 <script type="application/javascript">
     // you can configure variables in here.
     configs.stage = 'dev';
-    configs.customFormElmPath = '/scss/components/forms';
-
-    // adding simplebar to the report list
-    new SimpleBar(document.querySelector('.report-list .list-content'));
-
-    // manipulating report items
-    document.querySelectorAll('.report-itm').forEach((itm) => {
-        const report_types = ['pharmacy', 'supplier', 'delivery', 'lab'];
-
-        itm.addEventListener('click', (e) => {
-            e.stopPropagation();
-
-            if (e.currentTarget === itm) {
-                console.log('/employee/reports/seen?et=' + itm.getAttribute('data-id'));
-
-                // getting a response from the server
-                fetch('/employee/reports/seen?et=' + itm.getAttribute('data-id'))
-                    .then(r => r.json())
-                    .then(response => {
-                        if (response.success) {
-                            // Access additional attributes
-                            const username = response.username;
-                            const inquiryId = response.inquiry_id;
-                            logger('Report seen by ' + username + ' for inquiry ID ' + inquiryId + '.');
-
-                            // validating the response with the report item
-                            if (inquiryId === itm.getAttribute('data-id')) {
-                                // removing the user type class from the report item
-                                itm.classList.forEach((cls) => {
-                                    if (report_types.includes(cls)) {
-                                        itm.classList.remove(cls);
-                                    }
-                                });
-                            }
-                        }
-                    });
-            }
-        });
-    });
+    configs.customFormitmPath = '/scss/components/forms';
 </script>
-<script src="/js/g28-forms.js"></script>
+<script src="/js/employee/reports.js"></script>
 <!-- g28 styling framework -->
 </body>
 </html>

@@ -13,14 +13,34 @@ class EmployeeReportListController extends MasterCRUDController
     {
         $this->validate();
 
-        if ($request->isGet()) {
-            if ($_SESSION['userType'] == 'staff') {
+        // retrieving the employee store
+        $store = EmployeeStore::getEmployeeStore();
+        $store->flag_g_usr = $this->getEntityFlag($request);
+        $store->flag_g_act = $this->getActionFlag($request);
+
+        $report = ReportModel::getByID($store->flag_g_usr);
+
+        // checking whether there is a direct action to be performed
+        switch ($store->flag_g_act) {
+            case 'seen':
+                if ($report && $report->seenBy($store->username)) {
+                    echo json_encode(array(
+                        'username' => $store->username,
+                        'inquiry_id' => $store->flag_g_usr,
+                        'success' => true
+                    ));
+                    return; // Return to stop further execution
+                }
+                // operation failed
+                echo json_encode(['success' => false]);
+                return;
+            case 'accept':
+                $report->resolve();
+                header('Location: /employee/reports');
+                return; // Return to stop further execution
+            default:
                 $this -> render("employee/reports.php");
-            } else {
-                header(self::login);
-            }
-        } else {
-            header(self::login);
+                break;
         }
     }
 
@@ -31,24 +51,8 @@ class EmployeeReportListController extends MasterCRUDController
         return $model->getAllReports();
     }
 
-    public function reportIsSeen(Request $request): void
+    public function reportAction(Request $request): void
     {
-        // retrieving the employee store
-        $store = EmployeeStore::getEmployeeStore();
-        $store->flag_g_usr = $this->getEntityFlag($request);
 
-        $report = ReportModel::getByID($store->flag_g_usr);
-
-        if ($report && $report->seenBy($store->username)) {
-            echo json_encode(array(
-                'username' => $store->username,
-                'inquiry_id' => $store->flag_g_usr,
-                'success' => true
-            ));
-            return; // Return to stop further execution
-        }
-
-        // operation failed
-        echo json_encode(['success' => false]);
     }
 }
