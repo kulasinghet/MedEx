@@ -144,7 +144,7 @@ class PharmacyOrderModel extends Model
     {
         try {
             $conn = (new Database())->getConnection();
-            $sql = "SELECT * FROM pharmacyorder WHERE pharmacyUsername = '$username' ORDER BY order_status ASC, order_date DESC;";
+            $sql = "SELECT * FROM pharmacyorder WHERE pharmacyUsername = '$username' ORDER BY FIELD(order_status, 0, 5, 1, 2, 3, 4);";
             $result = $conn->query($sql);
             return $result->fetch_all(MYSQLI_ASSOC);
 

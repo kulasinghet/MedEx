@@ -785,3 +785,69 @@
 
 2023/05/06 22:23:13 SELECT SUM(bill_total) AS total FROM pharmacysell WHERE pharmacyUsername = 'testPharmacy' AND MONTH(invoice_date) = MONTH(CURRENT_DATE()) AND YEAR(invoice_date) = YEAR(CURRENT_DATE())
 2023/05/06 22:23:14 SELECT SUM(quantity * stock.buying_price) AS total  FROM pharmacysellmedicine LEFT JOIN stock ON pharmacysellmedicine.medId = stock.medId WHERE pharmacysellmedicine.invoice_id IN (SELECT invoice_id FROM pharmacysell WHERE pharmacyUsername = 'testPharmacy' AND MONTH(invoice_date) = MONTH(CURRENT_DATE()) AND YEAR(invoice_date) = YEAR(CURRENT_DATE()))
+2023/05/06 22:30:39 transformDeliveryDate() called with:  and 0
+2023/05/06 22:30:39 transformDeliveryDate() called with:  and 0
+2023/05/06 22:30:39 transformDeliveryDate() called with:  and 0
+2023/05/06 22:30:39 transformDeliveryDate() called with:  and 0
+2023/05/06 22:30:39 transformDeliveryDate() called with:  and 0
+2023/05/06 22:30:39 transformDeliveryDate() called with:  and 0
+2023/05/06 22:30:39 transformDeliveryDate() called with:  and 0
+2023/05/06 22:30:39 transformDeliveryDate() called with:  and 0
+2023/05/06 22:30:39 transformDeliveryDate() called with:  and 0
+2023/05/06 22:30:39 transformDeliveryDate() called with:  and 0
+2023/05/06 22:30:39 transformDeliveryDate() called with:  and 0
+2023/05/06 22:30:39 transformDeliveryDate() called with:  and 0
+2023/05/06 22:30:39 transformDeliveryDate() called with:  and 0
+2023/05/06 22:30:39 transformDeliveryDate() called with:  and 0
+2023/05/06 22:30:39 transformDeliveryDate() called with:  and 0
+2023/05/06 22:30:39 transformDeliveryDate() called with:  and 0
+2023/05/06 22:30:39 transformDeliveryDate() called with:  and 0
+2023/05/06 22:30:39 transformDeliveryDate() called with:  and 0
+2023/05/06 22:30:39 transformDeliveryDate() called with:  and 0
+2023/05/06 22:30:39 transformDeliveryDate() called with:  and 0
+2023/05/06 22:30:39 transformDeliveryDate() called with:  and 0
+2023/05/06 22:30:39 transformDeliveryDate() called with:  and 0
+2023/05/06 22:30:39 transformDeliveryDate() called with:  and 0
+2023/05/06 22:30:39 transformDeliveryDate() called with:  and 0
+2023/05/06 22:30:39 transformDeliveryDate() called with:  and 0
+2023/05/06 22:30:39 transformDeliveryDate() called with:  and 0
+2023/05/06 22:30:39 transformDeliveryDate() called with:  and 0
+2023/05/06 22:30:39 transformDeliveryDate() called with:  and 0
+2023/05/06 22:30:39 transformDeliveryDate() called with:  and 0
+2023/05/06 22:30:39 transformDeliveryDate() called with:  and 0
+2023/05/06 22:30:39 transformDeliveryDate() called with:  and 1
+2023/05/06 22:31:34 transformDeliveryDate() returned: 
+2023/05/06 22:31:34 transformDeliveryDate() returned: 
+2023/05/06 22:31:34 transformDeliveryDate() returned: 
+2023/05/06 22:31:34 transformDeliveryDate() returned: 
+2023/05/06 22:31:34 transformDeliveryDate() returned: 
+2023/05/06 22:31:34 transformDeliveryDate() returned: 
+2023/05/06 22:31:34 transformDeliveryDate() returned: 
+2023/05/06 22:31:34 transformDeliveryDate() returned: 
+2023/05/06 22:31:34 transformDeliveryDate() returned: 
+2023/05/06 22:31:34 transformDeliveryDate() returned: 
+2023/05/06 22:31:34 transformDeliveryDate() returned: 
+2023/05/06 22:31:34 transformDeliveryDate() returned: 
+2023/05/06 22:31:34 transformDeliveryDate() returned: 
+2023/05/06 22:31:34 transformDeliveryDate() returned: 
+2023/05/06 22:31:34 transformDeliveryDate() returned: 
+2023/05/06 22:31:34 transformDeliveryDate() returned: 
+2023/05/06 22:31:34 transformDeliveryDate() returned: 
+2023/05/06 22:31:34 transformDeliveryDate() returned: 
+2023/05/06 22:31:34 transformDeliveryDate() returned: 
+2023/05/06 22:31:34 transformDeliveryDate() returned: 
+2023/05/06 22:31:34 transformDeliveryDate() returned: 
+2023/05/06 22:31:34 transformDeliveryDate() returned: 
+2023/05/06 22:31:34 transformDeliveryDate() returned: 
+2023/05/06 22:31:34 transformDeliveryDate() returned: 
+2023/05/06 22:31:34 transformDeliveryDate() returned: 
+2023/05/06 22:31:34 transformDeliveryDate() returned: 
+2023/05/06 22:31:34 transformDeliveryDate() returned: 
+2023/05/06 22:31:34 transformDeliveryDate() returned: 
+2023/05/06 22:31:34 transformDeliveryDate() returned: 
+2023/05/06 22:31:34 transformDeliveryDate() returned: 
+2023/05/06 22:32:57 SELECT pharmacyordermedicine.medId, pharmacyordermedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, supplier_medicine.unitPrice FROM pharmacyordermedicine LEFT JOIN medicine ON pharmacyordermedicine.medid = medicine.id LEFT JOIN supplier_medicine ON medicine.id = supplier_medicine.medid WHERE orderid = 'order0004'
+2023/05/06 22:33:22 SELECT pharmacyordermedicine.medId, pharmacyordermedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, supplier_medicine.unitPrice FROM pharmacyordermedicine LEFT JOIN medicine ON pharmacyordermedicine.medid = medicine.id LEFT JOIN supplier_medicine ON medicine.id = supplier_medicine.medid WHERE orderid = 'ORD62'
+2023/05/06 22:41:02 SELECT pharmacyordermedicine.medId, pharmacyordermedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, supplier_medicine.unitPrice FROM pharmacyordermedicine LEFT JOIN medicine ON pharmacyordermedicine.medid = medicine.id LEFT JOIN supplier_medicine ON medicine.id = supplier_medicine.medid WHERE orderid = 'ORD62'
+2023/05/06 22:41:20 SELECT pharmacyordermedicine.medId, pharmacyordermedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, supplier_medicine.unitPrice FROM pharmacyordermedicine LEFT JOIN medicine ON pharmacyordermedicine.medid = medicine.id LEFT JOIN supplier_medicine ON medicine.id = supplier_medicine.medid WHERE orderid = 'ORD62'
+2023/05/06 22:43:07 SELECT pharmacyordermedicine.medId, pharmacyordermedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, supplier_medicine.unitPrice FROM pharmacyordermedicine LEFT JOIN medicine ON pharmacyordermedicine.medid = medicine.id LEFT JOIN supplier_medicine ON medicine.id = supplier_medicine.medid WHERE orderid = 'ORD62'
