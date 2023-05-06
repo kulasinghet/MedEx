@@ -67,7 +67,7 @@ class LabReportController extends Controller
                 $comment = $row['comment'];
                 $report = $row['LabReportName'];
                 $link = '/uploads/laboratory/labReport' . DIRECTORY_SEPARATOR . $report;
-                echo "<tr><td>" . $reqid . "</td><td>" . $status . "</td><td>" . $comment . "</td><td>" . "<a class='btn btn--primary' target='_blank' href='" . $link . "'>Check Lab Report</a>" . "</td></tr>";
+                echo "<tr style='padding: 2%; border-bottom: 1px solid black;'><td>" . $reqid . "</td><td>" . $status . "</td><td>" . $comment . "</td><td>" . "<a class='btn btn--primary' target='_blank' href='" . $link . "'>Check Lab Report</a>" . "</td></tr>";
             }
 
         }
