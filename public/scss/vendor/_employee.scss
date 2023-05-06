@@ -141,6 +141,25 @@
 }
 
 
+// Styles for res details page
+.details-form {
+  max-width: 800px;
+
+  h5:not(:first-child) {
+    margin-top: 2.5rem;
+  }
+
+  .card-title {
+    font-size: 1.6rem;
+    margin: 0.5rem 0 2.5rem 0;
+  }
+
+  .button-group {
+    margin-bottom: 1rem;
+  }
+}
+
+
 // Styles for reports page
 $report-itm-border-radius: 6px;
 

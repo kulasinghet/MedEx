@@ -7,14 +7,15 @@ use app\core\Logger;
 
 class HyperPharmacyModel extends HyperEntityModel
 {
-    public string $owner_name;
-    public string $city;
-    public string $phar_reg_no;
-    public string $business_reg_id;
-    public string $business_cert_name;
-    public string $phar_cert_id;
-    public string $phar_cert_name;
+    public ?string $owner_name;
+    public ?string $city;
+    public ?string $phar_reg_no;
+    public ?string $business_reg_id;
+    public ?string $business_cert_name;
+    public ?string $phar_cert_id;
+    public ?string $phar_cert_name;
     public string $delivery_time;
+    public ?string $reg_date;
 
     public function __construct($params = array()) {
         foreach ($params as $key => $value) {
@@ -36,16 +37,16 @@ class HyperPharmacyModel extends HyperEntityModel
                 return new HyperPharmacyModel(array(
                     'username' => $row["username"],
                     'name' => $row["name"],
-                    'ownerName' => $row["ownerName"],
+                    'owner_name' => $row["ownerName"],
                     'city' => $row["city"],
                     'phar_reg_no' => $row["pharmacyRegNo"],
                     'business_reg_id' => $row["BusinessRegId"],
                     'phar_cert_id' => $row["pharmacyCertId"],
-                    'business_cert_name' => $row["BusinessRegCertName"],
                     'delivery_time' => $row["deliveryTime"],
                     'email' => $row["email"],
                     'address' => $row["address"],
                     'mobile' => $row["mobile"],
+                    'reg_date' => $row["reg_date"],
                 ));
             }
         } catch (\Exception $e) {
@@ -86,6 +87,7 @@ class HyperPharmacyModel extends HyperEntityModel
         //loading the database
         $db = new Database();
         $conn = $db->getConnection();
+        $date = date("Y-m-d");
 
         try {
             $sql = "INSERT INTO `pharmacy` (
@@ -100,7 +102,8 @@ class HyperPharmacyModel extends HyperEntityModel
                         `deliveryTime`, 
                         `email`, 
                         `address`, 
-                        `mobile`) 
+                        `mobile`,
+                        `reg_date`) 
             VALUES (
                     '$this->username', 
                     '$this->name', 
@@ -113,7 +116,8 @@ class HyperPharmacyModel extends HyperEntityModel
                     '$this->delivery_time', 
                     '$this->email', 
                     '$this->address', 
-                    '$this->mobile');";
+                    '$this->mobile',
+                    '$date');";
 
             $stmt = $conn->prepare($sql);
             $stmt->execute();
