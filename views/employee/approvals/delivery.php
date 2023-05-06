@@ -5,7 +5,7 @@ use app\views\employee\EmployeeViewComponents;
 
 $components = new EmployeeViewComponents();
 $store = EmployeeStore::getEmployeeStore();
-$pharmacy = $store->aprv_one_obj;
+$pharmacy = $store->g_obj;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -45,19 +45,19 @@ echo $components->createNavbar();
                                 <tbody>
                                 <tr>
                                     <th>Username</th>
-                                    <td><?php echo $store->aprv_one_obj->username?? "N/A" ?></td>
+                                    <td><?php echo $store->g_obj->username?? "N/A" ?></td>
                                 </tr>
                                 <tr>
                                     <th>Age</th>
-                                    <td><?php echo $store->aprv_one_obj->age?? "N/A" ?></td>
+                                    <td><?php echo $store->g_obj->age?? "N/A" ?></td>
                                 </tr>
                                 <tr>
                                     <th>Email</th>
-                                    <td><?php echo $store->aprv_one_obj->email?? "N/A" ?></td>
+                                    <td><?php echo $store->g_obj->email?? "N/A" ?></td>
                                 </tr>
                                 <tr>
                                     <th>Phone</th>
-                                    <td><?php echo $store->aprv_one_obj->mobile?? "N/A" ?></td>
+                                    <td><?php echo $store->g_obj->mobile?? "N/A" ?></td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -67,19 +67,19 @@ echo $components->createNavbar();
                                 <tbody>
                                 <tr>
                                     <th>Name</th>
-                                    <td><?php echo $store->aprv_one_obj->name?? "N/A" ?></td>
+                                    <td><?php echo $store->g_obj->name?? "N/A" ?></td>
                                 </tr>
                                 <tr>
                                     <th>City</th>
-                                    <td><?php echo $store->aprv_one_obj->city?? "N/A" ?></td>
+                                    <td><?php echo $store->g_obj->city?? "N/A" ?></td>
                                 </tr>
                                 <tr>
                                     <th>Address</th>
-                                    <td><?php echo $store->aprv_one_obj->address?? "N/A" ?></td>
+                                    <td><?php echo $store->g_obj->address?? "N/A" ?></td>
                                 </tr>
                                 <tr>
                                     <th>Delivery Location</th>
-                                    <td><?php echo $store->aprv_one_obj->delivery_location?? "N/A" ?></td>
+                                    <td><?php echo $store->g_obj->delivery_location?? "N/A" ?></td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -92,15 +92,15 @@ echo $components->createNavbar();
                                 <tbody>
                                 <tr>
                                     <th>Vehicle Number</th>
-                                    <td><?php echo $store->aprv_one_obj->vehicle_no?? "N/A" ?></td>
+                                    <td><?php echo $store->g_obj->vehicle_no?? "N/A" ?></td>
                                 </tr>
                                 <tr>
                                     <th>Vehicle Type</th>
-                                    <td><?php echo $store->aprv_one_obj->vehicle_type?? "N/A" ?></td>
+                                    <td><?php echo $store->g_obj->vehicle_type?? "N/A" ?></td>
                                 </tr>
                                 <tr>
                                     <th>Refrigerators</th>
-                                    <td><?php echo $store->aprv_one_obj->refrigerators? "Yes" : "No" ?></td>
+                                    <td><?php echo $store->g_obj->refrigerators? "Yes" : "No" ?></td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -110,11 +110,11 @@ echo $components->createNavbar();
                                 <tbody>
                                 <tr>
                                     <th>Licence ID</th>
-                                    <td><?php echo $store->aprv_one_obj->licence_id?? "N/A" ?></td>
+                                    <td><?php echo $store->g_obj->licence_id?? "N/A" ?></td>
                                 </tr>
                                 <tr>
                                     <th>Max Load</th>
-                                    <td><?php echo $store->aprv_one_obj->max_load?? "N/A" ?></td>
+                                    <td><?php echo $store->g_obj->max_load?? "N/A" ?></td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -128,12 +128,12 @@ echo $components->createNavbar();
                     </div>
                     <div class="row action-buttons">
                         <div class="col">
-                            <a class="btn btn--success" href="/employee/approve/delivery?et=<?php echo $store->aprv_one_obj->username ?>&a=approve">
+                            <a class="btn btn--success" href="/employee/approve/delivery?et=<?php echo $store->g_obj->username ?>&a=approve">
                                 <i class="fa-solid fa-circle-check"></i>
                             </a>
                         </div>
                         <div class="col">
-                            <a class="btn btn--danger" href="/employee/approve/delivery?et=<?php echo $store->aprv_one_obj->username ?>&a=ignore">
+                            <a class="btn btn--danger" href="/employee/approve/delivery?et=<?php echo $store->g_obj->username ?>&a=ignore">
                                 <i class="fa-solid fa-circle-xmark"></i>
                             </a>
                         </div>

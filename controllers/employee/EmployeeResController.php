@@ -9,7 +9,7 @@ use app\models\HyperEntities\HyperPharmacyModel;
 use app\models\HyperEntities\HyperSupplierModel;
 use app\stores\EmployeeStore;
 
-class EmployeeResController extends AbstractCRUDController
+class EmployeeResController extends MasterCRUDController
 {
     public function loadPharmacy(Request $request): void
     {
@@ -17,27 +17,27 @@ class EmployeeResController extends AbstractCRUDController
 
         // retrieving the employee store
         $store = EmployeeStore::getEmployeeStore();
-        $store->flag_aprv_one_usr = $this->getEntityFlag($request);
-        $store->flag_aprv_one_act = $this->getActionFlag($request);
+        $store->flag_g_usr = $this->getEntityFlag($request);
+        $store->flag_g_act = $this->getActionFlag($request);
 
         //identifies the request is NEW or UPDATE
-        if ($store->flag_aprv_one_usr == '') {
+        if ($store->flag_g_usr == '') {
             // loading the new pharmacy page
-            $store->aprv_one_obj = null; // make sure there is no object in the store
+            $store->g_obj = null; // make sure there is no object in the store
             $this -> render("employee/res/pharmacy.php");
         } else {
             // loading the update pharmacy page
-            $obj = HyperPharmacyModel::getByUsername($store->flag_aprv_one_usr);
+            $obj = HyperPharmacyModel::getByUsername($store->flag_g_usr);
             if ($obj) {
                 // checking whether there is a direct action to be performed
-                switch ($store->flag_aprv_one_act) {
+                switch ($store->flag_g_act) {
                     case 'delete':
                         $obj->delete();
                         header('Location: /employee/res?f=pharmacy');
                         break;
                     default:
                         // loading the approval details page
-                        $store->aprv_one_obj = $obj;
+                        $store->g_obj = $obj;
                         $this -> render("employee/res/pharmacy.php");
                         break;
                 }
@@ -62,22 +62,22 @@ class EmployeeResController extends AbstractCRUDController
             $params = $this->getRequestBody($_POST);
             // checking whether the pharmacy exists in the store.
             //If not, it means this is s insert request
-            if ($store->aprv_one_obj) {
+            if ($store->g_obj) {
                 // updating the pharmacy
-                $store->aprv_one_obj->name = $params['name'];
-                $store->aprv_one_obj->owner_name = $params['owner_name'];
-                $store->aprv_one_obj->city = $params['city'];
-                $store->aprv_one_obj->phar_reg_no = $params['phar_reg_no'];
-                $store->aprv_one_obj->business_reg_id = $params['business_reg_id'];
-                $store->aprv_one_obj->phar_cert_id = $params['phar_cert_id'];
-                $store->aprv_one_obj->business_cert_name = $params['business_cert_name'];
-                $store->aprv_one_obj->phar_cert_name = $params['phar_cert_name'];
-                $store->aprv_one_obj->delivery_time = $params['delivery_time'];
-                $store->aprv_one_obj->email = $params['email'];
-                $store->aprv_one_obj->address = $params['address'];
-                $store->aprv_one_obj->mobile = $params['mobile'];
+                $store->g_obj->name = $params['name'];
+                $store->g_obj->owner_name = $params['owner_name'];
+                $store->g_obj->city = $params['city'];
+                $store->g_obj->phar_reg_no = $params['phar_reg_no'];
+                $store->g_obj->business_reg_id = $params['business_reg_id'];
+                $store->g_obj->phar_cert_id = $params['phar_cert_id'];
+                $store->g_obj->business_cert_name = $params['business_cert_name'];
+                $store->g_obj->phar_cert_name = $params['phar_cert_name'];
+                $store->g_obj->delivery_time = $params['delivery_time'];
+                $store->g_obj->email = $params['email'];
+                $store->g_obj->address = $params['address'];
+                $store->g_obj->mobile = $params['mobile'];
 
-                $store->aprv_one_obj->update();
+                $store->g_obj->update();
             } else {
                 // creating a new pharmacy
                 $tmp = new HyperPharmacyModel(array(
@@ -111,27 +111,27 @@ class EmployeeResController extends AbstractCRUDController
 
         // retrieving the employee store
         $store = EmployeeStore::getEmployeeStore();
-        $store->flag_aprv_one_usr = $this->getEntityFlag($request);
-        $store->flag_aprv_one_act = $this->getActionFlag($request);
+        $store->flag_g_usr = $this->getEntityFlag($request);
+        $store->flag_g_act = $this->getActionFlag($request);
 
         //identifies the request is NEW or UPDATE
-        if ($store->flag_aprv_one_usr == '') {
+        if ($store->flag_g_usr == '') {
             // loading the new supplier page
-            $store->aprv_one_obj = null; // make sure there is no object in the store
+            $store->g_obj = null; // make sure there is no object in the store
             $this -> render("employee/res/supplier.php");
         } else {
             // loading the update supplier page
-            $obj = HyperSupplierModel::getByUsername($store->flag_aprv_one_usr);
+            $obj = HyperSupplierModel::getByUsername($store->flag_g_usr);
             if ($obj) {
                 // checking whether there is a direct action to be performed
-                switch ($store->flag_aprv_one_act) {
+                switch ($store->flag_g_act) {
                     case 'delete':
                         $obj->delete();
                         header('Location: /employee/res?f=supplier');
                         break;
                     default:
                         // loading the approval details page
-                        $store->aprv_one_obj = $obj;
+                        $store->g_obj = $obj;
                         $this -> render("employee/res/supplier.php");
                         break;
                 }
@@ -157,19 +157,19 @@ class EmployeeResController extends AbstractCRUDController
             //$params = $request->getBody();
             // checking whether the supplier exists in the store.
             //If not, it means this is s insert request
-            if ($store->aprv_one_obj) {
+            if ($store->g_obj) {
                 // updating the supplier
-                $store->aprv_one_obj->name = $params['name'];
-                $store->aprv_one_obj->supp_reg_no = $params['supp_reg_no'];
-                $store->aprv_one_obj->business_reg_id = $params['business_reg_id'];
-                $store->aprv_one_obj->supp_cert_id = $params['supp_cert_id'];
-                $store->aprv_one_obj->business_cert_name = $params['business_cert_name'];
-                $store->aprv_one_obj->supp_cert_name = $params['supp_cert_name'];
-                $store->aprv_one_obj->email = $params['email'];
-                $store->aprv_one_obj->address = $params['address'];
-                $store->aprv_one_obj->mobile = $params['mobile'];
+                $store->g_obj->name = $params['name'];
+                $store->g_obj->supp_reg_no = $params['supp_reg_no'];
+                $store->g_obj->business_reg_id = $params['business_reg_id'];
+                $store->g_obj->supp_cert_id = $params['supp_cert_id'];
+                $store->g_obj->business_cert_name = $params['business_cert_name'];
+                $store->g_obj->supp_cert_name = $params['supp_cert_name'];
+                $store->g_obj->email = $params['email'];
+                $store->g_obj->address = $params['address'];
+                $store->g_obj->mobile = $params['mobile'];
 
-                $store->aprv_one_obj->update();
+                $store->g_obj->update();
             } else {
                 // creating a new supplier
                 $tmp = new HyperSupplierModel(array(
@@ -200,27 +200,27 @@ class EmployeeResController extends AbstractCRUDController
 
         // retrieving the employee store
         $store = EmployeeStore::getEmployeeStore();
-        $store->flag_aprv_one_usr = $this->getEntityFlag($request);
-        $store->flag_aprv_one_act = $this->getActionFlag($request);
+        $store->flag_g_usr = $this->getEntityFlag($request);
+        $store->flag_g_act = $this->getActionFlag($request);
 
         //identifies the request is NEW or UPDATE
-        if ($store->flag_aprv_one_usr == '') {
+        if ($store->flag_g_usr == '') {
             // loading the new delivery page
-            $store->aprv_one_obj = null; // make sure there is no object in the store
+            $store->g_obj = null; // make sure there is no object in the store
             $this -> render("employee/res/delivery.php");
         } else {
             // loading the update delivery page
-            $obj = HyperDeliveryModel::getByUsername($store->flag_aprv_one_usr);
+            $obj = HyperDeliveryModel::getByUsername($store->flag_g_usr);
             if ($obj) {
                 // checking whether there is a direct action to be performed
-                switch ($store->flag_aprv_one_act) {
+                switch ($store->flag_g_act) {
                     case 'delete':
                         $obj->delete();
                         header('Location: /employee/res?f=delivery');
                         break;
                     default:
                         // loading the approval details page
-                        $store->aprv_one_obj = $obj;
+                        $store->g_obj = $obj;
                         $this -> render("employee/res/delivery.php");
                         break;
                 }
@@ -245,26 +245,26 @@ class EmployeeResController extends AbstractCRUDController
             $params = $this->getRequestBody($_POST);
             // checking whether the delivery exists in the store.
             //If not, it means this is s insert request
-            if ($store->aprv_one_obj) {
+            if ($store->g_obj) {
                 // updating the delivery
-                $store->aprv_one_obj->name = $params['name'];
-                $store->aprv_one_obj->city = $params['city'];
-                $store->aprv_one_obj->age = $params['age'];
-                $store->aprv_one_obj->license_id = $params['license_id'];
-                $store->aprv_one_obj->license_name = $params['license_name'];
-                $store->aprv_one_obj->vehicle_no = $params['vehicle_no'];
-                $store->aprv_one_obj->vehicle_type = $params['vehicle_type'];
-                $store->aprv_one_obj->delivery_location = $params['delivery_location'];
-                $store->aprv_one_obj->max_load = $params['max_load'];
-                $store->aprv_one_obj->refrigerators = $params['refrigerators'];
-                $store->aprv_one_obj->license_photo = $params['license_photo'];
-                $store->aprv_one_obj->vehicle_reg_photo = $params['vehicle_reg_photo'];
-                $store->aprv_one_obj->vehicle_photo = $params['vehicle_photo'];
-                $store->aprv_one_obj->email = $params['email'];
-                $store->aprv_one_obj->address = $params['address'];
-                $store->aprv_one_obj->mobile = $params['mobile'];
+                $store->g_obj->name = $params['name'];
+                $store->g_obj->city = $params['city'];
+                $store->g_obj->age = $params['age'];
+                $store->g_obj->license_id = $params['license_id'];
+                $store->g_obj->license_name = $params['license_name'];
+                $store->g_obj->vehicle_no = $params['vehicle_no'];
+                $store->g_obj->vehicle_type = $params['vehicle_type'];
+                $store->g_obj->delivery_location = $params['delivery_location'];
+                $store->g_obj->max_load = $params['max_load'];
+                $store->g_obj->refrigerators = $params['refrigerators'];
+                $store->g_obj->license_photo = $params['license_photo'];
+                $store->g_obj->vehicle_reg_photo = $params['vehicle_reg_photo'];
+                $store->g_obj->vehicle_photo = $params['vehicle_photo'];
+                $store->g_obj->email = $params['email'];
+                $store->g_obj->address = $params['address'];
+                $store->g_obj->mobile = $params['mobile'];
 
-                $store->aprv_one_obj->update();
+                $store->g_obj->update();
             } else {
                 // creating a new delivery
                 $tmp = new HyperDeliveryModel(array(
@@ -302,27 +302,27 @@ class EmployeeResController extends AbstractCRUDController
 
         // retrieving the employee store
         $store = EmployeeStore::getEmployeeStore();
-        $store->flag_aprv_one_usr = $this->getEntityFlag($request);
-        $store->flag_aprv_one_act = $this->getActionFlag($request);
+        $store->flag_g_usr = $this->getEntityFlag($request);
+        $store->flag_g_act = $this->getActionFlag($request);
 
         //identifies the request is NEW or UPDATE
-        if ($store->flag_aprv_one_usr == '') {
+        if ($store->flag_g_usr == '') {
             // loading the new lab page
-            $store->aprv_one_obj = null; // make sure there is no object in the store
+            $store->g_obj = null; // make sure there is no object in the store
             $this -> render("employee/res/lab.php");
         } else {
             // loading the update lab page
-            $obj = HyperLabModel::getByUsername($store->flag_aprv_one_usr);
+            $obj = HyperLabModel::getByUsername($store->flag_g_usr);
             if ($obj) {
                 // checking whether there is a direct action to be performed
-                switch ($store->flag_aprv_one_act) {
+                switch ($store->flag_g_act) {
                     case 'delete':
                         $obj->delete();
                         header('Location: /employee/res?f=lab');
                         break;
                     default:
                         // loading the approval details page
-                        $store->aprv_one_obj = $obj;
+                        $store->g_obj = $obj;
                         $this -> render("employee/res/lab.php");
                         break;
                 }
@@ -347,18 +347,18 @@ class EmployeeResController extends AbstractCRUDController
             $params = $this->getRequestBody($_POST);
             // checking whether the lab exists in the store.
             //If not, it means this is s insert request
-            if ($store->aprv_one_obj) {
+            if ($store->g_obj) {
                 // updating the lab
-                $store->aprv_one_obj->name = $params['name'];
-                $store->aprv_one_obj->business_reg_id = $params['business_reg_id'];
-                $store->aprv_one_obj->lab_cert_id = $params['lab_cert_id'];
-                $store->aprv_one_obj->business_cert_name = $params['business_cert_name'];
-                $store->aprv_one_obj->lab_cert_name = $params['lab_cert_name'];
-                $store->aprv_one_obj->email = $params['email'];
-                $store->aprv_one_obj->address = $params['address'];
-                $store->aprv_one_obj->mobile = $params['mobile'];
+                $store->g_obj->name = $params['name'];
+                $store->g_obj->business_reg_id = $params['business_reg_id'];
+                $store->g_obj->lab_cert_id = $params['lab_cert_id'];
+                $store->g_obj->business_cert_name = $params['business_cert_name'];
+                $store->g_obj->lab_cert_name = $params['lab_cert_name'];
+                $store->g_obj->email = $params['email'];
+                $store->g_obj->address = $params['address'];
+                $store->g_obj->mobile = $params['mobile'];
 
-                $store->aprv_one_obj->update();
+                $store->g_obj->update();
             } else {
                 // creating a new lab
                 $tmp = new HyperLabModel(array(

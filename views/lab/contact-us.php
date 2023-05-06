@@ -67,7 +67,15 @@
                         <form method="post" action="/lab/contact-us">
                             <div class="form-group">
                                 <label for="exampleFormControlInput1">Subject</label>
-                                <input type="text" class="form-input" id="subject" placeholder="Subject" name="subject">
+                                <select name="subject" value='' class='form-input' required>
+                                    <option value='Complaint Regarding Supplier Samples' class='option'>Complaint
+                                        Regarding Supplier Samples</option>
+                                    <option value='Request to Change Profile Details' class='option'>Request to Change
+                                        Profile Details</option>
+                                    <option value='Inqury About Lab Request' class='option'>Inqury About Lab
+                                        Request</option>
+                                    <option value='Other' class='option'>Other</option>
+                                </select>
                             </div>
 
                             <div class="form-group">

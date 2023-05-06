@@ -5,7 +5,7 @@ namespace app\controllers\employee;
 use app\core\Controller;
 use app\core\Request;
 
-abstract class AbstractCRUDController extends Controller
+abstract class MasterCRUDController extends Controller
 {
     const login = 'Location: /login';
 
@@ -54,9 +54,4 @@ abstract class AbstractCRUDController extends Controller
 
         return $params;
     }
-
-    abstract public function loadPharmacy(Request $request): void;
-    abstract public function loadSupplier(Request $request): void;
-    abstract public function loadDelivery(Request $request): void;
-    abstract public function loadLab(Request $request): void;
 }

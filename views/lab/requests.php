@@ -10,7 +10,6 @@ use app\controllers\lab\LabRequestsController;
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Laboratory Requests</title>
     <link href="../scss/vendor/demo.css" rel="stylesheet" />
-    <link href="../css/supplier/formcss.css" rel="stylesheet" />
     <!-- Font awesome kit -->
     <script crossorigin="anonymous" src="https://kit.fontawesome.com/9b33f63a16.js"></script>
 </head>
@@ -80,8 +79,10 @@ use app\controllers\lab\LabRequestsController;
                                         <button type="submit">Go</button>
                                     </form>
                                 </div>
-                                <table style='width: 100%; text-align:center; padding-top:5%' class='scrollable'>
-                                    <tr style='padding:1%; border-bottom: 1pt solid black;'>
+                                <br>
+                                <table
+                                    style="width: 100%; text-align: center; padding-top: 5%; border-collapse: collapse;">
+                                    <tr style="padding: 2%; border-bottom: 1px solid black;">
                                         <th>Request ID</th>
                                         <th>Supplier Name</th>
                                         <th>Medicine Name</th>

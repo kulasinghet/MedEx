@@ -9,7 +9,7 @@ use app\models\HyperEntities\HyperPharmacyModel;
 use app\models\HyperEntities\HyperSupplierModel;
 use app\stores\EmployeeStore;
 
-class EmployeeApprovalController extends AbstractCRUDController
+class EmployeeApprovalController extends MasterCRUDController
 {
     public function loadPharmacy(Request $request): void
     {
@@ -17,13 +17,13 @@ class EmployeeApprovalController extends AbstractCRUDController
 
         // retrieving the employee store
         $store = EmployeeStore::getEmployeeStore();
-        $store->flag_aprv_one_usr = $this->getEntityFlag($request);
-        $store->flag_aprv_one_act = $this->getActionFlag($request);
+        $store->flag_g_usr = $this->getEntityFlag($request);
+        $store->flag_g_act = $this->getActionFlag($request);
 
-        $obj = HyperPharmacyModel::getByUsername($store->flag_aprv_one_usr);
+        $obj = HyperPharmacyModel::getByUsername($store->flag_g_usr);
         if ($obj) {
             // checking whether there is a direct action to be performed
-            switch ($store->flag_aprv_one_act) {
+            switch ($store->flag_g_act) {
                 case 'approve':
                     $obj->verify(true);
                     header('Location: /employee/approve');
@@ -34,7 +34,7 @@ class EmployeeApprovalController extends AbstractCRUDController
                     break;
                 default:
                     // loading the approval details page
-                    $store->aprv_one_obj = $obj;
+                    $store->g_obj = $obj;
                     $this -> render("employee/approvals/pharmacy.php");
                     break;
             }
@@ -49,13 +49,13 @@ class EmployeeApprovalController extends AbstractCRUDController
 
         // retrieving the employee store
         $store = EmployeeStore::getEmployeeStore();
-        $store->flag_aprv_one_usr = $this->getEntityFlag($request);
-        $store->flag_aprv_one_act = $this->getActionFlag($request);
+        $store->flag_g_usr = $this->getEntityFlag($request);
+        $store->flag_g_act = $this->getActionFlag($request);
 
-        $obj = HyperSupplierModel::getByUsername($store->flag_aprv_one_usr);
+        $obj = HyperSupplierModel::getByUsername($store->flag_g_usr);
         if ($obj) {
             // checking whether there is a direct action to be performed
-            switch ($store->flag_aprv_one_act) {
+            switch ($store->flag_g_act) {
                 case 'approve':
                     $obj->verify(true);
                     header('Location: /employee/approve');
@@ -66,7 +66,7 @@ class EmployeeApprovalController extends AbstractCRUDController
                     break;
                 default:
                     // loading the approval details page
-                    $store->aprv_one_obj = $obj;
+                    $store->g_obj = $obj;
                     $this -> render("employee/approvals/supplier.php");
                     break;
             }
@@ -81,13 +81,13 @@ class EmployeeApprovalController extends AbstractCRUDController
 
         // retrieving the employee store
         $store = EmployeeStore::getEmployeeStore();
-        $store->flag_aprv_one_usr = $this->getEntityFlag($request);
-        $store->flag_aprv_one_act = $this->getActionFlag($request);
+        $store->flag_g_usr = $this->getEntityFlag($request);
+        $store->flag_g_act = $this->getActionFlag($request);
 
-        $obj = HyperDeliveryModel::getByUsername($store->flag_aprv_one_usr);
+        $obj = HyperDeliveryModel::getByUsername($store->flag_g_usr);
         if ($obj) {
             // checking whether there is a direct action to be performed
-            switch ($store->flag_aprv_one_act) {
+            switch ($store->flag_g_act) {
                 case 'approve':
                     $obj->verify(true);
                     header('Location: /employee/approve');
@@ -98,7 +98,7 @@ class EmployeeApprovalController extends AbstractCRUDController
                     break;
                 default:
                     // loading the approval details page
-                    $store->aprv_one_obj = $obj;
+                    $store->g_obj = $obj;
                     $this -> render("employee/approvals/delivery.php");
                     break;
             }
@@ -113,13 +113,13 @@ class EmployeeApprovalController extends AbstractCRUDController
 
         // retrieving the employee store
         $store = EmployeeStore::getEmployeeStore();
-        $store->flag_aprv_one_usr = $this->getEntityFlag($request);
-        $store->flag_aprv_one_act = $this->getActionFlag($request);
+        $store->flag_g_usr = $this->getEntityFlag($request);
+        $store->flag_g_act = $this->getActionFlag($request);
 
-        $obj = HyperLabModel::getByUsername($store->flag_aprv_one_usr);
+        $obj = HyperLabModel::getByUsername($store->flag_g_usr);
         if ($obj) {
             // checking whether there is a direct action to be performed
-            switch ($store->flag_aprv_one_act) {
+            switch ($store->flag_g_act) {
                 case 'approve':
                     $obj->verify(true);
                     header('Location: /employee/approve');
@@ -130,7 +130,7 @@ class EmployeeApprovalController extends AbstractCRUDController
                     break;
                 default:
                     // loading the approval details page
-                    $store->aprv_one_obj = $obj;
+                    $store->g_obj = $obj;
                     $this -> render("employee/approvals/lab.php");
                     break;
             }

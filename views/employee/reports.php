@@ -69,26 +69,9 @@ echo $components->createNavbar();
 <script type="application/javascript">
     // you can configure variables in here.
     configs.stage = 'dev';
-    configs.customFormElmPath = '/scss/components/forms';
-
-    //logging
-    logger("Logging g28 initial state before loading specialized JS files...");
-    for (let property in configs) {
-        logger(`> ${property}: ${configs[property]}`);
-    }
-
-    document.querySelectorAll('.approval-table tbody tr:not(.empty)').forEach((row) => {
-        row.addEventListener('click', (e) => {
-            e.stopPropagation();
-            if (e.target.tagName === 'TD') {
-                let entity = row.getAttribute('data-usr');
-                let type = row.getAttribute('data-tp');
-                window.location.href = '/employee/res/' + type + '?et=' + entity;
-            }
-        });
-    });
+    configs.customFormitmPath = '/scss/components/forms';
 </script>
-<script src="/js/g28-forms.js"></script>
+<script src="/js/employee/reports.js"></script>
 <!-- g28 styling framework -->
 </body>
 </html>
