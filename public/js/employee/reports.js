@@ -14,7 +14,7 @@ document.querySelectorAll('.report-itm:not(.report-actions)').forEach((itm) => {
 
         if (e.target.tagName === 'A') {
             // getting a response from the server
-            fetch('/employee/reports?et=' + itm.getAttribute('data-id') + '&a=accept')
+            fetch('/employee/inquires?et=' + itm.getAttribute('data-id') + '&a=accept')
                 .then(r => {
                     window.location.href = r.url;
                 });
@@ -52,7 +52,7 @@ document.querySelectorAll('.report-itm:not(.report-actions)').forEach((itm) => {
             // filtering out seen reports
             if (user_type !== '') {
                 // getting a response from the server
-                fetch('/employee/reports?et=' + itm.getAttribute('data-id') + '&a=seen')
+                fetch('/employee/inquires?et=' + itm.getAttribute('data-id') + '&a=seen')
                     .then(r => r.json())
                     .then(response => {
                         if (response.success) {

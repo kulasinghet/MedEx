@@ -2,7 +2,7 @@
 
 namespace app\views\employee;
 
-use app\models\ReportModel;
+use app\models\InquiryModel;
 use app\stores\EmployeeStore;
 use Exception;
 use ReflectionClass;
@@ -74,7 +74,7 @@ class EmployeeViewComponents
                     </ul>
                 </li>
                 <li>
-                    <a href="/employee/reports"> <i class="fa-solid fa-newspaper"></i>Reports</a>
+                    <a href="/employee/inquires"> <i class="fa-solid fa-newspaper"></i>Inquiries</a>
                 </li>
                 <li>
                     <a href="#"> <i class="fa-solid fa-server"></i>Resources</a>
@@ -222,7 +222,7 @@ class EmployeeViewComponents
         ');
     }
 
-    public function createReportItem(ReportModel $report): string
+    public function createReportItem(InquiryModel $report): string
     {
         return ('
         <div class="report-itm'.(!$report->is_employee_noticed? " $report->user_type" : "").'" data-id="'.($report->inquiry_id?? "N/A").'" tabindex="0">

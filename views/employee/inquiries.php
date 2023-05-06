@@ -1,6 +1,6 @@
 <?php
 
-use \app\controllers\employee\EmployeeReportListController;
+use \app\controllers\employee\EmployeeInquiriesListController;
 use app\stores\EmployeeStore;
 use app\views\employee\EmployeeViewComponents;
 
@@ -43,7 +43,7 @@ echo $components->createNavbar();
             <div class="col card report-list">
                 <div class="card-body list-content">
                     <?php
-                    $controller = new EmployeeReportListController();
+                    $controller = new EmployeeInquiriesListController();
                     try {
                         $report_list = $controller->getAllReports();
                         if (!empty($report_list)) {
