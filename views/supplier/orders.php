@@ -104,9 +104,10 @@ use app\controllers\supplier\SupplierOrdersController;
                                 </div>
 
                                 </br></br>
-                                <table style="width: 100%; text-align:center;">
-                                    <tr>
-                                        <th>Order ID</th>
+                                <table
+                                    style="width: 100%; text-align: center; padding-top: 5%; border-collapse: collapse;">
+                                    <tr style="padding: 2%; border-bottom: 1px solid black;">
+                                        <th style='padding: 10px;'>Order ID</th>
                                         <th>Pharmacy Name</th>
                                         <th>Medicine</th>
                                         <th>Weight/Volume</th>

@@ -176,9 +176,9 @@ use app\models\PharmacyOrderMedicineMedicineModel;
                     <div style="padding: 2%;">
                         <?php
                         echo " <h3>Invenotry Running Low</h3>
-                          <table style='width: 100%; text-align:center;padding:1%;'>
-                                    <tr>
-                                        <th>Medicine Name</th>
+                          <table style='width: 100%; text-align: center; padding-top: 5%; border-collapse: collapse;'>
+                                    <tr style='padding: 2%; border-bottom: 1px solid black;'>
+                                        <th style='padding: 10px;'>Medicine Name</th>
                                         <th>Scientific Name</th>
                                         <th>Weight/Volume</th>
                                         <th>Mannufacture</th>
@@ -199,9 +199,9 @@ use app\models\PharmacyOrderMedicineMedicineModel;
                                 $manid = $med->getManufacture($medid);
                                 $manname = $man->getManufactureName($manid);
                                 if ($weight > 0) {
-                                    echo "<tr><td>" . $medNam . "</td><td>" . $sciName . "</td><td>" . $weight . " mg</td><td>" . $manname . "</td><td>" . $quantity . "</td></tr>";
+                                    echo "<tr style='padding: 2%; border-bottom: 1px solid black;'><td style='padding: 10px;'>" . $medNam . "</td><td>" . $sciName . "</td><td>" . $weight . " mg</td><td>" . $manname . "</td><td>" . $quantity . "</td></tr>";
                                 } else {
-                                    echo "<tr><td>" . $medNam . "</td><td>" . $sciName . "</td><td>" . $volume . " ml</td><td>" . $manname . "</td><td>" . $quantity . "</td></tr>";
+                                    echo "<tr style='padding: 2%; border-bottom: 1px solid black;'><td style='padding: 10px;'>" . $medNam . "</td><td>" . $sciName . "</td><td>" . $volume . " ml</td><td>" . $manname . "</td><td>" . $quantity . "</td></tr>";
                                 }
                             }
                             echo "<table>";
