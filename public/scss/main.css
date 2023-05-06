@@ -3467,7 +3467,7 @@ textarea.form-input {
 }
 
 .report-list {
-  height: 100vh;
+  height: calc(100vh - 5.5rem);
   padding: 0.5rem;
   margin: 0 0.5rem 0.5rem 0.5rem;
   background-color: #e7eff9;
@@ -3489,13 +3489,17 @@ textarea.form-input {
 }
 
 .report-itm {
+  --rpt-itm-color-base: #ffffff;
+  --rpt-itm-color-opaque-1: #cccccc;
+  --rpt-itm-color-opaque-2: #999999;
   width: 100%;
   margin-bottom: 0.8rem;
-  border: 2px solid #ffffff;
+  border: 2px solid var(--rpt-itm-color-base);
   border-radius: 6px;
-  background-color: #ffffff;
+  background-color: var(--rpt-itm-color-base);
   overflow: hidden;
-  box-shadow: 0 0 2px 2px rgba(211, 211, 211, 0.8);
+  box-shadow: 0 0 2px 2px var(--rpt-itm-color-opaque-1);
+  cursor: pointer;
 }
 .report-itm .report-inner {
   display: flex;
@@ -3512,11 +3516,11 @@ textarea.form-input {
   flex: 0 0 auto;
   width: 64px;
   height: 64px;
-  background: #e6ebf4;
+  background: var(--rpt-itm-color-opaque-1);
 }
 .report-itm .report-inner .header .header-icon a {
   padding: 0.5rem;
-  background: #ffffff;
+  background: var(--rpt-itm-color-base);
   width: 100%;
   height: 100%;
   border-radius: 0 0 6px 0;
@@ -3526,6 +3530,7 @@ textarea.form-input {
 }
 .report-itm .report-inner .header .header-icon a i {
   font-size: 1.5rem;
+  color: var(--rpt-itm-color-opaque-2);
 }
 .report-itm .report-inner .header .header-data {
   width: 100%;
@@ -3540,15 +3545,35 @@ textarea.form-input {
   margin: 0;
 }
 .report-itm .report-inner .header .header-data .header-subject {
-  background: #e6ebf4;
+  background: var(--rpt-itm-color-opaque-1);
   padding: 0.25rem 1rem;
   border-radius: 6px 6px 0 0;
 }
 .report-itm .report-inner .report-body {
   width: 100%;
   padding: 0.5rem;
-  background: #e6ebf4;
+  background: var(--rpt-itm-color-opaque-1);
   border-radius: 6px 0 6px 6px;
+}
+.report-itm.pharmacy {
+  --rpt-itm-color-base: #61F0E4;
+  --rpt-itm-color-opaque-1: #14d7c6;
+  --rpt-itm-color-opaque-2: #0c7970;
+}
+.report-itm.supplier {
+  --rpt-itm-color-base: #A3E1B0;
+  --rpt-itm-color-opaque-1: #56c86e;
+  --rpt-itm-color-opaque-2: #2d8b41;
+}
+.report-itm.delivery {
+  --rpt-itm-color-base: #E4D17C;
+  --rpt-itm-color-opaque-1: #cfb12b;
+  --rpt-itm-color-opaque-2: #7b6919;
+}
+.report-itm.lab {
+  --rpt-itm-color-base: #DCA270;
+  --rpt-itm-color-opaque-1: #b96e2d;
+  --rpt-itm-color-opaque-2: #673d19;
 }
 
 /*# sourceMappingURL=main.css.map */

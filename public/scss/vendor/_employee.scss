@@ -142,8 +142,19 @@
 
 
 // Styles for reports page
+$report-itm-border-radius: 6px;
+
+@mixin generate-report-item-variant($user-type, $color-base) {
+  &.#{$user-type} {
+    --rpt-itm-color-base: #{$color-base};
+    --rpt-itm-color-opaque-1: #{darken($color-base, 20%)};
+    --rpt-itm-color-opaque-2: #{darken($color-base, 40%)};
+  }
+}
+
 .report-list {
-  height: 100vh;
+  //height: 100vh;
+  height: calc(100vh - 5.5rem);
   padding: .5rem;
   margin: 0 .5rem .5rem .5rem;
   background-color: #e7eff9;
@@ -155,7 +166,7 @@
     height: 100%;
     padding: .2rem .5rem;
     background: #7c7f93;
-    border-radius: 6px;
+    border-radius: $report-itm-border-radius;
     box-shadow: inset 2px 2px 5px 0 rgba(0, 0, 0, 0.2), inset -2px -2px 5px 0 rgba(0, 0, 0, 0.2);
 
     overflow-x: hidden;
@@ -168,13 +179,18 @@
 }
 
 .report-itm {
+  --rpt-itm-color-base: #{$white};
+  --rpt-itm-color-opaque-1: #{darken($white, 20%)};
+  --rpt-itm-color-opaque-2: #{darken($white, 40%)};
+
   width: 100%;
   margin-bottom: .8rem;
-  border: 2px solid $white;
-  border-radius: 6px;
-  background-color: $white;
+  border: 2px solid var(--rpt-itm-color-base);
+  border-radius: $report-itm-border-radius;
+  background-color: var(--rpt-itm-color-base);
   overflow: hidden;
-  box-shadow: 0 0 2px 2px rgba(211, 211, 211, 0.8);
+  box-shadow: 0 0 2px 2px var(--rpt-itm-color-opaque-1);
+  cursor: pointer;
 
   .report-inner {
     display: flex;
@@ -192,11 +208,11 @@
         flex: 0 0 auto;
         width: 64px;
         height: 64px;
-        background: $gray-2;
+        background: var(--rpt-itm-color-opaque-1);
 
         a {
           padding: .5rem;
-          background: $white;
+          background: var(--rpt-itm-color-base);
           width: 100%;
           height: 100%;
           border-radius: 0 0 6px 0;
@@ -207,6 +223,7 @@
 
           i {
             font-size: 1.5rem;
+            color: var(--rpt-itm-color-opaque-2);
           }
         }
       }
@@ -226,7 +243,7 @@
         }
 
         .header-subject {
-          background: $gray-2;
+          background: var(--rpt-itm-color-opaque-1);
           padding: .25rem 1rem;
           border-radius: 6px 6px 0 0;
         }
@@ -236,8 +253,13 @@
     .report-body {
       width: 100%;
       padding: .5rem;
-      background: $gray-2;
+      background: var(--rpt-itm-color-opaque-1);
       border-radius: 6px 0 6px 6px;
     }
   }
+
+  @include generate-report-item-variant('pharmacy', #61F0E4);
+  @include generate-report-item-variant('supplier', #A3E1B0);
+  @include generate-report-item-variant('delivery', #E4D17C);
+  @include generate-report-item-variant('lab', #DCA270);
 }

@@ -71,19 +71,40 @@ echo $components->createNavbar();
     configs.stage = 'dev';
     configs.customFormElmPath = '/scss/components/forms';
 
-    //logging
-    logger("Logging g28 initial state before loading specialized JS files...");
-    for (let property in configs) {
-        logger(`> ${property}: ${configs[property]}`);
-    }
+    // adding simplebar to the report list
+    new SimpleBar(document.querySelector('.report-list .list-content'));
 
-    document.querySelectorAll('.approval-table tbody tr:not(.empty)').forEach((row) => {
-        row.addEventListener('click', (e) => {
+    // manipulating report items
+    document.querySelectorAll('.report-itm').forEach((itm) => {
+        const report_types = ['pharmacy', 'supplier', 'delivery', 'lab'];
+
+        itm.addEventListener('click', (e) => {
             e.stopPropagation();
-            if (e.target.tagName === 'TD') {
-                let entity = row.getAttribute('data-usr');
-                let type = row.getAttribute('data-tp');
-                window.location.href = '/employee/res/' + type + '?et=' + entity;
+
+            if (e.currentTarget === itm) {
+                console.log('/employee/reports/seen?et=' + itm.getAttribute('data-id'));
+
+                // getting a response from the server
+                fetch('/employee/reports/seen?et=' + itm.getAttribute('data-id'))
+                    .then(r => r.json())
+                    .then(response => {
+                        if (response.success) {
+                            // Access additional attributes
+                            const username = response.username;
+                            const inquiryId = response.inquiry_id;
+                            logger('Report seen by ' + username + ' for inquiry ID ' + inquiryId + '.');
+
+                            // validating the response with the report item
+                            if (inquiryId === itm.getAttribute('data-id')) {
+                                // removing the user type class from the report item
+                                itm.classList.forEach((cls) => {
+                                    if (report_types.includes(cls)) {
+                                        itm.classList.remove(cls);
+                                    }
+                                });
+                            }
+                        }
+                    });
             }
         });
     });

@@ -225,7 +225,7 @@ class EmployeeViewComponents
     public function createReportItem(ReportModel $report): string
     {
         return ('
-        <div class="report-itm">
+        <div class="report-itm'.(!$report->is_employee_noticed? " $report->user_type" : "").'" data-id="'.($report->inquiry_id?? "N/A").'">
             <div class="report-inner">
                 <div class="header">
                     <div class="header-icon">

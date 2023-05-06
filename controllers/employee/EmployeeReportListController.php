@@ -2,23 +2,13 @@
 
 namespace app\controllers\employee;
 
-use app\core\Controller;
 use app\core\Request;
 use app\models\ReportListModel;
+use app\models\ReportModel;
 use app\stores\EmployeeStore;
 
-class EmployeeReportListController extends Controller
+class EmployeeReportListController extends MasterCRUDController
 {
-    const login = 'Location: /login';
-
-    private function validate(): void
-    {
-        // checking whether the user is logged into the server
-        if ($_SESSION['userType'] != 'staff') {
-            header(self::login);
-        }
-    }
-
     public function load(Request $request): void
     {
         $this->validate();
@@ -41,17 +31,24 @@ class EmployeeReportListController extends Controller
         return $model->getAllReports();
     }
 
-    public function sortBySeen($list): array
+    public function reportIsSeen(Request $request): void
     {
-        $seen = array();
-        $unseen = array();
-        foreach ($list as $report) {
-            if ($report->is_employee_noticed) {
-                $seen[] = $report;
-            } else {
-                $unseen[] = $report;
-            }
+        // retrieving the employee store
+        $store = EmployeeStore::getEmployeeStore();
+        $store->flag_g_usr = $this->getEntityFlag($request);
+
+        $report = ReportModel::getByID($store->flag_g_usr);
+
+        if ($report && $report->seenBy($store->username)) {
+            echo json_encode(array(
+                'username' => $store->username,
+                'inquiry_id' => $store->flag_g_usr,
+                'success' => true
+            ));
+            return; // Return to stop further execution
         }
-        return array_merge($seen, $unseen);
+
+        // operation failed
+        echo json_encode(['success' => false]);
     }
 }

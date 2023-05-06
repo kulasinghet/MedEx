@@ -6,7 +6,7 @@ use app\core\Request;
 use app\models\EmpResourcesModel;
 use app\stores\EmployeeStore;
 
-class EmployeeResListController extends AbstractListController
+class EmployeeResListController extends MasterListController
 {
     public function load(Request $request): void
     {
@@ -36,8 +36,6 @@ class EmployeeResListController extends AbstractListController
             $model = new EmpResourcesModel();
             // creating an array of all resources
             $list = $model->getPharmacyList(true);
-            // storing the list in the store
-            $store->list_g = $list;
         }
 
         // slicing the list to the set size

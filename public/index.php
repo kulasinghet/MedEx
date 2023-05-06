@@ -117,6 +117,7 @@ $app->router->post('/employee/res/lab/push', [EmployeeResController::class, 'pus
 
 $app->router->get('/employee/reports', [EmployeeReportListController::class, 'load']);
 $app->router->post('/employee/reports', [EmployeeReportListController::class, 'load']);
+$app->router->get('/employee/reports/seen', [EmployeeReportListController::class, 'reportIsSeen']);
 
 $app->router->get('/employee/configs', [EmployeeDashboardController::class, 'loadConfigs']);
 $app->router->post('/employee/configs', [EmployeeDashboardController::class, 'loadConfigs']);

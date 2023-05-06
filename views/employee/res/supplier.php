@@ -5,7 +5,7 @@ use app\views\employee\EmployeeViewComponents;
 
 $components = new EmployeeViewComponents();
 $store = EmployeeStore::getEmployeeStore();
-$supplier = $store->aprv_one_obj;
+$supplier = $store->g_obj;
 ?>
 <!DOCTYPE html>
 <html lang="en">
