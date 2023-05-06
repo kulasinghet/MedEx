@@ -85,10 +85,6 @@ echo $components->createNavbar();
                                         <label for="lab_cert_id">Laboratory Certificate Id</label>
                                         <input type="text" class="form-input" id="lab_cert_id" value="<?php echo $lab->lab_cert_id ?>">
                                     </div>
-                                    <div class="form-group">
-                                        <label for="lab_cert_name">Laboratory Certificate</label>
-                                        <input class="form-input" type="file" id="lab_cert_name" accept="image/*" value="<?php echo $lab->lab_cert_name ?>">
-                                    </div>
                                 </div>
                             </div>
                         <?php } else { ?>

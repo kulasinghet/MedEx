@@ -178,7 +178,7 @@ class EmployeeViewComponents
     <td>
         <div class="row action-buttons">
             <div class="col">
-                <a class="btn btn--success" href="/employee/approve/'.$this->getTypeOf($approval).'?et='.$approval->username.'&a=approve">
+                <a class="btn btn--success" href="/employee/approve/'.$this->getTypeOf($approval).'?et='.$approval->username.'">
                     <i class="fa-solid fa-circle-check"></i>
                 </a>
             </div>

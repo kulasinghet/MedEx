@@ -39,6 +39,7 @@ echo $components->createNavbar();
             <div class="col card data-box">
                 <div class="card-body">
                     <h5 class="card-title">Pharmacy Details</h5>
+                    <!-- General info -->
                     <div class="row">
                         <div class="col">
                             <table class="status-table">
@@ -48,9 +49,15 @@ echo $components->createNavbar();
                                     <td><?php echo $store->g_obj->username?? "N/A" ?></td>
                                 </tr>
                                 <tr>
-                                    <th>Owner Name</th>
-                                    <td><?php echo $store->g_obj->owner_name?? "N/A" ?></td>
+                                    <th>Address</th>
+                                    <td><?php echo $store->g_obj->address?? "N/A" ?></td>
                                 </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col">
+                            <table class="status-table">
+                                <tbody>
                                 <tr>
                                     <th>Email</th>
                                     <td><?php echo $store->g_obj->email?? "N/A" ?></td>
@@ -62,37 +69,48 @@ echo $components->createNavbar();
                                 </tbody>
                             </table>
                         </div>
+                    </div>
+
+                    <!-- Pharmacy info -->
+                    <div class="row">
                         <div class="col">
                             <table class="status-table">
                                 <tbody>
                                 <tr>
-                                    <th>Name</th>
+                                    <th>Pharmacy Name</th>
                                     <td><?php echo $store->g_obj->name?? "N/A" ?></td>
                                 </tr>
                                 <tr>
                                     <th>City</th>
                                     <td><?php echo $store->g_obj->city?? "N/A" ?></td>
                                 </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col">
+                            <table class="status-table">
+                                <tbody>
                                 <tr>
-                                    <th>Address</th>
-                                    <td><?php echo $store->g_obj->address?? "N/A" ?></td>
-                                </tr>
-                                <tr>
-                                    <th>Delivery Time</th>
-                                    <td><?php echo $store->g_obj->delivery_time?? "N/A" ?></td>
+                                    <th>Owner Name</th>
+                                    <td><?php echo $store->g_obj->owner_name?? "N/A" ?></td>
                                 </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
 
+                    <!-- Legal info -->
                     <div class="row">
                         <div class="col">
                             <table class="status-table">
                                 <tbody>
                                 <tr>
-                                    <th>Pharmacy Register Number</th>
+                                    <th>Pharmacy Registration No.</th>
                                     <td><?php echo $store->g_obj->phar_reg_no?? "N/A" ?></td>
+                                </tr>
+                                <tr>
+                                    <th>Pharmacy Certificate ID</th>
+                                    <td><?php echo $store->g_obj->phar_cert_id?? "N/A" ?></td>
                                 </tr>
                                 </tbody>
                             </table>

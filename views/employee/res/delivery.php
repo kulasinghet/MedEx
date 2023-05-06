@@ -38,7 +38,7 @@ echo $components->createNavbar();
         <div class="row justify-content-center">
             <div class="col card details-form">
                 <div class="card-body">
-                    <h4 class="card-title">Delivery Details</h4>
+                    <h4 class="card-title">Delivery Partner Details</h4>
                     <form action="/employee/res/delivery/push" method="post">
                         <?php if ($delivery != null) { ?>
                             <div class="row margin-bottom">
@@ -90,7 +90,7 @@ echo $components->createNavbar();
                                         <input type="text" class="form-input" id="vehicle_type" value="<?php echo $delivery->vehicle_type ?>">
                                     </div>
                                     <div class="form-group">
-                                        <label for="max_load">Max Load</label>
+                                        <label for="max_load">Max Load (Kg)</label>
                                         <input type="text" class="form-input" id="max_load" value="<?php echo $delivery->max_load ?>">
                                     </div>
                                     <div class="selector-group">
@@ -110,18 +110,6 @@ echo $components->createNavbar();
                                     <div class="form-group">
                                         <label for="license_name">Driving License Name</label>
                                         <input type="text" class="form-input" id="license_name" value="<?php echo $delivery->license_name ?>">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="license_photo">Driving License Photo</label>
-                                        <input class="form-input" type="file" id="license_photo" accept="image/*" value="<?php echo $delivery->license_photo ?>">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="vehicle_reg_photo">Vehicle Registration</label>
-                                        <input class="form-input" type="file" id="vehicle_reg_photo" accept="image/*" value="<?php echo $delivery->vehicle_reg_photo ?>">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="vehicle_photo">Vehicle Photo</label>
-                                        <input class="form-input" type="file" id="vehicle_photo" accept="image/*" value="<?php echo $delivery->vehicle_photo ?>">
                                     </div>
                                 </div>
                             </div>

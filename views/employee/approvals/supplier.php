@@ -39,6 +39,7 @@ echo $components->createNavbar();
             <div class="col card data-box">
                 <div class="card-body">
                     <h5 class="card-title">Supplier Details</h5>
+                    <!-- General info -->
                     <div class="row">
                         <div class="col">
                             <table class="status-table">
@@ -47,6 +48,16 @@ echo $components->createNavbar();
                                     <th>Username</th>
                                     <td><?php echo $store->g_obj->username?? "N/A" ?></td>
                                 </tr>
+                                <tr>
+                                    <th>Address</th>
+                                    <td><?php echo $store->g_obj->address?? "N/A" ?></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col">
+                            <table class="status-table">
+                                <tbody>
                                 <tr>
                                     <th>Email</th>
                                     <td><?php echo $store->g_obj->email?? "N/A" ?></td>
@@ -58,32 +69,40 @@ echo $components->createNavbar();
                                 </tbody>
                             </table>
                         </div>
-                        <div class="col">
-                            <table class="status-table">
-                                <tbody>
-                                <tr>
-                                    <th>Name</th>
-                                    <td><?php echo $store->g_obj->name?? "N/A" ?></td>
-                                </tr>
-                                <tr>
-                                    <th>Address</th>
-                                    <td><?php echo $store->g_obj->address?? "N/A" ?></td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
                     </div>
 
+                    <!-- Supplier info -->
                     <div class="row">
                         <div class="col">
                             <table class="status-table">
                                 <tbody>
                                 <tr>
-                                    <th>Supplier Register Number</th>
+                                    <th>Supplier Name</th>
+                                    <td><?php echo $store->g_obj->name?? "N/A" ?></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col">
+                            <table class="status-table">
+                                <tbody>
+                                <tr></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Legal info -->
+                    <div class="row">
+                        <div class="col">
+                            <table class="status-table">
+                                <tbody>
+                                <tr>
+                                    <th>Supplier Registration No.</th>
                                     <td><?php echo $store->g_obj->supp_reg_no?? "N/A" ?></td>
                                 </tr>
                                 <tr>
-                                    <th>Supplier Registration ID</th>
+                                    <th>Supplier Certificate ID</th>
                                     <td><?php echo $store->g_obj->supp_cert_id?? "N/A" ?></td>
                                 </tr>
                                 </tbody>
