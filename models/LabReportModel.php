@@ -15,12 +15,14 @@ class LabReportModel extends Model
     public $comment;
     public $verified;
     public $issued;
+
+    public $LabReportName;
     // Accept Lab Report
     public function acceptReport($reqid, $labname)
     {
         $db = (new Database())->getConnection();
         try {
-            $sql = "INSERT INTO labreport (reqId, labName, comment,verified,issued) VALUES ('$reqid', '$labname','Test Pending','0','0')";
+            $sql = "INSERT INTO labreport (reqId, labName, comment,verified,issued,LabReportName) VALUES ('$reqid', '$labname','Test Pending','0','0',NULL)";
             $stmt = $db->prepare($sql);
             $stmt->execute();
 
@@ -40,7 +42,7 @@ class LabReportModel extends Model
     public function PendingReportsDropDown($labName)
     {
         $db = (new Database())->getConnection();
-        $sql = "SELECT reqId FROM labreport WHERE issued = '0' ";
+        $sql = "SELECT reqId FROM labreport WHERE issued = '0' AND labreport.labName = '$labName' ";
         $result = $db->query($sql);
         var_dump($result);
         while ($row = $result->fetch_assoc()) {
@@ -49,11 +51,11 @@ class LabReportModel extends Model
         }
     }
 
-    public function issueReport($reqid, $verfied, $comment)
+    public function issueReport($reqid, $verfied, $comment, $reportName)
     {
         $db = (new Database())->getConnection();
         try {
-            $sql = "UPDATE labreport SET comment = '$comment', verified = '$verfied', issued  = '1' WHERE reqId='$reqid'";
+            $sql = "UPDATE labreport SET comment = '$comment', verified = '$verfied', issued  = '1', LabReportName='$reportName' WHERE reqId='$reqid'";
             $stmt = $db->prepare($sql);
             $stmt->execute();
 
@@ -73,7 +75,7 @@ class LabReportModel extends Model
     public function getLabReports($uname)
     {
         $db = (new Database())->getConnection();
-        $sql = "SELECT reqId,verified,comment from labreport WHERE labreport.labName = '$uname'&& issued  = '1' ";
+        $sql = "SELECT reqId,verified,comment,LabReportName from labreport WHERE labreport.labName = '$uname'&& issued  = '1' ";
         $result = $db->query($sql);
         if ($result->num_rows > 0) {
             return $result;

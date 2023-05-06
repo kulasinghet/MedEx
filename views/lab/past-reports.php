@@ -80,6 +80,7 @@ use app\controllers\lab\LabReportController;
                                         <th>Request Id</th>
                                         <th>Verfied</th>
                                         <th>Comment</th>
+                                        <th>Lab Report</th>
                                     </tr>
                                     <?php
                                     $labreq = new LabReportController;
