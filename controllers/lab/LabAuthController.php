@@ -1,5 +1,6 @@
 <?php
 namespace app\controllers\lab;
+
 use app\core\Controller;
 use app\core\Request;
 
@@ -35,8 +36,8 @@ class LabAuthController extends Controller
             if ($file1['size'] <= 3145728 && $file2['size'] <= 3145728) {
                 $BusRegiCert_Name_New = $_POST["username"] . "BusRegiCert." . $file_ext1;
                 $LabRegiCert_Name_New = $_POST["username"] . "LabRegiCert." . $file_ext2;
-                $filedestination1 = '..\uploads\laboratory\businessRegCert' . DIRECTORY_SEPARATOR . $BusRegiCert_Name_New;
-                $filedestination2 = '..\uploads\laboratory\labRegCert' . DIRECTORY_SEPARATOR . $LabRegiCert_Name_New;
+                $filedestination1 = '..\public\uploads\laboratory\businessRegCert' . DIRECTORY_SEPARATOR . $BusRegiCert_Name_New;
+                $filedestination2 = '..\public\uploads\laboratory\labRegCert' . DIRECTORY_SEPARATOR . $LabRegiCert_Name_New;
                 move_uploaded_file($file1['tmp_name'], $filedestination1);
                 move_uploaded_file($file2['tmp_name'], $filedestination2);
 
