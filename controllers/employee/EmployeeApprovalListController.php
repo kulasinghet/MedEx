@@ -6,7 +6,7 @@ use app\core\Request;
 use app\models\EmpResourcesModel;
 use app\stores\EmployeeStore;
 
-class EmployeeApprovalListController extends AbstractListController
+class EmployeeApprovalListController extends MasterListController
 {
     public function load(Request $request): void
     {

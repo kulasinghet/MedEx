@@ -2,35 +2,45 @@
 
 namespace app\controllers\employee;
 
-use app\core\Controller;
 use app\core\Request;
 use app\models\ReportListModel;
+use app\models\ReportModel;
 use app\stores\EmployeeStore;
 
-class EmployeeReportListController extends Controller
+class EmployeeReportListController extends MasterCRUDController
 {
-    const login = 'Location: /login';
-
-    private function validate(): void
-    {
-        // checking whether the user is logged into the server
-        if ($_SESSION['userType'] != 'staff') {
-            header(self::login);
-        }
-    }
-
     public function load(Request $request): void
     {
         $this->validate();
 
-        if ($request->isGet()) {
-            if ($_SESSION['userType'] == 'staff') {
+        // retrieving the employee store
+        $store = EmployeeStore::getEmployeeStore();
+        $store->flag_g_usr = $this->getEntityFlag($request);
+        $store->flag_g_act = $this->getActionFlag($request);
+
+        $report = ReportModel::getByID($store->flag_g_usr);
+
+        // checking whether there is a direct action to be performed
+        switch ($store->flag_g_act) {
+            case 'seen':
+                if ($report && $report->seenBy($store->username)) {
+                    echo json_encode(array(
+                        'username' => $store->username,
+                        'inquiry_id' => $store->flag_g_usr,
+                        'success' => true
+                    ));
+                    return; // Return to stop further execution
+                }
+                // operation failed
+                echo json_encode(['success' => false]);
+                return;
+            case 'accept':
+                $report->resolve();
+                header('Location: /employee/reports');
+                return; // Return to stop further execution
+            default:
                 $this -> render("employee/reports.php");
-            } else {
-                header(self::login);
-            }
-        } else {
-            header(self::login);
+                break;
         }
     }
 
@@ -41,17 +51,8 @@ class EmployeeReportListController extends Controller
         return $model->getAllReports();
     }
 
-    public function sortBySeen($list): array
+    public function reportAction(Request $request): void
     {
-        $seen = array();
-        $unseen = array();
-        foreach ($list as $report) {
-            if ($report->is_employee_noticed) {
-                $seen[] = $report;
-            } else {
-                $unseen[] = $report;
-            }
-        }
-        return array_merge($seen, $unseen);
+
     }
 }

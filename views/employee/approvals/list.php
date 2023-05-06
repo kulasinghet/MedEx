@@ -161,6 +161,8 @@ echo $components->createNavbar();
             window.location.href = '/employee/approve';
         } else if (type === 'Laboratory') {
             window.location.href = '/employee/approve?f=lab';
+        } else if (type === 'Delivery Partner') {
+            window.location.href = '/employee/approve?f=delivery';
         } else {
             window.location.href = '/employee/approve?f=' + type.toLowerCase();
         }
