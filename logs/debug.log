@@ -663,3 +663,37 @@
 2023/05/06 18:45:44 SELECT pharmacysellmedicine.medId, pharmacysellmedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, stock.sellingPrice as unitPrice FROM pharmacysellmedicine LEFT JOIN medicine ON pharmacysellmedicine.medid = medicine.id LEFT JOIN stock ON medicine.id = stock.medId WHERE invoice_id = 'BILL64'
 2023/05/06 18:47:27 SELECT pharmacysellmedicine.medId, pharmacysellmedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, stock.sellingPrice as unitPrice FROM pharmacysellmedicine LEFT JOIN medicine ON pharmacysellmedicine.medid = medicine.id LEFT JOIN stock ON medicine.id = stock.medId WHERE invoice_id = 'BILL64'
 2023/05/06 18:47:35 SELECT pharmacyordermedicine.medId, pharmacyordermedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, supplier_medicine.unitPrice FROM pharmacyordermedicine LEFT JOIN medicine ON pharmacyordermedicine.medid = medicine.id LEFT JOIN supplier_medicine ON medicine.id = supplier_medicine.medid WHERE orderid = 'ORD36'
+2023/05/06 21:37:17 Array
+(
+    [username] => testPharmacy
+    [name] => Test Pharm
+    [ownerName] => Test
+    [city] => Colombo
+    [pharmacyRegNo] => Test01
+    [BusinessRegId] => Test01
+    [pharmacyCertId] => Test01
+    [verified] => 1
+    [deliveryTime] => 16:00:30
+    [email] => test@gmail.com
+    [address] => Test
+    [mobile] => 0112320667
+    [reg_date] => 
+)
+
+2023/05/06 21:37:57 Array
+(
+    [username] => testPharmacy
+    [name] => Test Pharm
+    [ownerName] => Test
+    [city] => Colombo
+    [pharmacyRegNo] => Test01
+    [BusinessRegId] => Test01
+    [pharmacyCertId] => Test01
+    [verified] => 1
+    [deliveryTime] => 16:00:30
+    [email] => test@gmail.com
+    [address] => Test
+    [mobile] => 0112320667
+    [reg_date] => 2023-05-11
+)
+

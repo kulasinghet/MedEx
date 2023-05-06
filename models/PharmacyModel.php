@@ -300,5 +300,26 @@ class PharmacyModel extends Model
 
     }
 
+    public function getDeliveryTime(mixed $city)
+    {
+        $db = (new Database())->getConnection();
+
+        try {
+            $sql = "SELECT delivery_time FROM city WHERE city = '$city'";
+            $result = $db->query($sql);
+
+            if ($result->num_rows == 1) {
+                $row = $result->fetch_assoc();
+                return $row['delivery_time'];
+            } else {
+                return false;
+            }
+
+        } catch (\Exception $e) {
+            Logger::logError($e->getMessage());
+            return false;
+        }
+    }
+
 
 }

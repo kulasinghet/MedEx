@@ -3,6 +3,7 @@
 namespace app\controllers\pharmacy;
 
 use app\core\Controller;
+use app\core\Logger;
 use app\core\NotificationHandler;
 use app\core\Request;
 use Exception;
@@ -145,7 +146,9 @@ class PharmacyDashboardController extends Controller
     public function getPharmacyProfile() {
         if (isset($_SESSION['username'])) {
             $user = new \app\models\PharmacyModel();
-            return $user->getPharmacyProfile($_SESSION['username']);
+            $user = $user->getPharmacyProfile($_SESSION['username']);
+            $user['deliveryTime'] = $this->getDeliveryTime($user['city']);
+            return $user;
         } else {
             return header(self::login);
         }
@@ -215,6 +218,12 @@ class PharmacyDashboardController extends Controller
         } catch (Exception $e) {
             return null;
         }
+    }
+
+    private function getDeliveryTime(mixed $city)
+    {
+        $deliveryTime = new \app\models\PharmacyModel();
+        return $deliveryTime->getDeliveryTime($city);
     }
 
 }

@@ -1,0 +1,24 @@
+h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 1rem;
+    color: #071232;
+}
+
+img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    vertical-align:middle;
+}
+
+#qrCode {
+    width: 15vw;
+    height: 15vw;
+    display: block;
+    margin-top: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 0;
+}
