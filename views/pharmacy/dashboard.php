@@ -21,7 +21,7 @@ echo $components->sideBar('dashboard');
                 <div class="card-body">
                     <h5 class="card-title">Sales in the Week</h5>
                     <p class="card-text">
-                        <canvas id="myChart" style="width: 20vw; height: 20vh;"></canvas>
+                        <canvas id="myChart" style="width: 20vw; height: auto;"></canvas>
 
                         <script>
                             const username = document.getElementsByClassName('nav-profile-name')[0].innerHTML;
@@ -74,7 +74,7 @@ echo $components->sideBar('dashboard');
                 <div class="card-body">
                     <h5 class="card-title">Sales and Cost <?php echo date("F"); ?></h5>
                     <p class="card-text">
-                        <canvas id="sales-and-cost" style="width: 20vw; max-height: 20vh;"></canvas>
+                        <canvas id="sales-and-cost" style="width: auto; max-height: 20vh;"></canvas>
 
                         <script>
                             const salescost = "http://localhost:8080/pharmacy/api/sales-and-cost-for-current-month?pharmacyUsername=" + username;
