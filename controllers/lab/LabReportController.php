@@ -20,6 +20,19 @@ class LabReportController extends Controller
             $reqid = $_POST['reqid'];
             $verfied = $_POST['status'];
             $comment = $_POST['comment'];
+            $file1 = $_FILES["LabReport"];
+            $file_ext1 = explode('.', $file1['name']);
+            $file_ext1 = strtolower(end($file_ext1));
+            if ($file1['size'] <= 3145728) {
+                $LabReportName_New = $_POST["reqid"] . "LabReport." . $file_ext1;
+                $filedestination1 = '..\public\uploads\laboratory\labReport' . DIRECTORY_SEPARATOR . $LabReportName_New;
+                move_uploaded_file($file1['tmp_name'], $filedestination1);
+
+            } else {
+                echo (new \app\core\ExceptionHandler)->uploadtobig();
+                return $this->render('/lab/reports.php');
+            }
+
             $result1 = $labreq->getSup_Medid($reqid);
             if ($result1->num_rows > 0) {
                 while ($row1 = $result1->fetch_assoc()) {
@@ -27,7 +40,7 @@ class LabReportController extends Controller
                     $supName = $row1['SupName'];
                 }
             }
-            if ($labreport->issueReport($reqid, $verfied, $comment) && $supMed->UpdateLabReport($supName, $medId, $verfied)) {
+            if ($labreport->issueReport($reqid, $verfied, $comment, $LabReportName_New) && $supMed->UpdateLabReport($supName, $medId, $verfied)) {
                 echo (new \app\core\ExceptionHandler)->LabReportIssued();
                 return $this->render("/lab/past-reports.php");
             }
@@ -52,7 +65,9 @@ class LabReportController extends Controller
 
                 }
                 $comment = $row['comment'];
-                echo "<tr><td>" . $reqid . "</td><td>" . $status . "</td><td>" . $comment . "</td></tr>";
+                $report = $row['LabReportName'];
+                $link = '/uploads/laboratory/labReport' . DIRECTORY_SEPARATOR . $report;
+                echo "<tr><td>" . $reqid . "</td><td>" . $status . "</td><td>" . $comment . "</td><td>" . "<a class='btn btn--primary' target='_blank' href='" . $link . "'>Check Lab Report</a>" . "</td></tr>";
             }
 
         }

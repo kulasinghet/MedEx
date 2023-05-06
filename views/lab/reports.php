@@ -75,7 +75,7 @@ use app\models\LabReportModel;
                             <div style="padding: 2%;">
                                 <h3>Generate Lab Report</h3>
                                 <br>
-                                <form method="post" action="/lab/generate-report">
+                                <form method="post" action="/lab/generate-report" enctype="multipart/form-data">
                                     Lab Request Id:
                                     <select name='reqid' value='' class='form-input' required>
                                         <?php
@@ -87,6 +87,8 @@ use app\models\LabReportModel;
                                     <input class="form-input" type="radio" name="status" value='1'> Verify
                                     <input class="form-input" type="radio" name="status" value='0'> Unverify
                                     <br><br>
+                                    Lab Report<small> (3MB - jpg,jpeg,png,pdf) </small><br><input class="form-input"
+                                        type="file" name="LabReport" id="LabReport" required accept="image/*,.pdf"><br>
                                     Comment:<br>
                                     <textarea class="form-input" id="comment" name="comment" rows="10" cols="60">Enter Comment
                                    </textarea>
