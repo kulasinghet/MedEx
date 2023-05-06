@@ -8,11 +8,11 @@ use Exception;
 
 class HyperSupplierModel extends HyperEntityModel
 {
-    public string $supp_reg_no;
-    public string $business_reg_id;
-    public string $business_cert_name;
-    public string $supp_cert_id;
-    public string $supp_cert_name;
+    public ?string $supp_reg_no;
+    public ?string $business_reg_id;
+    public ?string $business_cert_name;
+    public ?string $supp_cert_id;
+    public ?string $supp_cert_name;
     public string $reg_date;
 
     public function __construct($params = array())
@@ -84,31 +84,34 @@ class HyperSupplierModel extends HyperEntityModel
         //loading the database
         $db = new Database();
         $conn = $db->getConnection();
+        $date = date("Y-m-d");
 
         try {
             $sql = "INSERT INTO `supplier` (
-                        username, 
-                        name, 
-                        supplierRegNo, 
-                        BusinessRegId, 
-                        supplierCertId, 
-                        BusinessRegCertName, 
-                        supplierCertName, 
-                        verified, 
-                        email, 
-                        address, 
+                        username,
+                        name,
+                        supplierRegNo,
+                        BusinessRegId,
+                        supplierCertId,
+                        BusinessRegCertName,
+                        supplierCertName,
+                        verified,
+                        regDate,
+                        email,
+                        address,
                         mobile)
             VALUES (
-                    '$this->username', 
-                    '$this->name', 
-                    '$this->supp_reg_no', 
-                    '$this->business_reg_id', 
-                    '$this->supp_cert_id', 
-                    '$this->business_cert_name', 
-                    '$this->supp_cert_name', 
-                    '0', 
-                    '$this->email', 
-                    '$this->address', 
+                    '$this->username',
+                    '$this->name',
+                    '$this->supp_reg_no',
+                    '$this->business_reg_id',
+                    '$this->supp_cert_id',
+                    '$this->business_cert_name',
+                    '$this->supp_cert_name',
+                    '0',
+                    '$date',
+                    '$this->email',
+                    '$this->address',
                     '$this->mobile)';";
 
             $stmt = $conn->prepare($sql);

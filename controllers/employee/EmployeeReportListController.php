@@ -50,9 +50,4 @@ class EmployeeReportListController extends MasterCRUDController
         // creating an array of all reports
         return $model->getAllReports();
     }
-
-    public function reportAction(Request $request): void
-    {
-
-    }
 }
