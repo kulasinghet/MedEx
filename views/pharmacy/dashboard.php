@@ -40,8 +40,11 @@ echo $components->sideBar('dashboard');
                                     // Sort the data by invoice date in ascending order
                                     data.sort((a, b) => new Date(a.invoice_date) - new Date(b.invoice_date));
 
-                                    const labels = data.map(item => item.invoice_date);
+                                    const labels = data.map(item => item.date);
                                     const values = data.map(item => item.total);
+
+                                    console.log(labels);
+                                    console.log(values);
 
                                     // Create the chart
                                     const ctx = document.getElementById('myChart').getContext('2d');

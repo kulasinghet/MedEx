@@ -278,20 +278,12 @@ class PharmacySellMedicineController extends Controller
 
     public function salesByDay(Request $request) {
 
-        $qr = new \app\core\QR();
-        $qr_JSON = [
-            "username" => $_SESSION['username'],
-            "qrtype" => "pharmacy"
-        ];
-        $qr_name = $_SESSION['username'] . '_qr';
-        if ($qr->generateQRForPersonal(json_encode($qr_JSON), $qr_name, 10, 'L')) {
-            $flag = true;
-        }
-
-
         $pharmacyUsername = $request->getParams()['pharmacyUsername'];
         $order = new \app\models\PharmacySellModel();
         $result = $order->getSalesOrdersPerDayLimitWeek($pharmacyUsername);
+
+        Logger::logDebug('salesByDay');
+        Logger::logDebug(print_r($result, true));
 
         header('Content-Type: application/json');
         echo json_encode($result);

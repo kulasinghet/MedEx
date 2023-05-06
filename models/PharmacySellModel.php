@@ -307,7 +307,8 @@ class PharmacySellModel extends Model
 
     public function getSalesOrdersPerDayLimitWeek(mixed $pharmacyUsername)
     {
-        $sql = "SELECT invoice_date, SUM(bill_total) AS total FROM pharmacysell WHERE pharmacyUsername = '$pharmacyUsername' AND invoice_date >= DATE_SUB(CURDATE(), INTERVAL 7 DAY) GROUP BY invoice_date ORDER BY invoice_date DESC LIMIT 7";
+        $sql = "SELECT DATE(invoice_date) AS date, SUM(bill_total) AS total FROM pharmacysell WHERE pharmacyUsername = '$pharmacyUsername' AND invoice_date >= DATE_SUB(CURRENT_DATE(), INTERVAL 7 DAY) GROUP BY DATE(invoice_date) ORDER BY date ASC;";
+
 
         Logger::logDebug($sql);
 

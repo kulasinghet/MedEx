@@ -1,6 +1,6 @@
 <html lang="en">
 <head>
-    <title>Login | MedEx</title>
+    <title>Review Purchases | MedEx</title>
     <!--        <link href="../scss2/vendor/demo.css" rel="stylesheet"/>-->
     <link rel="stylesheet" href="/css/loginPage.css">
     <link href='/css/error-model.css' rel='stylesheet'>
@@ -24,15 +24,15 @@
     </div>
 
     <div class="sign-in-component">
-        <h1>Report Purchase</h1>
+        <h1>Review Purchase</h1>
 
         <form action="/report/medicine-order" method="post">
             <div class="input-field">
 
                 <?php if (isset($orderId)) { ?>
-                    <input type="text" name="orderID" placeholder="Order ID" required value="<?php echo $orderId ?>" style="margin-bottom: 0">
+                    <input  id="input"  type="text" name="orderID" placeholder="Order ID" required value="<?php echo $orderId ?>" style="margin-bottom: 0">
                 <?php } else { ?>
-                <input type="text" name="orderID" placeholder="Order ID" required style="margin-bottom: 0">
+                <input id="input" type="text" name="orderID" placeholder="Order ID" required style="margin-bottom: 0">
                 <?php } ?>
             </div>
 
@@ -61,7 +61,7 @@
 
 
             <div class="input-field">
-                <input type="text" name="comment" placeholder="Comment" required>
+                <input id="input"  type="text" name="comment" placeholder="Comment">
             </div>
 
 <!--            <button type="submit" class="btn" id="registerButton" onclick="hanleRegisterButton()">Report</button>-->

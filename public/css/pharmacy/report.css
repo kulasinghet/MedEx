@@ -89,3 +89,90 @@ i {
 .checked {
     color: #f2b01e;
 }
+
+@media screen and (max-width: 1000px) {
+
+    .container {
+        width: 100vw;
+        height: 100vh;
+        padding: 0;
+        padding-top: 20vh;
+        padding-bottom: 20vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        margin: 0;
+    }
+
+    .image {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .sign-in-component {
+        max-width: 70vw;
+        max-height: 50vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        margin-top: 5rem;
+    }
+
+    h1 {
+        font-size: 3rem;
+        font-weight: 500;
+        color: #000;
+        text-align: center;
+        padding: 1rem;
+        line-height: 1;
+    }
+
+    .input-field {
+        height: 3rem;
+        padding: 1rem;
+        margin: 2rem;
+        transition: all 0.3s ease;
+    }
+
+    button {
+        font-size: 3rem !important;
+        transition: all 0.3s ease;
+        margin-top: 5rem !important;
+    }
+
+    i {
+        font-size: 8rem;
+        transition: all 0.3s ease;
+    }
+
+    input {
+        padding: 0;
+        height: 3rem;
+        padding: 5rem !important;
+        transition: all 0.3s ease;
+    }
+
+    #input {
+        padding: 0;
+        height: 3rem;
+        padding: 5rem !important;
+        transition: all 0.3s ease;
+    }
+
+    .star-rating {
+        display: inline-flex;
+        align-items: center;
+        justify-content: space-around;
+        color: #ddd;
+        flex-direction: row-reverse;
+        margin-top: 5rem;
+    }
+
+    .star-rating label {
+        margin: 0.5rem;
+    }
+}
