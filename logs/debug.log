@@ -1027,3 +1027,83 @@
 2023/05/06 23:24:50 INSERT INTO pharmacyorder (id, pharmacyUsername, status, supName, order_date, delivery_date, order_total) VALUES ('ORD67', 'testPharmacy', '0', null, '2023-05-06', null, '70')
 2023/05/06 23:24:52 INSERT INTO pharmacyordermedicine (orderid, pharmacyUsername, medId, quantity, status, supName, order_date, delivery_date, order_total) VALUES ('ORD67', 'testPharmacy', 'Med0001', '7', '0', null, '2023-05-06', null, '70')
 2023/05/06 23:24:55 SELECT pharmacyordermedicine.medId, pharmacyordermedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, supplier_medicine.unitPrice FROM pharmacyordermedicine LEFT JOIN medicine ON pharmacyordermedicine.medid = medicine.id LEFT JOIN supplier_medicine ON medicine.id = supplier_medicine.medid WHERE orderid = 'ORD67'
+2023/05/06 23:33:25 getPendingOrdersCount() returned: 3
+2023/05/06 23:33:27 getAcceptedOrdersCount() returned: 2
+2023/05/06 23:33:33 getTotalOrdersCount() returned: 5
+2023/05/06 23:33:39 getPendingOrdersCount() returned: 3
+2023/05/06 23:33:40 getAcceptedOrdersCount() returned: 2
+2023/05/06 23:33:44 getTotalOrdersCount() returned: 5
+2023/05/06 23:33:48 SELECT DATE(invoice_date) AS date, SUM(bill_total) AS total FROM pharmacysell WHERE pharmacyUsername = 'testPharmacy' AND invoice_date >= DATE_SUB(CURRENT_DATE(), INTERVAL 7 DAY) GROUP BY DATE(invoice_date) ORDER BY date ASC;
+2023/05/06 23:33:49 salesByDay
+2023/05/06 23:33:49 Array
+(
+    [0] => Array
+        (
+            [date] => 2023-04-30
+            [total] => 1540
+        )
+
+    [1] => Array
+        (
+            [date] => 2023-05-04
+            [total] => 2932
+        )
+
+    [2] => Array
+        (
+            [date] => 2023-05-05
+            [total] => 250
+        )
+
+    [3] => Array
+        (
+            [date] => 2023-05-06
+            [total] => 2760
+        )
+
+)
+
+2023/05/06 23:33:49 SELECT SUM(bill_total) AS total FROM pharmacysell WHERE pharmacyUsername = 'testPharmacy' AND MONTH(invoice_date) = MONTH(CURRENT_DATE()) AND YEAR(invoice_date) = YEAR(CURRENT_DATE())
+2023/05/06 23:33:50 SELECT SUM(quantity * stock.buying_price) AS total  FROM pharmacysellmedicine LEFT JOIN stock ON pharmacysellmedicine.medId = stock.medId WHERE pharmacysellmedicine.invoice_id IN (SELECT invoice_id FROM pharmacysell WHERE pharmacyUsername = 'testPharmacy' AND MONTH(invoice_date) = MONTH(CURRENT_DATE()) AND YEAR(invoice_date) = YEAR(CURRENT_DATE()))
+2023/05/06 23:35:10 SELECT * FROM pharmacysell WHERE pharmacyUsername = 'testPharmacy' ORDER BY invoice_date DESC, invoice_id DESC
+2023/05/06 23:35:29 *****************************
+2023/05/06 23:35:29 Array
+(
+    [customerPayment] => 200
+    [customerChange] => 10
+    [total] => 190
+    [medicineIds] => Array
+        (
+            [0] => Med0002
+            [1] => Med0005
+        )
+
+    [medicineQuantities] => Array
+        (
+            [0] => 3
+            [1] => 2
+        )
+
+)
+
+2023/05/06 23:35:29 /////////Total price 0
+2023/05/06 23:35:30 Max: 64 Tag: BILL
+2023/05/06 23:35:32 ----------updateSellMedicineQuantity: 2 2
+2023/05/06 23:35:32 ----------updateSellMedicineQuantity: Med0002 3
+2023/05/06 23:35:33 UPDATE stock SET remQty = remQty - '3' WHERE medId = 'Med0002' AND pharmacyName = 'testPharmacy'
+2023/05/06 23:35:35 UPDATE stock SET remaining_days = remQty / consumption_rate WHERE medId = 'Med0002' AND pharmacyName = 'testPharmacy'
+2023/05/06 23:35:35 Remaining days updated
+2023/05/06 23:35:36 UPDATE stock SET consumption_rate = (SELECT AVG(consumption_rate) FROM (SELECT consumption_rate FROM stock WHERE medId = 'Med0002' AND pharmacyName = 'testPharmacy' ORDER BY id DESC LIMIT 7) AS t) WHERE medId = 'Med0002' AND pharmacyName = 'testPharmacy'
+2023/05/06 23:35:36 0
+2023/05/06 23:35:36 Consumption rate updated
+2023/05/06 23:35:36 ----------updateSellMedicineQuantity: Med0005 2
+2023/05/06 23:35:38 UPDATE stock SET remQty = remQty - '2' WHERE medId = 'Med0005' AND pharmacyName = 'testPharmacy'
+2023/05/06 23:35:39 UPDATE stock SET remaining_days = remQty / consumption_rate WHERE medId = 'Med0005' AND pharmacyName = 'testPharmacy'
+2023/05/06 23:35:39 Remaining days updated
+2023/05/06 23:35:40 UPDATE stock SET consumption_rate = (SELECT AVG(consumption_rate) FROM (SELECT consumption_rate FROM stock WHERE medId = 'Med0005' AND pharmacyName = 'testPharmacy' ORDER BY id DESC LIMIT 7) AS t) WHERE medId = 'Med0005' AND pharmacyName = 'testPharmacy'
+2023/05/06 23:35:41 0
+2023/05/06 23:35:41 Consumption rate updated
+2023/05/06 23:35:41 Order ID BILL65
+2023/05/06 23:35:41 SELECT pharmacysellmedicine.medId, pharmacysellmedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, stock.sellingPrice as unitPrice FROM pharmacysellmedicine LEFT JOIN medicine ON pharmacysellmedicine.medid = medicine.id LEFT JOIN stock ON medicine.id = stock.medId WHERE invoice_id = 'BILL65'
+2023/05/06 23:35:45 SELECT * FROM pharmacysell WHERE pharmacyUsername = 'testPharmacy' ORDER BY invoice_date DESC, invoice_id DESC
+2023/05/06 23:35:51 SELECT pharmacysellmedicine.medId, pharmacysellmedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, stock.sellingPrice as unitPrice FROM pharmacysellmedicine LEFT JOIN medicine ON pharmacysellmedicine.medid = medicine.id LEFT JOIN stock ON medicine.id = stock.medId WHERE invoice_id = 'BILL65'

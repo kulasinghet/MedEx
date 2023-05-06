@@ -766,3 +766,17 @@
 2023/05/06 23:24:23 /pharmacy/order-medicine
 2023/05/06 23:24:47 /pharmacy/order-medicine
 2023/05/06 23:24:56 /pharmacy/orders
+2023/05/06 23:33:13 /
+2023/05/06 23:33:19 /login
+2023/05/06 23:33:20 /login
+2023/05/06 23:33:23 /dashboard
+2023/05/06 23:33:36 /login
+2023/05/06 23:33:38 /dashboard
+2023/05/06 23:33:48 /pharmacy/api/sales-by-day
+2023/05/06 23:33:49 /pharmacy/api/sales-and-cost-for-current-month
+2023/05/06 23:35:09 /pharmacy/invoices
+2023/05/06 23:35:14 /pharmacy/sell-medicine
+2023/05/06 23:35:29 /pharmacy/sell-medicine
+2023/05/06 23:35:45 /pharmacy/invoices
+2023/05/06 23:35:50 /pharmacy/api/sales-order
+2023/05/06 23:35:51 /pharmacy/api/sales-order-medicines

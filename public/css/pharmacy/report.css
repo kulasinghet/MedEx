@@ -103,6 +103,8 @@ i {
         justify-content: space-around;
         align-items: center;
         margin: 0;
+        padding-top: 5vh;
+        padding-bottom: 5vh;
     }
 
     .image {
