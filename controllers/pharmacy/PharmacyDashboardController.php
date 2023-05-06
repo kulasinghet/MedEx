@@ -150,5 +150,21 @@ class PharmacyDashboardController extends Controller
         }
     }
 
+    public function isVerified() {
+        if (isset($_SESSION['username'])) {
+            $user = new \app\models\PharmacyModel();
+            $flag = $user->isVerified($_SESSION['username']);
+
+            if ($flag) {
+                return 1;
+            } else {
+                return 0;
+            }
+
+        } else {
+            return header(self::login);
+        }
+    }
+
 
 }

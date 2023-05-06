@@ -248,5 +248,30 @@ class PharmacyModel extends Model
         }
     }
 
+    public function isVerified(mixed $username)
+    {
+        $db = (new Database())->getConnection();
+
+        try {
+            $sql = "SELECT * FROM pharmacy WHERE username = '$username'";
+            $result = $db->query($sql);
+
+            if ($result->num_rows == 1) {
+                $row = $result->fetch_assoc();
+                if ($row['verified'] == 1) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+
+        } catch (\Exception $e) {
+            Logger::logError($e->getMessage());
+            return false;
+        }
+    }
+
 
 }

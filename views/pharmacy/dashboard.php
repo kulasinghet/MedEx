@@ -16,6 +16,13 @@ echo $components->sideBar('dashboard');
 <div class="canvas nav-cutoff sidebar-cutoff">
     <div class="canvas-inner">
 
+        <?php if ($isVerified == 0) { ?>
+            <div class="modal not-verified" role="alert">
+                <strong>Warning!</strong> Your pharmacy is not verified yet. Please wait until the verification process is completed.
+            </div>
+        <?php } ?>
+
+
         <div class="dashboard-row">
             <div class="card g-col-4 g-row-1-start-1">
                 <div class="card-body">
