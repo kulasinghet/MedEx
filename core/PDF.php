@@ -49,13 +49,27 @@ class PDF
             table { border-collapse: collapse; margin-bottom: 20px; }
             th, td { border: 1px solid black; padding: 5px; }
             hr { border: 1px solid black; margin-bottom: 20px; margin-top: 20px; }
+            .container { display: table; width: 100%; }
+            .col-50 { display: table-cell; width: 50%; }
+            .col-50 img { display: block; margin-left: auto; margin-right: auto; }
+            p { text-align: center; }
         </style>';
         $html .= '<h1>Order Details</h1>';
         $html .= '<hr>';
-        $html .= '<h3>Pharmacy Name: ' . $pharmacyName . '</h3>';
-        $html .= '<h3>Order ID: ' . $orderid . '</h3>';
-        $html .= '<h3>Order Date: ' . $order_date . '</h3>';
-        $html .= '<h3>Total Price: ' . $total_price . '</h3>';
+        $html .= '<div class="container">
+            <div class="col-50">
+                <h3>Pharmacy Name: ' . $pharmacyName . '</h3>
+                <h3>Order ID: ' . $orderid . '</h3>
+                <h3>Order Date: ' . $order_date . '</h3>
+                <h3>Total Price: ' . $total_price . '</h3>
+            </div>
+            <div class="col-50">';
+        $html .= '<h3>Scan the QR code to update the order status</h3>';
+        $html .= '<h5>This QR code will be used by the delivery service to update the order status</h5>';
+        $html .= '<img src="data:image/png;base64,' . $image_base64 . '" alt="QR Code" width="200" height="200">';
+        $html .= '</div>';
+        $html .= '</div>';
+        $html .= '<hr>';
         $html .= '<h3>Medicine Details</h3>';
         $html .= '<table style="width:100%">
             <tr>
@@ -77,9 +91,6 @@ class PDF
             </tr>';
         }
         $html .= '</table>';
-        $html .= '<h3>Scan the QR code to update the order status</h3>';
-        $html .= '<h5>This QR code will be used by the delivery service to update the order status</h5>';
-        $html .= '<img src="data:image/png;base64,' . $image_base64 . '" alt="QR Code" width="200" height="200">';
         $html .= '<br>';
         $html .= '<hr>';
         $html .= '<p>This is an automatically generated document. No signature is required.</p>';
