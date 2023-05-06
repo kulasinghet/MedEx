@@ -76,76 +76,75 @@ class PharmacySellModel extends Model
         $this->bill_total = $bill_total;
     }
 
-    public function createSellOrder($pharmacyUsername, $totalPrice, $medicinIDArray, $customer_money): bool | string
+    public function createSellOrder($pharmacyUsername, $totalPrice, $medicinIDArray, $medicinQuantityArray, $customer_money, $customer_change): bool | string
     {
+
         $this->setInvoiceId($this->createRandomID('pharmacysell'));
         // sql date time format
         $order_date = date("Y-m-d H:i:s");
 
         $sql = "INSERT INTO pharmacysell (invoice_id, pharmacyUsername, invoice_date, bill_total, customer_money) VALUES ('$this->invoice_id', '$pharmacyUsername', '$order_date', '$totalPrice', '$customer_money');";
 
-        Logger::logDebug('createSellOrder SQL: ' . $sql);
-
         $db = (new Database())->getConnection();
         try {
             $stmt = $db->prepare($sql);
             $stmt->execute();
 
-            if ($stmt->affected_rows == 1) {
+            if ($stmt->affected_rows > 0) {
                 $stmt->close();
-                if ($this->updateSellMedicineQuantity($pharmacyUsername, $medicinIDArray)) {
+                if ($this->updateSellMedicineQuantity($pharmacyUsername, $medicinIDArray, $medicinQuantityArray)) {
                     return $this->invoice_id;
                 }
-
             }
         } catch (\Exception $e) {
             Logger::logError($e->getMessage());
             return false;
         }
-
         return false;
 
     }
 
-    private function updateSellMedicineQuantity($pharmacyUsername, $medicinIDArray): bool | string
+    private function updateSellMedicineQuantity($pharmacyUsername, $medicinIDArray, $medicinQuantityArray): bool
     {
         $db = (new Database())->getConnection();
-
         $flag = true;
 
-        foreach ($medicinIDArray as $medicine) {
+        Logger::logDebug('----------updateSellMedicineQuantity: ' . count($medicinIDArray) . ' ' . count($medicinQuantityArray));
 
-            $medicineID = $medicine->getMedicineId();
-            $quantity = $medicine->getQuantity();
+        for ($i = 0; $i < count($medicinIDArray); $i++) {
+            $medicineID = $medicinIDArray[$i];
+            $quantity = $medicinQuantityArray[$i];
 
-            $sql = "INSERT INTO pharmacysellmedicine (invoice_id, pharmacyUsername, medId, quantity) VALUES ('$this->invoice_id', '$pharmacyUsername', '$medicineID', '$quantity');";
+            Logger::logDebug('----------updateSellMedicineQuantity: ' . $medicineID . ' ' . $quantity);
 
-            Logger::logDebug('updateSellMedicineQuantity SQL: ' . $sql);
 
-            try {
-                $stmt = $db->prepare($sql);
-                $stmt->execute();
+            if ($quantity != 0) {
+                $sql = "INSERT INTO pharmacysellmedicine (invoice_id, pharmacyUsername, medId, quantity) VALUES ('$this->invoice_id', '$pharmacyUsername', '$medicineID', '$quantity');";
 
-                if ($stmt->affected_rows == 1) {
-                    $stmt->close();
+                try {
+                    $stmt = $db->prepare($sql);
+                    $stmt->execute();
 
-                    if ($this->updateStock($medicineID, $quantity, $pharmacyUsername)) {
-                        continue;
+                    if ($stmt->affected_rows == 1) {
+                        $stmt->close();
+
+                        if ($this->updateStock($medicineID, $quantity, $pharmacyUsername)) {
+                            continue;
+                        } else {
+                            $flag = false;
+                            break;
+                        }
+
                     } else {
                         $flag = false;
                         break;
                     }
-
-                } else {
-                    $flag = false;
-                    break;
+                } catch (\Exception $e) {
+                    Logger::logError($e->getMessage());
+                    return false;
                 }
-            } catch (\Exception $e) {
-                Logger::logError($e->getMessage());
-                return false;
             }
         }
-
 
 
         return $flag;
