@@ -54,7 +54,7 @@ class PharmacyOrderHistoryController extends Controller
     public function transformOrderTotal($orderTotal, $orderStatus = null): string
     {
 
-        if ($orderStatus == "0") {
+        if ($orderStatus == "0" || $orderStatus == "4" || $orderStatus == "6") {
             return '-';
         } else {
             return $orderTotal;

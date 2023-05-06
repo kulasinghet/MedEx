@@ -396,7 +396,17 @@ echo $components->sideBar('orders');
                 swal("Order Cancelled!", "Contact the administrator!", "error");
             } else if (orderData.orderStatus == 'Accepted')
             {
-                swal("Order Accepted!", "Contact the administrator!", "error");
+                swal({
+                    title: "Order Summary" + '\t' + $orderId,
+                    content: {
+                        element: "div",
+                        attributes: {
+                            innerHTML: orderInformationForSwal + medicineInformationForSwal,
+                        }
+                    },
+                    buttons: {},
+                })
+
             } else if (orderData.orderStatus == 'Delivering')
             {
                 console.log('delivering');
