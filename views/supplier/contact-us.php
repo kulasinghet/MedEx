@@ -92,7 +92,15 @@
                         <form method="post" action="/supplier/contact-us">
                             <div class="form-group">
                                 <label for="exampleFormControlInput1">Subject</label>
-                                <input type="text" class="form-input" id="subject" placeholder="Subject" name="subject">
+                                <select name="subject" value='' class='form-input' required>
+                                    <option value='Request to Re-evalute Medcine Request' class='option'>Request to
+                                        Re-evalute Medcine Request</option>
+                                    <option value='Request to Change Profile Details' class='option'>Request to Change
+                                        Profile Details</option>
+                                    <option value='Inquriy about Pharmacy Order' class='option'>Inquriy about
+                                        Pharmacy Order</option>
+                                    <option value='Other' class='option'>Other</option>
+                                </select>
                             </div>
 
                             <div class="form-group">
