@@ -42,7 +42,7 @@ class PharmacyOrderHistoryController extends Controller
 
     public function transformDeliveryDate($deliveryDate, $orderStatus = null): string
     {
-        if ($orderStatus == "0" || $orderStatus == "4" || $orderStatus == "6") {
+        if ($orderStatus == "0" || $orderStatus == "4" || $orderStatus == "6" || $orderStatus == "3") {
             return '-';
         } else if (is_null($deliveryDate)) {
             return '-';
@@ -54,7 +54,7 @@ class PharmacyOrderHistoryController extends Controller
     public function transformOrderTotal($orderTotal, $orderStatus = null): string
     {
 
-        if ($orderStatus == "0" || $orderStatus == "4" || $orderStatus == "6") {
+        if ($orderStatus == "0" || $orderStatus == "4" || $orderStatus == "6" || $orderStatus == "3") {
             return '-';
         } else {
             return $orderTotal;

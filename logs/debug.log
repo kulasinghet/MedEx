@@ -864,3 +864,64 @@
 2023/05/06 22:54:26 SELECT pharmacyordermedicine.medId, pharmacyordermedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, supplier_medicine.unitPrice FROM pharmacyordermedicine LEFT JOIN medicine ON pharmacyordermedicine.medid = medicine.id LEFT JOIN supplier_medicine ON medicine.id = supplier_medicine.medid WHERE orderid = 'order0002'
 2023/05/06 22:54:32 SELECT pharmacyordermedicine.medId, pharmacyordermedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, supplier_medicine.unitPrice FROM pharmacyordermedicine LEFT JOIN medicine ON pharmacyordermedicine.medid = medicine.id LEFT JOIN supplier_medicine ON medicine.id = supplier_medicine.medid WHERE orderid = 'ORD59'
 2023/05/06 22:55:28 SELECT pharmacyordermedicine.medId, pharmacyordermedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, supplier_medicine.unitPrice FROM pharmacyordermedicine LEFT JOIN medicine ON pharmacyordermedicine.medid = medicine.id LEFT JOIN supplier_medicine ON medicine.id = supplier_medicine.medid WHERE orderid = 'ORD62'
+2023/05/06 23:02:45 SELECT pharmacyordermedicine.medId, pharmacyordermedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, supplier_medicine.unitPrice FROM pharmacyordermedicine LEFT JOIN medicine ON pharmacyordermedicine.medid = medicine.id LEFT JOIN supplier_medicine ON medicine.id = supplier_medicine.medid WHERE orderid = 'ORD62'
+2023/05/06 23:04:49 SELECT pharmacyordermedicine.medId, pharmacyordermedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, supplier_medicine.unitPrice FROM pharmacyordermedicine LEFT JOIN medicine ON pharmacyordermedicine.medid = medicine.id LEFT JOIN supplier_medicine ON medicine.id = supplier_medicine.medid WHERE orderid = 'order0003'
+2023/05/06 23:06:58 sql: SELECT m.id, m.medName, m.sciName, COALESCE(s.remQty, 0) AS remQty, sm.unitPrice AS price FROM medex.medicine m LEFT JOIN medex.stock s ON m.id = s.medId JOIN medex.supplier_medicine sm ON m.id = sm.medId WHERE m.id IN (SELECT medId FROM medex.supplier_medicine) ORDER BY m.id;
+2023/05/06 23:06:58 MedicineModel::getAllMedicines()mysqli_result Object
+(
+    [current_field] => 0
+    [field_count] => 5
+    [lengths] => 
+    [num_rows] => 8
+    [type] => 0
+)
+
+2023/05/06 23:06:58 mysqli_result Object
+(
+    [current_field] => 0
+    [field_count] => 5
+    [lengths] => 
+    [num_rows] => 8
+    [type] => 0
+)
+
+2023/05/06 23:06:59 sql: SELECT m.id, m.medName, m.sciName, COALESCE(s.remQty, 0) AS remQty, sm.unitPrice AS price FROM medex.medicine m LEFT JOIN medex.stock s ON m.id = s.medId JOIN medex.supplier_medicine sm ON m.id = sm.medId WHERE m.id IN (SELECT medId FROM medex.supplier_medicine) ORDER BY m.id;
+2023/05/06 23:06:59 MedicineModel::getAllMedicines()mysqli_result Object
+(
+    [current_field] => 0
+    [field_count] => 5
+    [lengths] => 
+    [num_rows] => 8
+    [type] => 0
+)
+
+2023/05/06 23:06:59 MedicineModel::getMedicinePrice()Med0001
+2023/05/06 23:07:00 Med0001 price: 10
+2023/05/06 23:07:00 MedicineModel::getMedicinePrice()Med00010
+2023/05/06 23:07:01 Med00010 price: 0
+2023/05/06 23:07:01 MedicineModel::getMedicinePrice()Med0002
+2023/05/06 23:07:02 Med0002 price: 21
+2023/05/06 23:07:02 MedicineModel::getMedicinePrice()Med0003
+2023/05/06 23:07:03 Med0003 price: 0
+2023/05/06 23:07:03 MedicineModel::getMedicinePrice()Med0004
+2023/05/06 23:07:04 Med0004 price: 60
+2023/05/06 23:07:04 MedicineModel::getMedicinePrice()Med0005
+2023/05/06 23:07:05 Med0005 price: 0
+2023/05/06 23:07:05 MedicineModel::getMedicinePrice()Med0007
+2023/05/06 23:07:06 Med0007 price: 0
+2023/05/06 23:07:06 MedicineModel::getMedicinePrice()Med0009
+2023/05/06 23:07:07 Med0009 price: 10
+2023/05/06 23:12:13 MedicineModel::getMedicinePrice()Med0001
+2023/05/06 23:12:15 Med0001 price: 10
+2023/05/06 23:12:15 MedicineModel::getMedicinePrice()Med00010
+2023/05/06 23:12:18 Med00010 price: 0
+2023/05/06 23:12:19 Max: 64 Tag: ORD
+2023/05/06 23:12:19 INSERT INTO pharmacyorder (id, pharmacyUsername, status, supName, order_date, delivery_date, order_total) VALUES ('ORD65', 'testPharmacy', '0', null, '2023-05-06', null, '60')
+2023/05/06 23:12:22 INSERT INTO pharmacyordermedicine (orderid, pharmacyUsername, medId, quantity, status, supName, order_date, delivery_date, order_total) VALUES ('ORD65', 'testPharmacy', 'Med0001', '6', '0', null, '2023-05-06', null, '60')
+2023/05/06 23:12:23 INSERT INTO pharmacyordermedicine (orderid, pharmacyUsername, medId, quantity, status, supName, order_date, delivery_date, order_total) VALUES ('ORD65', 'testPharmacy', 'Med00010', '8', '0', null, '2023-05-06', null, '60')
+2023/05/06 23:12:25 SELECT pharmacyordermedicine.medId, pharmacyordermedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, supplier_medicine.unitPrice FROM pharmacyordermedicine LEFT JOIN medicine ON pharmacyordermedicine.medid = medicine.id LEFT JOIN supplier_medicine ON medicine.id = supplier_medicine.medid WHERE orderid = 'ORD65'
+2023/05/06 23:13:16 SELECT pharmacyordermedicine.medId, pharmacyordermedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, supplier_medicine.unitPrice FROM pharmacyordermedicine LEFT JOIN medicine ON pharmacyordermedicine.medid = medicine.id LEFT JOIN supplier_medicine ON medicine.id = supplier_medicine.medid WHERE orderid = 'ORD65'
+2023/05/06 23:15:03 SELECT pharmacyordermedicine.medId, pharmacyordermedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, supplier_medicine.unitPrice FROM pharmacyordermedicine LEFT JOIN medicine ON pharmacyordermedicine.medid = medicine.id LEFT JOIN supplier_medicine ON medicine.id = supplier_medicine.medid WHERE orderid = 'ORD65'
+2023/05/06 23:15:13 SELECT pharmacyordermedicine.medId, pharmacyordermedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, supplier_medicine.unitPrice FROM pharmacyordermedicine LEFT JOIN medicine ON pharmacyordermedicine.medid = medicine.id LEFT JOIN supplier_medicine ON medicine.id = supplier_medicine.medid WHERE orderid = 'ORD65'
+2023/05/06 23:15:48 SELECT pharmacyordermedicine.medId, pharmacyordermedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, supplier_medicine.unitPrice FROM pharmacyordermedicine LEFT JOIN medicine ON pharmacyordermedicine.medid = medicine.id LEFT JOIN supplier_medicine ON medicine.id = supplier_medicine.medid WHERE orderid = 'ORD65'
+2023/05/06 23:16:20 SELECT pharmacyordermedicine.medId, pharmacyordermedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, supplier_medicine.unitPrice FROM pharmacyordermedicine LEFT JOIN medicine ON pharmacyordermedicine.medid = medicine.id LEFT JOIN supplier_medicine ON medicine.id = supplier_medicine.medid WHERE orderid = 'ORD65'

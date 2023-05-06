@@ -287,19 +287,18 @@ echo $components->sideBar('orders');
             let medicineInformationForSwal = '';
 
             if (orderedMedicines != undefined || orderedMedicines.length > 0) {
-                medicineInformationForSwal = '<table><th>Medicine ID</th><th>Medicine</th> <th>Medicine Scientific Name</th><th>Weight</th><th>Price</th><th>Quantity</th><th>Total Price</th>';
+                medicineInformationForSwal = '<table><th>Medicine ID</th><th>Medicine</th> <th>Medicine Scientific Name</th><th>Price</th><th>Quantity</th><th>Total Price</th>';
                 for (let key in orderedMedicines) {
                     medicineInformationForSwal += '<tr>';
                     medicineInformationForSwal += '<td>' + orderedMedicines[key].medId + '</td>';
                     medicineInformationForSwal += '<td>' + orderedMedicines[key].medName + '</td>';
                     medicineInformationForSwal += '<td style="text-align: center">' + orderedMedicines[key].sciName + '</td>';
-                    medicineInformationForSwal += '<td style="text-align: center">' + orderedMedicines[key].weight + '</td>';
                     medicineInformationForSwal += '<td style="text-align: center">' + orderedMedicines[key].unitPrice + '</td>';
                     medicineInformationForSwal += '<td style="text-align: center">' + orderedMedicines[key].quantity + '</td>';
                     medicineInformationForSwal += '<td style="text-align: center">' + parseInt(orderedMedicines[key].unitPrice) * parseInt(orderedMedicines[key].quantity) + '</td>';
                     medicineInformationForSwal += '</tr>';
                 }
-                medicineInformationForSwal += '<tr style="color: #071232; font-size: 1rem; font-weight: bold"><td>Total</td><td colspan="5"></td><td style="text-align: center">' + orderData.totalPrice + '</td></tr>';
+                medicineInformationForSwal += '<tr style="color: #071232; font-size: 1rem; font-weight: bold"><td>Total</td><td colspan="4"></td><td style="text-align: center">' + orderData.totalPrice + '</td></tr>';
                 medicineInformationForSwal += '</table>';
             } else {
                 medicineInformationForSwal = '<h4>No Medicine Ordered</h4>';
