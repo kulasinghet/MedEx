@@ -118,6 +118,9 @@ article {
   max-width: 100%;
   padding: 0 calc(var(--g28-gap) * 0.5);
 }
+.row.justify-content-center {
+  justify-content: center;
+}
 .row .col {
   flex: 1 0 0;
 }

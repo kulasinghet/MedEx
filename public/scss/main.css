@@ -118,6 +118,9 @@ article {
   max-width: 100%;
   padding: 0 calc(var(--g28-gap) * 0.5);
 }
+.row.justify-content-center {
+  justify-content: center;
+}
 .row .col {
   flex: 1 0 0;
 }
@@ -3464,6 +3467,20 @@ textarea.form-input {
 }
 .approval-table .approval-type {
   text-align: center;
+}
+
+.details-form {
+  max-width: 800px;
+}
+.details-form h5:not(:first-child) {
+  margin-top: 2.5rem;
+}
+.details-form .card-title {
+  font-size: 1.6rem;
+  margin: 0.5rem 0 2.5rem 0;
+}
+.details-form .button-group {
+  margin-bottom: 1rem;
 }
 
 .report-list {

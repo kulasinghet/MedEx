@@ -34,15 +34,17 @@ echo $components->createNavbar();
 <!-- Section: Dashboard Layout -->
 <div class="canvas nav-cutoff sidebar-cutoff">
     <div class="canvas-inner">
-        <!-- DataBox -->
-        <div class="row">
-            <div class="col card data-box">
+        <!-- Details Form -->
+        <div class="row justify-content-center">
+            <div class="col card details-form">
                 <div class="card-body">
-                    <h5 class="card-title">Laboratory Details</h5>
+                    <h4 class="card-title">Laboratory Details</h4>
                     <form action="/employee/res/delivery/push" method="post">
                         <?php if ($lab != null) { ?>
                             <div class="row margin-bottom">
                                 <div class="col">
+                                    <!-- General info -->
+                                    <h5>General Details</h5>
                                     <div class="form-group">
                                         <label for="username">Username</label>
                                         <input type="text" class="form-input disabled" id="username" value="<?php echo $lab->username ?>" disabled>
@@ -58,22 +60,30 @@ echo $components->createNavbar();
                                         </textarea>
                                     </div>
                                     <div class="form-group">
-                                        <label for="business_cert_name">Business Registration Certificate</label>
-                                        <input class="form-input" type="file" id="business_cert_name" accept="image/*" value="<?php echo $lab->business_cert_name ?>">
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label for="name">Name</label>
-                                        <input type="text" class="form-input" id="name" value="<?php echo $lab->name ?>">
-                                    </div>
-                                    <div class="form-group">
                                         <label for="mobile">Phone Number</label>
                                         <input type="text" class="form-input" id="mobile" value="<?php echo $lab->mobile ?>">
                                     </div>
+
+                                    <!-- Lab info -->
+                                    <h5>Laboratory Information</h5>
+                                    <div class="form-group">
+                                        <label for="name">Laboratory Name</label>
+                                        <input type="text" class="form-input" id="name" value="<?php echo $lab->name ?>">
+                                    </div>
+
+                                    <!-- Legal info -->
+                                    <h5>Legal Information</h5>
                                     <div class="form-group">
                                         <label for="business_reg_id">Business Registration Id</label>
                                         <input type="text" class="form-input" id="business_reg_id" value="<?php echo $lab->business_reg_id ?>">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="business_cert_name">Business Registration Certificate</label>
+                                        <input class="form-input" type="file" id="business_cert_name" accept="image/*" value="<?php echo $lab->business_cert_name ?>">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="lab_cert_id">Laboratory Certificate Id</label>
+                                        <input type="text" class="form-input" id="lab_cert_id" value="<?php echo $lab->lab_cert_id ?>">
                                     </div>
                                     <div class="form-group">
                                         <label for="lab_cert_name">Laboratory Certificate</label>
@@ -84,6 +94,8 @@ echo $components->createNavbar();
                         <?php } else { ?>
                             <div class="row margin-bottom">
                                 <div class="col">
+                                    <!-- General info -->
+                                    <h5>General Details</h5>
                                     <div class="form-group">
                                         <label for="username">Username</label>
                                         <input type="text" class="form-input" id="username">
@@ -97,22 +109,30 @@ echo $components->createNavbar();
                                         <textarea class="form-input" id="address" rows="3"></textarea>
                                     </div>
                                     <div class="form-group">
-                                        <label for="business_cert_name">Business Registration Certificate</label>
-                                        <input class="form-input" type="file" id="business_cert_name" accept="image/*">
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label for="name">Name</label>
-                                        <input type="text" class="form-input" id="name">
-                                    </div>
-                                    <div class="form-group">
                                         <label for="mobile">Phone Number</label>
                                         <input type="text" class="form-input" id="mobile">
                                     </div>
+
+                                    <!-- Lab info -->
+                                    <h5>Laboratory Information</h5>
+                                    <div class="form-group">
+                                        <label for="name">Laboratory Name</label>
+                                        <input type="text" class="form-input" id="name">
+                                    </div>
+
+                                    <!-- Legal info -->
+                                    <h5>Legal Information</h5>
                                     <div class="form-group">
                                         <label for="business_reg_id">Business Registration Id</label>
                                         <input type="text" class="form-input" id="business_reg_id">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="business_cert_name">Business Registration Certificate</label>
+                                        <input class="form-input" type="file" id="business_cert_name" accept="image/*">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="lab_cert_id">Laboratory Certificate Id</label>
+                                        <input type="text" class="form-input" id="lab_cert_id">
                                     </div>
                                     <div class="form-group">
                                         <label for="lab_cert_name">Laboratory Certificate</label>
