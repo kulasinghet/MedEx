@@ -120,6 +120,30 @@ echo $components->createNavbar();
                         </div>
                     </div>
 
+                    <!-- Legal Docs -->
+                    <div class="row">
+                        <div class="col">
+                            <table class="status-table">
+                                <tbody>
+                                <tr>
+                                    <th>Business Registration Certificate</th>
+                                    <td><a href="/public/uploads/supplier/businessRegCert/<?php echo $store->g_obj->username?? "N/A" ?>_businessRegCert.pdf">Download</a></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col">
+                            <table class="status-table">
+                                <tbody>
+                                <tr>
+                                    <th>Supplier Certificate</th>
+                                    <td><a href="/public/uploads/supplier/supplierCert/<?php echo $store->g_obj->username?? "N/A" ?>_supplierCert.pdf">Download</a></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
                     <div class="row justify-content-center">
                         <div class="col" style="text-align: center; margin-bottom: .5rem">
                             <span>Approve?</span>

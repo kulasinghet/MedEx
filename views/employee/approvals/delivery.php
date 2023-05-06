@@ -88,7 +88,7 @@ echo $components->createNavbar();
                                 <tbody>
                                 <tr>
                                     <th>Deliverable Cities</th>
-                                    <td><?php echo $store->g_obj->city?? "N/A" ?></td>
+                                    <td><?php echo $store->g_obj->delivery_location?? "N/A" ?></td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -135,8 +135,36 @@ echo $components->createNavbar();
                             <table class="status-table">
                                 <tbody>
                                 <tr>
-                                    <th>Driving License Name</th>
+                                    <th>Name in the license</th>
                                     <td><?php echo $store->g_obj->license_name?? "N/A" ?></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Legal Docs -->
+                    <div class="row">
+                        <div class="col">
+                            <table class="status-table">
+                                <tbody>
+                                <tr>
+                                    <th>License</th>
+                                    <td><a href="/public/uploads/delivery_partner/license/<?php echo $store->g_obj->username?? "N/A" ?>_license.png">Download</a></td>
+                                </tr>
+                                <tr>
+                                    <th>Vehicle (Photo)</th>
+                                    <td><a href="/public/uploads/delivery_partner/vehicle/<?php echo $store->g_obj->username?? "N/A" ?>_vehicle.png">Download</a></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col">
+                            <table class="status-table">
+                                <tbody>
+                                <tr>
+                                    <th>Vehicle Registration form</th>
+                                    <td><a href="/public/uploads/delivery_partner/vehicleReg/<?php echo $store->g_obj->username?? "N/A" ?>_vehicleReg.pdf">Download</a></td>
                                 </tr>
                                 </tbody>
                             </table>
