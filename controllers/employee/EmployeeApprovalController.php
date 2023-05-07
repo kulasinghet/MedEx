@@ -25,11 +25,13 @@ class EmployeeApprovalController extends MasterCRUDController
             // checking whether there is a direct action to be performed
             switch ($store->flag_g_act) {
                 case 'approve':
-                    $obj->verify(true);
+                    //$obj->verify(true);
+                    $store->setNotification('Pharmacy Approval', 'Pharmacy approved successfully', 'success');
                     header('Location: /employee/approve');
                     break;
                 case 'ignore':
                     $obj->verify(null);
+                    $store->setNotification('Pharmacy Approval', 'Pharmacy removed successfully', 'success');
                     header('Location: /employee/approve');
                     break;
                 default:

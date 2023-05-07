@@ -25,7 +25,9 @@ class G28ToastNotification extends HTMLElement {
         // browser calls this method when the element is added to the document
         // (can be called many times if an element is repeatedly added/removed)
 
-        // initializing selectbox variables
+        const self = this; // Create a reference to the instance of G28ToastNotification
+
+        // initializing toast variables
         let subject_text = this.getAttribute('subject') || '';
         let message_text = this.getAttribute('message') || '';
         let status = this.getAttribute('status') || 'success';
@@ -40,7 +42,10 @@ class G28ToastNotification extends HTMLElement {
         this.message.innerText = message_text;
         this.changeStatus(status);
         // setting the animation after the element is rendered
-        setTimeout(() => this.toast.style.transition = 'all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.35)', 100);
+        setTimeout(() => {
+            this.toast.style.transition = "all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.35)";
+            self.showToast(); // Call showToast after the toast element is available
+        }, 100);
         // --------------------- RENDERING THE ELEMENT ---------------------
 
         // --------------------- EVENT LISTENERS ---------------------
@@ -54,6 +59,7 @@ class G28ToastNotification extends HTMLElement {
             clearTimeout(this.timer1);
             clearTimeout(this.timer2);
         });
+        // --------------------- EVENT LISTENERS ---------------------
     }
 
     disconnectedCallback() {
@@ -137,12 +143,3 @@ class G28ToastNotification extends HTMLElement {
 
 customElements.define('g28-toast', G28ToastNotification);
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Toast ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-function createToast(subject, message, status = null) {
-    const toastElement = document.createElement('g28-toast');
-    toastElement.setAttribute('status', status);
-    toastElement.setAttribute('subject', subject);
-    toastElement.setAttribute('message', message);
-    setTimeout(() => toastElement.showToast(), 100);
-    document.body.appendChild(toastElement);
-}

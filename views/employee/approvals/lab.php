@@ -16,12 +16,8 @@ $pharmacy = $store->g_obj;
 
     <!-- Font awesome kit -->
     <script crossorigin="anonymous" src="https://kit.fontawesome.com/9b33f63a16.js"></script>
-    <!-- Simplebar -->
-    <link rel="stylesheet" href="https://unpkg.com/simplebar@latest/dist/simplebar.css"/>
-    <script src="https://unpkg.com/simplebar@latest/dist/simplebar.min.js"></script>
     <!-- g28 style -->
     <link rel="stylesheet" href="/scss/main.css" />
-    <script src="/js/g28-main.js"></script>
 </head>
 <body>
 <!-- Section: Fixed Components -->
@@ -166,20 +162,5 @@ echo $components->createNavbar();
     </div>
 </div>
 <!-- Section: Dashboard Layout -->
-
-<!-- g28 styling framework -->
-<script type="application/javascript">
-    // you can configure variables in here.
-    configs.stage = 'dev';
-    configs.customFormElmPath = '/scss/components/forms';
-
-    //logging
-    logger("Logging g28 initial state before loading specialized JS files...");
-    for (let property in configs) {
-        logger(`> ${property}: ${configs[property]}`);
-    }
-</script>
-<script src="/js/g28-forms.js"></script>
-<!-- g28 styling framework -->
 </body>
 </html>

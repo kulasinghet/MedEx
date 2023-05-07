@@ -18,12 +18,21 @@
 <div class="button-group center">
   <button type="submit" class="btn btn-primary">Show Toast</button>
 </div>
+<g28-toast subject="Pharmacy Approval" message="Pharmacy approved successfully" type="success"></g28-toast>
 <!-- g28 styling framework -->
 <script type="application/javascript">
   // you can configure variables in here.
   configs.stage = 'dev';
   configs.customFormElmPath = '../scss/components/forms';
   configs.scssStylePath = '../scss/';
+
+  function createToast(subject, message, status = null) {
+    const toastElement = document.createElement('g28-toast');
+    toastElement.setAttribute('status', status);
+    toastElement.setAttribute('subject', subject);
+    toastElement.setAttribute('message', message);
+    document.body.appendChild(toastElement);
+  }
 
   document.querySelector('button').addEventListener('click', () => {
     createToast('Success', 'Your changes has been saved!', 'error');
