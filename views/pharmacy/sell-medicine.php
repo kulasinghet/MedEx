@@ -228,7 +228,7 @@ echo $components->sideBar('sell-medicine');
                         }
                         console.log(orderedMedicines);
 
-                        let medicineInformationForSwal = '<table><th>Medicine ID</th><th>Medicine</th><th>Unit Price</th><th>Quantity</th><th>Total Price</th>';
+                        let medicineInformationForSwal = '<table><th>Medicine ID</th><th>Medicine</th><th>Unit Price (LKR)</th><th>Quantity</th><th>Total Price (LKR)</th>';
                         for (let key in orderedMedicines) {
                             medicineInformationForSwal += '<tr>';
                             medicineInformationForSwal += '<td>' + orderedMedicines[key].medicineId + '</td>';
@@ -263,7 +263,7 @@ echo $components->sideBar('sell-medicine');
                                         content: {
                                             element: "input",
                                             attributes: {
-                                                placeholder: "Enter the customer payment",
+                                                placeholder: "Enter the customer payment (LKR)",
                                                 type: "number",
                                                 min: 0
                                             }
@@ -284,7 +284,7 @@ echo $components->sideBar('sell-medicine');
                                             document.getElementById('customer_money').value = customerPayment;
                                             swal({
                                                 title: "Customer Change",
-                                                text: "Customer change is Rs. " + customerChange,
+                                                text: "Customer change is LKR. " + customerChange,
                                                 icon: "success",
                                                 buttons: {
                                                     confirm: "OK"
