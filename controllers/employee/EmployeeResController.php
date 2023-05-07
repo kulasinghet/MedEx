@@ -70,14 +70,13 @@ class EmployeeResController extends MasterCRUDController
                 $store->g_obj->phar_reg_no = $params['phar_reg_no'];
                 $store->g_obj->business_reg_id = $params['business_reg_id'];
                 $store->g_obj->phar_cert_id = $params['phar_cert_id'];
-                $store->g_obj->business_cert_name = $params['business_cert_name'];
-                $store->g_obj->phar_cert_name = $params['phar_cert_name'];
                 $store->g_obj->delivery_time = $params['delivery_time'];
                 $store->g_obj->email = $params['email'];
                 $store->g_obj->address = $params['address'];
                 $store->g_obj->mobile = $params['mobile'];
 
                 $store->g_obj->update();
+                $store->setNotification('Pharmacy is updated!', $store->g_obj->username . ' is updated.', 'success');
             } else {
                 // creating a new pharmacy
                 $tmp = new HyperPharmacyModel(array(
@@ -97,6 +96,7 @@ class EmployeeResController extends MasterCRUDController
                 ));
 
                 $tmp->push();
+                $store->setNotification('Pharmacy is added!', $tmp->username . ' is added.', 'success');
             }
         }
 
@@ -163,13 +163,12 @@ class EmployeeResController extends MasterCRUDController
                 $store->g_obj->supp_reg_no = $params['supp_reg_no'];
                 $store->g_obj->business_reg_id = $params['business_reg_id'];
                 $store->g_obj->supp_cert_id = $params['supp_cert_id'];
-                $store->g_obj->business_cert_name = $params['business_cert_name'];
-                $store->g_obj->supp_cert_name = $params['supp_cert_name'];
                 $store->g_obj->email = $params['email'];
                 $store->g_obj->address = $params['address'];
                 $store->g_obj->mobile = $params['mobile'];
 
-                $store->g_obj->update();
+                //$store->g_obj->update();
+                $store->setNotification('Supplier is updated!', $store->g_obj->username . ' is updated.', 'success');
             } else {
                 // creating a new supplier
                 $tmp = new HyperSupplierModel(array(
@@ -186,6 +185,7 @@ class EmployeeResController extends MasterCRUDController
                 ));
 
                 $tmp->push();
+                $store->setNotification('Supplier is added!', $tmp->username . ' is added.', 'success');
             }
         }
 
@@ -257,14 +257,12 @@ class EmployeeResController extends MasterCRUDController
                 $store->g_obj->delivery_location = $params['delivery_location'];
                 $store->g_obj->max_load = $params['max_load'];
                 $store->g_obj->refrigerators = $params['refrigerators'];
-                $store->g_obj->license_photo = $params['license_photo'];
-                $store->g_obj->vehicle_reg_photo = $params['vehicle_reg_photo'];
-                $store->g_obj->vehicle_photo = $params['vehicle_photo'];
                 $store->g_obj->email = $params['email'];
                 $store->g_obj->address = $params['address'];
                 $store->g_obj->mobile = $params['mobile'];
 
                 $store->g_obj->update();
+                $store->setNotification('Delivery partner is updated!', $store->g_obj->username . ' is updated.', 'success');
             } else {
                 // creating a new delivery
                 $tmp = new HyperDeliveryModel(array(
@@ -288,6 +286,7 @@ class EmployeeResController extends MasterCRUDController
                 ));
 
                 $tmp->push();
+                $store->setNotification('Delivery partner is added!', $tmp->username . ' is added.', 'success');
             }
         }
 
@@ -352,13 +351,12 @@ class EmployeeResController extends MasterCRUDController
                 $store->g_obj->name = $params['name'];
                 $store->g_obj->business_reg_id = $params['business_reg_id'];
                 $store->g_obj->lab_cert_id = $params['lab_cert_id'];
-                $store->g_obj->business_cert_name = $params['business_cert_name'];
-                $store->g_obj->lab_cert_name = $params['lab_cert_name'];
                 $store->g_obj->email = $params['email'];
                 $store->g_obj->address = $params['address'];
                 $store->g_obj->mobile = $params['mobile'];
 
                 $store->g_obj->update();
+                $store->setNotification('Laboratory is updated!', $store->g_obj->username . ' is updated.', 'success');
             } else {
                 // creating a new lab
                 $tmp = new HyperLabModel(array(
@@ -374,6 +372,7 @@ class EmployeeResController extends MasterCRUDController
                 ));
 
                 $tmp->push();
+                $store->setNotification('Laboratory is added!', $tmp->username . ' is added.', 'success');
             }
         }
 

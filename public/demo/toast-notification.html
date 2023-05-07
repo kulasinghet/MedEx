@@ -26,14 +26,6 @@
   configs.customFormElmPath = '../scss/components/forms';
   configs.scssStylePath = '../scss/';
 
-  function createToast(subject, message, status = null) {
-    const toastElement = document.createElement('g28-toast');
-    toastElement.setAttribute('status', status);
-    toastElement.setAttribute('subject', subject);
-    toastElement.setAttribute('message', message);
-    document.body.appendChild(toastElement);
-  }
-
   document.querySelector('button').addEventListener('click', () => {
     createToast('Success', 'Your changes has been saved!', 'error');
     console.log('clicked');

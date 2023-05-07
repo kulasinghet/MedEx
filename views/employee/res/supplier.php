@@ -161,7 +161,7 @@ echo $components->createNavbar();
 <script type="application/javascript">
     // you can configure variables in here.
     configs.stage = 'dev';
-    configs.customFormElmPath = '/scss/components/forms';
+    configs.scssStylePath = '../scss/';
 
     //logging
     logger("Logging g28 initial state before loading specialized JS files...");

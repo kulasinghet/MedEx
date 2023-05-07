@@ -120,7 +120,7 @@ class G28ToastNotification extends HTMLElement {
 
         this.timer2 = setTimeout(() => {
             this.progress.classList.remove("active");
-            //this.removeToast();
+            this.removeToast();
         }, 5300);
     }
 
@@ -143,3 +143,11 @@ class G28ToastNotification extends HTMLElement {
 
 customElements.define('g28-toast', G28ToastNotification);
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Toast ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+function createToast(subject, message, type = null) {
+    const toastElement = document.createElement('g28-toast');
+    toastElement.setAttribute('status', type);
+    toastElement.setAttribute('subject', subject);
+    toastElement.setAttribute('message', message);
+    document.body.appendChild(toastElement);
+}

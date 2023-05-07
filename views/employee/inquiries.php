@@ -69,9 +69,10 @@ echo $components->createNavbar();
 <script type="application/javascript">
     // you can configure variables in here.
     configs.stage = 'dev';
-    configs.customFormitmPath = '/scss/components/forms';
+    configs.scssStylePath = '../scss/';
 </script>
 <script src="/js/employee/reports.js"></script>
+<script src="../js/g28-toast.js"></script>
 <!-- g28 styling framework -->
 </body>
 </html>

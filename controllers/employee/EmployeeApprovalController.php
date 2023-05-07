@@ -25,13 +25,13 @@ class EmployeeApprovalController extends MasterCRUDController
             // checking whether there is a direct action to be performed
             switch ($store->flag_g_act) {
                 case 'approve':
-                    //$obj->verify(true);
-                    $store->setNotification('Pharmacy Approval', 'Pharmacy approved successfully', 'success');
+                    $obj->verify(true);
+                    $store->setNotification('Pharmacy Approval', 'Pharmacy is approved!', 'success');
                     header('Location: /employee/approve');
                     break;
                 case 'ignore':
                     $obj->verify(null);
-                    $store->setNotification('Pharmacy Approval', 'Pharmacy removed successfully', 'success');
+                    $store->setNotification('Pharmacy Approval', 'Pharmacy is ignored!', 'success');
                     header('Location: /employee/approve');
                     break;
                 default:
@@ -60,10 +60,12 @@ class EmployeeApprovalController extends MasterCRUDController
             switch ($store->flag_g_act) {
                 case 'approve':
                     $obj->verify(true);
+                    $store->setNotification('Supplier Approval', 'Supplier is approved!', 'success');
                     header('Location: /employee/approve');
                     break;
                 case 'ignore':
                     $obj->verify(null);
+                    $store->setNotification('Supplier Approval', 'Supplier is ignored!', 'success');
                     header('Location: /employee/approve');
                     break;
                 default:
@@ -92,10 +94,12 @@ class EmployeeApprovalController extends MasterCRUDController
             switch ($store->flag_g_act) {
                 case 'approve':
                     $obj->verify(true);
+                    $store->setNotification('Delivery Partner Approval', 'Delivery partner is approved!', 'success');
                     header('Location: /employee/approve');
                     break;
                 case 'ignore':
                     $obj->verify(null);
+                    $store->setNotification('Delivery Partner Approval', 'Delivery partner is ignored!', 'success');
                     header('Location: /employee/approve');
                     break;
                 default:
@@ -124,10 +128,12 @@ class EmployeeApprovalController extends MasterCRUDController
             switch ($store->flag_g_act) {
                 case 'approve':
                     $obj->verify(true);
+                    $store->setNotification('Laboratory Approval', 'Laboratory is approved!', 'success');
                     header('Location: /employee/approve');
                     break;
                 case 'ignore':
                     $obj->verify(null);
+                    $store->setNotification('Laboratory Approval', 'Laboratory is ignored!', 'success');
                     header('Location: /employee/approve');
                     break;
                 default:

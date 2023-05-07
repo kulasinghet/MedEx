@@ -115,8 +115,8 @@ $app->router->post('/employee/res/supplier/push', [EmployeeResController::class,
 $app->router->post('/employee/res/delivery/push', [EmployeeResController::class, 'pushDelivery']);
 $app->router->post('/employee/res/lab/push', [EmployeeResController::class, 'pushLab']);
 
-$app->router->get('/employee/inquires', [EmployeeInquiriesListController::class, 'load']);
-$app->router->post('/employee/inquires', [EmployeeInquiriesListController::class, 'load']);
+$app->router->get('/employee/inquiries', [EmployeeInquiriesListController::class, 'load']);
+$app->router->post('/employee/inquiries', [EmployeeInquiriesListController::class, 'load']);
 
 $app->router->get('/employee/configs', [EmployeeDashboardController::class, 'loadConfigs']);
 $app->router->post('/employee/configs', [EmployeeDashboardController::class, 'loadConfigs']);

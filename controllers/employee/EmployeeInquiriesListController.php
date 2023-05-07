@@ -36,7 +36,8 @@ class EmployeeInquiriesListController extends MasterCRUDController
                 return;
             case 'accept':
                 $report->resolve();
-                header('Location: /employee/reports');
+                $store->setNotification('Inquiry accepted!', 'Inquiry' . $store->flag_g_usr . ' is accepted!', 'success');
+                header('Location: /employee/inquiries');
                 return; // Return to stop further execution
             default:
                 $this -> render("employee/inquiries.php");

@@ -74,7 +74,7 @@ class EmployeeViewComponents
                     </ul>
                 </li>
                 <li>
-                    <a href="/employee/inquires"> <i class="fa-solid fa-newspaper"></i>Inquiries</a>
+                    <a href="/employee/inquiries"> <i class="fa-solid fa-newspaper"></i>Inquiries</a>
                 </li>
                 <li>
                     <a href="#"> <i class="fa-solid fa-server"></i>Resources</a>
