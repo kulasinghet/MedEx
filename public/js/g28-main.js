@@ -6,7 +6,8 @@
 // Declaring config variables
 let configs = {
     stage: undefined,
-    customFormElmPath: undefined
+    customFormElmPath: undefined,
+    scssStylePath: undefined
 }
 
 
