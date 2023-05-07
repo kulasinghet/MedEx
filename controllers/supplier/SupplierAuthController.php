@@ -35,8 +35,8 @@ class SupplierAuthController extends Controller
 
 
             if ($file1['size'] <= 3145728 && $file2['size'] <= 3145728) {
-                $BusRegiCert_Name_New = $_POST["username"] . "BusRegiCert." . $file_ext1;
-                $SuppRegiCert_Name_New = $_POST["username"] . "SuppRegiCert." . $file_ext2;
+                $BusRegiCert_Name_New = $_POST["username"] . "_businessRegCert.pdf";
+                $SuppRegiCert_Name_New = $_POST["username"] . "_supplierCert.pdf";
                 $filedestination1 = '..\public\uploads\supplier\businessRegCert' . DIRECTORY_SEPARATOR . $BusRegiCert_Name_New;
                 $filedestination2 = '..\public\uploads\supplier\supplierRegCert' . DIRECTORY_SEPARATOR . $SuppRegiCert_Name_New;
                 move_uploaded_file($file1['tmp_name'], $filedestination1);
