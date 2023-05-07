@@ -16,8 +16,9 @@
       "ext-mysqli": "*",
         "vlucas/phpdotenv": "^5.5",
         "dompdf/dompdf": "^2.0",
-        "tecnickcom/tcpdf": "^6.6"
+        "tecnickcom/tcpdf": "^6.6",
       "ext-dom": "*",
-      "ext-simplexml": "*"
+      "ext-simplexml": "*",
+        "phpmailer/phpmailer": "^6.8"
     }
 }

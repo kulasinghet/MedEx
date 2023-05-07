@@ -1107,3 +1107,454 @@
 2023/05/06 23:35:41 SELECT pharmacysellmedicine.medId, pharmacysellmedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, stock.sellingPrice as unitPrice FROM pharmacysellmedicine LEFT JOIN medicine ON pharmacysellmedicine.medid = medicine.id LEFT JOIN stock ON medicine.id = stock.medId WHERE invoice_id = 'BILL65'
 2023/05/06 23:35:45 SELECT * FROM pharmacysell WHERE pharmacyUsername = 'testPharmacy' ORDER BY invoice_date DESC, invoice_id DESC
 2023/05/06 23:35:51 SELECT pharmacysellmedicine.medId, pharmacysellmedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, stock.sellingPrice as unitPrice FROM pharmacysellmedicine LEFT JOIN medicine ON pharmacysellmedicine.medid = medicine.id LEFT JOIN stock ON medicine.id = stock.medId WHERE invoice_id = 'BILL65'
+2023/05/07 14:27:53 getPendingOrdersCount() returned: 3
+2023/05/07 14:27:53 getAcceptedOrdersCount() returned: 2
+2023/05/07 14:27:55 getTotalOrdersCount() returned: 5
+2023/05/07 14:27:57 SELECT DATE(invoice_date) AS date, SUM(bill_total) AS total FROM pharmacysell WHERE pharmacyUsername = 'testPharmacy' AND invoice_date >= DATE_SUB(CURRENT_DATE(), INTERVAL 7 DAY) GROUP BY DATE(invoice_date) ORDER BY date ASC;
+2023/05/07 14:27:57 salesByDay
+2023/05/07 14:27:57 Array
+(
+    [0] => Array
+        (
+            [date] => 2023-04-30
+            [total] => 1540
+        )
+
+    [1] => Array
+        (
+            [date] => 2023-05-04
+            [total] => 2932
+        )
+
+    [2] => Array
+        (
+            [date] => 2023-05-05
+            [total] => 250
+        )
+
+    [3] => Array
+        (
+            [date] => 2023-05-06
+            [total] => 2950
+        )
+
+)
+
+2023/05/07 14:27:57 SELECT SUM(bill_total) AS total FROM pharmacysell WHERE pharmacyUsername = 'testPharmacy' AND MONTH(invoice_date) = MONTH(CURRENT_DATE()) AND YEAR(invoice_date) = YEAR(CURRENT_DATE())
+2023/05/07 14:27:58 SELECT SUM(quantity * stock.buying_price) AS total  FROM pharmacysellmedicine LEFT JOIN stock ON pharmacysellmedicine.medId = stock.medId WHERE pharmacysellmedicine.invoice_id IN (SELECT invoice_id FROM pharmacysell WHERE pharmacyUsername = 'testPharmacy' AND MONTH(invoice_date) = MONTH(CURRENT_DATE()) AND YEAR(invoice_date) = YEAR(CURRENT_DATE()))
+2023/05/07 14:28:32 getPendingOrdersCount() returned: 3
+2023/05/07 14:28:33 getAcceptedOrdersCount() returned: 2
+2023/05/07 14:28:34 getTotalOrdersCount() returned: 5
+2023/05/07 14:28:36 SELECT DATE(invoice_date) AS date, SUM(bill_total) AS total FROM pharmacysell WHERE pharmacyUsername = 'testPharmacy' AND invoice_date >= DATE_SUB(CURRENT_DATE(), INTERVAL 7 DAY) GROUP BY DATE(invoice_date) ORDER BY date ASC;
+2023/05/07 14:28:36 salesByDay
+2023/05/07 14:28:36 Array
+(
+    [0] => Array
+        (
+            [date] => 2023-04-30
+            [total] => 1540
+        )
+
+    [1] => Array
+        (
+            [date] => 2023-05-04
+            [total] => 2932
+        )
+
+    [2] => Array
+        (
+            [date] => 2023-05-05
+            [total] => 250
+        )
+
+    [3] => Array
+        (
+            [date] => 2023-05-06
+            [total] => 2950
+        )
+
+)
+
+2023/05/07 14:28:36 SELECT SUM(bill_total) AS total FROM pharmacysell WHERE pharmacyUsername = 'testPharmacy' AND MONTH(invoice_date) = MONTH(CURRENT_DATE()) AND YEAR(invoice_date) = YEAR(CURRENT_DATE())
+2023/05/07 14:28:37 SELECT SUM(quantity * stock.buying_price) AS total  FROM pharmacysellmedicine LEFT JOIN stock ON pharmacysellmedicine.medId = stock.medId WHERE pharmacysellmedicine.invoice_id IN (SELECT invoice_id FROM pharmacysell WHERE pharmacyUsername = 'testPharmacy' AND MONTH(invoice_date) = MONTH(CURRENT_DATE()) AND YEAR(invoice_date) = YEAR(CURRENT_DATE()))
+2023/05/07 17:17:47 SELECT pharmacyordermedicine.medId, pharmacyordermedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, supplier_medicine.unitPrice FROM pharmacyordermedicine LEFT JOIN medicine ON pharmacyordermedicine.medid = medicine.id LEFT JOIN supplier_medicine ON medicine.id = supplier_medicine.medid WHERE orderid = 'ORD67'
+2023/05/07 17:19:06 getPendingOrdersCount() returned: 3
+2023/05/07 17:19:07 getAcceptedOrdersCount() returned: 2
+2023/05/07 17:19:08 getTotalOrdersCount() returned: 5
+2023/05/07 17:19:10 SELECT DATE(invoice_date) AS date, SUM(bill_total) AS total FROM pharmacysell WHERE pharmacyUsername = 'testPharmacy' AND invoice_date >= DATE_SUB(CURRENT_DATE(), INTERVAL 7 DAY) GROUP BY DATE(invoice_date) ORDER BY date ASC;
+2023/05/07 17:19:11 salesByDay
+2023/05/07 17:19:11 Array
+(
+    [0] => Array
+        (
+            [date] => 2023-04-30
+            [total] => 1540
+        )
+
+    [1] => Array
+        (
+            [date] => 2023-05-04
+            [total] => 2932
+        )
+
+    [2] => Array
+        (
+            [date] => 2023-05-05
+            [total] => 250
+        )
+
+    [3] => Array
+        (
+            [date] => 2023-05-06
+            [total] => 2950
+        )
+
+)
+
+2023/05/07 17:19:11 SELECT SUM(bill_total) AS total FROM pharmacysell WHERE pharmacyUsername = 'testPharmacy' AND MONTH(invoice_date) = MONTH(CURRENT_DATE()) AND YEAR(invoice_date) = YEAR(CURRENT_DATE())
+2023/05/07 17:19:11 SELECT SUM(quantity * stock.buying_price) AS total  FROM pharmacysellmedicine LEFT JOIN stock ON pharmacysellmedicine.medId = stock.medId WHERE pharmacysellmedicine.invoice_id IN (SELECT invoice_id FROM pharmacysell WHERE pharmacyUsername = 'testPharmacy' AND MONTH(invoice_date) = MONTH(CURRENT_DATE()) AND YEAR(invoice_date) = YEAR(CURRENT_DATE()))
+2023/05/07 17:19:27 sql: SELECT m.id, m.medName, m.sciName, COALESCE(s.remQty, 0) AS remQty, sm.unitPrice AS price FROM medex.medicine m LEFT JOIN medex.stock s ON m.id = s.medId JOIN medex.supplier_medicine sm ON m.id = sm.medId WHERE m.id IN (SELECT medId FROM medex.supplier_medicine) ORDER BY m.id;
+2023/05/07 17:19:27 MedicineModel::getAllMedicines()mysqli_result Object
+(
+    [current_field] => 0
+    [field_count] => 5
+    [lengths] => 
+    [num_rows] => 8
+    [type] => 0
+)
+
+2023/05/07 17:19:27 mysqli_result Object
+(
+    [current_field] => 0
+    [field_count] => 5
+    [lengths] => 
+    [num_rows] => 8
+    [type] => 0
+)
+
+2023/05/07 17:19:28 sql: SELECT m.id, m.medName, m.sciName, COALESCE(s.remQty, 0) AS remQty, sm.unitPrice AS price FROM medex.medicine m LEFT JOIN medex.stock s ON m.id = s.medId JOIN medex.supplier_medicine sm ON m.id = sm.medId WHERE m.id IN (SELECT medId FROM medex.supplier_medicine) ORDER BY m.id;
+2023/05/07 17:19:28 MedicineModel::getAllMedicines()mysqli_result Object
+(
+    [current_field] => 0
+    [field_count] => 5
+    [lengths] => 
+    [num_rows] => 8
+    [type] => 0
+)
+
+2023/05/07 17:19:28 MedicineModel::getMedicinePrice()Med0001
+2023/05/07 17:19:28 Med0001 price: 10
+2023/05/07 17:19:28 MedicineModel::getMedicinePrice()Med00010
+2023/05/07 17:19:28 Med00010 price: 0
+2023/05/07 17:19:28 MedicineModel::getMedicinePrice()Med0002
+2023/05/07 17:19:29 Med0002 price: 21
+2023/05/07 17:19:29 MedicineModel::getMedicinePrice()Med0003
+2023/05/07 17:19:29 Med0003 price: 0
+2023/05/07 17:19:29 MedicineModel::getMedicinePrice()Med0004
+2023/05/07 17:19:30 Med0004 price: 60
+2023/05/07 17:19:30 MedicineModel::getMedicinePrice()Med0005
+2023/05/07 17:19:30 Med0005 price: 0
+2023/05/07 17:19:30 MedicineModel::getMedicinePrice()Med0007
+2023/05/07 17:19:30 Med0007 price: 0
+2023/05/07 17:19:30 MedicineModel::getMedicinePrice()Med0009
+2023/05/07 17:19:31 Med0009 price: 10
+2023/05/07 17:19:39 SELECT pharmacyordermedicine.medId, pharmacyordermedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, supplier_medicine.unitPrice FROM pharmacyordermedicine LEFT JOIN medicine ON pharmacyordermedicine.medid = medicine.id LEFT JOIN supplier_medicine ON medicine.id = supplier_medicine.medid WHERE orderid = 'ORD67'
+2023/05/07 17:22:01 getPendingOrdersCount() returned: 3
+2023/05/07 17:22:01 getAcceptedOrdersCount() returned: 2
+2023/05/07 17:22:03 getTotalOrdersCount() returned: 5
+2023/05/07 17:22:05 SELECT DATE(invoice_date) AS date, SUM(bill_total) AS total FROM pharmacysell WHERE pharmacyUsername = 'testPharmacy' AND invoice_date >= DATE_SUB(CURRENT_DATE(), INTERVAL 7 DAY) GROUP BY DATE(invoice_date) ORDER BY date ASC;
+2023/05/07 17:22:05 salesByDay
+2023/05/07 17:22:05 Array
+(
+    [0] => Array
+        (
+            [date] => 2023-04-30
+            [total] => 1540
+        )
+
+    [1] => Array
+        (
+            [date] => 2023-05-04
+            [total] => 2932
+        )
+
+    [2] => Array
+        (
+            [date] => 2023-05-05
+            [total] => 250
+        )
+
+    [3] => Array
+        (
+            [date] => 2023-05-06
+            [total] => 2950
+        )
+
+)
+
+2023/05/07 17:22:05 SELECT SUM(bill_total) AS total FROM pharmacysell WHERE pharmacyUsername = 'testPharmacy' AND MONTH(invoice_date) = MONTH(CURRENT_DATE()) AND YEAR(invoice_date) = YEAR(CURRENT_DATE())
+2023/05/07 17:22:06 SELECT SUM(quantity * stock.buying_price) AS total  FROM pharmacysellmedicine LEFT JOIN stock ON pharmacysellmedicine.medId = stock.medId WHERE pharmacysellmedicine.invoice_id IN (SELECT invoice_id FROM pharmacysell WHERE pharmacyUsername = 'testPharmacy' AND MONTH(invoice_date) = MONTH(CURRENT_DATE()) AND YEAR(invoice_date) = YEAR(CURRENT_DATE()))
+2023/05/07 17:27:00 getPendingOrdersCount() returned: 3
+2023/05/07 17:27:00 getAcceptedOrdersCount() returned: 2
+2023/05/07 17:27:02 getTotalOrdersCount() returned: 5
+2023/05/07 17:27:03 SELECT DATE(invoice_date) AS date, SUM(bill_total) AS total FROM pharmacysell WHERE pharmacyUsername = 'testPharmacy' AND invoice_date >= DATE_SUB(CURRENT_DATE(), INTERVAL 7 DAY) GROUP BY DATE(invoice_date) ORDER BY date ASC;
+2023/05/07 17:27:04 salesByDay
+2023/05/07 17:27:04 Array
+(
+    [0] => Array
+        (
+            [date] => 2023-04-30
+            [total] => 1540
+        )
+
+    [1] => Array
+        (
+            [date] => 2023-05-04
+            [total] => 2932
+        )
+
+    [2] => Array
+        (
+            [date] => 2023-05-05
+            [total] => 250
+        )
+
+    [3] => Array
+        (
+            [date] => 2023-05-06
+            [total] => 2950
+        )
+
+)
+
+2023/05/07 17:27:04 SELECT SUM(bill_total) AS total FROM pharmacysell WHERE pharmacyUsername = 'testPharmacy' AND MONTH(invoice_date) = MONTH(CURRENT_DATE()) AND YEAR(invoice_date) = YEAR(CURRENT_DATE())
+2023/05/07 17:27:04 SELECT SUM(quantity * stock.buying_price) AS total  FROM pharmacysellmedicine LEFT JOIN stock ON pharmacysellmedicine.medId = stock.medId WHERE pharmacysellmedicine.invoice_id IN (SELECT invoice_id FROM pharmacysell WHERE pharmacyUsername = 'testPharmacy' AND MONTH(invoice_date) = MONTH(CURRENT_DATE()) AND YEAR(invoice_date) = YEAR(CURRENT_DATE()))
+2023/05/07 17:35:12 getPendingOrdersCount() returned: 3
+2023/05/07 17:35:12 getAcceptedOrdersCount() returned: 2
+2023/05/07 17:35:14 getTotalOrdersCount() returned: 5
+2023/05/07 17:35:16 SELECT DATE(invoice_date) AS date, SUM(bill_total) AS total FROM pharmacysell WHERE pharmacyUsername = 'testPharmacy' AND invoice_date >= DATE_SUB(CURRENT_DATE(), INTERVAL 7 DAY) GROUP BY DATE(invoice_date) ORDER BY date ASC;
+2023/05/07 17:35:16 salesByDay
+2023/05/07 17:35:16 Array
+(
+    [0] => Array
+        (
+            [date] => 2023-04-30
+            [total] => 1540
+        )
+
+    [1] => Array
+        (
+            [date] => 2023-05-04
+            [total] => 2932
+        )
+
+    [2] => Array
+        (
+            [date] => 2023-05-05
+            [total] => 250
+        )
+
+    [3] => Array
+        (
+            [date] => 2023-05-06
+            [total] => 2950
+        )
+
+)
+
+2023/05/07 17:35:16 SELECT SUM(bill_total) AS total FROM pharmacysell WHERE pharmacyUsername = 'testPharmacy' AND MONTH(invoice_date) = MONTH(CURRENT_DATE()) AND YEAR(invoice_date) = YEAR(CURRENT_DATE())
+2023/05/07 17:35:17 SELECT SUM(quantity * stock.buying_price) AS total  FROM pharmacysellmedicine LEFT JOIN stock ON pharmacysellmedicine.medId = stock.medId WHERE pharmacysellmedicine.invoice_id IN (SELECT invoice_id FROM pharmacysell WHERE pharmacyUsername = 'testPharmacy' AND MONTH(invoice_date) = MONTH(CURRENT_DATE()) AND YEAR(invoice_date) = YEAR(CURRENT_DATE()))
+2023/05/07 18:27:37 getPendingOrdersCount() returned: 3
+2023/05/07 18:27:38 getAcceptedOrdersCount() returned: 2
+2023/05/07 18:27:39 getTotalOrdersCount() returned: 5
+2023/05/07 18:27:41 SELECT DATE(invoice_date) AS date, SUM(bill_total) AS total FROM pharmacysell WHERE pharmacyUsername = 'testPharmacy' AND invoice_date >= DATE_SUB(CURRENT_DATE(), INTERVAL 7 DAY) GROUP BY DATE(invoice_date) ORDER BY date ASC;
+2023/05/07 18:27:42 salesByDay
+2023/05/07 18:27:42 Array
+(
+    [0] => Array
+        (
+            [date] => 2023-04-30
+            [total] => 1540
+        )
+
+    [1] => Array
+        (
+            [date] => 2023-05-04
+            [total] => 2932
+        )
+
+    [2] => Array
+        (
+            [date] => 2023-05-05
+            [total] => 250
+        )
+
+    [3] => Array
+        (
+            [date] => 2023-05-06
+            [total] => 2950
+        )
+
+)
+
+2023/05/07 18:27:42 SELECT SUM(bill_total) AS total FROM pharmacysell WHERE pharmacyUsername = 'testPharmacy' AND MONTH(invoice_date) = MONTH(CURRENT_DATE()) AND YEAR(invoice_date) = YEAR(CURRENT_DATE())
+2023/05/07 18:27:42 SELECT SUM(quantity * stock.buying_price) AS total  FROM pharmacysellmedicine LEFT JOIN stock ON pharmacysellmedicine.medId = stock.medId WHERE pharmacysellmedicine.invoice_id IN (SELECT invoice_id FROM pharmacysell WHERE pharmacyUsername = 'testPharmacy' AND MONTH(invoice_date) = MONTH(CURRENT_DATE()) AND YEAR(invoice_date) = YEAR(CURRENT_DATE()))
+2023/05/07 18:28:09 SELECT pharmacyordermedicine.medId, pharmacyordermedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, supplier_medicine.unitPrice FROM pharmacyordermedicine LEFT JOIN medicine ON pharmacyordermedicine.medid = medicine.id LEFT JOIN supplier_medicine ON medicine.id = supplier_medicine.medid WHERE orderid = 'ORD64'
+2023/05/07 18:37:03 getPendingOrdersCount() returned: 3
+2023/05/07 18:37:04 getAcceptedOrdersCount() returned: 1
+2023/05/07 18:37:07 getTotalOrdersCount() returned: 5
+2023/05/07 18:37:09 SELECT DATE(invoice_date) AS date, SUM(bill_total) AS total FROM pharmacysell WHERE pharmacyUsername = 'testPharmacy' AND invoice_date >= DATE_SUB(CURRENT_DATE(), INTERVAL 7 DAY) GROUP BY DATE(invoice_date) ORDER BY date ASC;
+2023/05/07 18:37:10 salesByDay
+2023/05/07 18:37:10 Array
+(
+    [0] => Array
+        (
+            [date] => 2023-04-30
+            [total] => 1540
+        )
+
+    [1] => Array
+        (
+            [date] => 2023-05-04
+            [total] => 2932
+        )
+
+    [2] => Array
+        (
+            [date] => 2023-05-05
+            [total] => 250
+        )
+
+    [3] => Array
+        (
+            [date] => 2023-05-06
+            [total] => 2950
+        )
+
+)
+
+2023/05/07 18:37:10 SELECT SUM(bill_total) AS total FROM pharmacysell WHERE pharmacyUsername = 'testPharmacy' AND MONTH(invoice_date) = MONTH(CURRENT_DATE()) AND YEAR(invoice_date) = YEAR(CURRENT_DATE())
+2023/05/07 18:37:10 SELECT SUM(quantity * stock.buying_price) AS total  FROM pharmacysellmedicine LEFT JOIN stock ON pharmacysellmedicine.medId = stock.medId WHERE pharmacysellmedicine.invoice_id IN (SELECT invoice_id FROM pharmacysell WHERE pharmacyUsername = 'testPharmacy' AND MONTH(invoice_date) = MONTH(CURRENT_DATE()) AND YEAR(invoice_date) = YEAR(CURRENT_DATE()))
+2023/05/07 18:37:53 SELECT pharmacyordermedicine.medId, pharmacyordermedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, supplier_medicine.unitPrice FROM pharmacyordermedicine LEFT JOIN medicine ON pharmacyordermedicine.medid = medicine.id LEFT JOIN supplier_medicine ON medicine.id = supplier_medicine.medid WHERE orderid = 'ORD64'
+2023/05/07 18:52:13 Array 599817 Thevindu@036
+2023/05/07 18:53:58 Array
+(
+)
+
+2023/05/07 18:53:58 802321
+2023/05/07 18:53:58 testPharmacy
+2023/05/07 18:53:59 Array 802321 testPharmacy
+2023/05/07 18:54:43 Array
+(
+)
+
+2023/05/07 18:54:43 802321
+2023/05/07 18:54:43 Thevindu@036
+2023/05/07 18:54:43 Array 802321 Thevindu@036
+2023/05/07 18:56:32 Array
+(
+)
+
+2023/05/07 18:56:32 365473
+2023/05/07 18:56:32 Thevindu@036
+2023/05/07 18:56:32 Array 365473 Thevindu@036
+2023/05/07 18:58:39 Array
+(
+)
+
+2023/05/07 18:58:39 456789
+2023/05/07 18:58:39 TestPharmacy@036
+2023/05/07 18:58:39 Array 456789 TestPharmacy@036
+2023/05/07 18:59:14 getPendingOrdersCount() returned: 3
+2023/05/07 18:59:15 getAcceptedOrdersCount() returned: 1
+2023/05/07 18:59:17 getTotalOrdersCount() returned: 5
+2023/05/07 18:59:18 SELECT DATE(invoice_date) AS date, SUM(bill_total) AS total FROM pharmacysell WHERE pharmacyUsername = 'testPharmacy' AND invoice_date >= DATE_SUB(CURRENT_DATE(), INTERVAL 7 DAY) GROUP BY DATE(invoice_date) ORDER BY date ASC;
+2023/05/07 18:59:19 salesByDay
+2023/05/07 18:59:19 Array
+(
+    [0] => Array
+        (
+            [date] => 2023-04-30
+            [total] => 1540
+        )
+
+    [1] => Array
+        (
+            [date] => 2023-05-04
+            [total] => 2932
+        )
+
+    [2] => Array
+        (
+            [date] => 2023-05-05
+            [total] => 250
+        )
+
+    [3] => Array
+        (
+            [date] => 2023-05-06
+            [total] => 2950
+        )
+
+)
+
+2023/05/07 18:59:19 SELECT SUM(bill_total) AS total FROM pharmacysell WHERE pharmacyUsername = 'testPharmacy' AND MONTH(invoice_date) = MONTH(CURRENT_DATE()) AND YEAR(invoice_date) = YEAR(CURRENT_DATE())
+2023/05/07 18:59:19 SELECT SUM(quantity * stock.buying_price) AS total  FROM pharmacysellmedicine LEFT JOIN stock ON pharmacysellmedicine.medId = stock.medId WHERE pharmacysellmedicine.invoice_id IN (SELECT invoice_id FROM pharmacysell WHERE pharmacyUsername = 'testPharmacy' AND MONTH(invoice_date) = MONTH(CURRENT_DATE()) AND YEAR(invoice_date) = YEAR(CURRENT_DATE()))
+2023/05/07 18:59:26 SELECT pharmacyordermedicine.medId, pharmacyordermedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, supplier_medicine.unitPrice FROM pharmacyordermedicine LEFT JOIN medicine ON pharmacyordermedicine.medid = medicine.id LEFT JOIN supplier_medicine ON medicine.id = supplier_medicine.medid WHERE orderid = 'ORD67'
+2023/05/07 18:59:37 SELECT pharmacyordermedicine.medId, pharmacyordermedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, supplier_medicine.unitPrice FROM pharmacyordermedicine LEFT JOIN medicine ON pharmacyordermedicine.medid = medicine.id LEFT JOIN supplier_medicine ON medicine.id = supplier_medicine.medid WHERE orderid = 'ORD57'
+2023/05/07 19:03:13 testPharmacy
+2023/05/07 19:03:13 345678
+2023/05/07 19:03:13 Thevindu@036
+2023/05/07 19:03:13 testPharmacy 345678 Thevindu@036
+2023/05/07 19:16:08 testPharmacy
+2023/05/07 19:16:08 784602
+2023/05/07 19:16:08 Thevindu@036
+2023/05/07 19:16:09 testPharmacy 784602 Thevindu@036
+2023/05/07 19:17:37 testPharmacy
+2023/05/07 19:17:37 210775
+2023/05/07 19:17:37 Thevindu@036
+2023/05/07 19:17:38 testPharmacy 210775 Thevindu@036
+2023/05/07 19:18:06 getPendingOrdersCount() returned: 3
+2023/05/07 19:18:07 getAcceptedOrdersCount() returned: 1
+2023/05/07 19:18:08 getTotalOrdersCount() returned: 5
+2023/05/07 19:18:10 SELECT DATE(invoice_date) AS date, SUM(bill_total) AS total FROM pharmacysell WHERE pharmacyUsername = 'testPharmacy' AND invoice_date >= DATE_SUB(CURRENT_DATE(), INTERVAL 7 DAY) GROUP BY DATE(invoice_date) ORDER BY date ASC;
+2023/05/07 19:18:11 salesByDay
+2023/05/07 19:18:11 Array
+(
+    [0] => Array
+        (
+            [date] => 2023-04-30
+            [total] => 1540
+        )
+
+    [1] => Array
+        (
+            [date] => 2023-05-04
+            [total] => 2932
+        )
+
+    [2] => Array
+        (
+            [date] => 2023-05-05
+            [total] => 250
+        )
+
+    [3] => Array
+        (
+            [date] => 2023-05-06
+            [total] => 2950
+        )
+
+)
+
+2023/05/07 19:18:11 SELECT SUM(bill_total) AS total FROM pharmacysell WHERE pharmacyUsername = 'testPharmacy' AND MONTH(invoice_date) = MONTH(CURRENT_DATE()) AND YEAR(invoice_date) = YEAR(CURRENT_DATE())
+2023/05/07 19:18:11 SELECT SUM(quantity * stock.buying_price) AS total  FROM pharmacysellmedicine LEFT JOIN stock ON pharmacysellmedicine.medId = stock.medId WHERE pharmacysellmedicine.invoice_id IN (SELECT invoice_id FROM pharmacysell WHERE pharmacyUsername = 'testPharmacy' AND MONTH(invoice_date) = MONTH(CURRENT_DATE()) AND YEAR(invoice_date) = YEAR(CURRENT_DATE()))
+2023/05/07 19:28:03 Message sent!
+2023/05/07 19:31:22 testPharmacy 1
+2023/05/07 19:31:27 Message sent!
+2023/05/07 19:32:36 OTP generated for testPharmacy is 681885
+2023/05/07 19:32:36 testPharmacy 1
+2023/05/07 19:32:40 Message sent!
+2023/05/07 19:32:59 OTP generated for testPharmacy is 636438
+2023/05/07 19:32:59 testPharmacy 636438
+2023/05/07 19:33:03 Message sent!

@@ -48,7 +48,8 @@ $app->router->get('/404', [SiteController::class, '_404']);
 $app->router->get('/logout', [SiteController::class, 'logout']);
 $app->router->get('/login', [LoginAuthController::class, 'login']);
 $app->router->post('/login', [LoginAuthController::class, 'login']);
-
+$app->router->get('/forgotPassword', [LoginAuthController::class, 'forgotPassword']);
+$app->router->post('/forgotPassword', [LoginAuthController::class, 'forgotPassword']);
 // delivery Routes
 //$app -> router -> get('/delivery/login', [LoginAuthController::class, 'deliveryLogin']);
 //$app -> router -> post('/delivery/login', [LoginAuthController::class, 'deliveryLogin']);

@@ -102,7 +102,7 @@ class LoginModel extends Model
         $connection = (new Database())->getConnection();
 
         try {
-            $sql = "SELECT * FROM login WHERE username = '$this->username';";
+            $sql = "SELECT * FROM login WHERE username = '$username';";
             $result = $connection->query($sql);
             $row = $result->fetch_array(MYSQLI_ASSOC);
             $userType = "unassigned";
@@ -146,6 +146,65 @@ class LoginModel extends Model
         }
     }
 
+    public function generateOTP(mixed $username): mixed
+    {
+        $connection = (new Database())->getConnection();
+
+        try {
+            $otp = rand(100000, 999999);
+            $sql = "UPDATE login SET otp = '$otp' WHERE username = '$username';";
+            $result = $connection->query($sql);
+
+            if ($result) {
+                $connection->close();
+                Logger::logDebug("OTP generated for $username" . " is $otp");
+                return $otp;
+            } else {
+                $connection->close();
+                return false;
+            }
+        } catch (\Exception $e) {
+            Logger::logError($e->getMessage());
+            return false;
+        }
+    }
+
+    public function changePassword(mixed $username, mixed $otp = null, mixed $password)
+    {
+        $connection = (new Database())->getConnection();
+
+        try {
+            $sql = "SELECT * FROM login WHERE username = '$username' AND otp = '$otp';";
+            $result = $connection->query($sql);
+
+            if ($result->num_rows == 1) {
+                $password = password_hash($password, PASSWORD_DEFAULT);
+                // set otp to null
+                $sql = "UPDATE login SET password = '$password', otp = null WHERE username = '$username';";
+                $result = $connection->query($sql);
+
+                if ($result) {
+                    $connection->close();
+                    return true;
+                } else {
+                    $connection->close();
+                    return false;
+                }
+            } else {
+                $connection->close();
+                return false;
+            }
+        } catch (\Exception $e) {
+            Logger::logError($e->getMessage());
+            return false;
+        }
+    }
+
+    public function getUserEmail(mixed $username)
+    {
+        $userType = $this->getUserInfo($username);
+        return $userType['email'];
+    }
 
 
 }
