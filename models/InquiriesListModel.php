@@ -7,7 +7,7 @@ use app\core\Logger;
 use app\stores\EmployeeStore;
 use mysqli;
 
-class ReportListModel extends Model
+class InquiriesListModel extends Model
 {
     private function createConnection(): ?\mysqli
     {
@@ -46,10 +46,10 @@ class ReportListModel extends Model
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
-                    $tmp = new ReportModel(array(
+                    $tmp = new InquiryModel(array(
                         'inquiry_id' => $row["inquiry_id"],
                         'username' => $row["username"],
-                        'user_type' => ReportModel::getUserType($row),
+                        'user_type' => InquiryModel::getUserType($row),
                         'subject' => $row["subject"],
                         'message' => $row["message"],
                         'is_resolved' => $row["is_resolved"],
@@ -87,10 +87,10 @@ class ReportListModel extends Model
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
-                    $tmp = new ReportModel(array(
+                    $tmp = new InquiryModel(array(
                         'inquiry_id' => $row["inquiry_id"],
                         'username' => $row["username"],
-                        'user_type' => ReportModel::getUserType($row),
+                        'user_type' => InquiryModel::getUserType($row),
                         'subject' => $row["subject"],
                         'message' => $row["message"],
                         'is_resolved' => $row["is_resolved"],

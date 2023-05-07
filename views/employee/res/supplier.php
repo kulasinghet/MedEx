@@ -82,16 +82,8 @@ echo $components->createNavbar();
                                         <input type="text" class="form-input" id="business_reg_id" value=<?php echo $supplier->business_reg_id ?>>
                                     </div>
                                     <div class="form-group">
-                                        <label for="business_cert_name">Business Registration Certificate</label>
-                                        <input class="form-input" type="file" id="business_cert_name" accept="image/*" value=<?php echo $supplier->business_cert_name ?>>
-                                    </div>
-                                    <div class="form-group">
                                         <label for="supp_cert_id">Supplier Certificate Id</label>
                                         <input type="text" class="form-input" id="supp_cert_id" value=<?php echo $supplier->supp_cert_id ?>>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="supp_cert_name">Supplier Certificate</label>
-                                        <input class="form-input" type="file" id="supp_cert_name" accept="image/*" value=<?php echo $supplier->supp_cert_name ?>>
                                     </div>
                                 </div>
                             </div>
@@ -169,7 +161,7 @@ echo $components->createNavbar();
 <script type="application/javascript">
     // you can configure variables in here.
     configs.stage = 'dev';
-    configs.customFormElmPath = '/scss/components/forms';
+    configs.scssStylePath = '../scss/';
 
     //logging
     logger("Logging g28 initial state before loading specialized JS files...");

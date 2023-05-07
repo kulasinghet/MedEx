@@ -4,14 +4,14 @@ namespace app\controllers\lab;
 
 use app\core\Controller;
 use app\core\Request;
-use app\models\ReportModel;
+use app\models\InquiryModel;
 
 class LabContactUsController extends Controller
 {
     public function contactUs(Request $request)
     {
         if ($request->isPost()) {
-            $inqury = new ReportModel;
+            $inqury = new InquiryModel;
             $inqury->subject = $_POST["subject"];
             $inqury->message = $_POST["message"];
             $inqury->username = $_SESSION['username'];

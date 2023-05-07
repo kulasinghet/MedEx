@@ -33,6 +33,7 @@ $store->flag_g_st = 0; // resetting the set number in the store
 <?php
 echo $components->createSidebar('approval');
 echo $components->createNavbar();
+$store->renderNotification();
 ?>
 <!-- Section: Fixed Components -->
 
@@ -136,7 +137,7 @@ echo $components->createNavbar();
 <script type="application/javascript">
     // you can configure variables in here.
     configs.stage = 'dev';
-    configs.customFormElmPath = '/scss/components/forms';
+    configs.scssStylePath = '../scss/';
 
     //logging
     logger("Logging g28 initial state before loading specialized JS files...");
@@ -144,6 +145,7 @@ echo $components->createNavbar();
         logger(`> ${property}: ${configs[property]}`);
     }
 
+    // demo toast
     document.querySelectorAll('.approval-table tbody tr:not(.empty)').forEach((row) => {
         row.addEventListener('click', (e) => {
             e.stopPropagation();
@@ -169,6 +171,7 @@ echo $components->createNavbar();
     });
 </script>
 <script src="/js/g28-forms.js"></script>
+<script src="../js/g28-toast.js"></script>
 <!-- g28 styling framework -->
 </body>
 </html>
