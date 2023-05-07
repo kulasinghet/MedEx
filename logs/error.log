@@ -1,0 +1,16 @@
+2023/05/05 00:13:27 Incorrect integer value: '' for column 'customer_money' at row 1
+2023/05/05 00:14:01 Cannot add or update a child row: a foreign key constraint fails ("medex"."pharmacysellmedicine", CONSTRAINT "pharmacysellmedicine_ibfk_1" FOREIGN KEY ("medId") REFERENCES "medicine" ("id"))
+2023/05/05 00:14:43 Cannot add or update a child row: a foreign key constraint fails ("medex"."pharmacysellmedicine", CONSTRAINT "pharmacysellmedicine_ibfk_1" FOREIGN KEY ("medId") REFERENCES "medicine" ("id"))
+2023/05/05 00:15:31 Cannot add or update a child row: a foreign key constraint fails ("medex"."pharmacysellmedicine", CONSTRAINT "pharmacysellmedicine_ibfk_1" FOREIGN KEY ("medId") REFERENCES "medicine" ("id"))
+2023/05/05 00:15:31 Something went wrong while creating order testPharmacy
+2023/05/05 00:16:41 Cannot add or update a child row: a foreign key constraint fails ("medex"."pharmacysellmedicine", CONSTRAINT "pharmacysellmedicine_ibfk_1" FOREIGN KEY ("medId") REFERENCES "medicine" ("id"))
+2023/05/05 00:16:41 Something went wrong while creating order testPharmacy
+2023/05/05 00:25:57 Something went wrong while creating order testPharmacy
+2023/05/05 00:27:55 Something went wrong while creating order testPharmacy
+2023/05/05 00:31:33 Something went wrong while creating order testPharmacy
+2023/05/05 10:38:59 Table 'medex.contact_us' doesn't exist
+2023/05/05 10:42:13 Duplicate entry 'INQ13' for key 'report.PRIMARY'
+2023/05/05 10:42:27 Duplicate entry 'INQ13' for key 'report.PRIMARY'
+2023/05/05 10:43:26 Duplicate entry 'INQ12' for key 'report.PRIMARY'
+2023/05/05 22:22:50 Something went wrong while creating order testPharmacy
+2023/05/06 17:01:26 MySQL server has gone away

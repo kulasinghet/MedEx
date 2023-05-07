@@ -101,4 +101,15 @@ class NotificationHandler extends Logger
         return $message;
     }
 
+    public function reportPurchaseSuccess()
+    {
+        $scriptClass  = "<head><script src='/js/pharmacy/login-error.js' defer></script><link href='/css/error-model.css' rel='stylesheet'></head>";
+        $alertClass = "<div class='loginError alert alert-success' id='loginError' role='alert'>";
+        $spanClass = "<span class='closebtn' id='closebtn' style='padding-bottom: 0' onclick='this.parentElement.style.display='none';'>&times;</span>";
+        $closeClass = "</div>";
+
+        $message = $scriptClass.$alertClass.$spanClass."Report purchase success".$closeClass;
+        return $message;
+    }
+
 }

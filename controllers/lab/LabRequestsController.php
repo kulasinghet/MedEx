@@ -30,9 +30,9 @@ class LabRequestsController extends Controller
                 echo "<form method='post' action='/lab/accept-req'>";
                 echo " <input type='hidden' value='$id' name='id'/>";
                 if ($medweight > 0) {
-                    echo "<tr><td>" . $id . "</td><td>" . $supname . "</td><td>" . $medname . "</td><td>" . $medsci . "</td><td>" . $medweight . "mg</td><td><input type='submit' value='Accept' class='btn btn--primary'></td><tr></form>";
+                    echo "<tr style='padding: 2%; border-bottom: 1px solid black;'><td>" . $id . "</td><td>" . $supname . "</td><td>" . $medname . "</td><td>" . $medsci . "</td><td>" . $medweight . "mg</td><td><input type='submit' value='Accept' class='btn btn--primary'></td><tr></form>";
                 } else {
-                    echo "<tr><td>" . $id . "</td><td>" . $supname . "</td><td>" . $medname . "</td><td>" . $medsci . "</td><td>" . $medvolume . "ml</td><td><input type='submit' value='Accept' class='btn btn--primary'></td><tr></form>";
+                    echo "<tr style='padding: 2%; border-bottom: 1px solid black;'><td>" . $id . "</td><td>" . $supname . "</td><td>" . $medname . "</td><td>" . $medsci . "</td><td>" . $medvolume . "ml</td><td><input type='submit' value='Accept' class='btn btn--primary'></td><tr></form>";
                 }
 
 
@@ -60,9 +60,9 @@ class LabRequestsController extends Controller
                 echo "<form method='post' action='/lab/accept-req'>";
                 echo " <input type='hidden' value='$id' name='id'/>";
                 if ($medweight > 0) {
-                    echo "<tr><td>" . $id . "</td><td>" . $supname . "</td><td>" . $medname . "</td><td>" . $medsci . "</td><td>" . $medweight . "mg</td><td><input type='submit' value='Accept' class='btn btn--primary'></td><tr></form>";
+                    echo "<tr style='padding: 2%; border-bottom: 1px solid black;'><td>" . $id . "</td><td>" . $supname . "</td><td>" . $medname . "</td><td>" . $medsci . "</td><td>" . $medweight . "mg</td><td><input type='submit' value='Accept' class='btn btn--primary'></td><tr></form>";
                 } else {
-                    echo "<tr><td>" . $id . "</td><td>" . $supname . "</td><td>" . $medname . "</td><td>" . $medsci . "</td><td>" . $medvolume . "ml</td><td><input type='submit' value='Accept' class='btn btn--primary'></td><tr></form>";
+                    echo "<tr style='padding: 2%; border-bottom: 1px solid black;'><td>" . $id . "</td><td>" . $supname . "</td><td>" . $medname . "</td><td>" . $medsci . "</td><td>" . $medvolume . "ml</td><td><input type='submit' value='Accept' class='btn btn--primary'></td><tr></form>";
                 }
 
 
@@ -86,7 +86,13 @@ class LabRequestsController extends Controller
                 $medweight = $med->getWeight($medid);
                 $medsci = $med->getSciname($medid);
                 $supname = $sup->getName($supuname);
-                echo "<tr><td>" . $id . "</td><td>" . $supname . "</td><td>" . $medname . "</td><td>" . $medsci . "</td><td>" . $medweight . "</td></tr>";
+                $medvolume = $med->getVolume($medid);
+                if ($medweight > 0) {
+                    echo "<tr style='padding: 2%; border-bottom: 1px solid black;'><td style='padding: 10px;'>" . $id . "</td><td>" . $supname . "</td><td>" . $medname . "</td><td>" . $medsci . "</td><td>" . $medweight . "mg</td></tr>";
+                } else {
+                    echo "<tr style='padding: 2%; border-bottom: 1px solid black;'><td style='padding: 10px;'s>" . $id . "</td><td>" . $supname . "</td><td>" . $medname . "</td><td>" . $medsci . "</td><td>" . $medvolume . "ml</td></tr>";
+
+                }
 
             }
 
@@ -108,7 +114,13 @@ class LabRequestsController extends Controller
                 $medweight = $med->getWeight($medid);
                 $medsci = $med->getSciname($medid);
                 $supname = $sup->getName($supuname);
-                echo "<tr><td>" . $id . "</td><td>" . $supname . "</td><td>" . $medname . "</td><td>" . $medsci . "</td><td>" . $medweight . "</td></tr>";
+                $medvolume = $med->getVolume($medid);
+                if ($medweight > 0) {
+                    echo "<tr style='padding: 2%; border-bottom: 1px solid black;'><td style='padding: 10px;'>" . $id . "</td><td>" . $supname . "</td><td>" . $medname . "</td><td>" . $medsci . "</td><td>" . $medweight . "mg</td></tr>";
+                } else {
+                    echo "<tr style='padding: 2%; border-bottom: 1px solid black;'><td style='padding: 10px;'>" . $id . "</td><td>" . $supname . "</td><td>" . $medname . "</td><td>" . $medsci . "</td><td>" . $medvolume . "ml</td></tr>";
+
+                }
 
             }
 

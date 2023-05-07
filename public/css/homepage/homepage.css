@@ -1,3 +1,7 @@
 body {
     background: linear-gradient(180deg, rgba(217, 217, 217, 0) 0%, #D8F8FF 100%);
 }
+
+#registerButton {
+    margin-bottom: 10vh;
+}

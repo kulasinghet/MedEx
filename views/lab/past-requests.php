@@ -81,9 +81,11 @@ use app\controllers\lab\LabRequestsController;
                                         <button type="submit">Go</button>
                                     </form>
                                 </div>
-                                <table style='width: 100%; text-align:center; padding-top:5%' class='scrollable'>
-                                    <tr style='padding:1%; border-bottom: 1pt solid black;'>
-                                        <th>Request ID</th>
+                                <br>
+                                <table
+                                    style='width: 100%; text-align: center; padding-top: 5%; border-collapse: collapse;'>
+                                    <tr style='padding: 2%; border-bottom: 1px solid black;'>
+                                        <th style="padding: 10px;">Request ID</th>
                                         <th>Supplier Name</th>
                                         <th>Medicine Name</th>
                                         <th>Scientific Name</th>

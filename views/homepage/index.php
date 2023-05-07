@@ -35,8 +35,6 @@
             <a id="registerButtona" href="/login" style="background-color: #2e60cc">Login</a>
         </button>
 
-        <hr>
-
         <div class="register-now">
             <!--            <button id="registerButton" data-modal-target="modal5">Register</button>-->
             <button id="registerButton">

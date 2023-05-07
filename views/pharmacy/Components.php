@@ -17,6 +17,8 @@ class Components
             $additionalCSS = "<link href='../css/pharmacy/sell-medicine.css' rel='stylesheet'>";
         } else if ($title == "Invoices") {
             $additionalCSS = "<link href='../css/pharmacy/invoices.css' rel='stylesheet'>";
+        } else if ($title == "Actor") {
+            $additionalCSS = "<link href='../css/pharmacy/actor.css' rel='stylesheet'>";
         }
 
         return <<<HTML

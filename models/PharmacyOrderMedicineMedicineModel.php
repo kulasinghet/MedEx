@@ -89,7 +89,7 @@ class PharmacyOrderMedicineMedicineModel extends Model
     public function getSupOrders($name)
     {
         $db = (new Database())->getConnection();
-        $sql = "SELECT orderid from pharmacyordermedicine WHERE pharmacyordermedicine.order_status = '1' && pharmacyordermedicine.supName = '$name'";
+        $sql = "SELECT orderid,medId from pharmacyordermedicine WHERE pharmacyordermedicine.order_status = '1' && pharmacyordermedicine.supName = '$name'";
         $result = $db->query($sql);
         if ($result->num_rows > 0) {
             return $result;
@@ -100,7 +100,7 @@ class PharmacyOrderMedicineMedicineModel extends Model
     public function getSupOrdersFilter($name, $searchTerm)
     {
         $db = (new Database())->getConnection();
-        $sql = "SELECT orderid from pharmacyordermedicine JOIN medicine on pharmacyordermedicine.medId = medicine.id WHERE pharmacyordermedicine.order_status = '1' && pharmacyordermedicine.supName = '$name' && medicine.medName like '%$searchTerm%'";
+        $sql = "SELECT orderid,medId from pharmacyordermedicine JOIN medicine on pharmacyordermedicine.medId = medicine.id WHERE pharmacyordermedicine.order_status = '1' && pharmacyordermedicine.supName = '$name' && medicine.medName like '%$searchTerm%'";
         $result = $db->query($sql);
         if ($result->num_rows > 0) {
             return $result;
@@ -137,11 +137,11 @@ class PharmacyOrderMedicineMedicineModel extends Model
         return $this->pharmacyUsername;
     }
 
-    public function acceptOrder($supName, $id, $bnumber, $expdate)
+    public function acceptOrder($supName, $id, $bnumber, $expdate, $medId)
     {
         $db = (new Database())->getConnection();
         try {
-            $sql = "UPDATE pharmacyordermedicine SET pharmacyordermedicine.order_status = '1', pharmacyordermedicine.supName = '$supName' , pharmacyordermedicine.batchNo='$bnumber', pharmacyordermedicine.expDate ='$expdate' WHERE pharmacyordermedicine.orderid = '$id'";
+            $sql = "UPDATE pharmacyordermedicine SET pharmacyordermedicine.order_status = '1', pharmacyordermedicine.supName = '$supName' , pharmacyordermedicine.batchNo='$bnumber', pharmacyordermedicine.expDate ='$expdate' WHERE pharmacyordermedicine.orderid = '$id' AND pharmacyordermedicine.medId='$medId'";
             $stmt = $db->prepare($sql);
             $stmt->execute();
 

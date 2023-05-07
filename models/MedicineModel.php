@@ -31,7 +31,7 @@ class MedicineModel extends Model
 
             return true;
         } catch (\Exception $e) {
-            ErrorLog::logError($e->getMessage());
+            Logger::logError($e->getMessage());
             echo $e->getMessage();
             return false;
         }
@@ -101,11 +101,14 @@ class MedicineModel extends Model
     {
 
         $conn = (new Database())->getConnection();
-        $sql = "SELECT medicine.*, COALESCE(stock.remQty, 0) AS remQty FROM medicine LEFT JOIN stock ON medicine.id = stock.medId;";
+        $sql = "SELECT m.id, m.medName, m.sciName, COALESCE(s.remQty, 0) AS remQty, sm.unitPrice AS price FROM medex.medicine m LEFT JOIN medex.stock s ON m.id = s.medId JOIN medex.supplier_medicine sm ON m.id = sm.medId WHERE m.id IN (SELECT medId FROM medex.supplier_medicine) ORDER BY m.id;";
+
         try {
             $stmt = $conn->prepare($sql);
             $stmt->execute();
             $result = $stmt->get_result();
+            Logger::logDebug('sql: ' . $sql);
+            Logger::logDebug('MedicineModel::getAllMedicines()' . print_r($result, true));
             return $result;
         } catch (\Exception $e) {
             Logger::logError($e->getMessage());
@@ -155,12 +158,15 @@ class MedicineModel extends Model
 
     public function getMedicinePrice(mixed $id)
     {
+        Logger::logDebug('MedicineModel::getMedicinePrice()' . $id);
         $db = (new Database())->getConnection();
-        $sql = "SELECT sellingPrice AS price FROM stock WHERE medId = '$id' ORDER BY id DESC LIMIT 1";
+        $sql = "SELECT sm.medId, sm.unitPrice as price FROM medex.supplier_medicine sm WHERE sm.medId = '$id' ORDER BY sm.medId LIMIT 1";
+
         $result = $db->query($sql);
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
-            return $row['price'];
+            Logger::logDebug($id . ' price: ' . $row['price']);
+            return $row;
         }
 
         $db->close();

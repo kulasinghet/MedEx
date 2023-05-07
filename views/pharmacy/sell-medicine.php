@@ -291,13 +291,66 @@ echo $components->sideBar('sell-medicine');
                                                 },
                                             }).then((value) => {
                                                 if (value) {
-                                                    document.getElementById('order-medicine-form').submit();
+
+                                                    swal({
+                                                        title: "Order Confirmed",
+                                                        text: "Your order is being processed",
+                                                        icon: "success",
+                                                        buttons: {},
+                                                        // does not allow the user to close the swal by clicking outside
+                                                        closeOnClickOutside: false,
+                                                        // does not allow the user to close the swal by pressing the escape key
+                                                        closeOnEsc: false,
+                                                        closeOnCancel: false,
+                                                        closeOnConfirm: false,
+                                                    });
+
+                                                            // get all the medicine ids and quantities
+                                                            let medicineIds = [];
+                                                            let medicineQuantities = [];
+                                                            for (let key in orderedMedicines) {
+                                                                medicineIds.push(orderedMedicines[key].medicineId);
+                                                                medicineQuantities.push(orderedMedicines[key].medicineQuantity);
+                                                            }
+                                                            console.log(customerPayment);
+                                                            console.log(customerChange);
+                                                            console.log(total);
+                                                            console.log(medicineIds);
+                                                            console.log(medicineQuantities);
+                                                            // document.getElementById('order-medicine-form').submit();
+
+                                                            fetch('http://localhost:8080/pharmacy/sell-medicine', {
+                                                                method: 'POST',
+                                                                headers: {
+                                                                    'Content-Type': 'application/json'
+                                                                },
+                                                                body: JSON.stringify({
+                                                                    customerPayment: customerPayment,
+                                                                    customerChange: customerChange,
+                                                                    total: total,
+                                                                    medicineIds: medicineIds,
+                                                                    medicineQuantities: medicineQuantities
+                                                                })
+                                                            }).then((response) => {
+                                                                if (response.ok) {
+                                                                    swal("Order Confirmed", "Your order has been placed", "success");
+                                                                    setTimeout(function () {
+                                                                        window.location.href = "http://localhost:8080/pharmacy/invoices";
+                                                                    }, 2000);
+                                                                } else {
+                                                                    swal("Order Failed", "Your order has not been placed", "error");
+                                                                }
+                                                            }).catch((error) => {
+                                                                swal("Order Failed", "Your order has not been placed", "error");
+                                                            });
+
                                                 }
                                             });
                                         }
                                     });
                                 }
                             });
+
                         } else {
                             swal("No medicine selected", "Please select medicine to sell", "error");
                         }

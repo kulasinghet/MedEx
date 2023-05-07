@@ -9,8 +9,8 @@ class Pharmacy
     {
 
 //        check if the file exists
-        if (file_exists("uploads/profilePicture/" . $username . "_profilePicture.jpg")) {
-            return "/uploads/profilePicture/" . $username . "_profilePicture.jpg";
+        if (file_exists("uploads/profilePicture/" . $username . "_profilePicture.png")) {
+            return "/uploads/profilePicture/" . $username . "_profilePicture.png";
         } else {
             return "/res/avatar-empty.png";
         }

@@ -144,6 +144,8 @@ $app->router->get('/pharmacy/settings', [PharmacyDashboardController::class, 'se
 $app->router->post('/pharmacy/settings', [PharmacyDashboardController::class, 'settings']);
 $app->router->get('/pharmacy/invoices', [PharmacyDashboardController::class, 'invoices']);
 $app->router->post('/pharmacy/invoices', [PharmacyDashboardController::class, 'invoices']);
+$app->router->get('/report/medicine-order', [PharmacyDashboardController::class, 'reportPurchase']);
+$app->router->post('/report/medicine-order', [PharmacyDashboardController::class, 'reportPurchase']);
 
 //REST API
 $app->router->get('/pharmacy/api/order-details', [PharmacyOrderMedicineController::class, 'orderDetails']);

@@ -76,8 +76,8 @@ echo $components->sideBar('orders');
                                         echo "<td>" . $order['id'] . "</td>";
                                         echo "<td>" . $order['order_date'] . "</td>";
                                         echo "<td>" . $pharmacyOrderHistoryController->transformOrderStatus($order['order_status']) . "</td>";
-                                        echo "<td>" . $pharmacyOrderHistoryController->transformOrderTotal($order['order_total']) . "</td>";
-                                        echo "<td>" . $pharmacyOrderHistoryController->transformDeliveryDate($order['delivery_date']) . "</td>";
+                                        echo "<td>" . $pharmacyOrderHistoryController->transformOrderTotal($order['order_total'], $order['order_status'] ) . "</td>";
+                                        echo "<td>" . $pharmacyOrderHistoryController->transformDeliveryDate($order['delivery_date'], $order['order_status'] ) . "</td>";
                                         echo "<td>" . "<a class='view-order' id='" . $order['id'] . "'>" . "<i class='fa-solid fa-circle-arrow-right view-order-details' style='color:#333333'></i>" . "</a>" . "</td>";
 //                                            echo "<td>" . "<a onclick='handleViewOrderDetailsClick(" . $order['id'] . ")'>" . "<i class='fa-solid fa-circle-arrow-right view-order-details' style='color:#333333'></i>" . "</a>" . "</td>";
                                         echo "</a>";
@@ -287,19 +287,18 @@ echo $components->sideBar('orders');
             let medicineInformationForSwal = '';
 
             if (orderedMedicines != undefined || orderedMedicines.length > 0) {
-                medicineInformationForSwal = '<table><th>Medicine ID</th><th>Medicine</th> <th>Medicine Scientific Name</th><th>Weight</th><th>Price</th><th>Quantity</th><th>Total Price</th>';
+                medicineInformationForSwal = '<table><th>Medicine ID</th><th>Medicine</th> <th>Medicine Scientific Name</th><th>Price</th><th>Quantity</th><th>Total Price</th>';
                 for (let key in orderedMedicines) {
                     medicineInformationForSwal += '<tr>';
                     medicineInformationForSwal += '<td>' + orderedMedicines[key].medId + '</td>';
                     medicineInformationForSwal += '<td>' + orderedMedicines[key].medName + '</td>';
                     medicineInformationForSwal += '<td style="text-align: center">' + orderedMedicines[key].sciName + '</td>';
-                    medicineInformationForSwal += '<td style="text-align: center">' + orderedMedicines[key].weight + '</td>';
                     medicineInformationForSwal += '<td style="text-align: center">' + orderedMedicines[key].unitPrice + '</td>';
                     medicineInformationForSwal += '<td style="text-align: center">' + orderedMedicines[key].quantity + '</td>';
                     medicineInformationForSwal += '<td style="text-align: center">' + parseInt(orderedMedicines[key].unitPrice) * parseInt(orderedMedicines[key].quantity) + '</td>';
                     medicineInformationForSwal += '</tr>';
                 }
-                medicineInformationForSwal += '<tr style="color: #071232; font-size: 1rem; font-weight: bold"><td>Total</td><td colspan="5"></td><td style="text-align: center">' + orderData.totalPrice + '</td></tr>';
+                medicineInformationForSwal += '<tr style="color: #071232; font-size: 1rem; font-weight: bold"><td>Total</td><td colspan="4"></td><td style="text-align: center">' + orderData.totalPrice + '</td></tr>';
                 medicineInformationForSwal += '</table>';
             } else {
                 medicineInformationForSwal = '<h4>No Medicine Ordered</h4>';
@@ -396,7 +395,17 @@ echo $components->sideBar('orders');
                 swal("Order Cancelled!", "Contact the administrator!", "error");
             } else if (orderData.orderStatus == 'Accepted')
             {
-                swal("Order Accepted!", "Contact the administrator!", "error");
+                swal({
+                    title: "Order Summary" + '\t' + $orderId,
+                    content: {
+                        element: "div",
+                        attributes: {
+                            innerHTML: orderInformationForSwal + medicineInformationForSwal,
+                        }
+                    },
+                    buttons: {},
+                })
+
             } else if (orderData.orderStatus == 'Delivering')
             {
                 console.log('delivering');
@@ -423,7 +432,7 @@ echo $components->sideBar('orders');
                                     swal("Something went wrong!", "Contact the administrator!", "error");
                                 } else {
                                     swal({
-                                        title: "Order Tracking",
+                                        title: "Track Order" + '\t' + $orderId,
                                         content: {
                                             element: "div",
                                             attributes: {
@@ -455,7 +464,7 @@ echo $components->sideBar('orders');
                                         }).addTo(map);
 
                                         marker = L.marker(myLatLng).addTo(map)
-                                            .bindPopup('Order Location')
+                                            .bindPopup('Delivery Partner is here')
                                             .openPopup();
                                     }
 

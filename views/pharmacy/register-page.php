@@ -19,8 +19,8 @@
             <div class="side">
                 <input type="text" name="username" id="username" required placeholder="Username"/>
                 <input type="text" name="email" id="email" required placeholder="Email"/>
-                <input type="text" name="password" id="password" required placeholder="Password"/>
-                <input type="text" name="confirmPassword" id="confirmPassword" required placeholder="Re-type password"/>
+                <input type="password" name="password" id="password" required placeholder="Password"/>
+                <input type="password" name="confirmPassword" id="confirmPassword" required placeholder="Re-type password"/>
                 <input type="text" name="pharmacyname" id="name" required placeholder="Pharmacy Name"/>
 
                 <!--                <input type="text" name="city" id="city" required placeholder="City"/>-->
@@ -71,22 +71,22 @@
                     <label for="uploadbusinesscerti">Upload Business Registration Certificate</label>
                     <div class="file-upload">
                         <input type="file" name="uploadbusinesscerti" id="uploadbusinesscerti"
-                               accept="image/png,image/jpeg" required onchange="handleFileUpload('0')"/>
+                               accept="application/pdf" required onchange="handleFileUpload('0')"/>
                         <i class="fa fa-upload" aria-hidden="true"></i>
                     </div>
                 </span>
                 <span>
                     <label for="uploadpharceti">Upload Pharmacy Certificate</label>
                     <div class="file-upload">
-                        <input type="file" name="uploadpharceti" id="uploadpharceti" accept="image/png,image/jpeg"
-                               required onchange="handleFileUpload('1')"/>
+<!--                        // accept="image/png,image/jpeg,application/pdf"-->
+                        <input type="file" name="uploadpharceti" id="uploadpharceti" accept="application/pdf" required onchange="handleFileUpload('1')"/>
                         <i class="fa fa-upload" aria-hidden="true"></i>
                     </div>
                 </span>
                 <span>
                     <label for="uploadprofilepic">Choose a profile picture</label>
                     <div class="file-upload">
-                        <input type="file" name="uploadprofilepic" id="uploadprofilepic" accept="image/png,image/jpeg"
+                        <input type="file" name="uploadprofilepic" id="uploadprofilepic" accept="image/png"
                                required onchange="handleFileUpload('2')"/>
                         <i class="fa fa-upload" aria-hidden="true"></i>
                     </div>

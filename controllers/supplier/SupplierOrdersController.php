@@ -24,7 +24,7 @@ class SupplierOrdersController extends Controller
             while ($row1 = $result1->fetch_assoc()) {
                 $id = $row1['orderid'];
                 $pharname = $order->getOrderPharm($id);
-                $medid = $order->getMedId($id);
+                $medid = $row1['medId'];
                 $medname = $med->getName($medid);
                 $weight = $med->getWeight($medid);
                 $volume = $med->getVolume($medid);
@@ -32,9 +32,9 @@ class SupplierOrdersController extends Controller
                 $manname = $manu->getManufactureName($manid);
                 $qauntity = $order->getMedQuantiy($id);
                 if ($weight > 0) {
-                    echo "<tr><td>" . $id . "</td><td>" . $pharname . "</td><td>" . $medname . "</td><td>" . $weight . "mg</td><td>" . $manname . "</td><td>" . $qauntity . "</td></tr>";
+                    echo "<tr style = 'padding:1%; border-bottom: 1pt solid black;'><td style='padding: 10px;'>" . $id . "</td><td>" . $pharname . "</td><td>" . $medname . "</td><td>" . $weight . "mg</td><td>" . $manname . "</td><td>" . $qauntity . "</td></tr>";
                 } else {
-                    echo "<tr><td>" . $id . "</td><td>" . $pharname . "</td><td>" . $medname . "</td><td>" . $volume . "ml</td><td>" . $manname . "</td><td>" . $qauntity . "</td></tr>";
+                    echo "<tr style = 'padding:1%; border-bottom: 1pt solid black;'><td style='padding: 10px;'>" . $id . "</td><td>" . $pharname . "</td><td>" . $medname . "</td><td>" . $volume . "ml</td><td>" . $manname . "</td><td>" . $qauntity . "</td></tr>";
                 }
 
 
@@ -55,7 +55,7 @@ class SupplierOrdersController extends Controller
             while ($row1 = $result1->fetch_assoc()) {
                 $id = $row1['orderid'];
                 $pharname = $order->getOrderPharm($id);
-                $medid = $order->getMedId($id);
+                $medid = $row1['medId'];
                 $medname = $med->getName($medid);
                 $weight = $med->getWeight($medid);
                 $volume = $med->getVolume($medid);
@@ -63,9 +63,9 @@ class SupplierOrdersController extends Controller
                 $manname = $manu->getManufactureName($manid);
                 $qauntity = $order->getMedQuantiy($id);
                 if ($weight > 0) {
-                    echo "<tr><td>" . $id . "</td><td>" . $pharname . "</td><td>" . $medname . "</td><td>" . $weight . "mg</td><td>" . $manname . "</td><td>" . $qauntity . "</td></tr>";
+                    echo "<tr style = 'padding:1%; border-bottom: 1pt solid black;'><td style='padding: 10px;'>" . $id . "</td><td>" . $pharname . "</td><td>" . $medname . "</td><td>" . $weight . "mg</td><td>" . $manname . "</td><td>" . $qauntity . "</td></tr>";
                 } else {
-                    echo "<tr><td>" . $id . "</td><td>" . $pharname . "</td><td>" . $medname . "</td><td>" . $volume . "ml</td><td>" . $manname . "</td><td>" . $qauntity . "</td></tr>";
+                    echo "<tr style = 'padding:1%; border-bottom: 1pt solid black;'><td style='padding: 10px;'>" . $id . "</td><td>" . $pharname . "</td><td>" . $medname . "</td><td>" . $volume . "ml</td><td>" . $manname . "</td><td>" . $qauntity . "</td></tr>";
                 }
 
 

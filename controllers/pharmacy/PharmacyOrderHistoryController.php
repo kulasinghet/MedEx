@@ -26,45 +26,40 @@ class PharmacyOrderHistoryController extends Controller
             return 'Pending';
         } elseif ($orderStatus == '1') {
             return 'Accepted';
-        } elseif ($orderStatus == '6') {
+        } elseif ($orderStatus == '3') {
             return 'Rejected';
-        } elseif ($orderStatus == '7') {
+        } elseif ($orderStatus == '2') {
             return 'Delivered';
         } elseif ($orderStatus == '4') {
             return 'Cancelled';
-        } elseif ($orderStatus == '5') {
+        } else if ($orderStatus == '5') {
             return 'Delivering';
         } else {
-            return $orderStatus;
+            return 'Unknown';
         }
+
     }
 
-    public function transformDeliveryDate($deliveryDate): string
+    public function transformDeliveryDate($deliveryDate, $orderStatus = null): string
     {
-        if ($deliveryDate == "0000-00-00") {
-            return 'Pending';
-        } elseif ($deliveryDate == null) {
-            return 'Pending';
-        } else if ($deliveryDate == '1900-02-07') {
-            return 'Cancelled';
-        } else if ($deliveryDate == '1900-02-08') {
-            return 'Rejected';
+        if ($orderStatus == "0" || $orderStatus == "4" || $orderStatus == "6" || $orderStatus == "3") {
+            return '-';
+        } else if (is_null($deliveryDate)) {
+            return '-';
         } else {
-            return $deliveryDate;
+            return date('d-m-Y', strtotime($deliveryDate));
         }
     }
 
-    public function transformOrderTotal($orderTotal): string
+    public function transformOrderTotal($orderTotal, $orderStatus = null): string
     {
-        if ($orderTotal == "0") {
-            return 'Finalizing Order';
-        } else if ($orderTotal == "99999999") {
-            return 'Rejected';
-        } else if ($orderTotal == "77777777") {
-            return 'Cancelled';
+
+        if ($orderStatus == "0" || $orderStatus == "4" || $orderStatus == "6" || $orderStatus == "3") {
+            return '-';
         } else {
             return $orderTotal;
         }
+
     }
 
     public function getOrdersByUsernameForDashboard(mixed $username)

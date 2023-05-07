@@ -43,17 +43,17 @@ class AcceptOrdersController extends Controller
                     if ($supMed->getQuantity($medid) > $qauntity) {
                         if ($weight > 0) {
                             $mass = $weight;
-                            echo "<tr><td>" . $id . "</td><td>" . $pharname . "</td><td>" . $medname . "</td><td>" . $weight . "mg</td><td>" . $manname . "</td><td>" . $qauntity . "</td><td><input type='submit' value='Accept' class='btn btn--primary' onclick='event.preventDefault(); confirmAccept(\"" . $id . "\", \"" . $medname . "\", \"" . $mass . "\", \"" . $manname . "\", \"" . $qauntity . "\", \"" . $medid . "\")'></td></tr></form>";
+                            echo "<tr style = 'padding:1%; border-bottom: 1pt solid black;'><td style='padding: 10px;'>" . $id . "</td><td>" . $pharname . "</td><td>" . $medname . "</td><td>" . $weight . "mg</td><td>" . $manname . "</td><td>" . $qauntity . "</td><td><input type='submit' value='Accept' class='btn btn--primary' onclick='event.preventDefault(); confirmAccept(\"" . $id . "\", \"" . $medname . "\", \"" . $mass . "\", \"" . $manname . "\", \"" . $qauntity . "\", \"" . $medid . "\")'></td></tr></form>";
                         } else {
                             $mass = $volume;
-                            echo "<tr><td>" . $id . "</td><td>" . $pharname . "</td><td>" . $medname . "</td><td>" . $volume . "ml</td><td>" . $manname . "</td><td>" . $qauntity . "</td><td><input type='submit' value='Accept' class='btn btn--primary' onclick='event.preventDefault(); confirmAccept(\"" . $id . "\",  \"" . $medname . "\", \"" . $mass . "\", \"" . $manname . "\", \"" . $qauntity . "\", \"" . $medid . "\")'></td></tr></form>";
+                            echo "<tr style = 'padding:1%; border-bottom: 1pt solid black;'><td style='padding: 10px;'>" . $id . "</td><td>" . $pharname . "</td><td>" . $medname . "</td><td>" . $volume . "ml</td><td>" . $manname . "</td><td>" . $qauntity . "</td><td><input type='submit' value='Accept' class='btn btn--primary' onclick='event.preventDefault(); confirmAccept(\"" . $id . "\",  \"" . $medname . "\", \"" . $mass . "\", \"" . $manname . "\", \"" . $qauntity . "\", \"" . $medid . "\")'></td></tr></form>";
                         }
                     } else if ($weight > 0) {
-                        echo "<tr><td>" . $id . "</td><td>" . $pharname . "</td><td>" . $medname . "</td><td>" . $weight . "</td><td>" . $manname . "</td><td>" . $qauntity . "</td><td><h6><font color='#FF5854'>Insufficient Inventory</font></h6> </td></tr>";
+                        echo "<tr style = 'padding:1%; border-bottom: 1pt solid black;'><td style='padding: 10px;'>" . $id . "</td><td>" . $pharname . "</td><td>" . $medname . "</td><td>" . $weight . "</td><td>" . $manname . "</td><td>" . $qauntity . "</td><td><h6><font color='#FF5854'>Insufficient Inventory</font></h6> </td></tr>";
 
                     } else {
 
-                        echo "<tr><td>" . $id . "</td><td>" . $pharname . "</td><td>" . $medname . "</td><td>" . $volume . "ml</td><td>" . $manname . "</td><td>" . $qauntity . "</td><td><h6><font color='#FF5854'>Insufficient Inventory</font></h6> </td></tr>";
+                        echo "<tr style = 'padding:1%; border-bottom: 1pt solid black;'><td style='padding: 10px;'>" . $id . "</td><td>" . $pharname . "</td><td>" . $medname . "</td><td>" . $volume . "ml</td><td>" . $manname . "</td><td>" . $qauntity . "</td><td><h6><font color='#FF5854'>Insufficient Inventory</font></h6> </td></tr>";
                     }
 
                 }
@@ -93,17 +93,17 @@ class AcceptOrdersController extends Controller
                     if ($supMed->getQuantity($medid) > $qauntity) {
                         if ($weight > 0) {
                             $mass = $weight;
-                            echo "<tr><td>" . $id . "</td><td>" . $pharname . "</td><td>" . $medname . "</td><td>" . $weight . "mg</td><td>" . $manname . "</td><td>" . $qauntity . "</td><td><input type='submit' value='Accept' class='btn btn--primary' onclick='event.preventDefault(); confirmAccept(\"" . $id . "\", \"" . $medname . "\", \"" . $mass . "\", \"" . $manname . "\", \"" . $qauntity . "\", \"" . $medid . "\")'></td></tr></form>";
+                            echo "<tr style = 'padding:1%; border-bottom: 1pt solid black;'><td style='padding: 10px;'>" . $id . "</td><td>" . $pharname . "</td><td>" . $medname . "</td><td>" . $weight . "mg</td><td>" . $manname . "</td><td>" . $qauntity . "</td><td><input type='submit' value='Accept' class='btn btn--primary' onclick='event.preventDefault(); confirmAccept(\"" . $id . "\", \"" . $medname . "\", \"" . $mass . "\", \"" . $manname . "\", \"" . $qauntity . "\", \"" . $medid . "\")'></td></tr></form>";
                         } else {
                             $mass = $volume;
-                            echo "<tr><td>" . $id . "</td><td>" . $pharname . "</td><td>" . $medname . "</td><td>" . $volume . "ml</td><td>" . $manname . "</td><td>" . $qauntity . "</td><td><input type='submit' value='Accept' class='btn btn--primary' onclick='event.preventDefault(); confirmAccept(\"" . $id . "\",  \"" . $medname . "\", \"" . $mass . "\", \"" . $manname . "\", \"" . $qauntity . "\", \"" . $medid . "\")'></td></tr></form>";
+                            echo "<tr style = 'padding:1%; border-bottom: 1pt solid black;'><td style='padding: 10px;'>" . $id . "</td><td>" . $pharname . "</td><td>" . $medname . "</td><td>" . $volume . "ml</td><td>" . $manname . "</td><td>" . $qauntity . "</td><td><input type='submit' value='Accept' class='btn btn--primary' onclick='event.preventDefault(); confirmAccept(\"" . $id . "\",  \"" . $medname . "\", \"" . $mass . "\", \"" . $manname . "\", \"" . $qauntity . "\", \"" . $medid . "\")'></td></tr></form>";
                         }
                     } else if ($weight > 0) {
-                        echo "<tr><td>" . $id . "</td><td>" . $pharname . "</td><td>" . $medname . "</td><td>" . $weight . "</td><td>" . $manname . "</td><td>" . $qauntity . "</td><td><h6><font color='#FF5854'>Insufficient Inventory</font></h6> </td></tr>";
+                        echo "<tr style = 'padding:1%; border-bottom: 1pt solid black;'><td style='padding: 10px;'>" . $id . "</td><td>" . $pharname . "</td><td>" . $medname . "</td><td>" . $weight . "</td><td>" . $manname . "</td><td>" . $qauntity . "</td><td><h6><font color='#FF5854'>Insufficient Inventory</font></h6> </td></tr>";
 
                     } else {
 
-                        echo "<tr><td>" . $id . "</td><td>" . $pharname . "</td><td>" . $medname . "</td><td>" . $volume . "ml</td><td>" . $manname . "</td><td>" . $qauntity . "</td><td><h6><font color='#FF5854'>Insufficient Inventory</font></h6> </td></tr>";
+                        echo "<tr style = 'padding:1%; border-bottom: 1pt solid black;'><td style='padding: 10px;'>" . $id . "</td><td>" . $pharname . "</td><td>" . $medname . "</td><td>" . $volume . "ml</td><td>" . $manname . "</td><td>" . $qauntity . "</td><td><h6><font color='#FF5854'>Insufficient Inventory</font></h6> </td></tr>";
                     }
 
                 }
@@ -129,7 +129,7 @@ class AcceptOrdersController extends Controller
                 $newq = $oldq - $quantity;
                 $bnumber = $_POST['batch'];
                 $expdate = $_POST['expdate'];
-                if ($pharmorder->acceptOrder($orderid) && $order->acceptOrder($_SESSION['username'], $orderid, $bnumber, $expdate) && $supmed->acceptOrder($newq, $medid, $_SESSION['username'])) {
+                if ($pharmorder->acceptOrder($orderid) && $order->acceptOrder($_SESSION['username'], $orderid, $bnumber, $expdate, $medid) && $supmed->acceptOrder($newq, $medid, $_SESSION['username'])) {
                     echo (new \app\core\ExceptionHandler)->OrderAccepted();
                     return $this->render("/supplier/accept-orders.php");
                 } else {
@@ -201,7 +201,7 @@ class AcceptOrdersController extends Controller
         document.getElementById("medId").value = medId;
         const dateInput = document.getElementById("expdate");
         const currentDate = new Date();
-        const minDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() + 7);
+        const minDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() + 30);
         dateInput.setAttribute("min", minDate.toISOString().slice(0, 10));
 
 

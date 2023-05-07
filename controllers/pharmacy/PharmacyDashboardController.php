@@ -3,8 +3,10 @@
 namespace app\controllers\pharmacy;
 
 use app\core\Controller;
+use app\core\Logger;
 use app\core\NotificationHandler;
 use app\core\Request;
+use Exception;
 
 class PharmacyDashboardController extends Controller
 {
@@ -101,7 +103,8 @@ class PharmacyDashboardController extends Controller
     public function profile(Request $request) {
         if ($_SESSION['userType'] == 'pharmacy') {
             if ($request -> isGet()) {
-                $this -> render("pharmacy/profile.php");
+                $user = $this -> getPharmacyProfile();
+                $this -> render("pharmacy/profile.php", ['user' => $user]);
             } else if ($request -> isPost()) {
                 $this -> render("pharmacy/profile.php");
             } else {
@@ -140,5 +143,87 @@ class PharmacyDashboardController extends Controller
         }
     }
 
+    public function getPharmacyProfile() {
+        if (isset($_SESSION['username'])) {
+            $user = new \app\models\PharmacyModel();
+            $user = $user->getPharmacyProfile($_SESSION['username']);
+            $user['deliveryTime'] = $this->getDeliveryTime($user['city']);
+            return $user;
+        } else {
+            return header(self::login);
+        }
+    }
+
+    public function isVerified() {
+        if (isset($_SESSION['username'])) {
+            $user = new \app\models\PharmacyModel();
+            $flag = $user->isVerified($_SESSION['username']);
+
+            if ($flag) {
+                return 1;
+            } else {
+                return 0;
+            }
+
+        } else {
+            return header(self::login);
+        }
+    }
+
+
+    public function reportPurchase(Request $request) {
+        if ($request->isPost()) {
+
+            $form = $request->getBody();
+
+            $pharmacy = new \app\models\PharmacyModel();
+            $result = $pharmacy->reportPurchase($form);
+
+            if ($result) {
+                echo (new NotificationHandler())->reportPurchaseSuccess();
+                $this->render("pharmacy/report-purchase.php");
+            } else {
+                echo (new NotificationHandler())->somethingWentWrong();
+                $this->render("pharmacy/report-purchase.php");
+            }
+
+        } else if ($request->isGet()) {
+            $orderId = $this->getOrderId();
+
+            if ($orderId == null) {
+                $this->render("pharmacy/report-purchase.php");
+            } else {
+                $this->render("pharmacy/report-purchase.php", ['orderId' => $orderId]);
+            }
+        }
+    }
+
+    private function getOrderId()
+    {
+        // get order id from url if exists
+        $url = $_SERVER['REQUEST_URI'];
+        $url_components = parse_url($url);
+
+        try {
+
+            if (!isset($url_components['query'])) {
+                return null;
+            }
+            parse_str($url_components['query'], $params);
+            if (isset($params['orderId'])) {
+                return $params['orderId'];
+            } else {
+                return null;
+            }
+        } catch (Exception $e) {
+            return null;
+        }
+    }
+
+    private function getDeliveryTime(mixed $city)
+    {
+        $deliveryTime = new \app\models\PharmacyModel();
+        return $deliveryTime->getDeliveryTime($city);
+    }
 
 }
