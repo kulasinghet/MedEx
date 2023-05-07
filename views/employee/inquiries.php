@@ -30,7 +30,7 @@ $store->flag_g_st = 0; // resetting the set number in the store
 <body>
 <!-- Section: Fixed Components -->
 <?php
-echo $components->createSidebar('res');
+echo $components->createSidebar('inquiries');
 echo $components->createNavbar();
 ?>
 <!-- Section: Fixed Components -->

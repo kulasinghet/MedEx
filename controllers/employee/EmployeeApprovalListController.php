@@ -3,7 +3,7 @@
 namespace app\controllers\employee;
 
 use app\core\Request;
-use app\models\EmpResourcesModel;
+use app\models\EmployeeResourcesModel;
 use app\stores\EmployeeStore;
 
 class EmployeeApprovalListController extends MasterListController
@@ -33,7 +33,7 @@ class EmployeeApprovalListController extends MasterListController
             // retrieve the list from the store
             $list = $store->list_g;
         } else {
-            $model = new EmpResourcesModel();
+            $model = new EmployeeResourcesModel();
             // creating an array of all approvals
             $list = $model->getAll(false);
             shuffle($list);
@@ -54,7 +54,7 @@ class EmployeeApprovalListController extends MasterListController
             // retrieve the list from the store
             $list = $store->list_g;
         } else {
-            $model = new EmpResourcesModel();
+            $model = new EmployeeResourcesModel();
             // creating an array of all approvals
             $list = $model->getPharmacyList(false);
             // storing the list in the store
@@ -74,7 +74,7 @@ class EmployeeApprovalListController extends MasterListController
             // retrieve the list from the store
             $list = $store->list_g;
         } else {
-            $model = new EmpResourcesModel();
+            $model = new EmployeeResourcesModel();
             // creating an array of all approvals
             $list = $model->getSupplierList(false);
             // storing the list in the store
@@ -94,7 +94,7 @@ class EmployeeApprovalListController extends MasterListController
             // retrieve the list from the store
             $list = $store->list_g;
         } else {
-            $model = new EmpResourcesModel();
+            $model = new EmployeeResourcesModel();
             // creating an array of all approvals
             $list = $model->getDeliveryGuysList(false);
             // storing the list in the store
@@ -114,7 +114,7 @@ class EmployeeApprovalListController extends MasterListController
             // retrieve the list from the store
             $list = $store->list_g;
         } else {
-            $model = new EmpResourcesModel();
+            $model = new EmployeeResourcesModel();
             // creating an array of all approvals
             $list = $model->getLabList(false);
             // storing the list in the store

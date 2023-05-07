@@ -3,7 +3,7 @@
 namespace app\controllers\employee;
 
 use app\core\Request;
-use app\models\EmpResourcesModel;
+use app\models\EmployeeResourcesModel;
 use app\stores\EmployeeStore;
 
 class EmployeeResListController extends MasterListController
@@ -33,7 +33,7 @@ class EmployeeResListController extends MasterListController
             // retrieve the list from the store
             $list = $store->list_g;
         } else {
-            $model = new EmpResourcesModel();
+            $model = new EmployeeResourcesModel();
             // creating an array of all resources
             $list = $model->getPharmacyList(true);
         }
@@ -51,7 +51,7 @@ class EmployeeResListController extends MasterListController
             // retrieve the list from the store
             $list = $store->list_g;
         } else {
-            $model = new EmpResourcesModel();
+            $model = new EmployeeResourcesModel();
             // creating an array of all resources
             $list = $model->getSupplierList(true);
             // storing the list in the store
@@ -71,7 +71,7 @@ class EmployeeResListController extends MasterListController
             // retrieve the list from the store
             $list = $store->list_g;
         } else {
-            $model = new EmpResourcesModel();
+            $model = new EmployeeResourcesModel();
             // creating an array of all resources
             $list = $model->getLabList(true);
             // storing the list in the store
@@ -91,7 +91,7 @@ class EmployeeResListController extends MasterListController
             // retrieve the list from the store
             $list = $store->list_g;
         } else {
-            $model = new EmpResourcesModel();
+            $model = new EmployeeResourcesModel();
             // creating an array of all resources
             $list = $model->getDeliveryGuysList(true);
             // storing the list in the store
