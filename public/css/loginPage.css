@@ -194,6 +194,10 @@ hr {
     padding: 2vh 2vw;
 }
 
+.register-now a {
+    cursor: pointer;
+}
+
 
 @media screen and (max-width: 1000px) {
 
