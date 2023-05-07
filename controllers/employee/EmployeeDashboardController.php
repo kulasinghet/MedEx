@@ -14,7 +14,7 @@ class EmployeeDashboardController extends Controller
     {
         if ($request->isGet()) {
             if ($_SESSION['userType'] == 'staff') {
-                $this -> render("employee/reports.php");
+                $this -> render("employee/inquiries.php");
             } else {
                 return header(self::login);
             }

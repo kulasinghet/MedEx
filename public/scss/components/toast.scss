@@ -1,0 +1,117 @@
+@keyframes progress {
+  100% {
+    right: 100%;
+  }
+}
+
+.toast {
+  position: absolute;
+  top: 4rem;
+  right: 30px;
+  border-radius: 12px;
+  background: #fff;
+  padding: 20px 35px 20px 25px;
+  box-shadow: 0 6px 20px -5px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transform: translateX(calc(100% + 30px));
+  z-index: 999;
+
+  &.active {
+    transform: translateX(0%);
+  }
+
+  .toast-content {
+    display: flex;
+    align-items: center;
+
+    .toast-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 35px;
+      min-width: 35px;
+      font-size: 20px;
+      border-radius: 50%;
+
+      &.success {
+        background-color: #4070f4;
+        color: #fff;
+
+        &:after {
+          content: '\f00c';
+          font-family: 'Font Awesome 6 Free';
+          font-weight: 900;
+        }
+      }
+
+        &.error {
+            background-color: #f44336;
+            color: #fff;
+
+            &:after {
+            content: '\f00d';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            }
+        }
+    }
+
+    .message {
+      display: flex;
+      flex-direction: column;
+      margin: 0 20px;
+
+      .text {
+        font-size: 16px;
+        font-weight: 400;
+        color: #666666;
+
+        &.text-1 {
+          font-weight: 600;
+          color: #333;
+        }
+      }
+    }
+  }
+
+  .close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    padding: 5px;
+    cursor: pointer;
+    opacity: 0.7;
+
+    &:after {
+      content: '\f00d';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+    }
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  .progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    width: 100%;
+
+    &:before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      height: 100%;
+      width: 100%;
+      background-color: #4070f4;
+    }
+
+    &.active:before {
+      animation: progress 5s linear forwards;
+    }
+  }
+}

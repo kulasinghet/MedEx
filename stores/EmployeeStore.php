@@ -12,6 +12,7 @@ use Exception;
 class EmployeeStore
 {
     public string $username;
+    public ?ToastNotification $toast;
 
     // general list page variables
     public string $flag_g_t; // stores the entity type
@@ -60,6 +61,19 @@ class EmployeeStore
             return EmployeeModel::getByUsername($this->username);
         } else {
             throw new Exception('Username not set in session');
+        }
+    }
+
+    public function setNotification($subject, $message, $type): void
+    {
+        $this->toast = new ToastNotification($subject, $message, $type);
+    }
+
+    public function renderNotification(): void
+    {
+        if (isset($this->toast)) {
+            echo $this->toast->render();
+            $this->toast = null;
         }
     }
 }

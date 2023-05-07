@@ -3,11 +3,11 @@
 namespace app\controllers\employee;
 
 use app\core\Request;
-use app\models\ReportListModel;
-use app\models\ReportModel;
+use app\models\InquiriesListModel;
+use app\models\InquiryModel;
 use app\stores\EmployeeStore;
 
-class EmployeeReportListController extends MasterCRUDController
+class EmployeeInquiriesListController extends MasterCRUDController
 {
     public function load(Request $request): void
     {
@@ -18,7 +18,7 @@ class EmployeeReportListController extends MasterCRUDController
         $store->flag_g_usr = $this->getEntityFlag($request);
         $store->flag_g_act = $this->getActionFlag($request);
 
-        $report = ReportModel::getByID($store->flag_g_usr);
+        $report = InquiryModel::getByID($store->flag_g_usr);
 
         // checking whether there is a direct action to be performed
         switch ($store->flag_g_act) {
@@ -36,17 +36,18 @@ class EmployeeReportListController extends MasterCRUDController
                 return;
             case 'accept':
                 $report->resolve();
-                header('Location: /employee/reports');
+                $store->setNotification('Inquiry accepted!', 'Inquiry' . $store->flag_g_usr . ' is accepted!', 'success');
+                header('Location: /employee/inquiries');
                 return; // Return to stop further execution
             default:
-                $this -> render("employee/reports.php");
+                $this -> render("employee/inquiries.php");
                 break;
         }
     }
 
     public function getAllReports(): array
     {
-        $model = new ReportListModel();
+        $model = new InquiriesListModel();
         // creating an array of all reports
         return $model->getAllReports();
     }

@@ -16,12 +16,8 @@ $pharmacy = $store->g_obj;
 
     <!-- Font awesome kit -->
     <script crossorigin="anonymous" src="https://kit.fontawesome.com/9b33f63a16.js"></script>
-    <!-- Simplebar -->
-    <link rel="stylesheet" href="https://unpkg.com/simplebar@latest/dist/simplebar.css"/>
-    <script src="https://unpkg.com/simplebar@latest/dist/simplebar.min.js"></script>
     <!-- g28 style -->
     <link rel="stylesheet" href="/scss/main.css" />
-    <script src="/js/g28-main.js"></script>
 </head>
 <body>
 <!-- Section: Fixed Components -->
@@ -39,6 +35,7 @@ echo $components->createNavbar();
             <div class="col card data-box">
                 <div class="card-body">
                     <h5 class="card-title">Delivery Partner Details</h5>
+                    <!-- General info -->
                     <div class="row">
                         <div class="col">
                             <table class="status-table">
@@ -48,9 +45,15 @@ echo $components->createNavbar();
                                     <td><?php echo $store->g_obj->username?? "N/A" ?></td>
                                 </tr>
                                 <tr>
-                                    <th>Age</th>
-                                    <td><?php echo $store->g_obj->age?? "N/A" ?></td>
+                                    <th>Address</th>
+                                    <td><?php echo $store->g_obj->address?? "N/A" ?></td>
                                 </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col">
+                            <table class="status-table">
+                                <tbody>
                                 <tr>
                                     <th>Email</th>
                                     <td><?php echo $store->g_obj->email?? "N/A" ?></td>
@@ -62,6 +65,10 @@ echo $components->createNavbar();
                                 </tbody>
                             </table>
                         </div>
+                    </div>
+
+                    <!-- Delivery info -->
+                    <div class="row">
                         <div class="col">
                             <table class="status-table">
                                 <tbody>
@@ -69,16 +76,14 @@ echo $components->createNavbar();
                                     <th>Name</th>
                                     <td><?php echo $store->g_obj->name?? "N/A" ?></td>
                                 </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col">
+                            <table class="status-table">
+                                <tbody>
                                 <tr>
-                                    <th>City</th>
-                                    <td><?php echo $store->g_obj->city?? "N/A" ?></td>
-                                </tr>
-                                <tr>
-                                    <th>Address</th>
-                                    <td><?php echo $store->g_obj->address?? "N/A" ?></td>
-                                </tr>
-                                <tr>
-                                    <th>Delivery Location</th>
+                                    <th>Deliverable Cities</th>
                                     <td><?php echo $store->g_obj->delivery_location?? "N/A" ?></td>
                                 </tr>
                                 </tbody>
@@ -86,21 +91,14 @@ echo $components->createNavbar();
                         </div>
                     </div>
 
+                    <!-- Vehicle info -->
                     <div class="row">
                         <div class="col">
                             <table class="status-table">
                                 <tbody>
                                 <tr>
-                                    <th>Vehicle Number</th>
+                                    <th>Vehicle Register No.</th>
                                     <td><?php echo $store->g_obj->vehicle_no?? "N/A" ?></td>
-                                </tr>
-                                <tr>
-                                    <th>Vehicle Type</th>
-                                    <td><?php echo $store->g_obj->vehicle_type?? "N/A" ?></td>
-                                </tr>
-                                <tr>
-                                    <th>Refrigerators</th>
-                                    <td><?php echo $store->g_obj->refrigerators? "Yes" : "No" ?></td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -109,12 +107,60 @@ echo $components->createNavbar();
                             <table class="status-table">
                                 <tbody>
                                 <tr>
-                                    <th>Licence ID</th>
-                                    <td><?php echo $store->g_obj->licence_id?? "N/A" ?></td>
+                                    <th>Vehicle Type</th>
+                                    <td><?php echo $store->g_obj->vehicle_type?? "N/A" ?></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Legal info -->
+                    <div class="row">
+                        <div class="col">
+                            <table class="status-table">
+                                <tbody>
+                                <tr>
+                                    <th>Driving License ID.</th>
+                                    <td><?php echo $store->g_obj->license_id?? "N/A" ?></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col">
+                            <table class="status-table">
+                                <tbody>
+                                <tr>
+                                    <th>Name in the license</th>
+                                    <td><?php echo $store->g_obj->license_name?? "N/A" ?></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Legal Docs -->
+                    <div class="row">
+                        <div class="col">
+                            <table class="status-table">
+                                <tbody>
+                                <tr>
+                                    <th>License</th>
+                                    <td><a href="/public/uploads/delivery_partner/license/<?php echo $store->g_obj->username?? "N/A" ?>_license.png">Download</a></td>
                                 </tr>
                                 <tr>
-                                    <th>Max Load</th>
-                                    <td><?php echo $store->g_obj->max_load?? "N/A" ?></td>
+                                    <th>Vehicle (Photo)</th>
+                                    <td><a href="/public/uploads/delivery_partner/vehicle/<?php echo $store->g_obj->username?? "N/A" ?>_vehicle.png">Download</a></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col">
+                            <table class="status-table">
+                                <tbody>
+                                <tr>
+                                    <th>Vehicle Registration form</th>
+                                    <td><a href="/public/uploads/delivery_partner/vehicleReg/<?php echo $store->g_obj->username?? "N/A" ?>_vehicleReg.pdf">Download</a></td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -145,20 +191,5 @@ echo $components->createNavbar();
     </div>
 </div>
 <!-- Section: Dashboard Layout -->
-
-<!-- g28 styling framework -->
-<script type="application/javascript">
-    // you can configure variables in here.
-    configs.stage = 'dev';
-    configs.customFormElmPath = '/scss/components/forms';
-
-    //logging
-    logger("Logging g28 initial state before loading specialized JS files...");
-    for (let property in configs) {
-        logger(`> ${property}: ${configs[property]}`);
-    }
-</script>
-<script src="/js/g28-forms.js"></script>
-<!-- g28 styling framework -->
 </body>
 </html>
