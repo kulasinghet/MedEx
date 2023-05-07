@@ -84,7 +84,7 @@ echo $components->sideBar('dashboard');
                 <div class="card-body">
                     <h5 class="card-title">Sales and Cost <?php echo date("F"); ?></h5>
                     <p class="card-text">
-                        <canvas id="sales-and-cost" style="width: auto; max-height: 20vh;"></canvas>
+                        <canvas id="sales-and-cost" style="max-height: 25vh"></canvas>
 
                         <script>
                             const salescost = "http://localhost:8080/pharmacy/api/sales-and-cost-for-current-month?pharmacyUsername=" + username;
@@ -143,12 +143,16 @@ echo $components->sideBar('dashboard');
                             <td><?php echo $acceptedOrders ?></td>
                         </tr>
                         <tr>
-                            <td>Rejected Orders</td>
-                            <td><?php echo $rejectedOrders ?></td>
+                            <td>Delivering Orders</td>
+                            <td><?php echo $deliveringOrders ?></td>
                         </tr>
                         <tr>
                             <td>Delivered Orders</td>
                             <td><?php echo $deliveredOrders ?></td>
+                        </tr>
+                        <tr>
+                            <td>Rejected Orders</td>
+                            <td><?php echo $rejectedOrders ?></td>
                         </tr>
                         <tr>
                             <td>Cancelled Orders</td>

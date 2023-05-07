@@ -153,4 +153,17 @@ class PharmacyOrderHistoryController extends Controller
             return 0;
         }
     }
+
+    public function getDeliveringOrdersCount(mixed $username)
+    {
+        $pharmacyOrder = new PharmacyOrderModel();
+        $results = $pharmacyOrder->getDeliveringOrdersCount($username);
+
+        if ($results) {
+            Logger::logDebug("getDeliveringOrdersCount() returned: " . $results);
+            return $results;
+        } else {
+            return 0;
+        }
+    }
 }

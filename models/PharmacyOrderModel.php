@@ -49,6 +49,7 @@ class PharmacyOrderModel extends Model
         }
         $db->close();
     }
+
     public function getSupOrders($name)
     {
         $db = (new Database())->getConnection();
@@ -431,6 +432,23 @@ class PharmacyOrderModel extends Model
             $result = $conn->query($sql);
             $row = $result->fetch_assoc();
             return $row;
+        } catch (\Exception $e) {
+            Logger::logError($e->getMessage());
+            echo (new ExceptionHandler)->somethingWentWrong();
+            return false;
+        }
+    }
+
+    public function getDeliveringOrdersCount(mixed $username)
+    {
+        $conn = (new Database())->getConnection();
+        // order status 4 = cancelled for current month
+        $sql = "SELECT COUNT(*) AS count FROM pharmacyorder WHERE pharmacyUsername = '$username' AND order_status = 5 AND MONTH(order_date) = MONTH(CURRENT_DATE()) AND YEAR(order_date) = YEAR(CURRENT_DATE());";
+
+        try {
+            $result = $conn->query($sql);
+            $row = $result->fetch_assoc();
+            return $row['count'];
         } catch (\Exception $e) {
             Logger::logError($e->getMessage());
             echo (new ExceptionHandler)->somethingWentWrong();

@@ -29,6 +29,7 @@ class DashboardController extends Controller
                 return $this->render('pharmacy/dashboard.php', [
                     'pendingOrders' => $pharmacyOrderHistoryController->getPendingOrdersCount($_SESSION['username']),
                     'acceptedOrders' => $pharmacyOrderHistoryController->getAcceptedOrdersCount($_SESSION['username']),
+                    'deliveringOrders' => $pharmacyOrderHistoryController->getDeliveringOrdersCount($_SESSION['username']),
                     'rejectedOrders' => $pharmacyOrderHistoryController->getRejectedOrdersCount($_SESSION['username']),
                     'deliveredOrders' => $pharmacyOrderHistoryController->getDeliveredOrdersCount($_SESSION['username']),
                     'cancelledOrders' => $pharmacyOrderHistoryController->getCancelledOrdersCount($_SESSION['username']),
