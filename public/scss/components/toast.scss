@@ -23,22 +23,36 @@
     display: flex;
     align-items: center;
 
-    .check {
+    .toast-icon {
       display: flex;
       align-items: center;
       justify-content: center;
       height: 35px;
       min-width: 35px;
-      background-color: #4070f4;
-      color: #fff;
       font-size: 20px;
       border-radius: 50%;
 
-      &:after {
-        content: '\f00c';
-        font-family: 'Font Awesome 6 Free';
-        font-weight: 900;
+      &.success {
+        background-color: #4070f4;
+        color: #fff;
+
+        &:after {
+          content: '\f00c';
+          font-family: 'Font Awesome 6 Free';
+          font-weight: 900;
+        }
       }
+
+        &.error {
+            background-color: #f44336;
+            color: #fff;
+
+            &:after {
+            content: '\f00d';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            }
+        }
     }
 
     .message {

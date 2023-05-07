@@ -9,7 +9,7 @@ class G28ToastNotification extends HTMLElement {
         this.toastTemplate = `
 <div class="toast">
   <div class="toast-content">
-    <div class="check"></div>
+    <div class="toast-icon success"></div>
     <div class="message">
       <span class="text text-1">Subject</span>
       <span class="text text-2">Message</span>
@@ -28,6 +28,7 @@ class G28ToastNotification extends HTMLElement {
         // initializing selectbox variables
         let subject_text = this.getAttribute('subject') || '';
         let message_text = this.getAttribute('message') || '';
+        let status = this.getAttribute('status') || 'success';
 
         // --------------------- RENDERING THE ELEMENT ---------------------
         // creating shadow root
@@ -37,6 +38,7 @@ class G28ToastNotification extends HTMLElement {
         // initializing data of the toast
         this.subject.innerText = subject_text;
         this.message.innerText = message_text;
+        this.changeStatus(status);
         // setting the animation after the element is rendered
         setTimeout(() => this.toast.style.transition = 'all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.35)', 100);
         // --------------------- RENDERING THE ELEMENT ---------------------
@@ -67,7 +69,9 @@ class G28ToastNotification extends HTMLElement {
         // called when one of attributes listed above is modified
 
         if (name === 'status') {
-            //todo
+            if (this.statusIcon) {
+                this.changeStatus(newValue);
+            }
         } else if (name === 'subject') {
             if (this.subject) {
                 this.subject.innerText = newValue;
@@ -95,6 +99,7 @@ class G28ToastNotification extends HTMLElement {
         this.toast = this.shadowRoot.querySelector('.toast');
         this.closeIcon = this.shadowRoot.querySelector('.close');
         this.progress = this.shadowRoot.querySelector('.progress');
+        this.statusIcon = this.shadowRoot.querySelector('.toast-icon');
         this.subject = this.shadowRoot.querySelector('.text-1');
         this.message = this.shadowRoot.querySelector('.text-2');
     }
@@ -118,20 +123,26 @@ class G28ToastNotification extends HTMLElement {
             this.parentNode.removeChild(this);
         }
     }
+
+    changeStatus(status) {
+        if (status === 'success') {
+            this.statusIcon.classList.remove('error');
+            this.statusIcon.classList.add('success');
+        } else if (status === 'error') {
+            this.statusIcon.classList.remove('success');
+            this.statusIcon.classList.add('error');
+        }
+    }
 }
 
 customElements.define('g28-toast', G28ToastNotification);
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Toast ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-function createToast(subject, message) {
+function createToast(subject, message, status = null) {
     const toastElement = document.createElement('g28-toast');
+    toastElement.setAttribute('status', status);
     toastElement.setAttribute('subject', subject);
     toastElement.setAttribute('message', message);
     setTimeout(() => toastElement.showToast(), 100);
     document.body.appendChild(toastElement);
 }
-
-document.querySelector('button').addEventListener('click', () => {
-    createToast('Success', 'Your changes has been saved!');
-    console.log('clicked');
-});

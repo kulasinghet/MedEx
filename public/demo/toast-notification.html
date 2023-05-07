@@ -24,6 +24,11 @@
   configs.stage = 'dev';
   configs.customFormElmPath = '../scss/components/forms';
   configs.scssStylePath = '../scss/';
+
+  document.querySelector('button').addEventListener('click', () => {
+    createToast('Success', 'Your changes has been saved!', 'error');
+    console.log('clicked');
+  });
 </script>
 <script src="../js/g28-toast.js"></script>
 <!-- g28 styling framework -->
