@@ -49,6 +49,25 @@
   }
 }
 
+// sweet alert
+.swal-modal {
+  width: auto;
+  min-width: 50vw;
+
+  .swal-text {
+    text-align: center;
+  }
+}
+
+.swal-button--confirm {
+  /*// danger*/
+  background-color: #d9534f;
+
+  &:hover {
+    background-color: #c9302c;
+  }
+}
+
 // Styles for approval details page
 .data-box {
 
@@ -451,4 +470,27 @@ $report-itm-border-radius: 6px;
   @include generate-report-item-variant('supplier', #A3E1B0);
   @include generate-report-item-variant('delivery', #E4D17C);
   @include generate-report-item-variant('lab', #DCA270);
+}
+
+// Styles for orders page
+.order-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem;
+
+  .order-details-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+
+    > h4 {
+      width: 50%;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: #000000a6;
+    }
+  }
 }

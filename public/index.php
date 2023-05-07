@@ -12,7 +12,7 @@ use app\controllers\employee\EmployeeDashboardController;
 use app\controllers\employee\EmployeeResController;
 use app\controllers\employee\EmployeeResListController;
 use app\controllers\employee\EmployeeInquiriesListController;
-use app\controllers\employee\EmployeeOrdersListController;
+use app\controllers\employee\EmployeeOrdersController;
 use app\controllers\lab\LabAuthController;
 use app\controllers\lab\LabContactusController;
 use app\controllers\lab\LabDashboardController;
@@ -119,8 +119,10 @@ $app->router->post('/employee/res/lab/push', [EmployeeResController::class, 'pus
 $app->router->get('/employee/inquiries', [EmployeeInquiriesListController::class, 'load']);
 $app->router->post('/employee/inquiries', [EmployeeInquiriesListController::class, 'load']);
 
-$app->router->get('/employee/orders', [EmployeeOrdersListController::class, 'load']);
-$app->router->post('/employee/orders', [EmployeeOrdersListController::class, 'load']);
+$app->router->get('/employee/orders', [EmployeeOrdersController::class, 'loadOrderList']);
+$app->router->post('/employee/orders', [EmployeeOrdersController::class, 'loadOrderList']);
+
+$app->router->get('/employee/orders/action', [EmployeeOrdersController::class, 'oderStatusChange']);
 //#########################################################################################
 
 

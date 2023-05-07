@@ -4,10 +4,11 @@ namespace app\controllers\employee;
 
 use app\core\Controller;
 use app\core\Request;
+use app\models\EmployeeOrderModel;
 use app\models\EmployeeResourcesModel;
 use app\stores\EmployeeStore;
 
-class EmployeeOrdersListController extends Controller
+class EmployeeOrdersController extends Controller
 {
     const login = 'Location: /login';
 
@@ -19,10 +20,9 @@ class EmployeeOrdersListController extends Controller
         }
     }
 
-    public function load(Request $request): void
+    public function loadOrderList(Request $request): void
     {
         $this->validate();
-
         $this -> render("employee/orders/list.php");
     }
 
@@ -35,12 +35,22 @@ class EmployeeOrdersListController extends Controller
             // retrieve the list from the store
             $list = $store->list_g;
         } else {
-            $model = new EmployeeResourcesModel();
+            $model = new EmployeeOrderModel();
             // creating an array of all resources
-            $list = $model->getPharmacyList(true);
+            $list = $model->getAll();
         }
 
         // slicing the list to the set size
-        return array_slice($list, $set_number * 9, $set_size);
+        // return array_slice($list, $set_number * 9, $set_size);
+        return $list;
+    }
+
+    public function oderStatusChange(Request $request): void
+    {
+        $this->validate();
+
+        $model = new EmployeeOrderModel();
+        $model->changeOrderStatus($request->getBody()['id'], $request->getBody()['st']);
+        header('Location: /employee/orders');
     }
 }

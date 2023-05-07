@@ -3,6 +3,7 @@
 namespace app\views\employee;
 
 use app\models\InquiryModel;
+use app\models\PharmacyOrderModel;
 use app\stores\EmployeeStore;
 use Exception;
 use ReflectionClass;
@@ -255,6 +256,18 @@ class EmployeeViewComponents
                 </div>
             </div>
         </div>
+        ');
+    }
+
+    public function createOrderItem(PharmacyOrderModel $order): string
+    {
+        return ('
+<tr data-id="'.$order->id.'" data-tp="'.$order->status.'">
+    <td>'.$order->id.'</td>
+    <td>'.$order->pharmacyUsername.'</td>
+    <td>'.$order->status.'</td>
+    <td>'.$order->order_date.'</td>
+</tr>
         ');
     }
 }
