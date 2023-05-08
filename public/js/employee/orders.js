@@ -130,8 +130,30 @@ async function handleViewOrderDetailsClick($orderId) {
                     case "accept":
                         // Accept button clicked
                         fetch(`/employee/orders/action?id=${$orderId}&st=Accepted`)
-                            .then(response => {
-                                window.location.href = response.url;
+                            .then(r => r.json())
+                            .then(data => {
+                                swal.close();
+                                if (data.success) {
+                                    swal({
+                                        title: "Order Accepted!",
+                                        buttons: {
+                                            accept: "Print Order",
+                                            cancel: "Close",
+                                        },
+                                    }).then((value) => {
+                                        switch (value) {
+                                            case "accept":
+                                                window.open(`http://medex28.tech/pdf/${orderId}.pdf`, '_blank');
+                                                location.reload();
+                                                break;
+                                            case "cancel":
+                                                location.reload();
+                                                break;
+                                        }
+                                    });
+                                } else {
+                                    swal("Something went wrong!", "Contact the administrator!", "error");
+                                }
                             });
                         break;
                     case "reject":
@@ -173,8 +195,17 @@ async function handleViewOrderDetailsClick($orderId) {
                                     });
 
                                     fetch(`/employee/orders/action?id=${$orderId}&st=Rejected`)
-                                        .then(response => {
-                                            window.location.href = response.url;
+                                        .then(r => r.json())
+                                        .then(data => {
+                                            swal.close();
+                                            if (data.success) {
+                                                swal("Order Rejected!", '', "success");
+                                                setTimeout(function () {
+                                                    location.reload();
+                                                }, 4000);
+                                            } else {
+                                                swal("Something went wrong!", "Contact the administrator!", "error");
+                                            }
                                         });
                                     break;
                                 case 'no':
@@ -242,24 +273,18 @@ async function handleViewOrderDetailsClick($orderId) {
                                     });
 
                                     fetch(`/employee/orders/action?id=${$orderId}&st=Rejected`)
-                                        .then(response => {
-                                            window.location.href = response.url;
+                                        .then(r => r.json())
+                                        .then(data => {
+                                            swal.close();
+                                            if (data.success) {
+                                                swal("Order Rejected!", '', "success");
+                                                setTimeout(function () {
+                                                    location.reload();
+                                                }, 4000);
+                                            } else {
+                                                swal("Something went wrong!", "Contact the administrator!", "error");
+                                            }
                                         });
-
-                                    // fetch(`/pharmacy/api/cancel-order?orderId=${$orderId}`)
-                                    //     .then(response => response.json())
-                                    //     .then(data => {
-                                    //         swal.close();
-                                    //         console.log(data);
-                                    //         if (data === 'Order Cancelled') {
-                                    //             swal("Order Cancelled!", '', "error");
-                                    //             setTimeout(function () {
-                                    //                 location.reload();
-                                    //             }, 4000);
-                                    //         } else {
-                                    //             swal("Something went wrong!", "Contact the administrator!", "error");
-                                    //         }
-                                    //     });
                                     break;
                                 case 'no':
                                     // close the modal

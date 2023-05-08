@@ -6,7 +6,6 @@ new SimpleBar(document.querySelector('.report-list .list-content'));
 // manipulating report items
 document.querySelectorAll('.report-itm:not(.report-actions)').forEach((itm) => {
     const inner_itm = itm.querySelector('.report-inner');
-    const action_btn = itm.querySelector('.report-actions .report-btn');
     let is_active = false;
 
     inner_itm.addEventListener('click', (e) => {
@@ -14,17 +13,18 @@ document.querySelectorAll('.report-itm:not(.report-actions)').forEach((itm) => {
 
         if (e.target.tagName === 'A') {
             // getting a response from the server
-            fetch('/employee/inquiries?et=' + itm.getAttribute('data-id') + '&a=accept')
-                .then(r => {
-                    window.location.href = r.url;
-                });
-        }
-
-        if (e.currentTarget === inner_itm && !is_active) {
+            handleInquiryIsAccepted(itm.getAttribute('data-id')).then(r => {
+                window.location.reload();
+            });
+        } else if (e.currentTarget === inner_itm && !is_active) {
             // open the report item
-            toggleOpen(true);
+            itm.classList.add('opened');
             is_active = true;
             logger('Active report item: ' + itm.getAttribute('data-id'));
+        }
+
+        if (e.currentTarget === inner_itm) {
+            setTimeout(() => isSeen(), 1000);
         }
     });
 
@@ -32,60 +32,84 @@ document.querySelectorAll('.report-itm:not(.report-actions)').forEach((itm) => {
         e.stopPropagation();
 
         if (e.currentTarget === itm && is_active) {
-            let user_type = '';
-
             setTimeout(() => {
                 // close the report item
-                toggleOpen(false);
+                itm.classList.remove('opened');
                 is_active = false;
                 logger('Closed report item: ' + itm.getAttribute('data-id'));
             }, 1000);
-
-            // getting the user type from the report item
-            itm.classList.forEach((cls) => {
-                if (report_types.includes(cls)) {
-                    user_type = cls;
-                    logger('The report[' + user_type + '] is seen by the employee');
-                }
-            });
-
-            // filtering out seen reports
-            if (user_type !== '') {
-                // getting a response from the server
-                fetch('/employee/inquiries?et=' + itm.getAttribute('data-id') + '&a=seen')
-                    .then(r => r.json())
-                    .then(response => {
-                        if (response.success) {
-                            // Access additional attributes
-                            const username = response.username;
-                            const inquiryId = response.inquiry_id;
-                            createToast('Inquiry is seen', 'Report seen by ' + username + ' for inquiry ID ' + inquiryId + '.', 'success');
-
-                            // validating the response with the report item
-                            if (inquiryId === itm.getAttribute('data-id')) {
-                                // removing the user type class from the report item
-                                itm.classList.forEach((cls) => {
-                                    if (report_types.includes(cls)) {
-                                        itm.classList.remove(cls);
-                                    }
-                                });
-                            }
-                        }
-                    });
-            }
 
             // set is_active to false
             is_active = false;
         }
     });
 
-    function toggleOpen(force = null) {
-        if (itm.classList.contains('opened') && force !== true) {
-            itm.classList.remove('opened');
-        } else {
-            if (force !== false) {
-                itm.classList.add('opened');
+    function isSeen() {
+        let user_type = '';
+
+        // getting the user type from the report item
+        itm.classList.forEach((cls) => {
+            if (report_types.includes(cls)) {
+                user_type = cls;
+                logger('The report[' + user_type + '] is seen by the employee');
             }
+        });
+
+        // filtering out seen reports
+        if (user_type !== '') {
+            // getting a response from the server
+            fetch('/employee/inquiries?et=' + itm.getAttribute('data-id') + '&a=seen')
+                .then(r => r.json())
+                .then(response => {
+                    if (response.success) {
+                        // Access additional attributes
+                        const username = response.username;
+                        const inquiryId = response.inquiry_id;
+                        const toast = createToast('Inquiry is seen', 'Report seen by ' + username + ' for inquiry ID ' + inquiryId + '.', 'success');
+                        toast.showToast();
+
+                        // validating the response with the report item
+                        if (inquiryId === itm.getAttribute('data-id')) {
+                            // removing the user type class from the report item
+                            itm.classList.forEach((cls) => {
+                                if (report_types.includes(cls)) {
+                                    itm.classList.remove(cls);
+                                }
+                            });
+                        }
+                    }
+                });
         }
     }
 });
+
+async function handleInquiryIsAccepted(inquiryID) {
+    try {
+        // buzzing model
+        swal({
+            title: 'Loading',
+            text: 'Please wait...',
+            buttons: false,
+            closeOnClickOutside: false,
+            closeOnEsc: false,
+            content: {
+                element: "img",
+                attributes: {
+                    // add loading gitf from internet
+                    src: "https://i.gifer.com/ZZ5H.gif",
+                    style: "width:25px; margin-bottom:20px;"
+                },
+            }
+        })
+
+        const response = await fetch(`/employee/inquiries?et=${inquiryID}&a=accept`);
+        const data = await response.json();
+        swal.close();
+        // buzzing model
+
+        return !! (await data).success;
+
+    } catch (e) {
+        console.log(e);
+    }
+}

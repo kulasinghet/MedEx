@@ -6,8 +6,8 @@ use app\core\Controller;
 use app\core\ExceptionHandler;
 use app\core\Request;
 use app\models\EmployeeOrderModel;
-use app\models\EmployeeResourcesModel;
 use app\stores\EmployeeStore;
+use PHPMailer\PHPMailer\Exception;
 
 class EmployeeOrdersController extends Controller
 {
@@ -24,7 +24,7 @@ class EmployeeOrdersController extends Controller
     public function loadOrderList(Request $request): void
     {
         $this->validate();
-        $this -> render("employee/orders/list.php");
+        $this -> render("employee/emp_orders.php");
     }
 
     public function getOrderList(int $set_size, $set_number = 0): array
@@ -46,16 +46,25 @@ class EmployeeOrdersController extends Controller
         return $list;
     }
 
+    /**
+     * @throws Exception
+     */
     public function oderStatusChange(Request $request): void
     {
         $this->validate();
 
-        $model = new EmployeeOrderModel();
-        $model->changeOrderStatus($request->getBody()['id'], $request->getBody()['st']);
-        header('Location: /employee/orders');
+        // retrieving the employee store
+        $store = EmployeeStore::getEmployeeStore();
+
+        $model = new EmployeeOrderModel();;
+
+        header('Content-Type: application/json');
+        $jsonData = ['success' => $model->changeOrderStatus($request->getBody()['id'], $request->getBody()['st'])];
+        // Echo the JSON-encoded response
+        echo json_encode($jsonData);
     }
 
-    public function orderMedicineDetails(Request $request)
+    public function orderMedicineDetails(Request $request): void
     {
         if ($request->isGet()) {
 
@@ -66,8 +75,6 @@ class EmployeeOrdersController extends Controller
             header('Content-Type: application/json');
             // Echo the JSON-encoded response
             echo json_encode($order);
-
-
         } else {
             echo (new ExceptionHandler)->somethingWentWrong();
             header('Location: /pharmacy/orders');

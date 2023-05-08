@@ -23,6 +23,8 @@ $store->flag_g_st = 0; // resetting the set number in the store
     <!-- Simplebar -->
     <link rel="stylesheet" href="https://unpkg.com/simplebar@latest/dist/simplebar.css"/>
     <script src="https://unpkg.com/simplebar@latest/dist/simplebar.min.js"></script>
+    <!-- Sweet Alert -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!-- g28 style -->
     <link rel="stylesheet" href="/scss/main.css" />
     <link rel="stylesheet" href="/scss/vendor/employee.css" />
@@ -33,6 +35,7 @@ $store->flag_g_st = 0; // resetting the set number in the store
 <?php
 echo $components->createSidebar('inquiries');
 echo $components->createNavbar();
+$store->renderNotifications();
 ?>
 <!-- Section: Fixed Components -->
 

@@ -4,6 +4,7 @@ namespace app\models;
 
 use app\core\Database;
 use app\core\Logger;
+use app\stores\EmployeeStore;
 
 class InquiryModel extends Model
 {
@@ -138,6 +139,9 @@ class InquiryModel extends Model
         $db = new Database();
         $conn = $db->getConnection();
 
+        // retrieving the employee store
+        $store = EmployeeStore::getEmployeeStore();
+
         $sql = "UPDATE `report` SET `is_resolved` = '1' WHERE `inquiry_id`='$this->inquiry_id';";
         $stmt = $conn->prepare($sql);
 
@@ -145,12 +149,15 @@ class InquiryModel extends Model
             $stmt->execute();
 
             if ($stmt->affected_rows == 1) {
+                $store->setNotification('Inquiry accepted!', 'Inquiry' . $this->inquiry_id . ' is accepted!', 'success');
                 return true;
             } else {
+                $store->setNotification('Inquiry acceptation error!', $this->inquiry_id . ' couldn\'t be accepted (see logs).', 'error');
                 Logger::logError($stmt->error);
                 return false;
             }
         } catch (\Exception $e) {
+            $store->setNotification('Inquiry acceptation error!', $this->inquiry_id . ' couldn\'t be accepted (see logs).', 'error');
             Logger::logError($e->getMessage());
             return false;
         }
