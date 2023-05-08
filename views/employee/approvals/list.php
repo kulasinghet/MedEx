@@ -34,7 +34,7 @@ $store->flag_g_st = 0; // resetting the set number in the store
 <?php
 echo $components->createSidebar('approval');
 echo $components->createNavbar();
-$store->renderNotification();
+$store->renderNotifications();
 ?>
 <!-- Section: Fixed Components -->
 

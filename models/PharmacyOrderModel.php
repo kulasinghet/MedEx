@@ -116,7 +116,7 @@ class PharmacyOrderModel extends Model
         $this->setId($this->createRandomID('pharmacyorder'));
         $order_date = date("Y-m-d");
 
-        $sql = "INSERT INTO pharmacyorder (id, pharmacyUsername, status, supName, order_date, delivery_date, order_total) VALUES ('$this->id', '$pharmacyUsername', '0', null, '$order_date', null, '$order_total')";
+        $sql = "INSERT INTO pharmacyorder (id, pharmacyUsername, supName, order_date, delivery_date, order_total) VALUES ('$this->id', '$pharmacyUsername', null, '$order_date', null, '$order_total')";
 
         Logger::logDebug($sql);
 
@@ -199,7 +199,7 @@ class PharmacyOrderModel extends Model
             $medicineID = $medicine->getMedicineId();
             $quantity = $medicine->getQuantity();
 
-            $sql = "INSERT INTO pharmacyordermedicine (orderid, pharmacyUsername, medId, quantity, status, supName, order_date, delivery_date, order_total) VALUES ('$this->id', '$pharmacyUsername', '$medicineID', '$quantity', '0', null, '$order_date', null, '$order_total')";
+            $sql = "INSERT INTO pharmacyordermedicine (orderid, pharmacyUsername, medId, quantity, supName, order_date, delivery_date, order_total) VALUES ('$this->id', '$pharmacyUsername', '$medicineID', '$quantity', null, '$order_date', null, '$order_total')";
 
             Logger::logDebug($sql);
 

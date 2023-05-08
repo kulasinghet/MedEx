@@ -90,10 +90,6 @@ echo $components->createNavbar();
                                         <label for="vehicle_type">Vehicle Type</label>
                                         <input type="text" class="form-input" id="vehicle_type" value="<?php echo $delivery->vehicle_type ?>">
                                     </div>
-                                    <div class="form-group">
-                                        <label for="max_load">Max Load (Kg)</label>
-                                        <input type="text" class="form-input" id="max_load" value="<?php echo $delivery->max_load ?>">
-                                    </div>
                                     <div class="selector-group">
                                         <label>Refrigerators</label>
                                         <div class="form-selector">

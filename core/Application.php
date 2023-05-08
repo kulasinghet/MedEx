@@ -21,7 +21,6 @@ class Application
         $this->router = new Router($this->request);
         $this->response = new Response();
         $this->controller = new Controller();
-
     }
 
     public function run(): void

@@ -4,6 +4,7 @@ namespace app\models\HyperEntities;
 
 use app\core\Database;
 use app\core\Logger;
+use app\stores\EmployeeStore;
 
 class HyperLabModel extends HyperEntityModel
 {
@@ -57,6 +58,9 @@ class HyperLabModel extends HyperEntityModel
         $db = new Database();
         $conn = $db->getConnection();
 
+        // retrieving the employee store
+        $store = EmployeeStore::getEmployeeStore();
+
         try {
             $sql = "UPDATE `laboratory` SET `verified` = ".($action?? "NULL")." WHERE `username`='$this->username';";
 
@@ -64,12 +68,15 @@ class HyperLabModel extends HyperEntityModel
             $stmt->execute();
 
             if ($stmt->affected_rows == 1) {
+                $store->setNotification('Laboratory is verified!', $this->username . ' is verified successfully.', 'success');
                 return true;
             } else {
+                $store->setNotification('Laboratory verification error!', $this->username . ' couldn\'t be verified (see logs).', 'error');
                 Logger::logError($stmt->error);
                 return false;
             }
         } catch (\Exception $e) {
+            $store->setNotification('Laboratory verification error!', $this->username . ' couldn\'t be verified (see logs).', 'error');
             Logger::logError($e->getMessage());
             return false;
         }

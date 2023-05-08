@@ -4,6 +4,7 @@ namespace app\models\HyperEntities;
 
 use app\core\Database;
 use app\core\Logger;
+use app\stores\EmployeeStore;
 
 class HyperDeliveryModel extends HyperEntityModel
 {
@@ -17,7 +18,6 @@ class HyperDeliveryModel extends HyperEntityModel
     public string $vehicle_reg_photo;
     public string $vehicle_photo;
     public string $delivery_location;
-    public int $max_load;
     public string $reg_date;
     public bool $refrigerators;
 
@@ -49,7 +49,6 @@ class HyperDeliveryModel extends HyperEntityModel
                     'vehicle_no' => $row["vehicle_no"],
                     'vehicle_type' => $row["vehicle_type"],
                     'delivery_location' => $row["delivery_location"],
-                    'max_load' => $row["max_load"],
                     'reg_date' => $row["reg_date"],
                     'refrigerators' => $row["refrigerators"],
                     'license_photo' => $row["license_photo"],
@@ -74,6 +73,9 @@ class HyperDeliveryModel extends HyperEntityModel
         $db = new Database();
         $conn = $db->getConnection();
 
+        // retrieving the employee store
+        $store = EmployeeStore::getEmployeeStore();
+
         try {
             $sql = "UPDATE `delivery_partner` SET `verified` = ".($action?? "NULL")." WHERE `username`='$this->username';";
 
@@ -81,12 +83,15 @@ class HyperDeliveryModel extends HyperEntityModel
             $stmt->execute();
 
             if ($stmt->affected_rows == 1) {
+                $store->setNotification('Delivery Partner is verified!', $this->username . ' is verified successfully.', 'success');
                 return true;
             } else {
+                $store->setNotification('Delivery Partner verification error!', $this->username . ' couldn\'t be verified (see logs).', 'error');
                 Logger::logError($stmt->error);
                 return false;
             }
         } catch (\Exception $e) {
+            $store->setNotification('Delivery Partner verification error!', $this->username . ' couldn\'t be verified (see logs).', 'error');
             Logger::logError($e->getMessage());
             return false;
         }
@@ -110,7 +115,6 @@ class HyperDeliveryModel extends HyperEntityModel
                                 `vehicle_no`,
                                 `vehicle_type`,
                                 `delivery_location`,
-                                `max_load`,
                                 `reg_date`,
                                 `refrigerators`,
                                 `license_photo`,
@@ -130,7 +134,6 @@ class HyperDeliveryModel extends HyperEntityModel
                 '$this->vehicle_no',
                 '$this->vehicle_type',
                 '$this->delivery_location',
-                '$this->max_load',
                 '$date',
                 '$this->refrigerators',
                 '$this->license_photo',
@@ -172,7 +175,6 @@ class HyperDeliveryModel extends HyperEntityModel
                 `vehicle_no`='$this->vehicle_no',
                 `vehicle_type`='$this->vehicle_type',
                 `delivery_location`='$this->delivery_location',
-                `max_load`='$this->max_load',
                 `refrigerators`='$this->refrigerators',
                 `license_photo`='$this->license_photo',
                 `vehicle_reg_photo`='$this->vehicle_reg_photo',
