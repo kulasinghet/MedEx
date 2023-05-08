@@ -25,7 +25,8 @@ class LabReportController extends Controller
             $file_ext1 = strtolower(end($file_ext1));
             if ($file1['size'] <= 3145728) {
                 $LabReportName_New = $_POST["reqid"] . "LabReport." . $file_ext1;
-                $filedestination1 = '..\public\uploads\laboratory\labReport' . DIRECTORY_SEPARATOR . $LabReportName_New;
+                //$filedestination1 = '..\public\uploads\laboratory\labReport' . DIRECTORY_SEPARATOR . $LabReportName_New;
+                $filedestination1 = 'uploads/laboratory/labReport/' . $LabReportName_New;
                 move_uploaded_file($file1['tmp_name'], $filedestination1);
 
             } else {
