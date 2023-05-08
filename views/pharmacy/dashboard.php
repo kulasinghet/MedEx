@@ -129,7 +129,7 @@ echo $components->sideBar('dashboard');
             </div>
 
             <div class="card g-col-4 g-row-1-start-1">
-                <div class="card-body">
+                <div class="card-body" style="height: 10px">
 <!--                    // order summary for current month-->
                     <h5 class="card-title">Orders Summary <?php echo date("F"); ?></h5>
                     <p class="card-text">
