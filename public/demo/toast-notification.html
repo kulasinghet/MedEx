@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Forms Demo</title>
+
+  <!-- Font awesome kit -->
+  <script src="https://kit.fontawesome.com/9b33f63a16.js" crossorigin="anonymous"></script>
+  <!-- Simplebar -->
+  <link rel="stylesheet" href="https://unpkg.com/simplebar@latest/dist/simplebar.css"/>
+  <script src="https://unpkg.com/simplebar@latest/dist/simplebar.min.js"></script>
+  <!-- g28 style -->
+  <link rel="stylesheet" href="../scss/vendor/demo.css" />
+  <script src="../js/g28-main.js"></script>
+</head>
+<body>
+<div class="button-group center">
+  <button type="submit" class="btn btn-primary">Show Toast</button>
+</div>
+<g28-toast subject="Pharmacy Approval" message="Pharmacy approved successfully" type="success"></g28-toast>
+<!-- g28 styling framework -->
+<script type="application/javascript">
+  // you can configure variables in here.
+  configs.stage = 'dev';
+  configs.customFormElmPath = '../scss/components/forms';
+  configs.scssStylePath = '../scss/';
+
+  document.querySelector('button').addEventListener('click', () => {
+    createToast('Success', 'Your changes has been saved!', 'error');
+    console.log('clicked');
+  });
+</script>
+<script src="../js/g28-toast.js"></script>
+<!-- g28 styling framework -->
+</body>
+</html>

@@ -9,6 +9,8 @@ use app\core\NotificationHandler;
 use app\core\Request;
 use app\models\MedicineOrderModel;
 use Dotenv\Dotenv;
+use http\Exception\InvalidArgumentException;
+
 $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
@@ -29,21 +31,20 @@ class PharmacySellMedicineController extends Controller
 
                 $form = $request->getBody();
 
+                $total = $form['total'];
+                $customerPayment = $form['customerPayment'];
+//                ()$customerChange = $form['customerChange'];
+                $customerChange = $form['customerChange'];
+                $customerChange = number_format($customerChange, 2, '.', '');
+                $medicineIds = $form['medicineIds'];
+                $medicineQuantities = $form['medicineQuantities'];
+
                 Logger::logDebug(print_r($form, true));
 
-                $medicineIds = $this->getMedicineIds($form);
-
-                if (count($medicineIds) > 0) {
-                    foreach ($medicineIds as $medicineId) {
-                        $this->totalPrice += $this->getPrice($medicineId->getMedicineId()) * $medicineId->getQuantity();
-                        Logger::logDebug('Medicine ID ' . $medicineId->getMedicineId() . ' Quantity ' . $medicineId->getQuantity() . ' Price ' . $this->getPrice($medicineId->getMedicineId()));
-                    }
-                }
-                Logger::logDebug('Total price ' . $this->totalPrice);
+                Logger::logDebug('/////////Total price ' . $total);
                 $flag = true;
 
-                $customer_money = $request->getBody()['customer_money'];
-                $result = $order->createSellOrder($_SESSION['username'], $this->totalPrice, $medicineIds, $customer_money);
+                $result = $order->createSellOrder($_SESSION['username'], $total, $medicineIds, $medicineQuantities, $customerPayment, $customerChange);
 
                 Logger::logDebug('Order ID ' . $result);
 
@@ -55,7 +56,7 @@ class PharmacySellMedicineController extends Controller
 
                     $pdf = new \app\core\PDF();
                     $medicineIdsforPDF = (new \app\models\PharmacySellModel())->getMedicineSellsByOrderID($result);
-                    $html = $pdf->invoiceToHTML($result, date("Y-m-d"), $this->totalPrice, $medicineIdsforPDF, $_SESSION['username']);
+                    $html = $pdf->invoiceToHTML($result, date("Y-m-d H:i:s"), $total, $medicineIdsforPDF, $_SESSION['username'], $customerPayment, $customerChange);
 
                     if ($pdf->generatePDF($html, $result)) {
                         $flag = true;
@@ -68,12 +69,11 @@ class PharmacySellMedicineController extends Controller
 
 
                 if ($flag) {
-                    echo (new NotificationHandler())->orderCreatedSuccessfully($_SESSION['username']);
-                    return header('Location: /pharmacy/invoices');
+                    header('Content-Type: application/json');
+                    echo json_encode(['status' => 'success', 'message' => 'Order placed successfully']);
                 } else {
-                    echo (new ExceptionHandler)->somethingWentWrong();
-                    Logger::logError('Something went wrong while creating order ' . $_SESSION['username']);
-                    return header('Location: /pharmacy/sell-medicine');
+                    header('Content-Type: application/json');
+                    echo json_encode(['status' => 'error', 'message' => 'Something went wrong']);
                 }
 
             } else {
@@ -280,20 +280,12 @@ class PharmacySellMedicineController extends Controller
 
     public function salesByDay(Request $request) {
 
-        $qr = new \app\core\QR();
-        $qr_JSON = [
-            "username" => $_SESSION['username'],
-            "qrtype" => "pharmacy"
-        ];
-        $qr_name = $_SESSION['username'] . '_qr';
-        if ($qr->generateQRForPersonal(json_encode($qr_JSON), $qr_name, 10, 'L')) {
-            $flag = true;
-        }
-
-
         $pharmacyUsername = $request->getParams()['pharmacyUsername'];
         $order = new \app\models\PharmacySellModel();
         $result = $order->getSalesOrdersPerDayLimitWeek($pharmacyUsername);
+
+        Logger::logDebug('salesByDay');
+        Logger::logDebug(print_r($result, true));
 
         header('Content-Type: application/json');
         echo json_encode($result);

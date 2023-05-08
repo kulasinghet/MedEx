@@ -26,6 +26,7 @@ $store->flag_g_st = 0; // resetting the set number in the store
     <script src="https://unpkg.com/simplebar@latest/dist/simplebar.min.js"></script>
     <!-- g28 style -->
     <link rel="stylesheet" href="/scss/main.css" />
+    <link rel="stylesheet" href="/scss/vendor/employee.css" />
     <script src="/js/g28-main.js"></script>
 </head>
 <body>
@@ -33,6 +34,7 @@ $store->flag_g_st = 0; // resetting the set number in the store
 <?php
 echo $components->createSidebar('approval');
 echo $components->createNavbar();
+$store->renderNotification();
 ?>
 <!-- Section: Fixed Components -->
 
@@ -136,7 +138,7 @@ echo $components->createNavbar();
 <script type="application/javascript">
     // you can configure variables in here.
     configs.stage = 'dev';
-    configs.customFormElmPath = '/scss/components/forms';
+    configs.scssStylePath = '../scss/';
 
     //logging
     logger("Logging g28 initial state before loading specialized JS files...");
@@ -144,6 +146,7 @@ echo $components->createNavbar();
         logger(`> ${property}: ${configs[property]}`);
     }
 
+    // demo toast
     document.querySelectorAll('.approval-table tbody tr:not(.empty)').forEach((row) => {
         row.addEventListener('click', (e) => {
             e.stopPropagation();
@@ -161,12 +164,15 @@ echo $components->createNavbar();
             window.location.href = '/employee/approve';
         } else if (type === 'Laboratory') {
             window.location.href = '/employee/approve?f=lab';
+        } else if (type === 'Delivery Partner') {
+            window.location.href = '/employee/approve?f=delivery';
         } else {
             window.location.href = '/employee/approve?f=' + type.toLowerCase();
         }
     });
 </script>
 <script src="/js/g28-forms.js"></script>
+<script src="/js/g28-toast.js"></script>
 <!-- g28 styling framework -->
 </body>
 </html>

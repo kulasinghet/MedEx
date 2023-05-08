@@ -22,9 +22,11 @@ echo $components->sideBar('invoices');
 
                         <div class="filter-by-date">
                             <label for="start-date">Start Date:</label>
-                            <input type="date" name="start-date" id="start-date" onchange="handleFiltering()" value="<?php echo date('Y-m-d'); ?>">
+                            <input type="date" name="start-date" id="start-date" onchange="handleFiltering()"
+                                   value="<?php echo date('Y-m-d'); ?>">
                             <label for="end-date">End Date:</label>
-                            <input type="date" name="end-date" id="end-date" onchange="handleFiltering()" value="<?php echo date('Y-m-d'); ?>">
+                            <input type="date" name="end-date" id="end-date" onchange="handleFiltering()"
+                                   value="<?php echo date('Y-m-d'); ?>">
                             <button class="date-filter" onclick="handleFiltering()">Filter</button>
                         </div>
 
@@ -38,7 +40,7 @@ echo $components->sideBar('invoices');
                         <tr>
                             <th>Bill ID</th>
                             <th>Bill Date</th>
-                            <th>Bill Total</th>
+                            <th>Bill Total (LKR)</th>
                             <th></th>
                         </tr>
                         </thead>
@@ -86,9 +88,9 @@ echo $components->sideBar('invoices');
             </div>
 
 
-
             <div id="order-new-medicine">
-                <a class="btn ' . ($selectedPage == 'order-medicine' ? 'disabled' : '') . '" href="/pharmacy/sell-medicine">
+                <a class="btn ' . ($selectedPage == 'order-medicine' ? 'disabled' : '') . '"
+                   href="/pharmacy/sell-medicine">
                     <i class="fa-solid fa-circle-plus"></i> Sell Medicine</a>
             </div>
 
@@ -145,7 +147,7 @@ echo $components->sideBar('invoices');
     }
 
 
-    function checkDeliveryDateInFilter($orderDate ,$filter) {
+    function checkDeliveryDateInFilter($orderDate, $filter) {
 
         $dateInRow = new Date($orderDate);
         $dateNow = new Date();
@@ -176,9 +178,9 @@ echo $components->sideBar('invoices');
 
     function getWeekNumber(d) {
         d = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
-        d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay()||7));
-        var yearStart = new Date(Date.UTC(d.getUTCFullYear(),0,1));
-        var weekNo = Math.ceil(( ( (d - yearStart) / 86400000) + 1)/7);
+        d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay() || 7));
+        var yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+        var weekNo = Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
         return weekNo;
     }
 
@@ -186,10 +188,10 @@ echo $components->sideBar('invoices');
 
 <script>
 
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         var viewOrderButtons = document.getElementsByClassName('view-order');
         for (var i = 0; i < viewOrderButtons.length; i++) {
-            viewOrderButtons[i].addEventListener('click', function() {
+            viewOrderButtons[i].addEventListener('click', function () {
                 // pass id of the anchor tag to the function
                 handleViewOrderDetailsClick(this.id);
             });
@@ -240,32 +242,29 @@ echo $components->sideBar('invoices');
             let medicineInformationForSwal = '';
 
             if (orderedMedicines != undefined || orderedMedicines.length > 0) {
-                medicineInformationForSwal = '<table><th>Medicine ID</th><th>Medicine</th> <th>Medicine Scientific Name</th><th>Weight</th><th>Price</th><th>Quantity</th><th>Total Price</th>';
+                medicineInformationForSwal = '<table><th>Medicine ID</th><th>Medicine</th> <th>Medicine Scientific Name</th><th>Unit Price (LKR)</th><th>Quantity</th><th>Total Price (LKR)</th>';
                 for (let key in orderedMedicines) {
                     medicineInformationForSwal += '<tr>';
                     medicineInformationForSwal += '<td>' + orderedMedicines[key].medId + '</td>';
                     medicineInformationForSwal += '<td>' + orderedMedicines[key].medName + '</td>';
-                    medicineInformationForSwal += '<td style="text-align: center">' + orderedMedicines[key].sciName + '</td>';
-                    medicineInformationForSwal += '<td style="text-align: center">' + orderedMedicines[key].weight + '</td>';
+                    medicineInformationForSwal += '<td style="text-align: justify">' + orderedMedicines[key].sciName + '</td>';
                     medicineInformationForSwal += '<td style="text-align: center">' + orderedMedicines[key].unitPrice + '</td>';
                     medicineInformationForSwal += '<td style="text-align: center">' + orderedMedicines[key].quantity + '</td>';
-                    medicineInformationForSwal += '<td style="text-align: center">' + parseInt(orderedMedicines[key].unitPrice) * parseInt(orderedMedicines[key].quantity) + '</td>';
+                    medicineInformationForSwal += '<td style="text-align: center">' + (parseFloat(orderedMedicines[key].unitPrice) * parseFloat(orderedMedicines[key].quantity)).toFixed(2) + '</td>';
                     medicineInformationForSwal += '</tr>';
                 }
-                medicineInformationForSwal += '<tr style="color: #071232; font-size: 1rem; font-weight: bold"><td>Total</td><td colspan="5"></td><td style="text-align: center">' + orderData.billTotal + '</td></tr>';
-                medicineInformationForSwal += '<tr style="color: #071232; font-size: 1rem; font-weight: "><td>Payment</td><td colspan="5"></td><td style="text-align: center">' + orderData.customer_money + '</td></tr>';
-                let balance = parseInt(orderData.customer_money) - parseInt(orderData.billTotal);
-                medicineInformationForSwal += '<tr style="color: #071232; font-size: 1rem; font-weight: bold"><td>Balance</td><td colspan="5"></td><td style="text-align: center">' + balance + '</td></tr>';
+                medicineInformationForSwal += '<tr style="color: #071232; font-size: 1rem; font-weight: bold"><td>Total</td><td colspan="4"></td><td style="text-align: center">' + orderData.billTotal + '</td></tr>';
+                medicineInformationForSwal += '<tr style="color: #071232; font-size: 1rem; font-weight: "><td>Payment</td><td colspan="4"></td><td style="text-align: center">' + orderData.customer_money + '</td></tr>';
+                let balance = parseFloat(orderData.customer_money) - parseFloat(orderData.billTotal);
+                medicineInformationForSwal += '<tr style="color: #071232; font-size: 1rem; font-weight: bold"><td>Balance</td><td colspan="4"></td><td style="text-align: center">' + balance.toFixed(2) + '</td></tr>';
                 medicineInformationForSwal += '</table>';
             } else {
                 medicineInformationForSwal = '<h4>No Medicine Ordered</h4>';
             }
 
 
-
-
             if (orderData.billTotal > 0) {
-                    console.log("Order Summary" + '\t' + $orderId);
+                console.log("Order Summary" + '\t' + $orderId);
                 swal({
                     title: "Bill Summary" + '\t' + $orderId,
                     content: {

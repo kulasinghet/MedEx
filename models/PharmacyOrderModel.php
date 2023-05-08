@@ -49,6 +49,7 @@ class PharmacyOrderModel extends Model
         }
         $db->close();
     }
+
     public function getSupOrders($name)
     {
         $db = (new Database())->getConnection();
@@ -144,7 +145,7 @@ class PharmacyOrderModel extends Model
     {
         try {
             $conn = (new Database())->getConnection();
-            $sql = "SELECT * FROM pharmacyorder WHERE pharmacyUsername = '$username' ORDER BY order_status ASC, order_date DESC;";
+            $sql = "SELECT * FROM pharmacyorder WHERE pharmacyUsername = '$username' ORDER BY FIELD(order_status, 0, 5, 1, 2, 3, 4), id DESC;";
             $result = $conn->query($sql);
             return $result->fetch_all(MYSQLI_ASSOC);
 
@@ -431,6 +432,23 @@ class PharmacyOrderModel extends Model
             $result = $conn->query($sql);
             $row = $result->fetch_assoc();
             return $row;
+        } catch (\Exception $e) {
+            Logger::logError($e->getMessage());
+            echo (new ExceptionHandler)->somethingWentWrong();
+            return false;
+        }
+    }
+
+    public function getDeliveringOrdersCount(mixed $username)
+    {
+        $conn = (new Database())->getConnection();
+        // order status 4 = cancelled for current month
+        $sql = "SELECT COUNT(*) AS count FROM pharmacyorder WHERE pharmacyUsername = '$username' AND order_status = 5 AND MONTH(order_date) = MONTH(CURRENT_DATE()) AND YEAR(order_date) = YEAR(CURRENT_DATE());";
+
+        try {
+            $result = $conn->query($sql);
+            $row = $result->fetch_assoc();
+            return $row['count'];
         } catch (\Exception $e) {
             Logger::logError($e->getMessage());
             echo (new ExceptionHandler)->somethingWentWrong();

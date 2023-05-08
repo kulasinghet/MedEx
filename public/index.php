@@ -11,7 +11,8 @@ use app\controllers\employee\EmployeeApprovalController;
 use app\controllers\employee\EmployeeDashboardController;
 use app\controllers\employee\EmployeeResController;
 use app\controllers\employee\EmployeeResListController;
-use app\controllers\employee\EmployeeReportListController;
+use app\controllers\employee\EmployeeInquiriesListController;
+use app\controllers\employee\EmployeeOrdersController;
 use app\controllers\lab\LabAuthController;
 use app\controllers\lab\LabContactusController;
 use app\controllers\lab\LabDashboardController;
@@ -48,7 +49,8 @@ $app->router->get('/404', [SiteController::class, '_404']);
 $app->router->get('/logout', [SiteController::class, 'logout']);
 $app->router->get('/login', [LoginAuthController::class, 'login']);
 $app->router->post('/login', [LoginAuthController::class, 'login']);
-
+$app->router->get('/forgotPassword', [LoginAuthController::class, 'forgotPassword']);
+$app->router->post('/forgotPassword', [LoginAuthController::class, 'forgotPassword']);
 // delivery Routes
 //$app -> router -> get('/delivery/login', [LoginAuthController::class, 'deliveryLogin']);
 //$app -> router -> post('/delivery/login', [LoginAuthController::class, 'deliveryLogin']);
@@ -115,11 +117,14 @@ $app->router->post('/employee/res/supplier/push', [EmployeeResController::class,
 $app->router->post('/employee/res/delivery/push', [EmployeeResController::class, 'pushDelivery']);
 $app->router->post('/employee/res/lab/push', [EmployeeResController::class, 'pushLab']);
 
-$app->router->get('/employee/reports', [EmployeeReportListController::class, 'load']);
-$app->router->post('/employee/reports', [EmployeeReportListController::class, 'load']);
+$app->router->get('/employee/inquiries', [EmployeeInquiriesListController::class, 'load']);
+$app->router->post('/employee/inquiries', [EmployeeInquiriesListController::class, 'load']);
 
-$app->router->get('/employee/configs', [EmployeeDashboardController::class, 'loadConfigs']);
-$app->router->post('/employee/configs', [EmployeeDashboardController::class, 'loadConfigs']);
+$app->router->get('/employee/orders', [EmployeeOrdersController::class, 'loadOrderList']);
+$app->router->post('/employee/orders', [EmployeeOrdersController::class, 'loadOrderList']);
+
+$app->router->get('/employee/orders/action', [EmployeeOrdersController::class, 'oderStatusChange']);
+$app->router->get('/employee/orders/medicine-details', [EmployeeOrdersController::class, 'orderMedicineDetails']);
 //#########################################################################################
 
 
@@ -144,6 +149,8 @@ $app->router->get('/pharmacy/settings', [PharmacyDashboardController::class, 'se
 $app->router->post('/pharmacy/settings', [PharmacyDashboardController::class, 'settings']);
 $app->router->get('/pharmacy/invoices', [PharmacyDashboardController::class, 'invoices']);
 $app->router->post('/pharmacy/invoices', [PharmacyDashboardController::class, 'invoices']);
+$app->router->get('/report/medicine-order', [PharmacyDashboardController::class, 'reportPurchase']);
+$app->router->post('/report/medicine-order', [PharmacyDashboardController::class, 'reportPurchase']);
 
 //REST API
 $app->router->get('/pharmacy/api/order-details', [PharmacyOrderMedicineController::class, 'orderDetails']);

@@ -5,7 +5,7 @@ use app\views\employee\EmployeeViewComponents;
 
 $components = new EmployeeViewComponents();
 $store = EmployeeStore::getEmployeeStore();
-$pharmacy = $store->aprv_one_obj;
+$pharmacy = $store->g_obj;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,12 +16,9 @@ $pharmacy = $store->aprv_one_obj;
 
     <!-- Font awesome kit -->
     <script crossorigin="anonymous" src="https://kit.fontawesome.com/9b33f63a16.js"></script>
-    <!-- Simplebar -->
-    <link rel="stylesheet" href="https://unpkg.com/simplebar@latest/dist/simplebar.css"/>
-    <script src="https://unpkg.com/simplebar@latest/dist/simplebar.min.js"></script>
     <!-- g28 style -->
     <link rel="stylesheet" href="/scss/main.css" />
-    <script src="/js/g28-main.js"></script>
+    <link rel="stylesheet" href="/scss/vendor/employee.css" />
 </head>
 <body>
 <!-- Section: Fixed Components -->
@@ -39,25 +36,18 @@ echo $components->createNavbar();
             <div class="col card data-box">
                 <div class="card-body">
                     <h5 class="card-title">Pharmacy Details</h5>
+                    <!-- General info -->
                     <div class="row">
                         <div class="col">
                             <table class="status-table">
                                 <tbody>
                                 <tr>
                                     <th>Username</th>
-                                    <td><?php echo $store->aprv_one_obj->username?? "N/A" ?></td>
+                                    <td><?php echo $store->g_obj->username?? "N/A" ?></td>
                                 </tr>
                                 <tr>
-                                    <th>Owner Name</th>
-                                    <td><?php echo $store->aprv_one_obj->owner_name?? "N/A" ?></td>
-                                </tr>
-                                <tr>
-                                    <th>Email</th>
-                                    <td><?php echo $store->aprv_one_obj->email?? "N/A" ?></td>
-                                </tr>
-                                <tr>
-                                    <th>Phone</th>
-                                    <td><?php echo $store->aprv_one_obj->mobile?? "N/A" ?></td>
+                                    <th>Address</th>
+                                    <td><?php echo $store->g_obj->address?? "N/A" ?></td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -66,33 +56,58 @@ echo $components->createNavbar();
                             <table class="status-table">
                                 <tbody>
                                 <tr>
-                                    <th>Name</th>
-                                    <td><?php echo $store->aprv_one_obj->name?? "N/A" ?></td>
+                                    <th>Email</th>
+                                    <td><?php echo $store->g_obj->email?? "N/A" ?></td>
                                 </tr>
                                 <tr>
-                                    <th>City</th>
-                                    <td><?php echo $store->aprv_one_obj->city?? "N/A" ?></td>
-                                </tr>
-                                <tr>
-                                    <th>Address</th>
-                                    <td><?php echo $store->aprv_one_obj->address?? "N/A" ?></td>
-                                </tr>
-                                <tr>
-                                    <th>Delivery Time</th>
-                                    <td><?php echo $store->aprv_one_obj->delivery_time?? "N/A" ?></td>
+                                    <th>Phone</th>
+                                    <td><?php echo $store->g_obj->mobile?? "N/A" ?></td>
                                 </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
 
+                    <!-- Pharmacy info -->
                     <div class="row">
                         <div class="col">
                             <table class="status-table">
                                 <tbody>
                                 <tr>
-                                    <th>Pharmacy Register Number</th>
-                                    <td><?php echo $store->aprv_one_obj->phar_reg_no?? "N/A" ?></td>
+                                    <th>Pharmacy Name</th>
+                                    <td><?php echo $store->g_obj->name?? "N/A" ?></td>
+                                </tr>
+                                <tr>
+                                    <th>City</th>
+                                    <td><?php echo $store->g_obj->city?? "N/A" ?></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col">
+                            <table class="status-table">
+                                <tbody>
+                                <tr>
+                                    <th>Owner Name</th>
+                                    <td><?php echo $store->g_obj->owner_name?? "N/A" ?></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Legal info -->
+                    <div class="row">
+                        <div class="col">
+                            <table class="status-table">
+                                <tbody>
+                                <tr>
+                                    <th>Pharmacy Registration No.</th>
+                                    <td><?php echo $store->g_obj->phar_reg_no?? "N/A" ?></td>
+                                </tr>
+                                <tr>
+                                    <th>Pharmacy Certificate ID</th>
+                                    <td><?php echo $store->g_obj->phar_cert_id?? "N/A" ?></td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -102,7 +117,31 @@ echo $components->createNavbar();
                                 <tbody>
                                 <tr>
                                     <th>Business Registration ID</th>
-                                    <td><?php echo $store->aprv_one_obj->business_reg_id?? "N/A" ?></td>
+                                    <td><?php echo $store->g_obj->business_reg_id?? "N/A" ?></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Legal Docs -->
+                    <div class="row">
+                        <div class="col">
+                            <table class="status-table">
+                                <tbody>
+                                <tr>
+                                    <th>Business Registration Certificate</th>
+                                    <td><a href="/public/uploads/pharmacy/businessRegCert/<?php echo $store->g_obj->username?? "N/A" ?>_businessRegCert.pdf">Download</a></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col">
+                            <table class="status-table">
+                                <tbody>
+                                <tr>
+                                    <th>Pharmacy Registration Certificate</th>
+                                    <td><a href="/public/uploads/pharmacy/pharmacyCert/<?php echo $store->g_obj->username?? "N/A" ?>_pharmacyCert.pdf">Download</a></td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -116,12 +155,12 @@ echo $components->createNavbar();
                     </div>
                     <div class="row action-buttons">
                         <div class="col">
-                            <a class="btn btn--success" href="/employee/approve/pharmacy?et=<?php echo $store->aprv_one_obj->username ?>&a=approve">
+                            <a class="btn btn--success" href="/employee/approve/pharmacy?et=<?php echo $store->g_obj->username ?>&a=approve">
                                 <i class="fa-solid fa-circle-check"></i>
                             </a>
                         </div>
                         <div class="col">
-                            <a class="btn btn--danger" href="/employee/approve/pharmacy?et=<?php echo $store->aprv_one_obj->username ?>&a=ignore">
+                            <a class="btn btn--danger" href="/employee/approve/pharmacy?et=<?php echo $store->g_obj->username ?>&a=ignore">
                                 <i class="fa-solid fa-circle-xmark"></i>
                             </a>
                         </div>
@@ -133,20 +172,5 @@ echo $components->createNavbar();
     </div>
 </div>
 <!-- Section: Dashboard Layout -->
-
-<!-- g28 styling framework -->
-<script type="application/javascript">
-    // you can configure variables in here.
-    configs.stage = 'dev';
-    configs.customFormElmPath = '/scss/components/forms';
-
-    //logging
-    logger("Logging g28 initial state before loading specialized JS files...");
-    for (let property in configs) {
-        logger(`> ${property}: ${configs[property]}`);
-    }
-</script>
-<script src="/js/g28-forms.js"></script>
-<!-- g28 styling framework -->
 </body>
 </html>

@@ -36,6 +36,7 @@ class PharmacyOrderMedicineController extends Controller
                 }
 
                 $flag = true;
+                $this->totalPrice = number_format($this->totalPrice, 2);
 
                 $result = $order->createOrder($_SESSION['username'], $this->totalPrice, $medicineIds);
                 if ($result) {
@@ -126,9 +127,9 @@ class PharmacyOrderMedicineController extends Controller
                 'orderId' => $order['id'],
                 'pharmacyId' => $order['pharmacyUsername'],
                 'orderDate' => $order['order_date'],
-                'totalPrice' => $this->orderTotalToFrontEnd($order['order_total']),
+                'totalPrice' => $this->orderTotalToFrontEnd($order['order_total'], $order['order_status']),
                 'orderStatus' => $this->orderStatusToFrontEnd($order['order_status']),
-                'deliveryDate' => $this->deliveryDateToFrontEnd($order['delivery_date']),
+                'deliveryDate' => $this->deliveryDateToFrontEnd($order['delivery_date'], $order['order_status']),
             ];
 
             header('Content-Type: application/json');
@@ -163,17 +164,13 @@ class PharmacyOrderMedicineController extends Controller
         }
     }
 
-    public function deliveryDateToFrontEnd($deliveryDate) {
-        if ($deliveryDate == "0000-00-00") {
-            return 'Pending';
-        } elseif ($deliveryDate == null) {
-            return 'Pending';
-        } else if ($deliveryDate == '1900-02-07') {
-            return 'Cancelled';
-        } else if ($deliveryDate == '1900-02-08') {
-            return 'Rejected';
+    public function deliveryDateToFrontEnd($deliveryDate, $orderStatus = null): string {
+        if ($orderStatus == "0" || $orderStatus == "4" || $orderStatus == "6") {
+            return '-';
+        } else if (is_null($deliveryDate)) {
+            return '-';
         } else {
-            return $deliveryDate;
+            return date('d-m-Y', strtotime($deliveryDate));
         }
     }
 
@@ -188,24 +185,16 @@ class PharmacyOrderMedicineController extends Controller
             return 'Delivered';
         } elseif ($orderStatus == '4') {
             return 'Cancelled';
-        } elseif ($orderStatus == '5') {
+        } else if ($orderStatus == '5') {
             return 'Delivering';
         } else {
-            return $orderStatus;
+            return 'Unknown';
         }
     }
 
-    public function orderTotalToFrontEnd($orderTotal): string
+    public function orderTotalToFrontEnd($orderTotal, $orderStatus = null): string
     {
-        if ($orderTotal == "0") {
-            return 'Finalizing Order';
-        } else if ($orderTotal == "99999999") {
-            return 'Rejected';
-        } else if ($orderTotal == "77777777") {
-            return 'Cancelled';
-        } else {
-            return $orderTotal;
-        }
+       return $orderTotal;
     }
 
     public function cancelOrder(Request $request) {

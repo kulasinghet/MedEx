@@ -11,7 +11,7 @@ class HyperLabModel extends HyperEntityModel
     public string $business_cert_name;
     public string $lab_cert_id;
     public string $lab_cert_name;
-    public string $reg_date;
+    public ?string $reg_date;
 
     public function __construct($params = array()) {
         foreach ($params as $key => $value) {
@@ -80,6 +80,7 @@ class HyperLabModel extends HyperEntityModel
         //loading the database
         $db = new Database();
         $conn = $db->getConnection();
+        $date = date("Y-m-d");
 
         try {
             $sql = "INSERT INTO `laboratory` (
@@ -89,19 +90,21 @@ class HyperLabModel extends HyperEntityModel
                           `laboratory_certificate_id`, 
                           `BusinessRegCertName`, 
                           `LabCertName`, 
+                          `reg_date`,
                           `email`, 
                           `address`, 
                           `mobile`,
                           `verified`) 
             VALUES (
-                    '$this->username', 
-                    '$this->name', 
-                    '$this->business_reg_id', 
-                    '$this->lab_cert_id', 
-                    '$this->business_cert_name', 
-                    '$this->lab_cert_name', 
-                    '$this->email', 
-                    '$this->address', 
+                    '$this->username',
+                    '$this->name',
+                    '$this->business_reg_id',
+                    '$this->lab_cert_id',
+                    '$this->business_cert_name',
+                    '$this->lab_cert_name',
+                    '$date',
+                    '$this->email',
+                    '$this->address',
                     '$this->mobile',
                     '0');";
 

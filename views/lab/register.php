@@ -48,12 +48,12 @@
                                 placeholder="Enter Laboratory Certificate ID" required><br>
                             <input type="text" name="busiRegNum" class="form-input"
                                 placeholder="Enter Business Registration Number" required><br>
-                            Business Registration Certificate <small>(3Mb - jpg,jpeg,png,pdf) </small><br><input
+                            Business Registration Certificate <small>(3Mb - pdf) </small><br><input
                                 class="form-input" type="file" name="BusRegiCert" id="BusRegiCert" required
-                                accept="image/*,.pdf"><br>
-                            Laboratary Registration Certificate <small>(3Mb - jpg,jpeg,png,pdf) </small><br><input
+                                accept="application/pdf"><br>
+                            Laboratary Registration Certificate <small>(3Mb - pdf) </small><br><input
                                 class="form-input" type="file" name="LabRegiCert" id="LabRegiCert" required
-                                accept="image/*,.pdf"><br>
+                                accept="application/pdf"><br>
                             <input type="submit" value="Create Account" class="btn btn--primary">
                         </div>
                     </form>

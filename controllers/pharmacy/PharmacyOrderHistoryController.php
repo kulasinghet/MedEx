@@ -25,46 +25,43 @@ class PharmacyOrderHistoryController extends Controller
         if ($orderStatus == "0") {
             return 'Pending';
         } elseif ($orderStatus == '1') {
-            return 'Accepted';
-        } elseif ($orderStatus == '6') {
+            return 'Accepted by Delivery Partner';
+        } elseif ($orderStatus == '3') {
             return 'Rejected';
-        } elseif ($orderStatus == '7') {
+        } elseif ($orderStatus == '2') {
             return 'Delivered';
         } elseif ($orderStatus == '4') {
             return 'Cancelled';
-        } elseif ($orderStatus == '5') {
+        } else if ($orderStatus == '5') {
             return 'Delivering';
+        } else if ($orderStatus == '6') {
+            return 'Processed by Admin';
         } else {
-            return $orderStatus;
+            return 'Unknown';
+        }
+
+    }
+
+    public function transformDeliveryDate($deliveryDate, $orderStatus = null): string
+    {
+        if ($orderStatus == "0" || $orderStatus == "4" || $orderStatus == "6" || $orderStatus == "3") {
+            return '-';
+        } else if (is_null($deliveryDate)) {
+            return '-';
+        } else {
+            return date('d-m-Y', strtotime($deliveryDate));
         }
     }
 
-    public function transformDeliveryDate($deliveryDate): string
+    public function transformOrderTotal($orderTotal, $orderStatus = null): string
     {
-        if ($deliveryDate == "0000-00-00") {
-            return 'Pending';
-        } elseif ($deliveryDate == null) {
-            return 'Pending';
-        } else if ($deliveryDate == '1900-02-07') {
-            return 'Cancelled';
-        } else if ($deliveryDate == '1900-02-08') {
-            return 'Rejected';
-        } else {
-            return $deliveryDate;
-        }
-    }
 
-    public function transformOrderTotal($orderTotal): string
-    {
-        if ($orderTotal == "0") {
-            return 'Finalizing Order';
-        } else if ($orderTotal == "99999999") {
-            return 'Rejected';
-        } else if ($orderTotal == "77777777") {
-            return 'Cancelled';
+        if ($orderStatus == "0" || $orderStatus == "4" || $orderStatus == "6" || $orderStatus == "3") {
+            return '-';
         } else {
             return $orderTotal;
         }
+
     }
 
     public function getOrdersByUsernameForDashboard(mixed $username)
@@ -151,6 +148,19 @@ class PharmacyOrderHistoryController extends Controller
 
         if ($results) {
             Logger::logDebug("getTotalOrdersCount() returned: " . $results);
+            return $results;
+        } else {
+            return 0;
+        }
+    }
+
+    public function getDeliveringOrdersCount(mixed $username)
+    {
+        $pharmacyOrder = new PharmacyOrderModel();
+        $results = $pharmacyOrder->getDeliveringOrdersCount($username);
+
+        if ($results) {
+            Logger::logDebug("getDeliveringOrdersCount() returned: " . $results);
             return $results;
         } else {
             return 0;

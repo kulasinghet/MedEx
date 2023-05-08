@@ -5,7 +5,7 @@ use app\views\employee\EmployeeViewComponents;
 
 $components = new EmployeeViewComponents();
 $store = EmployeeStore::getEmployeeStore();
-$pharmacy = $store->aprv_one_obj;
+$pharmacy = $store->g_obj;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,6 +21,7 @@ $pharmacy = $store->aprv_one_obj;
     <script src="https://unpkg.com/simplebar@latest/dist/simplebar.min.js"></script>
     <!-- g28 style -->
     <link rel="stylesheet" href="/scss/main.css" />
+    <link rel="stylesheet" href="/scss/vendor/employee.css" />
     <script src="/js/g28-main.js"></script>
 </head>
 <body>
@@ -34,15 +35,17 @@ echo $components->createNavbar();
 <!-- Section: Dashboard Layout -->
 <div class="canvas nav-cutoff sidebar-cutoff">
     <div class="canvas-inner">
-        <!-- DataBox -->
-        <div class="row">
-            <div class="col card data-box">
+        <!-- Details Form -->
+        <div class="row justify-content-center">
+            <div class="col card details-form">
                 <div class="card-body">
-                    <h5 class="card-title">Pharmacy Details</h5>
+                    <h4 class="card-title">Pharmacy Details</h4>
                     <form action="/employee/res/delivery/push" method="post">
                         <?php if ($pharmacy != null) { ?>
                             <div class="row margin-bottom">
                                 <div class="col">
+                                    <!-- General info -->
+                                    <h5>General Details</h5>
                                     <div class="form-group">
                                         <label for="username">Username</label>
                                         <input type="text" class="form-input disabled" id="username" value="<?php echo $pharmacy->username ?>" disabled>
@@ -58,26 +61,30 @@ echo $components->createNavbar();
                                         </textarea>
                                     </div>
                                     <div class="form-group">
-                                        <label for="phar_reg_no">Pharmacy Registration No.</label>
-                                        <input type="text" class="form-input" id="phar_reg_no" value="<?php echo $pharmacy->phar_reg_no ?>">
+                                        <label for="mobile">Phone Number</label>
+                                        <input type="text" class="form-input" id="mobile" value="<?php echo $pharmacy->mobile ?>">
                                     </div>
+
+                                    <!-- Pharmacy info -->
+                                    <h5>Pharmacy Information</h5>
                                     <div class="form-group">
-                                        <label for="business_cert_name">Business Registration Certificate</label>
-                                        <input class="form-input" type="file" id="business_cert_name" accept="image/*" value="<?php echo $pharmacy->business_cert_name ?>">
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label for="name">Name</label>
+                                        <label for="name">Pharmacy Name</label>
                                         <input type="text" class="form-input" id="name" value="<?php echo $pharmacy->name ?>">
                                     </div>
                                     <div class="form-group">
-                                        <label for="mobile">Phone Number</label>
-                                        <input type="text" class="form-input" id="mobile" value="<?php echo $pharmacy->mobile ?>">
+                                        <label for="name">Owner Name</label>
+                                        <input type="text" class="form-input" id="owner_name" value="<?php echo $pharmacy->owner_name ?>">
                                     </div>
                                     <div class="form-group">
                                         <label for="city">City</label>
                                         <input type="text" class="form-input" id="city" value="<?php echo $pharmacy->city ?>">
+                                    </div>
+
+                                    <!-- Legal info -->
+                                    <h5>Legal Information</h5>
+                                    <div class="form-group">
+                                        <label for="phar_reg_no">Pharmacy Registration No.</label>
+                                        <input type="text" class="form-input" id="phar_reg_no" value="<?php echo $pharmacy->phar_reg_no ?>">
                                     </div>
                                     <div class="form-group">
                                         <label for="business_reg_id">Business Registration Id</label>
@@ -87,15 +94,13 @@ echo $components->createNavbar();
                                         <label for="phar_cert_id">Pharmacy Certificate Id</label>
                                         <input type="text" class="form-input" id="phar_cert_id" value="<?php echo $pharmacy->phar_cert_id ?>">
                                     </div>
-                                    <div class="form-group">
-                                        <label for="phar_cert_name">Pharmacy Certificate</label>
-                                        <input class="form-input" type="file" id="phar_cert_name" accept="image/*" value="<?php echo $pharmacy->phar_cert_name ?>">
-                                    </div>
                                 </div>
                             </div>
                         <?php } else { ?>
                             <div class="row margin-bottom">
                                 <div class="col">
+                                    <!-- General info -->
+                                    <h5>General Details</h5>
                                     <div class="form-group">
                                         <label for="username">Username</label>
                                         <input type="text" class="form-input" id="username">
@@ -109,26 +114,30 @@ echo $components->createNavbar();
                                         <textarea class="form-input" id="address" rows="3"></textarea>
                                     </div>
                                     <div class="form-group">
-                                        <label for="phar_reg_no">Pharmacy Registration No.</label>
-                                        <input type="text" class="form-input" id="phar_reg_no">
+                                        <label for="mobile">Phone Number</label>
+                                        <input type="text" class="form-input" id="mobile">
                                     </div>
+
+                                    <!-- Pharmacy info -->
+                                    <h5>Pharmacy Information</h5>
                                     <div class="form-group">
-                                        <label for="business_cert_name">Business Registration Certificate</label>
-                                        <input class="form-input" type="file" id="business_cert_name" accept="image/*">
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label for="name">Name</label>
+                                        <label for="name">Pharmacy Name</label>
                                         <input type="text" class="form-input" id="name">
                                     </div>
                                     <div class="form-group">
-                                        <label for="mobile">Phone Number</label>
-                                        <input type="text" class="form-input" id="mobile">
+                                        <label for="name">Owner Name</label>
+                                        <input type="text" class="form-input" id="owner_name">
                                     </div>
                                     <div class="form-group">
                                         <label for="city">City</label>
                                         <input type="text" class="form-input" id="city">
+                                    </div>
+
+                                    <!-- Legal info -->
+                                    <h5>Legal Information</h5>
+                                    <div class="form-group">
+                                        <label for="phar_reg_no">Pharmacy Registration No.</label>
+                                        <input type="text" class="form-input" id="phar_reg_no">
                                     </div>
                                     <div class="form-group">
                                         <label for="business_reg_id">Business Registration Id</label>
@@ -137,10 +146,6 @@ echo $components->createNavbar();
                                     <div class="form-group">
                                         <label for="phar_cert_id">Pharmacy Certificate Id</label>
                                         <input type="text" class="form-input" id="phar_cert_id">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="phar_cert_name">Pharmacy Certificate</label>
-                                        <input class="form-input" type="file" id="phar_cert_name" accept="image/*">
                                     </div>
                                 </div>
                             </div>
@@ -165,7 +170,7 @@ echo $components->createNavbar();
 <script type="application/javascript">
     // you can configure variables in here.
     configs.stage = 'dev';
-    configs.customFormElmPath = '/scss/components/forms';
+    configs.scssStylePath = '../scss/';
 
     //logging
     logger("Logging g28 initial state before loading specialized JS files...");

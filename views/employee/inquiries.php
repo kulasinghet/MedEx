@@ -1,6 +1,6 @@
 <?php
 
-use \app\controllers\employee\EmployeeReportListController;
+use \app\controllers\employee\EmployeeInquiriesListController;
 use app\stores\EmployeeStore;
 use app\views\employee\EmployeeViewComponents;
 
@@ -25,12 +25,13 @@ $store->flag_g_st = 0; // resetting the set number in the store
     <script src="https://unpkg.com/simplebar@latest/dist/simplebar.min.js"></script>
     <!-- g28 style -->
     <link rel="stylesheet" href="/scss/main.css" />
+    <link rel="stylesheet" href="/scss/vendor/employee.css" />
     <script src="/js/g28-main.js"></script>
 </head>
 <body>
 <!-- Section: Fixed Components -->
 <?php
-echo $components->createSidebar('res');
+echo $components->createSidebar('inquiries');
 echo $components->createNavbar();
 ?>
 <!-- Section: Fixed Components -->
@@ -43,7 +44,7 @@ echo $components->createNavbar();
             <div class="col card report-list">
                 <div class="card-body list-content">
                     <?php
-                    $controller = new EmployeeReportListController();
+                    $controller = new EmployeeInquiriesListController();
                     try {
                         $report_list = $controller->getAllReports();
                         if (!empty($report_list)) {
@@ -69,26 +70,10 @@ echo $components->createNavbar();
 <script type="application/javascript">
     // you can configure variables in here.
     configs.stage = 'dev';
-    configs.customFormElmPath = '/scss/components/forms';
-
-    //logging
-    logger("Logging g28 initial state before loading specialized JS files...");
-    for (let property in configs) {
-        logger(`> ${property}: ${configs[property]}`);
-    }
-
-    document.querySelectorAll('.approval-table tbody tr:not(.empty)').forEach((row) => {
-        row.addEventListener('click', (e) => {
-            e.stopPropagation();
-            if (e.target.tagName === 'TD') {
-                let entity = row.getAttribute('data-usr');
-                let type = row.getAttribute('data-tp');
-                window.location.href = '/employee/res/' + type + '?et=' + entity;
-            }
-        });
-    });
+    configs.scssStylePath = '../scss/';
 </script>
-<script src="/js/g28-forms.js"></script>
+<script src="/js/employee/reports.js"></script>
+<script src="/js/g28-toast.js"></script>
 <!-- g28 styling framework -->
 </body>
 </html>

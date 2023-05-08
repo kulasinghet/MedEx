@@ -4,7 +4,6 @@ namespace app\stores;
 
 use app\models\EmployeeModel;
 use app\models\HyperEntities\HyperDeliveryModel;
-use app\models\HyperEntities\HyperEntityModel;
 use app\models\HyperEntities\HyperLabModel;
 use app\models\HyperEntities\HyperPharmacyModel;
 use app\models\HyperEntities\HyperSupplierModel;
@@ -13,16 +12,17 @@ use Exception;
 class EmployeeStore
 {
     public string $username;
+    public ?ToastNotification $toast;
 
-    // general page variables
-    public string $flag_g_t;
-    public int $flag_g_st;
+    // general list page variables
+    public string $flag_g_t; // stores the entity type
+    public int $flag_g_st; // stores the set number
     public array $list_g;
 
-    // approve-one page variables
-    public string $flag_aprv_one_usr;
-    public string $flag_aprv_one_act;
-    public HyperPharmacyModel|HyperDeliveryModel|HyperLabModel|HyperSupplierModel|null $aprv_one_obj;
+    // general details page variables
+    public string $flag_g_usr; // stores the username
+    public string $flag_g_act; // stores the action
+    public HyperPharmacyModel|HyperDeliveryModel|HyperLabModel|HyperSupplierModel|null $g_obj;
 
     /**
      * @throws Exception
@@ -30,11 +30,11 @@ class EmployeeStore
     private final function __construct()
     {
         $this->list_g = [];
+        $this->g_obj = null;
         $this->flag_g_t = '';
         $this->flag_g_st = 0;
-        $this->flag_aprv_one_usr = '';
-        $this->flag_aprv_one_act = '';
-        $this->aprv_one_obj = null;
+        $this->flag_g_usr = '';
+        $this->flag_g_act = '';
 
         // retrieve user details from session
         if (isset($_SESSION['username'])) {
@@ -61,6 +61,19 @@ class EmployeeStore
             return EmployeeModel::getByUsername($this->username);
         } else {
             throw new Exception('Username not set in session');
+        }
+    }
+
+    public function setNotification($subject, $message, $type): void
+    {
+        $this->toast = new ToastNotification($subject, $message, $type);
+    }
+
+    public function renderNotification(): void
+    {
+        if (isset($this->toast)) {
+            echo $this->toast->render();
+            $this->toast = null;
         }
     }
 }

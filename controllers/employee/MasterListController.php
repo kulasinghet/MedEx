@@ -5,7 +5,7 @@ namespace app\controllers\employee;
 use app\core\Controller;
 use app\core\Request;
 
-abstract class AbstractListController extends Controller
+abstract class MasterListController extends Controller
 {
     const login = 'Location: /login';
     const approval_flags = ['all', 'pharmacy', 'supplier', 'lab', 'delivery'];

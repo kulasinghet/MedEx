@@ -2,7 +2,8 @@
 
 namespace app\views\employee;
 
-use app\models\ReportModel;
+use app\models\InquiryModel;
+use app\models\PharmacyOrderModel;
 use app\stores\EmployeeStore;
 use Exception;
 use ReflectionClass;
@@ -35,6 +36,20 @@ class EmployeeViewComponents
             'HyperDeliveryModel' => 'delivery',
             default => 'Unknown',
         };
+    }
+
+    private function getActorIcon($type): string
+    {
+        $cls = match ($type) {
+            'employee' => 'fa-solid fa-user-tie',
+            'pharmacy' => 'fa-solid fa-capsules',
+            'supplier' => 'fa-solid fa-truck-medical',
+            'lab' => 'fa-solid fa-flask',
+            'delivery' => 'fa-solid fa-motorcycle',
+            default => 'fa-solid fa-question',
+        };
+
+        return '<i class="'.$cls.'"></i>';
     }
 
     public function createSidebar($selection): string
@@ -73,8 +88,11 @@ class EmployeeViewComponents
                     ').'
                     </ul>
                 </li>
-                <li>
-                    <a href="/employee/reports"> <i class="fa-solid fa-newspaper"></i>Reports</a>
+                <li'.($selection == 'orders'? ' class="disabled"' : '').'>
+                    <a href="/employee/orders"><i class="fa-solid fa-list-check"></i>Pharmacy Orders</a>
+                </li>
+                <li'.($selection == 'inquiries'? ' class="disabled"' : '').'>
+                    <a href="/employee/inquiries"><i class="fa-solid fa-newspaper"></i>Inquiries</a>
                 </li>
                 <li>
                     <a href="#"> <i class="fa-solid fa-server"></i>Resources</a>
@@ -91,9 +109,6 @@ class EmployeeViewComponents
                         <li><a href="/employee/res?f=delivery">Delivery Partner</a></li>
                     ').'
                     </ul>
-                </li>
-                <li>
-                    <a href="/employee/configs"> <i class="fa-solid fa-wrench"></i>Configurations</a>
                 </li>
             </ul>
         </div>
@@ -160,17 +175,12 @@ class EmployeeViewComponents
      */
     public function createApprovalItem($approval): string
     {
+        $type = $this->getTypeOf($approval);
+
         return ('
-<tr data-usr="'.$approval->username.'" data-tp="'.$this->getTypeOf($approval).'">
+<tr data-usr="'.$approval->username.'" data-tp="'.$type.'">
     <td class="approval-type">
-        <a>
-            <i class="'.match ($this->getTypeOf($approval)) {
-                'pharmacy' => 'fa-solid fa-suitcase-medical',
-                'supplier' => 'fa-solid fa-truck-medical',
-                'lab' => 'fa-solid fa-flask',
-                'delivery' => 'fa-solid fa-cart-flatbed-boxes',
-                default => 'fa-solid fa-question',}.'"></i>
-        </a>
+        <a>'.$this->getActorIcon($type).'</a>
     </td>
     <td>'.$approval->name.'</td>
     <td>'.$approval->email.'</td>
@@ -178,12 +188,12 @@ class EmployeeViewComponents
     <td>
         <div class="row action-buttons">
             <div class="col">
-                <a class="btn btn--success" href="/employee/approve/'.$this->getTypeOf($approval).'?et='.$approval->username.'&a=approve">
+                <a class="btn btn--success" href="/employee/approve/'.$type.'?et='.$approval->username.'">
                     <i class="fa-solid fa-circle-check"></i>
                 </a>
             </div>
             <div class="col">
-                <a class="btn btn--danger" href="/employee/approve/'.$this->getTypeOf($approval).'?et='.$approval->username.'&a=ignore">
+                <a class="btn btn--danger" href="/employee/approve/'.$type.'?et='.$approval->username.'&a=ignore">
                     <i class="fa-solid fa-circle-xmark"></i>
                 </a>
             </div>
@@ -198,8 +208,10 @@ class EmployeeViewComponents
      */
     public function createResItem($res): string
     {
+        $type = $this->getTypeOf($res);
+
         return ('
-<tr data-usr="'.$res->username.'" data-tp="'.$this->getTypeOf($res).'">
+<tr data-usr="'.$res->username.'" data-tp="'.$type.'">
     <td>'.$res->username.'</td>
     <td>'.$res->name.'</td>
     <td>'.$res->email.'</td>
@@ -207,12 +219,12 @@ class EmployeeViewComponents
     <td>
         <div class="row action-buttons">
             <div class="col">
-                <a class="btn btn--info" href="/employee/res/'.$this->getTypeOf($res).'?et='.$res->username.'">
+                <a class="btn btn--info" href="/employee/res/'.$type.'?et='.$res->username.'">
                     <i class="fa-solid fa-pen"></i>
                 </a>
             </div>
             <div class="col">
-                <a class="btn btn--danger" href="/employee/res/'.$this->getTypeOf($res).'?et='.$res->username.'&a=delete">
+                <a class="btn btn--danger" href="/employee/res/'.$type.'?et='.$res->username.'&a=delete">
                     <i class="fa-solid fa-trash"></i>
                 </a>
             </div>
@@ -222,21 +234,14 @@ class EmployeeViewComponents
         ');
     }
 
-    public function createReportItem(ReportModel $report): string
+    public function createReportItem(InquiryModel $report): string
     {
         return ('
-        <div class="report-itm">
+        <div class="report-itm'.(!$report->is_employee_noticed? " $report->user_type" : "").'" data-id="'.($report->inquiry_id?? "N/A").'" tabindex="0">
             <div class="report-inner">
                 <div class="header">
                     <div class="header-icon">
-                        <a>
-                            <i class="'.match ($report->user_type) {
-                                'pharmacy' => 'fa-solid fa-suitcase-medical',
-                                'supplier' => 'fa-solid fa-truck-medical',
-                                'lab' => 'fa-solid fa-flask',
-                                'delivery' => 'fa-solid fa-cart-flatbed-boxes',
-                                default => 'fa-solid fa-question',}.'"></i>
-                        </a>
+                        <a>'.$this->getActorIcon($report->user_type).'</a>
                     </div>
                     <div class="header-data">
                         <h6 class="header-username">'.($report->username?? "N/A").'</h6>
@@ -246,8 +251,23 @@ class EmployeeViewComponents
                 <div class="report-body">
                     <p>'.($report->message?? self::para_placeholder).'</p>
                 </div>
+                <div class="report-actions">
+                    <div class="report-btn"><a>Accept</a></div>
+                </div>
             </div>
         </div>
+        ');
+    }
+
+    public function createOrderItem(PharmacyOrderModel $order): string
+    {
+        return ('
+<tr data-id="'.$order->id.'" data-tp="'.$order->status.'">
+    <td>'.$order->id.'</td>
+    <td>'.$order->pharmacyUsername.'</td>
+    <td>'.$order->status.'</td>
+    <td>'.$order->order_date.'</td>
+</tr>
         ');
     }
 }

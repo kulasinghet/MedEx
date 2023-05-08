@@ -26,6 +26,7 @@ $store->flag_g_st = 0; // resetting the set number in the store
     <script src="https://unpkg.com/simplebar@latest/dist/simplebar.min.js"></script>
     <!-- g28 style -->
     <link rel="stylesheet" href="/scss/main.css" />
+    <link rel="stylesheet" href="/scss/vendor/employee.css" />
     <script src="/js/g28-main.js"></script>
 </head>
 <body>
@@ -33,6 +34,7 @@ $store->flag_g_st = 0; // resetting the set number in the store
 <?php
 echo $components->createSidebar('res');
 echo $components->createNavbar();
+$store->renderNotification();
 ?>
 <!-- Section: Fixed Components -->
 
@@ -129,7 +131,7 @@ echo $components->createNavbar();
 <script type="application/javascript">
     // you can configure variables in here.
     configs.stage = 'dev';
-    configs.customFormElmPath = '/scss/components/forms';
+    configs.scssStylePath = '../scss/';
 
     //logging
     logger("Logging g28 initial state before loading specialized JS files...");
@@ -149,6 +151,7 @@ echo $components->createNavbar();
     });
 </script>
 <script src="/js/g28-forms.js"></script>
+<script src="/js/g28-toast.js"></script>
 <!-- g28 styling framework -->
 </body>
 </html>

@@ -5,7 +5,7 @@ namespace app\models;
 use app\core\Database;
 use app\core\Logger;
 
-class ReportModel extends Model
+class InquiryModel extends Model
 {
     public string $inquiry_id;
     public string $username;
@@ -54,10 +54,10 @@ class ReportModel extends Model
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
                 $row = $result->fetch_assoc();
-                return new ReportModel(array(
+                return new InquiryModel(array(
                     'inquiry_id' => $row["inquiry_id"],
                     'username' => $row["username"],
-                    'user_type' => ReportModel::getUserType($row),
+                    'user_type' => InquiryModel::getUserType($row),
                     'subject' => $row["subject"],
                     'message' => $row["message"],
                     'is_resolved' => $row["is_resolved"]

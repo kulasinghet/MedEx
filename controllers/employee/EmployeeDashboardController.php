@@ -9,30 +9,4 @@ use app\models\EmployeeModel;
 class EmployeeDashboardController extends Controller
 {
     const login = 'Location: /login';
-
-    public function loadReports(Request $request)
-    {
-        if ($request->isGet()) {
-            if ($_SESSION['userType'] == 'staff') {
-                $this -> render("employee/reports.php");
-            } else {
-                return header(self::login);
-            }
-        } else {
-            return header(self::login);
-        }
-    }
-
-    public function loadConfigs(Request $request)
-    {
-        if ($request->isGet()) {
-            if ($_SESSION['userType'] == 'staff') {
-                $this -> render("employee/configs.php");
-            } else {
-                return header(self::login);
-            }
-        } else {
-            return header(self::login);
-        }
-    }
 }

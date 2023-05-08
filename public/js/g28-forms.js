@@ -166,7 +166,7 @@ class G28Selectbox extends HTMLElement {
     // adding stylesheet to the shadow DOM
     const styleLink = document.createElement('link');
     styleLink.rel = 'stylesheet';
-    styleLink.href = configs.customFormElmPath + '/form-selectbox.css';
+    styleLink.href = configs.scssStylePath + 'components/forms/form-selectbox.css';
     this.shadowRoot.appendChild(styleLink);
 
     sbTemp.innerHTML = this.sbTemplate;

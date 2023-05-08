@@ -16,16 +16,23 @@ echo $components->sideBar('dashboard');
 <div class="canvas nav-cutoff sidebar-cutoff">
     <div class="canvas-inner">
 
+        <?php if ($isVerified == 0) { ?>
+            <div class="modal not-verified" role="alert">
+                <strong>Warning!</strong> Your pharmacy is not verified yet. Please wait until the verification process is completed.
+            </div>
+        <?php } ?>
+
+
         <div class="dashboard-row">
             <div class="card g-col-4 g-row-1-start-1">
                 <div class="card-body">
                     <h5 class="card-title">Sales in the Week</h5>
                     <p class="card-text">
-                        <canvas id="myChart" style="width: 20vw; height: 20vh;"></canvas>
+                        <canvas id="myChart" style="width: 20vw; height: auto;"></canvas>
 
                         <script>
                             const username = document.getElementsByClassName('nav-profile-name')[0].innerHTML;
-                            const api_call = "http://localhost:8080/pharmacy/api/sales-by-day?pharmacyUsername=" + username;
+                            const api_call = "http://146.190.15.95/pharmacy/api/sales-by-day?pharmacyUsername=" + username;
 
                             fetch(api_call)
                                 .then(response => response.json())
@@ -33,8 +40,11 @@ echo $components->sideBar('dashboard');
                                     // Sort the data by invoice date in ascending order
                                     data.sort((a, b) => new Date(a.invoice_date) - new Date(b.invoice_date));
 
-                                    const labels = data.map(item => item.invoice_date);
+                                    const labels = data.map(item => item.date);
                                     const values = data.map(item => item.total);
+
+                                    console.log(labels);
+                                    console.log(values);
 
                                     // Create the chart
                                     const ctx = document.getElementById('myChart').getContext('2d');
@@ -74,10 +84,10 @@ echo $components->sideBar('dashboard');
                 <div class="card-body">
                     <h5 class="card-title">Sales and Cost <?php echo date("F"); ?></h5>
                     <p class="card-text">
-                        <canvas id="sales-and-cost" style="width: 20vw; max-height: 20vh;"></canvas>
+                        <canvas id="sales-and-cost" style="max-height: 25vh"></canvas>
 
                         <script>
-                            const salescost = "http://localhost:8080/pharmacy/api/sales-and-cost-for-current-month?pharmacyUsername=" + username;
+                            const salescost = "http://146.190.15.95/pharmacy/api/sales-and-cost-for-current-month?pharmacyUsername=" + username;
 
                             // Fetch the data and create the chart
                             fetch(salescost)
@@ -133,12 +143,16 @@ echo $components->sideBar('dashboard');
                             <td><?php echo $acceptedOrders ?></td>
                         </tr>
                         <tr>
-                            <td>Rejected Orders</td>
-                            <td><?php echo $rejectedOrders ?></td>
+                            <td>Delivering Orders</td>
+                            <td><?php echo $deliveringOrders ?></td>
                         </tr>
                         <tr>
                             <td>Delivered Orders</td>
                             <td><?php echo $deliveredOrders ?></td>
+                        </tr>
+                        <tr>
+                            <td>Rejected Orders</td>
+                            <td><?php echo $rejectedOrders ?></td>
                         </tr>
                         <tr>
                             <td>Cancelled Orders</td>

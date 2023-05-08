@@ -154,3 +154,7 @@ form {
     margin-top: 5vh;
     width: 100%;
 }
+
+.swal-footer {
+    align-items: center;
+}

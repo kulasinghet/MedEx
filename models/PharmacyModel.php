@@ -229,5 +229,97 @@ class PharmacyModel extends Model
         }
     }
 
+    public function getPharmacyProfile(mixed $username)
+    {
+        $db = (new Database())->getConnection();
+
+        try {
+            $sql = "SELECT * FROM pharmacy WHERE username = '$username'";
+            $result = $db->query($sql);
+
+            if ($result->num_rows == 1) {
+                return $result->fetch_assoc();
+            } else {
+                return false;
+            }
+        } catch (\Exception $e) {
+            Logger::logError($e->getMessage());
+            return false;
+        }
+    }
+
+    public function isVerified(mixed $username)
+    {
+        $db = (new Database())->getConnection();
+
+        try {
+            $sql = "SELECT * FROM pharmacy WHERE username = '$username'";
+            $result = $db->query($sql);
+
+            if ($result->num_rows == 1) {
+                $row = $result->fetch_assoc();
+                if ($row['verified'] == 1) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+
+        } catch (\Exception $e) {
+            Logger::logError($e->getMessage());
+            return false;
+        }
+    }
+
+    public function reportPurchase(array $form)
+    {
+        $db = (new Database())->getConnection();
+
+        $orderID = $form['orderID'];
+        $rating = $form['rating'];
+        $comment = $form['comment'];
+        $reportTime = date("Y-m-d H:i:s");
+
+        try {
+            $sql = "INSERT INTO purchaseReport (orderID, rating, comment, reportTime) VALUES ('$orderID', '$rating', '$comment', '$reportTime')";
+            $stmt = $db->prepare($sql);
+            $stmt->execute();
+
+            if ($stmt->affected_rows == 1) {
+                return true;
+            } else {
+                Logger::logError(print_r($stmt->error_list, true) . " " . $stmt->error);
+                return false;
+            }
+        } catch (\Exception $e) {
+            Logger::logError($e->getMessage());
+            return false;
+        }
+
+    }
+
+    public function getDeliveryTime(mixed $city)
+    {
+        $db = (new Database())->getConnection();
+
+        try {
+            $sql = "SELECT delivery_time FROM city WHERE city = '$city'";
+            $result = $db->query($sql);
+
+            if ($result->num_rows == 1) {
+                $row = $result->fetch_assoc();
+                return $row['delivery_time'];
+            } else {
+                return false;
+            }
+
+        } catch (\Exception $e) {
+            Logger::logError($e->getMessage());
+            return false;
+        }
+    }
+
 
 }

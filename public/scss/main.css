@@ -23,6 +23,7 @@ body {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
+  overflow-x: hidden;
 }
 
 p {
@@ -117,6 +118,9 @@ article {
   width: 100%;
   max-width: 100%;
   padding: 0 calc(var(--g28-gap) * 0.5);
+}
+.row.justify-content-center {
+  justify-content: center;
 }
 .row .col {
   flex: 1 0 0;
@@ -3358,197 +3362,6 @@ textarea.form-input {
   font-size: 0.9rem;
   line-height: 1.2rem;
   color: #071232;
-}
-
-.scroll {
-  min-height: 2rem;
-  overflow-y: scroll;
-}
-
-.analysed {
-  min-width: 380px;
-}
-
-.margin-bottom {
-  margin-bottom: 1rem;
-}
-
-.search-box.row {
-  justify-content: center;
-}
-.search-box.row > * {
-  flex: 0 0 auto;
-  width: auto;
-  min-width: auto;
-}
-
-.action-buttons.row {
-  gap: 0.2rem;
-  justify-content: center;
-}
-.action-buttons.row .col {
-  flex-grow: 0;
-  padding: 0.2rem;
-}
-.action-buttons.row .col .btn {
-  margin: 0;
-}
-
-.report-description {
-  margin: 1.8rem 1rem 1rem;
-}
-.report-description p {
-  margin: 0;
-}
-
-.data-box .card-title {
-  font-size: 1.5rem;
-  margin: 0.5rem 0 2rem 0;
-}
-.data-box .status-table {
-  border-spacing: 1px;
-  border-collapse: collapse;
-  background: rgba(234, 234, 234, 0.3);
-  border: 2px solid rgba(70, 70, 70, 0.84);
-  border-radius: 6px;
-  overflow: hidden;
-  width: 100%;
-  position: relative;
-  margin: 0 auto 2rem;
-}
-.data-box .status-table th {
-  text-transform: uppercase;
-}
-.data-box .status-table td, .data-box .status-table th {
-  padding: 1rem;
-}
-.data-box .status-table tbody tr {
-  border-bottom: 1px solid #E3F1D5;
-}
-.data-box .status-table tbody tr:last-child {
-  border: 0;
-}
-.data-box .status-table th {
-  text-align: left;
-}
-.data-box .status-table td {
-  text-align: right;
-}
-
-.filtering-selectbox {
-  min-width: 180px;
-}
-
-#filter-by-search {
-  --color-light: #f6f9ff;
-}
-
-.approval-table th {
-  text-align: center;
-}
-.approval-table th:not(:last-child) {
-  border-right: 1px solid rgba(224, 179, 1, 0.5);
-}
-.approval-table td:not(:last-child) {
-  border-right: 1px solid #f6f9ff;
-}
-.approval-table th, .approval-table td {
-  padding: 0 8px;
-}
-.approval-table tbody tr:not(.empty):hover {
-  background-color: #f6f9ff;
-  cursor: pointer;
-}
-.approval-table tbody .empty, .approval-table tbody .no-data {
-  border: none;
-}
-.approval-table .approval-type {
-  text-align: center;
-}
-
-.report-list {
-  height: 100vh;
-  padding: 0.5rem;
-  margin: 0 0.5rem 0.5rem 0.5rem;
-  background-color: #e7eff9;
-  background-image: linear-gradient(315deg, #e7eff9 0%, #cfd6e6 74%);
-  box-shadow: 0 0 2px 2px rgba(33, 33, 33, 0.3);
-}
-.report-list .list-content {
-  width: 100%;
-  height: 100%;
-  padding: 0.2rem 0.5rem;
-  background: #7c7f93;
-  border-radius: 6px;
-  box-shadow: inset 2px 2px 5px 0 rgba(0, 0, 0, 0.2), inset -2px -2px 5px 0 rgba(0, 0, 0, 0.2);
-  overflow-x: hidden;
-  overflow-y: auto;
-}
-.report-list .list-content > *:last-child {
-  margin-bottom: 0;
-}
-
-.report-itm {
-  width: 100%;
-  margin-bottom: 0.8rem;
-  border: 2px solid #ffffff;
-  border-radius: 6px;
-  background-color: #ffffff;
-  overflow: hidden;
-  box-shadow: 0 0 2px 2px rgba(211, 211, 211, 0.8);
-}
-.report-itm .report-inner {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-.report-itm .report-inner .header {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: start;
-}
-.report-itm .report-inner .header .header-icon {
-  flex: 0 0 auto;
-  width: 64px;
-  height: 64px;
-  background: #e6ebf4;
-}
-.report-itm .report-inner .header .header-icon a {
-  padding: 0.5rem;
-  background: #ffffff;
-  width: 100%;
-  height: 100%;
-  border-radius: 0 0 6px 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.report-itm .report-inner .header .header-icon a i {
-  font-size: 1.5rem;
-}
-.report-itm .report-inner .header .header-data {
-  width: 100%;
-  height: 64px;
-  padding-top: 0.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-.report-itm .report-inner .header .header-data > * {
-  padding-left: 1rem;
-  margin: 0;
-}
-.report-itm .report-inner .header .header-data .header-subject {
-  background: #e6ebf4;
-  padding: 0.25rem 1rem;
-  border-radius: 6px 6px 0 0;
-}
-.report-itm .report-inner .report-body {
-  width: 100%;
-  padding: 0.5rem;
-  background: #e6ebf4;
-  border-radius: 6px 0 6px 6px;
 }
 
 /*# sourceMappingURL=main.css.map */

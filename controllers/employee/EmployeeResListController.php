@@ -3,10 +3,10 @@
 namespace app\controllers\employee;
 
 use app\core\Request;
-use app\models\EmpResourcesModel;
+use app\models\EmployeeResourcesModel;
 use app\stores\EmployeeStore;
 
-class EmployeeResListController extends AbstractListController
+class EmployeeResListController extends MasterListController
 {
     public function load(Request $request): void
     {
@@ -33,11 +33,9 @@ class EmployeeResListController extends AbstractListController
             // retrieve the list from the store
             $list = $store->list_g;
         } else {
-            $model = new EmpResourcesModel();
+            $model = new EmployeeResourcesModel();
             // creating an array of all resources
             $list = $model->getPharmacyList(true);
-            // storing the list in the store
-            $store->list_g = $list;
         }
 
         // slicing the list to the set size
@@ -53,7 +51,7 @@ class EmployeeResListController extends AbstractListController
             // retrieve the list from the store
             $list = $store->list_g;
         } else {
-            $model = new EmpResourcesModel();
+            $model = new EmployeeResourcesModel();
             // creating an array of all resources
             $list = $model->getSupplierList(true);
             // storing the list in the store
@@ -73,7 +71,7 @@ class EmployeeResListController extends AbstractListController
             // retrieve the list from the store
             $list = $store->list_g;
         } else {
-            $model = new EmpResourcesModel();
+            $model = new EmployeeResourcesModel();
             // creating an array of all resources
             $list = $model->getLabList(true);
             // storing the list in the store
@@ -93,7 +91,7 @@ class EmployeeResListController extends AbstractListController
             // retrieve the list from the store
             $list = $store->list_g;
         } else {
-            $model = new EmpResourcesModel();
+            $model = new EmployeeResourcesModel();
             // creating an array of all resources
             $list = $model->getDeliveryGuysList(true);
             // storing the list in the store
