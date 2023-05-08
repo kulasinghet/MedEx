@@ -1756,3 +1756,6 @@
 2023/05/09 03:44:43 /pharmacy/api/update-medicine
 2023/05/09 03:44:45 /pharmacy/inventory
 2023/05/09 03:44:49 /pharmacy/sell-medicine
+2023/05/09 03:49:18 /pharmacy/invoices
+2023/05/09 03:49:22 /pharmacy/api/sales-order
+2023/05/09 03:49:22 /pharmacy/api/sales-order-medicines
