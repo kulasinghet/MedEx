@@ -18,6 +18,7 @@ $pharmacy = $store->g_obj;
     <script crossorigin="anonymous" src="https://kit.fontawesome.com/9b33f63a16.js"></script>
     <!-- g28 style -->
     <link rel="stylesheet" href="/scss/main.css" />
+    <link rel="stylesheet" href="/scss/vendor/employee.css" />
 </head>
 <body>
 <!-- Section: Fixed Components -->

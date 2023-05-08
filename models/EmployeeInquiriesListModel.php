@@ -7,7 +7,7 @@ use app\core\Logger;
 use app\stores\EmployeeStore;
 use mysqli;
 
-class InquiriesListModel extends Model
+class EmployeeInquiriesListModel extends Model
 {
     private function createConnection(): ?\mysqli
     {

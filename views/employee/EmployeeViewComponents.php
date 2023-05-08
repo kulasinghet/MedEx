@@ -3,6 +3,7 @@
 namespace app\views\employee;
 
 use app\models\InquiryModel;
+use app\models\PharmacyOrderModel;
 use app\stores\EmployeeStore;
 use Exception;
 use ReflectionClass;
@@ -87,8 +88,11 @@ class EmployeeViewComponents
                     ').'
                     </ul>
                 </li>
-                <li>
-                    <a href="/employee/inquiries"> <i class="fa-solid fa-newspaper"></i>Inquiries</a>
+                <li'.($selection == 'orders'? ' class="disabled"' : '').'>
+                    <a href="/employee/orders"><i class="fa-solid fa-list-check"></i>Pharmacy Orders</a>
+                </li>
+                <li'.($selection == 'inquiries'? ' class="disabled"' : '').'>
+                    <a href="/employee/inquiries"><i class="fa-solid fa-newspaper"></i>Inquiries</a>
                 </li>
                 <li>
                     <a href="#"> <i class="fa-solid fa-server"></i>Resources</a>
@@ -105,9 +109,6 @@ class EmployeeViewComponents
                         <li><a href="/employee/res?f=delivery">Delivery Partner</a></li>
                     ').'
                     </ul>
-                </li>
-                <li>
-                    <a href="/employee/configs"> <i class="fa-solid fa-wrench"></i>Configurations</a>
                 </li>
             </ul>
         </div>
@@ -255,6 +256,18 @@ class EmployeeViewComponents
                 </div>
             </div>
         </div>
+        ');
+    }
+
+    public function createOrderItem(PharmacyOrderModel $order): string
+    {
+        return ('
+<tr data-id="'.$order->id.'" data-tp="'.$order->status.'">
+    <td>'.$order->id.'</td>
+    <td>'.$order->pharmacyUsername.'</td>
+    <td>'.$order->status.'</td>
+    <td>'.$order->order_date.'</td>
+</tr>
         ');
     }
 }

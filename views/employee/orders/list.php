@@ -1,14 +1,13 @@
 <?php
 
+use app\controllers\employee\EmployeeOrdersController;
 use app\stores\EmployeeStore;
 use app\views\employee\EmployeeViewComponents;
-use app\controllers\employee\EmployeeApprovalListController;
 
 const no_of_reports = 10;
 
 $components = new EmployeeViewComponents();
 $store = EmployeeStore::getEmployeeStore();
-$filter = $store->flag_g_t; // getting the filter
 $set = $store->flag_g_st; // getting the number of set
 $store->flag_g_st = 0; // resetting the set number in the store
 ?>
@@ -17,13 +16,15 @@ $store->flag_g_st = 0; // resetting the set number in the store
 <head>
     <meta charset="UTF-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Admin | Approvals</title>
+    <title>Orders: Pharmacy list</title>
 
     <!-- Font awesome kit -->
     <script crossorigin="anonymous" src="https://kit.fontawesome.com/9b33f63a16.js"></script>
     <!-- Simplebar -->
     <link rel="stylesheet" href="https://unpkg.com/simplebar@latest/dist/simplebar.css"/>
     <script src="https://unpkg.com/simplebar@latest/dist/simplebar.min.js"></script>
+    <!-- Sweet Alert -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!-- g28 style -->
     <link rel="stylesheet" href="/scss/main.css" />
     <link rel="stylesheet" href="/scss/vendor/employee.css" />
@@ -32,7 +33,7 @@ $store->flag_g_st = 0; // resetting the set number in the store
 <body>
 <!-- Section: Fixed Components -->
 <?php
-echo $components->createSidebar('approval');
+echo $components->createSidebar('orders');
 echo $components->createNavbar();
 $store->renderNotification();
 ?>
@@ -57,21 +58,11 @@ $store->renderNotification();
             <div class="separator"></div>
             <form class="block row" method="POST" action="">
                 <div class="col">
-                    <label for="filter-by-type">Group by: </label>
+                    <label for="sort-by">Sort by: </label>
                 </div>
                 <div class="col">
-                    <g28-selectbox id="filter-by-type" class="filtering-selectbox" placeholder="All" <?php
-                    if ($filter != 'all') {
-                        echo 'value="' . match ($filter) {
-                                'pharmacy' => 'Pharmacy',
-                                'supplier' => 'Supplier',
-                                'lab' => 'Laboratory',
-                                'delivery' => 'Delivery Partner',
-                                default => 'All'
-                            } . '"';
-                    }
-                    ?>>
-                        All, Pharmacy, Supplier, Laboratory, Delivery Partner
+                    <g28-selectbox id="sort-by" class="filtering-selectbox" placeholder="Default">
+                        Default, Pending, Accepted, Rejected
                     </g28-selectbox>
                 </div>
             </form>
@@ -84,34 +75,20 @@ $store->renderNotification();
                 <table class="table approval-table">
                     <thead>
                     <tr>
-                        <th>Type</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Mobile</th>
-                        <th class="c" style="max-width: 100px">Action</th>
+                        <th>Order ID</th>
+                        <th>Pharmacy Username</th>
+                        <th>Status</th>
+                        <th>Order Date</th>
                     </tr>
                     </thead>
                     <tbody>
                     <?php
+                    $controller = new EmployeeOrdersController();
                     try {
-                        $controller = new EmployeeApprovalListController();
-                        $approvals = match ($filter) {
-                            'all' => $controller->getAllApprovals(no_of_reports, $set),
-                            'pharmacy' => $controller->getPharmacyApprovals(no_of_reports, $set),
-                            'supplier' => $controller->getSupplierApprovals(no_of_reports, $set),
-                            'lab' => $controller->getLabApprovals(no_of_reports, $set),
-                            'delivery' => $controller->getDeliveryApprovals(no_of_reports, $set),
-                            default => throw new Exception("Invalid filter!"),
-                        };
-                        if (!empty($approvals)) {
-                            for ($i = 0; $i < no_of_reports; $i++) {
-                                if (array_key_exists($i, $approvals)) {
-                                    echo $components->createApprovalItem($approvals[$i]);
-                                } else {
-                                    echo "<tr class='empty'>";
-                                    echo "<td colspan='5'></td>";
-                                    echo "</tr>";
-                                }
+                        $res_list = $controller->getOrderList(no_of_reports, $set);
+                        if (!empty($res_list)) {
+                            foreach ($res_list as $item) {
+                                echo $components->createOrderItem($item);
                             }
                         } else {
                             echo "<tr class='empty'>";
@@ -122,7 +99,7 @@ $store->renderNotification();
                             }
                         }
                     } catch (Exception $e) {
-                        echo "Something went wrong!";
+                        echo "Something went wrong! $e";
                     }
                     ?>
                     </tbody>
@@ -140,37 +117,19 @@ $store->renderNotification();
     configs.stage = 'dev';
     configs.scssStylePath = '../scss/';
 
-    //logging
-    logger("Logging g28 initial state before loading specialized JS files...");
-    for (let property in configs) {
-        logger(`> ${property}: ${configs[property]}`);
-    }
-
-    // demo toast
+    // handles the click event of the table rows
     document.querySelectorAll('.approval-table tbody tr:not(.empty)').forEach((row) => {
         row.addEventListener('click', (e) => {
             e.stopPropagation();
             if (e.target.tagName === 'TD') {
-                let entity = row.getAttribute('data-usr');
+                let id = row.getAttribute('data-id');
                 let type = row.getAttribute('data-tp');
-                window.location.href = '/employee/approve/' + type + '?et=' + entity;
+                handleViewOrderDetailsClick(id);
             }
         });
     });
-
-    document.querySelector('g28-selectbox#filter-by-type').addEventListener('change', (e) => {
-        let type = e.detail.value;
-        if (type === 'All') {
-            window.location.href = '/employee/approve';
-        } else if (type === 'Laboratory') {
-            window.location.href = '/employee/approve?f=lab';
-        } else if (type === 'Delivery Partner') {
-            window.location.href = '/employee/approve?f=delivery';
-        } else {
-            window.location.href = '/employee/approve?f=' + type.toLowerCase();
-        }
-    });
 </script>
+<script src="/js/employee/orders.js"></script>
 <script src="/js/g28-forms.js"></script>
 <script src="/js/g28-toast.js"></script>
 <!-- g28 styling framework -->
