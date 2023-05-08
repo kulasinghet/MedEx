@@ -1,6 +1,6 @@
 <html lang="en">
 <head>
-    <title>Login | MedEx</title>
+    <title>Welcome | MedEx</title>
     <!--        <link href="../scss2/vendor/demo.css" rel="stylesheet"/>-->
     <link rel="stylesheet" href="/css/loginPage.css">
     <link href='/css/error-model.css' rel='stylesheet'>
@@ -24,20 +24,19 @@
 <div class="container">
 
     <div class="image">
-        <p id="tagline">Welcome</p>
         <img src="/res/logo/logo.svg" alt="loginPageImage">
         <p id="tagline">Efficiently Managing Medicines for Pharmacies</p>
     </div>
 
     <div class="sign-in-component">
 
-        <button id="registerButton" style="background-color: #2e60cc">
-            <a id="registerButtona" href="/login" style="background-color: #2e60cc">Login</a>
+        <button id="registerButton" style="background-color: #2e60cc; margin-bottom: 2vh;">
+            <a id="registerButtona" href="/login" style="background-color: #2e60cc; text-decoration: none">Login</a>
         </button>
 
         <div class="register-now">
             <!--            <button id="registerButton" data-modal-target="modal5">Register</button>-->
-            <button id="registerButton">
+            <button id="registerButton" style="margin-top: 2vh;">
                 <a id="registerButtona" onclick="openModal()">Register</a>
             </button>
 
@@ -61,20 +60,16 @@
                     value: "pharmacy",
                 },
                 manufacturer: {
-                    text: "Manufacturer",
-                    value: "manufacturer",
+                    text: "Supplier",
+                    value: "supplier",
                 },
-                distributor: {
-                    text: "Distributor",
-                    value: "distributor",
-                },
+                // distributor: {
+                //     text: "Delivery Partner",
+                //     value: "delivery",
+                // },
                 lab: {
                     text: "Lab",
                     value: "lab",
-                },
-                admin: {
-                    text: "Admin",
-                    value: "admin",
                 },
             },
         })
@@ -84,12 +79,12 @@
                             // get the base url and redirect to the pharmacy register page
                             window.location.href = '/pharmacy/register';
                             break;
-                        case "manufacturer":
-                            window.location.href = '/manufacturer/register';
+                        case "supplier":
+                            window.location.href = '/supplier/register';
                             break;
-                        case "distributor":
-                            window.location.href = '/distributor/register';
-                            break;
+                        // case "delivery":
+                        //     window.location.href = '/distributor/register';
+                        //     break;
                         case "lab":
                             window.location.href = '/lab/register';
                             break;
