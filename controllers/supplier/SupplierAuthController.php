@@ -46,11 +46,11 @@ class SupplierAuthController extends Controller
                         Logger::logDebug("File uploaded successfully" . "supplierRegCert" . $file_ext2);
                     } else {
                         Logger::logError("File upload failed" . "supplierRegCert" . $file_ext2);
-                        echo (new \app\core\ExceptionHandler)->fileUploadError();
+                        echo (new \app\core\ExceptionHandler)->fileUploadError("supplierRegCert" . $file_ext2);
                     }
                 } else {
                     Logger::logError("File upload failed" . "businessRegCert" . $file_ext1);
-                    echo (new \app\core\ExceptionHandler)->fileUploadError();
+                    echo (new \app\core\ExceptionHandler)->fileUploadError("businessRegCert" . $file_ext1);
                 }
 
             } else {
