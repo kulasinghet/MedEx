@@ -67,8 +67,8 @@
                     value: "supplier",
                 },
                 distributor: {
-                    text: "Distributor",
-                    value: "distributor",
+                    text: "Delivery Partner",
+                    value: "delivery",
                 },
                 lab: {
                     text: "Lab",
@@ -89,7 +89,7 @@
                         case "supplier":
                             window.location.href = '/manufacturer/register';
                             break;
-                        case "distributor":
+                        case "delivery":
                             window.location.href = '/distributor/register';
                             break;
                         case "lab":
