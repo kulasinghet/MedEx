@@ -36,6 +36,7 @@ class PharmacyOrderMedicineController extends Controller
                 }
 
                 $flag = true;
+                $this->totalPrice = number_format($this->totalPrice, 2);
 
                 $result = $order->createOrder($_SESSION['username'], $this->totalPrice, $medicineIds);
                 if ($result) {

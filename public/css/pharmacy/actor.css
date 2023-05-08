@@ -1,7 +1,18 @@
+/*h2 is the label*/
 h2 {
-    font-size: 1.5rem;
+    font-size: 1rem;
     font-weight: 600;
     margin: 1rem;
+    margin-bottom: 5px;
+    color: rgba(7, 18, 50, 0.54);
+}
+
+/*h3 is the value*/
+h3 {
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin: 1rem;
+    margin-top: 5px;
     color: #071232;
 }
 
@@ -21,4 +32,12 @@ img {
     margin-left: auto;
     margin-right: auto;
     border-radius: 0;
+}
+
+.not-verified {
+    color: #ff0000;
+}
+
+.verified {
+    color: rgba(0, 70, 0, 0.77) !important;
 }

@@ -203,6 +203,7 @@ class LoginModel extends Model
     public function getUserEmail(mixed $username)
     {
         $userType = $this->getUserInfo($username);
+        Logger::logDebug(print_r($userType, true));
         return $userType['email'];
     }
 

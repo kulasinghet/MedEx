@@ -33,13 +33,15 @@ class PharmacySellMedicineController extends Controller
 
                 $total = $form['total'];
                 $customerPayment = $form['customerPayment'];
+//                ()$customerChange = $form['customerChange'];
                 $customerChange = $form['customerChange'];
+                $customerChange = number_format($customerChange, 2, '.', '');
                 $medicineIds = $form['medicineIds'];
                 $medicineQuantities = $form['medicineQuantities'];
 
                 Logger::logDebug(print_r($form, true));
 
-                Logger::logDebug('/////////Total price ' . $this->totalPrice);
+                Logger::logDebug('/////////Total price ' . $total);
                 $flag = true;
 
                 $result = $order->createSellOrder($_SESSION['username'], $total, $medicineIds, $medicineQuantities, $customerPayment, $customerChange);

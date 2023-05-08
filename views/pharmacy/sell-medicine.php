@@ -63,17 +63,16 @@ echo $components->sideBar('sell-medicine');
                         let medicineRow = document.getElementById('order-medicine-row-' + medicineID);
                         let quantity = document.getElementById('order-medicine-quantity-' + medicineID).value;
                         let price = medicineRow.children[4].innerHTML;
-                        let totalPrice = parseInt(quantity) * parseInt(price);
+                        let totalPrice = parseFloat(quantity) * parseFloat(price);
 
-                        document.getElementById('total-price-' + medicineID).innerHTML = totalPrice.toString();
+                        document.getElementById('total-price-' + medicineID).innerHTML = totalPrice.toFixed(2).toString();
 
                         let totalOrderValue = 0;
                         let totalPrices = document.getElementsByClassName('total-price-column');
                         for (let i = 0; i < totalPrices.length; i++) {
-                            totalOrderValue += parseInt(totalPrices[i].innerHTML);
+                            totalOrderValue += parseFloat(totalPrices[i].innerHTML);
                         }
-                        document.getElementById('total-order-value').innerHTML = totalOrderValue.toString();
-
+                        document.getElementById('total-order-value').innerHTML = totalOrderValue.toFixed(2).toString();
                     }
 
                     function hideRow(medId) {
@@ -91,18 +90,14 @@ echo $components->sideBar('sell-medicine');
                         let totalOrderValue = 0;
                         let totalPrices = document.getElementsByClassName('total-price-column');
                         for (let i = 0; i < totalPrices.length; i++) {
-                            totalOrderValue += parseInt(totalPrices[i].innerHTML);
+                            totalOrderValue += parseFloat(totalPrices[i].innerHTML);
                         }
-                        document.getElementById('total-order-value').innerHTML = totalOrderValue.toString();
+                        document.getElementById('total-order-value').innerHTML = totalOrderValue.toFixed(2).toString();
 
                     }
 
                 </script>
 
-
-                <!--                <div id="main-content">-->
-                <!--                    <div class="form">-->
-                <!--                <form action="/pharmacy/order-medicine" method="post">-->
                 <table id="order-medicine-table">
                     <tr>
                         <th style="width: 1%;">Medicine ID</th>
@@ -190,8 +185,6 @@ echo $components->sideBar('sell-medicine');
                             }
                         }
                         return true;
-                        console.log("checkMedicineQuantityisVaild end");
-
                     }
 
                     function clickOrderNowButton() {
@@ -224,7 +217,7 @@ echo $components->sideBar('sell-medicine');
 
                         let total = 0;
                         for (let key in orderedMedicines) {
-                            total += parseInt(orderedMedicines[key].totalPrice);
+                            total += parseFloat(orderedMedicines[key].totalPrice);
                         }
                         console.log(orderedMedicines);
 
@@ -235,11 +228,12 @@ echo $components->sideBar('sell-medicine');
                             medicineInformationForSwal += '<td>' + orderedMedicines[key].medicineName + '</td>';
                             medicineInformationForSwal += '<td style="text-align: center">' + orderedMedicines[key].medicinePrice + '</td>';
                             medicineInformationForSwal += '<td style="text-align: center">' + orderedMedicines[key].medicineQuantity + '</td>';
-                            medicineInformationForSwal += '<td style="text-align: center">' + orderedMedicines[key].totalPrice + '</td>';
+                            medicineInformationForSwal += '<td style="text-align: center">' + parseFloat(orderedMedicines[key].totalPrice).toFixed(2) + '</td>';
                             medicineInformationForSwal += '</tr>';
                         }
-                        medicineInformationForSwal += '<tr style="color: #071232; font-size: 1rem; font-weight: bold"><td>Total</td><td colspan="3"></td><td style="text-align: center">' + total + '</td></tr>';
+                        medicineInformationForSwal += '<tr style="color: #071232; font-size: 1rem; font-weight: bold"><td>Total</td><td colspan="3"></td><td style="text-align: center">' + parseFloat(total).toFixed(2).toString() + '</td></tr>';
 
+                        console.log(total)
                         if (total > 0) {
                             swal({
                                 title: "Order Summary",
@@ -275,7 +269,7 @@ echo $components->sideBar('sell-medicine');
                                     }).then((value) => {
                                         if (value) {
                                             let customerPayment = value;
-                                            let customerChange = parseInt(customerPayment) - parseInt(total);
+                                            let customerChange = parseFloat(customerPayment) - parseFloat(total);
                                             if (customerChange < 0) {
                                                 swal("Invalid payment", "Please enter a valid payment", "error");
                                                 return;
@@ -284,7 +278,7 @@ echo $components->sideBar('sell-medicine');
                                             document.getElementById('customer_money').value = customerPayment;
                                             swal({
                                                 title: "Customer Change",
-                                                text: "Customer change is LKR. " + customerChange,
+                                                text: "Customer change is LKR. " + customerChange.toFixed(2).toString(),
                                                 icon: "success",
                                                 buttons: {
                                                     confirm: "OK"
@@ -325,9 +319,9 @@ echo $components->sideBar('sell-medicine');
                                                                     'Content-Type': 'application/json'
                                                                 },
                                                                 body: JSON.stringify({
-                                                                    customerPayment: customerPayment,
-                                                                    customerChange: customerChange,
-                                                                    total: total,
+                                                                    customerPayment: parseFloat(customerPayment).toFixed(2),
+                                                                    customerChange: parseFloat(customerChange).toFixed(2),
+                                                                    total: parseFloat(total).toFixed(2),
                                                                     medicineIds: medicineIds,
                                                                     medicineQuantities: medicineQuantities
                                                                 })
