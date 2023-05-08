@@ -1,7 +1,9 @@
 <?php
 
 namespace app\models;
+
 use app\core\Database;
+use app\core\Logger;
 use DateTime;
 use DateTimeZone;
 
@@ -28,7 +30,7 @@ class LabModel extends Model
         $reg_date = $reg_date->format('Y/m/d');
 
         try {
-            $sql = "INSERT INTO laboratory (username ,laboratory_name ,business_registration_id ,laboratory_certificate_id ,BusinessRegCertName ,LabCertName ,reg_date ,email ,address ,mobile) VALUES ('$this->username', '$this->laboratory_name', '$this->business_registration_id', '$this->laboratory_certificate_id', '$this->BusinessRegCertName', '$this->LabCertName', '$reg_date', '$this->email', '$this->address', '$this->mobile')";
+            $sql = "INSERT INTO laboratory VALUES ('$this->username', '$this->laboratory_name', '$this->business_registration_id', '$this->laboratory_certificate_id', '$this->BusinessRegCertName', '$this->LabCertName', '$reg_date', '$this->email', '$this->address', '$this->mobile','0')";
             $stmt = $db->prepare($sql);
             $stmt->execute();
 
@@ -41,7 +43,7 @@ class LabModel extends Model
 
             return true;
         } catch (\Exception $e) {
-            ErrorLog::logError($e->getMessage());
+            Logger::logError($e->getMessage());
             echo $e->getMessage();
             return false;
         }
