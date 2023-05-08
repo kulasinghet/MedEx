@@ -130,8 +130,8 @@ async function handleViewOrderDetailsClick($orderId) {
                     case "accept":
                         // Accept button clicked
                         fetch(`/employee/orders/action?id=${$orderId}&st=Accepted`)
-                            .then(response => {
-                                window.location.href = response.url;
+                            .then(() => {
+                                window.location.reload();
                             });
                         break;
                     case "reject":
@@ -173,8 +173,8 @@ async function handleViewOrderDetailsClick($orderId) {
                                     });
 
                                     fetch(`/employee/orders/action?id=${$orderId}&st=Rejected`)
-                                        .then(response => {
-                                            window.location.href = response.url;
+                                        .then(() => {
+                                            window.location.reload();
                                         });
                                     break;
                                 case 'no':

@@ -3,11 +3,14 @@
 namespace app\controllers\employee;
 
 use app\core\Controller;
+use app\core\EmailServer;
 use app\core\ExceptionHandler;
 use app\core\Request;
 use app\models\EmployeeOrderModel;
 use app\models\EmployeeResourcesModel;
+use app\models\LoginModel;
 use app\stores\EmployeeStore;
+use PHPMailer\PHPMailer\Exception;
 
 class EmployeeOrdersController extends Controller
 {
@@ -24,7 +27,7 @@ class EmployeeOrdersController extends Controller
     public function loadOrderList(Request $request): void
     {
         $this->validate();
-        $this -> render("employee/orders/emp_orders.php");
+        $this -> render("employee/emp_orders.php");
     }
 
     public function getOrderList(int $set_size, $set_number = 0): array
@@ -46,16 +49,38 @@ class EmployeeOrdersController extends Controller
         return $list;
     }
 
+    /**
+     * @throws Exception
+     */
     public function oderStatusChange(Request $request): void
     {
         $this->validate();
 
+        // retrieving the employee store
+        $store = EmployeeStore::getEmployeeStore();
+
         $model = new EmployeeOrderModel();
-        $model->changeOrderStatus($request->getBody()['id'], $request->getBody()['st']);
+        $id = $request->getBody()['id'];
+        $st = $request->getBody()['st'];
+
+        if ($model->changeOrderStatus($id, $st)) {
+            $pharmacy = $model->getPharmacyByOrderID($id);
+
+            // sending the email
+            $email = new EmailServer();
+            $result = $email->sendEmail($pharmacy['email'], "Medicine order update", "Your medicine order (" . $id . ") is " . strtolower($st) . " by staff.");
+
+            if ($result) {
+                $store->setNotification('An email has been sent', $pharmacy['username'] . ' will receive an email about the medicine order.', 'success');
+            } else {
+                $store->setNotification('Couldn\'t send an email', $pharmacy['username'] . ' won\'t receive an email about the medicine order.', 'error');
+            }
+        }
+
         header('Location: /employee/orders');
     }
 
-    public function orderMedicineDetails(Request $request)
+    public function orderMedicineDetails(Request $request): void
     {
         if ($request->isGet()) {
 
