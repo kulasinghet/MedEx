@@ -4,10 +4,6 @@
   overflow-y: scroll;
 }
 
-.analysed {
-  min-width: 380px;
-}
-
 .margin-bottom {
   margin-bottom: 1rem;
 }
@@ -571,6 +567,48 @@
   .medicine-table tbody td[data-title]:before {
     content: none;
   }
+}
+
+.counters .row {
+  flex-wrap: nowrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  justify-content: center;
+}
+.counters .row .col {
+  flex: 0 0 auto;
+  width: 120px;
+  height: 120px;
+  padding: 0;
+}
+.counters .counter {
+  margin: 0;
+  width: 120px;
+  height: 120px;
+}
+.counters .counter .card-body {
+  padding: 0.2rem;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+.counters .counter .card-body h5 {
+  font-size: 2.5rem;
+  margin: 0;
+}
+.counters .counter .card-body span {
+  font-size: 12px;
+  color: #1e69fe;
+}
+
+.revenue {
+  width: 500px;
+  height: 50vh;
+  justify-content: center;
 }
 
 /*# sourceMappingURL=employee.css.map */

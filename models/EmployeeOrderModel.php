@@ -5,6 +5,7 @@ namespace app\models;
 use app\core\Database;
 use app\core\ExceptionHandler;
 use app\core\Logger;
+use app\stores\EmployeeStore;
 use mysqli;
 
 class EmployeeOrderModel extends Model
@@ -45,6 +46,9 @@ class EmployeeOrderModel extends Model
             $conn = $this->createConnection();
         }
 
+        // retrieving the employee store
+        $store = EmployeeStore::getEmployeeStore();
+
         // generates random id for the delivery request
         $req_id = $this->createRandomID('deliveryreq');
         // gets the pharmacy username and city
@@ -57,6 +61,7 @@ class EmployeeOrderModel extends Model
             $stmt->execute();
 
             if ($stmt->affected_rows == 1) {
+                $store->setNotification('Order is accepted!', 'Pharmacy order: ' . $oderID . ' is accepted!', 'success');
                 return true;
             } else {
                 Logger::logError($stmt->error);
@@ -66,30 +71,6 @@ class EmployeeOrderModel extends Model
             Logger::logError($e->getMessage());
             return false;
         }
-    }
-
-    private function getPharmacyByOrderID(string $oderID, ?mysqli $conn = null): array|null
-    {
-        if ($conn == null) {
-            $conn = $this->createConnection();
-        }
-
-        $sql = "SELECT p.username, p.city, c.distance
-                FROM pharmacy p
-                JOIN pharmacyorder po ON p.username = po.pharmacyUsername
-                JOIN city c ON p.city = c.city
-                WHERE po.id = '$oderID';";
-
-        try {
-            $result = $conn->query($sql);
-            if ($result->num_rows > 0) {
-                return $result->fetch_assoc();
-            }
-        } catch (\Exception $e) {
-            Logger::logError($e->getMessage());
-            $conn->close();
-        }
-        return null;
     }
 
     public function getAllOrders(): array
@@ -125,11 +106,38 @@ class EmployeeOrderModel extends Model
         return $output;
     }
 
+    public function getPharmacyByOrderID(string $oderID, ?mysqli $conn = null): array|null
+    {
+        if ($conn == null) {
+            $conn = $this->createConnection();
+        }
+
+        $sql = "SELECT p.username, p.email, p.city, c.distance
+                FROM pharmacy p
+                INNER JOIN pharmacyorder po ON p.username = po.pharmacyUsername
+                INNER JOIN city c ON p.city = c.city
+                WHERE po.id = '$oderID';";
+
+        try {
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0) {
+                return $result->fetch_assoc();
+            }
+        } catch (\Exception $e) {
+            Logger::logError($e->getMessage());
+            $conn->close();
+        }
+        return null;
+    }
+
     public function changeOrderStatus(string $oderID, string $status): bool
     {
         $conn = $this->createConnection();
 
-        $sql = "UPDATE `pharmacyorder` SET `status` = '".$this->statusToInt($status)."' WHERE `id`='$oderID';";
+        // retrieving the employee store
+        $store = EmployeeStore::getEmployeeStore();
+
+        $sql = "UPDATE `pharmacyorder` SET `order_status` = '".$this->statusToInt($status)."' WHERE `id`='$oderID';";
         $stmt = $conn->prepare($sql);
         try {
             $stmt->execute();
@@ -138,14 +146,17 @@ class EmployeeOrderModel extends Model
                 if ($status == 'Accepted') {
                     return $this->insertDeliveryReq($oderID, $conn);
                 } else if ($status == 'Rejected') {
+                    $store->setNotification('Order is rejected!', 'Pharmacy order: ' . $oderID . ' is rejected!', 'success');
                     return true;
                 }
                 return false;
             } else {
+                $store->setNotification('Something went wrong!', 'Pharmacy order: ' . $oderID . ' couldn\'t be changed (see logs).', 'error');
                 Logger::logError($stmt->error);
                 return false;
             }
         } catch (\Exception $e) {
+            $store->setNotification('Something went wrong!', 'Pharmacy order: ' . $oderID . ' couldn\'t be changed (see logs).', 'error');
             Logger::logError($e->getMessage());
             return false;
         }
