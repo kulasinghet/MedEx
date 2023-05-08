@@ -41,6 +41,7 @@ class SupplierAuthController extends Controller
                 $filedestination1 = 'uploads\supplier\businessRegCert' . DIRECTORY_SEPARATOR . $BusRegiCert_Name_New;
                 $filedestination2 = 'uploads\supplier\supplierRegCert' . DIRECTORY_SEPARATOR . $SuppRegiCert_Name_New;
 
+                Logger::logDebug("going to upload file");
                 if (move_uploaded_file($file1['tmp_name'], $filedestination1)) {
                     if (move_uploaded_file($file2['tmp_name'], $filedestination2)) {
                         Logger::logDebug("File uploaded successfully" . "supplierRegCert" . $file_ext2);
