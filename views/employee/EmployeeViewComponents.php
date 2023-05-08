@@ -59,7 +59,7 @@ class EmployeeViewComponents
     <div class="sidebar-inner">
         <nav class="sidebar-header">
             <div class="sidebar-logo">
-                <a href="#">
+                <a href="/dashboard">
                     <img alt="MedEx logo" src="/res/logo/logo-text_light.svg"/>
                 </a>
             </div>
@@ -130,8 +130,7 @@ class EmployeeViewComponents
 <nav>
     <div class="nav-inner">
         <ul>
-            <li><a href="/employee/settings"><i class="fa-solid fa-gear"></i></a></li>
-            <li><a href="#"><i class="fa-solid fa-bell"></i></a></li>
+            <li><a href="/employee/profile"><i class="fa-solid fa-gear"></i></a></li>
             <li><a href="/logout"><i class="fa-solid fa-right-from-bracket"></i></a></li>
         </ul>
         <a class="nav-profile" href="/employee">
@@ -152,7 +151,6 @@ class EmployeeViewComponents
     <div class="nav-inner">
         <ul>
             <li><a href="#"><i class="fa-solid fa-gear"></i></a></li>
-            <li><a href="#"><i class="fa-solid fa-bell"></i></a></li>
             <li><a href="/logout"><i class="fa-solid fa-right-from-bracket"></i></a></li>
         </ul>
         <a class="nav-profile" href="/employee">

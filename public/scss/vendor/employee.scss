@@ -673,7 +673,19 @@ $bp-homer: 75em;
 }
 
 // Dasheboard page
+.master {
+  align-items: center;
+  justify-content: space-between;
+
+  > * {
+    flex: 0 1 auto;
+  }
+}
+
 .counters {
+  max-height: 320px;
+  margin: 1rem;
+
   .row {
     flex-wrap: nowrap;
     gap: 1rem;
@@ -682,16 +694,16 @@ $bp-homer: 75em;
 
     .col {
       flex: 0 0 auto;
-      width: 120px;
-      height: 120px;
+      width: 150px;
+      height: 150px;
       padding: 0;
     }
   }
 
   .counter {
     margin: 0;
-    width: 120px;
-    height: 120px;
+    width: 150px;
+    height: 150px;
 
     .card-body {
       padding: .2rem;
@@ -701,7 +713,7 @@ $bp-homer: 75em;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      gap: .5rem;
+      gap: .8rem;
 
       h5 {
         font-size: 2.5rem;
@@ -709,7 +721,7 @@ $bp-homer: 75em;
       }
 
       span {
-        font-size: 12px;
+        font-size: 14px;
         color: $primary;
       }
     }
@@ -717,7 +729,14 @@ $bp-homer: 75em;
 }
 
 .revenue {
-  width: 500px;
-  height: 50vh;
+  flex: 1 1 400px !important;
+  width: 650px;
+  height: 45vh;
   justify-content: center;
+}
+
+.pharmacy-orders {
+  width: 50vw;
+  margin-bottom: 1rem;
+  overflow: initial;
 }
