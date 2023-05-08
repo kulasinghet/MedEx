@@ -327,7 +327,7 @@ echo $components->sideBar('sell-medicine');
                                                                 })
                                                             }).then((response) => {
                                                                 if (response.ok) {
-                                                                    swal("Order Confirmed", "Your order has been placed", "success");
+                                                                    swal("Please Wait", "Your order has been placed", "success");
                                                                     setTimeout(function () {
                                                                         window.location.href = "https://medex28.tech/pharmacy/invoices";
                                                                     }, 2000);
