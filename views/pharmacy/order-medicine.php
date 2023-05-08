@@ -224,7 +224,7 @@ echo $components->sideBar('order-medicine');
                                 if (value) {
                                     document.getElementById('order-medicine-form').submit();
                                     swal({
-                                        title: "Order Confirmed",
+                                        title: "Please Wait",
                                         text: "Your order is being processed",
                                         icon: "success",
                                         buttons: {},
