@@ -101,7 +101,7 @@ class MedicineModel extends Model
     {
 
         $conn = (new Database())->getConnection();
-        $sql = "SELECT m.id, m.medName, m.sciName, COALESCE(s.remQty, 0) AS remQty, sm.unitPrice AS price FROM medex.medicine m LEFT JOIN medex.stock s ON m.id = s.medId JOIN medex.supplier_medicine sm ON m.id = sm.medId WHERE m.id IN (SELECT medId FROM medex.supplier_medicine) AND sm.verified = 1 ORDER BY m.id;";
+        $sql = "SELECT m.id, m.medName, m.sciName, COALESCE(s.remQty, 0) AS remQty, sm.unitPrice AS price FROM medex.medicine m LEFT JOIN medex.stock s ON m.id = s.medId JOIN medex.supplier_medicine sm ON m.id = sm.medId WHERE m.id IN (SELECT medId FROM medex.supplier_medicine) AND sm.verified = 1 AND s.pharmacyName='lankaPharmacy' ORDER BY m.id;";
 
         try {
             $stmt = $conn->prepare($sql);
@@ -170,6 +170,25 @@ class MedicineModel extends Model
         }
 
         $db->close();
+    }
+
+    public function getRemQty(mixed $id, mixed $pharmacyUsername)
+    {
+        Logger::logDebug('MedicineModel::getRemQty()' . $id);
+        $db = (new Database())->getConnection();
+        $sql = "SELECT s.remQty FROM medex.stock s WHERE s.medId = '$id' AND s.pharmacyName = '$pharmacyUsername' ORDER BY s.medId LIMIT 1";
+        $db->close();
+        // return the remQty
+        $result = $db->query($sql);
+        $row = $result->fetch_assoc();
+        Logger::logDebug($id . ' remQty: ' . $row['remQty']);
+        if ($row['remQty'] == null) {
+            return 0;
+        } else {
+            return $row['remQty'];
+        }
+
+
     }
 
 }

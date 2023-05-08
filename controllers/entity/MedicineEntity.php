@@ -14,4 +14,17 @@ class MedicineEntity extends \app\core\Controller
         return (new \app\models\MedicineModel)->getAllMedicines();
     }
 
+    public function getRemQty(mixed $id)
+    {
+        $pharmacyUsername = $_SESSION['username'];
+        $remQty = (new \app\models\MedicineModel)->getRemQty($id, $pharmacyUsername);
+
+        if ($remQty) {
+            return $remQty;
+        } else {
+            return 0;
+        }
+
+    }
+
 }
