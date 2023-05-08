@@ -4,6 +4,7 @@ namespace app\models\HyperEntities;
 
 use app\core\Database;
 use app\core\Logger;
+use app\stores\EmployeeStore;
 use Exception;
 
 class HyperSupplierModel extends HyperEntityModel
@@ -61,6 +62,9 @@ class HyperSupplierModel extends HyperEntityModel
         $db = new Database();
         $conn = $db->getConnection();
 
+        // retrieving the employee store
+        $store = EmployeeStore::getEmployeeStore();
+
         try {
             $sql = "UPDATE `supplier` SET `verified` = " . ($action ?? "NULL") . " WHERE `username`='$this->username';";
 
@@ -68,12 +72,15 @@ class HyperSupplierModel extends HyperEntityModel
             $stmt->execute();
 
             if ($stmt->affected_rows == 1) {
+                $store->setNotification('Supplier is verified!', $this->username . ' is verified successfully.', 'success');
                 return true;
             } else {
+                $store->setNotification('Supplier verification error!', $this->username . ' couldn\'t be verified (see logs).', 'error');
                 Logger::logError($stmt->error);
                 return false;
             }
         } catch (Exception $e) {
+            $store->setNotification('Supplier verification error!', $this->username . ' couldn\'t be verified (see logs).', 'error');
             Logger::logError($e->getMessage());
             return false;
         }

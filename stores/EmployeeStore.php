@@ -12,7 +12,7 @@ use Exception;
 class EmployeeStore
 {
     public string $username;
-    public ?ToastNotification $toast;
+    public array $toast_list;
 
     // general list page variables
     public string $flag_g_t; // stores the entity type
@@ -30,6 +30,7 @@ class EmployeeStore
     private final function __construct()
     {
         $this->list_g = [];
+        $this->toast_list = [];
         $this->g_obj = null;
         $this->flag_g_t = '';
         $this->flag_g_st = 0;
@@ -66,14 +67,16 @@ class EmployeeStore
 
     public function setNotification($subject, $message, $type): void
     {
-        $this->toast = new ToastNotification($subject, $message, $type);
+        $this->toast_list[] = new ToastNotification($subject, $message, $type);
     }
 
-    public function renderNotification(): void
+    public function renderNotifications(): void
     {
-        if (isset($this->toast)) {
-            echo $this->toast->render();
-            $this->toast = null;
+        if ($this->toast_list != []) {
+            foreach ($this->toast_list as $toast) {
+                echo $toast->render();
+            }
+            $this->toast_list = [];
         }
     }
 }
