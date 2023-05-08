@@ -287,7 +287,7 @@ echo $components->sideBar('sell-medicine');
                                                 if (value) {
 
                                                     swal({
-                                                        title: "Order Confirmed",
+                                                        title: "Please Wait",
                                                         text: "Your order is being processed",
                                                         icon: "success",
                                                         buttons: {},
@@ -327,7 +327,7 @@ echo $components->sideBar('sell-medicine');
                                                                 })
                                                             }).then((response) => {
                                                                 if (response.ok) {
-                                                                    swal("Please Wait", "Your order has been placed", "success");
+                                                                    swal("Order Confirmed", "Your order has been placed", "success");
                                                                     setTimeout(function () {
                                                                         window.location.href = "https://medex28.tech/pharmacy/invoices";
                                                                     }, 2000);
