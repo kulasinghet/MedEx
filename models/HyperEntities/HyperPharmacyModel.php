@@ -4,6 +4,7 @@ namespace app\models\HyperEntities;
 
 use app\core\Database;
 use app\core\Logger;
+use app\stores\EmployeeStore;
 
 class HyperPharmacyModel extends HyperEntityModel
 {
@@ -63,6 +64,9 @@ class HyperPharmacyModel extends HyperEntityModel
         $db = new Database();
         $conn = $db->getConnection();
 
+        // retrieving the employee store
+        $store = EmployeeStore::getEmployeeStore();
+
         try {
             $sql = "UPDATE `pharmacy` SET `verified` = ".($action?? "NULL")." WHERE `username`='$this->username';";
             echo $sql;
@@ -71,12 +75,15 @@ class HyperPharmacyModel extends HyperEntityModel
             $stmt->execute();
 
             if ($stmt->affected_rows == 1) {
+                $store->setNotification('Pharmacy is verified!', $this->username . ' is verified successfully.', 'success');
                 return true;
             } else {
+                $store->setNotification('Pharmacy verification error!', $this->username . ' couldn\'t be verified (see logs).', 'error');
                 Logger::logError($stmt->error);
                 return false;
             }
         } catch (\Exception $e) {
+            $store->setNotification('Pharmacy verification error!', $this->username . ' couldn\'t be verified (see logs).', 'error');
             Logger::logError($e->getMessage());
             return false;
         }

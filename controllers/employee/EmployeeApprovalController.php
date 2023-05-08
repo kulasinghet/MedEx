@@ -2,15 +2,20 @@
 
 namespace app\controllers\employee;
 
+use app\core\EmailServer;
 use app\core\Request;
 use app\models\HyperEntities\HyperDeliveryModel;
 use app\models\HyperEntities\HyperLabModel;
 use app\models\HyperEntities\HyperPharmacyModel;
 use app\models\HyperEntities\HyperSupplierModel;
 use app\stores\EmployeeStore;
+use PHPMailer\PHPMailer\Exception;
 
 class EmployeeApprovalController extends MasterCRUDController
 {
+    /**
+     * @throws Exception
+     */
     public function loadPharmacy(Request $request): void
     {
         $this->validate();
@@ -26,12 +31,32 @@ class EmployeeApprovalController extends MasterCRUDController
             switch ($store->flag_g_act) {
                 case 'approve':
                     $obj->verify(true);
-                    $store->setNotification('Pharmacy Approval', 'Pharmacy is approved!', 'success');
+
+                    // sending the email
+                    $email = new EmailServer();
+                    $result = $email->sendEmail($obj->email, "Account Verification", "Your Medex account is verified by staff!");
+
+                    if ($result) {
+                        $store->setNotification('An email has been sent', $obj->username . ' will receive an email about the verification.', 'success');
+                    } else {
+                        $store->setNotification('Couldn\'t send an email', $obj->username . ' won\'t receive an email about the verification.', 'error');
+                    }
+
                     header('Location: /employee/approve');
                     break;
                 case 'ignore':
                     $obj->verify(null);
-                    $store->setNotification('Pharmacy Approval', 'Pharmacy is ignored!', 'success');
+
+                    // sending the email
+                    $email = new EmailServer();
+                    $result = $email->sendEmail($obj->email, "Account Verification", "Your Medex account is rejected by staff!");
+
+                    if ($result) {
+                        $store->setNotification('An email has been sent', $obj->username . ' will receive an email about the verification.', 'success');
+                    } else {
+                        $store->setNotification('Couldn\'t send an email', $obj->username . ' won\'t receive an email about the verification.', 'error');
+                    }
+
                     header('Location: /employee/approve');
                     break;
                 default:
@@ -45,6 +70,9 @@ class EmployeeApprovalController extends MasterCRUDController
         }
     }
 
+    /**
+     * @throws Exception
+     */
     public function loadSupplier(Request $request): void
     {
         $this->validate();
@@ -60,12 +88,32 @@ class EmployeeApprovalController extends MasterCRUDController
             switch ($store->flag_g_act) {
                 case 'approve':
                     $obj->verify(true);
-                    $store->setNotification('Supplier Approval', 'Supplier is approved!', 'success');
+
+                    // sending the email
+                    $email = new EmailServer();
+                    $result = $email->sendEmail($obj->email, "Account Verification", "Your Medex account is verified by staff!");
+
+                    if ($result) {
+                        $store->setNotification('An email has been sent', $obj->username . ' will receive an email about the verification.', 'success');
+                    } else {
+                        $store->setNotification('Couldn\'t send an email', $obj->username . ' won\'t receive an email about the verification.', 'error');
+                    }
+
                     header('Location: /employee/approve');
                     break;
                 case 'ignore':
                     $obj->verify(null);
-                    $store->setNotification('Supplier Approval', 'Supplier is ignored!', 'success');
+
+                    // sending the email
+                    $email = new EmailServer();
+                    $result = $email->sendEmail($obj->email, "Account Verification", "Your Medex account is rejected by staff!");
+
+                    if ($result) {
+                        $store->setNotification('An email has been sent', $obj->username . ' will receive an email about the verification.', 'success');
+                    } else {
+                        $store->setNotification('Couldn\'t send an email', $obj->username . ' won\'t receive an email about the verification.', 'error');
+                    }
+
                     header('Location: /employee/approve');
                     break;
                 default:
@@ -79,6 +127,9 @@ class EmployeeApprovalController extends MasterCRUDController
         }
     }
 
+    /**
+     * @throws Exception
+     */
     public function loadDelivery(Request $request): void
     {
         $this->validate();
@@ -94,12 +145,32 @@ class EmployeeApprovalController extends MasterCRUDController
             switch ($store->flag_g_act) {
                 case 'approve':
                     $obj->verify(true);
-                    $store->setNotification('Delivery Partner Approval', 'Delivery partner is approved!', 'success');
+
+                    // sending the email
+                    $email = new EmailServer();
+                    $result = $email->sendEmail($obj->email, "Account Verification", "Your Medex account is verified by staff!");
+
+                    if ($result) {
+                        $store->setNotification('An email has been sent', $obj->username . ' will receive an email about the verification.', 'success');
+                    } else {
+                        $store->setNotification('Couldn\'t send an email', $obj->username . ' won\'t receive an email about the verification.', 'error');
+                    }
+
                     header('Location: /employee/approve');
                     break;
                 case 'ignore':
                     $obj->verify(null);
-                    $store->setNotification('Delivery Partner Approval', 'Delivery partner is ignored!', 'success');
+
+                    // sending the email
+                    $email = new EmailServer();
+                    $result = $email->sendEmail($obj->email, "Account Verification", "Your Medex account is rejected by staff!");
+
+                    if ($result) {
+                        $store->setNotification('An email has been sent', $obj->username . ' will receive an email about the verification.', 'success');
+                    } else {
+                        $store->setNotification('Couldn\'t send an email', $obj->username . ' won\'t receive an email about the verification.', 'error');
+                    }
+
                     header('Location: /employee/approve');
                     break;
                 default:
@@ -113,6 +184,9 @@ class EmployeeApprovalController extends MasterCRUDController
         }
     }
 
+    /**
+     * @throws Exception
+     */
     public function loadLab(Request $request): void
     {
         $this->validate();
@@ -128,12 +202,32 @@ class EmployeeApprovalController extends MasterCRUDController
             switch ($store->flag_g_act) {
                 case 'approve':
                     $obj->verify(true);
-                    $store->setNotification('Laboratory Approval', 'Laboratory is approved!', 'success');
+
+                    // sending the email
+                    $email = new EmailServer();
+                    $result = $email->sendEmail($obj->email, "Account Verification", "Your Medex account is verified by staff!");
+
+                    if ($result) {
+                        $store->setNotification('An email has been sent', $obj->username . ' will receive an email about the verification.', 'success');
+                    } else {
+                        $store->setNotification('Couldn\'t send an email', $obj->username . ' won\'t receive an email about the verification.', 'error');
+                    }
+
                     header('Location: /employee/approve');
                     break;
                 case 'ignore':
                     $obj->verify(null);
-                    $store->setNotification('Laboratory Approval', 'Laboratory is ignored!', 'success');
+
+                    // sending the email
+                    $email = new EmailServer();
+                    $result = $email->sendEmail($obj->email, "Account Verification", "Your Medex account is rejected by staff!");
+
+                    if ($result) {
+                        $store->setNotification('An email has been sent', $obj->username . ' will receive an email about the verification.', 'success');
+                    } else {
+                        $store->setNotification('Couldn\'t send an email', $obj->username . ' won\'t receive an email about the verification.', 'error');
+                    }
+
                     header('Location: /employee/approve');
                     break;
                 default:
