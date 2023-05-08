@@ -93,7 +93,7 @@
                 let rating = form.elements["rating"].value;
                 let comment = form.elements["comment"].value;
 
-                fetch('http://localhost:8080/report/medicine-order)', {
+                fetch('http://146.190.15.95/report/medicine-order)', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
