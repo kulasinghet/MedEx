@@ -172,7 +172,7 @@ $store->renderNotification();
     });
 </script>
 <script src="/js/g28-forms.js"></script>
-<script src="../js/g28-toast.js"></script>
+<script src="/js/g28-toast.js"></script>
 <!-- g28 styling framework -->
 </body>
 </html>
