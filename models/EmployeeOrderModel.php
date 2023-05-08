@@ -5,7 +5,7 @@ namespace app\models;
 use app\core\Database;
 use app\core\ExceptionHandler;
 use app\core\Logger;
-use app\models\HyperEntities\HyperPharmacyModel;
+use mysqli;
 
 class EmployeeOrderModel extends Model
 {
@@ -44,7 +44,60 @@ class EmployeeOrderModel extends Model
         };
     }
 
-    public function getAll(): array
+    private function insertDeliveryReq(string $oderID, ?mysqli $conn = null): bool
+    {
+        if ($conn == null) {
+            $conn = $this->createConnection();
+        }
+
+        // generates random id for the delivery request
+        $req_id = $this->createRandomID('deliveryreq');
+        // gets the pharmacy username and city
+        $pharmacy = $this->getPharmacyByOrderID($oderID, $conn);
+
+        $sql = "INSERT INTO `deliveryreq` (`id`, `location`, `pharmacyName`, `orderId`, `status`, `payment`) 
+                VALUES ('$req_id', '".$pharmacy['username']."', '".$pharmacy['city']."', '$oderID', '0', ".($pharmacy['distance'] * 300).");";
+        $stmt = $conn->prepare($sql);
+        try {
+            $stmt->execute();
+
+            if ($stmt->affected_rows == 1) {
+                return true;
+            } else {
+                Logger::logError($stmt->error);
+                return false;
+            }
+        } catch (\Exception $e) {
+            Logger::logError($e->getMessage());
+            return false;
+        }
+    }
+
+    private function getPharmacyByOrderID(string $oderID, ?mysqli $conn = null): array|null
+    {
+        if ($conn == null) {
+            $conn = $this->createConnection();
+        }
+
+        $sql = "SELECT p.username, p.city, c.distance
+                FROM pharmacy p
+                JOIN pharmacyorder po ON p.username = po.pharmacyUsername
+                JOIN city c ON p.city = c.city
+                WHERE po.id = '$oderID';";
+
+        try {
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0) {
+                return $result->fetch_assoc();
+            }
+        } catch (\Exception $e) {
+            Logger::logError($e->getMessage());
+            $conn->close();
+        }
+        return null;
+    }
+
+    public function getAllOrders(): array
     {
         $conn = $this->createConnection();
 
@@ -87,7 +140,12 @@ class EmployeeOrderModel extends Model
             $stmt->execute();
 
             if ($stmt->affected_rows == 1) {
-                return true;
+                if ($status == 'Accepted') {
+                    return $this->insertDeliveryReq($oderID, $conn);
+                } else if ($status == 'Rejected') {
+                    return true;
+                }
+                return false;
             } else {
                 Logger::logError($stmt->error);
                 return false;

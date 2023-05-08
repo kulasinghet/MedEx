@@ -38,7 +38,7 @@ class EmployeeOrdersController extends Controller
         } else {
             $model = new EmployeeOrderModel();
             // creating an array of all resources
-            $list = $model->getAll();
+            $list = $model->getAllOrders();
         }
 
         // slicing the list to the set size
