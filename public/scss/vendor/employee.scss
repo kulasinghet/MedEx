@@ -612,6 +612,14 @@ $bp-homer: 75em;
           background-color: rgba(0,0,0,.12);
         }
       }
+
+      &.red {
+        background: #ffc9c9;
+      }
+
+      &.green {
+        background: #b2f2bb;
+      }
     }
 
     th[scope="row"] {

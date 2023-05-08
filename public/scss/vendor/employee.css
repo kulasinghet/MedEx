@@ -515,6 +515,12 @@
     background-color: rgba(0, 0, 0, 0.12);
   }
 }
+.medicine-table tbody tr.red {
+  background: #ffc9c9;
+}
+.medicine-table tbody tr.green {
+  background: #b2f2bb;
+}
 .medicine-table tbody th[scope=row] {
   background-color: rgb(38, 137, 13);
   color: white;

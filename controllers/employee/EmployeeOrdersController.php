@@ -3,6 +3,7 @@
 namespace app\controllers\employee;
 
 use app\core\Controller;
+use app\core\ExceptionHandler;
 use app\core\Request;
 use app\models\EmployeeOrderModel;
 use app\models\EmployeeResourcesModel;
@@ -52,5 +53,24 @@ class EmployeeOrdersController extends Controller
         $model = new EmployeeOrderModel();
         $model->changeOrderStatus($request->getBody()['id'], $request->getBody()['st']);
         header('Location: /employee/orders');
+    }
+
+    public function orderMedicineDetails(Request $request)
+    {
+        if ($request->isGet()) {
+
+            $orderId = $request->getParams()['orderId'];
+
+            $order = (new EmployeeOrderModel())->getMedicineByOrderID($orderId);
+
+            header('Content-Type: application/json');
+            // Echo the JSON-encoded response
+            echo json_encode($order);
+
+
+        } else {
+            echo (new ExceptionHandler)->somethingWentWrong();
+            header('Location: /pharmacy/orders');
+        }
     }
 }

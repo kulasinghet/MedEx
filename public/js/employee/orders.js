@@ -1,6 +1,7 @@
 // handles the alert when a row item is clicked
 async function handleViewOrderDetailsClick($orderId) {
     try {
+        // buzzing model
         swal({
             title: 'Loading',
             text: 'Please wait...',
@@ -19,23 +20,15 @@ async function handleViewOrderDetailsClick($orderId) {
 
         const response = await fetch(`/pharmacy/api/order-details?orderId=${$orderId}`);
         const orderData = await response.json();
-        // console.log(orderData.totalPrice);
-        // {"orderId":"411205testPharmacy977","pharmacyId":"testPharmacy","orderDate":"2023-04-13","totalPrice":"230","orderStatus":"0","deliveryDate":null}
 
-        const response2 = await fetch(`/pharmacy/api/order-medicine-details?orderId=${$orderId}`);
-        // const orderedMedicines = await response2.json();
-
-        // while response2 is loading show loading spinner
-
-
+        const response2 = await fetch(`/employee/orders/medicine-details?orderId=${$orderId}`);
         const orderedMedicines = await response2.json();
 
         swal.close();
+        // buzzing model
 
 
-        console.log(orderedMedicines);
-        console.log(orderData);
-
+        // Order model
         let orderInformationForSwal = '';
         if (orderData !== undefined || orderData.length > 0) {
             orderInformationForSwal = `
@@ -73,6 +66,7 @@ async function handleViewOrderDetailsClick($orderId) {
         }
 
         let medicineInformationForSwal = '';
+        let acceptedMedicineCount = 0;
 
         if (orderedMedicines !== undefined || orderedMedicines.length > 0) {
 
@@ -91,11 +85,14 @@ async function handleViewOrderDetailsClick($orderId) {
     <tbody>`;
 
             for (let key in orderedMedicines) {
+                let is_supplier_accepted = orderedMedicines[key].supName !== null;
+                if (is_supplier_accepted) acceptedMedicineCount++;
+
                 medicineInformationForSwal += `
-<tr>
+<tr` + (is_supplier_accepted? ` class="green"` : ` class="red"`) + `>
     <td>` + orderedMedicines[key].medId + `</td>
     <td>` + orderedMedicines[key].medName + `</td>
-    <td>` + orderedMedicines[key].supName + `</td>
+    <td>` + (orderedMedicines[key].supName?? "N/A") + `</td>
     <td>` + orderedMedicines[key].quantity + `</td>
     <td>` + parseInt(orderedMedicines[key].unitPrice) * parseInt(orderedMedicines[key].quantity) + `</td>
 </tr>`;
@@ -113,7 +110,7 @@ async function handleViewOrderDetailsClick($orderId) {
             medicineInformationForSwal = '<h4>No Medicine Ordered</h4>';
         }
 
-        if (orderData.orderStatus === 'Pending')
+        if (orderData.orderStatus === 'Pending' && acceptedMedicineCount === orderedMedicines.length)
         {
             swal({
                 title: "Order Summary" + '\t' + $orderId,
@@ -137,6 +134,75 @@ async function handleViewOrderDetailsClick($orderId) {
                                 window.location.href = response.url;
                             });
                         break;
+                    case "reject":
+                        // Reject button clicked
+                        swal("Are you sure? This action cannot be undone!", {
+                            buttons: {
+                                confirm: {
+                                    text: "Yes",
+                                    value: 'yes',
+                                    visible: true,
+                                    className: "",
+                                    closeModal: true
+                                },
+                                cancel: {
+                                    text: "No",
+                                    value: 'no',
+                                    visible: true,
+                                    className: "",
+                                    closeModal: true,
+                                }
+                            },
+                        }).then((value) => {
+                            switch (value) {
+                                case 'yes':
+                                    swal({
+                                        title: 'Loading',
+                                        text: 'Please wait...',
+                                        buttons: false,
+                                        closeOnClickOutside: false,
+                                        closeOnEsc: false,
+                                        content: {
+                                            element: "img",
+                                            attributes: {
+                                                // add loading gitf from internet
+                                                src: "https://i.gifer.com/ZZ5H.gif",
+                                                style: "width:25px; margin-bottom:20px;"
+                                            },
+                                        }
+                                    });
+
+                                    fetch(`/employee/orders/action?id=${$orderId}&st=Rejected`)
+                                        .then(response => {
+                                            window.location.href = response.url;
+                                        });
+                                    break;
+                                case 'no':
+                                    // close the modal
+                                    break;
+                            }
+                        });
+                        break;
+                    default:
+                    // Modal closed without any button clicked
+                    // Add your logic here
+                }
+            });
+        } else if (orderData.orderStatus === 'Pending' && acceptedMedicineCount < orderedMedicines.length) {
+            swal({
+                title: "Order Summary" + '\t' + $orderId,
+                content: {
+                    element: "div",
+                    attributes: {
+                        innerHTML: orderInformationForSwal + medicineInformationForSwal,
+                    }
+                },
+                buttons: {
+                    reject: "Reject",
+                    cancel: "Close",
+                },
+            }).then((value) => {
+                switch (value) {
                     case "reject":
                         // Reject button clicked
                         swal("Are you sure? This action cannot be undone!", {

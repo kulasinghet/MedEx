@@ -123,6 +123,7 @@ $app->router->get('/employee/orders', [EmployeeOrdersController::class, 'loadOrd
 $app->router->post('/employee/orders', [EmployeeOrdersController::class, 'loadOrderList']);
 
 $app->router->get('/employee/orders/action', [EmployeeOrdersController::class, 'oderStatusChange']);
+$app->router->get('/employee/orders/medicine-details', [EmployeeOrdersController::class, 'orderMedicineDetails']);
 //#########################################################################################
 
 

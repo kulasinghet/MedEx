@@ -3,6 +3,7 @@
 namespace app\models;
 
 use app\core\Database;
+use app\core\ExceptionHandler;
 use app\core\Logger;
 use app\models\HyperEntities\HyperPharmacyModel;
 
@@ -93,6 +94,26 @@ class EmployeeOrderModel extends Model
             }
         } catch (\Exception $e) {
             Logger::logError($e->getMessage());
+            return false;
+        }
+    }
+
+    public function getMedicineByOrderID(mixed $orderId): false|array
+    {
+        $conn = $this->createConnection();
+
+        $sql = "SELECT `order`.medId, `med`.medName, `order`.supName, `order`.quantity, `supp`.unitPrice 
+                FROM `pharmacyordermedicine` `order`
+                    LEFT JOIN `medicine` `med` ON `order`.medid = `med`.id
+                    LEFT JOIN `supplier_medicine` `supp` ON `med`.id = `supp`.medid WHERE orderid = '$orderId'";
+
+        try {
+            $result = $conn->query($sql);
+            Logger::logDebug($sql);
+            return $result->fetch_all(MYSQLI_ASSOC);
+        } catch (\Exception $e) {
+            Logger::logError($e->getMessage());
+            echo (new ExceptionHandler)->somethingWentWrong();
             return false;
         }
     }
