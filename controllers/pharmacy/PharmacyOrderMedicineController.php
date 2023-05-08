@@ -154,7 +154,6 @@ class PharmacyOrderMedicineController extends Controller
             $order = (new \app\models\PharmacyOrderModel())->getMedicineByOrderID($orderId);
 
             header('Content-Type: application/json');
-            // Echo the JSON-encoded response
             echo json_encode($order);
 
 
