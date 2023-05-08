@@ -120,6 +120,9 @@ class PharmacySellModel extends Model
 
 
             if ($quantity != 0) {
+
+                // Logger::logDebug()
+
                 $sql = "INSERT INTO pharmacysellmedicine (invoice_id, pharmacyUsername, medId, quantity) VALUES ('$this->invoice_id', '$pharmacyUsername', '$medicineID', '$quantity');";
 
                 try {
@@ -238,7 +241,7 @@ class PharmacySellModel extends Model
 
     public function getPharmacySellOrdersMedicinesByInvoiceId(mixed $invoiceId)
     {
-        $sql = "SELECT pharmacysellmedicine.medId, pharmacysellmedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, stock.sellingPrice as unitPrice FROM pharmacysellmedicine LEFT JOIN medicine ON pharmacysellmedicine.medid = medicine.id LEFT JOIN stock ON medicine.id = stock.medId WHERE invoice_id = '$invoiceId'";
+        $sql = "SELECT DISTINCT pharmacysellmedicine.medId, pharmacysellmedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, stock.sellingPrice as unitPrice FROM pharmacysellmedicine LEFT JOIN medicine ON pharmacysellmedicine.medid = medicine.id LEFT JOIN stock ON medicine.id = stock.medId WHERE invoice_id = '$invoiceId'";
 
         Logger::logDebug($sql);
 
