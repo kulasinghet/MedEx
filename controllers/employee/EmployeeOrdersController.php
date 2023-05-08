@@ -24,7 +24,7 @@ class EmployeeOrdersController extends Controller
     public function loadOrderList(Request $request): void
     {
         $this->validate();
-        $this -> render("employee/orders/list.php");
+        $this -> render("employee/orders/emp_orders.php");
     }
 
     public function getOrderList(int $set_size, $set_number = 0): array
