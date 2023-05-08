@@ -63,8 +63,8 @@
                     value: "pharmacy",
                 },
                 manufacturer: {
-                    text: "Manufacturer",
-                    value: "manufacturer",
+                    text: "Supplier",
+                    value: "supplier",
                 },
                 distributor: {
                     text: "Distributor",
@@ -86,7 +86,7 @@
                             // get the base url and redirect to the pharmacy register page
                             window.location.href = '/pharmacy/register';
                             break;
-                        case "manufacturer":
+                        case "supplier":
                             window.location.href = '/manufacturer/register';
                             break;
                         case "distributor":

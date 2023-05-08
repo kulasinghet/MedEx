@@ -1,5 +1,5 @@
 body {
-    background-image: url(/res/background-image-login.jpg);
+    background-image: url('/res/background-image-login.jpg') !important;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -138,7 +138,7 @@ label {
     left:0;
     opacity:0;
     cursor:pointer;
-
+    color: #EEEEEE;
 }
 
 /*// if file is selected*/
@@ -178,7 +178,16 @@ span {
     padding-bottom: 3vh;
 }
 
+i {
+    color: #EEEEEE !important;
+}
+
 i:hover {
+    cursor: pointer;
+}
+
+input[type="file"]:hover i {
+    color: #2590EB !important;
     cursor: pointer;
 }
 
