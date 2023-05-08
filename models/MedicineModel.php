@@ -101,7 +101,7 @@ class MedicineModel extends Model
     {
 
         $conn = (new Database())->getConnection();
-        $sql = "SELECT m.id, m.medName, m.sciName, COALESCE(s.remQty, 0) AS remQty, MIN(sm.unitPrice) AS price FROM medex.medicine m LEFT JOIN medex.stock s ON m.id = s.medId JOIN medex.supplier_medicine sm ON m.id = sm.medId WHERE m.id IN (SELECT medId FROM medex.supplier_medicine) GROUP BY m.id, m.medName, m.sciName, s.remQty ORDER BY m.id";
+        $sql = "SELECT m.id, m.medName, m.sciName, COALESCE(s.remQty, 0) AS remQty, MIN(sm.unitPrice) AS price FROM medex.medicine m LEFT JOIN medex.stock s ON m.id = s.medId JOIN medex.supplier_medicine sm ON m.id = sm.medId WHERE m.id IN (SELECT medId FROM medex.supplier_medicine) AND sm.verified = 1 GROUP BY m.id, m.medName, m.sciName, s.remQty ORDER BY m.id";
 
         try {
             $stmt = $conn->prepare($sql);
