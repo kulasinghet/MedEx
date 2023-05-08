@@ -54,7 +54,7 @@ class G28ToastNotification extends HTMLElement {
             this.toast.classList.remove("active");
 
             setTimeout(() => {
-                this.toggleClass(this.progress, 'active', false);
+                this.progress.classList.remove("active");
             }, 300);
 
             clearTimeout(this.timer1);
@@ -146,26 +146,33 @@ customElements.define('g28-toast', G28ToastNotification);
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Toast ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
+// Automatically show the toast notifications
 window.onload = function () {
     let toastNotifications = document.querySelectorAll('g28-toast');
-    let toastCount = toastNotifications.length;
     let toastIndex = 0;
 
     toastNotifications.forEach((toast) => {
         const toast_inner = toast.shadowRoot.querySelector('.toast');
-        let top = 64 + (toastCount - toastIndex - 1) * 90; // Adjust the values as needed
+        let top = 64 + toastIndex * 100; // Adjust the values as needed
 
+        // setting the position of the toast
         toast_inner.style.top = `${top}px`;
-        console.log('Top ' + top);
-        toast.showToast();
+
+        // Show the toast after a delay
+        setTimeout(() => {
+            toast.showToast();
+        }, 800 * toastIndex); // Delay based on the index
         toastIndex++;
     });
 }
 
+// JS version of creating a toast
 function createToast(subject, message, type = null) {
     const toastElement = document.createElement('g28-toast');
     toastElement.setAttribute('status', type);
     toastElement.setAttribute('subject', subject);
     toastElement.setAttribute('message', message);
     document.body.appendChild(toastElement);
+
+    return toastElement;
 }
