@@ -79,7 +79,7 @@ async function handleViewOrderDetailsClick($orderId) {
       <th scope="col">Medicine</th>
       <th scope="col">Supplier</th>
       <th scope="col">Quantity</th>
-      <th scope="col">Total Price</th>
+      <th scope="col">Total Price (Rs)</th>
     </tr>
     </thead>
     <tbody>`;
@@ -94,7 +94,7 @@ async function handleViewOrderDetailsClick($orderId) {
     <td>` + orderedMedicines[key].medName + `</td>
     <td>` + (orderedMedicines[key].supName?? "N/A") + `</td>
     <td>` + orderedMedicines[key].quantity + `</td>
-    <td>` + parseInt(orderedMedicines[key].unitPrice) * parseInt(orderedMedicines[key].quantity) + `</td>
+    <td>` + parseFloat(orderedMedicines[key].unitPrice).toFixed(2) * parseInt(orderedMedicines[key].quantity) + `</td>
 </tr>`;
             }
 
@@ -272,7 +272,7 @@ async function handleViewOrderDetailsClick($orderId) {
                     // Add your logic here
                 }
             });
-        } else if (orderData.orderStatus === 'Processed by Admin') {
+        } else if (orderData.orderStatus === 'Processed by Admin' || orderData.orderStatus === 'Rejected') {
             swal({
                 title: "Order Summary" + '\t' + $orderId,
                 content: {

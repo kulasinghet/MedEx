@@ -33,13 +33,8 @@ class EmployeeOrderModel extends Model
     private function statusToInt($orderStatus): string
     {
         return match($orderStatus) {
-            'Pending' => 0,
-            'Accepted' => 1,
+            'Accepted' => 6,
             'Rejected' => 3,
-            'Delivered' => 2,
-            'Cancelled' => 4,
-            'Delivering' => 5,
-            'Processed by Admin' => 6,
             default => null,
         };
     }
@@ -56,7 +51,7 @@ class EmployeeOrderModel extends Model
         $pharmacy = $this->getPharmacyByOrderID($oderID, $conn);
 
         $sql = "INSERT INTO `deliveryreq` (`id`, `location`, `pharmacyName`, `orderId`, `status`, `payment`) 
-                VALUES ('$req_id', '".$pharmacy['username']."', '".$pharmacy['city']."', '$oderID', '0', ".($pharmacy['distance'] * 300).");";
+                VALUES ('$req_id', '".$pharmacy['city']."', '".$pharmacy['username']."', '$oderID', '0', ".($pharmacy['distance'] * 300).");";
         $stmt = $conn->prepare($sql);
         try {
             $stmt->execute();
@@ -103,14 +98,14 @@ class EmployeeOrderModel extends Model
 
         try {
             $output = array();
-            $sql = "SELECT * from `pharmacyorder` WHERE `order_status` = 0 OR `order_status` = 6";
+            $sql = "SELECT * FROM `pharmacyorder` WHERE `order_status` = '0' OR `order_status` = '3' OR `order_status` = '6'";
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                     $tmp = new PharmacyOrderModel();
                     $tmp->id = $row["id"];
                     $tmp->pharmacyUsername = $row['pharmacyUsername'];
-                    $tmp->status = $this->statusToString($row['status']);
+                    $tmp->status = $this->statusToString($row['order_status']);
                     $tmp->supName = $row['supName'];
                     $tmp->order_date = $row['order_date'];
                     $tmp->delivery_date = $row['delivery_date'];

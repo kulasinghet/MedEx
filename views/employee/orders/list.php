@@ -90,15 +90,6 @@ $store->renderNotification();
                             foreach ($res_list as $item) {
                                 echo $components->createOrderItem($item);
                             }
-//                            for ($i = 0; $i < no_of_reports; $i++) {
-//                                if (array_key_exists($i, $res_list)) {
-//                                    echo $components->createOrderItem($res_list[$i]);
-//                                } else {
-//                                    echo "<tr class='empty'>";
-//                                    echo "<td colspan='5'></td>";
-//                                    echo "</tr>";
-//                                }
-//                            }
                         } else {
                             echo "<tr class='empty'>";
                             echo "<td class='no-data' colspan='5' rowspan='".no_of_reports."'>No records found!</td>";
