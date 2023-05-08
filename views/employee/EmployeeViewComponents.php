@@ -89,7 +89,7 @@ class EmployeeViewComponents
                     </ul>
                 </li>
                 <li'.($selection == 'orders'? ' class="disabled"' : '').'>
-                    <a href="/employee/orders"><i class="fa-solid fa-list-check"></i>Pharmacy Oreders</a>
+                    <a href="/employee/orders"><i class="fa-solid fa-list-check"></i>Pharmacy Orders</a>
                 </li>
                 <li'.($selection == 'inquiries'? ' class="disabled"' : '').'>
                     <a href="/employee/inquiries"><i class="fa-solid fa-newspaper"></i>Inquiries</a>

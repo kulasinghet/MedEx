@@ -27,6 +27,7 @@ $store->flag_g_st = 0; // resetting the set number in the store
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!-- g28 style -->
     <link rel="stylesheet" href="/scss/main.css" />
+    <link rel="stylesheet" href="/scss/vendor/employee.css" />
     <script src="/js/g28-main.js"></script>
 </head>
 <body>
@@ -184,7 +185,7 @@ $store->renderNotification();
                 orderInformationForSwal += '</div>';
                 orderInformationForSwal += '<div class="order-details-row">';
                 orderInformationForSwal += '<h4>Order Total Price: ' + (await orderData).totalPrice + '</h4>';
-                orderInformationForSwal += '<h4>Delivary Date: ' + (await orderData).deliveryDate + '</h4>';
+                orderInformationForSwal += '<h4>Supplier: ' + (await orderData).supName + '</h4>';
                 orderInformationForSwal += '</div>';
                 orderInformationForSwal += '</div>';
 
