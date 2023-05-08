@@ -276,7 +276,7 @@ echo $components->sideBar('invoices');
                     buttons: {
                         cancel: "Close",
                         view: {
-                            text: "View Invoice",
+                            text: "View Bill",
                             value: "view",
                         },
                     },
