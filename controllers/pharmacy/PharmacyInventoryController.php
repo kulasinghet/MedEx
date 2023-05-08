@@ -137,10 +137,18 @@ class PharmacyInventoryController extends Controller
 
         if($result) {
             header('Content-Type: application/json');
-            echo json_encode($result);
+            $json = [
+                'status' => 'success',
+                'message' => 'Stock updated successfully'
+            ];
+            echo json_encode($json);
         } else {
+            $json = [
+                'status' => 'error',
+                'message' => 'Stock update failed'
+            ];
             header('Content-Type: application/json');
-            echo json_encode($result);
+            echo json_encode($json);
         }
     }
 }
