@@ -45,7 +45,7 @@ class PharmacyAuthController extends Controller
                     "username" => $_POST['username'],
                     "qrtype" => "pharmacy"
                 ];
-                $qr_name = $pharmacyname . "_qr";
+                $qr_name = $_POST['username'] . "_qr";
                 if ($qr->generateQRForPersonal(json_encode($qr_JSON), $qr_name, 10, 'L')) {
                     Logger::logDebug("QR generated for " . $_POST['username']);
                     return header("Location: /login");
