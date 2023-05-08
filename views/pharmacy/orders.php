@@ -475,7 +475,19 @@ echo $components->sideBar('orders');
                     }
                 });
 
-            } else
+            } else if (orderData.orderStatus == 'Delivered') {
+                swal({
+                    title: "Order Summary" + '\t' + $orderId,
+                    content: {
+                        element: "div",
+                        attributes: {
+                            innerHTML: orderInformationForSwal + medicineInformationForSwal,
+                        }
+                    },
+                    buttons: {},
+                })
+            }
+            else
             {
                 swal("Something went wrong!", "Contact the administrator!", "error");
             }
