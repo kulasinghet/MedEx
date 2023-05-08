@@ -32,7 +32,7 @@ echo $components->sideBar('dashboard');
 
                         <script>
                             const username = document.getElementsByClassName('nav-profile-name')[0].innerHTML;
-                            const api_call = "https://146.190.15.95/pharmacy/api/sales-by-day?pharmacyUsername=" + username;
+                            const api_call = "https://medex28.tech/pharmacy/api/sales-by-day?pharmacyUsername=" + username;
 
                             fetch(api_call)
                                 .then(response => response.json())
@@ -87,7 +87,7 @@ echo $components->sideBar('dashboard');
                         <canvas id="sales-and-cost" style="max-height: 25vh"></canvas>
 
                         <script>
-                            const salescost = "https://146.190.15.95/pharmacy/api/sales-and-cost-for-current-month?pharmacyUsername=" + username;
+                            const salescost = "https://medex28.tech/pharmacy/api/sales-and-cost-for-current-month?pharmacyUsername=" + username;
 
                             // Fetch the data and create the chart
                             fetch(salescost)
