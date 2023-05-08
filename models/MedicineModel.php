@@ -177,12 +177,12 @@ class MedicineModel extends Model
         Logger::logDebug('MedicineModel::getRemQty()' . $id);
         $db = (new Database())->getConnection();
         $sql = "SELECT s.remQty FROM medex.stock s WHERE s.medId = '$id' AND s.pharmacyName = '$pharmacyUsername' ORDER BY s.medId LIMIT 1";
-        $db->close();
+
         // return the remQty
         $result = $db->query($sql);
         $row = $result->fetch_assoc();
-        Logger::logDebug($id . ' remQty: ' . $row['remQty']);
-        if ($row['remQty'] == null) {
+        $db->close();
+        if (is_null($row)) {
             return 0;
         } else {
             return $row['remQty'];
