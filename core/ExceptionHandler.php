@@ -182,14 +182,14 @@ class ExceptionHandler extends Logger
         return $message;
     }
 
-    public function fileUploadError()
+    public function fileUploadError($filename = "")
     {
         $scriptClass = "<head><script src='/js/pharmacy/login-error.js' defer></script><link href='/css/error-model' rel='stylesheet'></head>";
         $alertClass = "<div class='loginError alert alert-danger' id='loginError' role='alert'>";
         $spanClass = "<span class='closebtn' id='closebtn' style='padding-bottom: 0' onclick='this.parentElement.style.display='none';'>&times;</span>";
         $closeClass = "</div>";
 
-        $message = $scriptClass . $alertClass . $spanClass . "File upload error" . $closeClass;
+        $message = $scriptClass . $alertClass . $spanClass . "File upload error" . $filename . $closeClass;
         return $message;
     }
 
