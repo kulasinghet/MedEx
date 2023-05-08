@@ -65,7 +65,7 @@ echo $components->sideBar('invoices');
                                     }
                                 } else {
                                     echo "<tr>";
-                                    echo "<td colspan='6' style='text-align: center'>You don't have any orders</td>";
+                                    echo "<td colspan='6' style='text-align: center'>You don't have any sales</td>";
                                     echo "</tr>";
                                 }
                             } catch (Exception $e) {

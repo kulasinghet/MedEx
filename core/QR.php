@@ -36,6 +36,7 @@ class QR {
         }
         $file_path = $qr_folder . ($qr_name ?: uniqid('qr_', true)) . '.png';
         QRcode::png($json_encode, $file_path, $string, $int);
+        Logger::logDebug('QR generated for ' . $_SESSION['username']);
         return $file_path;
 
         } catch (Exception $e) {
