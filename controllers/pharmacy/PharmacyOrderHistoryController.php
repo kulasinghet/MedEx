@@ -25,7 +25,7 @@ class PharmacyOrderHistoryController extends Controller
         if ($orderStatus == "0") {
             return 'Pending';
         } elseif ($orderStatus == '1') {
-            return 'Accepted';
+            return 'Accepted by Delivery Partner';
         } elseif ($orderStatus == '3') {
             return 'Rejected';
         } elseif ($orderStatus == '2') {
@@ -34,6 +34,8 @@ class PharmacyOrderHistoryController extends Controller
             return 'Cancelled';
         } else if ($orderStatus == '5') {
             return 'Delivering';
+        } else if ($orderStatus == '6') {
+            return 'Processed by Admin';
         } else {
             return 'Unknown';
         }
@@ -146,6 +148,19 @@ class PharmacyOrderHistoryController extends Controller
 
         if ($results) {
             Logger::logDebug("getTotalOrdersCount() returned: " . $results);
+            return $results;
+        } else {
+            return 0;
+        }
+    }
+
+    public function getDeliveringOrdersCount(mixed $username)
+    {
+        $pharmacyOrder = new PharmacyOrderModel();
+        $results = $pharmacyOrder->getDeliveringOrdersCount($username);
+
+        if ($results) {
+            Logger::logDebug("getDeliveringOrdersCount() returned: " . $results);
             return $results;
         } else {
             return 0;

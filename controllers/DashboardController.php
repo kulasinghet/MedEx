@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\controllers\pharmacy\PharmacyDashboardController;
 use app\controllers\pharmacy\PharmacyOrderHistoryController;
 use app\core\Controller;
+use app\core\EmailServer;
 use app\core\Request;
 
 class DashboardController extends Controller
@@ -24,9 +25,11 @@ class DashboardController extends Controller
             if (isset($_SESSION['userType']) && $_SESSION['userType'] == 'pharmacy') {
                 $pharmacyOrderHistoryController = new PharmacyOrderHistoryController();
                 $pharmacyDashboardController = new PharmacyDashboardController();
+
                 return $this->render('pharmacy/dashboard.php', [
                     'pendingOrders' => $pharmacyOrderHistoryController->getPendingOrdersCount($_SESSION['username']),
                     'acceptedOrders' => $pharmacyOrderHistoryController->getAcceptedOrdersCount($_SESSION['username']),
+                    'deliveringOrders' => $pharmacyOrderHistoryController->getDeliveringOrdersCount($_SESSION['username']),
                     'rejectedOrders' => $pharmacyOrderHistoryController->getRejectedOrdersCount($_SESSION['username']),
                     'deliveredOrders' => $pharmacyOrderHistoryController->getDeliveredOrdersCount($_SESSION['username']),
                     'cancelledOrders' => $pharmacyOrderHistoryController->getCancelledOrdersCount($_SESSION['username']),

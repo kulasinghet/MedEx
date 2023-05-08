@@ -295,7 +295,7 @@ echo $components->sideBar('orders');
                     medicineInformationForSwal += '<td style="text-align: center">' + orderedMedicines[key].sciName + '</td>';
                     medicineInformationForSwal += '<td style="text-align: center">' + orderedMedicines[key].unitPrice + '</td>';
                     medicineInformationForSwal += '<td style="text-align: center">' + orderedMedicines[key].quantity + '</td>';
-                    medicineInformationForSwal += '<td style="text-align: center">' + parseInt(orderedMedicines[key].unitPrice) * parseInt(orderedMedicines[key].quantity) + '</td>';
+                    medicineInformationForSwal += '<td style="text-align: center">' + (parseFloat(orderedMedicines[key].unitPrice) * parseFloat(orderedMedicines[key].quantity)).toFixed(2) + '</td>';
                     medicineInformationForSwal += '</tr>';
                 }
                 medicineInformationForSwal += '<tr style="color: #071232; font-size: 1rem; font-weight: bold"><td>Total</td><td colspan="4"></td><td style="text-align: center">' + orderData.totalPrice + '</td></tr>';
@@ -367,7 +367,7 @@ echo $components->sideBar('orders');
                                                     swal("Order Cancelled!", '', "error");
                                                     setTimeout(function () {
                                                         location.reload();
-                                                    }, 4000);
+                                                    }, 1000);
                                                 } else {
                                                     swal("Something went wrong!", "Contact the administrator!", "error");
                                                 }

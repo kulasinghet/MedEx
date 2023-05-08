@@ -61,15 +61,15 @@ echo $components->sideBar('order-medicine');
 						let medicineRow = document.getElementById('order-medicine-row-' + medicineID);
 						let quantity = document.getElementById('order-medicine-quantity-' + medicineID).value;
 						let price = medicineRow.children[4].innerHTML;
-						let totalPrice = parseInt(quantity) * parseInt(price);
-						document.getElementById('total-price-' + medicineID).innerHTML = totalPrice.toString();
+						let totalPrice = parseFloat(quantity) * parseFloat(price);
+						document.getElementById('total-price-' + medicineID).innerHTML = totalPrice.toFixed(2).toString();
 
 						let totalOrderValue = 0;
 						let totalPrices = document.getElementsByClassName('total-price-column');
 						for (let i = 0; i < totalPrices.length; i++) {
-							totalOrderValue += parseInt(totalPrices[i].innerHTML);
+							totalOrderValue += parseFloat(totalPrices[i].innerHTML);
 						}
-						document.getElementById('total-order-value').innerHTML = totalOrderValue.toString();
+						document.getElementById('total-order-value').innerHTML = totalOrderValue.toFixed(2).toString();
 
                     }
 
@@ -88,7 +88,7 @@ echo $components->sideBar('order-medicine');
                         let totalOrderValue = 0;
                         let totalPrices = document.getElementsByClassName('total-price-column');
                         for (let i = 0; i < totalPrices.length; i++) {
-                            totalOrderValue += parseInt(totalPrices[i].innerHTML);
+                            totalOrderValue += parseFloat(totalPrices[i].innerHTML).toFixed(2)
                         }
                         document.getElementById('total-order-value').innerHTML = totalOrderValue.toString();
 
@@ -179,7 +179,7 @@ echo $components->sideBar('order-medicine');
                                     medicineWeight: document.getElementById('order-medicine-table').rows[i + 1].cells[3].innerHTML,
                                     medicinePrice: document.getElementById('order-medicine-table').rows[i + 1].cells[4].innerHTML,
                                     medicineQuantity: quantity,
-                                    totalPrice: parseInt(quantity) * parseInt(document.getElementById('order-medicine-table').rows[i + 1].cells[4].innerHTML)
+                                    totalPrice: parseFloat(quantity) * parseFloat(document.getElementById('order-medicine-table').rows[i + 1].cells[4].innerHTML)
                                 }
                                 orderedMedicines.push(medicineRow);
                             }
@@ -187,21 +187,22 @@ echo $components->sideBar('order-medicine');
 
 						let total = 0;
 						for (let key in orderedMedicines) {
-                            total += parseInt(orderedMedicines[key].totalPrice);
+                            // float with 2 decimal places
+                            total += parseFloat(orderedMedicines[key].totalPrice);
                         }
 
-                        let medicineInformationForSwal = '<table><th>Medicine ID</th><th>Medicine</th> <th>Medicine Scientific Name</th><th>Price</th><th>Quantity</th><th>Total Price</th>';
+                        let medicineInformationForSwal = '<table><th>Medicine ID</th><th>Medicine</th> <th>Medicine Scientific Name</th><th>Unit Price (LKR)</th><th>Quantity</th><th>Total Price (LKR)</th>';
                         for (let key in orderedMedicines) {
                             medicineInformationForSwal += '<tr>';
                             medicineInformationForSwal += '<td>' + orderedMedicines[key].medicineId + '</td>';
                             medicineInformationForSwal += '<td>' + orderedMedicines[key].medicineName + '</td>';
-                            medicineInformationForSwal += '<td style="text-align: center">' + orderedMedicines[key].medicineScientificName + '</td>';
+                            medicineInformationForSwal += '<td style="text-align: justify">' + orderedMedicines[key].medicineScientificName + '</td>';
                             medicineInformationForSwal += '<td style="text-align: center">' + orderedMedicines[key].medicinePrice + '</td>';
                             medicineInformationForSwal += '<td style="text-align: center">' + orderedMedicines[key].medicineQuantity + '</td>';
-                            medicineInformationForSwal += '<td style="text-align: center">' + orderedMedicines[key].totalPrice + '</td>';
+                            medicineInformationForSwal += '<td style="text-align: center">' + parseFloat(orderedMedicines[key].totalPrice).toFixed(2) + '</td>';
                             medicineInformationForSwal += '</tr>';
                         }
-                        medicineInformationForSwal += '<tr style="color: #071232; font-size: 1rem; font-weight: bold"><td>Total</td><td colspan="4"></td><td style="text-align: center">' + total + '</td></tr>';
+                        medicineInformationForSwal += '<tr style="color: #071232; font-size: 1rem; font-weight: bold"><td>Total</td><td colspan="4"></td><td style="text-align: center">' + parseFloat(total).toFixed(2) + '</td></tr>';
 
 						if (total > 0) {
 							swal({
@@ -220,7 +221,18 @@ echo $components->sideBar('order-medicine');
                             {
                                 if (value) {
                                     document.getElementById('order-medicine-form').submit();
-                                    swal("Order Confirmed", "Your order has been placed", "success");
+                                    swal({
+                                        title: "Order Confirmed",
+                                        text: "Your order is being processed",
+                                        icon: "success",
+                                        buttons: {},
+                                        // does not allow the user to close the swal by clicking outside
+                                        closeOnClickOutside: false,
+                                        // does not allow the user to close the swal by pressing the escape key
+                                        closeOnEsc: false,
+                                        closeOnCancel: false,
+                                        closeOnConfirm: false,
+                                    });
                                 }
                             });
 						} else {

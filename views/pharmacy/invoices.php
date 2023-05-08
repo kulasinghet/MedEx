@@ -40,7 +40,7 @@ echo $components->sideBar('invoices');
                         <tr>
                             <th>Bill ID</th>
                             <th>Bill Date</th>
-                            <th>Bill Total</th>
+                            <th>Bill Total (LKR)</th>
                             <th></th>
                         </tr>
                         </thead>
@@ -242,22 +242,21 @@ echo $components->sideBar('invoices');
             let medicineInformationForSwal = '';
 
             if (orderedMedicines != undefined || orderedMedicines.length > 0) {
-                medicineInformationForSwal = '<table><th>Medicine ID</th><th>Medicine</th> <th>Medicine Scientific Name</th><th>Weight</th><th>Price</th><th>Quantity</th><th>Total Price</th>';
+                medicineInformationForSwal = '<table><th>Medicine ID</th><th>Medicine</th> <th>Medicine Scientific Name</th><th>Unit Price (LKR)</th><th>Quantity</th><th>Total Price (LKR)</th>';
                 for (let key in orderedMedicines) {
                     medicineInformationForSwal += '<tr>';
                     medicineInformationForSwal += '<td>' + orderedMedicines[key].medId + '</td>';
                     medicineInformationForSwal += '<td>' + orderedMedicines[key].medName + '</td>';
                     medicineInformationForSwal += '<td style="text-align: justify">' + orderedMedicines[key].sciName + '</td>';
-                    medicineInformationForSwal += '<td style="text-align: center">' + orderedMedicines[key].weight + '</td>';
                     medicineInformationForSwal += '<td style="text-align: center">' + orderedMedicines[key].unitPrice + '</td>';
                     medicineInformationForSwal += '<td style="text-align: center">' + orderedMedicines[key].quantity + '</td>';
-                    medicineInformationForSwal += '<td style="text-align: center">' + parseInt(orderedMedicines[key].unitPrice) * parseInt(orderedMedicines[key].quantity) + '</td>';
+                    medicineInformationForSwal += '<td style="text-align: center">' + (parseFloat(orderedMedicines[key].unitPrice) * parseFloat(orderedMedicines[key].quantity)).toFixed(2) + '</td>';
                     medicineInformationForSwal += '</tr>';
                 }
-                medicineInformationForSwal += '<tr style="color: #071232; font-size: 1rem; font-weight: bold"><td>Total</td><td colspan="5"></td><td style="text-align: center">' + orderData.billTotal + '</td></tr>';
-                medicineInformationForSwal += '<tr style="color: #071232; font-size: 1rem; font-weight: "><td>Payment</td><td colspan="5"></td><td style="text-align: center">' + orderData.customer_money + '</td></tr>';
-                let balance = parseInt(orderData.customer_money) - parseInt(orderData.billTotal);
-                medicineInformationForSwal += '<tr style="color: #071232; font-size: 1rem; font-weight: bold"><td>Balance</td><td colspan="5"></td><td style="text-align: center">' + balance + '</td></tr>';
+                medicineInformationForSwal += '<tr style="color: #071232; font-size: 1rem; font-weight: bold"><td>Total</td><td colspan="4"></td><td style="text-align: center">' + orderData.billTotal + '</td></tr>';
+                medicineInformationForSwal += '<tr style="color: #071232; font-size: 1rem; font-weight: "><td>Payment</td><td colspan="4"></td><td style="text-align: center">' + orderData.customer_money + '</td></tr>';
+                let balance = parseFloat(orderData.customer_money) - parseFloat(orderData.billTotal);
+                medicineInformationForSwal += '<tr style="color: #071232; font-size: 1rem; font-weight: bold"><td>Balance</td><td colspan="4"></td><td style="text-align: center">' + balance.toFixed(2) + '</td></tr>';
                 medicineInformationForSwal += '</table>';
             } else {
                 medicineInformationForSwal = '<h4>No Medicine Ordered</h4>';

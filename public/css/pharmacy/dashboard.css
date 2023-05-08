@@ -388,7 +388,7 @@ tr.Delivering {
 }
 
 .card {
-    min-height: 38vh !important;
+    min-height: 40vh !important;
     min-width: 23vw;
     margin: 0;
 }
