@@ -3,7 +3,7 @@
 namespace app\controllers\employee;
 
 use app\core\Request;
-use app\models\InquiriesListModel;
+use app\models\EmployeeInquiriesListModel;
 use app\models\InquiryModel;
 use app\stores\EmployeeStore;
 
@@ -47,7 +47,7 @@ class EmployeeInquiriesListController extends MasterCRUDController
 
     public function getAllReports(): array
     {
-        $model = new InquiriesListModel();
+        $model = new EmployeeInquiriesListModel();
         // creating an array of all reports
         return $model->getAllReports();
     }

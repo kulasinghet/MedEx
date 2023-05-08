@@ -10,7 +10,7 @@ use app\models\HyperEntities\HyperPharmacyModel;
 use app\models\HyperEntities\HyperSupplierModel;
 use mysqli;
 
-class EmpResourcesModel extends Model
+class EmployeeResourcesModel extends Model
 {
     public function getAll(bool $is_verified): array
     {

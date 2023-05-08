@@ -25,12 +25,13 @@ $store->flag_g_st = 0; // resetting the set number in the store
     <script src="https://unpkg.com/simplebar@latest/dist/simplebar.min.js"></script>
     <!-- g28 style -->
     <link rel="stylesheet" href="/scss/main.css" />
+    <link rel="stylesheet" href="/scss/vendor/employee.css" />
     <script src="/js/g28-main.js"></script>
 </head>
 <body>
 <!-- Section: Fixed Components -->
 <?php
-echo $components->createSidebar('res');
+echo $components->createSidebar('inquiries');
 echo $components->createNavbar();
 ?>
 <!-- Section: Fixed Components -->
@@ -72,7 +73,7 @@ echo $components->createNavbar();
     configs.scssStylePath = '../scss/';
 </script>
 <script src="/js/employee/reports.js"></script>
-<script src="../js/g28-toast.js"></script>
+<script src="/js/g28-toast.js"></script>
 <!-- g28 styling framework -->
 </body>
 </html>
