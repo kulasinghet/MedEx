@@ -147,7 +147,7 @@ echo $components->sideBar('order-medicine');
                         echo "</tr>";
                     } else {
                         echo "<tr>";
-                        echo "<td colspan='6' style='text-align: center'>No medicines available</td>";
+                        echo "<td colspan='7' style='text-align: center'>No medicines available</td>";
                         echo "</tr>";
                     }
                     echo "</form>";
