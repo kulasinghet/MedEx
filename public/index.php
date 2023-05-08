@@ -112,16 +112,19 @@ $app->router->post('/employee/res/delivery', [EmployeeResController::class, 'loa
 $app->router->get('/employee/res/lab', [EmployeeResController::class, 'loadLab']);
 $app->router->post('/employee/res/lab', [EmployeeResController::class, 'loadLab']);
 
-$app->router->post('/employee/res/pharmacy/push', [EmployeeResController::class, 'pushPharmacy']);
-$app->router->post('/employee/res/supplier/push', [EmployeeResController::class, 'pushSupplier']);
-$app->router->post('/employee/res/delivery/push', [EmployeeResController::class, 'pushDelivery']);
-$app->router->post('/employee/res/lab/push', [EmployeeResController::class, 'pushLab']);
-
 $app->router->get('/employee/inquiries', [EmployeeInquiriesListController::class, 'load']);
 $app->router->post('/employee/inquiries', [EmployeeInquiriesListController::class, 'load']);
 
 $app->router->get('/employee/orders', [EmployeeOrdersController::class, 'loadOrderList']);
 $app->router->post('/employee/orders', [EmployeeOrdersController::class, 'loadOrderList']);
+
+// APIs
+$app->router->get('/employee/dashboard/revenue', [EmployeeDashboardController::class, 'getDailyRevenue']);
+
+$app->router->post('/employee/res/pharmacy/push', [EmployeeResController::class, 'pushPharmacy']);
+$app->router->post('/employee/res/supplier/push', [EmployeeResController::class, 'pushSupplier']);
+$app->router->post('/employee/res/delivery/push', [EmployeeResController::class, 'pushDelivery']);
+$app->router->post('/employee/res/lab/push', [EmployeeResController::class, 'pushLab']);
 
 $app->router->get('/employee/orders/action', [EmployeeOrdersController::class, 'oderStatusChange']);
 $app->router->get('/employee/orders/medicine-details', [EmployeeOrdersController::class, 'orderMedicineDetails']);

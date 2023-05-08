@@ -607,7 +607,8 @@
 
 .revenue {
   width: 500px;
-  height: 500px;
+  height: 50vh;
+  justify-content: center;
 }
 
 /*# sourceMappingURL=employee.css.map */

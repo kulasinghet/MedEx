@@ -187,6 +187,8 @@ class PharmacyOrderMedicineController extends Controller
             return 'Cancelled';
         } else if ($orderStatus == '5') {
             return 'Delivering';
+        } else if ($orderStatus == '6') {
+            return 'Processed by Admin';
         } else {
             return 'Unknown';
         }

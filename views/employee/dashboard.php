@@ -78,38 +78,61 @@ echo $components->createNavbar();
 
         <div class="g-col-5-start-3 g-row-2-start-1 card revenue">
             <div class="card-body">
-                <h5 class="card-title">Income (02/03 - today)</h5>
-                <div class="row">
-                    <canvas id="chart-income"></canvas>
-                </div>
+                <canvas id="daily-revenue" style="max-height: 50vh"></canvas>
                 <script>
-                    const ctx = document.getElementById('chart-income');
-                    const xValues = ['03', '04', '05', '06', '07', '08', '09'];
-                    const yValues = [100000, 150000, 125000, 300000, 80000, 276500, 220067];
+                    const revenue = "/employee/dashboard/revenue";
 
-                    new Chart(ctx, {
-                        type: 'bar',
-                        data: {
-                            labels: xValues,
-                            datasets: [{
-                                label: 'Daily Income (Rs)',
-                                data: yValues,
-                                borderWidth: 1
-                            }]
-                        },
-                        options: {
-                            scales: {
-                                y: {
-                                    beginAtZero: true
+                    // Fetch the data and create the chart
+                    fetch(revenue)
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log(data);
+
+                            let convertedData = data.slice(-7);
+                            convertedData = convertedData.map(obj => {
+                                const full_date = obj.revenue_date;
+                                const revenue = obj.daily_revenue;
+
+                                // Convert date format from 'YYYY-MM-DD' to 'MM-DD'
+                                const date = full_date.substring(5);
+
+                                return { date, revenue };
+                            });
+
+                            // Create the chart
+                            const ctx = document.getElementById('daily-revenue').getContext('2d');
+                            const myChart = new Chart(ctx, {
+                                type: 'line',
+                                data: {
+                                    labels: ['Date', 'Revenue'],
+                                    datasets: [{
+                                        label: 'Daily Revenue of all the pharmacies',
+                                        data: convertedData,
+                                        backgroundColor: ['rgba(54, 162, 235, 0.2)', 'rgba(255, 99, 132, 0.2)'],
+                                        borderColor: ['rgba(54, 162, 235, 1)', 'rgba(255, 99, 132, 1)'],
+                                        borderWidth: 1
+                                    }]
+                                },
+                                options: {
+                                    parsing: {
+                                        xAxisKey: 'date',
+                                        yAxisKey: 'revenue'
+                                    },
+                                    legend: {
+                                        display: true,
+                                        position: 'bottom'
+                                    }
                                 }
-                            }
-                        }
-                    });
+                            });
+                        });
                 </script>
             </div>
         </div>
     </div>
 </div>
 <!-- Section: Dashboard Layout -->
+
+<!-- Section: Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </body>
 </html>

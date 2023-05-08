@@ -78,7 +78,7 @@ class EmployeeDashboardModel extends Model
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                     // pushing tmp into the array
-                    $output[$row["revenue_date"]] = $row["daily_revenue"];
+                    $output[] = $row;
                 }
             }
         } catch (\Exception $e) {
