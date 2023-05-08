@@ -209,7 +209,7 @@ echo $components->sideBar('sell-medicine');
                                     remQty: document.getElementById('order-medicine-table').rows[i + 1].cells[3].innerHTML,
                                     medicinePrice: document.getElementById('order-medicine-table').rows[i + 1].cells[4].innerHTML,
                                     medicineQuantity: quantity,
-                                    totalPrice: parseInt(quantity) * parseInt(document.getElementById('order-medicine-table').rows[i + 1].cells[4].innerHTML)
+                                    totalPrice: parseFloat(parseFloat(quantity) * parseFloat(document.getElementById('order-medicine-table').rows[i + 1].cells[4].innerHTML)).toFixed(2).toString()
                                 }
                                 orderedMedicines.push(medicineRow);
                             }

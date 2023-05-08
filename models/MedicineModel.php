@@ -101,7 +101,7 @@ class MedicineModel extends Model
     {
 
         $conn = (new Database())->getConnection();
-        $sql = "SELECT m.id, m.medName, m.sciName, COALESCE(s.remQty, 0) AS remQty, MIN(sm.unitPrice) AS price FROM medex.medicine m LEFT JOIN medex.stock s ON m.id = s.medId JOIN medex.supplier_medicine sm ON m.id = sm.medId WHERE m.id IN (SELECT medId FROM medex.supplier_medicine) AND sm.verified = 1 GROUP BY m.id, m.medName, m.sciName, s.remQty ORDER BY m.id";
+        $sql = "SELECT m.id, m.medName, m.sciName, COALESCE(s.remQty, 0) AS remQty, MIN(sm.unitPrice) AS price FROM medex.medicine m LEFT JOIN medex.stock s ON m.id = s.medId JOIN medex.supplier_medicine sm ON m.id = sm.medId WHERE ( m.id IN (SELECT medId FROM medex.supplier_medicine) ) AND sm.verified = 1 GROUP BY m.id, m.medName, m.sciName, s.remQty ORDER BY m.id";
 
         try {
             $stmt = $conn->prepare($sql);
@@ -189,6 +189,22 @@ class MedicineModel extends Model
         }
 
 
+    }
+
+    public function getMedicinePriceForOrder(mixed $id)
+    {
+        Logger::logDebug('MedicineModel::getMedicinePricefororder()' . $id);
+        $db = (new Database())->getConnection();
+        $sql = "SELECT sm.medId, sm.unitPrice as price FROM medex.supplier_medicine sm WHERE sm.medId = '$id' AND sm.verified = 1 ORDER BY sm.medId LIMIT 1";
+
+        $result = $db->query($sql);
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            Logger::logDebug($id . ' price: ' . $row['price']);
+            return $row;
+        }
+
+        $db->close();
     }
 
 }

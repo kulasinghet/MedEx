@@ -99,3 +99,8 @@
 2023/05/09 03:09:50 Expression #4 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'medex.s.remQty' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
 2023/05/09 03:09:59 Expression #4 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'medex.s.remQty' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
 2023/05/09 03:10:00 Expression #4 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'medex.s.remQty' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+2023/05/09 03:36:36 Incorrect decimal value: '' for column 'sellingPrice' at row 1
+2023/05/09 03:37:14 SELECT supplier_medicine.unitPrice FROM supplier_medicine WHERE medId='Med00010' AND supName='Tsup';
+2023/05/09 03:37:14 Incorrect decimal value: '' for column 'sellingPrice' at row 1
+2023/05/09 03:39:27 SELECT supplier_medicine.unitPrice FROM supplier_medicine WHERE medId='Med00010' AND supName='greenmeds ';
+2023/05/09 03:39:28 SELECT supplier_medicine.unitPrice FROM supplier_medicine WHERE medId='Med0003' AND supName='Tsup';
