@@ -35,3 +35,8 @@
 2023/05/08 19:24:50 
 2023/05/08 19:31:04 
 2023/05/08 19:33:04 
+2023/05/08 17:18:09 Duplicate entry 'PharmaWholesale' for key 'login.PRIMARY'
+2023/05/08 17:19:12 Data too long for column 'mobile' at row 1
+2023/05/08 17:29:04 Duplicate entry ' medlabtest' for key 'login.PRIMARY'
+2023/05/08 17:30:44 Column count doesn't match value count at row 1
+2023/05/08 17:33:24 Duplicate entry 'medsupplies' for key 'login.PRIMARY'

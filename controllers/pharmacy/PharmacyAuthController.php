@@ -42,15 +42,15 @@ class PharmacyAuthController extends Controller
 
                 $qr = new \app\core\QR();
                 $qr_JSON = [
-                    "username" => $pharmacyname,
+                    "username" => $_POST['username'],
                     "qrtype" => "pharmacy"
                 ];
-                $qr_name = $pharmacyname . "_qr";
+                $qr_name = $_POST['username'] . "_qr";
                 if ($qr->generateQRForPersonal(json_encode($qr_JSON), $qr_name, 10, 'L')) {
-                    Logger::logDebug("QR generated for " . $_SESSION['username']);
+                    Logger::logDebug("QR generated for " . $_POST['username']);
                     return header("Location: /login");
                 } else {
-                    Logger::logError("QR generation failed for " . $_SESSION['username']);
+                    Logger::logError("QR generation failed for " . $_POST['username']);
                     echo (new \app\core\ExceptionHandler)->qrGenerationFailed();
                     return $this->render('pharmacy/register-page.php');
                 }
@@ -172,7 +172,7 @@ class PharmacyAuthController extends Controller
 
     private function uploadProfilePicture(Request $request, string $pharmacy)
     {
-        $profilePictureName = $pharmacy . "_profilePicture" . ".jpg";
+        $profilePictureName = $pharmacy . "_profilePicture" . ".png";
         $target_dir = "uploads/profilePicture/";
         // Create target directory if it doesn't exist
         if (!file_exists($target_dir)) {

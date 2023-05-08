@@ -32,7 +32,7 @@ class PharmacyInventoryController extends Controller
         $medicine = $stock->getMedicine($medID);
 
         if ($medicine) {
-            return $medicine['medName'] . " " . $medicine['weight'] . " mg ";
+            return $medicine['medName'];
         } else {
             return "";
         }

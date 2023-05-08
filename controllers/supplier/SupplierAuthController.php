@@ -2,6 +2,7 @@
 namespace app\controllers\supplier;
 
 use app\core\Controller;
+use app\core\Logger;
 use app\core\Request;
 
 use app\models\LoginModel;
@@ -37,11 +38,23 @@ class SupplierAuthController extends Controller
             if ($file1['size'] <= 3145728 && $file2['size'] <= 3145728) {
                 $BusRegiCert_Name_New = $_POST["username"] . "_businessRegCert.pdf";
                 $SuppRegiCert_Name_New = $_POST["username"] . "_supplierCert.pdf";
-                $filedestination1 = '..\public\uploads\supplier\businessRegCert' . DIRECTORY_SEPARATOR . $BusRegiCert_Name_New;
-                $filedestination2 = '..\public\uploads\supplier\supplierRegCert' . DIRECTORY_SEPARATOR . $SuppRegiCert_Name_New;
-                move_uploaded_file($file1['tmp_name'], $filedestination1);
-                move_uploaded_file($file2['tmp_name'], $filedestination2);
+//                $filedestination1 = '..\public\uploads\supplier\businessRegCert' . DIRECTORY_SEPARATOR . $BusRegiCert_Name_New;
+//                $filedestination2 = '..\public\uploads\supplier\supplierRegCert' . DIRECTORY_SEPARATOR . $SuppRegiCert_Name_New;
+                $filedestination1 = 'uploads/supplier/businessRegCert/' . $BusRegiCert_Name_New;
+                $filedestination2 = 'uploads/supplier/supplierRegCert/' . $SuppRegiCert_Name_New;
 
+                Logger::logDebug("going to upload file");
+                if (move_uploaded_file($file1['tmp_name'], $filedestination1)) {
+                    if (move_uploaded_file($file2['tmp_name'], $filedestination2)) {
+                        Logger::logDebug("File uploaded successfully" . "supplierRegCert" . $file_ext2);
+                    } else {
+                        Logger::logError("File upload failed" . "supplierRegCert" . $file_ext2);
+                        echo (new \app\core\ExceptionHandler)->fileUploadError("supplierRegCert" . $file_ext2);
+                    }
+                } else {
+                    Logger::logError("File upload failed" . "businessRegCert" . $file_ext1);
+                    echo (new \app\core\ExceptionHandler)->fileUploadError("businessRegCert" . $file_ext1);
+                }
 
             } else {
                 echo (new \app\core\ExceptionHandler)->uploadtobig();

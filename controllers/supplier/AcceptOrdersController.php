@@ -129,7 +129,7 @@ class AcceptOrdersController extends Controller
                 $newq = $oldq - $quantity;
                 $bnumber = $_POST['batch'];
                 $expdate = $_POST['expdate'];
-                if ($pharmorder->acceptOrder($orderid) && $order->acceptOrder($_SESSION['username'], $orderid, $bnumber, $expdate, $medid) && $supmed->acceptOrder($newq, $medid, $_SESSION['username'])) {
+                if ($order->acceptOrder($_SESSION['username'], $orderid, $bnumber, $expdate, $medid) && $supmed->acceptOrder($newq, $medid, $_SESSION['username'])) {
                     echo (new \app\core\ExceptionHandler)->OrderAccepted();
                     return $this->render("/supplier/accept-orders.php");
                 } else {

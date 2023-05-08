@@ -6,7 +6,8 @@ use app\core\Database;
 use app\core\ExceptionHandler;
 use app\core\Logger;
 
-class Stock extends Model {
+class Stock extends Model
+{
 
     private $id;
     private $medId;
@@ -146,7 +147,8 @@ class Stock extends Model {
     }
 
 
-    public function getStock($pharmacyName){
+    public function getStock($pharmacyName)
+    {
 
         $conn = (new Database())->getConnection();
         $sql = "SELECT stock.id, stock.medId, stock.remaining_days, medicine.medName, medicine.sciName, stock.remQty, stock.buying_price, stock.receivedDate, stock.sellingPrice, medicine.weight FROM stock LEFT JOIN medicine ON stock.medID = medicine.id WHERE pharmacyName = '$pharmacyName' ORDER BY remaining_days ASC;";
@@ -274,5 +276,69 @@ class Stock extends Model {
         }
     }
 
+    public function updateStock($orderId)
+    {
+        $conn = (new Database())->getConnection();
+        $sqlallMedicine = "SELECT medId, quantity FROM pharmacyordermedicine WHERE orderId='$orderId'";
+        $sqlpharmacyName = "SELECT pharmacyorder.pharmacyUsername FROM pharmacyorder WHERE id='$orderId'";
+
+
+        $conn = mysqli_connect("medex-do-user-10529241-0.b.db.ondigitalocean.com", "doadmin", "AVNS_K2y23Zo-MYqg2bmkgTy", "medex", 25060);
+//        mysqli_query($conn,$sql2);
+        try {
+            $result = true;
+
+
+            $pharmacyName = mysqli_query($conn, $sqlpharmacyName)->fetch_assoc()['pharmacyUsername'];
+            $allMedicine = mysqli_query($conn, $sqlallMedicine)->fetch_all(MYSQLI_ASSOC);
+            $receivedDate = date("Y-m-d");
+
+            for($i=0;$i<sizeof($allMedicine);$i++){
+
+                $sqlpharmacyBuyPrice = "SELECT supplier_medicine.unitPrice FROM supplier_medicine WHERE medId='$allMedicine[$i]['medId']';";
+                $sqlisMedicineExist = "SELECT * FROM stock WHERE medId='$allMedicine[$i]['medId']' AND pharmacyName='$pharmacyName';";
+                $sqlremainingQty = "SELECT remQty FROM stock WHERE medId='$allMedicine[$i]['medId']' AND pharmacyName='$pharmacyName';";
+                $sqlconsumptionRate = "SELECT consumption_rate FROM stock WHERE medId='$allMedicine[$i]['medId']' AND pharmacyName='$pharmacyName';";
+
+                $remainingQtyIntheStock = mysqli_query($conn, $sqlremainingQty)->fetch_assoc()['remQty'];
+                $remainingQty = $remainingQtyIntheStock + $allMedicine[$i]['quantity'];
+
+                $pharmacyBuyPrice = mysqli_query($conn, $sqlpharmacyBuyPrice)->fetch_assoc()['unitPrice'];
+                $isMedicineExist = mysqli_query($conn, $sqlisMedicineExist)->fetch_assoc();
+
+                if($isMedicineExist){
+
+                    $consumptionRate = mysqli_query($conn, $sqlconsumptionRate)->fetch_assoc()['consumption_rate'];
+                    $newRemainingDays = $remainingQty/$consumptionRate;
+
+                    $sqlupdateStock = "UPDATE stock SET remQty = '$remainingQty', buying_price = '$pharmacyBuyPrice', receivedDate = '$receivedDate', remaining_days = '$newRemainingDays' WHERE medId = '$allMedicine[$i]['medId']' AND pharmacyName = '$pharmacyName';";
+                    if (!mysqli_query($conn, $sqlupdateStock)) {
+                        $result = false;
+                    }
+                }else{
+
+                    $sqlcountStock = "SELECT COUNT(*) FROM stock;";
+                    $countStock = mysqli_query($conn, $sqlcountStock)->fetch_assoc()['COUNT(*)'];
+                    $countStock = (int)$countStock;
+                    $countStock = $countStock + 1;
+                    $newStockId = 'STK' . $countStock;
+
+                    $sqlinsertStock = "INSERT INTO stock (id, medId, pharmacyName, receivedDate, remQty, sellingPrice, buying_price, remaining_days, consumption_rate) VALUES ('$newStockId', '$allMedicine[$i]['medId']', '$pharmacyName', '$receivedDate', '$remainingQty', '$pharmacyBuyPrice', '$pharmacyBuyPrice', '$remainingQty', '1');";
+                    if (!mysqli_query($conn, $sqlinsertStock)) {
+                        $result = false;
+                    }
+                }
+            }
+
+            $conn->close();
+            return $result;
+
+        } catch (\Exception $e) {
+            $conn->close();
+            Logger::logError($e->getMessage());
+            echo (new ExceptionHandler())->somethingWentWrong();
+            return false;
+        }
+    }
 
 }

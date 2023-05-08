@@ -2,6 +2,7 @@
 
 namespace app\models;
 use app\core\Database;
+use app\core\Logger;
 use DateTime;
 use DateTimeZone;
 
@@ -30,7 +31,7 @@ class SupplierModel extends Model
         $regDate = $regDate->format('Y/m/d');
 
         try {
-            $sql = "INSERT INTO supplier (username, name, supplierRegNo, BusinessRegId, supplierCertId, BusinessRegCertName, supplierCertName, verified, regDate, email, address, mobile) VALUES ('$this->username', '$this->name', '$this->supplierRegNo', '$this->BusinessRegId', '$this->supplierCertId', '$this->BusinessRegCertName', '$this->supplierCertName', '0', '$regDate', '$this->email', '$this->address', '$this->mobile')";
+            $sql = "INSERT INTO supplier  VALUES ('$this->username', '$this->name', '$this->supplierRegNo', '$this->BusinessRegId', '$this->supplierCertId', '$this->BusinessRegCertName', '$this->supplierCertName', '0', '$regDate', '$this->email', '$this->address', '$this->mobile')";
 
             $stmt = $db->prepare($sql);
             $stmt->execute();
@@ -44,7 +45,7 @@ class SupplierModel extends Model
 
             return true;
         } catch (\Exception $e) {
-            ErrorLog::logError($e->getMessage());
+            Logger::logError($e->getMessage());
             echo $e->getMessage();
             return false;
         }

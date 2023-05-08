@@ -24,6 +24,8 @@ class Router
 
     public function resolve()
     {
+        $this->handleCors();
+
         $path = $this->request->getPath();
         $method = $this->request->getMethod();
         $callback = $this->routes[$method][$path] ?? false;
@@ -67,4 +69,14 @@ class Router
         include_once "../views/$view";
         return ob_get_clean();
     }
+
+
+    private function handleCors()
+    {
+        header("Access-Control-Allow-Origin: *");
+        header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+        header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+    }
+
+
 }

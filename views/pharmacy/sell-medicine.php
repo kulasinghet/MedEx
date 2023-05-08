@@ -313,7 +313,7 @@ echo $components->sideBar('sell-medicine');
                                                             console.log(medicineQuantities);
                                                             // document.getElementById('order-medicine-form').submit();
 
-                                                            fetch('http://146.190.15.95/pharmacy/sell-medicine', {
+                                                            fetch('https://medex28.tech/pharmacy/sell-medicine', {
                                                                 method: 'POST',
                                                                 headers: {
                                                                     'Content-Type': 'application/json'
@@ -329,7 +329,7 @@ echo $components->sideBar('sell-medicine');
                                                                 if (response.ok) {
                                                                     swal("Order Confirmed", "Your order has been placed", "success");
                                                                     setTimeout(function () {
-                                                                        window.location.href = "http://146.190.15.95/pharmacy/invoices";
+                                                                        window.location.href = "https://medex28.tech/pharmacy/invoices";
                                                                     }, 2000);
                                                                 } else {
                                                                     swal("Order Failed", "Your order has not been placed", "error");
