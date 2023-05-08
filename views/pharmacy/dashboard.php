@@ -158,10 +158,6 @@ echo $components->sideBar('dashboard');
                             <td>Cancelled Orders</td>
                             <td><?php echo $cancelledOrders ?></td>
                         </tr>
-                        <tr>
-                            <td>Total Orders</td>
-                            <td><?php echo $totalOrders ?></td>
-                        </tr>
                     </table>
                     </p>
                 </div>
