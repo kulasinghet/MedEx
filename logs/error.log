@@ -85,3 +85,13 @@
 2023/05/09 02:16:44 SELECT s.remQty FROM medex.stock s WHERE s.medId = 'Med0008' AND s.pharmacyName = 'testPharmacy' ORDER BY s.medId LIMIT 1
 2023/05/09 02:16:45 SELECT s.remQty FROM medex.stock s WHERE s.medId = 'Med0009' AND s.pharmacyName = 'testPharmacy' ORDER BY s.medId LIMIT 1
 2023/05/09 02:16:45 SELECT s.remQty FROM medex.stock s WHERE s.medId = 'Med0009' AND s.pharmacyName = 'testPharmacy' ORDER BY s.medId LIMIT 1
+2023/05/09 02:28:45 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'medId']' AND pharmacyName='testPharmacy'' at line 1
+2023/05/09 02:30:24 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'medId']' AND pharmacyName='testPharmacy'' at line 1
+2023/05/09 02:31:17 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'medId']' AND pharmacyName='testPharmacy'' at line 1
+2023/05/09 02:32:04 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'medId']' AND pharmacyName='testPharmacy'' at line 1
+2023/05/09 02:32:26 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'medId']'' at line 1
+2023/05/09 02:33:05 Unknown column 'pharmacyName' in 'where clause'
+2023/05/09 02:35:32 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'medId']' AND pharmacyName = 'testPharmacy'' at line 1
+2023/05/09 02:35:46 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'medId']' AND pharmacyName = 'testPharmacy'' at line 1
+2023/05/09 02:36:05 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'medId']', 'testPharmacy', '2023-05-08', '6', '60.00', '60.00', '6', '1')' at line 1
+2023/05/09 02:37:46 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'medId']', 'testPharmacy', '2023-05-08', '6', '60.00', '60.00', '6', '1')' at line 1

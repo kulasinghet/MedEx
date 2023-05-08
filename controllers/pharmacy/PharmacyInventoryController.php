@@ -127,4 +127,20 @@ class PharmacyInventoryController extends Controller
         }
 
     }
+
+    public function updateStock(Request $request) {
+
+        $orderid = $request->getBody()['orderid'];
+
+        $order = new Stock();
+        $result = $order->updateStock($orderid);
+
+        if($result) {
+            header('Content-Type: application/json');
+            echo json_encode($result);
+        } else {
+            header('Content-Type: application/json');
+            echo json_encode($result);
+        }
+    }
 }
