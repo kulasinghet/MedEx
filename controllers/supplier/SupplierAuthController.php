@@ -41,10 +41,15 @@ class SupplierAuthController extends Controller
                 $filedestination1 = 'uploads\supplier\businessRegCert' . DIRECTORY_SEPARATOR . $BusRegiCert_Name_New;
                 $filedestination2 = 'uploads\supplier\supplierRegCert' . DIRECTORY_SEPARATOR . $SuppRegiCert_Name_New;
 
-                if (move_uploaded_file($file1['tmp_name'], $filedestination1) && move_uploaded_file($file2['tmp_name'], $filedestination2)) {
-                    Logger::logDebug("File uploaded successfully" . "supplierRegCert" . $file_ext2);
+                if (move_uploaded_file($file1['tmp_name'], $filedestination1)) {
+                    if (move_uploaded_file($file2['tmp_name'], $filedestination2)) {
+                        Logger::logDebug("File uploaded successfully" . "supplierRegCert" . $file_ext2);
+                    } else {
+                        Logger::logError("File upload failed" . "supplierRegCert" . $file_ext2);
+                        echo (new \app\core\ExceptionHandler)->fileUploadError();
+                    }
                 } else {
-                    Logger::logError("File upload failed" . "supplierRegCert" . $file_ext2);
+                    Logger::logError("File upload failed" . "businessRegCert" . $file_ext1);
                     echo (new \app\core\ExceptionHandler)->fileUploadError();
                 }
 
