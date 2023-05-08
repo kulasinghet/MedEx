@@ -315,7 +315,7 @@ class Stock extends Model
 
                 $remainingQty = $remainingQtyIntheStock + $allMedicine[$i]['quantity'];
                 Logger::logDebug($remainingQty . " " . $allMedicine[$i]['quantity'] . " " . $remainingQtyIntheStock);
-
+                Logger::logError($sqlpharmacyBuyPrice);
                 $pharmacyBuyPrice = mysqli_query($conn, $sqlpharmacyBuyPrice)->fetch_assoc()['unitPrice'];
                 $isMedicineExist = mysqli_query($conn, $sqlisMedicineExist)->fetch_assoc();
 

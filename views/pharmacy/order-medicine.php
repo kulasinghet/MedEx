@@ -129,7 +129,7 @@ echo $components->sideBar('order-medicine');
                             echo "<td>" . $medicine['medName'] . "</td>";
                             echo "<td style='text-align: center'>" . $medicine['sciName'] . "</td>";
                             echo "<td style='text-align: center'>" . $remQty . "</td>";
-                            echo "<td style='text-align: center'>" . $pharmacyOrderMedicineController->getPrice($medicine['id']) . "</td>";
+                            echo "<td style='text-align: center'>" . $pharmacyOrderMedicineController->getPriceForOrder($medicine['id']) . "</td>";
                             echo "<td  style='text-align: center'><input type='number' name='" . $medicine['id'] . "' min='0' max='100' placeholder='0' class='order-medicine-quantity' required onchange='handleQtyChange(name)' id='order-medicine-quantity-" . $medicine['id'] . "'></td>";
 //                            <input type='number' name='quantity' id='quantity' placeholder='1 2 3 . . .'>
                             echo "<td style='text-align: center' id='total-price-" . $medicine['id'] . "' class='total-price-column'>0</td>";
