@@ -92,6 +92,7 @@ class PharmacySellModel extends Model
 
             if ($stmt->affected_rows > 0) {
                 $stmt->close();
+                Logger::logDebug('----------createSellOrder: ' . $sql);
                 if ($this->updateSellMedicineQuantity($pharmacyUsername, $medicinIDArray, $medicinQuantityArray)) {
                     return $this->invoice_id;
                 }
@@ -127,7 +128,7 @@ class PharmacySellModel extends Model
 
                     if ($stmt->affected_rows == 1) {
                         $stmt->close();
-
+                        Logger::logDebug('----------updateSellMedicineQuantity: ' . $sql);
                         if ($this->updateStock($medicineID, $quantity, $pharmacyUsername)) {
                             continue;
                         } else {
@@ -182,6 +183,7 @@ class PharmacySellModel extends Model
             $stmt->execute();
 
             if ($stmt->affected_rows == 1) {
+                Logger::logDebug('----------updateStock: ' . $sql);
 
                 if ($this->updateRemainingDays($medicineID, $pharmacyUsername) == true && $this->updateConsumptionRate($medicineID, $pharmacyUsername) == true) {
                     $stmt->close();
