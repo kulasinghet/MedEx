@@ -255,7 +255,6 @@ class EmployeeResController extends MasterCRUDController
                 $store->g_obj->vehicle_no = $params['vehicle_no'];
                 $store->g_obj->vehicle_type = $params['vehicle_type'];
                 $store->g_obj->delivery_location = $params['delivery_location'];
-                $store->g_obj->max_load = $params['max_load'];
                 $store->g_obj->refrigerators = $params['refrigerators'];
                 $store->g_obj->email = $params['email'];
                 $store->g_obj->address = $params['address'];

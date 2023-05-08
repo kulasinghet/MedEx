@@ -4,8 +4,6 @@ class G28ToastNotification extends HTMLElement {
         super();
         // element created
 
-        this.timer1 = 0;
-        this.timer2 = 0;
         this.toastTemplate = `
 <div class="toast">
   <div class="toast-content">
@@ -26,6 +24,8 @@ class G28ToastNotification extends HTMLElement {
         // (can be called many times if an element is repeatedly added/removed)
 
         const self = this; // Create a reference to the instance of G28ToastNotification
+        this.timer1 = 0;
+        this.timer2 = 0;
 
         // initializing toast variables
         let subject_text = this.getAttribute('subject') || '';
@@ -41,10 +41,11 @@ class G28ToastNotification extends HTMLElement {
         this.subject.innerText = subject_text;
         this.message.innerText = message_text;
         this.changeStatus(status);
+
         // setting the animation after the element is rendered
         setTimeout(() => {
             this.toast.style.transition = "all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.35)";
-            self.showToast(); // Call showToast after the toast element is available
+            // self.showToast(); // Call showToast after the toast element is available
         }, 100);
         // --------------------- RENDERING THE ELEMENT ---------------------
 
@@ -143,6 +144,23 @@ class G28ToastNotification extends HTMLElement {
 
 customElements.define('g28-toast', G28ToastNotification);
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Toast ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+window.onload = function () {
+    let toastNotifications = document.querySelectorAll('g28-toast');
+    let toastCount = toastNotifications.length;
+    let toastIndex = 0;
+
+    toastNotifications.forEach((toast) => {
+        const toast_inner = toast.shadowRoot.querySelector('.toast');
+        let top = 64 + (toastCount - toastIndex - 1) * 90; // Adjust the values as needed
+
+        toast_inner.style.top = `${top}px`;
+        console.log('Top ' + top);
+        toast.showToast();
+        toastIndex++;
+    });
+}
 
 function createToast(subject, message, type = null) {
     const toastElement = document.createElement('g28-toast');
