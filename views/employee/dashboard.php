@@ -1,7 +1,12 @@
 <?php
+
+use app\controllers\employee\EmployeeDashboardController;
 use \app\views\employee\EmployeeViewComponents;
 
 $components = new EmployeeViewComponents();
+$controller = new EmployeeDashboardController();
+
+$counters = $controller->getCounters();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,24 +35,48 @@ echo $components->createNavbar();
 <!-- Section: Dashboard Layout -->
 <div class="canvas nav-cutoff sidebar-cutoff">
     <div class="canvas-inner grid flow-row-dense">
-        <div class="g-col-1-start-1 g-row-2 card">
-            <div class="card-body status-view">
-                <h5 class="card-title">Status</h5>
-                <div class="row">
-                    <div class="col"> Medicines </div>
-                    <div class="col"> 1024 </div>
+        <!-- Counters -->
+        <div class="g-col-2-start-1 g-row-2-start-1 counters">
+            <div class="row">
+                <div class="col">
+                    <div class="card counter">
+                        <div class="card-body">
+                            <h5><?php echo $counters['pharmacy'] ?></h5>
+                            <span>Pharmacies</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="row">
-                    <div class="col"> Pharmacies </div>
-                    <div class="col"> 52 </div>
+                <div class="col">
+                    <div class="card counter">
+                        <div class="card-body">
+                            <h5><?php echo $counters['supplier'] ?></h5>
+                            <span>Suppliers</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="row">
-                    <div class="col"> Delivery Persons </div>
-                    <div class="col"> 46 </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="card counter">
+                        <div class="card-body">
+                            <h5><?php echo $counters['delivery'] ?></h5>
+                            <span>Delivery Partners</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card counter">
+                        <div class="card-body">
+                            <h5><?php echo $counters['lab'] ?></h5>
+                            <span>Laboratories</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="g-col-1-start-2 g-row-2 card analysed">
+        <!-- Counters -->
+
+        <div class="g-col-5-start-3 g-row-2-start-1 card revenue">
             <div class="card-body">
                 <h5 class="card-title">Income (02/03 - today)</h5>
                 <div class="row">

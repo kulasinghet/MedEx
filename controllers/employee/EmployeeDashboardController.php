@@ -4,9 +4,16 @@ namespace app\controllers\employee;
 
 use app\core\Controller;
 use app\core\Request;
+use app\models\EmployeeDashboardModel;
 use app\models\EmployeeModel;
 
-class EmployeeDashboardController extends Controller
+class EmployeeDashboardController extends MasterCRUDController
 {
-    const login = 'Location: /login';
+    public function getCounters(): array
+    {
+        $this->validate();
+
+        $model = new EmployeeDashboardModel();
+        return $model->readCounters();
+    }
 }

@@ -137,7 +137,7 @@ class EmployeeOrderModel extends Model
         // retrieving the employee store
         $store = EmployeeStore::getEmployeeStore();
 
-        $sql = "UPDATE `pharmacyorder` SET `status` = '".$this->statusToInt($status)."' WHERE `id`='$oderID';";
+        $sql = "UPDATE `pharmacyorder` SET `order_status` = '".$this->statusToInt($status)."' WHERE `id`='$oderID';";
         $stmt = $conn->prepare($sql);
         try {
             $stmt->execute();
