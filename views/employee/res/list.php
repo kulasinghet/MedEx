@@ -129,16 +129,6 @@ $store->renderNotifications();
 
 <!-- g28 styling framework -->
 <script type="application/javascript">
-    // you can configure variables in here.
-    configs.stage = 'dev';
-    configs.scssStylePath = '../scss/';
-
-    //logging
-    logger("Logging g28 initial state before loading specialized JS files...");
-    for (let property in configs) {
-        logger(`> ${property}: ${configs[property]}`);
-    }
-
     document.querySelectorAll('.approval-table tbody tr:not(.empty)').forEach((row) => {
         row.addEventListener('click', (e) => {
             e.stopPropagation();

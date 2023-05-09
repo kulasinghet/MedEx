@@ -96,6 +96,11 @@ $context-padding: calc(#{nav.$cutoff} + 1rem) 0 1rem 0 !default;
 
           &.disabled {
             --#{$prefix}sidebar-itm-color: #{$light};
+            background: rgba(131, 131, 131, 0.75);
+
+            i {
+              color: $gray-1;
+            }
           }
         }
       }
@@ -107,6 +112,10 @@ $context-padding: calc(#{nav.$cutoff} + 1rem) 0 1rem 0 !default;
           i {
             position: absolute;
             left: 16px;
+
+            &.two-lines {
+              transform: translateY(10px);
+            }
           }
 
           &:hover, &:active, &:focus{

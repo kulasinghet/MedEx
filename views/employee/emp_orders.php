@@ -8,8 +8,6 @@ const no_of_reports = 10;
 
 $components = new EmployeeViewComponents();
 $store = EmployeeStore::getEmployeeStore();
-$set = $store->flag_g_st; // getting the number of set
-$store->flag_g_st = 0; // resetting the set number in the store
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -62,7 +60,7 @@ $store->renderNotifications();
                 </div>
                 <div class="col">
                     <g28-selectbox id="sort-by" class="filtering-selectbox" placeholder="Default">
-                        Default, Pending, Accepted, Rejected
+                        Default, Pending, Rejected, Processed by Admin
                     </g28-selectbox>
                 </div>
             </form>
@@ -85,7 +83,7 @@ $store->renderNotifications();
                     <?php
                     $controller = new EmployeeOrdersController();
                     try {
-                        $res_list = $controller->getOrderList(no_of_reports, $set);
+                        $res_list = $controller->getOrderList();
                         if (!empty($res_list)) {
                             foreach ($res_list as $item) {
                                 echo $components->createOrderItem($item);
@@ -113,20 +111,82 @@ $store->renderNotifications();
 
 <!-- g28 styling framework -->
 <script type="application/javascript">
-    // you can configure variables in here.
-    configs.stage = 'dev';
-    configs.scssStylePath = '../scss/';
+    const table_body = document.querySelector('.approval-table tbody');
+    const table_data = table_body.querySelectorAll('tr:not(.empty)');
+    const searchForm = document.querySelector('.nav-search form');
+    const searchInput = document.querySelector('#filter-by-search');
+
+    function refreshTable() {
+        let rows = table_body.querySelectorAll('tr');
+        rows.forEach((row) => {
+            row.remove();
+        });
+    }
+
+    function fillTable() {
+        let rows = table_body.querySelectorAll('tr');
+        if (rows.length < 10) {
+            for (let i = 10; i > rows.length; i--) {
+                // adding empty rows
+                let row = document.createElement('tr');
+                row.classList.add('empty');
+                row.setAttribute('colspan', '5');
+                table_body.appendChild(row);
+            }
+        }
+    }
+
+    function filterByType(type) {
+        refreshTable();
+        table_data.forEach((row) => {
+            if (type === 'all') {
+                table_body.appendChild(row);
+            } else if (row.getAttribute('data-tp') === type) {
+                table_body.appendChild(row);
+            }
+        });
+
+        fillTable();
+    }
+
+    function filterBySearch(search) {
+        refreshTable();
+        table_data.forEach((row) => {
+            if (row.getAttribute('data-id').toLowerCase().includes(search.toLowerCase())) {
+                table_body.appendChild(row);
+            }
+        });
+
+        fillTable();
+    }
 
     // handles the click event of the table rows
-    document.querySelectorAll('.approval-table tbody tr:not(.empty)').forEach((row) => {
+    table_data.forEach((row) => {
         row.addEventListener('click', (e) => {
             e.stopPropagation();
             if (e.target.tagName === 'TD') {
                 let id = row.getAttribute('data-id');
-                let type = row.getAttribute('data-tp');
+                // let type = row.getAttribute('data-tp');
                 handleViewOrderDetailsClick(id);
             }
         });
+    });
+
+    document.querySelector('g28-selectbox#sort-by').addEventListener('change', (e) => {
+        let type = e.detail.value;
+        if (type === 'Default') {
+            filterByType('all')
+        } else {
+            filterByType(type);
+        }
+    });
+
+    // Add an event listener to the search form
+    searchForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent form submission
+
+        // Call the filterBySearch function with the input value
+        filterBySearch(searchInput.value);
     });
 </script>
 <script src="/js/employee/orders.js"></script>

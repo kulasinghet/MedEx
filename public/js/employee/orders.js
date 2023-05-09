@@ -1,5 +1,5 @@
 // handles the alert when a row item is clicked
-async function handleViewOrderDetailsClick($orderId) {
+async function handleViewOrderDetailsClick(orderId) {
     try {
         // buzzing model
         swal({
@@ -18,10 +18,10 @@ async function handleViewOrderDetailsClick($orderId) {
             }
         })
 
-        const response = await fetch(`/pharmacy/api/order-details?orderId=${$orderId}`);
+        const response = await fetch(`/pharmacy/api/order-details?orderId=${orderId}`);
         const orderData = await response.json();
 
-        const response2 = await fetch(`/employee/orders/medicine-details?orderId=${$orderId}`);
+        const response2 = await fetch(`/employee/orders/medicine-details?orderId=${orderId}`);
         const orderedMedicines = await response2.json();
 
         swal.close();
@@ -110,10 +110,12 @@ async function handleViewOrderDetailsClick($orderId) {
             medicineInformationForSwal = '<h4>No Medicine Ordered</h4>';
         }
 
+        localStorage.setItem('orderId', orderId);
+
         if (orderData.orderStatus === 'Pending' && acceptedMedicineCount === orderedMedicines.length)
         {
             swal({
-                title: "Order Summary" + '\t' + $orderId,
+                title: "Order Summary" + '\t' + orderId,
                 content: {
                     element: "div",
                     attributes: {
@@ -129,7 +131,26 @@ async function handleViewOrderDetailsClick($orderId) {
                 switch (value) {
                     case "accept":
                         // Accept button clicked
-                        fetch(`/employee/orders/action?id=${$orderId}&st=Accepted`)
+                        swal.close();
+
+                        // buzzing model
+                        swal({
+                            title: 'Loading',
+                            text: 'Please wait...',
+                            buttons: false,
+                            closeOnClickOutside: false,
+                            closeOnEsc: false,
+                            content: {
+                                element: "img",
+                                attributes: {
+                                    // add loading gitf from internet
+                                    src: "https://i.gifer.com/ZZ5H.gif",
+                                    style: "width:25px; margin-bottom:20px;"
+                                },
+                            }
+                        })
+
+                        fetch(`/employee/orders/action?id=${orderId}&st=Accepted`)
                             .then(r => r.json())
                             .then(data => {
                                 swal.close();
@@ -143,7 +164,8 @@ async function handleViewOrderDetailsClick($orderId) {
                                     }).then((value) => {
                                         switch (value) {
                                             case "accept":
-                                                window.open(`http://medex28.tech/pdf/${orderId}.pdf`, '_blank');
+                                                let id = localStorage.getItem('orderId');
+                                                window.open(`https://medex28.tech/pdf/${id}.pdf`, '_blank');
                                                 location.reload();
                                                 break;
                                             case "cancel":
@@ -155,9 +177,14 @@ async function handleViewOrderDetailsClick($orderId) {
                                     swal("Something went wrong!", "Contact the administrator!", "error");
                                 }
                             });
+
+                        swal.close();
+                        // buzzing model
                         break;
                     case "reject":
                         // Reject button clicked
+                        swal.close();
+
                         swal("Are you sure? This action cannot be undone!", {
                             buttons: {
                                 confirm: {
@@ -194,7 +221,7 @@ async function handleViewOrderDetailsClick($orderId) {
                                         }
                                     });
 
-                                    fetch(`/employee/orders/action?id=${$orderId}&st=Rejected`)
+                                    fetch(`/employee/orders/action?id=${orderId}&st=Rejected`)
                                         .then(r => r.json())
                                         .then(data => {
                                             swal.close();
@@ -221,7 +248,7 @@ async function handleViewOrderDetailsClick($orderId) {
             });
         } else if (orderData.orderStatus === 'Pending' && acceptedMedicineCount < orderedMedicines.length) {
             swal({
-                title: "Order Summary" + '\t' + $orderId,
+                title: "Order Summary" + '\t' + orderId,
                 content: {
                     element: "div",
                     attributes: {
@@ -272,7 +299,7 @@ async function handleViewOrderDetailsClick($orderId) {
                                         }
                                     });
 
-                                    fetch(`/employee/orders/action?id=${$orderId}&st=Rejected`)
+                                    fetch(`/employee/orders/action?id=${orderId}&st=Rejected`)
                                         .then(r => r.json())
                                         .then(data => {
                                             swal.close();
@@ -299,7 +326,7 @@ async function handleViewOrderDetailsClick($orderId) {
             });
         } else if (orderData.orderStatus === 'Processed by Admin' || orderData.orderStatus === 'Rejected') {
             swal({
-                title: "Order Summary" + '\t' + $orderId,
+                title: "Order Summary" + '\t' + orderId,
                 content: {
                     element: "div",
                     attributes: {

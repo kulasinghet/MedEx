@@ -59,15 +59,15 @@ class EmployeeViewComponents
     <div class="sidebar-inner">
         <nav class="sidebar-header">
             <div class="sidebar-logo">
-                <a href="#">
+                <a href="/dashboard">
                     <img alt="MedEx logo" src="/res/logo/logo-text_light.svg"/>
                 </a>
             </div>
         </nav>
         <div class="sidebar-context">
             <ul class="main-buttons">
-                <li>
-                    <a '.($selection == 'home' ? "class='disabled'" : "").' href="/dashboard"> <i class="fa-solid fa-house"></i>Home</a>
+                <li'.($selection == 'home' ? " class='disabled'" : "").'>
+                    <a href="/dashboard"> <i class="fa-solid fa-house"></i>Home</a>
                 </li>
                 <li>
                     <i class="fa-solid fa-check"></i>
@@ -89,7 +89,7 @@ class EmployeeViewComponents
                     </ul>
                 </li>
                 <li'.($selection == 'orders'? ' class="disabled"' : '').'>
-                    <a href="/employee/orders"><i class="fa-solid fa-list-check"></i>Pharmacy Orders</a>
+                    <a href="/employee/orders"><i class="fa-solid fa-list-check two-lines"></i>Pharmacy Orders</a>
                 </li>
                 <li'.($selection == 'inquiries'? ' class="disabled"' : '').'>
                     <a href="/employee/inquiries"><i class="fa-solid fa-newspaper"></i>Inquiries</a>
@@ -130,8 +130,7 @@ class EmployeeViewComponents
 <nav>
     <div class="nav-inner">
         <ul>
-            <li><a href="/employee/settings"><i class="fa-solid fa-gear"></i></a></li>
-            <li><a href="#"><i class="fa-solid fa-bell"></i></a></li>
+            <li><a href="/employee/profile"><i class="fa-solid fa-gear"></i></a></li>
             <li><a href="/logout"><i class="fa-solid fa-right-from-bracket"></i></a></li>
         </ul>
         <a class="nav-profile" href="/employee">
@@ -152,7 +151,6 @@ class EmployeeViewComponents
     <div class="nav-inner">
         <ul>
             <li><a href="#"><i class="fa-solid fa-gear"></i></a></li>
-            <li><a href="#"><i class="fa-solid fa-bell"></i></a></li>
             <li><a href="/logout"><i class="fa-solid fa-right-from-bracket"></i></a></li>
         </ul>
         <a class="nav-profile" href="/employee">

@@ -19,6 +19,12 @@ class EmployeeDashboardController extends Controller
         $model = new EmployeeDashboardModel();
 
         header('Content-Type: application/json');
-        echo json_encode($model->calcDailyRevenue());
+        echo json_encode($model->selectDailyRevenue());
+    }
+
+    public  function getPharmacyOrders(): array
+    {
+        $model = new EmployeeDashboardModel();
+        return $model->selectPharmacyOrders();
     }
 }

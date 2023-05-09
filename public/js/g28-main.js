@@ -5,9 +5,9 @@
 
 // Declaring config variables
 let configs = {
-    stage: undefined,
+    stage: 'dev',
     customFormElmPath: undefined,
-    scssStylePath: undefined
+    scssStylePath: '../scss/'
 }
 
 

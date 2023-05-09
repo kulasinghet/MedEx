@@ -8,8 +8,6 @@ const no_of_reports = 10;
 
 $components = new EmployeeViewComponents();
 $store = EmployeeStore::getEmployeeStore();
-$set = $store->flag_g_st; // getting the number of set
-$store->flag_g_st = 0; // resetting the set number in the store
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -70,11 +68,6 @@ $store->renderNotifications();
 <!-- Section: Dashboard Layout -->
 
 <!-- g28 styling framework -->
-<script type="application/javascript">
-    // you can configure variables in here.
-    configs.stage = 'dev';
-    configs.scssStylePath = '../scss/';
-</script>
 <script src="/js/employee/reports.js"></script>
 <script src="/js/g28-toast.js"></script>
 <!-- g28 styling framework -->
