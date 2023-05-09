@@ -38,6 +38,8 @@ class PharmacyOrderMedicineController extends Controller
                 $flag = true;
                 $this->totalPrice = number_format($this->totalPrice, 2);
 
+                
+
                 $result = $order->createOrder($_SESSION['username'], $this->totalPrice, $medicineIds);
                 if ($result) {
 
@@ -51,6 +53,8 @@ class PharmacyOrderMedicineController extends Controller
                         "qrtype" => "order"
                     ];
                     $qr->generateQRFromJSON(json_encode($qr_JSON), $result, 10, 'L');
+
+                    Logger::logDebug("this works");
 
                     $pdf = new \app\core\PDF();
                     $medicineIdsforPDF = (new \app\models\PharmacyOrderModel())->getMedicineByOrderID($result);

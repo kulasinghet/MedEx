@@ -160,8 +160,8 @@ class MedicineModel extends Model
     {
         Logger::logDebug('MedicineModel::getMedicinePrice()' . $id);
         $db = (new Database())->getConnection();
-        $sql = "SELECT sm.medId, sm.unitPrice as price FROM medex.supplier_medicine sm WHERE sm.medId = '$id' ORDER BY sm.medId LIMIT 1";
-
+        $sql = "SELECT sm.medId, min(sm.unitPrice) as price FROM medex.supplier_medicine sm WHERE sm.medId = '$id' AND sm.verified = 1  ORDER BY sm.medId LIMIT 1";
+        Logger::logDebug($sql);
         $result = $db->query($sql);
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
@@ -195,7 +195,8 @@ class MedicineModel extends Model
     {
         Logger::logDebug('MedicineModel::getMedicinePricefororder()' . $id);
         $db = (new Database())->getConnection();
-        $sql = "SELECT sm.medId, sm.unitPrice as price FROM medex.supplier_medicine sm WHERE sm.medId = '$id' AND sm.verified = 1 ORDER BY sm.medId LIMIT 1";
+        $sql = "SELECT sm.medId, min(sm.unitPrice) as price FROM medex.supplier_medicine sm WHERE sm.medId = '$id' AND sm.verified = 1 ORDER BY sm.medId LIMIT 1";
+        Logger::logDebug($sql);
 
         $result = $db->query($sql);
         if ($result->num_rows > 0) {
