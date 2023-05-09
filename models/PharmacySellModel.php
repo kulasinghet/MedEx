@@ -92,6 +92,7 @@ class PharmacySellModel extends Model
 
             if ($stmt->affected_rows > 0) {
                 $stmt->close();
+                Logger::logDebug('----------createSellOrder: ' . $sql);
                 if ($this->updateSellMedicineQuantity($pharmacyUsername, $medicinIDArray, $medicinQuantityArray)) {
                     return $this->invoice_id;
                 }
@@ -119,6 +120,9 @@ class PharmacySellModel extends Model
 
 
             if ($quantity != 0) {
+
+                // Logger::logDebug()
+
                 $sql = "INSERT INTO pharmacysellmedicine (invoice_id, pharmacyUsername, medId, quantity) VALUES ('$this->invoice_id', '$pharmacyUsername', '$medicineID', '$quantity');";
 
                 try {
@@ -127,7 +131,7 @@ class PharmacySellModel extends Model
 
                     if ($stmt->affected_rows == 1) {
                         $stmt->close();
-
+                        Logger::logDebug('----------updateSellMedicineQuantity: ' . $sql);
                         if ($this->updateStock($medicineID, $quantity, $pharmacyUsername)) {
                             continue;
                         } else {
@@ -153,7 +157,7 @@ class PharmacySellModel extends Model
     public function getMedicineSellsByOrderID(bool|string $invoice_id )
     {
 //        SELECT pharmacyordermedicine.medId, pharmacyordermedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, supplier_medicine.unitPrice FROM pharmacyordermedicine LEFT JOIN medicine ON pharmacyordermedicine.medid = medicine.id LEFT JOIN supplier_medicine ON medicine.id = supplier_medicine.medid WHERE orderid = '$orderId'";
-        $sql = "SELECT pharmacysellmedicine.medId, pharmacysellmedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, stock.sellingPrice as unitPrice FROM pharmacysellmedicine LEFT JOIN medicine ON pharmacysellmedicine.medid = medicine.id LEFT JOIN stock ON medicine.id = stock.medId WHERE invoice_id = '$invoice_id'";
+        $sql = "SELECT DISTINCT pharmacysellmedicine.medId, pharmacysellmedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, stock.sellingPrice as unitPrice FROM pharmacysellmedicine LEFT JOIN medicine ON pharmacysellmedicine.medid = medicine.id LEFT JOIN stock ON medicine.id = stock.medId WHERE invoice_id = '$invoice_id'";
 
         Logger::logDebug($sql);
 
@@ -182,6 +186,7 @@ class PharmacySellModel extends Model
             $stmt->execute();
 
             if ($stmt->affected_rows == 1) {
+                Logger::logDebug('----------updateStock: ' . $sql);
 
                 if ($this->updateRemainingDays($medicineID, $pharmacyUsername) == true && $this->updateConsumptionRate($medicineID, $pharmacyUsername) == true) {
                     $stmt->close();
@@ -236,7 +241,7 @@ class PharmacySellModel extends Model
 
     public function getPharmacySellOrdersMedicinesByInvoiceId(mixed $invoiceId)
     {
-        $sql = "SELECT pharmacysellmedicine.medId, pharmacysellmedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, stock.sellingPrice as unitPrice FROM pharmacysellmedicine LEFT JOIN medicine ON pharmacysellmedicine.medid = medicine.id LEFT JOIN stock ON medicine.id = stock.medId WHERE invoice_id = '$invoiceId'";
+        $sql = "SELECT DISTINCT pharmacysellmedicine.medId, pharmacysellmedicine.quantity, medicine.medName, medicine.sciName, medicine.weight, stock.sellingPrice as unitPrice FROM pharmacysellmedicine LEFT JOIN medicine ON pharmacysellmedicine.medid = medicine.id LEFT JOIN stock ON medicine.id = stock.medId WHERE invoice_id = '$invoiceId'";
 
         Logger::logDebug($sql);
 

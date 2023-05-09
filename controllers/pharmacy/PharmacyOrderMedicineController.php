@@ -38,6 +38,8 @@ class PharmacyOrderMedicineController extends Controller
                 $flag = true;
                 $this->totalPrice = number_format($this->totalPrice, 2);
 
+                
+
                 $result = $order->createOrder($_SESSION['username'], $this->totalPrice, $medicineIds);
                 if ($result) {
 
@@ -51,6 +53,8 @@ class PharmacyOrderMedicineController extends Controller
                         "qrtype" => "order"
                     ];
                     $qr->generateQRFromJSON(json_encode($qr_JSON), $result, 10, 'L');
+
+                    Logger::logDebug("this works");
 
                     $pdf = new \app\core\PDF();
                     $medicineIdsforPDF = (new \app\models\PharmacyOrderModel())->getMedicineByOrderID($result);
@@ -85,6 +89,17 @@ class PharmacyOrderMedicineController extends Controller
     public function getPrice(mixed $id)
     {
         $price =  (new \app\models\MedicineModel())->getMedicinePrice($id);
+
+        if ($price['price'] > 0) {
+            return $price['price'];
+        } else {
+            return 0;
+        }
+    }
+
+    public function getPriceForOrder(mixed $id)
+    {
+        $price =  (new \app\models\MedicineModel())->getMedicinePriceForOrder($id);
 
         if ($price['price'] > 0) {
             return $price['price'];
@@ -154,7 +169,6 @@ class PharmacyOrderMedicineController extends Controller
             $order = (new \app\models\PharmacyOrderModel())->getMedicineByOrderID($orderId);
 
             header('Content-Type: application/json');
-            // Echo the JSON-encoded response
             echo json_encode($order);
 
 

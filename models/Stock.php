@@ -295,23 +295,41 @@ class Stock extends Model
 
             for($i=0;$i<sizeof($allMedicine);$i++){
 
-                $sqlpharmacyBuyPrice = "SELECT supplier_medicine.unitPrice FROM supplier_medicine WHERE medId='$allMedicine[$i]['medId']';";
-                $sqlisMedicineExist = "SELECT * FROM stock WHERE medId='$allMedicine[$i]['medId']' AND pharmacyName='$pharmacyName';";
-                $sqlremainingQty = "SELECT remQty FROM stock WHERE medId='$allMedicine[$i]['medId']' AND pharmacyName='$pharmacyName';";
-                $sqlconsumptionRate = "SELECT consumption_rate FROM stock WHERE medId='$allMedicine[$i]['medId']' AND pharmacyName='$pharmacyName';";
+                $sqlSupName = "SELECT pharmacyordermedicine.supName FROM pharmacyordermedicine WHERE medId='" . $allMedicine[$i]['medId'] . "' AND orderId='$orderId';";
 
-                $remainingQtyIntheStock = mysqli_query($conn, $sqlremainingQty)->fetch_assoc()['remQty'];
+                $supName = mysqli_query($conn, $sqlSupName)->fetch_assoc()['supName'];
+
+                $sqlpharmacyBuyPrice = "SELECT supplier_medicine.unitPrice FROM supplier_medicine WHERE medId='" . $allMedicine[$i]['medId'] . "' AND supName='" . $supName . "';";
+                $sqlisMedicineExist = "SELECT * FROM stock WHERE medId='" . $allMedicine[$i]['medId'] . "' AND pharmacyName='$pharmacyName';";
+                $sqlremainingQty = "SELECT remQty FROM stock WHERE medId='" . $allMedicine[$i]['medId'] . "' AND pharmacyName='$pharmacyName';";
+                $sqlconsumptionRate = "SELECT consumption_rate FROM stock WHERE medId='" . $allMedicine[$i]['medId'] . "' AND pharmacyName='$pharmacyName';";
+
+                Logger::logDebug($sqlremainingQty);
+
+                $remainingQtyIntheStock = mysqli_query($conn, $sqlremainingQty);
+                if ($remainingQtyIntheStock->num_rows > 0) {
+                    $remainingQtyIntheStock = $remainingQtyIntheStock->fetch_assoc()['remQty'];
+                } else {
+                    $remainingQtyIntheStock = 0;
+                }
+
                 $remainingQty = $remainingQtyIntheStock + $allMedicine[$i]['quantity'];
-
+                Logger::logDebug($remainingQty . " " . $allMedicine[$i]['quantity'] . " " . $remainingQtyIntheStock);
+                Logger::logError($sqlpharmacyBuyPrice);
                 $pharmacyBuyPrice = mysqli_query($conn, $sqlpharmacyBuyPrice)->fetch_assoc()['unitPrice'];
                 $isMedicineExist = mysqli_query($conn, $sqlisMedicineExist)->fetch_assoc();
 
                 if($isMedicineExist){
 
                     $consumptionRate = mysqli_query($conn, $sqlconsumptionRate)->fetch_assoc()['consumption_rate'];
+                    if ($consumptionRate == 0) {
+                        $consumptionRate = 1;
+                    }
                     $newRemainingDays = $remainingQty/$consumptionRate;
 
-                    $sqlupdateStock = "UPDATE stock SET remQty = '$remainingQty', buying_price = '$pharmacyBuyPrice', receivedDate = '$receivedDate', remaining_days = '$newRemainingDays' WHERE medId = '$allMedicine[$i]['medId']' AND pharmacyName = '$pharmacyName';";
+                    $sqlupdateStock = "UPDATE stock SET remQty = '$remainingQty', buying_price = '$pharmacyBuyPrice', receivedDate = '$receivedDate', remaining_days = '$newRemainingDays' WHERE medId = '" . $allMedicine[$i]['medId'] . "' AND pharmacyName = '$pharmacyName';";
+
+                    Logger::logDebug($sqlupdateStock);
                     if (!mysqli_query($conn, $sqlupdateStock)) {
                         $result = false;
                     }
@@ -321,13 +339,15 @@ class Stock extends Model
                     $countStock = mysqli_query($conn, $sqlcountStock)->fetch_assoc()['COUNT(*)'];
                     $countStock = (int)$countStock;
                     $countStock = $countStock + 1;
-                    $newStockId = 'STK' . $countStock;
+                    $newStockId = "STK" . $countStock . "";
 
-                    $sqlinsertStock = "INSERT INTO stock (id, medId, pharmacyName, receivedDate, remQty, sellingPrice, buying_price, remaining_days, consumption_rate) VALUES ('$newStockId', '$allMedicine[$i]['medId']', '$pharmacyName', '$receivedDate', '$remainingQty', '$pharmacyBuyPrice', '$pharmacyBuyPrice', '$remainingQty', '1');";
+                    $sqlinsertStock = "INSERT INTO stock (id, medId, pharmacyName, receivedDate, remQty, sellingPrice, buying_price, remaining_days, consumption_rate) VALUES ('$newStockId', '" . $allMedicine[$i]['medId'] . "', '$pharmacyName', '$receivedDate', '$remainingQty', '$pharmacyBuyPrice', '$pharmacyBuyPrice', '0', '0');";
+                    Logger::logDebug($sqlinsertStock);
                     if (!mysqli_query($conn, $sqlinsertStock)) {
                         $result = false;
                     }
                 }
+                Logger::logDebug("i".$i."");
             }
 
             $conn->close();

@@ -65,7 +65,7 @@
             </div>
 
 <!--            <button type="submit" class="btn" id="registerButton" onclick="hanleRegisterButton()">Report</button>-->
-            <button type="submit" class="btn" id="registerButton">Report</button>
+            <button type="submit" class="btn" id="registerButton">Review</button>
         </form>
 
         <script>

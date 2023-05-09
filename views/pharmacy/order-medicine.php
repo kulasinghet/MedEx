@@ -88,9 +88,9 @@ echo $components->sideBar('order-medicine');
                         let totalOrderValue = 0;
                         let totalPrices = document.getElementsByClassName('total-price-column');
                         for (let i = 0; i < totalPrices.length; i++) {
-                            totalOrderValue += parseFloat(totalPrices[i].innerHTML).toFixed(2)
+                            totalOrderValue += parseFloat(totalPrices[i].innerHTML)
                         }
-                        document.getElementById('total-order-value').innerHTML = totalOrderValue.toString();
+                        document.getElementById('total-order-value').innerHTML = totalOrderValue.toFixed(2).toString();
 
                     }
 
@@ -122,19 +122,25 @@ echo $components->sideBar('order-medicine');
 
                     if ($medicines != null) {
                         foreach ($medicines as $medicine) {
+
+                            if ($pharmacyOrderMedicineController->getPriceForOrder($medicine['id']) != 0 ) {
+
+                            $remQty = $medicineEntity->getRemQty($medicine['id']);
+
                             echo "<tr class='order-medicine-row-before' data-id='" . $medicine['medName'] . " " . $medicine['sciName'] . " " . $medicine['id'] . "' id='order-medicine-row-" . $medicine['id'] . "'>";
                             echo "<td>" . $medicine['id'] . "</td>";
                             echo "<td>" . $medicine['medName'] . "</td>";
                             echo "<td style='text-align: center'>" . $medicine['sciName'] . "</td>";
-                            echo "<td style='text-align: center'>" . $medicine['remQty'] . "</td>";
-                            echo "<td style='text-align: center'>" . $pharmacyOrderMedicineController->getPrice($medicine['id']) . "</td>";
+                            echo "<td style='text-align: center'>" . $remQty . "</td>";
+                            echo "<td style='text-align: center'>" . $pharmacyOrderMedicineController->getPriceForOrder($medicine['id']) . "</td>";
                             echo "<td  style='text-align: center'><input type='number' name='" . $medicine['id'] . "' min='0' max='100' placeholder='0' class='order-medicine-quantity' required onchange='handleQtyChange(name)' id='order-medicine-quantity-" . $medicine['id'] . "'></td>";
-//                            <input type='number' name='quantity' id='quantity' placeholder='1 2 3 . . .'>
                             echo "<td style='text-align: center' id='total-price-" . $medicine['id'] . "' class='total-price-column'>0</td>";
                             echo "<td style='text-align: center; padding: 0;'><a class='btn' onclick='hideRow(\"" . $medicine['id'] . "\")' style='padding: 0; background-color: transparent; border: none; margin: 0; outline: none; box-shadow: none;'>";
                             echo "<i class='fa fa-times close-row' aria-hidden='true' style='color: red;'></i>";
                             echo "</a></td>";
                             echo "</tr>";
+
+                            }
 
                         }
                         echo "<tr style='background-color: #f2f2f2; font-weight: bold'>";
@@ -145,7 +151,7 @@ echo $components->sideBar('order-medicine');
                         echo "</tr>";
                     } else {
                         echo "<tr>";
-                        echo "<td colspan='6' style='text-align: center'>No medicines available</td>";
+                        echo "<td colspan='7' style='text-align: center'>No medicines available</td>";
                         echo "</tr>";
                     }
                     echo "</form>";
@@ -222,7 +228,7 @@ echo $components->sideBar('order-medicine');
                                 if (value) {
                                     document.getElementById('order-medicine-form').submit();
                                     swal({
-                                        title: "Order Confirmed",
+                                        title: "Please Wait",
                                         text: "Your order is being processed",
                                         icon: "success",
                                         buttons: {},
