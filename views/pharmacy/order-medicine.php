@@ -88,9 +88,9 @@ echo $components->sideBar('order-medicine');
                         let totalOrderValue = 0;
                         let totalPrices = document.getElementsByClassName('total-price-column');
                         for (let i = 0; i < totalPrices.length; i++) {
-                            totalOrderValue += parseFloat(totalPrices[i].innerHTML).toFixed(2)
+                            totalOrderValue += parseFloat(totalPrices[i].innerHTML)
                         }
-                        document.getElementById('total-order-value').innerHTML = totalOrderValue.toString();
+                        document.getElementById('total-order-value').innerHTML = totalOrderValue.toFixed(2).toString();
 
                     }
 
