@@ -83,7 +83,7 @@ class HyperDeliveryModel extends HyperEntityModel
             $stmt->execute();
 
             if ($stmt->affected_rows == 1) {
-                $store->setNotification('Delivery Partner is verified!', $this->username . ' is verified successfully.', 'success');
+                $store->setNotification('Delivery Partner is '.($action? 'verified' : 'ignored').'!', $this->username . ' is verified successfully.', 'success');
                 return true;
             } else {
                 $store->setNotification('Delivery Partner verification error!', $this->username . ' couldn\'t be verified (see logs).', 'error');
