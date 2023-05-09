@@ -66,8 +66,8 @@ class EmployeeViewComponents
         </nav>
         <div class="sidebar-context">
             <ul class="main-buttons">
-                <li>
-                    <a '.($selection == 'home' ? "class='disabled'" : "").' href="/dashboard"> <i class="fa-solid fa-house"></i>Home</a>
+                <li'.($selection == 'home' ? " class='disabled'" : "").'>
+                    <a href="/dashboard"> <i class="fa-solid fa-house"></i>Home</a>
                 </li>
                 <li>
                     <i class="fa-solid fa-check"></i>
@@ -89,7 +89,7 @@ class EmployeeViewComponents
                     </ul>
                 </li>
                 <li'.($selection == 'orders'? ' class="disabled"' : '').'>
-                    <a href="/employee/orders"><i class="fa-solid fa-list-check"></i>Pharmacy Orders</a>
+                    <a href="/employee/orders"><i class="fa-solid fa-list-check two-lines"></i>Pharmacy Orders</a>
                 </li>
                 <li'.($selection == 'inquiries'? ' class="disabled"' : '').'>
                     <a href="/employee/inquiries"><i class="fa-solid fa-newspaper"></i>Inquiries</a>

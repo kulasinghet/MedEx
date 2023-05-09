@@ -2707,6 +2707,10 @@ nav .nav-inner ul li a:active:not(.disabled) {
 }
 .sidebar-collapsible .sidebar-inner .sidebar-context ul li.disabled {
   --g28-sidebar-itm-color: #f6f9ff;
+  background: rgba(131, 131, 131, 0.75);
+}
+.sidebar-collapsible .sidebar-inner .sidebar-context ul li.disabled i {
+  color: #f6f9ff;
 }
 .sidebar-collapsible .sidebar-inner .sidebar-context .main-buttons > li {
   padding: 16px 52px;
@@ -2714,6 +2718,9 @@ nav .nav-inner ul li a:active:not(.disabled) {
 .sidebar-collapsible .sidebar-inner .sidebar-context .main-buttons > li i {
   position: absolute;
   left: 16px;
+}
+.sidebar-collapsible .sidebar-inner .sidebar-context .main-buttons > li i.two-lines {
+  transform: translateY(10px);
 }
 .sidebar-collapsible .sidebar-inner .sidebar-context .main-buttons > li:hover, .sidebar-collapsible .sidebar-inner .sidebar-context .main-buttons > li:active, .sidebar-collapsible .sidebar-inner .sidebar-context .main-buttons > li:focus {
   background-color: #1e69fe;

@@ -131,6 +131,25 @@ async function handleViewOrderDetailsClick(orderId) {
                 switch (value) {
                     case "accept":
                         // Accept button clicked
+                        swal.close();
+
+                        // buzzing model
+                        swal({
+                            title: 'Loading',
+                            text: 'Please wait...',
+                            buttons: false,
+                            closeOnClickOutside: false,
+                            closeOnEsc: false,
+                            content: {
+                                element: "img",
+                                attributes: {
+                                    // add loading gitf from internet
+                                    src: "https://i.gifer.com/ZZ5H.gif",
+                                    style: "width:25px; margin-bottom:20px;"
+                                },
+                            }
+                        })
+
                         fetch(`/employee/orders/action?id=${orderId}&st=Accepted`)
                             .then(r => r.json())
                             .then(data => {
@@ -158,9 +177,14 @@ async function handleViewOrderDetailsClick(orderId) {
                                     swal("Something went wrong!", "Contact the administrator!", "error");
                                 }
                             });
+
+                        swal.close();
+                        // buzzing model
                         break;
                     case "reject":
                         // Reject button clicked
+                        swal.close();
+
                         swal("Are you sure? This action cannot be undone!", {
                             buttons: {
                                 confirm: {

@@ -182,19 +182,18 @@ $report-itm-border-radius: 6px;
 @mixin generate-report-item-variant($user-type, $color-base) {
   &.#{$user-type} {
     --rpt-itm-color-base: #{$color-base};
-    --rpt-itm-color-opaque-1: #{darken($color-base, 20%)};
-    --rpt-itm-color-opaque-2: #{darken($color-base, 40%)};
+    --rpt-itm-color-opaque-1: #{darken($color-base, 25%)};
+    --rpt-itm-color-opaque-2: #{darken($color-base, 50%)};
     --rpt-itm-color-light-1: #{lighten($color-base, 20%)};
   }
 }
 
 .report-list {
-  //height: 100vh;
   height: calc(100vh - 5.5rem);
-  padding: .5rem;
+  padding: 0;
   margin: 0 .5rem .5rem .5rem;
   background-color: #e7eff9;
-  background-image: linear-gradient(315deg, #e7eff9 0%, #cfd6e6 74%);
+  //background-image: linear-gradient(315deg, #e7eff9 0%, #cfd6e6 74%);
   box-shadow: 0 0 2px 2px rgba(33, 33, 33, 0.3);
 
   .list-content {
@@ -463,10 +462,10 @@ $report-itm-border-radius: 6px;
     }
   }
 
-  @include generate-report-item-variant('pharmacy', #61F0E4);
-  @include generate-report-item-variant('supplier', #A3E1B0);
-  @include generate-report-item-variant('delivery', #E4D17C);
-  @include generate-report-item-variant('lab', #DCA270);
+  @include generate-report-item-variant('pharmacy', #c3fae8);
+  @include generate-report-item-variant('supplier', #e9fac8);
+  @include generate-report-item-variant('delivery', #fff3bf);
+  @include generate-report-item-variant('lab', #ffe8cc);
 }
 
 // Styles for orders page
