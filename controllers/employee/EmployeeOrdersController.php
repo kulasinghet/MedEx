@@ -27,23 +27,11 @@ class EmployeeOrdersController extends Controller
         $this -> render("employee/emp_orders.php");
     }
 
-    public function getOrderList(int $set_size, $set_number = 0): array
+    public function getOrderList(): array
     {
-        // retrieving the employee store
-        $store = EmployeeStore::getEmployeeStore();
-
-        if ($set_number > 0 && $store->list_g != []) {
-            // retrieve the list from the store
-            $list = $store->list_g;
-        } else {
-            $model = new EmployeeOrderModel();
-            // creating an array of all resources
-            $list = $model->getAllOrders();
-        }
-
-        // slicing the list to the set size
-        // return array_slice($list, $set_number * 9, $set_size);
-        return $list;
+        $model = new EmployeeOrderModel();
+        // creating an array of all resources
+        return $model->getAllOrders();
     }
 
     /**

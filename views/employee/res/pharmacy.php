@@ -167,17 +167,6 @@ echo $components->createNavbar();
 <!-- Section: Dashboard Layout -->
 
 <!-- g28 styling framework -->
-<script type="application/javascript">
-    // you can configure variables in here.
-    configs.stage = 'dev';
-    configs.scssStylePath = '../scss/';
-
-    //logging
-    logger("Logging g28 initial state before loading specialized JS files...");
-    for (let property in configs) {
-        logger(`> ${property}: ${configs[property]}`);
-    }
-</script>
 <script src="/js/g28-forms.js"></script>
 <!-- g28 styling framework -->
 </body>
