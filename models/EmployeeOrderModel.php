@@ -166,10 +166,10 @@ class EmployeeOrderModel extends Model
     {
         $conn = $this->createConnection();
 
-        $sql = "SELECT `order`.medId, `med`.medName, `order`.supName, `order`.quantity, min(`supp`.unitPrice) 
+        $sql = "SELECT `order`.medId, `med`.medName, `order`.supName, `order`.quantity, `supp`.unitPrice 
                 FROM `pharmacyordermedicine` `order`
                     LEFT JOIN `medicine` `med` ON `order`.medid = `med`.id
-                    LEFT JOIN `supplier_medicine` `supp` ON `med`.id = `supp`.medid WHERE orderid = '$orderId'";
+                    LEFT JOIN `supplier_medicine` `supp` ON `med`.id = `supp`.medid WHERE orderid = '$orderId' ORDER BY `supp`.unitPrice LIMIT 1";
 
         try {
             $result = $conn->query($sql);

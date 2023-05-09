@@ -84,6 +84,7 @@ $store->renderNotifications();
                     $controller = new EmployeeOrdersController();
                     try {
                         $res_list = $controller->getOrderList();
+
                         if (!empty($res_list)) {
                             foreach ($res_list as $item) {
                                 echo $components->createOrderItem($item);
