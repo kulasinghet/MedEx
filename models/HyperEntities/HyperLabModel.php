@@ -68,15 +68,15 @@ class HyperLabModel extends HyperEntityModel
             $stmt->execute();
 
             if ($stmt->affected_rows == 1) {
-                $store->setNotification('Laboratory is verified!', $this->username . ' is verified successfully.', 'success');
+                $store->setNotification('Laboratory is '.($action? 'verified' : 'ignored').'!', $this->username . ' is '.($action? 'verified' : 'ignored').' successfully.', 'success');
                 return true;
             } else {
-                $store->setNotification('Laboratory verification error!', $this->username . ' couldn\'t be verified (see logs).', 'error');
+                $store->setNotification('Laboratory verification error!', $this->username . ' couldn\'t do the operation (see logs).', 'error');
                 Logger::logError($stmt->error);
                 return false;
             }
         } catch (\Exception $e) {
-            $store->setNotification('Laboratory verification error!', $this->username . ' couldn\'t be verified (see logs).', 'error');
+            $store->setNotification('Laboratory verification error!', $this->username . ' couldn\'t do the operation (see logs).', 'error');
             Logger::logError($e->getMessage());
             return false;
         }
