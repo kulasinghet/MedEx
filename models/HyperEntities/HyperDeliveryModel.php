@@ -86,12 +86,12 @@ class HyperDeliveryModel extends HyperEntityModel
                 $store->setNotification('Delivery Partner is '.($action? 'verified' : 'ignored').'!', $this->username . ' is '.($action? 'verified' : 'ignored').' successfully.', 'success');
                 return true;
             } else {
-                $store->setNotification('Delivery Partner verification error!', $this->username . ' couldn\'t be verified (see logs).', 'error');
+                $store->setNotification('Delivery Partner verification error!', $this->username . ' couldn\'t do the operation (see logs).', 'error');
                 Logger::logError($stmt->error);
                 return false;
             }
         } catch (\Exception $e) {
-            $store->setNotification('Delivery Partner verification error!', $this->username . ' couldn\'t be verified (see logs).', 'error');
+            $store->setNotification('Delivery Partner verification error!', $this->username . ' couldn\'t do the operation (see logs).', 'error');
             Logger::logError($e->getMessage());
             return false;
         }
